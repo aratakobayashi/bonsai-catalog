@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Image from 'next/image'
-import { ChevronLeft, ChevronRight, ZoomIn, X } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ZoomIn, X, Smartphone } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useSwipeGesture } from '@/hooks/useSwipeGesture'
 
 interface ImageGalleryProps {
   images: string[]
@@ -15,6 +16,7 @@ export function ImageGallery({ images, productName, className }: ImageGalleryPro
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isZoomed, setIsZoomed] = useState(false)
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 })
+  const [showSwipeHint, setShowSwipeHint] = useState(false)
 
   // 画像が1つしかない場合の対応
   const imageList = images.length > 0 ? images : ['/placeholder-bonsai.jpg']
@@ -41,18 +43,42 @@ export function ImageGallery({ images, productName, className }: ImageGalleryPro
     setIsZoomed(!isZoomed)
   }
 
+  // スワイプジェスチャー対応
+  const swipeRef = useSwipeGesture({
+    onSwipeLeft: () => {
+      if (!isZoomed && imageList.length > 1) {
+        nextImage()
+      }
+    },
+    onSwipeRight: () => {
+      if (!isZoomed && imageList.length > 1) {
+        prevImage()
+      }
+    },
+    threshold: 50,
+    preventScroll: true
+  })
+
   return (
     <div className={cn('space-y-4', className)}>
       {/* メイン画像表示エリア */}
       <div className="relative group">
         <div 
+          ref={swipeRef}
           className={cn(
             'aspect-square relative bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-xl overflow-hidden shadow-luxury',
             'transition-all duration-300 ease-luxury',
-            isZoomed && 'cursor-zoom-out'
+            isZoomed && 'cursor-zoom-out',
+            'touch-pan-y select-none'
           )}
           onMouseMove={handleMouseMove}
           onClick={toggleZoom}
+          onMouseEnter={() => {
+            if (imageList.length > 1 && 'ontouchstart' in window) {
+              setShowSwipeHint(true)
+              setTimeout(() => setShowSwipeHint(false), 3000)
+            }
+          }}
         >
           <Image
             src={imageList[currentImageIndex]}
@@ -95,6 +121,18 @@ export function ImageGallery({ images, productName, className }: ImageGalleryPro
               >
                 <X className="h-4 w-4" />
               </button>
+            </div>
+          )}
+
+          {/* スワイプヒント - モバイルでのみ表示 */}
+          {showSwipeHint && imageList.length > 1 && (
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none md:hidden">
+              <div className="bg-black/70 text-white px-4 py-2 rounded-lg backdrop-blur-sm animate-fade-in">
+                <div className="flex items-center space-x-2">
+                  <Smartphone className="h-4 w-4" />
+                  <span className="text-sm">左右にスワイプして切り替え</span>
+                </div>
+              </div>
             </div>
           )}
         </div>

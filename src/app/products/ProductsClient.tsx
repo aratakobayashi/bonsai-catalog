@@ -7,8 +7,10 @@ import { ProductCard } from '@/components/features/ProductCard'
 import { SearchWithAutocomplete } from '@/components/features/SearchWithAutocomplete'
 import { AdvancedFilter } from '@/components/features/AdvancedFilter'
 import { Button } from '@/components/ui/Button'
+import { PullToRefreshIndicator } from '@/components/ui/PullToRefreshIndicator'
 import { Grid, List, SlidersHorizontal } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { usePullToRefresh } from '@/hooks/usePullToRefresh'
 import type { Product, ProductFilters, SizeCategory } from '@/types'
 
 export default function ProductsClient() {
@@ -26,31 +28,31 @@ export default function ProductsClient() {
   const router = useRouter()
 
   // 商品データの取得
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const { data, error } = await supabase
-        .from('products')
-        .select('*')
-        .order('created_at', { ascending: false })
+  const fetchProducts = async () => {
+    const { data, error } = await supabase
+      .from('products')
+      .select('*')
+      .order('created_at', { ascending: false })
 
-      if (error) {
-        console.error('商品データの取得エラー:', error)
-      }
-
-      if (data) {
-        setProducts(data)
-        
-        // カテゴリとタグの一覧を生成
-        const categories = Array.from(new Set(data.map(p => p.category))).sort()
-        setAvailableCategories(categories)
-        
-        const allTags = data.flatMap(p => p.tags || [])
-        const uniqueTags = Array.from(new Set(allTags)).sort()
-        setAvailableTags(uniqueTags)
-      }
-      setIsLoading(false)
+    if (error) {
+      console.error('商品データの取得エラー:', error)
     }
 
+    if (data) {
+      setProducts(data)
+      
+      // カテゴリとタグの一覧を生成
+      const categories = Array.from(new Set(data.map(p => p.category))).sort()
+      setAvailableCategories(categories)
+      
+      const allTags = data.flatMap(p => p.tags || [])
+      const uniqueTags = Array.from(new Set(allTags)).sort()
+      setAvailableTags(uniqueTags)
+    }
+    setIsLoading(false)
+  }
+
+  useEffect(() => {
     fetchProducts()
   }, [])
 
@@ -151,8 +153,30 @@ export default function ProductsClient() {
     }
   }
 
+  // プルトゥリフレッシュ機能
+  const pullToRefresh = usePullToRefresh({
+    onRefresh: async () => {
+      await fetchProducts()
+    },
+    threshold: 80,
+    enabled: true
+  })
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-neutral-50 to-white py-8">
+    <div 
+      ref={pullToRefresh.containerRef}
+      className="min-h-screen bg-gradient-to-b from-neutral-50 to-white py-8 relative overflow-hidden"
+    >
+      {/* プルトゥリフレッシュインジケーター */}
+      {(pullToRefresh.isPulling || pullToRefresh.isRefreshing) && (
+        <PullToRefreshIndicator
+          pullDistance={pullToRefresh.pullDistance}
+          threshold={80}
+          isRefreshing={pullToRefresh.isRefreshing}
+          isTriggered={pullToRefresh.isTriggered}
+        />
+      )}
+      
       <div className="container mx-auto px-4">
         {/* ヘッダー */}
         <div className="text-center mb-12">
