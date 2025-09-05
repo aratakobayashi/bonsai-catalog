@@ -253,9 +253,21 @@ export default function ProductsClient() {
 
             {/* 商品一覧 */}
             {isLoading ? (
-              <div className="text-center py-24">
-                <div className="inline-block animate-spin rounded-full h-16 w-16 border-b-4 border-accent-600 mb-6"></div>
-                <p className="text-xl text-neutral-600">商品を読み込み中...</p>
+              <div className="text-center py-24 animate-fade-in">
+                <div className="relative mb-6">
+                  <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-accent-200"></div>
+                  <div className="absolute inset-0 inline-block animate-pulse rounded-full h-16 w-16 border-t-4 border-accent-600"></div>
+                </div>
+                <div className="animate-pulse-glow">
+                  <p className="text-xl text-neutral-600 mb-2">商品を読み込み中</p>
+                  <div className="flex justify-center">
+                    <div className="flex space-x-1">
+                      <div className="w-2 h-2 bg-accent-500 rounded-full animate-bounce-gentle"></div>
+                      <div className="w-2 h-2 bg-accent-500 rounded-full animate-bounce-gentle" style={{animationDelay: '0.1s'}}></div>
+                      <div className="w-2 h-2 bg-accent-500 rounded-full animate-bounce-gentle" style={{animationDelay: '0.2s'}}></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             ) : filteredProducts.length > 0 ? (
               <div className={cn(
@@ -264,19 +276,30 @@ export default function ProductsClient() {
                   ? 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6'
                   : 'space-y-6'
               )}>
-                {filteredProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+                {filteredProducts.map((product, index) => (
+                  <div
+                    key={product.id}
+                    className="animate-slide-up"
+                    style={{ 
+                      animationDelay: `${Math.min(index * 0.1, 1)}s`,
+                      animationFillMode: 'both'
+                    }}
+                  >
+                    <ProductCard product={product} />
+                  </div>
                 ))}
               </div>
             ) : (
-              <div className="text-center py-24">
-                <div className="text-8xl text-neutral-300 mb-8">🔍</div>
-                <h3 className="text-2xl font-bold text-primary-800 mb-4">
-                  商品が見つかりません
-                </h3>
-                <p className="text-neutral-600 mb-8 max-w-md mx-auto">
-                  検索条件を変更するか、フィルターをクリアしてお試しください
-                </p>
+              <div className="text-center py-24 animate-fade-in">
+                <div className="text-8xl text-neutral-300 mb-8 animate-float">🔍</div>
+                <div className="animate-slide-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
+                  <h3 className="text-2xl font-bold text-primary-800 mb-4">
+                    商品が見つかりません
+                  </h3>
+                  <p className="text-neutral-600 mb-8 max-w-md mx-auto">
+                    検索条件を変更するか、フィルターをクリアしてお試しください
+                  </p>
+                </div>
                 <Button
                   variant="outline"
                   size="lg"

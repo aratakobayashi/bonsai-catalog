@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { formatPrice, getSizeCategoryLabel } from '@/lib/utils'
+import { formatPrice, getSizeCategoryLabel, cn } from '@/lib/utils'
 import { ShoppingBag, Heart, Eye } from 'lucide-react'
 import type { Product } from '@/types'
 
@@ -12,7 +12,12 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <Card className="group relative overflow-hidden">
+    <Card className={cn(
+      "group relative overflow-hidden",
+      "transition-all duration-300 ease-luxury",
+      "hover:shadow-hover hover:-translate-y-2",
+      "animate-fade-in"
+    )}>
       {/* 商品画像セクション - 高級感のある表示 */}
       <div className="relative">
         <Link href={`/products/${product.id}`}>
@@ -32,14 +37,21 @@ export function ProductCard({ product }: ProductCardProps) {
             
             {/* オーバーレイ - ホバー時に表示される操作ボタン */}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300">
-              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <button className="p-2 bg-white/90 hover:bg-white rounded-full shadow-luxury hover:shadow-hover transition-all duration-200">
-                  <Heart className="h-4 w-4 text-neutral-600 hover:text-accent-500" />
+              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-slide-down">
+                <button className={cn(
+                  "p-2 bg-white/90 hover:bg-white rounded-full shadow-luxury hover:shadow-hover",
+                  "transition-all duration-200 hover:scale-110 active:scale-95",
+                  "hover:animate-heartbeat focus:ring-2 focus:ring-accent-500"
+                )}>
+                  <Heart className="h-4 w-4 text-neutral-600 hover:text-accent-500 transition-colors" />
                 </button>
               </div>
               
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <Button variant="ghost" size="sm" className="bg-white/90 text-primary-700 hover:bg-white">
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-scale-in">
+                <Button variant="ghost" size="sm" className={cn(
+                  "bg-white/90 text-primary-700 hover:bg-white",
+                  "animate-bounce-gentle hover:animate-none"
+                )}>
                   <Eye className="h-4 w-4 mr-2" />
                   詳細を見る
                 </Button>
@@ -49,8 +61,11 @@ export function ProductCard({ product }: ProductCardProps) {
         </Link>
 
         {/* 価格バッジ - 左上に配置 */}
-        <div className="absolute top-4 left-4">
-          <div className="bg-gradient-accent text-white px-3 py-1 rounded-lg shadow-luxury font-bold text-lg">
+        <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-slide-down">
+          <div className={cn(
+            "bg-gradient-accent text-white px-3 py-1 rounded-lg shadow-luxury font-bold text-lg",
+            "animate-pulse-glow hover:animate-wiggle transition-all duration-200"
+          )}>
             {formatPrice(product.price)}
           </div>
         </div>
@@ -81,13 +96,18 @@ export function ProductCard({ product }: ProductCardProps) {
             {product.tags.slice(0, 2).map((tag, index) => (
               <span
                 key={index}
-                className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition-colors"
+                className={cn(
+                  "inline-flex items-center px-2 py-1 rounded-md text-xs font-medium",
+                  "bg-neutral-100 text-neutral-600 hover:bg-neutral-200",
+                  "transition-all duration-200 hover:scale-105 hover:animate-wiggle",
+                  "focus:ring-2 focus:ring-neutral-300"
+                )}
               >
                 {tag}
               </span>
             ))}
             {product.tags.length > 2 && (
-              <span className="text-xs text-neutral-500 self-center">+{product.tags.length - 2}個</span>
+              <span className="text-xs text-neutral-500 self-center animate-fade-in">+{product.tags.length - 2}個</span>
             )}
           </div>
         )}

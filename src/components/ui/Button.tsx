@@ -12,11 +12,40 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const baseClasses = 'inline-flex items-center justify-center rounded-lg font-semibold transition-all duration-300 ease-luxury focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'
     
     const variants = {
-      primary: 'bg-gradient-primary text-white shadow-luxury hover:shadow-hover hover:scale-105 active:scale-95',
-      secondary: 'bg-gradient-accent text-white shadow-luxury hover:shadow-hover hover:scale-105 active:scale-95',
-      outline: 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50 hover:shadow-lg',
-      ghost: 'text-primary-600 hover:bg-primary-50 hover:shadow-md',
-      luxury: 'bg-gradient-to-r from-accent-500 to-accent-600 text-white shadow-premium hover:shadow-hover hover:scale-105 active:scale-95'
+      primary: cn(
+        'bg-gradient-primary text-white shadow-luxury hover:shadow-hover hover:scale-105 active:scale-95',
+        'group relative overflow-hidden',
+        'before:absolute before:inset-0 before:bg-shimmer-gradient before:opacity-0',
+        'hover:before:animate-shimmer hover:before:opacity-30',
+        'focus:ring-2 focus:ring-primary-500 focus:ring-offset-2'
+      ),
+      secondary: cn(
+        'bg-gradient-accent text-white shadow-luxury hover:shadow-hover hover:scale-105 active:scale-95',
+        'group relative overflow-hidden',
+        'focus:ring-2 focus:ring-accent-500 focus:ring-offset-2'
+      ),
+      outline: cn(
+        'border-2 border-primary-600 text-primary-600 hover:bg-primary-50 hover:shadow-lg',
+        'hover:scale-105 active:scale-95 transition-all duration-200',
+        'focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
+        'group relative overflow-hidden'
+      ),
+      ghost: cn(
+        'text-primary-600 hover:bg-primary-50 hover:shadow-md',
+        'hover:scale-105 active:scale-95 transition-all duration-200',
+        'focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
+        'group relative overflow-hidden'
+      ),
+      luxury: cn(
+        'bg-gradient-to-r from-accent-500 to-accent-600 text-white shadow-premium',
+        'hover:shadow-hover hover:scale-105 active:scale-95',
+        'hover:from-accent-600 hover:to-accent-700',
+        'group relative overflow-hidden',
+        'before:absolute before:inset-0 before:bg-shimmer-gradient before:opacity-0',
+        'hover:before:animate-shimmer hover:before:opacity-100',
+        'focus:ring-2 focus:ring-accent-500 focus:ring-offset-2',
+        'animate-pulse-glow'
+      )
     }
     
     const sizes = {

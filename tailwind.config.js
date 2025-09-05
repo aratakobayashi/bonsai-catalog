@@ -97,6 +97,67 @@ module.exports = {
         '18': '4.5rem',
         '88': '22rem',
         '112': '28rem',
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.5s ease-luxury',
+        'slide-up': 'slideUp 0.4s ease-luxury',
+        'slide-down': 'slideDown 0.4s ease-luxury',
+        'scale-in': 'scaleIn 0.3s ease-luxury',
+        'bounce-gentle': 'bounceGentle 0.6s ease-luxury',
+        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+        'shimmer': 'shimmer 2s linear infinite',
+        'float': 'float 3s ease-in-out infinite',
+        'wiggle': 'wiggle 0.5s ease-in-out',
+        'heartbeat': 'heartbeat 1s ease-in-out infinite',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(10px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        slideDown: {
+          '0%': { transform: 'translateY(-10px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        scaleIn: {
+          '0%': { transform: 'scale(0.95)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        bounceGentle: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-4px)' },
+        },
+        pulseGlow: {
+          '0%, 100%': { boxShadow: '0 0 5px rgba(212, 165, 116, 0.5)' },
+          '50%': { boxShadow: '0 0 20px rgba(212, 165, 116, 0.8)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-6px)' },
+        },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(1deg)' },
+          '75%': { transform: 'rotate(-1deg)' },
+        },
+        heartbeat: {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.05)' },
+        },
+      },
+      backgroundImage: {
+        'gradient-primary': 'linear-gradient(135deg, #1a365d 0%, #243b53 100%)',
+        'gradient-accent': 'linear-gradient(135deg, #d4a574 0%, #b8935a 100%)',
+        'gradient-hero': 'linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 50%, #fdf8f0 100%)',
+        'shimmer-gradient': 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)',
       }
     },
   },
