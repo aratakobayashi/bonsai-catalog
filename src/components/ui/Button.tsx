@@ -80,7 +80,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     
     if (asChild) {
       // asChildの場合は、childrenが含まれていることを想定してclassNameを返す
-      return props.children as React.ReactElement
+      return children as React.ReactElement
     }
     
     const isDisabled = disabled || isLoading
