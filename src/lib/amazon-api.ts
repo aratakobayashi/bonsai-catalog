@@ -20,7 +20,7 @@ const MARKETPLACE = 'www.amazon.co.jp';
 /**
  * Amazon商品検索用のクエリ定数
  */
-export const BONSAI_SEARCH_KEYWORDS = [
+export const BONSAI_SEARCH_KEYWORDS: string[] = [
   // 盆栽樹木
   '盆栽 松',
   '盆栽 もみじ',
@@ -44,7 +44,7 @@ export const BONSAI_SEARCH_KEYWORDS = [
   '赤玉土',
   '桐生砂',
   '盆栽 剪定ハサミ'
-] as const;
+];
 
 /**
  * Amazon API未設定時のモックデータ
