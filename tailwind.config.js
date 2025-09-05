@@ -158,6 +158,20 @@ module.exports = {
         'gradient-accent': 'linear-gradient(135deg, #d4a574 0%, #b8935a 100%)',
         'gradient-hero': 'linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 50%, #fdf8f0 100%)',
         'shimmer-gradient': 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)',
+      },
+      // アクセシビリティ関連のスタイル
+      outlineColor: {
+        'focus': '#d4a574',
+        'focus-primary': '#1a365d',
+        'focus-accent': '#b8935a',
+      },
+      outlineWidth: {
+        '3': '3px',
+        '4': '4px',
+      },
+      ringColor: {
+        'focus': '#d4a574',
+        'focus-primary': '#1a365d',
       }
     },
   },

@@ -41,9 +41,13 @@ export function ProductCard({ product }: ProductCardProps) {
                 <button className={cn(
                   "p-2 bg-white/90 hover:bg-white rounded-full shadow-luxury hover:shadow-hover",
                   "transition-all duration-200 hover:scale-110 active:scale-95",
-                  "hover:animate-heartbeat focus:ring-2 focus:ring-accent-500"
-                )}>
+                  "hover:animate-heartbeat focus:ring-2 focus:ring-accent-500 focus:outline-none"
+                )}
+                aria-label={`${product.name}をお気に入りに追加`}
+                type="button"
+                >
                   <Heart className="h-4 w-4 text-neutral-600 hover:text-accent-500 transition-colors" />
+                  <span className="sr-only">お気に入り</span>
                 </button>
               </div>
               
@@ -84,7 +88,11 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {/* 商品名 */}
-        <Link href={`/products/${product.id}`}>
+        <Link 
+          href={`/products/${product.id}`}
+          className="focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-offset-2 rounded-md"
+          aria-label={`${product.name}の詳細を見る`}
+        >
           <h3 className="font-bold text-xl mb-3 text-primary-800 hover:text-accent-600 transition-colors duration-200 line-clamp-2 leading-tight">
             {product.name}
           </h3>
@@ -131,8 +139,9 @@ export function ProductCard({ product }: ProductCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center"
+              aria-label={`${product.name}をAmazonで購入する（新しいタブで開きます）`}
             >
-              <ShoppingBag className="h-4 w-4 mr-2" />
+              <ShoppingBag className="h-4 w-4 mr-2" aria-hidden="true" />
               Amazonで購入
             </a>
           </Button>
@@ -144,8 +153,12 @@ export function ProductCard({ product }: ProductCardProps) {
             asChild 
             className="w-full justify-center"
           >
-            <Link href={`/products/${product.id}`} className="flex items-center">
-              <Eye className="h-4 w-4 mr-2" />
+            <Link 
+              href={`/products/${product.id}`} 
+              className="flex items-center"
+              aria-label={`${product.name}の詳細情報を見る`}
+            >
+              <Eye className="h-4 w-4 mr-2" aria-hidden="true" />
               詳細を見る
             </Link>
           </Button>

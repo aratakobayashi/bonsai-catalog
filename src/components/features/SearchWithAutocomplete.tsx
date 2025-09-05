@@ -201,11 +201,19 @@ export function SearchWithAutocomplete({
           onFocus={() => setIsOpen(true)}
           placeholder={placeholder}
           className="w-full pl-12 pr-12 py-4 bg-white border-2 border-neutral-200 rounded-xl text-base placeholder-neutral-500 focus:outline-none focus:border-accent-400 focus:ring-4 focus:ring-accent-100 transition-all duration-200"
+          aria-label="商品を検索"
+          aria-expanded={isOpen}
+          aria-haspopup="listbox"
+          aria-autocomplete="list"
+          aria-activedescendant={selectedIndex >= 0 ? `suggestion-${selectedIndex}` : undefined}
+          role="combobox"
         />
         {query && (
           <button
             onClick={clearQuery}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 p-1 hover:bg-neutral-100 rounded-full transition-colors"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 p-1 hover:bg-neutral-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-accent-400"
+            aria-label="検索クリア"
+            type="button"
           >
             <X className="h-4 w-4 text-neutral-400" />
           </button>
@@ -214,7 +222,11 @@ export function SearchWithAutocomplete({
 
       {/* サジェスト一覧 */}
       {isOpen && (suggestions.length > 0 || (!query && recentSearches.length > 0)) && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-neutral-200 rounded-xl shadow-luxury z-50 overflow-hidden">
+        <div 
+          className="absolute top-full left-0 right-0 mt-2 bg-white border border-neutral-200 rounded-xl shadow-luxury z-50 overflow-hidden"
+          role="listbox"
+          aria-label="検索候補"
+        >
           {!query && recentSearches.length > 0 && (
             <div className="p-4 border-b border-neutral-100">
               <div className="flex items-center justify-between mb-3">
@@ -233,11 +245,15 @@ export function SearchWithAutocomplete({
             {suggestions.map((suggestion, index) => (
               <button
                 key={`${suggestion.type}-${suggestion.value}`}
+                id={`suggestion-${index}`}
                 onClick={() => handleSuggestionClick(suggestion)}
                 className={cn(
-                  'w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-neutral-50 transition-colors',
+                  'w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-neutral-50 transition-colors focus:outline-none focus:bg-accent-50 focus:ring-2 focus:ring-inset focus:ring-accent-400',
                   selectedIndex === index && 'bg-accent-50 border-l-4 border-accent-500'
                 )}
+                role="option"
+                aria-selected={selectedIndex === index}
+                tabIndex={-1}
               >
                 {getSuggestionIcon(suggestion.type)}
                 <div className="flex-1 min-w-0">
