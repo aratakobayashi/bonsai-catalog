@@ -38,11 +38,11 @@ export default function ProductsPage() {
         setProducts(data)
         
         // カテゴリとタグの一覧を生成
-        const categories = [...new Set(data.map(p => p.category))].sort()
+        const categories = Array.from(new Set(data.map(p => p.category))).sort()
         setAvailableCategories(categories)
         
         const allTags = data.flatMap(p => p.tags || [])
-        const uniqueTags = [...new Set(allTags)].sort()
+        const uniqueTags = Array.from(new Set(allTags)).sort()
         setAvailableTags(uniqueTags)
       }
       setIsLoading(false)
