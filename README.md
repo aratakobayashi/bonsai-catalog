@@ -21,7 +21,7 @@
 
 ## 📁 プロジェクト構造
 
-\`\`\`
+```
 bonsai-catalog/
 ├── README.md                    # このファイル
 ├── package.json                 # 依存関係とスクリプト
@@ -46,22 +46,22 @@ bonsai-catalog/
 └── supabase/                    # Supabaseファイル
     ├── migrations/              # データベースマイグレーション
     └── seed.sql                 # 初期データ
-\`\`\`
+```
 
 ## 🚀 セットアップ手順
 
 ### 1. リポジトリのクローン
 
-\`\`\`bash
-git clone <repository-url>
+```bash
+git clone https://github.com/aratakobayashi/bonsai-catalog.git
 cd bonsai-catalog
-\`\`\`
+```
 
 ### 2. 依存関係のインストール
 
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 ### 3. Supabaseプロジェクトの作成
 
@@ -71,31 +71,31 @@ npm install
 
 ### 4. 環境変数の設定
 
-\`.env.local.example\`をコピーして\`.env.local\`を作成：
+`.env.local.example`をコピーして`.env.local`を作成：
 
-\`\`\`bash
+```bash
 cp .env.local.example .env.local
-\`\`\`
+```
 
-\`.env.local\`を編集してSupabaseの設定を追加：
+`.env.local`を編集してSupabaseの設定を追加：
 
-\`\`\`env
+```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-\`\`\`
+```
 
 ### 5. データベースのセットアップ
 
 Supabaseの管理画面で以下を実行：
 
-1. SQLエディタで\`supabase/migrations/001_initial_schema.sql\`の内容を実行
-2. 続けて\`supabase/seed.sql\`の内容を実行（サンプルデータを挿入）
+1. SQLエディタで`supabase/migrations/001_initial_schema.sql`の内容を実行
+2. 続けて`supabase/seed.sql`の内容を実行（サンプルデータを挿入）
 
 ### 6. 開発サーバーの起動
 
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 ブラウザで [http://localhost:3000](http://localhost:3000) を開いてください。
 
@@ -107,8 +107,8 @@ npm run dev
 2. [Vercel](https://vercel.com)でアカウント作成
 3. リポジトリをインポート
 4. 環境変数を設定：
-   - \`NEXT_PUBLIC_SUPABASE_URL\`
-   - \`NEXT_PUBLIC_SUPABASE_ANON_KEY\`
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 5. デプロイを実行
 
 ### 2. カスタムドメインの設定（オプション）
@@ -143,9 +143,9 @@ Vercelの管理画面からカスタムドメインを設定できます。
 ## 🤝 貢献
 
 1. フォークを作成
-2. 機能ブランチを作成 (\`git checkout -b feature/AmazingFeature\`)
-3. コミット (\`git commit -m 'Add some AmazingFeature'\`)
-4. ブランチにプッシュ (\`git push origin feature/AmazingFeature\`)
+2. 機能ブランチを作成 (`git checkout -b feature/AmazingFeature`)
+3. コミット (`git commit -m 'Add some AmazingFeature'`)
+4. ブランチにプッシュ (`git push origin feature/AmazingFeature`)
 5. プルリクエストを作成
 
 ## 📄 ライセンス
