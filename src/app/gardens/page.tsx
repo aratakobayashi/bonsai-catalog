@@ -82,18 +82,16 @@ function GardenCard({ garden }: { garden: Garden }) {
         {/* ウェブサイトボタン */}
         {garden.website_url && (
           <div className="pt-2">
-            <Button variant="outline" size="sm" asChild className="w-full">
-              <a
-                href={garden.website_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2"
-              >
-                <Globe className="h-4 w-4" />
-                ウェブサイトを見る
-                <ExternalLink className="h-3 w-3" />
-              </a>
-            </Button>
+            <a
+              href={garden.website_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 w-full h-9 px-3 text-sm rounded-md border border-bonsai-green-600 text-bonsai-green-600 hover:bg-bonsai-green-50 transition-colors"
+            >
+              <Globe className="h-4 w-4" />
+              ウェブサイトを見る
+              <ExternalLink className="h-3 w-3" />
+            </a>
           </div>
         )}
       </CardContent>
