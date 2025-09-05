@@ -6,37 +6,80 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* ヒーローセクション */}
-      <section className="bg-gradient-to-r from-bonsai-green-50 to-earth-brown-50 py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-bonsai-green-800 mb-6">
-            美しい盆栽を<br />あなたのお手元に
+      <section className="relative py-32 overflow-hidden">
+        {/* 背景グラデーション */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-accent-50"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))] opacity-60"></div>
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="mb-8">
+            <span className="inline-flex items-center px-4 py-2 rounded-full bg-accent-100 text-accent-800 text-sm font-medium mb-6">
+              ✨ 日本の伝統美をあなたの手に
+            </span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+            <span className="text-primary-900">美しい</span>
+            <span className="text-gradient">盆栽</span>
+            <span className="text-primary-900">を</span><br />
+            <span className="text-primary-900">あなたのお手元に</span>
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            初心者から上級者まで。丁寧に育てられた盆栽を、
+          
+          <p className="text-xl text-neutral-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+            初心者から上級者まで。丁寧に育てられた盆栽を、<br className="hidden sm:block" />
             信頼できる盆栽園から厳選してご紹介します。
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+            <Button size="xl" variant="luxury" asChild className="shadow-premium">
               <Link href="/products">
                 商品を見る
               </Link>
             </Button>
-            <Button variant="outline" size="lg" asChild>
+            <Button variant="outline" size="xl" asChild>
               <Link href="/gardens">
                 盆栽園を探す
               </Link>
             </Button>
           </div>
+          
+          {/* 統計情報 */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-primary-800 mb-2">500+</div>
+              <div className="text-sm text-neutral-600 font-medium">厳選商品</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-primary-800 mb-2">50+</div>
+              <div className="text-sm text-neutral-600 font-medium">提携盆栽園</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-primary-800 mb-2">98%</div>
+              <div className="text-sm text-neutral-600 font-medium">満足度</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-primary-800 mb-2">24h</div>
+              <div className="text-sm text-neutral-600 font-medium">配送対応</div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* 特徴セクション */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-white/50 backdrop-blur-sm">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            盆栽コレクションの特徴
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="text-center mb-16">
+            <span className="text-accent-600 text-sm font-semibold uppercase tracking-wider mb-4 block">
+              なぜ選ばれるのか
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
+              盆栽コレクションの特徴
+            </h2>
+            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+              お客様に最高の盆栽体験をお届けするための、こだわりのポイント
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             <Card className="text-center">
               <CardHeader>
                 <div className="mx-auto w-16 h-16 bg-bonsai-green-100 rounded-full flex items-center justify-center mb-4">

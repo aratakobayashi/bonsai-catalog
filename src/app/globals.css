@@ -4,15 +4,21 @@
 
 @layer base {
   * {
-    @apply border-gray-200;
-  }
-  body {
-    @apply bg-white text-gray-900;
+    @apply border-neutral-200;
   }
   
-  /* 日本語フォント設定 */
+  html {
+    @apply scroll-smooth;
+  }
+  
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', Meiryo, sans-serif;
+    @apply bg-gradient-hero text-neutral-800 antialiased;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+  
+  /* フォーカス状態のグローバル設定 */
+  .focus-luxury {
+    @apply focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-offset-2;
   }
 }
 
@@ -21,20 +27,35 @@
     @apply max-w-7xl;
   }
   
-  /* カスタムスクロールバー */
+  /* 高級感のあるカスタムスクロールバー */
   .custom-scrollbar::-webkit-scrollbar {
     @apply w-2;
   }
   
   .custom-scrollbar::-webkit-scrollbar-track {
-    @apply bg-gray-100;
+    @apply bg-neutral-100/50;
   }
   
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    @apply bg-bonsai-green-300 rounded-full;
+    @apply bg-gradient-accent rounded-full;
   }
   
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    @apply bg-bonsai-green-400;
+    @apply bg-accent-600;
+  }
+  
+  /* ガラスモーフィズム効果 */
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+  
+  /* テキストグラデーション */
+  .text-gradient {
+    @apply bg-gradient-accent bg-clip-text text-transparent;
+  }
+  
+  /* カードホバーエフェクト */
+  .card-hover {
+    @apply transition-all duration-300 ease-luxury hover:shadow-hover hover:-translate-y-2;
   }
 }
