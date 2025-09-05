@@ -22,8 +22,8 @@ export function usePullToRefresh(options: PullToRefreshOptions) {
   const [pullDistance, setPullDistance] = useState(0)
   
   const touchStartRef = useRef<number | null>(null)
-  const scrollElementRef = useRef<HTMLElement | null>(null)
-  const containerRef = useRef<HTMLElement | null>(null)
+  const scrollElementRef = useRef<HTMLDivElement | null>(null)
+  const containerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const container = containerRef.current
