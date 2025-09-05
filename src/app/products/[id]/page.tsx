@@ -5,8 +5,9 @@ import Image from 'next/image'
 import { supabaseServer } from '@/lib/supabase-server'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
+import { ImageGallery } from '@/components/features/ImageGallery'
 import { formatPrice, getSizeCategoryLabel, formatDate } from '@/lib/utils'
-import { ArrowLeft, ExternalLink, Tag, Calendar, Package } from 'lucide-react'
+import { ArrowLeft, ExternalLink, Tag, Calendar, Package, ShoppingBag } from 'lucide-react'
 import type { Product } from '@/types'
 
 interface ProductPageProps {
@@ -90,24 +91,13 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         </div>
 
         {/* メインコンテンツ */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          {/* 商品画像 */}
-          <div className="space-y-4">
-            <div className="aspect-square relative bg-white rounded-lg shadow-sm overflow-hidden">
-              {product.image_url ? (
-                <Image
-                  src={product.image_url}
-                  alt={product.name}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                  <div className="text-8xl text-gray-400">🌲</div>
-                </div>
-              )}
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          {/* 商品画像ギャラリー */}
+          <div>
+            <ImageGallery
+              images={product.image_url ? [product.image_url] : []}
+              productName={product.name}
+            />
           </div>
 
           {/* 商品情報 */}

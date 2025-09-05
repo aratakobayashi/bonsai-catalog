@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { ProductCard } from '@/components/features/ProductCard'
-import { SearchBar } from '@/components/features/SearchBar'
-import { ProductFilter } from '@/components/features/ProductFilter'
+import { SearchWithAutocomplete } from '@/components/features/SearchWithAutocomplete'
+import { AdvancedFilter } from '@/components/features/AdvancedFilter'
 import { Button } from '@/components/ui/Button'
+import { Grid, List, SlidersHorizontal } from 'lucide-react'
 import type { Product, ProductFilters, SizeCategory } from '@/types'
 
 export default function ProductsClient() {
@@ -17,6 +18,8 @@ export default function ProductsClient() {
   const [availableCategories, setAvailableCategories] = useState<string[]>([])
   const [availableTags, setAvailableTags] = useState<string[]>([])
   const [sortBy, setSortBy] = useState<'name' | 'price_asc' | 'price_desc' | 'created_at'>('created_at')
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
 
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -148,84 +151,145 @@ export default function ProductsClient() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gradient-to-b from-neutral-50 to-white py-8">
       <div className="container mx-auto px-4">
         {/* ヘッダー */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">商品カタログ</h1>
-          <p className="text-xl text-gray-600">
-            厳選された盆栽を豊富に取り揃えています
+        <div className="text-center mb-12">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <span className="text-primary-900">商品</span>
+            <span className="text-gradient">カタログ</span>
+          </h1>
+          <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+            厳選された盆栽を豊富に取り揃えています。あなたにぴったりの一品を見つけてください。
           </p>
         </div>
 
         {/* 検索バー */}
-        <div className="mb-8">
-          <SearchBar onSearch={handleSearch} placeholder="商品名や説明文で検索..." />
+        <div className="mb-8 max-w-2xl mx-auto">
+          <SearchWithAutocomplete
+            onSearch={handleSearch}
+            placeholder="商品名やカテゴリで検索..."
+            products={products.map(p => ({ name: p.name, category: p.category }))}
+          />
         </div>
 
-        {/* フィルターとソート */}
-        <div className="mb-8 flex flex-col md:flex-row gap-4">
-          <div className="flex-1">
-            <ProductFilter
+        {/* レイアウト */}
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* フィルターサイドバー（デスクトップ） */}
+          <div className="hidden lg:block lg:w-80 flex-shrink-0">
+            <AdvancedFilter
               filters={filters}
               onFiltersChange={handleFilterChange}
               availableCategories={availableCategories}
               availableTags={availableTags}
             />
           </div>
-          <div className="md:w-48">
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bonsai-green-500"
-            >
-              <option value="created_at">新着順</option>
-              <option value="name">名前順</option>
-              <option value="price_asc">価格が安い順</option>
-              <option value="price_desc">価格が高い順</option>
-            </select>
+
+          {/* メインコンテンツ */}
+          <div className="flex-1 min-w-0">
+            {/* モバイルフィルター＋コントロールバー */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+              {/* モバイルフィルターボタン */}
+              <div className="lg:hidden">
+                <AdvancedFilter
+                  filters={filters}
+                  onFiltersChange={handleFilterChange}
+                  availableCategories={availableCategories}
+                  availableTags={availableTags}
+                  isMobile={true}
+                />
+              </div>
+
+              {/* 結果情報とコントロール */}
+              <div className="flex items-center justify-between w-full">
+                {!isLoading && (
+                  <span className="text-neutral-600 font-medium">
+                    {filteredProducts.length}件の商品
+                  </span>
+                )}
+
+                <div className="flex items-center gap-4">
+                  {/* 表示モード切り替え */}
+                  <div className="hidden sm:flex bg-white rounded-lg border border-neutral-200 p-1">
+                    <button
+                      onClick={() => setViewMode('grid')}
+                      className={cn(
+                        'p-2 rounded-md transition-all duration-200',
+                        viewMode === 'grid'
+                          ? 'bg-accent-100 text-accent-700'
+                          : 'text-neutral-500 hover:text-neutral-700'
+                      )}
+                    >
+                      <Grid className="h-4 w-4" />
+                    </button>
+                    <button
+                      onClick={() => setViewMode('list')}
+                      className={cn(
+                        'p-2 rounded-md transition-all duration-200',
+                        viewMode === 'list'
+                          ? 'bg-accent-100 text-accent-700'
+                          : 'text-neutral-500 hover:text-neutral-700'
+                      )}
+                    >
+                      <List className="h-4 w-4" />
+                    </button>
+                  </div>
+
+                  {/* ソート */}
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value as any)}
+                    className="px-4 py-2 bg-white border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-all duration-200"
+                  >
+                    <option value="created_at">新着順</option>
+                    <option value="name">名前順</option>
+                    <option value="price_asc">価格が安い順</option>
+                    <option value="price_desc">価格が高い順</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            {/* 商品一覧 */}
+            {isLoading ? (
+              <div className="text-center py-24">
+                <div className="inline-block animate-spin rounded-full h-16 w-16 border-b-4 border-accent-600 mb-6"></div>
+                <p className="text-xl text-neutral-600">商品を読み込み中...</p>
+              </div>
+            ) : filteredProducts.length > 0 ? (
+              <div className={cn(
+                'transition-all duration-300',
+                viewMode === 'grid'
+                  ? 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6'
+                  : 'space-y-6'
+              )}>
+                {filteredProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-24">
+                <div className="text-8xl text-neutral-300 mb-8">🔍</div>
+                <h3 className="text-2xl font-bold text-primary-800 mb-4">
+                  商品が見つかりません
+                </h3>
+                <p className="text-neutral-600 mb-8 max-w-md mx-auto">
+                  検索条件を変更するか、フィルターをクリアしてお試しください
+                </p>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={() => {
+                    setFilters({})
+                    updateURLParams({})
+                  }}
+                >
+                  フィルターをクリア
+                </Button>
+              </div>
+            )}
           </div>
         </div>
-
-        {/* 商品一覧 */}
-        {isLoading ? (
-          <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-bonsai-green-600"></div>
-            <p className="mt-4 text-gray-600">商品を読み込み中...</p>
-          </div>
-        ) : filteredProducts.length > 0 ? (
-          <>
-            <div className="mb-4 text-gray-600">
-              {filteredProducts.length}件の商品が見つかりました
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          </>
-        ) : (
-          <div className="text-center py-12">
-            <div className="text-gray-400 mb-4">
-              <span className="text-6xl">🌲</span>
-            </div>
-            <h3 className="text-xl font-medium text-gray-900 mb-2">
-              商品が見つかりません
-            </h3>
-            <p className="text-gray-600 mb-6">
-              検索条件を変更してお試しください
-            </p>
-            <Button
-              variant="outline"
-              onClick={() => {
-                setFilters({})
-                updateURLParams({})
-              }}
-            >
-              フィルターをクリア
-            </Button>
-          </div>
-        )}
       </div>
     </div>
   )
