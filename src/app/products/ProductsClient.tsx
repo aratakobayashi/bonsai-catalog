@@ -8,6 +8,7 @@ import { SearchWithAutocomplete } from '@/components/features/SearchWithAutocomp
 import { AdvancedFilter } from '@/components/features/AdvancedFilter'
 import { Button } from '@/components/ui/Button'
 import { Grid, List, SlidersHorizontal } from 'lucide-react'
+import { cn } from '@/lib/utils'
 import type { Product, ProductFilters, SizeCategory } from '@/types'
 
 export default function ProductsClient() {
