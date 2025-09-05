@@ -158,42 +158,7 @@ export function AdvancedFilter({
     </div>
   )
 
-  if (isMobile) {
-    return (
-      <div className={className}>
-        <Button
-          variant="outline"
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="w-full mb-4 justify-between"
-        >
-          <span className="flex items-center">
-            <Filter className="h-4 w-4 mr-2" />
-            フィルター
-            {hasActiveFilters && (
-              <span className="ml-2 px-2 py-1 bg-accent-500 text-white text-xs rounded-full">
-                {[
-                  filters.category,
-                  filters.size_category,
-                  filters.price_min || filters.price_max ? 'price' : null,
-                  ...(filters.tags || [])
-                ].filter(Boolean).length}
-              </span>
-            )}
-          </span>
-          {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-        </Button>
-        
-        {isExpanded && (
-          <Card>
-            <CardContent className="p-4">
-              <FilterContent />
-            </CardContent>
-          </Card>
-        )}
-      </div>
-    )
-  }
-
+  // FilterContent component definition - defined before any usage
   const FilterContent = () => (
     <>
       {/* フィルタークリアボタン */}
@@ -334,6 +299,42 @@ export function AdvancedFilter({
       )}
     </>
   )
+
+  if (isMobile) {
+    return (
+      <div className={className}>
+        <Button
+          variant="outline"
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="w-full mb-4 justify-between"
+        >
+          <span className="flex items-center">
+            <Filter className="h-4 w-4 mr-2" />
+            フィルター
+            {hasActiveFilters && (
+              <span className="ml-2 px-2 py-1 bg-accent-500 text-white text-xs rounded-full">
+                {[
+                  filters.category,
+                  filters.size_category,
+                  filters.price_min || filters.price_max ? 'price' : null,
+                  ...(filters.tags || [])
+                ].filter(Boolean).length}
+              </span>
+            )}
+          </span>
+          {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+        </Button>
+        
+        {isExpanded && (
+          <Card>
+            <CardContent className="p-4">
+              <FilterContent />
+            </CardContent>
+          </Card>
+        )}
+      </div>
+    )
+  }
 
   return (
     <Card className={cn('h-fit sticky top-24', className)}>
