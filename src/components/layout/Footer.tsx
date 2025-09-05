@@ -43,39 +43,44 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* カテゴリ */}
+          {/* 法的情報・サポート */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-4">人気カテゴリ</h3>
+            <h3 className="font-semibold text-gray-900 mb-4">サポート・法的情報</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/products?category=松類" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  松類
+                <Link href="/contact" className="text-sm text-gray-600 hover:text-bonsai-green-600">
+                  お問い合わせ
                 </Link>
               </li>
               <li>
-                <Link href="/products?category=落葉樹" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  落葉樹
+                <Link href="/privacy" className="text-sm text-gray-600 hover:text-bonsai-green-600">
+                  プライバシーポリシー
                 </Link>
               </li>
               <li>
-                <Link href="/products?category=花木" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  花木
+                <Link href="/terms" className="text-sm text-gray-600 hover:text-bonsai-green-600">
+                  利用規約
                 </Link>
               </li>
               <li>
-                <Link href="/products?category=針葉樹" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  針葉樹
-                </Link>
+                <a href="https://affiliate.amazon.co.jp" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-600 hover:text-bonsai-green-600">
+                  Amazonアソシエイト
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t pt-8 mt-8">
-          <p className="text-center text-sm text-gray-600">
-            © 2024 盆栽コレクション. All rights reserved. 
-            商品の購入はAmazonで行われます。
-          </p>
+          <div className="text-center space-y-2">
+            <p className="text-sm text-gray-600">
+              © 2024 盆栽カタログ. All rights reserved. 
+              商品の購入はAmazonで行われます。
+            </p>
+            <p className="text-xs text-gray-500">
+              当サイトはAmazon.co.jpアソシエイトプログラムに参加しています。
+            </p>
+          </div>
         </div>
       </div>
     </footer>

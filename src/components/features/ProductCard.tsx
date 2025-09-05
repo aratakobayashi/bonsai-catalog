@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { formatPrice, getSizeCategoryLabel, cn } from '@/lib/utils'
+import { generateAffiliateURL, trackAffiliateClick } from '@/lib/amazon'
 import { ShoppingBag, Heart, Eye } from 'lucide-react'
 import type { Product } from '@/types'
 
@@ -11,6 +12,13 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
+  // アフィリエイトリンクを生成
+  const affiliateUrl = generateAffiliateURL(product.amazon_url)
+  
+  // アフィリエイトクリック追跡用の関数
+  const handleAffiliateClick = () => {
+    trackAffiliateClick(product.id, affiliateUrl, product.category)
+  }
   return (
     <Card className={cn(
       "group relative overflow-hidden",
@@ -135,11 +143,12 @@ export function ProductCard({ product }: ProductCardProps) {
             className="w-full justify-center"
           >
             <a
-              href={product.amazon_url}
+              href={affiliateUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center"
               aria-label={`${product.name}をAmazonで購入する（新しいタブで開きます）`}
+              onClick={handleAffiliateClick}
             >
               <ShoppingBag className="h-4 w-4 mr-2" aria-hidden="true" />
               Amazonで購入
