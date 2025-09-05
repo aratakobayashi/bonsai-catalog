@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { supabase } from '@/lib/supabase'
+import { supabaseServer } from '@/lib/supabase-server'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { MapPin, Globe, Phone, ExternalLink } from 'lucide-react'
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 }
 
 async function getGardens(): Promise<Garden[]> {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseServer
     .from('gardens')
     .select('*')
     .order('created_at', { ascending: false })

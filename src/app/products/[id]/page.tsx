@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { supabase } from '@/lib/supabase'
+import { supabaseServer } from '@/lib/supabase-server'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
 import { formatPrice, getSizeCategoryLabel, formatDate } from '@/lib/utils'
@@ -16,7 +16,7 @@ interface ProductPageProps {
 }
 
 async function getProduct(id: string): Promise<Product | null> {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseServer
     .from('products')
     .select('*')
     .eq('id', id)
@@ -30,7 +30,7 @@ async function getProduct(id: string): Promise<Product | null> {
 }
 
 async function getRelatedProducts(product: Product, limit = 4): Promise<Product[]> {
-  const { data } = await supabase
+  const { data } = await supabaseServer
     .from('products')
     .select('*')
     .eq('category', product.category)
