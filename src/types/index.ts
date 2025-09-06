@@ -42,7 +42,7 @@ export interface Garden {
   closed_days?: string[]       // 定休日
   
   // 専門性・特徴
-  specialties?: string[]       // 専門分野（松類、花木、山野草等）
+  specialties?: string[]       // 専門分野（松柏類、雑木類、花もの、実もの、草もの等）
   established_year?: number    // 創業年
   
   // 園主情報
@@ -84,10 +84,11 @@ export interface ProductFilters {
 
 // 盆栽園の専門分野enum
 export type GardenSpecialty = 
-  | '松類'           // 松の専門
-  | '落葉樹'         // もみじ、欅等
-  | '花木'           // 桜、梅、ツツジ等
-  | '針葉樹'         // 真柏、杜松等
+  | '松柏類'         // 松、真柏、杜松等
+  | '雑木類'         // もみじ、欅、ブナ等
+  | '花もの'         // 桜、梅、ツツジ等
+  | '実もの'         // 柿、南天、ピラカンサ等
+  | '草もの'         // 山野草、苔等
   | '山野草'         // 山野草専門
   | '盆器'           // 鉢専門
   | '道具'           // 道具専門
