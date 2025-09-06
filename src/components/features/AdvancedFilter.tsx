@@ -100,7 +100,7 @@ export function AdvancedFilter({
     onFiltersChange(newFilters)
   }
 
-  const const handleSeasonChange = (season: string) => {
+  const handleSeasonChange = (season: string) => {
     const currentSeasons = filters.season || []
     const newSeasons = currentSeasons.includes(season)
       ? currentSeasons.filter(s => s !== season)
@@ -113,7 +113,7 @@ export function AdvancedFilter({
     onFiltersChange(newFilters)
   }
 
-  const const handleLocationChange = (location: string) => {
+  const handleLocationChange = (location: string) => {
     const currentLocations = filters.location || []
     const newLocations = currentLocations.includes(location)
       ? currentLocations.filter(l => l !== location)
@@ -165,7 +165,7 @@ export function AdvancedFilter({
     onFiltersChange({})
   }
 
-  const const hasActiveFilters = !!(
+  const hasActiveFilters = !!(
     filters.category ||
     filters.size_category ||
     (filters.season && filters.season.length > 0) ||
