@@ -440,7 +440,19 @@ export function AdvancedFilter({
       </CardContent>
     </Card>
   )
-}
+
+  const FilterSection = ({ 
+    title, 
+    sectionKey, 
+    children 
+  }: { 
+    title: string
+    sectionKey: keyof typeof expandedSections
+    children: React.ReactNode 
+  }) => (
+    <div className="border-b border-neutral-200 last:border-b-0">
+      <button
+        onClick={() => toggleSection(sectionKey)}
         className="w-full flex items-center justify-between py-4 px-1 hover:bg-neutral-50 transition-colors rounded-md"
       >
         <span className="font-semibold text-primary-800">{title}</span>
@@ -573,6 +585,50 @@ export function AdvancedFilter({
               適用
             </Button>
           </div>
+        </div>
+      </FilterSection>
+
+      {/* 季節フィルター */}
+      <FilterSection title="季節" sectionKey="season">
+        <div className="space-y-2">
+          {seasonOptions.map((season) => (
+            <label
+              key={season.value}
+              className="flex items-center space-x-3 cursor-pointer hover:bg-neutral-50 p-2 rounded-md transition-colors"
+            >
+              <input
+                type="checkbox"
+                checked={filters.season === season.value}
+                onChange={() => handleSeasonChange(season.value)}
+                className="rounded border-neutral-300 text-accent-600 focus:ring-accent-500"
+              />
+              <span className="text-sm text-neutral-700">
+                {season.icon} {season.label}
+              </span>
+            </label>
+          ))}
+        </div>
+      </FilterSection>
+
+      {/* 置き場所フィルター */}
+      <FilterSection title="置き場所" sectionKey="location">
+        <div className="space-y-2">
+          {locationOptions.map((location) => (
+            <label
+              key={location.value}
+              className="flex items-center space-x-3 cursor-pointer hover:bg-neutral-50 p-2 rounded-md transition-colors"
+            >
+              <input
+                type="checkbox"
+                checked={filters.location === location.value}
+                onChange={() => handleLocationChange(location.value)}
+                className="rounded border-neutral-300 text-accent-600 focus:ring-accent-500"
+              />
+              <span className="text-sm text-neutral-700">
+                {location.icon} {location.label}
+              </span>
+            </label>
+          ))}
         </div>
       </FilterSection>
 
