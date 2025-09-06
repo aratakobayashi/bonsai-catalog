@@ -1,4 +1,6 @@
 export type SizeCategory = 'mini' | 'small' | 'medium' | 'large' | 'unknown'
+export type Season = 'spring' | 'summer' | 'autumn' | 'winter' | 'all-season'
+export type Location = 'indoor' | 'outdoor' | 'semi-shade'
 
 export interface Product {
   id: string
@@ -8,6 +10,8 @@ export interface Product {
   category: string
   tags: string[]
   size_category: SizeCategory
+  season?: Season
+  location?: Location
   image_url: string
   amazon_url: string
   created_at: string
@@ -33,4 +37,6 @@ export interface ProductFilters {
   price_min?: number
   price_max?: number
   search?: string
+  season?: string
+  location?: string
 }

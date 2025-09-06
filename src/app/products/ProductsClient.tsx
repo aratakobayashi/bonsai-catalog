@@ -63,6 +63,8 @@ export default function ProductsClient() {
     const size = searchParams.get('size')
     const minPrice = searchParams.get('minPrice')
     const maxPrice = searchParams.get('maxPrice')
+    const season = searchParams.get('season')
+    const location = searchParams.get('location')
 
     const newFilters: ProductFilters = {}
     if (category) newFilters.category = category
@@ -70,6 +72,8 @@ export default function ProductsClient() {
     if (size) newFilters.size_category = size as SizeCategory
     if (minPrice) newFilters.price_min = Number(minPrice)
     if (maxPrice) newFilters.price_max = Number(maxPrice)
+    if (season) newFilters.season = season
+    if (location) newFilters.location = location
 
     setFilters(newFilters)
   }, [searchParams])
@@ -103,6 +107,53 @@ export default function ProductsClient() {
       filtered = filtered.filter(p => p.price <= filters.price_max!)
     }
 
+    // 季節でフィルタ（カラムベース + フォールバック）
+    if (filters.season) {
+      filtered = filtered.filter(p => {
+        // カラムが存在する場合はカラム値を優先
+        if (p.season) {
+          return p.season === filters.season
+        }
+        
+        // フォールバック: タグと説明文からの推定
+        if (filters.season !== 'all-season') {
+          const seasonKeywords = {
+            'spring': ['春', '新緑', '芽吹き', '花', '桜', 'さくら', '開花'],
+            'summer': ['夏', '青葉', '緑', '涼', '避暑'],
+            'autumn': ['秋', '紅葉', '実', 'もみじ', '黄葉', '楓'],
+            'winter': ['冬', '常緑', '雪', '寒', '耐寒']
+          }
+          
+          const keywords = seasonKeywords[filters.season as keyof typeof seasonKeywords] || []
+          const searchText = `${p.name} ${p.description || ''} ${(p.tags || []).join(' ')}`
+          return keywords.some(keyword => searchText.includes(keyword))
+        }
+        
+        return true
+      })
+    }
+
+    // 置き場所でフィルタ（カラムベース + フォールバック）
+    if (filters.location) {
+      filtered = filtered.filter(p => {
+        // カラムが存在する場合はカラム値を優先
+        if (p.location) {
+          return p.location === filters.location
+        }
+        
+        // フォールバック: タグと説明文からの推定
+        const locationKeywords = {
+          'indoor': ['室内', '屋内', 'インドア', '部屋', '内'],
+          'outdoor': ['屋外', '庭', 'アウトドア', '日向', '日当たり', '外', '野外'],
+          'semi-shade': ['半日陰', '日陰', '明るい日陰', '半陰', '陰']
+        }
+        
+        const keywords = locationKeywords[filters.location as keyof typeof locationKeywords] || []
+        const searchText = `${p.name} ${p.description || ''} ${(p.tags || []).join(' ')}`
+        return keywords.some(keyword => searchText.includes(keyword))
+      })
+    }
+
     // ソート
     filtered.sort((a, b) => {
       switch (sortBy) {
@@ -130,6 +181,8 @@ export default function ProductsClient() {
     if (newFilters.size_category) params.set('size', newFilters.size_category)
     if (newFilters.price_min) params.set('minPrice', newFilters.price_min.toString())
     if (newFilters.price_max) params.set('maxPrice', newFilters.price_max.toString())
+    if (newFilters.season) params.set('season', newFilters.season)
+    if (newFilters.location) params.set('location', newFilters.location)
 
     const queryString = params.toString()
     const url = queryString ? `/products?${queryString}` : '/products'
