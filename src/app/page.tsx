@@ -140,12 +140,13 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             人気のカテゴリ
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
             {[
-              { name: '松類', href: '/products?category=松類', emoji: '🌲' },
-              { name: '落葉樹', href: '/products?category=落葉樹', emoji: '🍂' },
-              { name: '花木', href: '/products?category=花木', emoji: '🌸' },
-              { name: '針葉樹', href: '/products?category=針葉樹', emoji: '🌿' },
+              { name: '松柏類', href: '/products?category=松柏類', emoji: '🌲' },
+              { name: '雑木類', href: '/products?category=雑木類', emoji: '🍂' },
+              { name: '花もの', href: '/products?category=花もの', emoji: '🌸' },
+              { name: '実もの', href: '/products?category=実もの', emoji: '🍇' },
+              { name: '草もの', href: '/products?category=草もの', emoji: '🌿' },
             ].map((category) => (
               <Link
                 key={category.name}

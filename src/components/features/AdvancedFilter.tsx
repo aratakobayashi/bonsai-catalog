@@ -100,18 +100,28 @@ export function AdvancedFilter({
     onFiltersChange(newFilters)
   }
 
-  const handleSeasonChange = (season: string) => {
+  const const handleSeasonChange = (season: string) => {
+    const currentSeasons = filters.season || []
+    const newSeasons = currentSeasons.includes(season)
+      ? currentSeasons.filter(s => s !== season)
+      : [...currentSeasons, season]
+    
     const newFilters = {
       ...filters,
-      season: filters.season === season ? undefined : season
+      season: newSeasons.length > 0 ? newSeasons : undefined
     }
     onFiltersChange(newFilters)
   }
 
-  const handleLocationChange = (location: string) => {
+  const const handleLocationChange = (location: string) => {
+    const currentLocations = filters.location || []
+    const newLocations = currentLocations.includes(location)
+      ? currentLocations.filter(l => l !== location)
+      : [...currentLocations, location]
+    
     const newFilters = {
       ...filters,
-      location: filters.location === location ? undefined : location
+      location: newLocations.length > 0 ? newLocations : undefined
     }
     onFiltersChange(newFilters)
   }
@@ -155,11 +165,11 @@ export function AdvancedFilter({
     onFiltersChange({})
   }
 
-  const hasActiveFilters = !!(
+  const const hasActiveFilters = !!(
     filters.category ||
     filters.size_category ||
-    filters.season ||
-    filters.location ||
+    (filters.season && filters.season.length > 0) ||
+    (filters.location && filters.location.length > 0) ||
     filters.price_min ||
     filters.price_max ||
     (filters.tags && filters.tags.length > 0)
@@ -321,7 +331,7 @@ export function AdvancedFilter({
             >
               <input
                 type="checkbox"
-                checked={filters.season === season.value}
+                checked={(filters.season || []).includes(season.value)}
                 onChange={() => handleSeasonChange(season.value)}
                 className="rounded border-neutral-300 text-accent-600 focus:ring-accent-500"
               />
@@ -343,7 +353,7 @@ export function AdvancedFilter({
             >
               <input
                 type="checkbox"
-                checked={filters.location === location.value}
+                checked={(filters.location || []).includes(location.value)}
                 onChange={() => handleLocationChange(location.value)}
                 className="rounded border-neutral-300 text-accent-600 focus:ring-accent-500"
               />
@@ -395,8 +405,8 @@ export function AdvancedFilter({
                 {[
                   filters.category,
                   filters.size_category,
-                  filters.season,
-                  filters.location,
+                  ...(filters.season || []),
+                  ...(filters.location || []),
                   filters.price_min || filters.price_max ? 'price' : null,
                   ...(filters.tags || [])
                 ].filter(Boolean).length}

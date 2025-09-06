@@ -50,15 +50,49 @@ export function extractAmazonProductId(amazonUrl: string): string | null {
 export function categorizeAmazonProduct(title: string, description?: string): string {
   const text = (title + ' ' + (description || '')).toLowerCase();
   
-  if (text.includes('松') || text.includes('パイン')) return '松類';
-  if (text.includes('もみじ') || text.includes('楓') || text.includes('メープル')) return '落葉樹';
-  if (text.includes('梅') || text.includes('桜') || text.includes('つつじ') || text.includes('椿')) return '花木';
-  if (text.includes('杉') || text.includes('ヒノキ') || text.includes('真柏')) return '針葉樹';
-  if (text.includes('鉢') || text.includes('ポット')) return '鉢・受皿';
-  if (text.includes('土') || text.includes('肥料') || text.includes('培養土')) return '用土・肥料';
-  if (text.includes('ハサミ') || text.includes('道具') || text.includes('ツール') || text.includes('ワイヤー')) return '道具・工具';
+  // 松柏類（しょうはくるい）- 松、真柏、杜松など
+  if (text.includes('松') || text.includes('パイン') || text.includes('真柏') || text.includes('杜松') || 
+      text.includes('しんぱく') || text.includes('としょう') || text.includes('五葉松') || text.includes('黒松') || 
+      text.includes('赤松') || text.includes('蝦夷松')) {
+    return '松柏類';
+  }
   
-  return '盆栽樹木';
+  // 雑木類（ぞうきるい）- もみじ、欅、ブナなど
+  if (text.includes('もみじ') || text.includes('楓') || text.includes('メープル') || text.includes('欅') || 
+      text.includes('けやき') || text.includes('ブナ') || text.includes('ぶな') || text.includes('椎') || 
+      text.includes('しい') || text.includes('榎') || text.includes('えのき')) {
+    return '雑木類';
+  }
+  
+  // 花もの（はなもの）- 桜、梅、ツツジなど
+  if (text.includes('梅') || text.includes('桜') || text.includes('つつじ') || text.includes('椿') || 
+      text.includes('さくら') || text.includes('うめ') || text.includes('つばき') || text.includes('藤') || 
+      text.includes('ふじ') || text.includes('花') || text.includes('開花')) {
+    return '花もの';
+  }
+  
+  // 実もの（みもの）- 柿、南天、ピラカンサなど
+  if (text.includes('柿') || text.includes('南天') || text.includes('ピラカンサ') || text.includes('実') || 
+      text.includes('かき') || text.includes('なんてん') || text.includes('果実') || text.includes('ベリー') || 
+      text.includes('実り') || text.includes('実成り')) {
+    return '実もの';
+  }
+  
+  // 草もの（くさもの）- 山野草、苔など
+  if (text.includes('苔') || text.includes('こけ') || text.includes('山野草') || text.includes('草') || 
+      text.includes('野草') || text.includes('セダム') || text.includes('多肉') || text.includes('観葉')) {
+    return '草もの';
+  }
+  
+  // 道具・用品類
+  if (text.includes('鉢') || text.includes('ポット') || text.includes('土') || text.includes('肥料') || 
+      text.includes('培養土') || text.includes('ハサミ') || text.includes('道具') || text.includes('ツール') || 
+      text.includes('ワイヤー')) {
+    return '用品・道具';
+  }
+  
+  // デフォルトは松柏類
+  return '松柏類';
 }
 
 /**

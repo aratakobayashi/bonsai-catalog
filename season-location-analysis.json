@@ -1,0 +1,163 @@
+[
+  {
+    "id": "0de5791c-4135-4e88-96b6-72c67b11d05f",
+    "name": "山もみじの盆栽（藤久作手造り鉢）",
+    "category": "落葉樹",
+    "tags": [
+      "山もみじ",
+      "紅葉",
+      "落葉樹",
+      "四季楽しめる",
+      "藤久作",
+      "手造り鉢",
+      "中品",
+      "室内栽培可能",
+      "初心者向け",
+      "春の新緑",
+      "秋の紅葉",
+      "ギフト対応"
+    ],
+    "season": "autumn",
+    "location": "indoor",
+    "seasonConfidence": 3,
+    "locationConfidence": 2
+  },
+  {
+    "id": "9858bd55-6d3e-406b-a3be-5db66fd23d38",
+    "name": "五葉松 小品盆栽（瀬戸焼鉢）",
+    "category": "松類",
+    "tags": [
+      "五葉松",
+      "小品盆栽",
+      "初心者向け",
+      "瀬戸焼",
+      "受け皿付き",
+      "ギフト対応",
+      "室内栽培可能",
+      "常緑樹",
+      "プレゼント"
+    ],
+    "season": "summer",
+    "location": "indoor",
+    "seasonConfidence": 1,
+    "locationConfidence": 2
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440003",
+    "name": "さくらんぼ盆栽",
+    "category": "花木",
+    "tags": [
+      "花",
+      "実",
+      "春",
+      "人気"
+    ],
+    "season": "spring",
+    "location": "outdoor",
+    "seasonConfidence": 4,
+    "locationConfidence": 0
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440004",
+    "name": "ミニ真柏盆栽セット",
+    "category": "針葉樹",
+    "tags": [
+      "ミニ",
+      "初心者",
+      "セット",
+      "オフィス"
+    ],
+    "season": "all-season",
+    "location": "outdoor",
+    "seasonConfidence": 0,
+    "locationConfidence": 0
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440005",
+    "name": "欅（ケヤキ）大型盆栽",
+    "category": "落葉樹",
+    "tags": [
+      "上級者",
+      "大型",
+      "格式",
+      "玄関"
+    ],
+    "season": "autumn",
+    "location": "outdoor",
+    "seasonConfidence": 0,
+    "locationConfidence": 0
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440001",
+    "name": "黒松の小品盆栽",
+    "category": "松類",
+    "tags": [
+      "初心者向け",
+      "和風",
+      "常緑"
+    ],
+    "season": "summer",
+    "location": "outdoor",
+    "seasonConfidence": 1,
+    "locationConfidence": 0
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440007",
+    "name": "つつじ花盆栽",
+    "category": "花木",
+    "tags": [
+      "花",
+      "ピンク",
+      "春",
+      "育てやすい"
+    ],
+    "season": "spring",
+    "location": "outdoor",
+    "seasonConfidence": 3,
+    "locationConfidence": 0
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440008",
+    "name": "イチョウ盆栽",
+    "category": "落葉樹",
+    "tags": [
+      "黄葉",
+      "秋",
+      "縁起",
+      "特徴的"
+    ],
+    "season": "autumn",
+    "location": "outdoor",
+    "seasonConfidence": 2,
+    "locationConfidence": 0
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440006",
+    "name": "五葉松盆栽",
+    "category": "松類",
+    "tags": [
+      "高級",
+      "贈り物",
+      "優雅",
+      "人気"
+    ],
+    "season": "all-season",
+    "location": "outdoor",
+    "seasonConfidence": 0,
+    "locationConfidence": 0
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440002",
+    "name": "もみじ盆栽（紅葉）",
+    "category": "落葉樹",
+    "tags": [
+      "紅葉",
+      "四季",
+      "中級者向け"
+    ],
+    "season": "autumn",
+    "location": "outdoor",
+    "seasonConfidence": 3,
+    "locationConfidence": 0
+  }
+]

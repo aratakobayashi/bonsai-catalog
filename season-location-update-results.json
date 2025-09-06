@@ -1,0 +1,72 @@
+[
+  {
+    "id": "0de5791c-4135-4e88-96b6-72c67b11d05f",
+    "name": "山もみじの盆栽（藤久作手造り鉢）",
+    "season": "autumn",
+    "location": "indoor",
+    "success": true
+  },
+  {
+    "id": "9858bd55-6d3e-406b-a3be-5db66fd23d38",
+    "name": "五葉松 小品盆栽（瀬戸焼鉢）",
+    "season": "summer",
+    "location": "indoor",
+    "success": true
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440003",
+    "name": "さくらんぼ盆栽",
+    "season": "spring",
+    "location": "outdoor",
+    "success": true
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440004",
+    "name": "ミニ真柏盆栽セット",
+    "season": "all-season",
+    "location": "outdoor",
+    "success": true
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440005",
+    "name": "欅（ケヤキ）大型盆栽",
+    "season": "autumn",
+    "location": "outdoor",
+    "success": true
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440001",
+    "name": "黒松の小品盆栽",
+    "season": "summer",
+    "location": "outdoor",
+    "success": true
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440007",
+    "name": "つつじ花盆栽",
+    "season": "spring",
+    "location": "outdoor",
+    "success": true
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440008",
+    "name": "イチョウ盆栽",
+    "season": "autumn",
+    "location": "outdoor",
+    "success": true
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440006",
+    "name": "五葉松盆栽",
+    "season": "all-season",
+    "location": "outdoor",
+    "success": true
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440002",
+    "name": "もみじ盆栽（紅葉）",
+    "season": "autumn",
+    "location": "outdoor",
+    "success": true
+  }
+]
