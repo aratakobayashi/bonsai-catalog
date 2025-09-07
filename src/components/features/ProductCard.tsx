@@ -2,8 +2,17 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { formatPrice, getSizeCategoryLabel, cn } from '@/lib/utils'
+import { formatPrice, cn } from '@/lib/utils'
 import { generateAffiliateURL, trackAffiliateClick } from '@/lib/amazon'
+import { 
+  getSizeDisplayText, 
+  getDifficultyStars, 
+  getDifficultyText, 
+  getDifficultyColor,
+  getFeatureBadges, 
+  getSeasonDisplay,
+  getSizeCategoryLabel
+} from '@/lib/product-ui-helpers'
 import { ShoppingBag, Heart, Eye } from 'lucide-react'
 import type { Product } from '@/types'
 
@@ -72,8 +81,8 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
         </Link>
 
-        {/* 価格バッジ - 左上に配置 */}
-        <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-slide-down">
+        {/* 価格バッジ - 左上に常時表示 */}
+        <div className="absolute top-4 left-4 transition-all duration-300">
           <div className={cn(
             "bg-gradient-accent text-white px-3 py-1 rounded-lg shadow-luxury font-bold text-lg",
             "animate-pulse-glow hover:animate-wiggle transition-all duration-200"
@@ -83,15 +92,22 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
       </div>
 
-      {/* 商品情報セクション */}
+      {/* 商品情報セクション - 充実版 */}
       <CardContent className="p-6">
-        {/* カテゴリ・サイズバッジ */}
+        {/* カテゴリ・サイズ・難易度バッジ */}
         <div className="flex items-center gap-2 mb-3">
           <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-nature-100 text-nature-800">
             {product.category}
           </span>
           <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent-100 text-accent-800">
-            {getSizeCategoryLabel(product.size_category)}
+            {getSizeDisplayText(product)}
+          </span>
+          <span className={cn(
+            "inline-flex items-center px-3 py-1 rounded-full text-xs font-medium",
+            getDifficultyColor(product.difficulty_level),
+            "bg-neutral-100"
+          )}>
+            {getDifficultyStars(product.difficulty_level)}
           </span>
         </div>
 
@@ -106,24 +122,54 @@ export function ProductCard({ product }: ProductCardProps) {
           </h3>
         </Link>
 
-        {/* タグ表示 */}
+        {/* 季節情報 */}
+        {getSeasonDisplay(product) && (
+          <div className="mb-3">
+            <span className="text-sm text-neutral-700 bg-gradient-to-r from-green-50 to-yellow-50 px-3 py-1 rounded-lg border border-green-200">
+              {getSeasonDisplay(product)}
+            </span>
+          </div>
+        )}
+
+        {/* 特徴バッジ */}
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {getFeatureBadges(product).slice(0, 3).map((badge, index) => (
+            <span
+              key={index}
+              className={cn(
+                "inline-flex items-center px-2 py-1 rounded-md text-xs font-medium",
+                badge.color,
+                "transition-all duration-200 hover:scale-105 hover:animate-wiggle"
+              )}
+            >
+              <span className="mr-1">{badge.icon}</span>
+              {badge.text}
+            </span>
+          ))}
+          {getFeatureBadges(product).length > 3 && (
+            <span className="text-xs text-neutral-500 self-center">
+              +{getFeatureBadges(product).length - 3}個
+            </span>
+          )}
+        </div>
+
+        {/* タグ表示（縮小版） */}
         {product.tags && product.tags.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mb-4">
-            {product.tags.slice(0, 2).map((tag, index) => (
+            {product.tags.slice(0, 1).map((tag, index) => (
               <span
                 key={index}
                 className={cn(
                   "inline-flex items-center px-2 py-1 rounded-md text-xs font-medium",
                   "bg-neutral-100 text-neutral-600 hover:bg-neutral-200",
-                  "transition-all duration-200 hover:scale-105 hover:animate-wiggle",
-                  "focus:ring-2 focus:ring-neutral-300"
+                  "transition-all duration-200 hover:scale-105"
                 )}
               >
                 {tag}
               </span>
             ))}
-            {product.tags.length > 2 && (
-              <span className="text-xs text-neutral-500 self-center animate-fade-in">+{product.tags.length - 2}個</span>
+            {product.tags.length > 1 && (
+              <span className="text-xs text-neutral-500 self-center">+{product.tags.length - 1}個</span>
             )}
           </div>
         )}

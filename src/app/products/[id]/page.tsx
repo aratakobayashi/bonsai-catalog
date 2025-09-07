@@ -7,7 +7,16 @@ import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
 import { ImageGallery } from '@/components/features/ImageGallery'
 import { formatPrice, getSizeCategoryLabel, formatDate } from '@/lib/utils'
-import { ArrowLeft, ExternalLink, Tag, Calendar, Package, ShoppingBag } from 'lucide-react'
+import { 
+  getDifficultyStars, 
+  getDifficultyText, 
+  getDifficultyColor,
+  getFeatureBadges, 
+  getSeasonDisplay,
+  getDetailedSize,
+  getCareEnvironment 
+} from '@/lib/product-ui-helpers'
+import { ArrowLeft, ExternalLink, Tag, Calendar, Package, ShoppingBag, Ruler, Sun, Droplets, Heart } from 'lucide-react'
 import type { Product } from '@/types'
 
 interface ProductPageProps {
@@ -110,6 +119,9 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 <span className="inline-block bg-earth-brown-100 text-earth-brown-800 text-sm px-3 py-1 rounded">
                   {getSizeCategoryLabel(product.size_category)}
                 </span>
+                <span className={`inline-block text-sm px-3 py-1 rounded ${getDifficultyColor(product.difficulty_level)} bg-gray-100`}>
+                  {getDifficultyStars(product.difficulty_level)} {getDifficultyText(product.difficulty_level)}
+                </span>
               </div>
               <h1 className="text-3xl font-bold text-gray-900 mb-4">
                 {product.name}
@@ -139,6 +151,40 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               </div>
             )}
 
+            {/* 特徴バッジ */}
+            {getFeatureBadges(product).length > 0 && (
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Heart className="h-4 w-4 text-gray-500" />
+                  <span className="font-medium text-gray-700">特徴</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {getFeatureBadges(product).map((badge, index) => (
+                    <span
+                      key={index}
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${badge.color}`}
+                    >
+                      <span className="mr-1">{badge.icon}</span>
+                      {badge.text}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* 季節情報 */}
+            {getSeasonDisplay(product) && (
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Calendar className="h-4 w-4 text-gray-500" />
+                  <span className="font-medium text-gray-700">季節の楽しみ</span>
+                </div>
+                <div className="bg-gradient-to-r from-green-50 to-yellow-50 border border-green-200 rounded-lg p-4">
+                  <p className="text-gray-700 font-medium">{getSeasonDisplay(product)}</p>
+                </div>
+              </div>
+            )}
+
             {/* 商品説明 */}
             <div>
               <h2 className="font-semibold text-lg text-gray-900 mb-3">商品説明</h2>
@@ -147,10 +193,80 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               </p>
             </div>
 
-            {/* 商品詳細 */}
+            {/* 詳細サイズ情報 */}
             <Card>
               <CardContent className="p-6">
-                <h3 className="font-semibold text-lg mb-4">商品詳細</h3>
+                <div className="flex items-center gap-2 mb-4">
+                  <Ruler className="h-5 w-5 text-gray-500" />
+                  <h3 className="font-semibold text-lg">サイズ詳細</h3>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-600">高さ:</span>
+                      <span className="font-medium">{getDetailedSize(product).height}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-600">幅:</span>
+                      <span className="font-medium">{getDetailedSize(product).width}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-600">鉢サイズ:</span>
+                      <span className="font-medium">{getDetailedSize(product).potSize}</span>
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      <span className="font-medium text-gray-800">サイズの特徴:</span><br />
+                      {getDetailedSize(product).description}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 育成環境情報 */}
+            <Card>
+              <CardContent className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Sun className="h-5 w-5 text-yellow-500" />
+                  <h3 className="font-semibold text-lg">育成環境</h3>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <Sun className="h-4 w-4 text-yellow-500" />
+                      <span className="text-gray-600">日照:</span>
+                      <span className="font-medium">{getCareEnvironment(product).sunlight}</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Droplets className="h-4 w-4 text-blue-500" />
+                      <span className="text-gray-600">水やり:</span>
+                      <span className="font-medium">{getCareEnvironment(product).watering}</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Calendar className="h-4 w-4 text-green-500" />
+                      <span className="text-gray-600">お手入れ:</span>
+                      <span className="font-medium">{getCareEnvironment(product).frequency}</span>
+                    </div>
+                  </div>
+                  <div className="bg-blue-50 rounded-lg p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Package className="h-4 w-4 text-blue-600" />
+                      <span className="font-medium text-blue-800">栽培適性</span>
+                    </div>
+                    <p className="text-sm text-blue-700">
+                      {getCareEnvironment(product).location}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 基本情報 */}
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="font-semibold text-lg mb-4">基本情報</h3>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="flex items-center gap-2">
                     <Package className="h-4 w-4 text-gray-400" />
@@ -158,8 +274,8 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                     <span className="font-medium">{product.category}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Package className="h-4 w-4 text-gray-400" />
-                    <span className="text-gray-600">サイズ:</span>
+                    <Ruler className="h-4 w-4 text-gray-400" />
+                    <span className="text-gray-600">サイズ分類:</span>
                     <span className="font-medium">{getSizeCategoryLabel(product.size_category)}</span>
                   </div>
                   <div className="flex items-center gap-2 col-span-2">

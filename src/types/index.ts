@@ -16,6 +16,19 @@ export interface Product {
   amazon_url: string
   created_at: string
   updated_at: string
+  // UI拡張フィールド
+  difficulty_level?: number // 1=簡単, 2=普通, 3=難しい
+  height_cm?: number
+  width_cm?: number
+  pot_diameter_cm?: number
+  care_frequency?: string
+  sunlight_requirement?: string
+  watering_frequency?: string
+  bloom_months?: number[]
+  foliage_months?: number[]
+  indoor_suitable?: boolean
+  gift_suitable?: boolean
+  beginner_friendly?: boolean
 }
 
 export interface Garden {
