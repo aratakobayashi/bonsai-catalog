@@ -6,8 +6,7 @@ import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { ShoppingBag, ExternalLink } from 'lucide-react'
-import { formatPrice, getSizeCategoryLabel } from '@/lib/utils'
-import { getDifficultyStars } from '@/lib/product-ui-helpers'
+import { formatPrice } from '@/lib/utils'
 import type { Product } from '@/types'
 
 interface RelatedProductsProps {
@@ -65,14 +64,17 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
                 </div>
                 {product.difficulty_level && (
                   <div className="text-sm text-amber-500" title="育成難易度">
-                    {getDifficultyStars(product.difficulty_level)}
+                    {product.difficulty_level === 1 ? '★☆☆' : product.difficulty_level === 2 ? '★★☆' : '★★★'}
                   </div>
                 )}
               </div>
 
               {/* サイズ情報 */}
               <div className="text-sm text-gray-600 mb-4">
-                {getSizeCategoryLabel(product.size_category)}
+                {product.size_category === 'mini' ? 'ミニ' : 
+                 product.size_category === 'small' ? '小品' : 
+                 product.size_category === 'medium' ? '中品' : 
+                 product.size_category === 'large' ? '大品' : '不明'}
                 {product.height_cm && ` (${product.height_cm}cm)`}
               </div>
 
