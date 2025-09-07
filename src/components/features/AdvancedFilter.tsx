@@ -304,28 +304,30 @@ export function AdvancedFilter({
           {/* カスタム価格範囲 */}
           <div className="pt-2 border-t border-neutral-200">
             <p className="text-sm font-medium text-neutral-700 mb-3">カスタム範囲</p>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center gap-1 mb-2">
               <input
                 type="number"
-                placeholder="最小"
+                placeholder="最低価格"
                 value={customPriceRange.min}
                 onChange={(e) => setCustomPriceRange(prev => ({ ...prev, min: Number(e.target.value) }))}
-                className="flex-1 px-3 py-2 border border-neutral-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent"
+                className="flex-1 min-w-0 px-2 py-1 border border-neutral-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent"
               />
-              <span className="text-neutral-500">-</span>
+              <span className="text-xs text-neutral-500 whitespace-nowrap">円</span>
+              <span className="text-neutral-400 text-sm">〜</span>
               <input
                 type="number"
-                placeholder="最大"
+                placeholder="最高価格"
                 value={customPriceRange.max}
                 onChange={(e) => setCustomPriceRange(prev => ({ ...prev, max: Number(e.target.value) }))}
-                className="flex-1 px-3 py-2 border border-neutral-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent"
+                className="flex-1 min-w-0 px-2 py-1 border border-neutral-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent"
               />
+              <span className="text-xs text-neutral-500 whitespace-nowrap">円</span>
             </div>
             <Button
               variant="outline"
               size="sm"
               onClick={handleCustomPriceChange}
-              className="w-full mt-2"
+              className="w-full text-xs py-1"
             >
               適用
             </Button>
