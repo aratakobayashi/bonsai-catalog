@@ -8,8 +8,7 @@ import { Card, CardContent } from '@/components/ui/Card'
 import { ImageGallery } from '@/components/features/ImageGallery'
 import { formatPrice, getSizeCategoryLabel, formatDate } from '@/lib/utils'
 import { 
-  getDifficultyStars, 
-  getDifficultyText, 
+  getDifficultyDisplay, 
   getDifficultyColor,
   getFeatureBadges, 
   getSeasonDisplay,
@@ -120,7 +119,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                   {getSizeCategoryLabel(product.size_category)}
                 </span>
                 <span className={`inline-block text-sm px-3 py-1 rounded ${getDifficultyColor(product.difficulty_level)} bg-gray-100`}>
-                  {getDifficultyStars(product.difficulty_level)} {getDifficultyText(product.difficulty_level)}
+                  {getDifficultyDisplay(product.difficulty_level)}
                 </span>
               </div>
               <h1 className="text-3xl font-bold text-gray-900 mb-4">
@@ -288,21 +287,30 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             </Card>
 
             {/* 購入ボタン */}
-            <div className="space-y-4 pt-4">
-              <Button size="lg" className="w-full" asChild>
-                <a
-                  href={product.amazon_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2"
+            <div className="space-y-4 pt-6">
+              <div className="bg-gradient-to-r from-orange-50 to-yellow-50 border border-orange-200 rounded-xl p-6">
+                <div className="text-center mb-4">
+                  <div className="text-3xl font-bold text-orange-600 mb-2">
+                    {formatPrice(product.price)}
+                  </div>
+                  <p className="text-sm text-gray-600">送料・返品はAmazonの規約に従います</p>
+                </div>
+                <Button 
+                  size="lg" 
+                  className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105" 
+                  asChild
                 >
-                  <ExternalLink className="h-5 w-5" />
-                  Amazonで購入する
-                </a>
-              </Button>
-              <p className="text-sm text-gray-500 text-center">
-                ※ Amazonのページが開きます。配送や返品については Amazon の規約に従います。
-              </p>
+                  <a
+                    href={product.amazon_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-3"
+                  >
+                    <ShoppingBag className="h-6 w-6" />
+                    🛒 今すぐAmazonで注文
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
         </div>

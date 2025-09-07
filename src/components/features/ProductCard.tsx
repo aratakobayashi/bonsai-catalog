@@ -6,8 +6,7 @@ import { formatPrice, cn } from '@/lib/utils'
 import { generateAffiliateURL, trackAffiliateClick } from '@/lib/amazon'
 import { 
   getSizeDisplayText, 
-  getDifficultyStars, 
-  getDifficultyText, 
+  getDifficultyDisplay,
   getDifficultyColor,
   getFeatureBadges, 
   getSeasonDisplay,
@@ -107,7 +106,7 @@ export function ProductCard({ product }: ProductCardProps) {
             getDifficultyColor(product.difficulty_level),
             "bg-neutral-100"
           )}>
-            {getDifficultyStars(product.difficulty_level)}
+            {getDifficultyDisplay(product.difficulty_level)}
           </span>
         </div>
 
@@ -174,19 +173,18 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
         )}
 
-        {/* 商品説明 */}
-        <p className="text-neutral-600 text-sm line-clamp-2 mb-6 leading-relaxed">
-          {product.description}
-        </p>
-
         {/* アクションボタン */}
-        <div className="space-y-3">
-          {/* Amazonボタン - メインアクション */}
+        <div className="space-y-2">
+          {/* Amazonボタン - メインアクション（強調） */}
           <Button 
-            variant="luxury" 
             size="md" 
             asChild 
-            className="w-full justify-center"
+            className={cn(
+              "w-full justify-center",
+              "bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700",
+              "text-white font-semibold shadow-lg hover:shadow-xl",
+              "transition-all duration-200 transform hover:scale-105"
+            )}
           >
             <a
               href={affiliateUrl}
@@ -197,23 +195,27 @@ export function ProductCard({ product }: ProductCardProps) {
               onClick={handleAffiliateClick}
             >
               <ShoppingBag className="h-4 w-4 mr-2" aria-hidden="true" />
-              Amazonで購入
+              🛒 Amazonで購入
             </a>
           </Button>
 
-          {/* 詳細ボタン - サブアクション */}
+          {/* 詳細ボタン - サブアクション（アウトライン） */}
           <Button 
             variant="outline" 
-            size="md" 
+            size="sm" 
             asChild 
-            className="w-full justify-center"
+            className={cn(
+              "w-full justify-center",
+              "border-gray-300 text-gray-600 hover:bg-gray-50",
+              "transition-all duration-200"
+            )}
           >
             <Link 
               href={`/products/${product.id}`} 
               className="flex items-center"
               aria-label={`${product.name}の詳細情報を見る`}
             >
-              <Eye className="h-4 w-4 mr-2" aria-hidden="true" />
+              <Eye className="h-3 w-3 mr-2" aria-hidden="true" />
               詳細を見る
             </Link>
           </Button>

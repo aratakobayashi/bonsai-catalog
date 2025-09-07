@@ -1,0 +1,55 @@
+[
+  {
+    "id": "9858bd55-6d3e-406b-a3be-5db66fd23d38",
+    "name": "五葉松 小品盆栽（瀬戸焼鉢）",
+    "description": "格調高い五葉松の小品盆栽。瀬戸焼の上品な小鉢に植えられており、受け皿も付属しています。初心者にも育てやすく、贈り物としても人気です。室内での栽培も可能で、年間を通して美しい針葉を楽しめます。",
+    "price": 3980,
+    "category": "松柏類",
+    "tags": [
+      "五葉松",
+      "小品盆栽",
+      "初心者向け",
+      "瀬戸焼",
+      "受け皿付き",
+      "ギフト対応",
+      "室内栽培可能",
+      "常緑樹",
+      "プレゼント"
+    ],
+    "size_category": "small",
+    "image_url": "/products/goyomatsu-bonsai.jpg",
+    "amazon_url": "https://www.amazon.co.jp/%E5%B0%8F%E5%93%81%E7%9B%86%E6%A0%BD%EF%BC%9A%E4%BA%94%E8%91%89%E6%9D%BE-%E7%80%AC%E6%88%B8%E7%84%BC%E5%B0%8F%E9%89%A2-%E5%8F%97%E3%81%91%E7%9A%BF%E4%BB%98%E3%81%8D-%E9%89%A2%E6%A4%8D%E3%81%88%E7%A5%9D%E3%81%84-%E3%83%97%E3%83%AC%E3%82%BC%E3%83%B3%E3%83%88%E3%81%AB%E3%82%82bonsai/dp/B00D9IOKXI?tag=oshikatsucoll-22&linkCode=as2&camp=247&creative=1211",
+    "created_at": "2025-09-06T00:51:40.510884+00:00",
+    "updated_at": "2025-09-07T02:29:40.635008+00:00",
+    "season": "summer",
+    "location": "indoor"
+  },
+  {
+    "id": "0de5791c-4135-4e88-96b6-72c67b11d05f",
+    "name": "山もみじの盆栽（藤久作手造り鉢）",
+    "description": "美しい山もみじの盆栽。春の新緑から秋の紅葉まで四季を通じて楽しめます。藤久作の手造り鉢付きで、高さ約25cm×幅10cmのコンパクトサイズ。室内でも育てやすく、初心者から上級者まで人気の品種です。",
+    "price": 4820,
+    "category": "雑木類",
+    "tags": [
+      "山もみじ",
+      "紅葉",
+      "落葉樹",
+      "四季楽しめる",
+      "藤久作",
+      "手造り鉢",
+      "中品",
+      "室内栽培可能",
+      "初心者向け",
+      "春の新緑",
+      "秋の紅葉",
+      "ギフト対応"
+    ],
+    "size_category": "medium",
+    "image_url": "/products/yamamo-miji-bonsai.jpg",
+    "amazon_url": "https://www.amazon.co.jp/dp/B00BTS4O86?tag=oshikatsucoll-22&linkCode=as2&camp=247&creative=1211",
+    "created_at": "2025-09-06T03:16:18.925824+00:00",
+    "updated_at": "2025-09-07T02:29:40.835967+00:00",
+    "season": "autumn",
+    "location": "indoor"
+  }
+]

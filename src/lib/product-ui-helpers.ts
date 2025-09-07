@@ -6,14 +6,14 @@
 import { Product } from '@/types'
 
 /**
- * 難易度レベルを星表示に変換
+ * 難易度レベルをアイコン表示に変換
  */
-export function getDifficultyStars(level?: number): string {
+export function getDifficultyIcon(level?: number): string {
   switch (level) {
-    case 1: return '★☆☆'
-    case 2: return '★★☆'
-    case 3: return '★★★'
-    default: return '★★☆'
+    case 1: return '🌱'
+    case 2: return '🌿'
+    case 3: return '🌲'
+    default: return '🌿'
   }
 }
 
@@ -22,11 +22,18 @@ export function getDifficultyStars(level?: number): string {
  */
 export function getDifficultyText(level?: number): string {
   switch (level) {
-    case 1: return '初心者向け'
-    case 2: return '普通'
+    case 1: return '初心者OK'
+    case 2: return '中級者向け'
     case 3: return '上級者向け'
-    default: return '普通'
+    default: return '中級者向け'
   }
+}
+
+/**
+ * 難易度レベルをアイコン+テキストで表示
+ */
+export function getDifficultyDisplay(level?: number): string {
+  return `${getDifficultyIcon(level)} ${getDifficultyText(level)}`
 }
 
 /**
