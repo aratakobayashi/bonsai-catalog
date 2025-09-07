@@ -190,7 +190,7 @@ function GardensPageClient({ gardens }: { gardens: Garden[] }) {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="container mx-auto px-4">
         {/* ヘッダー */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             盆栽園紹介
           </h1>
@@ -198,6 +198,24 @@ function GardensPageClient({ gardens }: { gardens: Garden[] }) {
             信頼できる盆栽園をご紹介。歴史ある老舗から現代的な盆栽園まで、
             質の高い盆栽を扱う園をピックアップしています。
           </p>
+        </div>
+
+        {/* コンパクト特徴セクション */}
+        <div className="flex justify-center mb-8">
+          <div className="flex flex-wrap gap-4 max-w-4xl">
+            <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border border-gray-200">
+              <span className="text-lg">🏆</span>
+              <span className="text-sm font-medium text-gray-700">厳選された盆栽園</span>
+            </div>
+            <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border border-gray-200">
+              <span className="text-lg">👥</span>
+              <span className="text-sm font-medium text-gray-700">専門知識</span>
+            </div>
+            <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border border-gray-200">
+              <span className="text-lg">🌱</span>
+              <span className="text-sm font-medium text-gray-700">品質保証</span>
+            </div>
+          </div>
         </div>
 
         {/* 地方フィルター */}
@@ -238,39 +256,6 @@ function GardensPageClient({ gardens }: { gardens: Garden[] }) {
               )
             })}
           </div>
-        </div>
-
-        {/* 特徴セクション */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          <Card className="text-center p-6">
-            <div className="mx-auto w-12 h-12 bg-bonsai-green-100 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl">🏆</span>
-            </div>
-            <h3 className="font-semibold text-lg mb-2">厳選された盆栽園</h3>
-            <p className="text-gray-600 text-sm">
-              長年の経験と実績を持つ、信頼できる盆栽園のみをご紹介しています。
-            </p>
-          </Card>
-
-          <Card className="text-center p-6">
-            <div className="mx-auto w-12 h-12 bg-earth-brown-100 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl">👥</span>
-            </div>
-            <h3 className="font-semibold text-lg mb-2">専門知識</h3>
-            <p className="text-gray-600 text-sm">
-              経験豊富な職人による、丁寧な盆栽の手入れと育成指導が受けられます。
-            </p>
-          </Card>
-
-          <Card className="text-center p-6">
-            <div className="mx-auto w-12 h-12 bg-bonsai-green-100 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl">🌱</span>
-            </div>
-            <h3 className="font-semibold text-lg mb-2">品質保証</h3>
-            <p className="text-gray-600 text-sm">
-              健康で美しい盆栽を、適切な価格でご提供いただいています。
-            </p>
-          </Card>
         </div>
 
         {/* 盆栽園一覧 */}
