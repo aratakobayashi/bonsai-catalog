@@ -1,3 +1,6 @@
+'use client'
+
+import { useState, useMemo } from 'react'
 import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -5,13 +8,8 @@ import { supabaseServer } from '@/lib/supabase-server'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { MapPin, Globe, Phone, ExternalLink, Users, Calendar } from 'lucide-react'
+import { REGIONS, getRegionFromPrefecture, getRegionTheme } from '@/lib/utils'
 import type { Garden } from '@/types'
-
-export const metadata: Metadata = {
-  title: '盆栽園紹介 - 盆栽コレクション',
-  description: '信頼できる盆栽園をご紹介。歴史ある老舗から現代的な盆栽園まで、質の高い盆栽を扱う園をピックアップしています。',
-  keywords: ['盆栽園', '盆栽店', '園芸店', 'ガーデニング', '植物', '和風'],
-}
 
 async function getGardens(): Promise<Garden[]> {
   const { data, error } = await supabaseServer
@@ -28,59 +26,26 @@ async function getGardens(): Promise<Garden[]> {
 }
 
 function GardenCard({ garden }: { garden: Garden }) {
-  // 都道府県別のテーマ色・アイコン設定
-  const getPrefectureTheme = (prefecture: string) => {
-    switch (prefecture) {
-      case '埼玉県':
-        return {
-          icon: '🏛️',
-          gradient: 'from-blue-100 to-indigo-100',
-          accent: 'text-blue-600',
-          border: 'border-blue-200',
-          buttonColor: 'bg-blue-600 hover:bg-blue-700'
-        }
-      case '香川県':
-        return {
-          icon: '🌲',
-          gradient: 'from-green-100 to-emerald-100',
-          accent: 'text-green-600',
-          border: 'border-green-200',
-          buttonColor: 'bg-green-600 hover:bg-green-700'
-        }
-      case '東京都':
-        return {
-          icon: '🎋',
-          gradient: 'from-purple-100 to-pink-100',
-          accent: 'text-purple-600',
-          border: 'border-purple-200',
-          buttonColor: 'bg-purple-600 hover:bg-purple-700'
-        }
-      default:
-        return {
-          icon: '🌿',
-          gradient: 'from-gray-100 to-slate-100',
-          accent: 'text-gray-600',
-          border: 'border-gray-200',
-          buttonColor: 'bg-gray-600 hover:bg-gray-700'
-        }
-    }
-  }
-
-  const theme = getPrefectureTheme(garden.prefecture || '')
+  // 地域別テーマを取得
+  const region = getRegionFromPrefecture(garden.prefecture || '')
+  const theme = getRegionTheme(region)
 
   return (
-    <Card className={`h-full hover:shadow-lg transition-all duration-300 ${theme.border} hover:scale-[1.02]`}>
+    <Card className={`h-full hover:shadow-lg transition-all duration-300 ${theme.borderColor} hover:scale-[1.02]`}>
       {/* ビジュアルヘッダー */}
-      <div className={`bg-gradient-to-br ${theme.gradient} p-6 relative overflow-hidden`}>
+      <div className={`bg-gradient-to-br ${theme.lightColor} p-6 relative overflow-hidden`}>
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-3">
             <div className="text-4xl">{theme.icon}</div>
             <div>
-              <div className={`text-sm font-semibold ${theme.accent}`}>
+              <div className={`text-sm font-semibold ${theme.textColor}`}>
                 {garden.prefecture}
               </div>
               <div className="text-xs text-gray-600">
                 {garden.city}
+              </div>
+              <div className="text-xs text-gray-500 mt-1">
+                {region}地方
               </div>
             </div>
           </div>
@@ -200,8 +165,26 @@ function GardenCard({ garden }: { garden: Garden }) {
   )
 }
 
-export default async function GardensPage() {
-  const gardens = await getGardens()
+function GardensPageClient({ gardens }: { gardens: Garden[] }) {
+  const [selectedRegion, setSelectedRegion] = useState<string>('全て')
+  
+  // Filter gardens by selected region
+  const filteredGardens = useMemo(() => {
+    if (selectedRegion === '全て') return gardens
+    return gardens.filter(garden => 
+      getRegionFromPrefecture(garden.prefecture || '') === selectedRegion
+    )
+  }, [gardens, selectedRegion])
+
+  // Count gardens by region for current data
+  const regionCounts = useMemo(() => {
+    const counts: Record<string, number> = {}
+    gardens.forEach(garden => {
+      const region = getRegionFromPrefecture(garden.prefecture || '')
+      counts[region] = (counts[region] || 0) + 1
+    })
+    return counts
+  }, [gardens])
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
@@ -215,6 +198,46 @@ export default async function GardensPage() {
             信頼できる盆栽園をご紹介。歴史ある老舗から現代的な盆栽園まで、
             質の高い盆栽を扱う園をピックアップしています。
           </p>
+        </div>
+
+        {/* 地方フィルター */}
+        <div className="mb-8">
+          <div className="flex flex-wrap gap-2 justify-center">
+            {/* 全て表示ボタン */}
+            <button
+              onClick={() => setSelectedRegion('全て')}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                selectedRegion === '全て'
+                  ? 'bg-gray-800 text-white shadow-md'
+                  : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+              }`}
+            >
+              全て ({gardens.length})
+            </button>
+            
+            {/* 地方別フィルターボタン */}
+            {Object.entries(REGIONS).map(([regionName, regionData]) => {
+              const count = regionCounts[regionName] || 0
+              if (count === 0) return null
+              
+              const theme = getRegionTheme(regionName)
+              
+              return (
+                <button
+                  key={regionName}
+                  onClick={() => setSelectedRegion(regionName)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
+                    selectedRegion === regionName
+                      ? `${theme.color} text-white shadow-md`
+                      : `bg-white ${theme.textColor} hover:${theme.lightColor} border ${theme.borderColor}`
+                  }`}
+                >
+                  <span>{theme.icon}</span>
+                  {regionName} ({count})
+                </button>
+              )
+            })}
+          </div>
         </div>
 
         {/* 特徴セクション */}
@@ -252,14 +275,22 @@ export default async function GardensPage() {
 
         {/* 盆栽園一覧 */}
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">
             提携盆栽園一覧
           </h2>
           
-          {gardens.length > 0 ? (
+          {/* フィルター結果表示 */}
+          <p className="text-center text-gray-600 mb-8">
+            {selectedRegion === '全て' 
+              ? `全国の盆栽園 ${filteredGardens.length}件を表示中`
+              : `${selectedRegion}地方の盆栽園 ${filteredGardens.length}件を表示中`
+            }
+          </p>
+          
+          {filteredGardens.length > 0 ? (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                {gardens.map((garden) => (
+                {filteredGardens.map((garden) => (
                   <GardenCard key={garden.id} garden={garden} />
                 ))}
               </div>
@@ -286,10 +317,10 @@ export default async function GardensPage() {
                 <span className="text-6xl">🏛️</span>
               </div>
               <h3 className="text-xl font-medium text-gray-900 mb-2">
-                盆栽園データを準備中です
+                {selectedRegion}地方の盆栽園データを準備中です
               </h3>
               <p className="text-gray-600">
-                信頼できる盆栽園の情報を収集・準備中です。しばらくお待ちください。
+                現在{selectedRegion}地方の盆栽園情報を収集中です。しばらくお待ちください。
               </p>
             </div>
           )}
@@ -316,4 +347,10 @@ export default async function GardensPage() {
       </div>
     </div>
   )
+}
+
+export default async function GardensPage() {
+  const gardens = await getGardens()
+
+  return <GardensPageClient gardens={gardens} />
 }
