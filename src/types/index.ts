@@ -122,3 +122,64 @@ export interface GardenFilters {
   featured_only?: boolean
   search?: string
 }
+
+// 記事関連の型定義
+export interface Article {
+  id: string
+  title: string
+  slug: string
+  content: string
+  excerpt?: string
+  featuredImage?: {
+    url: string
+    alt?: string
+    width?: number
+    height?: number
+  }
+  category: ArticleCategory
+  tags?: ArticleTag[]
+  relatedProducts?: string[] // 商品IDの配列
+  seoTitle?: string
+  seoDescription?: string
+  readingTime?: number // 分
+  publishedAt: string
+  updatedAt: string
+  status?: 'draft' | 'published'
+}
+
+export interface ArticleCategory {
+  id: string
+  name: string
+  slug: string
+  description?: string
+  color?: string // UI表示用の色（例: 'bg-green-100 text-green-800'）
+  icon?: string // アイコン（例: '🌱'）
+}
+
+export interface ArticleTag {
+  id: string
+  name: string
+  slug: string
+  color?: string // UI表示用の色
+}
+
+// 記事フィルター用
+export interface ArticleFilters {
+  category?: string
+  tags?: string[]
+  search?: string
+  page?: number
+  limit?: number
+  sortBy?: 'publishedAt' | 'updatedAt' | 'readingTime' | 'title'
+  sortOrder?: 'asc' | 'desc'
+}
+
+// 記事一覧のレスポンス型
+export interface ArticleListResponse {
+  articles: Article[]
+  totalCount: number
+  currentPage: number
+  totalPages: number
+  hasNext: boolean
+  hasPrev: boolean
+}

@@ -4,6 +4,7 @@ import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { BottomNavigation } from '@/components/layout/BottomNavigation'
+import { Toaster } from 'react-hot-toast'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -46,6 +47,16 @@ export default function RootLayout({
           </main>
           <Footer />
           <BottomNavigation />
+          <Toaster 
+            position="bottom-right"
+            toastOptions={{
+              duration: 3000,
+              style: {
+                background: '#363636',
+                color: '#fff',
+              },
+            }}
+          />
         </div>
       </body>
     </html>

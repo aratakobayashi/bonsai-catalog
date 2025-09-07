@@ -14,6 +14,7 @@ const Header = () => {
   const navItems = [
     { href: '/', label: 'ホーム' },
     { href: '/products', label: '商品一覧' },
+    { href: '/guides', label: '記事ガイド' },
     { href: '/gardens', label: '盆栽園紹介' },
   ]
 
