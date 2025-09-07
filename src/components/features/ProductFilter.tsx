@@ -149,30 +149,38 @@ export function ProductFilter({
           {/* 価格帯フィルター */}
           <div>
             <h3 className="font-medium mb-3">価格帯</h3>
-            <div className="space-y-3">
-              <div>
-                <label className="block text-sm text-gray-600 mb-1">最低価格</label>
+            <div className="flex items-center gap-2 flex-wrap">
+              {/* 最低価格 */}
+              <div className="flex items-center gap-1 min-w-0 flex-1">
                 <Input
                   type="number"
-                  placeholder="0"
+                  placeholder="最低価格"
                   value={filters.price_min || ''}
                   onChange={(e) => updateFilters({ 
                     price_min: e.target.value ? parseInt(e.target.value) : undefined 
                   })}
                   min="0"
+                  className="w-full min-w-[80px] text-sm"
                 />
+                <span className="text-sm text-gray-500 whitespace-nowrap">円</span>
               </div>
-              <div>
-                <label className="block text-sm text-gray-600 mb-1">最高価格</label>
+              
+              {/* 区切り */}
+              <span className="text-gray-400 text-sm whitespace-nowrap">〜</span>
+              
+              {/* 最高価格 */}
+              <div className="flex items-center gap-1 min-w-0 flex-1">
                 <Input
                   type="number"
-                  placeholder="100000"
+                  placeholder="最高価格"
                   value={filters.price_max || ''}
                   onChange={(e) => updateFilters({ 
                     price_max: e.target.value ? parseInt(e.target.value) : undefined 
                   })}
                   min="0"
+                  className="w-full min-w-[80px] text-sm"
                 />
+                <span className="text-sm text-gray-500 whitespace-nowrap">円</span>
               </div>
             </div>
           </div>
