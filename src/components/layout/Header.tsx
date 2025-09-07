@@ -77,7 +77,7 @@ const Header = () => {
             </button>
 
             {/* ショッピングバッグ（将来の機能拡張用） */}
-            <button className="hidden sm:flex p-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 relative">
+            <button className="hidden p-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 relative">
               <ShoppingBag className="h-5 w-5" />
               <span className="absolute -top-1 -right-1 h-4 w-4 bg-accent-500 text-white text-xs rounded-full flex items-center justify-center font-bold">
                 0
