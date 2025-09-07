@@ -224,7 +224,7 @@ export function AdvancedFilter({
       {/* カテゴリフィルター */}
       <FilterSection title="カテゴリ" sectionKey="category">
         <div className="space-y-2">
-          {availableCategories.map((category) => (
+          {['松柏類', '雑木類', '花もの', '実もの', '草もの'].map((category) => (
             <label
               key={category}
               className="flex items-center space-x-3 cursor-pointer hover:bg-neutral-50 p-2 rounded-md transition-colors"
