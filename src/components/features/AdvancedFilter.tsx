@@ -22,10 +22,10 @@ interface PriceRange {
 }
 
 const sizeOptions = [
-  { value: 'mini' as SizeCategory, label: 'ミニ盆栽' },
-  { value: 'small' as SizeCategory, label: '小品盆栽' },
-  { value: 'medium' as SizeCategory, label: '中品盆栽' },
-  { value: 'large' as SizeCategory, label: '大品盆栽' },
+  { value: 'mini' as SizeCategory, label: 'ミニ盆栽', description: '5-10cm、手のひらサイズ' },
+  { value: 'small' as SizeCategory, label: '小品盆栽', description: '10-20cm、卓上サイズ' },
+  { value: 'medium' as SizeCategory, label: '中品盆栽', description: '20-40cm、リビング向け' },
+  { value: 'large' as SizeCategory, label: '大品盆栽', description: '40cm以上、本格展示用' },
 ]
 
 const priceRanges: PriceRange[] = [
@@ -224,18 +224,27 @@ export function AdvancedFilter({
       {/* カテゴリフィルター */}
       <FilterSection title="カテゴリ" sectionKey="category">
         <div className="space-y-2">
-          {['松柏類', '雑木類', '花もの', '実もの', '草もの'].map((category) => (
+          {[
+            { name: '松柏類', description: '松、真柏、杜松など' },
+            { name: '雑木類', description: 'もみじ、欅、ブナなど' },
+            { name: '花もの', description: '桜、梅、ツツジなど' },
+            { name: '実もの', description: '柿、南天、ピラカンサなど' },
+            { name: '草もの', description: '山野草、苔、多肉植物など' }
+          ].map((category) => (
             <label
-              key={category}
+              key={category.name}
               className="flex items-center space-x-3 cursor-pointer hover:bg-neutral-50 p-2 rounded-md transition-colors"
             >
               <input
                 type="checkbox"
-                checked={filters.category === category}
-                onChange={() => handleCategoryChange(category)}
+                checked={filters.category === category.name}
+                onChange={() => handleCategoryChange(category.name)}
                 className="rounded border-neutral-300 text-accent-600 focus:ring-accent-500"
               />
-              <span className="text-sm text-neutral-700">{category}</span>
+              <div className="flex-1">
+                <span className="text-sm text-neutral-700">{category.name}</span>
+                <div className="text-xs text-neutral-500">{category.description}</div>
+              </div>
             </label>
           ))}
         </div>
@@ -255,7 +264,10 @@ export function AdvancedFilter({
                 onChange={() => handleSizeChange(size.value)}
                 className="rounded border-neutral-300 text-accent-600 focus:ring-accent-500"
               />
-              <span className="text-sm text-neutral-700">{size.label}</span>
+              <div className="flex-1">
+                <span className="text-sm text-neutral-700">{size.label}</span>
+                <div className="text-xs text-neutral-500">{size.description}</div>
+              </div>
             </label>
           ))}
         </div>

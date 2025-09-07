@@ -142,11 +142,11 @@ export default function HomePage() {
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
             {[
-              { name: '松柏類', href: '/products?category=松柏類', emoji: '🌲' },
-              { name: '雑木類', href: '/products?category=雑木類', emoji: '🍂' },
-              { name: '花もの', href: '/products?category=花もの', emoji: '🌸' },
-              { name: '実もの', href: '/products?category=実もの', emoji: '🍇' },
-              { name: '草もの', href: '/products?category=草もの', emoji: '🌿' },
+              { name: '松柏類', href: '/products?category=松柏類', emoji: '🌲', description: '松、真柏、杜松など針葉樹' },
+              { name: '雑木類', href: '/products?category=雑木類', emoji: '🍂', description: 'もみじ、欅、ブナなど落葉樹' },
+              { name: '花もの', href: '/products?category=花もの', emoji: '🌸', description: '桜、梅、ツツジなど花を楽しむ' },
+              { name: '実もの', href: '/products?category=実もの', emoji: '🍇', description: '柿、南天、ピラカンサなど実を楽しむ' },
+              { name: '草もの', href: '/products?category=草もの', emoji: '🌿', description: '山野草、苔、多肉植物など' },
             ].map((category) => (
               <Link
                 key={category.name}
@@ -154,9 +154,12 @@ export default function HomePage() {
                 className="block p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow text-center group"
               >
                 <div className="text-4xl mb-2">{category.emoji}</div>
-                <h3 className="font-semibold text-gray-900 group-hover:text-bonsai-green-600 transition-colors">
+                <h3 className="font-semibold text-gray-900 group-hover:text-bonsai-green-600 transition-colors mb-1">
                   {category.name}
                 </h3>
+                <p className="text-sm text-gray-600">
+                  {category.description}
+                </p>
               </Link>
             ))}
           </div>
