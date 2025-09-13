@@ -26,6 +26,9 @@ export const metadata: Metadata = {
     description: '美しい盆栽をお探しの方のための商品カタログサイトです。',
   },
   robots: 'index, follow',
+  verification: {
+    google: 'zkHWVAFAw_7BRYulA99Qz4JquEu0fWINAsurXfLTdng',
+  },
 }
 export default async function generateSitemaps() {
   // 動的サイトマップは別ファイルで実装
