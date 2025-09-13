@@ -32,6 +32,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'bonsai-guidebook.net',
+        port: '',
+        pathname: '/wp-content/uploads/**',
+      },
     ],
   },
   env: {
