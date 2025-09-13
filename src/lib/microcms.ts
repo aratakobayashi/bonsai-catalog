@@ -48,8 +48,11 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       signal: controller.signal,
       headers: {
         'Accept': 'application/json',
-        'User-Agent': 'Bonsai-Collection/1.0',
-        'Cache-Control': 'no-cache'
+        'User-Agent': 'Bonsai-Collection/1.0'
+      },
+      // Next.js 14のキャッシング機能を活用
+      next: { 
+        revalidate: 1800 // 30分キャッシュ（一覧は更新頻度が高いため短め）
       }
     })
 
@@ -345,8 +348,11 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     const response = await fetch(url, {
       headers: {
         'Accept': 'application/json',
-        'User-Agent': 'Bonsai-Collection/1.0',
-        'Cache-Control': 'no-cache'
+        'User-Agent': 'Bonsai-Collection/1.0'
+      },
+      // Next.js 14のキャッシング機能を活用
+      next: { 
+        revalidate: 3600 // 1時間キャッシュ
       }
     })
 

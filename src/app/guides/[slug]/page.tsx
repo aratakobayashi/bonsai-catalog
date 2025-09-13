@@ -50,6 +50,21 @@ async function getRelatedProducts(productIds?: string[], article?: any): Promise
   return []
 }
 
+// 人気記事の静的生成
+export async function generateStaticParams() {
+  try {
+    // 最新の人気記事10件を事前生成
+    const { articles } = await getArticles({ limit: 10 })
+    
+    return articles.map((article) => ({
+      slug: article.slug,
+    }))
+  } catch (error) {
+    console.error('静的パラメータ生成エラー:', error)
+    return []
+  }
+}
+
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
   const article = await getArticleBySlug(params.slug)
 
