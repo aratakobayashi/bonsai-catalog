@@ -38,14 +38,14 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
     console.log('📡 Fetching from URL:', url)
 
     const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), 10000)
+    const timeoutId = setTimeout(() => controller.abort(), 15000)
 
     const response = await fetch(url, {
       signal: controller.signal,
-      next: { revalidate: 3600 },
       headers: {
         'Accept': 'application/json',
-        'User-Agent': 'Bonsai-Collection/1.0'
+        'User-Agent': 'Bonsai-Collection/1.0',
+        'Cache-Control': 'no-cache'
       }
     })
 

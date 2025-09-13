@@ -3,8 +3,14 @@ import { NextResponse } from 'next/server'
 export async function GET() {
   const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL || 'https://bonsai-guidebook.net/wp-json/wp/v2'
   
+  // 環境情報を詳細に記録
   console.log('🧪 Testing WordPress API connection from server...')
   console.log('🌐 WordPress URL:', WORDPRESS_API_URL)
+  console.log('🔧 Node version:', process.version)
+  console.log('🌍 Environment:', process.env.NODE_ENV)
+  
+  // まず基本的な接続テスト
+  console.log('📡 Testing basic HTTP connection...')
   
   try {
     const startTime = Date.now()
