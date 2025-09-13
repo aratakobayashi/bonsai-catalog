@@ -19,7 +19,6 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
   
   try {
     const queryParams = new URLSearchParams({
-      _embed: 'true',
       per_page: String(filters.limit || 12),
       page: String(filters.page || 1),
       orderby: filters.sortBy === 'title' ? 'title' : 'date',
@@ -34,7 +33,11 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       queryParams.append('search', filters.search)
     }
 
-    const url = `${MICROCMS_API_URL}/posts?${queryParams}`
+    // 代替URL形式を使用（?rest_route= 形式）
+    const baseUrl = 'https://bonsai-guidebook.net'
+    const restRoute = '/wp/v2/posts'
+    const url = `${baseUrl}/?rest_route=${restRoute}&${queryParams}`
+    
     console.log('📡 Fetching from URL:', url)
 
     const controller = new AbortController()
@@ -317,15 +320,18 @@ function getFallbackArticles(filters: ArticleFilters = {}): ArticleListResponse 
  */
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
   try {
-    const response = await fetch(
-      `${MICROCMS_API_URL}/posts?slug=${encodeURIComponent(slug)}&_embed=true`,
-      {
-        next: { revalidate: 86400 }, // 24時間キャッシュ
-        headers: {
-          'Accept': 'application/json',
-        }
+    // 代替URL形式を使用（?rest_route= 形式）
+    const baseUrl = 'https://bonsai-guidebook.net'
+    const restRoute = '/wp/v2/posts'
+    const url = `${baseUrl}/?rest_route=${restRoute}&slug=${encodeURIComponent(slug)}`
+    
+    const response = await fetch(url, {
+      headers: {
+        'Accept': 'application/json',
+        'User-Agent': 'Bonsai-Collection/1.0',
+        'Cache-Control': 'no-cache'
       }
-    )
+    })
 
     if (!response.ok) {
       if (response.status === 404) {
