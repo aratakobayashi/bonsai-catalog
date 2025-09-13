@@ -12,6 +12,7 @@ import { RelatedArticles } from '@/components/features/RelatedArticles'
 import { ShareButtons } from '@/components/features/ShareButtons'
 import { TableOfContents } from '@/components/features/TableOfContents'
 import { ArrowLeft, Calendar, Clock, Tag, User } from 'lucide-react'
+import { formatDate } from '@/lib/date-utils'
 import type { Product } from '@/types'
 
 interface ArticlePageProps {
@@ -90,14 +91,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   // 現在の記事を除外
   const relatedArticles = relatedArticlesData.articles.filter(a => a.id !== article.id)
 
-  // 日付フォーマット
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('ja-JP', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    })
-  }
+  // 日付フォーマット（hydrationエラー対策済み）
 
   // 目次を生成（簡易版）
   const generateTOC = (content: string) => {
