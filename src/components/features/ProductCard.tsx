@@ -2,225 +2,144 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
+import { Badge } from '@/components/ui/Badge'
 import { formatPrice, cn } from '@/lib/utils'
-import { generateAffiliateURL, trackAffiliateClick } from '@/lib/amazon'
 import { 
-  getSizeDisplayText, 
-  getDifficultyDisplay,
-  getDifficultyColor,
-  getFeatureBadges, 
-  getSeasonDisplay,
-  getSizeCategoryLabel
+  getSizeDisplay, 
+  getDifficultyStars,
+  getSeasonalInfo,
+  getFeatureBadges 
 } from '@/lib/product-ui-helpers'
-import { ShoppingBag, Heart, Eye } from 'lucide-react'
+import { ExternalLink, TreePine, Ruler } from 'lucide-react'
 import type { Product } from '@/types'
 
 interface ProductCardProps {
   product: Product
+  className?: string
 }
 
-export function ProductCard({ product }: ProductCardProps) {
-  // アフィリエイトリンクを生成
-  const affiliateUrl = generateAffiliateURL(product.amazon_url)
-  
-  // アフィリエイトクリック追跡用の関数
-  const handleAffiliateClick = () => {
-    trackAffiliateClick(product.id, affiliateUrl, product.category)
-  }
+function ProductCard({ product, className }: ProductCardProps) {
+  const sizeDisplay = getSizeDisplay(product.size_category, product.height_cm, product.width_cm)
+  const difficultyStars = getDifficultyStars(product.difficulty_level)
+  const seasonalInfo = getSeasonalInfo(product.bloom_months, product.foliage_months)
+  const featureBadges = getFeatureBadges(product)
+
   return (
-    <Card className={cn(
-      "group relative overflow-hidden",
-      "transition-all duration-300 ease-luxury",
-      "hover:shadow-hover hover:-translate-y-2",
-      "animate-fade-in"
-    )}>
-      {/* 商品画像セクション - 高級感のある表示 */}
-      <div className="relative">
-        <Link href={`/products/${product.id}`}>
-          <div className="aspect-[4/3] relative bg-gradient-to-br from-neutral-50 to-neutral-100 overflow-hidden">
-            {product.image_url ? (
-              <Image
-                src={product.image_url}
-                alt={product.name}
-                fill
-                className="object-cover group-hover:scale-110 transition-transform duration-500 ease-luxury"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="text-6xl text-neutral-300">🌲</div>
-              </div>
-            )}
-            
-            {/* オーバーレイ - ホバー時に表示される操作ボタン */}
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300">
-              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-slide-down">
-                <button className={cn(
-                  "p-2 bg-white/90 hover:bg-white rounded-full shadow-luxury hover:shadow-hover",
-                  "transition-all duration-200 hover:scale-110 active:scale-95",
-                  "hover:animate-heartbeat focus:ring-2 focus:ring-accent-500 focus:outline-none"
-                )}
-                aria-label={`${product.name}をお気に入りに追加`}
-                type="button"
-                >
-                  <Heart className="h-4 w-4 text-neutral-600 hover:text-accent-500 transition-colors" />
-                  <span className="sr-only">お気に入り</span>
-                </button>
-              </div>
-              
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-scale-in">
-                <Button variant="ghost" size="sm" className={cn(
-                  "bg-white/90 text-primary-700 hover:bg-white",
-                  "animate-bounce-gentle hover:animate-none"
-                )}>
-                  <Eye className="h-4 w-4 mr-2" />
-                  詳細を見る
-                </Button>
-              </div>
-            </div>
-          </div>
-        </Link>
-
-        {/* 価格バッジ - 左上に常時表示 */}
-        <div className="absolute top-4 left-4 transition-all duration-300">
-          <div className={cn(
-            "bg-gradient-accent text-white px-3 py-1 rounded-lg shadow-luxury font-bold text-lg",
-            "animate-pulse-glow hover:animate-wiggle transition-all duration-200"
-          )}>
-            {formatPrice(product.price)}
-          </div>
-        </div>
-      </div>
-
-      {/* 商品情報セクション - 充実版 */}
-      <CardContent className="p-6">
-        {/* カテゴリ・サイズ・難易度バッジ */}
-        <div className="flex items-center gap-2 mb-3">
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-nature-100 text-nature-800">
-            {product.category}
-          </span>
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent-100 text-accent-800">
-            {getSizeDisplayText(product)}
-          </span>
-          <span className={cn(
-            "inline-flex items-center px-3 py-1 rounded-full text-xs font-medium",
-            getDifficultyColor(product.difficulty_level),
-            "bg-neutral-100"
-          )}>
-            {getDifficultyDisplay(product.difficulty_level)}
-          </span>
-        </div>
-
-        {/* 商品名 */}
-        <Link 
-          href={`/products/${product.id}`}
-          className="focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-offset-2 rounded-md"
-          aria-label={`${product.name}の詳細を見る`}
-        >
-          <h3 className="font-bold text-xl mb-3 text-primary-800 hover:text-accent-600 transition-colors duration-200 line-clamp-2 leading-tight">
-            {product.name}
-          </h3>
-        </Link>
-
-        {/* 季節情報 */}
-        {getSeasonDisplay(product) && (
-          <div className="mb-3">
-            <span className="text-sm text-neutral-700 bg-gradient-to-r from-green-50 to-yellow-50 px-3 py-1 rounded-lg border border-green-200">
-              {getSeasonDisplay(product)}
-            </span>
+    <Card className={cn('group overflow-hidden border-0 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1', className)}>
+      <div className="aspect-square relative overflow-hidden bg-neutral-50">
+        {product.image_url ? (
+          <Image
+            src={product.image_url}
+            alt={product.name}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-neutral-100">
+            <TreePine className="h-16 w-16 text-neutral-400" />
           </div>
         )}
+        
+        {/* カテゴリバッジ */}
+        <div className="absolute top-3 left-3">
+          <Badge variant="secondary" className="text-xs font-medium bg-white/90 text-primary-700 backdrop-blur-sm">
+            {product.category}
+          </Badge>
+        </div>
 
         {/* 特徴バッジ */}
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {getFeatureBadges(product).slice(0, 3).map((badge, index) => (
-            <span
-              key={index}
-              className={cn(
-                "inline-flex items-center px-2 py-1 rounded-md text-xs font-medium",
-                badge.color,
-                "transition-all duration-200 hover:scale-105 hover:animate-wiggle"
-              )}
-            >
-              <span className="mr-1">{badge.icon}</span>
-              {badge.text}
-            </span>
-          ))}
-          {getFeatureBadges(product).length > 3 && (
-            <span className="text-xs text-neutral-500 self-center">
-              +{getFeatureBadges(product).length - 3}個
-            </span>
+        {featureBadges.length > 0 && (
+          <div className="absolute top-3 right-3 flex flex-col gap-1">
+            {featureBadges.slice(0, 2).map((badge, index) => (
+              <div
+                key={index}
+                className="px-2 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-primary-700 shadow-sm"
+                title={badge.title}
+              >
+                {badge.icon}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <CardContent className="p-4 space-y-3">
+        {/* 商品名 */}
+        <h3 className="font-semibold text-base leading-tight text-primary-900 line-clamp-2 min-h-[3rem] group-hover:text-accent-600 transition-colors">
+          {product.name}
+        </h3>
+
+        {/* 価格 - 常に表示 */}
+        <div className="flex items-center justify-between">
+          <div className="text-xl font-bold text-accent-600">
+            ¥{product.price.toLocaleString()}
+          </div>
+          {difficultyStars && (
+            <div className="text-sm text-amber-500" title="育成難易度">
+              {difficultyStars}
+            </div>
           )}
         </div>
 
-        {/* タグ表示（縮小版） */}
-        {product.tags && product.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mb-4">
-            {product.tags.slice(0, 1).map((tag, index) => (
+        {/* サイズ情報 */}
+        {sizeDisplay && (
+          <div className="flex items-center text-sm text-neutral-600">
+            <Ruler className="h-4 w-4 mr-1.5 text-neutral-400" />
+            <span>{sizeDisplay}</span>
+          </div>
+        )}
+
+        {/* 季節情報 */}
+        {seasonalInfo.length > 0 && (
+          <div className="space-y-1">
+            {seasonalInfo.map((info, index) => (
+              <div key={index} className="flex items-center text-sm text-neutral-600">
+                <span className="mr-1">{info.icon}</span>
+                <span>{info.text}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* 特徴バッジ（下部表示） */}
+        {featureBadges.length > 2 && (
+          <div className="flex flex-wrap gap-1">
+            {featureBadges.slice(2, 4).map((badge, index) => (
               <span
                 key={index}
-                className={cn(
-                  "inline-flex items-center px-2 py-1 rounded-md text-xs font-medium",
-                  "bg-neutral-100 text-neutral-600 hover:bg-neutral-200",
-                  "transition-all duration-200 hover:scale-105"
-                )}
+                className="inline-flex items-center px-2 py-1 bg-neutral-100 text-neutral-700 text-xs rounded-md"
+                title={badge.title}
               >
-                {tag}
+                <span className="mr-1">{badge.icon}</span>
+                {badge.text}
               </span>
             ))}
-            {product.tags.length > 1 && (
-              <span className="text-xs text-neutral-500 self-center">+{product.tags.length - 1}個</span>
-            )}
           </div>
         )}
 
         {/* アクションボタン */}
-        <div className="space-y-2">
-          {/* Amazonボタン - メインアクション（強調） */}
-          <Button 
-            size="md" 
-            asChild 
-            className={cn(
-              "w-full justify-center",
-              "bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700",
-              "text-white font-semibold shadow-lg hover:shadow-xl",
-              "transition-all duration-200 transform hover:scale-105"
-            )}
-          >
-            <a
-              href={affiliateUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center"
-              aria-label={`${product.name}をAmazonで購入する（新しいタブで開きます）`}
-              onClick={handleAffiliateClick}
-            >
-              <ShoppingBag className="h-4 w-4 mr-2" aria-hidden="true" />
-              🛒 Amazonで購入
-            </a>
-          </Button>
-
-          {/* 詳細ボタン - サブアクション（アウトライン） */}
-          <Button 
-            variant="outline" 
-            size="sm" 
-            asChild 
-            className={cn(
-              "w-full justify-center",
-              "border-gray-300 text-gray-600 hover:bg-gray-50",
-              "transition-all duration-200"
-            )}
-          >
-            <Link 
-              href={`/products/${product.id}`} 
-              className="flex items-center"
-              aria-label={`${product.name}の詳細情報を見る`}
-            >
-              <Eye className="h-3 w-3 mr-2" aria-hidden="true" />
+        <div className="flex gap-2 pt-2">
+          <Link href={`/products/${product.id}`} className="flex-1">
+            <Button variant="outline" className="w-full text-sm">
               詳細を見る
-            </Link>
-          </Button>
+            </Button>
+          </Link>
+          <Link 
+            href={product.amazon_url} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex-1"
+          >
+            <Button className="w-full bg-[#FF9500] hover:bg-[#FF9500]/90 text-white text-sm font-semibold">
+              <ExternalLink className="h-4 w-4 mr-1" />
+              購入する
+            </Button>
+          </Link>
         </div>
       </CardContent>
     </Card>
   )
 }
+
+export { ProductCard }

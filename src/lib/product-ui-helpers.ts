@@ -49,6 +49,48 @@ export function getDifficultyColor(level?: number): string {
 }
 
 /**
+ * 難易度レベルを星表示に変換
+ */
+export function getDifficultyStars(level?: number): string {
+  switch (level) {
+    case 1: return '★☆☆'
+    case 2: return '★★☆'  
+    case 3: return '★★★'
+    default: return '★★☆'
+  }
+}
+
+/**
+ * サイズ表示用の簡潔な表示を生成
+ */
+export function getSizeDisplay(sizeCategory?: string, height?: number, width?: number): string {
+  const categoryLabel = getSizeCategoryLabel(sizeCategory || 'unknown')
+  if (height) {
+    return `${categoryLabel}(${height}cm)`
+  }
+  return categoryLabel
+}
+
+/**
+ * 季節情報の配列を取得
+ */
+export function getSeasonalInfo(bloomMonths?: number[], foliageMonths?: number[]): Array<{ icon: string; text: string }> {
+  const info = []
+  
+  const bloomDisplay = getBloomDisplay(bloomMonths)
+  if (bloomDisplay) {
+    info.push({ icon: '🌸', text: bloomDisplay.replace('🌸', '') })
+  }
+  
+  const foliageDisplay = getFoliageDisplay(foliageMonths)  
+  if (foliageDisplay) {
+    info.push({ icon: '🍂', text: foliageDisplay.replace('🍂', '') })
+  }
+  
+  return info
+}
+
+/**
  * サイズ表示テキストを生成
  */
 export function getSizeDisplayText(product: Product): string {
@@ -105,27 +147,47 @@ export function getFoliageDisplay(months?: number[]): string | null {
 /**
  * 特徴バッジの配列を生成
  */
-export function getFeatureBadges(product: Product): Array<{ text: string; color: string; icon: string }> {
+export function getFeatureBadges(product: Product): Array<{ text: string; color: string; icon: string; title: string }> {
   const badges = []
   
   // 室内栽培可能
   if (product.indoor_suitable) {
-    badges.push({ text: '室内OK', color: 'bg-green-100 text-green-800', icon: '🏠' })
+    badges.push({ 
+      text: '室内OK', 
+      color: 'bg-green-100 text-green-800', 
+      icon: '🏠',
+      title: '室内で栽培可能'
+    })
   }
   
   // ギフト適正
   if (product.gift_suitable) {
-    badges.push({ text: 'ギフト向け', color: 'bg-pink-100 text-pink-800', icon: '🎁' })
+    badges.push({ 
+      text: 'ギフト向け', 
+      color: 'bg-pink-100 text-pink-800', 
+      icon: '🎁',
+      title: 'プレゼントに最適'
+    })
   }
   
   // 初心者向け
   if (product.beginner_friendly) {
-    badges.push({ text: '初心者向け', color: 'bg-blue-100 text-blue-800', icon: '👶' })
+    badges.push({ 
+      text: '初心者向け', 
+      color: 'bg-blue-100 text-blue-800', 
+      icon: '👶',
+      title: '初心者でも育てやすい'
+    })
   }
   
   // セット商品
   if (product.name.toLowerCase().includes('セット')) {
-    badges.push({ text: 'セット商品', color: 'bg-purple-100 text-purple-800', icon: '📦' })
+    badges.push({ 
+      text: 'セット商品', 
+      color: 'bg-purple-100 text-purple-800', 
+      icon: '📦',
+      title: 'セット商品でお得'
+    })
   }
   
   return badges
