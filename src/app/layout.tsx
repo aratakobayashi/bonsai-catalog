@@ -4,6 +4,7 @@ import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { BottomNavigation } from '@/components/layout/BottomNavigation'
+import { WebSiteStructuredData } from '@/components/seo/StructuredData'
 import { Toaster } from 'react-hot-toast'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -26,6 +27,10 @@ export const metadata: Metadata = {
   },
   robots: 'index, follow',
 }
+export default async function generateSitemaps() {
+  // 動的サイトマップは別ファイルで実装
+  return []
+}
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -40,6 +45,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
+        <WebSiteStructuredData baseUrl="https://www.bonsai-collection.com" />
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-1 pb-16 md:pb-0">

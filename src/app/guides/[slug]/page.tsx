@@ -12,6 +12,7 @@ import { RelatedArticles } from '@/components/features/RelatedArticles'
 import { ShareButtons } from '@/components/features/ShareButtons'
 import { TableOfContents } from '@/components/features/TableOfContents'
 import { ArticleProductCTA } from '@/components/features/ArticleProductCTA'
+import { ArticleStructuredData } from '@/components/seo/StructuredData'
 import { ArrowLeft, Calendar, Clock, Tag, User } from 'lucide-react'
 import { formatDate } from '@/lib/date-utils'
 import type { Product } from '@/types'
@@ -85,7 +86,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       images: article.featuredImage ? [article.featuredImage.url] : [],
     },
     alternates: {
-      canonical: `https://your-domain.com/guides/${params.slug}`,
+      canonical: `https://www.bonsai-collection.com/guides/${params.slug}`,
     }
   }
 }
@@ -125,7 +126,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const tableOfContents = generateTOC(article.content)
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
+      <ArticleStructuredData 
+        article={article} 
+        baseUrl="https://www.bonsai-collection.com" 
+      />
+      <div className="min-h-screen bg-gray-50">
       {/* 戻るボタン */}
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-4">
@@ -323,5 +329,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
       </div>
     </div>
+    </>
   )
 }
