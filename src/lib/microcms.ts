@@ -7,14 +7,208 @@ import type { Article, ArticleCategory, ArticleTag, ArticleFilters, ArticleListR
 
 // 仮のmicroCMSクライアント（実際の実装時に置き換え）
 // 本実装では microcms-js-sdk を使用予定
-const MICROCMS_API_URL = process.env.MICROCMS_API_URL || ''
+const MICROCMS_API_URL = process.env.WORDPRESS_API_URL || 'https://bonsai-guidebook.net/wp-json/wp/v2'
 const MICROCMS_API_KEY = process.env.MICROCMS_API_KEY || ''
 
 /**
  * 記事一覧を取得
  */
 export async function getArticles(filters: ArticleFilters = {}): Promise<ArticleListResponse> {
-  // 暫定的なモックデータ（microCMS実装時に置き換え）
+  try {
+    const queryParams = new URLSearchParams({
+      _embed: 'true',
+      per_page: String(filters.limit || 12),
+      page: String(filters.page || 1),
+      orderby: filters.sortBy === 'title' ? 'title' : 'date',
+      order: filters.sortOrder || 'desc',
+    })
+
+    // カテゴリー指定（スラッグからIDに変換）
+    if (filters.category) {
+      const categories = await getCategories()
+      const category = categories.find(cat => cat.slug === filters.category)
+      if (category) {
+        queryParams.set('categories', category.id)
+      }
+    }
+
+    // タグ指定（スラッグからIDに変換）
+    if (filters.tags && filters.tags.length > 0) {
+      const tags = await getTags()
+      const tagIds = filters.tags
+        .map(tagSlug => tags.find(tag => tag.slug === tagSlug)?.id)
+        .filter(Boolean)
+      if (tagIds.length > 0) {
+        queryParams.set('tags', tagIds.join(','))
+      }
+    }
+
+    // 検索キーワード
+    if (filters.search) {
+      queryParams.set('search', filters.search)
+    }
+
+    const response = await fetch(`${MICROCMS_API_URL}/posts?${queryParams}`, {
+      next: { revalidate: 3600 }, // 1時間キャッシュ
+      headers: {
+        'Accept': 'application/json',
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error(`WordPress API error: ${response.status} ${response.statusText}`)
+    }
+
+    const posts = await response.json()
+    const totalPages = parseInt(response.headers.get('X-WP-TotalPages') || '1', 10)
+    const totalCount = parseInt(response.headers.get('X-WP-Total') || '0', 10)
+    const currentPage = filters.page || 1
+
+    return {
+      articles: posts.map((post: any) => transformWordPressPost(post)),
+      totalCount,
+      currentPage,
+      totalPages,
+      hasNext: currentPage < totalPages,
+      hasPrev: currentPage > 1
+    }
+  } catch (error) {
+    console.error('Error fetching articles:', error)
+    // エラー時はモックデータにフォールバック
+    return getFallbackArticles(filters)
+  }
+}
+
+/**
+ * WordPressの投稿データをArticle型に変換
+ */
+function transformWordPressPost(post: any): Article {
+  const featuredMedia = post._embedded?.['wp:featuredmedia']?.[0]
+  const categories = post._embedded?.['wp:term']?.[0] || []
+  const tags = post._embedded?.['wp:term']?.[1] || []
+
+  return {
+    id: post.id.toString(),
+    slug: post.slug,
+    title: decodeHtml(post.title.rendered),
+    content: post.content.rendered,
+    excerpt: stripHtml(post.excerpt.rendered),
+    featuredImage: featuredMedia ? {
+      url: featuredMedia.source_url,
+      alt: featuredMedia.alt_text || post.title.rendered,
+      width: featuredMedia.media_details?.width || 800,
+      height: featuredMedia.media_details?.height || 600
+    } : undefined,
+    category: {
+      id: categories[0]?.id?.toString() || 'uncategorized',
+      name: categories[0]?.name || 'その他',
+      slug: categories[0]?.slug || 'uncategorized',
+      description: categories[0]?.description,
+      color: getCategoryColor(categories[0]?.slug),
+      icon: getCategoryIcon(categories[0]?.slug)
+    },
+    tags: tags.map((tag: any) => ({
+      id: tag.id.toString(),
+      name: tag.name,
+      slug: tag.slug,
+      color: getTagColor(tag.slug)
+    })),
+    seoTitle: post.title.rendered,
+    seoDescription: stripHtml(post.excerpt.rendered).slice(0, 160),
+    readingTime: calculateReadingTime(post.content.rendered),
+    publishedAt: post.date,
+    updatedAt: post.modified,
+    status: post.status === 'publish' ? 'published' : 'draft'
+  }
+}
+
+/**
+ * HTMLタグを除去
+ */
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, '').trim()
+}
+
+/**
+ * HTMLエンティティをデコード
+ */
+function decodeHtml(html: string): string {
+  const entities: Record<string, string> = {
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#039;': "'",
+    '&nbsp;': ' '
+  }
+  
+  return html.replace(/&[^;]+;/g, (entity) => entities[entity] || entity)
+}
+
+/**
+ * 読書時間を計算（日本語対応）
+ */
+function calculateReadingTime(content: string): number {
+  const wordsPerMinute = 500 // 日本語の平均読書速度（文字/分）
+  const textContent = stripHtml(content)
+  const characterCount = textContent.length
+  
+  return Math.ceil(characterCount / wordsPerMinute) || 1
+}
+
+/**
+ * カテゴリーに応じた色を取得
+ */
+function getCategoryColor(slug?: string): string {
+  const colors: Record<string, string> = {
+    'care-guide': 'bg-green-100 text-green-800',
+    'selection-guide': 'bg-blue-100 text-blue-800',
+    'species-guide': 'bg-emerald-100 text-emerald-800',
+    'troubleshooting': 'bg-red-100 text-red-800',
+    'basics': 'bg-gray-100 text-gray-800',
+    'styling': 'bg-pink-100 text-pink-800'
+  }
+  return colors[slug || ''] || 'bg-gray-100 text-gray-800'
+}
+
+/**
+ * カテゴリーに応じたアイコンを取得
+ */
+function getCategoryIcon(slug?: string): string {
+  const icons: Record<string, string> = {
+    'care-guide': '🌱',
+    'selection-guide': '🎯',
+    'species-guide': '🌲',
+    'troubleshooting': '⚡',
+    'basics': '📚',
+    'styling': '🎨'
+  }
+  return icons[slug || ''] || '📄'
+}
+
+/**
+ * タグに応じた色を取得
+ */
+function getTagColor(slug: string): string {
+  const colors: Record<string, string> = {
+    'beginner': 'bg-blue-100 text-blue-800',
+    'intermediate': 'bg-yellow-100 text-yellow-800',
+    'advanced': 'bg-red-100 text-red-800',
+    'momiji': 'bg-red-100 text-red-800',
+    'pine': 'bg-green-100 text-green-800',
+    'sakura': 'bg-pink-100 text-pink-800',
+    'spring': 'bg-green-100 text-green-800',
+    'summer': 'bg-blue-100 text-blue-800',
+    'autumn': 'bg-orange-100 text-orange-800',
+    'winter': 'bg-gray-100 text-gray-800'
+  }
+  return colors[slug] || 'bg-gray-100 text-gray-600'
+}
+
+/**
+ * エラー時のフォールバック用モックデータ
+ */
+function getFallbackArticles(filters: ArticleFilters = {}): ArticleListResponse {
   const mockArticles: Article[] = [
     {
       id: '1',
@@ -35,127 +229,34 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       },
       tags: [
         { id: 'momiji', name: 'もみじ', slug: 'momiji', color: 'bg-red-100 text-red-800' },
-        { id: 'beginner', name: '初心者', slug: 'beginner', color: 'bg-blue-100 text-blue-800' },
-        { id: 'autumn', name: '秋', slug: 'autumn', color: 'bg-orange-100 text-orange-800' }
+        { id: 'beginner', name: '初心者', slug: 'beginner', color: 'bg-blue-100 text-blue-800' }
       ],
-      relatedProducts: ['1a87465b-3b3d-409f-a740-f090cbb42b9b'],
       readingTime: 8,
       publishedAt: '2025-07-06T10:00:00Z',
       updatedAt: '2025-07-06T10:00:00Z',
       status: 'published'
-    },
-    {
-      id: '2',
-      title: '盆栽初心者が最初に選ぶべき樹種5選｜失敗しない盆栽の始め方',
-      slug: 'beginner-bonsai-tree-selection',
-      content: '# 初心者におすすめの盆栽\n\n盆栽を始めたいけど、どの樹種を選べばいいかわからない...',
-      excerpt: '盆栽を始めたいけど、どの樹種を選べばいいかわからない方へ。初心者でも育てやすく、美しい樹形を楽しめるおすすめ樹種をご紹介します。',
-      featuredImage: {
-        url: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=450&fit=crop',
-        alt: '初心者向け盆栽'
-      },
-      category: {
-        id: 'selection-guide',
-        name: '選び方・購入ガイド',
-        slug: 'selection-guide',
-        color: 'bg-blue-100 text-blue-800',
-        icon: '🎯'
-      },
-      tags: [
-        { id: 'beginner', name: '初心者', slug: 'beginner', color: 'bg-blue-100 text-blue-800' },
-        { id: 'selection', name: '選び方', slug: 'selection', color: 'bg-purple-100 text-purple-800' }
-      ],
-      relatedProducts: ['1a87465b-3b3d-409f-a740-f090cbb42b9b'],
-      readingTime: 6,
-      publishedAt: '2025-07-05T10:00:00Z',
-      updatedAt: '2025-07-05T10:00:00Z',
-      status: 'published'
-    },
-    {
-      id: '3',
-      title: '松柏類の盆栽｜黒松・五葉松の育て方と魅力',
-      slug: 'pine-bonsai-care-guide',
-      content: '# 松柏類の盆栽について\n\n松柏類は盆栽の王様とも呼ばれ、その風格ある姿は多くの人を魅了します...',
-      excerpt: '松柏類は盆栽の王様とも呼ばれ、その風格ある姿は多くの人を魅了します。黒松・五葉松の特徴と育て方のポイントを詳しく解説します。',
-      featuredImage: {
-        url: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop',
-        alt: '松の盆栽'
-      },
-      category: {
-        id: 'species-guide',
-        name: '種類別ガイド',
-        slug: 'species-guide',
-        color: 'bg-emerald-100 text-emerald-800',
-        icon: '🌲'
-      },
-      tags: [
-        { id: 'pine', name: '松', slug: 'pine', color: 'bg-green-100 text-green-800' },
-        { id: 'advanced', name: '中級者', slug: 'advanced', color: 'bg-yellow-100 text-yellow-800' }
-      ],
-      relatedProducts: ['1a87465b-3b3d-409f-a740-f090cbb42b9b'],
-      readingTime: 10,
-      publishedAt: '2025-07-04T10:00:00Z',
-      updatedAt: '2025-07-04T10:00:00Z',
-      status: 'published'
     }
   ]
 
-  // フィルタリング処理（簡易版）
+  // 簡易フィルタリング
   let filteredArticles = mockArticles
-
+  
   if (filters.category) {
     filteredArticles = filteredArticles.filter(article => 
       article.category.slug === filters.category
     )
   }
 
-  if (filters.search) {
-    filteredArticles = filteredArticles.filter(article => 
-      article.title.toLowerCase().includes(filters.search!.toLowerCase()) ||
-      article.excerpt?.toLowerCase().includes(filters.search!.toLowerCase())
-    )
-  }
-
-  if (filters.tags && filters.tags.length > 0) {
-    filteredArticles = filteredArticles.filter(article => 
-      article.tags?.some(tag => filters.tags!.includes(tag.slug))
-    )
-  }
-
-  // ソート処理
-  const sortBy = filters.sortBy || 'publishedAt'
-  const sortOrder = filters.sortOrder || 'desc'
-  
-  filteredArticles.sort((a, b) => {
-    let aValue: string | number = a[sortBy as keyof Article] as string | number
-    let bValue: string | number = b[sortBy as keyof Article] as string | number
-    
-    if (sortBy === 'publishedAt' || sortBy === 'updatedAt') {
-      aValue = new Date(aValue as string).getTime()
-      bValue = new Date(bValue as string).getTime()
-    }
-    
-    if (sortOrder === 'desc') {
-      return bValue > aValue ? 1 : -1
-    } else {
-      return aValue > bValue ? 1 : -1
-    }
-  })
-
-  // ページネーション
   const limit = filters.limit || 12
   const page = filters.page || 1
-  const startIndex = (page - 1) * limit
-  const endIndex = startIndex + limit
-  const paginatedArticles = filteredArticles.slice(startIndex, endIndex)
 
   return {
-    articles: paginatedArticles,
+    articles: filteredArticles,
     totalCount: filteredArticles.length,
     currentPage: page,
-    totalPages: Math.ceil(filteredArticles.length / limit),
-    hasNext: endIndex < filteredArticles.length,
-    hasPrev: page > 1
+    totalPages: 1,
+    hasNext: false,
+    hasPrev: false
   }
 }
 
@@ -163,83 +264,159 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
  * スラッグで記事を取得
  */
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
-  const { articles } = await getArticles()
-  return articles.find(article => article.slug === slug) || null
+  try {
+    const response = await fetch(
+      `${MICROCMS_API_URL}/posts?slug=${encodeURIComponent(slug)}&_embed=true`,
+      {
+        next: { revalidate: 86400 }, // 24時間キャッシュ
+        headers: {
+          'Accept': 'application/json',
+        }
+      }
+    )
+
+    if (!response.ok) {
+      if (response.status === 404) {
+        return null
+      }
+      throw new Error(`WordPress API error: ${response.status} ${response.statusText}`)
+    }
+
+    const posts = await response.json()
+    if (posts.length === 0) {
+      return null
+    }
+
+    return transformWordPressPost(posts[0])
+  } catch (error) {
+    console.error(`Error fetching article by slug (${slug}):`, error)
+    // エラー時はフォールバックデータから検索
+    const fallbackData = getFallbackArticles()
+    return fallbackData.articles.find(article => article.slug === slug) || null
+  }
 }
 
 /**
  * カテゴリ一覧を取得
  */
 export async function getCategories(): Promise<ArticleCategory[]> {
-  return [
-    {
-      id: 'care-guide',
-      name: '育て方・管理',
-      slug: 'care-guide',
-      description: '盆栽の日常管理、水やり、剪定等の育て方ガイド',
-      color: 'bg-green-100 text-green-800',
-      icon: '🌱'
-    },
-    {
-      id: 'selection-guide',
-      name: '選び方・購入ガイド',
-      slug: 'selection-guide',
-      description: '初心者向けの樹種選びや購入のポイント',
-      color: 'bg-blue-100 text-blue-800',
-      icon: '🎯'
-    },
-    {
-      id: 'species-guide',
-      name: '種類別ガイド',
-      slug: 'species-guide',
-      description: '松柏類、雑木類、花もの等の種類別詳細ガイド',
-      color: 'bg-emerald-100 text-emerald-800',
-      icon: '🌲'
-    },
-    {
-      id: 'troubleshooting',
-      name: 'トラブル・対処法',
-      slug: 'troubleshooting',
-      description: '病気、害虫、育成トラブルの対処法',
-      color: 'bg-red-100 text-red-800',
-      icon: '⚡'
-    },
-    {
-      id: 'basics',
-      name: '基礎知識',
-      slug: 'basics',
-      description: '盆栽の基本知識、歴史、用語解説',
-      color: 'bg-gray-100 text-gray-800',
-      icon: '📚'
-    },
-    {
-      id: 'styling',
-      name: 'スタイリング・飾り方',
-      slug: 'styling',
-      description: '盆栽の飾り方、空間演出、季節の楽しみ方',
-      color: 'bg-pink-100 text-pink-800',
-      icon: '🎨'
+  try {
+    const response = await fetch(`${MICROCMS_API_URL}/categories?per_page=100&orderby=name&order=asc`, {
+      next: { revalidate: 604800 }, // 1週間キャッシュ
+      headers: {
+        'Accept': 'application/json',
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error(`Categories fetch error: ${response.status} ${response.statusText}`)
     }
-  ]
+
+    const categories = await response.json()
+    return categories.map((cat: any) => ({
+      id: cat.id.toString(),
+      name: cat.name,
+      slug: cat.slug,
+      description: cat.description,
+      color: getCategoryColor(cat.slug),
+      icon: getCategoryIcon(cat.slug)
+    }))
+  } catch (error) {
+    console.error('Error fetching categories:', error)
+    // エラー時はフォールバックデータを返す
+    return [
+      {
+        id: 'care-guide',
+        name: '育て方・管理',
+        slug: 'care-guide',
+        description: '盆栽の日常管理、水やり、剪定等の育て方ガイド',
+        color: 'bg-green-100 text-green-800',
+        icon: '🌱'
+      },
+      {
+        id: 'selection-guide',
+        name: '選び方・購入ガイド',
+        slug: 'selection-guide',
+        description: '初心者向けの樹種選びや購入のポイント',
+        color: 'bg-blue-100 text-blue-800',
+        icon: '🎯'
+      },
+      {
+        id: 'species-guide',
+        name: '種類別ガイド',
+        slug: 'species-guide',
+        description: '松柏類、雑木類、花もの等の種類別詳細ガイド',
+        color: 'bg-emerald-100 text-emerald-800',
+        icon: '🌲'
+      },
+      {
+        id: 'troubleshooting',
+        name: 'トラブル・対処法',
+        slug: 'troubleshooting',
+        description: '病気、害虫、育成トラブルの対処法',
+        color: 'bg-red-100 text-red-800',
+        icon: '⚡'
+      },
+      {
+        id: 'basics',
+        name: '基礎知識',
+        slug: 'basics',
+        description: '盆栽の基本知識、歴史、用語解説',
+        color: 'bg-gray-100 text-gray-800',
+        icon: '📚'
+      },
+      {
+        id: 'styling',
+        name: 'スタイリング・飾り方',
+        slug: 'styling',
+        description: '盆栽の飾り方、空間演出、季節の楽しみ方',
+        color: 'bg-pink-100 text-pink-800',
+        icon: '🎨'
+      }
+    ]
+  }
 }
 
 /**
  * タグ一覧を取得
  */
 export async function getTags(): Promise<ArticleTag[]> {
-  return [
-    { id: 'beginner', name: '初心者', slug: 'beginner', color: 'bg-blue-100 text-blue-800' },
-    { id: 'intermediate', name: '中級者', slug: 'intermediate', color: 'bg-yellow-100 text-yellow-800' },
-    { id: 'advanced', name: '上級者', slug: 'advanced', color: 'bg-red-100 text-red-800' },
-    { id: 'momiji', name: 'もみじ', slug: 'momiji', color: 'bg-red-100 text-red-800' },
-    { id: 'pine', name: '松', slug: 'pine', color: 'bg-green-100 text-green-800' },
-    { id: 'sakura', name: '桜', slug: 'sakura', color: 'bg-pink-100 text-pink-800' },
-    { id: 'spring', name: '春', slug: 'spring', color: 'bg-green-100 text-green-800' },
-    { id: 'summer', name: '夏', slug: 'summer', color: 'bg-blue-100 text-blue-800' },
-    { id: 'autumn', name: '秋', slug: 'autumn', color: 'bg-orange-100 text-orange-800' },
-    { id: 'winter', name: '冬', slug: 'winter', color: 'bg-gray-100 text-gray-800' },
-    { id: 'indoor', name: '室内', slug: 'indoor', color: 'bg-purple-100 text-purple-800' },
-    { id: 'outdoor', name: '屋外', slug: 'outdoor', color: 'bg-green-100 text-green-800' },
-    { id: 'mini', name: 'ミニ盆栽', slug: 'mini', color: 'bg-indigo-100 text-indigo-800' }
-  ]
+  try {
+    const response = await fetch(`${MICROCMS_API_URL}/tags?per_page=100&orderby=count&order=desc`, {
+      next: { revalidate: 604800 }, // 1週間キャッシュ
+      headers: {
+        'Accept': 'application/json',
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error(`Tags fetch error: ${response.status} ${response.statusText}`)
+    }
+
+    const tags = await response.json()
+    return tags.map((tag: any) => ({
+      id: tag.id.toString(),
+      name: tag.name,
+      slug: tag.slug,
+      color: getTagColor(tag.slug)
+    }))
+  } catch (error) {
+    console.error('Error fetching tags:', error)
+    // エラー時はフォールバックデータを返す
+    return [
+      { id: 'beginner', name: '初心者', slug: 'beginner', color: 'bg-blue-100 text-blue-800' },
+      { id: 'intermediate', name: '中級者', slug: 'intermediate', color: 'bg-yellow-100 text-yellow-800' },
+      { id: 'advanced', name: '上級者', slug: 'advanced', color: 'bg-red-100 text-red-800' },
+      { id: 'momiji', name: 'もみじ', slug: 'momiji', color: 'bg-red-100 text-red-800' },
+      { id: 'pine', name: '松', slug: 'pine', color: 'bg-green-100 text-green-800' },
+      { id: 'sakura', name: '桜', slug: 'sakura', color: 'bg-pink-100 text-pink-800' },
+      { id: 'spring', name: '春', slug: 'spring', color: 'bg-green-100 text-green-800' },
+      { id: 'summer', name: '夏', slug: 'summer', color: 'bg-blue-100 text-blue-800' },
+      { id: 'autumn', name: '秋', slug: 'autumn', color: 'bg-orange-100 text-orange-800' },
+      { id: 'winter', name: '冬', slug: 'winter', color: 'bg-gray-100 text-gray-800' },
+      { id: 'indoor', name: '室内', slug: 'indoor', color: 'bg-purple-100 text-purple-800' },
+      { id: 'outdoor', name: '屋外', slug: 'outdoor', color: 'bg-green-100 text-green-800' },
+      { id: 'mini', name: 'ミニ盆栽', slug: 'mini', color: 'bg-indigo-100 text-indigo-800' }
+    ]
+  }
 }
