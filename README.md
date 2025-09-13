@@ -254,10 +254,13 @@ WordPress(管理) → REST API → Next.js(表示)
 - ✅ product-ui-helpers.ts: UI表示用ヘルパー関数群
 - ✅ レスポンシブデザイン強化
 - ✅ TypeScript型定義更新
+- ✅ WordPress API連携実装完了
+- ✅ guides記事ページWordPress統合
 
 ### 次のステップ
-1. 独自ドメイン取得・設定
-2. WordPress API連携実装
-3. 記事機能統合開発
+1. ✅ 独自ドメイン取得・設定
+2. ✅ WordPress API連携実装
+3. 🔄 記事機能統合開発（進行中）
+4. 📝 WordPress記事表示確認・最適化
 
 ---
