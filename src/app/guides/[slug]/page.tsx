@@ -11,6 +11,7 @@ import { RelatedProducts } from '@/components/features/RelatedProducts'
 import { RelatedArticles } from '@/components/features/RelatedArticles'
 import { ShareButtons } from '@/components/features/ShareButtons'
 import { TableOfContents } from '@/components/features/TableOfContents'
+import { ArticleProductCTA } from '@/components/features/ArticleProductCTA'
 import { ArrowLeft, Calendar, Clock, Tag, User } from 'lucide-react'
 import { formatDate } from '@/lib/date-utils'
 import type { Product } from '@/types'
@@ -22,17 +23,31 @@ interface ArticlePageProps {
 }
 
 // 関連商品を取得
-async function getRelatedProducts(productIds?: string[]): Promise<Product[]> {
-  if (!productIds || productIds.length === 0) return []
+async function getRelatedProducts(productIds?: string[], article?: any): Promise<Product[]> {
+  // 手動設定の商品IDがある場合は優先
+  if (productIds && productIds.length > 0) {
+    const { data, error } = await supabaseServer
+      .from('products')
+      .select('*')
+      .in('id', productIds)
+      .limit(4)
 
-  const { data, error } = await supabaseServer
-    .from('products')
-    .select('*')
-    .in('id', productIds)
-    .limit(4)
+    if (!error && data && data.length > 0) {
+      return data
+    }
+  }
 
-  if (error || !data) return []
-  return data
+  // 智能推薦システムを使用
+  if (article) {
+    try {
+      const { getRecommendedProducts } = await import('@/lib/product-recommendation')
+      return await getRecommendedProducts(article.title, article.content, 4)
+    } catch (error) {
+      console.error('商品推薦エラー:', error)
+    }
+  }
+
+  return []
 }
 
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
@@ -81,7 +96,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   // 並行してデータを取得
   const [relatedProducts, relatedArticlesData] = await Promise.all([
-    getRelatedProducts(article.relatedProducts),
+    getRelatedProducts(article.relatedProducts, article),
     getArticles({ 
       category: article.category.slug, 
       limit: 3 
@@ -225,10 +240,20 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               />
             </div>
 
-            {/* 関連商品セクション */}
+            {/* 商品への導線CTA */}
             {relatedProducts.length > 0 && (
               <div className="mb-12">
-                <RelatedProducts products={relatedProducts} />
+                <ArticleProductCTA 
+                  articleTitle={article.title}
+                  hasRelatedProducts={relatedProducts.length > 0}
+                />
+              </div>
+            )}
+
+            {/* 関連商品セクション */}
+            {relatedProducts.length > 0 && (
+              <div id="related-products" className="mb-12">
+                <RelatedProducts products={relatedProducts} articleTitle={article.title} />
               </div>
             )}
 

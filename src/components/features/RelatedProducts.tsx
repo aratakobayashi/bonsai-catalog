@@ -11,9 +11,10 @@ import type { Product } from '@/types'
 
 interface RelatedProductsProps {
   products: Product[]
+  articleTitle?: string // 記事タイトルを元にしたCTA生成用
 }
 
-export function RelatedProducts({ products }: RelatedProductsProps) {
+export function RelatedProducts({ products, articleTitle }: RelatedProductsProps) {
   if (products.length === 0) return null
 
   return (
