@@ -15,7 +15,6 @@ const MICROCMS_API_KEY = process.env.MICROCMS_API_KEY || ''
  */
 export async function getArticles(filters: ArticleFilters = {}): Promise<ArticleListResponse> {
   console.log('🔍 getArticles called with filters:', filters)
-  console.log('🌐 MICROCMS_API_URL:', MICROCMS_API_URL)
   
   try {
     const queryParams = new URLSearchParams({
@@ -26,8 +25,24 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       _embed: 'true' // 🔧 重要：画像・カテゴリー・タグデータを取得
     })
 
+    // カテゴリーフィルターの処理: スラッグからIDに変換
     if (filters.category) {
-      queryParams.append('categories', filters.category)
+      // WordPress APIはカテゴリーIDを要求するため、スラッグからIDに変換
+      const categoryMapping: Record<string, string> = {
+        'care-bonsai': '3',
+        'start-guide': '1', 
+        'kinds': '2',
+        'info': '5',
+        'select': '4'
+      }
+      
+      const categoryId = categoryMapping[filters.category]
+      if (categoryId) {
+        queryParams.append('categories', categoryId)
+        console.log(`🏷️ Category filter: ${filters.category} → ID: ${categoryId}`)
+      } else {
+        console.warn(`⚠️ Unknown category slug: ${filters.category}`)
+      }
     }
 
     if (filters.search) {
@@ -382,7 +397,12 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
  */
 export async function getCategories(): Promise<ArticleCategory[]> {
   try {
-    const response = await fetch(`${MICROCMS_API_URL}/categories?per_page=100&orderby=name&order=asc`, {
+    // WordPress REST APIから実際のカテゴリーを取得
+    const baseUrl = 'https://bonsai-guidebook.net'
+    const restRoute = '/wp/v2/categories'
+    const url = `${baseUrl}/?rest_route=${restRoute}&per_page=100&orderby=name&order=asc`
+    
+    const response = await fetch(url, {
       next: { revalidate: 604800 }, // 1週間キャッシュ
       headers: {
         'Accept': 'application/json',
@@ -398,61 +418,53 @@ export async function getCategories(): Promise<ArticleCategory[]> {
       id: cat.id.toString(),
       name: cat.name,
       slug: cat.slug,
-      description: cat.description,
+      description: cat.description || '',
       color: getCategoryColor(cat.slug),
       icon: getCategoryIcon(cat.slug)
     }))
   } catch (error) {
     console.error('Error fetching categories:', error)
-    // エラー時はフォールバックデータを返す
+    // エラー時は実際のWordPressカテゴリーに基づくフォールバックデータを返す
     return [
       {
-        id: 'care-guide',
-        name: '育て方・管理',
-        slug: 'care-guide',
+        id: '3',
+        name: 'お手入れ・管理',
+        slug: 'care-bonsai',
         description: '盆栽の日常管理、水やり、剪定等の育て方ガイド',
         color: 'bg-green-100 text-green-800',
         icon: '🌱'
       },
       {
-        id: 'selection-guide',
-        name: '選び方・購入ガイド',
-        slug: 'selection-guide',
+        id: '1',
+        name: 'はじめての盆栽',
+        slug: 'start-guide',
         description: '初心者向けの樹種選びや購入のポイント',
         color: 'bg-blue-100 text-blue-800',
         icon: '🎯'
       },
       {
-        id: 'species-guide',
+        id: '2',
         name: '種類別ガイド',
-        slug: 'species-guide',
+        slug: 'kinds',
         description: '松柏類、雑木類、花もの等の種類別詳細ガイド',
         color: 'bg-emerald-100 text-emerald-800',
         icon: '🌲'
       },
       {
-        id: 'troubleshooting',
-        name: 'トラブル・対処法',
-        slug: 'troubleshooting',
-        description: '病気、害虫、育成トラブルの対処法',
-        color: 'bg-red-100 text-red-800',
-        icon: '⚡'
+        id: '5',
+        name: 'イベント・展示',
+        slug: 'info',
+        description: '盆栽展示会やイベント情報',
+        color: 'bg-purple-100 text-purple-800',
+        icon: '🎪'
       },
       {
-        id: 'basics',
-        name: '基礎知識',
-        slug: 'basics',
-        description: '盆栽の基本知識、歴史、用語解説',
-        color: 'bg-gray-100 text-gray-800',
-        icon: '📚'
-      },
-      {
-        id: 'styling',
-        name: 'スタイリング・飾り方',
-        slug: 'styling',
-        description: '盆栽の飾り方、空間演出、季節の楽しみ方',
-        color: 'bg-pink-100 text-pink-800',
-        icon: '🎨'
+        id: '4',
+        name: '道具・鉢の選び方',
+        slug: 'select',
+        description: '盆栽道具や鉢の選び方ガイド',
+        color: 'bg-yellow-100 text-yellow-800',
+        icon: '🛠️'
       }
     ]
   }
