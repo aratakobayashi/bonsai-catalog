@@ -162,10 +162,10 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
     return {
       articles: [{
         id: 'error-catch',
-        title: `WordPress API Connection Error: ${error.message}`,
+        title: `WordPress API Connection Error: ${error instanceof Error ? error.message : 'Unknown error'}`,
         slug: 'error-catch',
-        content: `Error stack: ${error.stack}`,
-        excerpt: `Connection failed: ${error.message}`,
+        content: `Error details: ${error instanceof Error ? error.stack || error.message : String(error)}`,
+        excerpt: `Connection failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
         category: {
           id: 'error',
           name: 'Connection Error',
