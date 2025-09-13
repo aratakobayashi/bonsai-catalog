@@ -30,10 +30,6 @@ export const metadata: Metadata = {
     google: 'zkHWVAFAw_7BRYulA99Qz4JquEu0fWINAsurXfLTdng',
   },
 }
-export default async function generateSitemaps() {
-  // 動的サイトマップは別ファイルで実装
-  return []
-}
 
 export const viewport: Viewport = {
   width: 'device-width',
