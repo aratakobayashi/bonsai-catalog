@@ -17,6 +17,12 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
   console.log('🔍 getArticles called with filters:', filters)
   console.log('🌐 MICROCMS_API_URL:', MICROCMS_API_URL)
   
+  // 一時的にWordPress APIを無効化してモックデータを返すかテスト
+  if (false) {
+    console.log('🔄 Using fallback data for testing')
+    return getFallbackArticles(filters)
+  }
+  
   try {
     const queryParams = new URLSearchParams({
       _embed: 'true',
@@ -26,51 +32,44 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       order: filters.sortOrder || 'desc',
     })
 
-    // カテゴリー指定（スラッグからIDに変換）
-    if (filters.category) {
-      const categories = await getCategories()
-      const category = categories.find(cat => cat.slug === filters.category)
-      if (category) {
-        queryParams.set('categories', category.id)
-      }
-    }
-
-    // タグ指定（スラッグからIDに変換）
-    if (filters.tags && filters.tags.length > 0) {
-      const tags = await getTags()
-      const tagIds = filters.tags
-        .map(tagSlug => tags.find(tag => tag.slug === tagSlug)?.id)
-        .filter(Boolean)
-      if (tagIds.length > 0) {
-        queryParams.set('tags', tagIds.join(','))
-      }
-    }
-
-    // 検索キーワード
-    if (filters.search) {
-      queryParams.set('search', filters.search)
-    }
-
     const url = `${MICROCMS_API_URL}/posts?${queryParams}`
     console.log('📡 Fetching from URL:', url)
 
+    // タイムアウト設定を追加
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 10000) // 10秒タイムアウト
+
     const response = await fetch(url, {
-      next: { revalidate: 3600 }, // 1時間キャッシュ
+      signal: controller.signal,
+      next: { revalidate: 3600 },
       headers: {
         'Accept': 'application/json',
+        'User-Agent': 'Bonsai-Collection/1.0'
       }
     })
 
+    clearTimeout(timeoutId)
+    
     console.log('📥 Response status:', response.status)
-    console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()))
+    console.log('📥 Response ok:', response.ok)
 
     if (!response.ok) {
+      const errorText = await response.text()
+      console.error('❌ Response error text:', errorText)
       throw new Error(`WordPress API error: ${response.status} ${response.statusText}`)
     }
 
     const posts = await response.json()
     console.log('📝 Posts received:', posts.length)
-    console.log('📝 First post title:', posts[0]?.title?.rendered)
+    
+    if (posts.length > 0) {
+      console.log('📝 First post:', {
+        id: posts[0].id,
+        title: posts[0].title?.rendered,
+        slug: posts[0].slug,
+        date: posts[0].date
+      })
+    }
     
     const totalPages = parseInt(response.headers.get('X-WP-TotalPages') || '1', 10)
     const totalCount = parseInt(response.headers.get('X-WP-Total') || '0', 10)
@@ -89,8 +88,14 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
     return result
   } catch (error) {
     console.error('❌ Error fetching articles:', error)
-    console.error('❌ Error details:', error.message)
-    // エラー時はモックデータにフォールバック
+    
+    if (error.name === 'AbortError') {
+      console.error('❌ Request timed out')
+    } else {
+      console.error('❌ Error details:', error.message)
+      console.error('❌ Error stack:', error.stack)
+    }
+    
     console.log('🔄 Falling back to mock data')
     return getFallbackArticles(filters)
   }
