@@ -41,7 +41,7 @@ export async function GET() {
     console.error('WordPress API debug error:', error)
     return NextResponse.json({
       error: 'Failed to fetch from WordPress API',
-      message: error.message,
+      message: error instanceof Error ? error.message : 'Unknown error',
       url: WORDPRESS_API_URL
     }, { status: 500 })
   }
