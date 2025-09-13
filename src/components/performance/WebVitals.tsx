@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { onCLS, onFCP, onFID, onLCP, onTTFB } from 'web-vitals'
+import { onCLS, onFCP, onINP, onLCP, onTTFB } from 'web-vitals'
 
 export function WebVitals() {
   useEffect(() => {
@@ -39,7 +39,7 @@ export function WebVitals() {
     // Core Web Vitals を測定
     onCLS(reportWebVital)
     onFCP(reportWebVital)  
-    onFID(reportWebVital)
+    onINP(reportWebVital) // FIDの後継指標
     onLCP(reportWebVital)
     onTTFB(reportWebVital)
 

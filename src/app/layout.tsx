@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   description: '美しい盆栽をお探しの方のための商品カタログサイトです。初心者から上級者まで、あなたにぴったりの盆栽を見つけてください。',
   keywords: ['盆栽', 'bonsai', '園芸', 'ガーデニング', '植物', '和風', 'Amazon'],
   authors: [{ name: '盆栽コレクション' }],
+  category: 'gardening',
+  referrer: 'origin-when-cross-origin',
   openGraph: {
     title: '盆栽コレクション - 美しい盆栽を見つける',
     description: '美しい盆栽をお探しの方のための商品カタログサイトです。',
