@@ -184,6 +184,13 @@ function calculateReadingTime(content: string): number {
  */
 function getCategoryColor(slug?: string): string {
   const colors: Record<string, string> = {
+    // WordPress実際のカテゴリースラッグにマッピング
+    'care-bonsai': 'bg-green-100 text-green-800',      // お手入れ・管理
+    'start-guide': 'bg-blue-100 text-blue-800',        // はじめての盆栽
+    'kinds': 'bg-emerald-100 text-emerald-800',        // 種類別ガイド
+    'select': 'bg-purple-100 text-purple-800',         // 道具・鉢の選び方
+    'info': 'bg-orange-100 text-orange-800',           // イベント・展示
+    // 従来の定義も残す（フォールバック用）
     'care-guide': 'bg-green-100 text-green-800',
     'selection-guide': 'bg-blue-100 text-blue-800',
     'species-guide': 'bg-emerald-100 text-emerald-800',
@@ -199,6 +206,13 @@ function getCategoryColor(slug?: string): string {
  */
 function getCategoryIcon(slug?: string): string {
   const icons: Record<string, string> = {
+    // WordPress実際のカテゴリースラッグにマッピング
+    'care-bonsai': '🌱',      // お手入れ・管理
+    'start-guide': '🌸',      // はじめての盆栽
+    'kinds': '🌲',            // 種類別ガイド
+    'select': '🛠️',           // 道具・鉢の選び方
+    'info': '📅',             // イベント・展示
+    // 従来の定義も残す（フォールバック用）
     'care-guide': '🌱',
     'selection-guide': '🎯',
     'species-guide': '🌲',
