@@ -23,6 +23,7 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       page: String(filters.page || 1),
       orderby: filters.sortBy === 'title' ? 'title' : 'date',
       order: filters.sortOrder || 'desc',
+      _embed: 'true' // 🔧 重要：画像・カテゴリー・タグデータを取得
     })
 
     if (filters.category) {
@@ -71,7 +72,9 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
         id: posts[0].id,
         title: posts[0].title?.rendered,
         slug: posts[0].slug,
-        date: posts[0].date
+        date: posts[0].date,
+        hasEmbedded: !!posts[0]._embedded, // 🔍 埋め込みデータ確認
+        featuredImage: posts[0]._embedded?.['wp:featuredmedia']?.[0]?.source_url
       })
     }
     
@@ -323,7 +326,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     // 代替URL形式を使用（?rest_route= 形式）
     const baseUrl = 'https://bonsai-guidebook.net'
     const restRoute = '/wp/v2/posts'
-    const url = `${baseUrl}/?rest_route=${restRoute}&slug=${encodeURIComponent(slug)}`
+    const url = `${baseUrl}/?rest_route=${restRoute}&slug=${encodeURIComponent(slug)}&_embed=true`
     
     const response = await fetch(url, {
       headers: {
