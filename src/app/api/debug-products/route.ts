@@ -37,9 +37,15 @@ export async function GET() {
     }
 
     // テーブル存在確認
-    const { data: tables, error: tablesError } = await supabase
-      .rpc('get_tables')
-      .catch(() => null)
+    let tables = null
+    let tablesError = null
+    try {
+      const tablesResult = await supabase.rpc('get_tables')
+      tables = tablesResult.data
+      tablesError = tablesResult.error
+    } catch (error) {
+      tablesError = error
+    }
 
     return NextResponse.json({
       success: true,
@@ -53,7 +59,7 @@ export async function GET() {
       debugInfo: {
         nodeEnv: process.env.NODE_ENV,
         hasProducts: products && products.length > 0,
-        tablesCheckResult: tables || tablesError?.message || 'Not available'
+        tablesCheckResult: tables || (tablesError instanceof Error ? tablesError.message : String(tablesError)) || 'Not available'
       }
     })
 
