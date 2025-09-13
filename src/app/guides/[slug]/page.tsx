@@ -222,10 +222,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 <Image
                   src={article.featuredImage.url}
                   alt={article.featuredImage.alt || article.title}
-                  fill
+                  width={1200}
+                  height={675}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                   priority
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyejrznnvitF+wjat9Pldf0oxQCLHzqciHRWcJjDglnxkfkC+EAdV+1VFI7bKTN5bIy9LlLDAYjmQj6AHPw3pEUOiDpP//Z"
                 />
               </div>
             )}

@@ -5,6 +5,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { BottomNavigation } from '@/components/layout/BottomNavigation'
 import { WebSiteStructuredData } from '@/components/seo/StructuredData'
+import { WebVitals } from '@/components/performance/WebVitals'
 import { Toaster } from 'react-hot-toast'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -45,6 +46,7 @@ export default function RootLayout({
     <html lang="ja">
       <body className={inter.className}>
         <WebSiteStructuredData baseUrl="https://www.bonsai-collection.com" />
+        <WebVitals />
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-1 pb-16 md:pb-0">
