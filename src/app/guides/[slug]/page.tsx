@@ -50,24 +50,8 @@ async function getRelatedProducts(productIds?: string[], article?: any): Promise
   return []
 }
 
-// 人気記事の事前生成（一部のみ静的生成）
-export async function generateStaticParams() {
-  try {
-    // 人気記事のみ事前生成し、その他は動的レンダリングを許可
-    const { articles } = await getArticles({ limit: 5 }) // 数を減らしてテスト
-    
-    return articles.map((article) => ({
-      slug: article.slug,
-    }))
-  } catch (error) {
-    console.error('静的パラメータ生成エラー:', error)
-    // エラー時は空配列を返して全て動的レンダリングに
-    return []
-  }
-}
-
-// 動的ルートの設定
-export const dynamicParams = true // 事前生成されていないパスも動的レンダリングを許可
+// 動的レンダリング設定（静的生成は一旦無効化）
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
   const article = await getArticleBySlug(params.slug)
