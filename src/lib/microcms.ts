@@ -14,6 +14,9 @@ const MICROCMS_API_KEY = process.env.MICROCMS_API_KEY || ''
  * 記事一覧を取得
  */
 export async function getArticles(filters: ArticleFilters = {}): Promise<ArticleListResponse> {
+  console.log('🔍 getArticles called with filters:', filters)
+  console.log('🌐 MICROCMS_API_URL:', MICROCMS_API_URL)
+  
   try {
     const queryParams = new URLSearchParams({
       _embed: 'true',
@@ -48,23 +51,32 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       queryParams.set('search', filters.search)
     }
 
-    const response = await fetch(`${MICROCMS_API_URL}/posts?${queryParams}`, {
+    const url = `${MICROCMS_API_URL}/posts?${queryParams}`
+    console.log('📡 Fetching from URL:', url)
+
+    const response = await fetch(url, {
       next: { revalidate: 3600 }, // 1時間キャッシュ
       headers: {
         'Accept': 'application/json',
       }
     })
 
+    console.log('📥 Response status:', response.status)
+    console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()))
+
     if (!response.ok) {
       throw new Error(`WordPress API error: ${response.status} ${response.statusText}`)
     }
 
     const posts = await response.json()
+    console.log('📝 Posts received:', posts.length)
+    console.log('📝 First post title:', posts[0]?.title?.rendered)
+    
     const totalPages = parseInt(response.headers.get('X-WP-TotalPages') || '1', 10)
     const totalCount = parseInt(response.headers.get('X-WP-Total') || '0', 10)
     const currentPage = filters.page || 1
 
-    return {
+    const result = {
       articles: posts.map((post: any) => transformWordPressPost(post)),
       totalCount,
       currentPage,
@@ -72,9 +84,14 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       hasNext: currentPage < totalPages,
       hasPrev: currentPage > 1
     }
+    
+    console.log('✅ Successfully returning', result.articles.length, 'articles')
+    return result
   } catch (error) {
-    console.error('Error fetching articles:', error)
+    console.error('❌ Error fetching articles:', error)
+    console.error('❌ Error details:', error.message)
     // エラー時はモックデータにフォールバック
+    console.log('🔄 Falling back to mock data')
     return getFallbackArticles(filters)
   }
 }
