@@ -318,15 +318,50 @@ function getTagColor(slug: string): string {
  * エラー時のフォールバック用モックデータ
  */
 function getFallbackArticles(filters: ArticleFilters = {}): ArticleListResponse {
+  // 実際のWordPress記事データに基づくモックデータ
   const mockArticles: Article[] = [
     {
-      id: '1',
-      title: '【初心者完全版】もみじの盆栽｜美しい紅葉を育てる剪定と管理のコツ',
-      slug: 'momiji-bonsai-complete-guide',
-      content: '# もみじの盆栽について\n\nもみじの盆栽は四季を通じて美しい姿を楽しめる代表的な樹種です...',
-      excerpt: 'もみじの盆栽は四季を通じて美しい姿を楽しめる代表的な樹種です。特に秋の紅葉は圧巻で、多くの愛好家に親しまれています。',
+      id: '206',
+      title: '【初心者向け】ギフトにも最適なミニ盆栽・豆盆栽とは？育て方と人気の種類を解説',
+      slug: 'mini-bonsai-mame-bonsai-guide',
+      content: `<div style="background: #f1f8e9; padding: 1.6em 1.8em; border-left: 6px solid #8bc34a; margin-top: 1.5em; border-radius: 10px;">
+<p><strong>この記事でわかること</strong></p>
+<ul style="margin-left: 1.2em; line-height: 1.9;">
+<li>ミニ盆栽と豆盆栽の違いと魅力</li>
+<li>初心者向けのおすすめ樹種</li>
+<li>育て方の基本と失敗しないコツ</li>
+</ul>
+</div>
+<p style="line-height: 1.9; font-size: 16px; margin-top: 1.5em;">「ミニ盆栽」や「豆盆栽」は、その名の通り"手のひらサイズ"の小さな盆栽です。限られたスペースの中に自然の風景を凝縮したような美しさがあり、初心者にも取り入れやすいことで人気を集めています。</p>`,
+      excerpt: 'ミニ盆栽・豆盆栽の魅力と育て方について初心者向けに解説。ギフトにも最適な理由や人気の種類をご紹介します。',
       featuredImage: {
         url: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&h=450&fit=crop',
+        alt: 'ミニ盆栽・豆盆栽'
+      },
+      category: {
+        id: 'care-guide',
+        name: '育て方・管理',
+        slug: 'care-guide',
+        color: 'bg-green-100 text-green-800',
+        icon: '🌱'
+      },
+      tags: [
+        { id: 'mini-bonsai', name: 'ミニ盆栽', slug: 'mini-bonsai', color: 'bg-green-100 text-green-800' },
+        { id: 'beginner', name: '初心者', slug: 'beginner', color: 'bg-blue-100 text-blue-800' }
+      ],
+      readingTime: 10,
+      publishedAt: '2025-07-08T23:01:33Z',
+      updatedAt: '2025-07-08T23:14:36Z',
+      status: 'published'
+    },
+    {
+      id: '2',
+      title: '【もみじ盆栽】美しい紅葉を楽しむための管理方法',
+      slug: 'momiji-bonsai-autumn-care',
+      content: '# もみじ盆栽について\n\nもみじ盆栽は四季を通じて美しい姿を楽しめる代表的な樹種です...',
+      excerpt: 'もみじ盆栽は四季を通じて美しい姿を楽しめる代表的な樹種です。特に秋の紅葉は圧巻で、多くの愛好家に親しまれています。',
+      featuredImage: {
+        url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=450&fit=crop',
         alt: 'もみじの盆栽'
       },
       category: {
@@ -338,7 +373,7 @@ function getFallbackArticles(filters: ArticleFilters = {}): ArticleListResponse 
       },
       tags: [
         { id: 'momiji', name: 'もみじ', slug: 'momiji', color: 'bg-red-100 text-red-800' },
-        { id: 'beginner', name: '初心者', slug: 'beginner', color: 'bg-blue-100 text-blue-800' }
+        { id: 'autumn', name: '秋', slug: 'autumn', color: 'bg-orange-100 text-orange-800' }
       ],
       readingTime: 8,
       publishedAt: '2025-07-06T10:00:00Z',
