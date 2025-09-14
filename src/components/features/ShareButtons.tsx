@@ -46,7 +46,7 @@ export function ShareButtons({ url, title, size = 'small' }: ShareButtonsProps) 
   const iconSize = size === 'large' ? 'h-5 w-5' : 'h-4 w-4'
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-2 md:gap-3 flex-wrap">
       {/* Twitter */}
       <Button
         variant="outline"
@@ -55,7 +55,7 @@ export function ShareButtons({ url, title, size = 'small' }: ShareButtonsProps) 
         className="flex items-center gap-2 hover:bg-blue-50 hover:border-blue-300"
       >
         <Twitter className={`${iconSize} text-blue-500`} />
-        {size === 'large' && <span>Twitter</span>}
+        {size === 'large' && <span className="hidden md:inline">Twitter</span>}
       </Button>
 
       {/* Facebook */}
@@ -66,7 +66,7 @@ export function ShareButtons({ url, title, size = 'small' }: ShareButtonsProps) 
         className="flex items-center gap-2 hover:bg-blue-50 hover:border-blue-600"
       >
         <Facebook className={`${iconSize} text-blue-600`} />
-        {size === 'large' && <span>Facebook</span>}
+        {size === 'large' && <span className="hidden md:inline">Facebook</span>}
       </Button>
 
       {/* LINE */}
@@ -79,7 +79,7 @@ export function ShareButtons({ url, title, size = 'small' }: ShareButtonsProps) 
         <div className={`${iconSize} bg-green-500 rounded-sm flex items-center justify-center`}>
           <span className="text-white text-xs font-bold">L</span>
         </div>
-        {size === 'large' && <span>LINE</span>}
+        {size === 'large' && <span className="hidden md:inline">LINE</span>}
       </Button>
 
       {/* URL コピー */}
@@ -90,7 +90,7 @@ export function ShareButtons({ url, title, size = 'small' }: ShareButtonsProps) 
         className="flex items-center gap-2 hover:bg-gray-50 hover:border-gray-400"
       >
         <LinkIcon className={`${iconSize} text-gray-600`} />
-        {size === 'large' && <span>URLをコピー</span>}
+        {size === 'large' && <span className="hidden md:inline">URLをコピー</span>}
       </Button>
     </div>
   )

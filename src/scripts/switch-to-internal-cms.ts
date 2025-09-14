@@ -1,8 +1,29 @@
-// 内製CMS対応版 - ファイルベースの記事管理
+// フロントエンドを内製CMSに切り替えるスクリプト
+
+import { promises as fs } from 'fs'
+import path from 'path'
+
+const MICROCMS_FILE = path.join(process.cwd(), 'src/lib/microcms.ts')
+const BACKUP_FILE = path.join(process.cwd(), 'src/lib/microcms-wordpress-backup.ts')
+
+async function switchToInternalCMS() {
+  console.log('🔄 フロントエンドを内製CMSに切り替えます...')
+  
+  try {
+    // 1. 現在のmicrocms.tsをバックアップ
+    console.log('📦 WordPressバージョンをバックアップ中...')
+    const currentContent = await fs.readFile(MICROCMS_FILE, 'utf8')
+    await fs.writeFile(BACKUP_FILE, currentContent, 'utf8')
+    console.log('✅ バックアップ完了')
+
+    // 2. 内製CMS用のmicrocms.tsを作成
+    console.log('🔧 内製CMS対応版を作成中...')
+    
+    const internalCMSContent = `// 内製CMS対応版 - ファイルベースの記事管理
 import { promises as fs } from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { Article, ArticleCategory, ArticleTag } from '@/types'
+import { Article, ArticleCategory, Tag } from '@/types'
 
 const CONTENT_DIR = path.join(process.cwd(), 'src/content/guides')
 
@@ -100,8 +121,8 @@ export async function getArticles(filters: GetArticlesParams = {}): Promise<GetA
     // タグフィルター
     if (filters.tags && filters.tags.length > 0) {
       filteredArticles = filteredArticles.filter(article =>
-        filters.tags!.some(tag =>
-          article.tags?.some(articleTag => articleTag.slug === tag)
+        filters.tags!.some(tag => 
+          article.tags.some(articleTag => articleTag.slug === tag)
         )
       )
     }
@@ -112,7 +133,7 @@ export async function getArticles(filters: GetArticlesParams = {}): Promise<GetA
       filteredArticles = filteredArticles.filter(article =>
         article.title.toLowerCase().includes(searchTerm) ||
         article.content.toLowerCase().includes(searchTerm) ||
-        article.excerpt?.toLowerCase().includes(searchTerm)
+        article.excerpt.toLowerCase().includes(searchTerm)
       )
     }
 
@@ -131,7 +152,7 @@ export async function getArticles(filters: GetArticlesParams = {}): Promise<GetA
     
     const paginatedArticles = filteredArticles.slice(startIndex, endIndex)
 
-    console.log(`📝 ${paginatedArticles.length}件の記事を返却 (全${totalCount}件中)`)
+    console.log(\`📝 \${paginatedArticles.length}件の記事を返却 (全\${totalCount}件中)\`)
 
     return {
       articles: paginatedArticles,
@@ -158,7 +179,7 @@ export async function getArticles(filters: GetArticlesParams = {}): Promise<GetA
 // 特定記事取得
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
   try {
-    const filePath = path.join(CONTENT_DIR, `${decodeURIComponent(slug)}.md`)
+    const filePath = path.join(CONTENT_DIR, \`\${decodeURIComponent(slug)}.md\`)
     const fileContent = await fs.readFile(filePath, 'utf8')
     const { data: frontMatter, content } = matter(fileContent)
     
@@ -194,7 +215,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
       status: 'published'
     }
   } catch (error) {
-    console.error(`❌ 記事取得エラー (${slug}):`, error)
+    console.error(\`❌ 記事取得エラー (\${slug}):\`, error)
     return null
   }
 }
@@ -246,7 +267,7 @@ export async function getCategories(): Promise<ArticleCategory[]> {
 }
 
 // タグ一覧取得
-export async function getTags(): Promise<ArticleTag[]> {
+export async function getTags(): Promise<Tag[]> {
   try {
     const files = await fs.readdir(CONTENT_DIR)
     const markdownFiles = files.filter(file => file.endsWith('.md'))
@@ -313,3 +334,25 @@ function estimateReadingTime(content: string): number {
   const wordCount = content.length
   return Math.ceil(wordCount / wordsPerMinute)
 }
+`
+
+    await fs.writeFile(MICROCMS_FILE, internalCMSContent, 'utf8')
+    console.log('✅ 内製CMS対応版を作成完了')
+
+    console.log('\n🎉 切り替え完了!')
+    console.log('📝 変更内容:')
+    console.log('  - フロントエンドが内製CMS（ファイルベース）から記事を取得')
+    console.log('  - WordPressバージョンは microcms-wordpress-backup.ts に保存')
+    console.log('  - 開発サーバーを再起動してください')
+
+  } catch (error) {
+    console.error('❌ 切り替えでエラーが発生しました:', error)
+  }
+}
+
+// スクリプトが直接実行された場合
+if (require.main === module) {
+  switchToInternalCMS()
+}
+
+export { switchToInternalCMS }
