@@ -38,7 +38,7 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
     search: searchParams.search,
     page: searchParams.page ? parseInt(searchParams.page) : 1,
     limit: 12,
-    sortBy: searchParams.sortBy
+    sortBy: searchParams.sortBy as 'publishedAt' | 'updatedAt' | 'readingTime' | 'title' | undefined
   }
 
   // 並行してデータを取得
