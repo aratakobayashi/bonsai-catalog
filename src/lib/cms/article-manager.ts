@@ -127,8 +127,13 @@ export async function getInternalArticleBySlug(slug: string): Promise<InternalAr
 
 // 記事保存
 export async function saveInternalArticle(article: Omit<InternalArticle, 'updatedAt'>): Promise<void> {
+  // Vercelの本番環境では読み取り専用のため、記事編集を無効化
+  if (process.env.VERCEL) {
+    throw new Error('本番環境では記事の編集はできません。記事の変更はGitHubリポジトリで直接行ってください。')
+  }
+
   await ensureContentDir()
-  
+
   const frontMatter: Record<string, any> = {
     title: article.title,
     excerpt: article.excerpt,
@@ -142,22 +147,27 @@ export async function saveInternalArticle(article: Omit<InternalArticle, 'update
     seoTitle: article.seoTitle,
     seoDescription: article.seoDescription,
   }
-  
+
   // undefined値を除外
   Object.keys(frontMatter).forEach(key => {
     if (frontMatter[key] === undefined) {
       delete frontMatter[key]
     }
   })
-  
+
   const markdownContent = matter.stringify(article.content, frontMatter)
   const filePath = path.join(CONTENT_DIR, `${article.slug}.md`)
-  
+
   await fs.writeFile(filePath, markdownContent, 'utf8')
 }
 
 // 記事削除
 export async function deleteInternalArticle(slug: string): Promise<void> {
+  // Vercelの本番環境では読み取り専用のため、記事削除を無効化
+  if (process.env.VERCEL) {
+    throw new Error('本番環境では記事の削除はできません。記事の削除はGitHubリポジトリで直接行ってください。')
+  }
+
   const filePath = path.join(CONTENT_DIR, `${slug}.md`)
   await fs.unlink(filePath)
 }
