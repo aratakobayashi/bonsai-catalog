@@ -203,22 +203,33 @@ export function ArticleList({ articlesData, currentFilters }: ArticleListProps) 
           </Button>
 
           <div className="flex items-center space-x-1">
-            {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-              const pageNum = Math.max(1, Math.min(currentPage - 2 + i, totalPages - 4 + i))
-              if (pageNum < 1 || pageNum > totalPages) return null
-              
-              return (
-                <Button
-                  key={pageNum}
-                  variant={currentPage === pageNum ? "primary" : "ghost"}
-                  size="sm"
-                  onClick={() => handlePageChange(pageNum)}
-                  className="min-w-[2.5rem]"
-                >
-                  {pageNum}
-                </Button>
-              )
-            })}
+            {(() => {
+              const visiblePages = []
+              const maxVisible = 5
+              let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2))
+              let endPage = Math.min(totalPages, startPage + maxVisible - 1)
+
+              // 末尾の調整
+              if (endPage - startPage < maxVisible - 1) {
+                startPage = Math.max(1, endPage - maxVisible + 1)
+              }
+
+              for (let i = startPage; i <= endPage; i++) {
+                visiblePages.push(
+                  <Button
+                    key={i}
+                    variant={currentPage === i ? "primary" : "ghost"}
+                    size="sm"
+                    onClick={() => handlePageChange(i)}
+                    className="min-w-[2.5rem]"
+                  >
+                    {i}
+                  </Button>
+                )
+              }
+
+              return visiblePages
+            })()}
           </div>
 
           <Button

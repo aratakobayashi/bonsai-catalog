@@ -26,6 +26,7 @@ interface ArticlesPageProps {
     tags?: string
     search?: string
     page?: string
+    sortBy?: string
   }
 }
 
@@ -36,7 +37,8 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
     tags: searchParams.tags ? searchParams.tags.split(',') : undefined,
     search: searchParams.search,
     page: searchParams.page ? parseInt(searchParams.page) : 1,
-    limit: 12
+    limit: 12,
+    sortBy: searchParams.sortBy
   }
 
   // 並行してデータを取得
