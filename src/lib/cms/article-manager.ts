@@ -32,42 +32,65 @@ async function ensureContentDir() {
 
 // 記事一覧取得
 export async function getInternalArticles(): Promise<InternalArticle[]> {
-  await ensureContentDir()
-  
   try {
+    await ensureContentDir()
+
+    console.log('Reading content directory:', CONTENT_DIR)
     const files = await fs.readdir(CONTENT_DIR)
+    console.log('Found files:', files)
+
     const markdownFiles = files.filter(file => file.endsWith('.md'))
-    
+    console.log('Markdown files:', markdownFiles)
+
+    if (markdownFiles.length === 0) {
+      console.log('No markdown files found')
+      return []
+    }
+
     const articles = await Promise.all(
       markdownFiles.map(async (file) => {
-        const filePath = path.join(CONTENT_DIR, file)
-        const fileContent = await fs.readFile(filePath, 'utf8')
-        const { data: frontMatter, content } = matter(fileContent)
-        
-        return {
-          slug: file.replace('.md', ''),
-          title: frontMatter.title || 'タイトルなし',
-          excerpt: frontMatter.excerpt || content.slice(0, 100) + '...',
-          content,
-          category: frontMatter.category || 'uncategorized',
-          tags: frontMatter.tags || [],
-          featuredImage: frontMatter.featuredImage,
-          publishedAt: frontMatter.publishedAt || new Date().toISOString(),
-          updatedAt: frontMatter.updatedAt || new Date().toISOString(),
-          readingTime: frontMatter.readingTime || estimateReadingTime(content),
-          relatedProducts: frontMatter.relatedProducts,
-          seoTitle: frontMatter.seoTitle,
-          seoDescription: frontMatter.seoDescription,
-        } as InternalArticle
+        try {
+          const filePath = path.join(CONTENT_DIR, file)
+          console.log(`Reading file: ${filePath}`)
+
+          const fileContent = await fs.readFile(filePath, 'utf8')
+          const { data: frontMatter, content } = matter(fileContent)
+
+          return {
+            slug: file.replace('.md', ''),
+            title: frontMatter.title || 'タイトルなし',
+            excerpt: frontMatter.excerpt || content.slice(0, 100) + '...',
+            content,
+            category: frontMatter.category || 'uncategorized',
+            tags: frontMatter.tags || [],
+            featuredImage: frontMatter.featuredImage,
+            publishedAt: frontMatter.publishedAt || new Date().toISOString(),
+            updatedAt: frontMatter.updatedAt || new Date().toISOString(),
+            readingTime: frontMatter.readingTime || estimateReadingTime(content),
+            relatedProducts: frontMatter.relatedProducts,
+            seoTitle: frontMatter.seoTitle,
+            seoDescription: frontMatter.seoDescription,
+          } as InternalArticle
+        } catch (fileError) {
+          console.error(`Error reading file ${file}:`, fileError)
+          return null
+        }
       })
     )
-    
-    // 更新日時でソート
-    return articles.sort((a, b) => 
+
+    // null値を除外してソート
+    const validArticles = articles.filter(article => article !== null) as InternalArticle[]
+    console.log(`Successfully loaded ${validArticles.length} articles`)
+
+    return validArticles.sort((a, b) =>
       new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
     )
   } catch (error) {
     console.error('記事取得エラー:', error)
+    console.error('Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined
+    })
     return []
   }
 }
@@ -150,7 +173,7 @@ function estimateReadingTime(content: string): number {
 export function getAvailableCategories(): ArticleCategory[] {
   return [
     {
-      id: 'care-bonsai',
+      id: 'お手入れ・管理',
       name: 'お手入れ・管理',
       slug: 'care-bonsai',
       description: '盆栽の日常管理、水やり、剪定等の育て方ガイド',
@@ -158,7 +181,7 @@ export function getAvailableCategories(): ArticleCategory[] {
       icon: '🌱'
     },
     {
-      id: 'start-guide',
+      id: 'はじめての盆栽',
       name: 'はじめての盆栽',
       slug: 'start-guide',
       description: '初心者向けの樹種選びや購入のポイント',
@@ -166,7 +189,15 @@ export function getAvailableCategories(): ArticleCategory[] {
       icon: '🎯'
     },
     {
-      id: 'kinds',
+      id: '盆栽の基礎知識',
+      name: '盆栽の基礎知識',
+      slug: 'info',
+      description: '盆栽展示会やイベント情報',
+      color: 'bg-purple-100 text-purple-800',
+      icon: '🎪'
+    },
+    {
+      id: '種類別ガイド',
       name: '種類別ガイド',
       slug: 'kinds',
       description: '松柏類、雑木類、花もの等の種類別詳細ガイド',
@@ -174,15 +205,7 @@ export function getAvailableCategories(): ArticleCategory[] {
       icon: '🌲'
     },
     {
-      id: 'info',
-      name: 'イベント・展示',
-      slug: 'info',
-      description: '盆栽展示会やイベント情報',
-      color: 'bg-purple-100 text-purple-800',
-      icon: '🎪'
-    },
-    {
-      id: 'select',
+      id: '道具・鉢の選び方',
       name: '道具・鉢の選び方',
       slug: 'select',
       description: '盆栽道具や鉢の選び方ガイド',
