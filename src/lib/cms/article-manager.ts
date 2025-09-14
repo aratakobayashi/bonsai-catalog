@@ -218,10 +218,25 @@ export function getAvailableCategories(): ArticleCategory[] {
 // よく使用されるタグ一覧
 export function getCommonTags(): string[] {
   return [
-    'beginner', 'intermediate', 'advanced',
-    'momiji', 'pine', 'sakura', 'bamboo',
-    'spring', 'summer', 'autumn', 'winter',
-    'watering', 'pruning', 'repotting', 'fertilizer',
-    'tools', 'pots', 'styling', 'maintenance'
+    // レベル
+    '初心者', '中級者', '上級者',
+
+    // 樹種
+    'もみじ', '松', '桜', '竹', '梅', '椿', '杜松',
+
+    // 季節
+    '春', '夏', '秋', '冬', '四季',
+
+    // 管理作業
+    '水やり', '剪定', '植え替え', '肥料', '芽摘み', '針金かけ',
+
+    // 道具・アイテム
+    '道具', '鉢', '用土', '肥料', 'はさみ', '針金',
+
+    // スタイル・技法
+    '樹形', 'スタイリング', 'メンテナンス', '造形', '曲げ',
+
+    // その他
+    '初回', '基本', 'コツ', 'ガイド', '失敗しない'
   ]
 }
