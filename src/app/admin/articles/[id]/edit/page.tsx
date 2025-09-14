@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { Badge } from '@/components/ui/Badge'
 import { ArticleEditor } from '@/components/admin/ArticleEditor'
+import { ImageUpload } from '@/components/admin/ImageUpload'
 import { ArrowLeft, Save, Eye } from 'lucide-react'
 import Link from 'next/link'
 
@@ -271,6 +272,21 @@ export default function EditArticlePage({ params }: EditArticlePageProps) {
         {/* サイドバー設定 */}
         <div className="lg:col-span-1">
           <div className="space-y-6">
+            {/* アイキャッチ画像 */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">アイキャッチ画像</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ImageUpload
+                  label="記事のメイン画像"
+                  value={formData.featuredImage}
+                  onChange={(url) => setFormData(prev => ({ ...prev, featuredImage: url }))}
+                  placeholder="記事一覧やSNSシェア時に表示される画像"
+                />
+              </CardContent>
+            </Card>
+
             {/* カテゴリー選択 */}
             <Card>
               <CardHeader>

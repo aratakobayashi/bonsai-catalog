@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# 管理画面はクロール対象外
+Disallow: /admin/
+
+# APIエンドポイントはクロール対象外
+Disallow: /api/
+
+# Next.jsの内部ファイルはクロール対象外
+Disallow: /_next/
+
+# サイトマップの場所を指定
+Sitemap: https://www.bonsai-collection.com/sitemap.xml

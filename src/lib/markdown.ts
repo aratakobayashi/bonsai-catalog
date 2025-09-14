@@ -18,8 +18,11 @@ export function processMarkdown(content: string): string {
 
     // 見出しにIDを手動で追加（markedのデフォルトIDと一致するように）
     html = html.replace(/<h([1-6])([^>]*?)>(.*?)<\/h[1-6]>/g, (match, level, attrs, text) => {
+      // テキストが文字列であることを確認
+      const textStr = typeof text === 'string' ? text : String(text)
+
       // HTMLタグを除去してIDを生成
-      const cleanText = text.replace(/<[^>]*>/g, '')
+      const cleanText = textStr.replace(/<[^>]*>/g, '')
       const id = cleanText
         .toLowerCase()
         .replace(/[^\w\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF\s-]/g, '')
@@ -29,9 +32,9 @@ export function processMarkdown(content: string): string {
 
       // 既にIDが含まれている場合はそのまま、含まれていない場合は追加
       if (attrs.includes('id=')) {
-        return `<h${level}${attrs} class="scroll-mt-24 group relative">${text}</h${level}>`
+        return `<h${level}${attrs} class="scroll-mt-24 group relative">${textStr}</h${level}>`
       } else {
-        return `<h${level} id="${id}" class="scroll-mt-24 group relative">${text}</h${level}>`
+        return `<h${level} id="${id}" class="scroll-mt-24 group relative">${textStr}</h${level}>`
       }
     })
 

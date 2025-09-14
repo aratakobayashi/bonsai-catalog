@@ -1,0 +1,879 @@
+{
+  "total": 43,
+  "categories": {
+    "under10000": [
+      {
+        "id": "21eed41a-85aa-40fb-9382-5748e1c211fc",
+        "name": "皐月 ミニ盆栽",
+        "price": 3200,
+        "category": "花もの",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 15,
+        "image_url": "https://m.media-amazon.com/images/I/61aPrlUDvGL._AC_SX679_.jpg"
+      },
+      {
+        "id": "1a306dfb-6c1c-405b-a166-b594d4581dc2",
+        "name": "皐月 ミニ盆栽",
+        "price": 3200,
+        "category": "花もの",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 20,
+        "image_url": "https://m.media-amazon.com/images/I/61aPrlUDvGL._AC_SX679_.jpg"
+      },
+      {
+        "id": "39dcc7bb-eafa-4e04-b8c3-89d8a1099a9e",
+        "name": "ミニ盆栽：寒椿(黒色緑縁瀬戸焼小鉢)",
+        "price": 3480,
+        "category": "花もの",
+        "difficulty_level": 2,
+        "size_category": "mini",
+        "height_cm": 18,
+        "image_url": "https://m.media-amazon.com/images/I/51nBRcpIjLL._AC_.jpg"
+      },
+      {
+        "id": "26b1245d-dde7-41a9-a926-bf921b09ae31",
+        "name": "ミニ盆栽：寒椿(黒色緑縁瀬戸焼小鉢)",
+        "price": 3480,
+        "category": "花もの",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 20,
+        "image_url": "https://m.media-amazon.com/images/I/51nBRcpIjLL._AC_.jpg"
+      },
+      {
+        "id": "e4c9ecde-bf47-40a0-aec7-ed09c4a42296",
+        "name": "ミニ盆栽：長寿梅(信楽焼藍色鉢）",
+        "price": 3480,
+        "category": "花もの",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 18,
+        "image_url": "https://m.media-amazon.com/images/I/41G4wlwJr0L._AC_.jpg"
+      },
+      {
+        "id": "b8d84a68-4940-4cc8-8371-12cd795db934",
+        "name": "ミニ盆栽：長寿梅(信楽焼藍色鉢）",
+        "price": 3480,
+        "category": "花もの",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 20,
+        "image_url": "https://m.media-amazon.com/images/I/41G4wlwJr0L._AC_.jpg"
+      },
+      {
+        "id": "70b2d6ac-1322-43a0-baa3-38086b8b96ea",
+        "name": "遊恵盆栽 ミニ盆栽：長寿梅(瀬戸焼三彩鉢)",
+        "price": 3480,
+        "category": "花もの",
+        "difficulty_level": 2,
+        "size_category": "mini",
+        "height_cm": 12,
+        "image_url": "https://m.media-amazon.com/images/I/61-loxrp0sL._AC_.jpg"
+      },
+      {
+        "id": "0d2cb21a-f549-4e8c-8def-4b490631af81",
+        "name": "ミニ盆栽：三河黒松（瀬戸焼)",
+        "price": 3580,
+        "category": "松柏類",
+        "difficulty_level": 2,
+        "size_category": "mini",
+        "height_cm": 12,
+        "image_url": "https://m.media-amazon.com/images/I/515gQ4OEJQL._AC_.jpg"
+      },
+      {
+        "id": "939056dc-e5a1-48b7-8923-76399f23dc24",
+        "name": "出猩々もみじ(信楽焼鉢)",
+        "price": 3780,
+        "category": "雑木類",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 20,
+        "image_url": "https://m.media-amazon.com/images/I/41axWV1pL8L._AC_.jpg"
+      },
+      {
+        "id": "c036655d-15dd-4cb5-8942-46ac95e3180b",
+        "name": "出猩々もみじ(信楽焼鉢)",
+        "price": 3780,
+        "category": "雑木類",
+        "difficulty_level": 2,
+        "size_category": "mini",
+        "height_cm": 25,
+        "image_url": "https://m.media-amazon.com/images/I/41axWV1pL8L._AC_.jpg"
+      },
+      {
+        "id": "71f9036e-ae22-40b1-b019-be07dfee38b3",
+        "name": "ミニ盆栽：糸魚川真柏（曲・3年生）*（瀬戸焼白緑釉掛け丸深鉢）",
+        "price": 3970,
+        "category": "松柏類",
+        "difficulty_level": 2,
+        "size_category": "mini",
+        "height_cm": 20,
+        "image_url": "https://m.media-amazon.com/images/I/51E5pGTA+KL._AC_.jpg"
+      },
+      {
+        "id": "54e380bf-997f-4721-bb7e-a34e8e16f5de",
+        "name": "桜盆栽：一才桜(瀬戸焼白輪花鉢)",
+        "price": 3970,
+        "category": "花もの",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 15,
+        "image_url": "https://m.media-amazon.com/images/I/51J+u4Lk41L._AC_.jpg"
+      },
+      {
+        "id": "e454fc48-b997-4e83-9341-1e8e9d487a07",
+        "name": "ミニ盆栽：糸魚川真柏（曲・3年生）*（瀬戸焼白緑釉掛け丸深鉢）",
+        "price": 3970,
+        "category": "松柏類",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 20,
+        "image_url": "https://m.media-amazon.com/images/I/51E5pGTA+KL._AC_.jpg"
+      },
+      {
+        "id": "337af46c-81f2-47de-8818-ea493ba6bdb6",
+        "name": "ミニ盆栽 七福南天南天ボンサイ",
+        "price": 3980,
+        "category": "実もの",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 20,
+        "image_url": "https://m.media-amazon.com/images/I/61JpP5dScwL._AC_SX679_.jpg"
+      },
+      {
+        "id": "44294c1c-12e1-4520-a586-758f51db0aed",
+        "name": "一才藤（小・萬古焼みどり深鉢）",
+        "price": 3980,
+        "category": "花もの",
+        "difficulty_level": 2,
+        "size_category": "mini",
+        "height_cm": 25,
+        "image_url": "https://m.media-amazon.com/images/I/51Sg2Bvz6jL._AC_.jpg"
+      },
+      {
+        "id": "9858bd55-6d3e-406b-a3be-5db66fd23d38",
+        "name": "五葉松 小品盆栽（瀬戸焼鉢）",
+        "price": 3980,
+        "category": "松柏類",
+        "difficulty_level": 2,
+        "size_category": "small",
+        "height_cm": 15,
+        "image_url": "/products/goyomatsu-bonsai.jpg"
+      },
+      {
+        "id": "0c3c86e0-4e8e-4fb8-b0a6-f765c4129225",
+        "name": "一才藤（小・萬古焼みどり深鉢）",
+        "price": 3980,
+        "category": "花もの",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 20,
+        "image_url": "https://m.media-amazon.com/images/I/51Sg2Bvz6jL._AC_.jpg"
+      },
+      {
+        "id": "a790ab1e-f1d7-42ea-a808-0ed4db7d0cc4",
+        "name": "ミニ盆栽 七福南天南天ボンサイ",
+        "price": 3980,
+        "category": "実もの",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 20,
+        "image_url": "https://m.media-amazon.com/images/I/61JpP5dScwL._AC_SX679_.jpg"
+      },
+      {
+        "id": "1e54e7d2-6494-4d42-bfb6-c0033a46d59d",
+        "name": "ミニ盆栽：糸魚川真柏（曲・5年生）萬古焼泥物丸小鉢",
+        "price": 4280,
+        "category": "松柏類",
+        "difficulty_level": 3,
+        "size_category": "mini",
+        "height_cm": 18,
+        "image_url": "https://m.media-amazon.com/images/I/51Ait8xcR4L._AC_.jpg"
+      },
+      {
+        "id": "bb7b0616-fc38-4197-91ba-fd7e417d2a57",
+        "name": "遊恵盆栽：山もみじ(瀬戸焼三彩鉢)",
+        "price": 4580,
+        "category": "雑木類",
+        "difficulty_level": 2,
+        "size_category": "small",
+        "height_cm": 15,
+        "image_url": "https://m.media-amazon.com/images/I/41lGU6HUBhL._AC_.jpg"
+      },
+      {
+        "id": "e0b802a1-7f53-4634-be61-fe52638c77ce",
+        "name": "姫りんごちゃん(信楽焼青銅中深丸鉢)",
+        "price": 4780,
+        "category": "実もの",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 20,
+        "image_url": "https://m.media-amazon.com/images/I/41atUKZzgHL._AC_.jpg"
+      },
+      {
+        "id": "a7263305-1bab-4aae-b8e1-fbafce3bdc0e",
+        "name": "姫りんごちゃん(信楽焼青銅中深丸鉢)",
+        "price": 4780,
+        "category": "実もの",
+        "difficulty_level": 2,
+        "size_category": "mini",
+        "height_cm": 22,
+        "image_url": "https://m.media-amazon.com/images/I/41atUKZzgHL._AC_.jpg"
+      },
+      {
+        "id": "0de5791c-4135-4e88-96b6-72c67b11d05f",
+        "name": "山もみじの盆栽（藤久作手造り鉢）",
+        "price": 4820,
+        "category": "雑木類",
+        "difficulty_level": 2,
+        "size_category": "medium",
+        "height_cm": 25,
+        "image_url": "/products/yamamo-miji-bonsai.jpg"
+      },
+      {
+        "id": "1a87465b-3b3d-409f-a740-f090cbb42b9b",
+        "name": "遊恵盆栽 桜盆栽：富士桜(信濃寒桜)",
+        "price": 4980,
+        "category": "花もの",
+        "difficulty_level": 2,
+        "size_category": "small",
+        "height_cm": 15,
+        "image_url": "https://m.media-amazon.com/images/I/51eDaPuy61L._AC_.jpg"
+      },
+      {
+        "id": "e5992417-e669-4d71-8a4d-e7f37ae621ea",
+        "name": "盆栽妙 ミニ長寿梅 久庵手作りつぼ鉢",
+        "price": 5980,
+        "category": "花もの",
+        "difficulty_level": 2,
+        "size_category": "mini",
+        "height_cm": 12,
+        "image_url": "https://m.media-amazon.com/images/I/71tgtk9Ni9L._AC_SX679_.jpg"
+      },
+      {
+        "id": "eec7786a-26ed-45dc-836f-06e1cb3d222a",
+        "name": "白梅盆栽",
+        "price": 5980,
+        "category": "花もの",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 20,
+        "image_url": "https://m.media-amazon.com/images/I/41eVXk8yuWL._AC_.jpg"
+      },
+      {
+        "id": "234e8815-fe47-49a0-b0f7-63b9d2f6969f",
+        "name": "白梅盆栽",
+        "price": 5980,
+        "category": "花もの",
+        "difficulty_level": 2,
+        "size_category": "small",
+        "height_cm": 35,
+        "image_url": "https://m.media-amazon.com/images/I/41eVXk8yuWL._AC_.jpg"
+      },
+      {
+        "id": "b5051146-1f67-407f-9de3-d64f10811aac",
+        "name": "桜・藤寄せ植え*陶器鉢",
+        "price": 5980,
+        "category": "花もの",
+        "difficulty_level": 2,
+        "size_category": "small",
+        "height_cm": 25,
+        "image_url": "https://m.media-amazon.com/images/I/51no1+I6w2L._AC_.jpg"
+      },
+      {
+        "id": "dff225fa-197b-4aad-9920-f5e553f9ff62",
+        "name": "藤盆栽ギフト 鉢花 藤盆栽",
+        "price": 6980,
+        "category": "花もの",
+        "difficulty_level": 2,
+        "size_category": "small",
+        "height_cm": 18,
+        "image_url": "https://m.media-amazon.com/images/I/51Cj1lPmrdL._AC_.jpg"
+      },
+      {
+        "id": "749eb317-640a-486d-8ce2-272a83393ce3",
+        "name": "盆栽妙 はじめてでも育てやすい五葉松 丸小鉢",
+        "price": 6980,
+        "category": "松柏類",
+        "difficulty_level": 1,
+        "size_category": "small",
+        "height_cm": 18,
+        "image_url": "https://m.media-amazon.com/images/I/71x66VfHKHL._AC_SX679_.jpg"
+      },
+      {
+        "id": "81dfdd03-be71-4498-985e-55c56ad34324",
+        "name": "ハナカイドウ盆栽",
+        "price": 6980,
+        "category": "花もの",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 20,
+        "image_url": "https://m.media-amazon.com/images/I/41-XBvRhWaL._AC_.jpg"
+      },
+      {
+        "id": "c53eb1b0-0a26-4a3d-a083-947dbee57fc0",
+        "name": "ハナカイドウ盆栽",
+        "price": 6980,
+        "category": "花もの",
+        "difficulty_level": 2,
+        "size_category": "small",
+        "height_cm": 30,
+        "image_url": "https://m.media-amazon.com/images/I/41-XBvRhWaL._AC_.jpg"
+      },
+      {
+        "id": "ca6f2f91-c2f4-4f8a-9193-314d5e745c4a",
+        "name": "睡蓮木・五葉松寄せ(瀬戸焼変形鉢)",
+        "price": 7920,
+        "category": "松柏類",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 20,
+        "image_url": "https://m.media-amazon.com/images/I/51MDB6+H+ML._AC_.jpg"
+      },
+      {
+        "id": "12612ece-7ed7-4c25-be4b-8d81d105820c",
+        "name": "睡蓮木・五葉松寄せ(瀬戸焼変形鉢)",
+        "price": 7920,
+        "category": "松柏類",
+        "difficulty_level": 3,
+        "size_category": "small",
+        "height_cm": 28,
+        "image_url": "https://m.media-amazon.com/images/I/51MDB6+H+ML._AC_.jpg"
+      },
+      {
+        "id": "7035be10-9904-4f78-854d-99b7a50e6c7e",
+        "name": "桜・五葉松寄せ植え(青長角縁付鉢)鉢植え",
+        "price": 8980,
+        "category": "松柏類",
+        "difficulty_level": 2,
+        "size_category": "small",
+        "height_cm": 18,
+        "image_url": "https://m.media-amazon.com/images/I/519-ay-9lCL._AC_.jpg"
+      },
+      {
+        "id": "cebb1be6-436b-44e4-b130-c35cc626bf58",
+        "name": "四国五葉松 ミニ盆栽 鉢植え",
+        "price": 9680,
+        "category": "松柏類",
+        "difficulty_level": 2,
+        "size_category": "mini",
+        "height_cm": 20,
+        "image_url": "https://m.media-amazon.com/images/I/71CzZJIjfLL._AC_SY879_.jpg"
+      },
+      {
+        "id": "dbc08245-1656-45cb-9881-51fd2bb26ad8",
+        "name": "遊恵盆栽：特選清姫もみじ(瀬戸焼青鉢)",
+        "price": 9900,
+        "category": "雑木類",
+        "difficulty_level": 2,
+        "size_category": "small",
+        "height_cm": 18,
+        "image_url": "https://m.media-amazon.com/images/I/51MbBfSVpHL._AC_.jpg"
+      }
+    ],
+    "from10000to30000": [
+      {
+        "id": "eb2390b3-d344-420c-b5e3-511265327c5d",
+        "name": "四国五葉松盆栽 松のぼんさい",
+        "price": 11000,
+        "category": "松柏類",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 20,
+        "image_url": "https://m.media-amazon.com/images/I/41QMRrUvQHL._AC_.jpg"
+      },
+      {
+        "id": "43aaa0df-c1a6-4d0a-9de0-a5f07c2860dd",
+        "name": "四国五葉松盆栽 松のぼんさい",
+        "price": 11000,
+        "category": "松柏類",
+        "difficulty_level": 3,
+        "size_category": "medium",
+        "height_cm": 35,
+        "image_url": "https://m.media-amazon.com/images/I/41QMRrUvQHL._AC_.jpg"
+      },
+      {
+        "id": "9000c8af-6a24-46c4-85eb-a5117745d55d",
+        "name": "モダン松竹梅",
+        "price": 12000,
+        "category": "松柏類",
+        "difficulty_level": 2,
+        "size_category": "medium",
+        "height_cm": 35,
+        "image_url": "https://m.media-amazon.com/images/I/81lDaxC1NML._AC_SX679_.jpg"
+      },
+      {
+        "id": "21b6d3e0-2e13-4eae-be2d-520abcf3e382",
+        "name": "桜盆栽の寄せ植え桜 桜並木",
+        "price": 12000,
+        "category": "花もの",
+        "difficulty_level": 1,
+        "size_category": "mini",
+        "height_cm": 20,
+        "image_url": "https://m.media-amazon.com/images/I/5180mtPmUhL._AC_.jpg"
+      },
+      {
+        "id": "03065673-5739-4773-bdf2-adde9d9085ed",
+        "name": "桜盆栽の寄せ植え桜 桜並木",
+        "price": 12000,
+        "category": "花もの",
+        "difficulty_level": 3,
+        "size_category": "medium",
+        "height_cm": 40,
+        "image_url": "https://m.media-amazon.com/images/I/5180mtPmUhL._AC_.jpg"
+      },
+      {
+        "id": "b369045a-5b66-4416-a545-730e3329592e",
+        "name": "枝ぶりの良い五葉松の盆栽",
+        "price": 13200,
+        "category": "松柏類",
+        "difficulty_level": 2,
+        "size_category": "medium",
+        "height_cm": 25,
+        "image_url": "https://m.media-amazon.com/images/I/61nyA2CsadL._AC_SY879_.jpg"
+      }
+    ],
+    "from30000to50000": [],
+    "over50000": []
+  },
+  "statistics": {
+    "under10000": 37,
+    "from10000to30000": 6,
+    "from30000to50000": 0,
+    "over50000": 0
+  },
+  "rawProducts": [
+    {
+      "id": "21eed41a-85aa-40fb-9382-5748e1c211fc",
+      "name": "皐月 ミニ盆栽",
+      "price": 3200,
+      "category": "花もの",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 15,
+      "image_url": "https://m.media-amazon.com/images/I/61aPrlUDvGL._AC_SX679_.jpg"
+    },
+    {
+      "id": "1a306dfb-6c1c-405b-a166-b594d4581dc2",
+      "name": "皐月 ミニ盆栽",
+      "price": 3200,
+      "category": "花もの",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 20,
+      "image_url": "https://m.media-amazon.com/images/I/61aPrlUDvGL._AC_SX679_.jpg"
+    },
+    {
+      "id": "39dcc7bb-eafa-4e04-b8c3-89d8a1099a9e",
+      "name": "ミニ盆栽：寒椿(黒色緑縁瀬戸焼小鉢)",
+      "price": 3480,
+      "category": "花もの",
+      "difficulty_level": 2,
+      "size_category": "mini",
+      "height_cm": 18,
+      "image_url": "https://m.media-amazon.com/images/I/51nBRcpIjLL._AC_.jpg"
+    },
+    {
+      "id": "26b1245d-dde7-41a9-a926-bf921b09ae31",
+      "name": "ミニ盆栽：寒椿(黒色緑縁瀬戸焼小鉢)",
+      "price": 3480,
+      "category": "花もの",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 20,
+      "image_url": "https://m.media-amazon.com/images/I/51nBRcpIjLL._AC_.jpg"
+    },
+    {
+      "id": "e4c9ecde-bf47-40a0-aec7-ed09c4a42296",
+      "name": "ミニ盆栽：長寿梅(信楽焼藍色鉢）",
+      "price": 3480,
+      "category": "花もの",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 18,
+      "image_url": "https://m.media-amazon.com/images/I/41G4wlwJr0L._AC_.jpg"
+    },
+    {
+      "id": "b8d84a68-4940-4cc8-8371-12cd795db934",
+      "name": "ミニ盆栽：長寿梅(信楽焼藍色鉢）",
+      "price": 3480,
+      "category": "花もの",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 20,
+      "image_url": "https://m.media-amazon.com/images/I/41G4wlwJr0L._AC_.jpg"
+    },
+    {
+      "id": "70b2d6ac-1322-43a0-baa3-38086b8b96ea",
+      "name": "遊恵盆栽 ミニ盆栽：長寿梅(瀬戸焼三彩鉢)",
+      "price": 3480,
+      "category": "花もの",
+      "difficulty_level": 2,
+      "size_category": "mini",
+      "height_cm": 12,
+      "image_url": "https://m.media-amazon.com/images/I/61-loxrp0sL._AC_.jpg"
+    },
+    {
+      "id": "0d2cb21a-f549-4e8c-8def-4b490631af81",
+      "name": "ミニ盆栽：三河黒松（瀬戸焼)",
+      "price": 3580,
+      "category": "松柏類",
+      "difficulty_level": 2,
+      "size_category": "mini",
+      "height_cm": 12,
+      "image_url": "https://m.media-amazon.com/images/I/515gQ4OEJQL._AC_.jpg"
+    },
+    {
+      "id": "939056dc-e5a1-48b7-8923-76399f23dc24",
+      "name": "出猩々もみじ(信楽焼鉢)",
+      "price": 3780,
+      "category": "雑木類",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 20,
+      "image_url": "https://m.media-amazon.com/images/I/41axWV1pL8L._AC_.jpg"
+    },
+    {
+      "id": "c036655d-15dd-4cb5-8942-46ac95e3180b",
+      "name": "出猩々もみじ(信楽焼鉢)",
+      "price": 3780,
+      "category": "雑木類",
+      "difficulty_level": 2,
+      "size_category": "mini",
+      "height_cm": 25,
+      "image_url": "https://m.media-amazon.com/images/I/41axWV1pL8L._AC_.jpg"
+    },
+    {
+      "id": "71f9036e-ae22-40b1-b019-be07dfee38b3",
+      "name": "ミニ盆栽：糸魚川真柏（曲・3年生）*（瀬戸焼白緑釉掛け丸深鉢）",
+      "price": 3970,
+      "category": "松柏類",
+      "difficulty_level": 2,
+      "size_category": "mini",
+      "height_cm": 20,
+      "image_url": "https://m.media-amazon.com/images/I/51E5pGTA+KL._AC_.jpg"
+    },
+    {
+      "id": "54e380bf-997f-4721-bb7e-a34e8e16f5de",
+      "name": "桜盆栽：一才桜(瀬戸焼白輪花鉢)",
+      "price": 3970,
+      "category": "花もの",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 15,
+      "image_url": "https://m.media-amazon.com/images/I/51J+u4Lk41L._AC_.jpg"
+    },
+    {
+      "id": "e454fc48-b997-4e83-9341-1e8e9d487a07",
+      "name": "ミニ盆栽：糸魚川真柏（曲・3年生）*（瀬戸焼白緑釉掛け丸深鉢）",
+      "price": 3970,
+      "category": "松柏類",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 20,
+      "image_url": "https://m.media-amazon.com/images/I/51E5pGTA+KL._AC_.jpg"
+    },
+    {
+      "id": "337af46c-81f2-47de-8818-ea493ba6bdb6",
+      "name": "ミニ盆栽 七福南天南天ボンサイ",
+      "price": 3980,
+      "category": "実もの",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 20,
+      "image_url": "https://m.media-amazon.com/images/I/61JpP5dScwL._AC_SX679_.jpg"
+    },
+    {
+      "id": "44294c1c-12e1-4520-a586-758f51db0aed",
+      "name": "一才藤（小・萬古焼みどり深鉢）",
+      "price": 3980,
+      "category": "花もの",
+      "difficulty_level": 2,
+      "size_category": "mini",
+      "height_cm": 25,
+      "image_url": "https://m.media-amazon.com/images/I/51Sg2Bvz6jL._AC_.jpg"
+    },
+    {
+      "id": "9858bd55-6d3e-406b-a3be-5db66fd23d38",
+      "name": "五葉松 小品盆栽（瀬戸焼鉢）",
+      "price": 3980,
+      "category": "松柏類",
+      "difficulty_level": 2,
+      "size_category": "small",
+      "height_cm": 15,
+      "image_url": "/products/goyomatsu-bonsai.jpg"
+    },
+    {
+      "id": "0c3c86e0-4e8e-4fb8-b0a6-f765c4129225",
+      "name": "一才藤（小・萬古焼みどり深鉢）",
+      "price": 3980,
+      "category": "花もの",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 20,
+      "image_url": "https://m.media-amazon.com/images/I/51Sg2Bvz6jL._AC_.jpg"
+    },
+    {
+      "id": "a790ab1e-f1d7-42ea-a808-0ed4db7d0cc4",
+      "name": "ミニ盆栽 七福南天南天ボンサイ",
+      "price": 3980,
+      "category": "実もの",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 20,
+      "image_url": "https://m.media-amazon.com/images/I/61JpP5dScwL._AC_SX679_.jpg"
+    },
+    {
+      "id": "1e54e7d2-6494-4d42-bfb6-c0033a46d59d",
+      "name": "ミニ盆栽：糸魚川真柏（曲・5年生）萬古焼泥物丸小鉢",
+      "price": 4280,
+      "category": "松柏類",
+      "difficulty_level": 3,
+      "size_category": "mini",
+      "height_cm": 18,
+      "image_url": "https://m.media-amazon.com/images/I/51Ait8xcR4L._AC_.jpg"
+    },
+    {
+      "id": "bb7b0616-fc38-4197-91ba-fd7e417d2a57",
+      "name": "遊恵盆栽：山もみじ(瀬戸焼三彩鉢)",
+      "price": 4580,
+      "category": "雑木類",
+      "difficulty_level": 2,
+      "size_category": "small",
+      "height_cm": 15,
+      "image_url": "https://m.media-amazon.com/images/I/41lGU6HUBhL._AC_.jpg"
+    },
+    {
+      "id": "e0b802a1-7f53-4634-be61-fe52638c77ce",
+      "name": "姫りんごちゃん(信楽焼青銅中深丸鉢)",
+      "price": 4780,
+      "category": "実もの",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 20,
+      "image_url": "https://m.media-amazon.com/images/I/41atUKZzgHL._AC_.jpg"
+    },
+    {
+      "id": "a7263305-1bab-4aae-b8e1-fbafce3bdc0e",
+      "name": "姫りんごちゃん(信楽焼青銅中深丸鉢)",
+      "price": 4780,
+      "category": "実もの",
+      "difficulty_level": 2,
+      "size_category": "mini",
+      "height_cm": 22,
+      "image_url": "https://m.media-amazon.com/images/I/41atUKZzgHL._AC_.jpg"
+    },
+    {
+      "id": "0de5791c-4135-4e88-96b6-72c67b11d05f",
+      "name": "山もみじの盆栽（藤久作手造り鉢）",
+      "price": 4820,
+      "category": "雑木類",
+      "difficulty_level": 2,
+      "size_category": "medium",
+      "height_cm": 25,
+      "image_url": "/products/yamamo-miji-bonsai.jpg"
+    },
+    {
+      "id": "1a87465b-3b3d-409f-a740-f090cbb42b9b",
+      "name": "遊恵盆栽 桜盆栽：富士桜(信濃寒桜)",
+      "price": 4980,
+      "category": "花もの",
+      "difficulty_level": 2,
+      "size_category": "small",
+      "height_cm": 15,
+      "image_url": "https://m.media-amazon.com/images/I/51eDaPuy61L._AC_.jpg"
+    },
+    {
+      "id": "e5992417-e669-4d71-8a4d-e7f37ae621ea",
+      "name": "盆栽妙 ミニ長寿梅 久庵手作りつぼ鉢",
+      "price": 5980,
+      "category": "花もの",
+      "difficulty_level": 2,
+      "size_category": "mini",
+      "height_cm": 12,
+      "image_url": "https://m.media-amazon.com/images/I/71tgtk9Ni9L._AC_SX679_.jpg"
+    },
+    {
+      "id": "eec7786a-26ed-45dc-836f-06e1cb3d222a",
+      "name": "白梅盆栽",
+      "price": 5980,
+      "category": "花もの",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 20,
+      "image_url": "https://m.media-amazon.com/images/I/41eVXk8yuWL._AC_.jpg"
+    },
+    {
+      "id": "234e8815-fe47-49a0-b0f7-63b9d2f6969f",
+      "name": "白梅盆栽",
+      "price": 5980,
+      "category": "花もの",
+      "difficulty_level": 2,
+      "size_category": "small",
+      "height_cm": 35,
+      "image_url": "https://m.media-amazon.com/images/I/41eVXk8yuWL._AC_.jpg"
+    },
+    {
+      "id": "b5051146-1f67-407f-9de3-d64f10811aac",
+      "name": "桜・藤寄せ植え*陶器鉢",
+      "price": 5980,
+      "category": "花もの",
+      "difficulty_level": 2,
+      "size_category": "small",
+      "height_cm": 25,
+      "image_url": "https://m.media-amazon.com/images/I/51no1+I6w2L._AC_.jpg"
+    },
+    {
+      "id": "dff225fa-197b-4aad-9920-f5e553f9ff62",
+      "name": "藤盆栽ギフト 鉢花 藤盆栽",
+      "price": 6980,
+      "category": "花もの",
+      "difficulty_level": 2,
+      "size_category": "small",
+      "height_cm": 18,
+      "image_url": "https://m.media-amazon.com/images/I/51Cj1lPmrdL._AC_.jpg"
+    },
+    {
+      "id": "749eb317-640a-486d-8ce2-272a83393ce3",
+      "name": "盆栽妙 はじめてでも育てやすい五葉松 丸小鉢",
+      "price": 6980,
+      "category": "松柏類",
+      "difficulty_level": 1,
+      "size_category": "small",
+      "height_cm": 18,
+      "image_url": "https://m.media-amazon.com/images/I/71x66VfHKHL._AC_SX679_.jpg"
+    },
+    {
+      "id": "81dfdd03-be71-4498-985e-55c56ad34324",
+      "name": "ハナカイドウ盆栽",
+      "price": 6980,
+      "category": "花もの",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 20,
+      "image_url": "https://m.media-amazon.com/images/I/41-XBvRhWaL._AC_.jpg"
+    },
+    {
+      "id": "c53eb1b0-0a26-4a3d-a083-947dbee57fc0",
+      "name": "ハナカイドウ盆栽",
+      "price": 6980,
+      "category": "花もの",
+      "difficulty_level": 2,
+      "size_category": "small",
+      "height_cm": 30,
+      "image_url": "https://m.media-amazon.com/images/I/41-XBvRhWaL._AC_.jpg"
+    },
+    {
+      "id": "ca6f2f91-c2f4-4f8a-9193-314d5e745c4a",
+      "name": "睡蓮木・五葉松寄せ(瀬戸焼変形鉢)",
+      "price": 7920,
+      "category": "松柏類",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 20,
+      "image_url": "https://m.media-amazon.com/images/I/51MDB6+H+ML._AC_.jpg"
+    },
+    {
+      "id": "12612ece-7ed7-4c25-be4b-8d81d105820c",
+      "name": "睡蓮木・五葉松寄せ(瀬戸焼変形鉢)",
+      "price": 7920,
+      "category": "松柏類",
+      "difficulty_level": 3,
+      "size_category": "small",
+      "height_cm": 28,
+      "image_url": "https://m.media-amazon.com/images/I/51MDB6+H+ML._AC_.jpg"
+    },
+    {
+      "id": "7035be10-9904-4f78-854d-99b7a50e6c7e",
+      "name": "桜・五葉松寄せ植え(青長角縁付鉢)鉢植え",
+      "price": 8980,
+      "category": "松柏類",
+      "difficulty_level": 2,
+      "size_category": "small",
+      "height_cm": 18,
+      "image_url": "https://m.media-amazon.com/images/I/519-ay-9lCL._AC_.jpg"
+    },
+    {
+      "id": "cebb1be6-436b-44e4-b130-c35cc626bf58",
+      "name": "四国五葉松 ミニ盆栽 鉢植え",
+      "price": 9680,
+      "category": "松柏類",
+      "difficulty_level": 2,
+      "size_category": "mini",
+      "height_cm": 20,
+      "image_url": "https://m.media-amazon.com/images/I/71CzZJIjfLL._AC_SY879_.jpg"
+    },
+    {
+      "id": "dbc08245-1656-45cb-9881-51fd2bb26ad8",
+      "name": "遊恵盆栽：特選清姫もみじ(瀬戸焼青鉢)",
+      "price": 9900,
+      "category": "雑木類",
+      "difficulty_level": 2,
+      "size_category": "small",
+      "height_cm": 18,
+      "image_url": "https://m.media-amazon.com/images/I/51MbBfSVpHL._AC_.jpg"
+    },
+    {
+      "id": "eb2390b3-d344-420c-b5e3-511265327c5d",
+      "name": "四国五葉松盆栽 松のぼんさい",
+      "price": 11000,
+      "category": "松柏類",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 20,
+      "image_url": "https://m.media-amazon.com/images/I/41QMRrUvQHL._AC_.jpg"
+    },
+    {
+      "id": "43aaa0df-c1a6-4d0a-9de0-a5f07c2860dd",
+      "name": "四国五葉松盆栽 松のぼんさい",
+      "price": 11000,
+      "category": "松柏類",
+      "difficulty_level": 3,
+      "size_category": "medium",
+      "height_cm": 35,
+      "image_url": "https://m.media-amazon.com/images/I/41QMRrUvQHL._AC_.jpg"
+    },
+    {
+      "id": "9000c8af-6a24-46c4-85eb-a5117745d55d",
+      "name": "モダン松竹梅",
+      "price": 12000,
+      "category": "松柏類",
+      "difficulty_level": 2,
+      "size_category": "medium",
+      "height_cm": 35,
+      "image_url": "https://m.media-amazon.com/images/I/81lDaxC1NML._AC_SX679_.jpg"
+    },
+    {
+      "id": "21b6d3e0-2e13-4eae-be2d-520abcf3e382",
+      "name": "桜盆栽の寄せ植え桜 桜並木",
+      "price": 12000,
+      "category": "花もの",
+      "difficulty_level": 1,
+      "size_category": "mini",
+      "height_cm": 20,
+      "image_url": "https://m.media-amazon.com/images/I/5180mtPmUhL._AC_.jpg"
+    },
+    {
+      "id": "03065673-5739-4773-bdf2-adde9d9085ed",
+      "name": "桜盆栽の寄せ植え桜 桜並木",
+      "price": 12000,
+      "category": "花もの",
+      "difficulty_level": 3,
+      "size_category": "medium",
+      "height_cm": 40,
+      "image_url": "https://m.media-amazon.com/images/I/5180mtPmUhL._AC_.jpg"
+    },
+    {
+      "id": "b369045a-5b66-4416-a545-730e3329592e",
+      "name": "枝ぶりの良い五葉松の盆栽",
+      "price": 13200,
+      "category": "松柏類",
+      "difficulty_level": 2,
+      "size_category": "medium",
+      "height_cm": 25,
+      "image_url": "https://m.media-amazon.com/images/I/61nyA2CsadL._AC_SY879_.jpg"
+    }
+  ]
+}

@@ -33,11 +33,10 @@ export const metadata: Metadata = {
   verification: {
     google: 'zkHWVAFAw_7BRYulA99Qz4JquEu0fWINAsurXfLTdng',
   },
-}
-
-export const viewport = {
-  width: 'device-width',
-  initialScale: 1,
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+  },
 }
 
 export default function RootLayout({

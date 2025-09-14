@@ -366,7 +366,16 @@ export default function ProductsClient() {
                       animationFillMode: 'both'
                     }}
                   >
-                    <ProductCard product={product} />
+                    <ProductCard
+                      id={product.id}
+                      name={product.name}
+                      price={product.price}
+                      category={product.category}
+                      difficulty_level={product.difficulty_level?.toString()}
+                      height_cm={product.height_cm}
+                      featured_image={product.image_url}
+                      amazon_url={product.amazon_url}
+                    />
                   </div>
                 ))}
               </div>
