@@ -21,6 +21,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: '画像ファイルのみアップロード可能です' }, { status: 400 })
     }
 
+    // 本番環境ではCloudinaryを使用（環境変数設定が必要）
+    if (process.env.NODE_ENV === 'production') {
+      return NextResponse.json({
+        error: '本番環境では画像アップロードを一時的に無効にしています。開発環境をご利用ください。'
+      }, { status: 503 })
+    }
+
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
 
@@ -29,10 +36,17 @@ export async function POST(request: NextRequest) {
     const originalName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_') // 特殊文字を除去
     const fileName = `${timestamp}_${originalName}`
 
-    // public/images/articles ディレクトリに保存
+    // public/images/articles ディレクトリに保存（開発環境のみ）
     const uploadPath = path.join(process.cwd(), 'public', 'images', 'articles', fileName)
 
-    await writeFile(uploadPath, buffer)
+    try {
+      await writeFile(uploadPath, buffer)
+    } catch (writeError) {
+      console.error('File write error:', writeError)
+      return NextResponse.json({
+        error: 'ファイルの保存に失敗しました。開発環境でお試しください。'
+      }, { status: 500 })
+    }
 
     // 公開URLを返す
     const publicUrl = `/images/articles/${fileName}`
