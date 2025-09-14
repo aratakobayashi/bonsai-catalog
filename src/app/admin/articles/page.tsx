@@ -3,21 +3,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Pencil, Trash2, Eye, Plus } from 'lucide-react'
+import { ArticleManager } from '@/lib/cms/article-manager'
 import type { InternalArticle } from '@/lib/cms/article-manager'
 
 export default async function ArticlesPage() {
-  // API から記事一覧を取得
+  // 直接 ArticleManager から記事一覧を取得
   let articles: InternalArticle[] = []
   try {
-    const baseUrl = process.env.NODE_ENV === 'production'
-      ? 'https://bonsai-catalog.vercel.app'
-      : 'http://localhost:3000'
-    const response = await fetch(`${baseUrl}/api/articles`, {
-      cache: 'no-store'
-    })
-    if (response.ok) {
-      articles = await response.json()
-    }
+    const articleManager = new ArticleManager()
+    articles = await articleManager.getAllArticles()
   } catch (error) {
     console.error('記事取得エラー:', error)
   }
