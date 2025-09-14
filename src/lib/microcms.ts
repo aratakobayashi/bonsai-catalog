@@ -4,7 +4,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { Article, ArticleCategory, ArticleTag } from '@/types'
 
-const CONTENT_DIR = path.join(process.cwd(), 'src/content/guides')
+const CONTENT_DIR = path.join(process.cwd(), 'public/content/guides')
 
 export interface GetArticlesResponse {
   articles: Article[]
