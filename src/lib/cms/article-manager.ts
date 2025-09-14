@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { Article, ArticleCategory } from '@/types'
 
-const CONTENT_DIR = path.join(process.cwd(), 'src/content/guides')
+const CONTENT_DIR = path.join(process.cwd(), 'public/content/guides')
 
 export interface InternalArticle {
   slug: string
@@ -239,4 +239,23 @@ export function getCommonTags(): string[] {
     // その他
     '初回', '基本', 'コツ', 'ガイド', '失敗しない'
   ]
+}
+
+// ArticleManager クラス
+export class ArticleManager {
+  async getAllArticles(): Promise<InternalArticle[]> {
+    return await getInternalArticles()
+  }
+
+  async getArticleBySlug(slug: string): Promise<InternalArticle | null> {
+    return await getInternalArticleBySlug(slug)
+  }
+
+  async saveArticle(article: Omit<InternalArticle, 'updatedAt'>): Promise<void> {
+    return await saveInternalArticle(article)
+  }
+
+  async deleteArticle(slug: string): Promise<void> {
+    return await deleteInternalArticle(slug)
+  }
 }
