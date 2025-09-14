@@ -68,10 +68,10 @@ export default function NewArticlePage() {
   ]
   
   const commonTags = [
-    'beginner', 'intermediate', 'advanced',
-    'momiji', 'pine', 'sakura', 'bamboo',
-    'spring', 'summer', 'autumn', 'winter',
-    'watering', 'pruning', 'repotting', 'fertilizer',
+    '初心者', '中級者', '上級者',
+    'もみじ', '松', '桜', '竹',
+    '春', '夏', '秋', '冬',
+    '水やり', '剪定', '植え替え', '肥料',
   ]
 
   // タイトルからスラッグを自動生成
