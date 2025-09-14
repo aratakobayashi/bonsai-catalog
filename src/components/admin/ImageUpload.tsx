@@ -24,9 +24,9 @@ export function ImageUpload({ label, value, onChange, placeholder }: ImageUpload
       return
     }
 
-    // ファイルサイズチェック (5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      setError('ファイルサイズは5MB以下にしてください')
+    // ファイルサイズチェック (10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      setError('ファイルサイズは10MB以下にしてください')
       return
     }
 
@@ -169,7 +169,7 @@ export function ImageUpload({ label, value, onChange, placeholder }: ImageUpload
                     または画像ファイルをドラッグ&ドロップ
                   </p>
                   <p className="text-xs text-gray-400 mt-1">
-                    {placeholder || 'JPG, PNG, GIF (最大5MB)'}
+                    {placeholder || 'JPG, PNG, GIF (最大10MB)'}
                   </p>
                 </div>
               )}
