@@ -9,7 +9,10 @@ export default async function ArticlesPage() {
   // API から記事一覧を取得
   let articles: InternalArticle[] = []
   try {
-    const response = await fetch('http://localhost:3000/api/articles', {
+    const baseUrl = process.env.NODE_ENV === 'production'
+      ? 'https://bonsai-catalog.vercel.app'
+      : 'http://localhost:3000'
+    const response = await fetch(`${baseUrl}/api/articles`, {
       cache: 'no-store'
     })
     if (response.ok) {
