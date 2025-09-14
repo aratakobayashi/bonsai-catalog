@@ -2,7 +2,7 @@
 title: 一才桜の盆栽完全ガイド｜開花を楽しむ剪定・年間管理のコツ【初心者向け】
 excerpt: >-
   一才桜の盆栽で美しい花を楽しみませんか？本記事では初心者でもできる一才桜の育て方、剪定のタイミング、開花のコツを詳しく解説。小さなスペースでも楽しめる一才桜盆栽の魅力を発見しましょう。
-category: 種類別ガイド
+category: kinds
 tags: ['一才桜', '初心者', '開花', '剪定', '年間管理', '花もの']
 featuredImage: /images/articles/issai-sakura-main.png
 publishedAt: '2025-01-15T10:00:00'

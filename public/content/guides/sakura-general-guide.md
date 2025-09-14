@@ -2,7 +2,7 @@
 title: 桜の盆栽入門｜一才桜・旭山桜の育て方と開花のコツ【初心者向け】
 excerpt: >-
   桜の盆栽で春の訪れを身近に感じませんか？本記事では一才桜・旭山桜など人気品種の育て方、美しい開花を実現する管理方法、剪定のタイミングを詳しく解説。小さな鉢で楽しむ桜の美しさを発見しましょう。
-category: 種類別ガイド
+category: kinds
 tags: ['桜', '一才桜', '旭山桜', '初心者', '開花', '花もの', '春']
 featuredImage: /images/articles/sakura-general-main.png
 publishedAt: '2025-01-15T14:00:00'
