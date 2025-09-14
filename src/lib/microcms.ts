@@ -66,11 +66,11 @@ export async function getArticles(filters: GetArticlesParams = {}): Promise<GetA
             height: 630
           } : undefined,
           category: {
-            id: frontMatter.category || 'care-bonsai',
-            name: getCategoryName(frontMatter.category || 'care-bonsai'),
-            slug: frontMatter.category || 'care-bonsai',
-            color: getCategoryColor(frontMatter.category || 'care-bonsai'),
-            icon: getCategoryIcon(frontMatter.category || 'care-bonsai')
+            id: getCategorySlug(frontMatter.category || 'care-bonsai'),
+            name: getCategoryName(getCategorySlug(frontMatter.category || 'care-bonsai')),
+            slug: getCategorySlug(frontMatter.category || 'care-bonsai'),
+            color: getCategoryColor(getCategorySlug(frontMatter.category || 'care-bonsai')),
+            icon: getCategoryIcon(getCategorySlug(frontMatter.category || 'care-bonsai'))
           },
           tags: (frontMatter.tags || []).map((tag: string) => ({
             id: tag,
@@ -175,11 +175,11 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
         height: 630
       } : undefined,
       category: {
-        id: frontMatter.category || 'care-bonsai',
-        name: getCategoryName(frontMatter.category || 'care-bonsai'),
-        slug: frontMatter.category || 'care-bonsai',
-        color: getCategoryColor(frontMatter.category || 'care-bonsai'),
-        icon: getCategoryIcon(frontMatter.category || 'care-bonsai')
+        id: getCategorySlug(frontMatter.category || 'care-bonsai'),
+        name: getCategoryName(getCategorySlug(frontMatter.category || 'care-bonsai')),
+        slug: getCategorySlug(frontMatter.category || 'care-bonsai'),
+        color: getCategoryColor(getCategorySlug(frontMatter.category || 'care-bonsai')),
+        icon: getCategoryIcon(getCategorySlug(frontMatter.category || 'care-bonsai'))
       },
       tags: (frontMatter.tags || []).map((tag: string) => ({
         id: tag,
@@ -284,6 +284,27 @@ function getCategoryName(slug: string): string {
     'select': '道具・鉢の選び方'
   }
   return categoryMap[slug] || 'その他'
+}
+
+// 日本語カテゴリー名からslugに変換（既存記事との互換性のため）
+function getCategorySlug(categoryInput: string): string {
+  // まずslugとして有効かチェック
+  const validSlugs = ['care-bonsai', 'start-guide', 'kinds', 'info', 'select']
+  if (validSlugs.includes(categoryInput)) {
+    return categoryInput
+  }
+
+  // 日本語名からslugへのマッピング
+  const nameToSlugMap: Record<string, string> = {
+    'お手入れ・管理': 'care-bonsai',
+    'はじめての盆栽': 'start-guide',
+    '種類別ガイド': 'kinds',
+    'イベント・展示': 'info',
+    '道具・鉢の選び方': 'select',
+    '盆栽の基礎知識': 'care-bonsai'  // 基礎知識も管理カテゴリとして扱う
+  }
+
+  return nameToSlugMap[categoryInput] || 'care-bonsai'
 }
 
 function getCategoryColor(slug: string): string {
