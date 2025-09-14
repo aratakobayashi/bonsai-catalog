@@ -3,7 +3,7 @@ title: 初心者でも安心！黒松の盆栽育て方マニュアル｜水や�
 excerpt: >-
   初心者でも安心！黒松の盆栽育て方マニュアル｜水やり・剪定・管理の基本 1. 黒松盆栽の歴史・文化的背景
   平安時代の貴族文化で中国から渡来した松を庭で愛でたのが始まりとされる黒松盆栽。 江戸時代には大名や文化人が“盆器”に []
-category: care-bonsai
+category: お手入れ・管理
 tags: []
 featuredImage: /images/articles/article-10-img-1.png
 publishedAt: '2025-07-06T10:17:38'

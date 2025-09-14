@@ -3,7 +3,7 @@ title: 初心者必見！盆栽の置き場所ガイド｜屋外・室内で育�
 excerpt: >-
   初心者必見！盆栽の置き場所ガイド｜屋外・室内で育てるコツと注意点 この記事でわかること なぜ「置き場所」が盆栽に重要なのか
   屋外・室内それぞれのメリット・注意点＋改善策 季節別チェックリスト＆樹種別おすすめコラム 失敗ケ []
-category: care-bonsai
+category: お手入れ・管理
 tags: []
 featuredImage: /images/articles/article-12-img-1.png
 publishedAt: '2025-07-06T09:36:55'

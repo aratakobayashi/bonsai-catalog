@@ -3,7 +3,7 @@ title: 初心者でもわかる！盆栽の剪定・芽摘み・針金かけ入�
 excerpt: >-
   初心者でもわかる！盆栽の剪定・芽摘み・針金かけ入門｜基礎からやさしく解説 「剪定？芽摘み？針金かけ？」──言葉の意味すらよくわからない。
   そんな初心者の方でも安心してください！このガイドでは、盆栽のお手入れ三大基本テクニ []
-category: care-bonsai
+category: お手入れ・管理
 tags: []
 featuredImage: /images/articles/article-7-img-1.png
 publishedAt: '2025-06-14T12:00:13'

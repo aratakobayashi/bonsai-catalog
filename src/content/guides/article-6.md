@@ -3,7 +3,7 @@ title: 五葉松の盆栽の育て方｜剪定・水やり・管理のコツ【�
 excerpt: >-
   五葉松の盆栽の育て方｜剪定・水やり・管理のコツ【初心者〜中級者向け】 この記事でわかること 五葉松の特徴と人気の理由 置き場所・環境選びと管理のコツ
   水やり・剪定・施肥のポイント 年間を通じた育成スケジュール 失敗しない []
-category: care-bonsai
+category: お手入れ・管理
 tags: []
 featuredImage: /images/articles/article-6-img-1.png
 publishedAt: '2025-07-06T11:37:22'

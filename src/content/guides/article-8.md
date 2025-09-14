@@ -1,7 +1,7 @@
 ---
 title: 初心者でもわかる！盆栽の肥料入門｜固形・液体の違いと使い方ガイド
 excerpt: "初心者でもわかる！盆栽の肥料入門｜固形・液体の違いと使い方ガイド この記事では、盆栽初心者でも迷わず始められる「肥料の選び方・与え方」をわかりやすく解説します。 \U0001F331 固形・液体・有機・化成…肥料の違いと選び方 \U0001F4C6 いつ、 []"
-category: care-bonsai
+category: お手入れ・管理
 tags: []
 featuredImage: /images/articles/article-8-img-1.png
 publishedAt: '2025-06-13T00:22:09'

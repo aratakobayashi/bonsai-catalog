@@ -3,7 +3,7 @@ title: 盆栽の植え替えガイド｜失敗しないタイミングと手順�
 excerpt: >-
   盆栽の植え替えガイド｜失敗しないタイミングと手順【初心者向け】 この記事でわかること 盆栽の植え替えが必要な理由とサイン 適切なタイミングと季節
   植え替えに必要な道具と手順 失敗しないための注意点  「いつの []
-category: care-bonsai
+category: お手入れ・管理
 tags: []
 featuredImage: /images/articles/article-16-img-1.png
 publishedAt: '2025-07-06T00:36:34'

@@ -3,7 +3,7 @@ title: 真柏の盆栽の育て方｜曲げ・剪定・年間管理のコツ【�
 excerpt: >-
   真柏の盆栽の育て方｜曲げ・剪定・年間管理のコツ【初心者～中級者向け】 この記事でわかること 真柏の樹種特徴と選ばれる理由
   盆栽におすすめの育成スタイルと画像解説 置き場所・水やり・剪定・曲げのテクニック おすすめ道具・管 []
-category: care-bonsai
+category: お手入れ・管理
 tags: []
 featuredImage: /images/articles/article-20-img-1.png
 publishedAt: '2025-07-06T11:23:28'

@@ -3,7 +3,7 @@ title: 【完全版】長寿梅の盆栽入門｜初心者に人気の花咲く�
 excerpt: >-
   長寿梅の盆栽入門｜女性に人気の花咲く育て方・剪定ポイント この記事でわかること 長寿梅の特徴・品種バリエーション 花を咲かせるための剪定・水やり・肥料のコツ
   季節別の管理スケジュール 植え替え・害虫対策・初心者が失敗しや []
-category: care-bonsai
+category: お手入れ・管理
 tags: []
 featuredImage: /images/articles/article-3-img-1.png
 publishedAt: '2025-07-06T11:44:18'

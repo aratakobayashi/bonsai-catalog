@@ -3,7 +3,7 @@ title: 【初心者完全版】もみじの盆栽｜美しい紅葉を育てる�
 excerpt: >-
   もみじの盆栽｜美しい紅葉を育てる剪定と管理のコツ この記事でわかること もみじ（楓）盆栽の特徴と四季の魅力 紅葉を美しく保つための置き場所・水やり・肥料管理
   樹形ごとの剪定・育成スタイル 初心者でも失敗しない植え替え・害 []
-category: care-bonsai
+category: お手入れ・管理
 tags: []
 featuredImage: /images/articles/article-1-img-1.png
 publishedAt: '2025-07-06T12:14:41'

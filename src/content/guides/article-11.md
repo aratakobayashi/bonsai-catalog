@@ -1,7 +1,7 @@
 ---
 title: 初心者向け盆栽の始め方完全ガイド｜道具・育て方・手入れのコツまで
 excerpt: "初心者向け盆栽の始め方完全ガイド｜道具・育て方・手入れのコツまで この記事でわかること \U0001F331 育てやすくて失敗しにくい盆栽の選び方 \U0001F6E0 最低限そろえたい道具とその使い方 \U0001F4A7 水やり・剪定・置き場所などのお手入れの基本 「盆 []"
-category: start-guide
+category: はじめての盆栽
 tags: []
 featuredImage: /images/articles/article-11-img-1.png
 publishedAt: '2025-06-11T12:36:12'

@@ -1,7 +1,7 @@
 ---
 title: ミニ盆栽の始め方完全ガイド｜人気の種類と育て方のコツをやさしく解説
 excerpt: "ミニ盆栽の育て方入門｜小さな鉢で始める癒し生活 この記事でわかること \U0001F33F ミニ盆栽とは何か？流行した背景も徹底解説 \U0001F4F8 SNS映えするミニ盆栽写真・Instagram事例集 \U0001F331 初心者におすすめの種類・選び方・育て方のコ []"
-category: start-guide
+category: はじめての盆栽
 tags: []
 featuredImage: /images/articles/article-4-img-1.png
 publishedAt: '2025-06-17T23:52:08'

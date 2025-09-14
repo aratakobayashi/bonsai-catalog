@@ -3,7 +3,7 @@ title: 盆栽の水やり完全マニュアル｜失敗しないコツと季節�
 excerpt: >-
   盆栽の水やり完全マニュアル｜失敗しないコツと季節別のポイント この記事で解決できること 盆栽の水やり頻度・量・時間帯の正しい目安がわかる
   春夏秋冬それぞれの注意点と失敗パターンを知れる 初心者でも扱いやすいおすすめの水や []
-category: care-bonsai
+category: お手入れ・管理
 tags: []
 featuredImage: /images/articles/article-19-img-1.png
 publishedAt: '2025-06-18T10:47:59'

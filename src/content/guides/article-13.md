@@ -3,7 +3,7 @@ title: 梅の盆栽完全ガイド｜開花を促す剪定・年間管理・育�
 excerpt: >-
   梅の盆栽完全ガイド｜開花を促す剪定・年間管理・育て方の基本 この記事でわかること 梅の盆栽の魅力・特徴と基本の育て方 開花させるための剪定＆管理ポイント
   おすすめの置き場所・水やり・肥料 1年を通した育成スケジュール 初 []
-category: care-bonsai
+category: お手入れ・管理
 tags: []
 featuredImage: /images/articles/article-13-img-1.png
 publishedAt: '2025-07-06T11:53:58'

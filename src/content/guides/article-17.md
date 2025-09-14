@@ -3,7 +3,7 @@ title: 盆栽の歴史｜起源から現代までの歩みと文化の広がり
 excerpt: >-
   盆栽の歴史｜起源から現代までの歩みと文化の広がり この記事で解決できること 盆栽の起源と中国の盆景との関係がわかる
   日本での歴史的変遷と江戸時代の普及過程が理解できる 現代の盆栽文化の特徴と世界的な広がりを知れる 盆栽は []
-category: start-guide
+category: はじめての盆栽
 tags: []
 featuredImage: /images/articles/article-17-img-1.png
 publishedAt: '2025-07-06T17:57:10'

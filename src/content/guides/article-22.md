@@ -3,7 +3,7 @@ title: 関東の盆栽展・展示会カレンダー【2025年】
 excerpt: >-
   関東の盆栽展・展示会カレンダー【2025年7月〜】 この記事でわかること 2025年7月以降に開催される盆栽イベント（関東限定）の最新情報
   初心者にもおすすめの展示会・ワークショップの見どころ 会場情報・開催日・アクセス []
-category: info
+category: 盆栽の基礎知識
 tags: []
 featuredImage: /images/articles/article-22-img-1.png
 publishedAt: '2025-06-20T00:00:24'

@@ -3,7 +3,7 @@ title: 【初心者完全版】姫リンゴの盆栽の育て方｜可愛い実�
 excerpt: >-
   姫リンゴの盆栽の育て方｜可愛い実を楽しむ剪定と管理法 この記事でわかること 姫リンゴ盆栽の特徴・魅力 花を咲かせて実を付けるコツ
   適した置き場所や水やり・剪定の基本 育成スケジュールとおすすめ管理グッズ 1. 姫リンゴの []
-category: start-guide
+category: はじめての盆栽
 tags: []
 featuredImage: /images/articles/article-2-img-1.png
 publishedAt: '2025-07-06T12:19:00'

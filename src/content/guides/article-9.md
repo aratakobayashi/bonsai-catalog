@@ -3,7 +3,7 @@ title: 初心者でも安心！盆栽道具7選｜スターターセットと選
 excerpt: >-
   盆栽道具7選｜これだけはそろえたい基本セット この記事で解決できること 盆栽道具って何をそろえればいいのか分からない
   剪定ばさみやピンセットなどの選び方を知りたい スターターキットで始めたいけど失敗したくない そんな不安 []
-category: start-guide
+category: はじめての盆栽
 tags: []
 featuredImage: /images/articles/article-9-img-1.png
 publishedAt: '2025-06-18T00:20:29'

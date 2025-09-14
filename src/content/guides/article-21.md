@@ -3,7 +3,7 @@ title: 親子で楽しむ盆栽体験イベント7選｜夏休み自由研究に
 excerpt: >-
   親子で楽しむ盆栽体験イベント7選｜夏休み自由研究にもおすすめ！ この記事でわかること 2025年夏に関東エリアで開催される親子向け盆栽イベントの一覧
   小学生の自由研究に使える盆栽体験の学びポイント イベント参加前のQa []
-category: info
+category: 盆栽の基礎知識
 tags: []
 featuredImage: /images/articles/article-21-img-1.png
 publishedAt: '2025-06-20T00:31:19'
