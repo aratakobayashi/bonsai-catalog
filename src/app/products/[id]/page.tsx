@@ -17,6 +17,8 @@ import {
 } from '@/lib/product-ui-helpers'
 import { ArrowLeft, ExternalLink, Tag, Calendar, Package, ShoppingBag, Ruler, Sun, Droplets, Heart } from 'lucide-react'
 import { generateProductSEO } from '@/lib/seo-utils'
+import { generateProductBreadcrumbs } from '@/lib/breadcrumb-utils'
+import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import type { Product } from '@/types'
 
 interface ProductPageProps {
@@ -86,8 +88,11 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   }
 
   const relatedProducts = await getRelatedProducts(product)
+  const breadcrumbs = generateProductBreadcrumbs(product)
 
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="container mx-auto px-4">
         {/* 戻るボタン */}
@@ -359,5 +364,6 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         )}
       </div>
     </div>
+    </>
   )
 }

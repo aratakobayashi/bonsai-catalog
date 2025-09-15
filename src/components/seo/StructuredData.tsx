@@ -219,3 +219,33 @@ export function HowToStructuredData({
     />
   )
 }
+
+interface BreadcrumbStructuredDataProps {
+  breadcrumbs: {
+    name: string
+    url: string
+    position: number
+  }[]
+}
+
+export function BreadcrumbStructuredData({ breadcrumbs }: BreadcrumbStructuredDataProps) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map(breadcrumb => ({
+      "@type": "ListItem",
+      "position": breadcrumb.position,
+      "name": breadcrumb.name,
+      "item": breadcrumb.url
+    }))
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(structuredData, null, 2)
+      }}
+    />
+  )
+}
