@@ -94,9 +94,9 @@ export default function EditArticlePage({ params }: EditArticlePageProps) {
             slug: article.slug || '',
             excerpt: article.excerpt || '',
             content: article.content || '',
-            category: article.category || 'care-bonsai',
-            tags: article.tags || [],
-            featuredImage: article.featuredImage || '',
+            category: article.category?.slug || 'care-bonsai',
+            tags: article.tags?.map((tag: any) => tag.name) || [],
+            featuredImage: article.featuredImage?.url || '',
             seoTitle: article.seoTitle || '',
             seoDescription: article.seoDescription || '',
           })
