@@ -1,0 +1,346 @@
+import { supabase, type DatabaseArticle, type DatabaseArticleCategory, type DatabaseArticleTag } from '@/lib/supabase'
+import type { Article, ArticleCategory, ArticleTag, ArticleListResponse, ArticleFilters } from '@/types'
+
+// データベース記事をフロントエンド用Article型に変換
+function transformDatabaseArticle(
+  dbArticle: DatabaseArticle,
+  category: DatabaseArticleCategory,
+  tags: DatabaseArticleTag[]
+): Article {
+  return {
+    id: dbArticle.id,
+    title: dbArticle.title,
+    slug: dbArticle.slug,
+    content: dbArticle.content,
+    excerpt: dbArticle.excerpt,
+    featuredImage: dbArticle.featured_image_url ? {
+      url: dbArticle.featured_image_url,
+      alt: dbArticle.featured_image_alt || dbArticle.title,
+      width: 1200,
+      height: 630
+    } : undefined,
+    category: {
+      id: category.id,
+      name: category.name,
+      slug: category.slug,
+      description: category.description,
+      color: category.color,
+      icon: category.icon
+    },
+    tags: tags.map(tag => ({
+      id: tag.id,
+      name: tag.name,
+      slug: tag.slug,
+      color: tag.color
+    })),
+    relatedProducts: dbArticle.related_product_ids || [],
+    seoTitle: dbArticle.seo_title,
+    seoDescription: dbArticle.seo_description,
+    readingTime: dbArticle.reading_time,
+    publishedAt: dbArticle.published_at,
+    updatedAt: dbArticle.updated_at,
+    status: dbArticle.status
+  }
+}
+
+// フロントエンド用Article型をデータベース用に変換
+function transformToDatabase(article: Partial<Article>): Partial<DatabaseArticle> {
+  return {
+    title: article.title,
+    slug: article.slug,
+    content: article.content,
+    excerpt: article.excerpt,
+    featured_image_url: article.featuredImage?.url,
+    featured_image_alt: article.featuredImage?.alt,
+    category_id: article.category?.id,
+    tag_ids: article.tags?.map(tag => tag.id),
+    related_product_ids: article.relatedProducts,
+    seo_title: article.seoTitle,
+    seo_description: article.seoDescription,
+    reading_time: article.readingTime,
+    published_at: article.publishedAt,
+    status: article.status || 'published'
+  }
+}
+
+// 記事一覧取得
+export async function getArticles(filters: ArticleFilters = {}): Promise<ArticleListResponse> {
+  try {
+    let query = supabase
+      .from('articles')
+      .select(`
+        *,
+        category:article_categories!articles_category_id_fkey(*),
+        tags:article_tags(*)
+      `)
+      .eq('status', 'published')
+
+    // カテゴリーフィルター
+    if (filters.category) {
+      query = query.eq('article_categories.slug', filters.category)
+    }
+
+    // 検索フィルター
+    if (filters.search) {
+      query = query.or(`title.ilike.%${filters.search}%,content.ilike.%${filters.search}%,excerpt.ilike.%${filters.search}%`)
+    }
+
+    // ソート
+    const sortBy = filters.sortBy || 'published_at'
+    const sortOrder = filters.sortOrder || 'desc'
+    query = query.order(sortBy, { ascending: sortOrder === 'asc' })
+
+    // ページネーション
+    const page = filters.page || 1
+    const limit = filters.limit || 12
+    const offset = (page - 1) * limit
+
+    query = query.range(offset, offset + limit - 1)
+
+    const { data, error, count } = await query
+
+    if (error) {
+      console.error('記事取得エラー:', error)
+      throw error
+    }
+
+    if (!data) {
+      return {
+        articles: [],
+        totalCount: 0,
+        currentPage: page,
+        totalPages: 0,
+        hasNext: false,
+        hasPrev: false
+      }
+    }
+
+    // タグの取得（記事のtag_idsから）
+    const allTagIds = data.flatMap(article => article.tag_ids || [])
+    const uniqueTagIds = [...new Set(allTagIds)]
+
+    let tags: DatabaseArticleTag[] = []
+    if (uniqueTagIds.length > 0) {
+      const { data: tagData } = await supabase
+        .from('article_tags')
+        .select('*')
+        .in('id', uniqueTagIds)
+      tags = tagData || []
+    }
+
+    // データ変換
+    const articles = data.map((item: any) => {
+      const articleTags = tags.filter(tag => item.tag_ids?.includes(tag.id))
+      return transformDatabaseArticle(item, item.category, articleTags)
+    })
+
+    const totalCount = count || 0
+    const totalPages = Math.ceil(totalCount / limit)
+
+    return {
+      articles,
+      totalCount,
+      currentPage: page,
+      totalPages,
+      hasNext: page < totalPages,
+      hasPrev: page > 1
+    }
+
+  } catch (error) {
+    console.error('記事取得エラー:', error)
+    return {
+      articles: [],
+      totalCount: 0,
+      currentPage: 1,
+      totalPages: 0,
+      hasNext: false,
+      hasPrev: false
+    }
+  }
+}
+
+// 特定記事取得
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  try {
+    const { data, error } = await supabase
+      .from('articles')
+      .select(`
+        *,
+        category:article_categories!articles_category_id_fkey(*)
+      `)
+      .eq('slug', slug)
+      .eq('status', 'published')
+      .single()
+
+    if (error || !data) {
+      console.error('記事取得エラー:', error)
+      return null
+    }
+
+    // タグの取得
+    let tags: DatabaseArticleTag[] = []
+    if (data.tag_ids && data.tag_ids.length > 0) {
+      const { data: tagData } = await supabase
+        .from('article_tags')
+        .select('*')
+        .in('id', data.tag_ids)
+      tags = tagData || []
+    }
+
+    return transformDatabaseArticle(data, data.category, tags)
+
+  } catch (error) {
+    console.error('記事取得エラー:', error)
+    return null
+  }
+}
+
+// 記事作成
+export async function createArticle(article: Omit<Article, 'id' | 'publishedAt' | 'updatedAt'>): Promise<Article | null> {
+  try {
+    const dbArticle = transformToDatabase(article)
+
+    const { data, error } = await supabase
+      .from('articles')
+      .insert(dbArticle)
+      .select(`
+        *,
+        category:article_categories!articles_category_id_fkey(*)
+      `)
+      .single()
+
+    if (error || !data) {
+      console.error('記事作成エラー:', error)
+      throw error
+    }
+
+    // タグの取得
+    let tags: DatabaseArticleTag[] = []
+    if (data.tag_ids && data.tag_ids.length > 0) {
+      const { data: tagData } = await supabase
+        .from('article_tags')
+        .select('*')
+        .in('id', data.tag_ids)
+      tags = tagData || []
+    }
+
+    return transformDatabaseArticle(data, data.category, tags)
+
+  } catch (error) {
+    console.error('記事作成エラー:', error)
+    throw error
+  }
+}
+
+// 記事更新
+export async function updateArticle(id: string, updates: Partial<Article>): Promise<Article | null> {
+  try {
+    const dbUpdates = transformToDatabase(updates)
+
+    const { data, error } = await supabase
+      .from('articles')
+      .update(dbUpdates)
+      .eq('id', id)
+      .select(`
+        *,
+        category:article_categories!articles_category_id_fkey(*)
+      `)
+      .single()
+
+    if (error || !data) {
+      console.error('記事更新エラー:', error)
+      throw error
+    }
+
+    // タグの取得
+    let tags: DatabaseArticleTag[] = []
+    if (data.tag_ids && data.tag_ids.length > 0) {
+      const { data: tagData } = await supabase
+        .from('article_tags')
+        .select('*')
+        .in('id', data.tag_ids)
+      tags = tagData || []
+    }
+
+    return transformDatabaseArticle(data, data.category, tags)
+
+  } catch (error) {
+    console.error('記事更新エラー:', error)
+    throw error
+  }
+}
+
+// 記事削除
+export async function deleteArticle(id: string): Promise<boolean> {
+  try {
+    const { error } = await supabase
+      .from('articles')
+      .delete()
+      .eq('id', id)
+
+    if (error) {
+      console.error('記事削除エラー:', error)
+      throw error
+    }
+
+    return true
+
+  } catch (error) {
+    console.error('記事削除エラー:', error)
+    return false
+  }
+}
+
+// カテゴリー一覧取得
+export async function getCategories(): Promise<ArticleCategory[]> {
+  try {
+    const { data, error } = await supabase
+      .from('article_categories')
+      .select('*')
+      .order('name')
+
+    if (error) {
+      console.error('カテゴリー取得エラー:', error)
+      return []
+    }
+
+    return (data || []).map(category => ({
+      id: category.id,
+      name: category.name,
+      slug: category.slug,
+      description: category.description,
+      color: category.color,
+      icon: category.icon
+    }))
+
+  } catch (error) {
+    console.error('カテゴリー取得エラー:', error)
+    return []
+  }
+}
+
+// タグ一覧取得
+export async function getTags(): Promise<ArticleTag[]> {
+  try {
+    const { data, error } = await supabase
+      .from('article_tags')
+      .select('*')
+      .order('name')
+
+    if (error) {
+      console.error('タグ取得エラー:', error)
+      return []
+    }
+
+    return (data || []).map(tag => ({
+      id: tag.id,
+      name: tag.name,
+      slug: tag.slug,
+      color: tag.color
+    }))
+
+  } catch (error) {
+    console.error('タグ取得エラー:', error)
+    return []
+  }
+}

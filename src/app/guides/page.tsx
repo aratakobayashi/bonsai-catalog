@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { Suspense } from 'react'
-import { getArticles, getCategories, getTags } from '@/lib/microcms'
+import { getArticles, getCategories, getTags } from '@/lib/database/articles'
 import { ArticleList } from '@/components/features/ArticleList'
 import { ArticleFilters } from '@/components/features/ArticleFilters'
 
