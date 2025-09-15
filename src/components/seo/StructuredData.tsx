@@ -133,3 +133,89 @@ export function WebSiteStructuredData({ baseUrl }: WebSiteStructuredDataProps) {
     />
   )
 }
+
+interface HowToStructuredDataProps {
+  title: string
+  description: string
+  steps: {
+    name: string
+    description: string
+    image?: string
+  }[]
+  totalTime?: string
+  suppliesNeeded?: string[]
+  toolsNeeded?: string[]
+  baseUrl: string
+  articleSlug: string
+}
+
+export function HowToStructuredData({
+  title,
+  description,
+  steps,
+  totalTime,
+  suppliesNeeded = [],
+  toolsNeeded = [],
+  baseUrl,
+  articleSlug
+}: HowToStructuredDataProps) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": title,
+    "description": description,
+    "image": `${baseUrl}/og-image.jpg`,
+    ...(totalTime && { "totalTime": totalTime }),
+    ...(suppliesNeeded.length > 0 && {
+      "supply": suppliesNeeded.map(supply => ({
+        "@type": "HowToSupply",
+        "name": supply
+      }))
+    }),
+    ...(toolsNeeded.length > 0 && {
+      "tool": toolsNeeded.map(tool => ({
+        "@type": "HowToTool",
+        "name": tool
+      }))
+    }),
+    "step": steps.map((step, index) => ({
+      "@type": "HowToStep",
+      "position": index + 1,
+      "name": step.name,
+      "text": step.description,
+      ...(step.image && {
+        "image": {
+          "@type": "ImageObject",
+          "url": step.image
+        }
+      })
+    })),
+    "author": {
+      "@type": "Organization",
+      "name": "盆栽コレクション",
+      "url": baseUrl
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "盆栽コレクション",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${baseUrl}/logo.png`
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `${baseUrl}/guides/${articleSlug}`
+    },
+    "inLanguage": "ja-JP"
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(structuredData, null, 2)
+      }}
+    />
+  )
+}

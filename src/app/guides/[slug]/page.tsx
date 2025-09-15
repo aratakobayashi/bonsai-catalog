@@ -12,7 +12,8 @@ import { RelatedArticles } from '@/components/features/RelatedArticles'
 import { ShareButtons } from '@/components/features/ShareButtons'
 import { TableOfContents } from '@/components/features/TableOfContents'
 import { ArticleProductCTA } from '@/components/features/ArticleProductCTA'
-import { ArticleStructuredData } from '@/components/seo/StructuredData'
+import { ArticleStructuredData, HowToStructuredData } from '@/components/seo/StructuredData'
+import { generateArticleSEO, generateHowToStructuredData } from '@/lib/seo-utils'
 import { ArrowLeft, Calendar, Clock, Tag, User } from 'lucide-react'
 import { formatDate } from '@/lib/date-utils'
 import { processMarkdown, generateTableOfContents } from '@/lib/markdown'
@@ -64,27 +65,23 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     }
   }
 
-  const seoTitle = article.seoTitle || article.title
-  const seoDescription = article.seoDescription || article.excerpt || article.title
+  // 🚀 自動SEO最適化エンジンを使用
+  const seo = generateArticleSEO(article)
 
   return {
-    title: `${seoTitle} - 盆栽コレクション`,
-    description: seoDescription,
-    keywords: article.tags?.map(tag => tag.name).join(', '),
+    title: seo.title,
+    description: seo.description,
+    keywords: seo.keywords,
     openGraph: {
-      title: seoTitle,
-      description: seoDescription,
-      images: article.featuredImage ? [{ url: `${typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url}?v=${new Date(article.updatedAt).getTime()}` }] : [],
-      type: 'article',
+      ...seo.openGraph,
+      images: article.featuredImage ? [{ url: `${typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url}?v=${Date.now()}&r=${Math.random().toString(36)}` }] : [],
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt,
       authors: ['盆栽コレクション'],
     },
     twitter: {
-      card: 'summary_large_image',
-      title: seoTitle,
-      description: seoDescription,
-      images: article.featuredImage ? [`${typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url}?v=${new Date(article.updatedAt).getTime()}`] : [],
+      ...seo.twitter,
+      images: article.featuredImage ? [`${typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url}?v=${Date.now()}&r=${Math.random().toString(36)}`] : [],
     },
     alternates: {
       canonical: `https://www.bonsai-collection.com/guides/${params.slug}`,
@@ -116,12 +113,23 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   // 目次を生成
   const tableOfContents = generateTableOfContents(article.content)
 
+  // How-to構造化データを自動生成
+  const howToData = generateHowToStructuredData(article)
+
   return (
     <>
-      <ArticleStructuredData 
-        article={article} 
-        baseUrl="https://www.bonsai-collection.com" 
+      <ArticleStructuredData
+        article={article}
+        baseUrl="https://www.bonsai-collection.com"
       />
+      {/* How-to記事の場合は自動的にHowTo構造化データを追加 */}
+      {howToData && (
+        <HowToStructuredData
+          {...howToData}
+          baseUrl="https://www.bonsai-collection.com"
+          articleSlug={article.slug}
+        />
+      )}
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       {/* 戻るボタン */}
       <div className="bg-white/90 backdrop-blur-sm border-b border-indigo-100">
@@ -158,7 +166,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               {article.featuredImage && (
                 <div className="aspect-video relative overflow-hidden">
                   <Image
-                    src={`${typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url}?v=${new Date(article.updatedAt).getTime()}`}
+                    src={`${typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url}?v=${Date.now()}&r=${Math.random().toString(36)}`}
                     alt={typeof article.featuredImage === 'string' ? article.title : (article.featuredImage.alt || article.title)}
                     width={1200}
                     height={675}

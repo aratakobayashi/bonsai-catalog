@@ -16,6 +16,7 @@ import {
   getCareEnvironment 
 } from '@/lib/product-ui-helpers'
 import { ArrowLeft, ExternalLink, Tag, Calendar, Package, ShoppingBag, Ruler, Sun, Droplets, Heart } from 'lucide-react'
+import { generateProductSEO } from '@/lib/seo-utils'
 import type { Product } from '@/types'
 
 interface ProductPageProps {
@@ -58,18 +59,19 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     }
   }
 
+  // 🚀 自動SEO最適化エンジンを使用
+  const seo = generateProductSEO(product)
+
   return {
-    title: `${product.name} - 盆栽コレクション`,
-    description: product.description,
+    title: seo.title,
+    description: seo.description,
+    keywords: seo.keywords,
     openGraph: {
-      title: product.name,
-      description: product.description || '',
+      ...seo.openGraph,
       images: product.image_url ? [{ url: product.image_url }] : [],
-      type: 'website',
     },
     twitter: {
-      card: 'summary_large_image',
-      title: product.name,
+      ...seo.twitter,
       description: product.description || '',
       images: product.image_url ? [product.image_url] : [],
     },
