@@ -70,8 +70,7 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       .from('articles')
       .select(`
         *,
-        category:article_categories!articles_category_id_fkey(*),
-        tags:article_tags(*)
+        category:article_categories!articles_category_id_fkey(*)
       `)
       .eq('status', 'published')
 
@@ -85,10 +84,17 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       query = query.or(`title.ilike.%${filters.search}%,content.ilike.%${filters.search}%,excerpt.ilike.%${filters.search}%`)
     }
 
-    // ソート
-    const sortBy = filters.sortBy || 'published_at'
+    // ソート（フロントエンド用フィールド名をデータベース用に変換）
+    const sortFieldMap: Record<string, string> = {
+      publishedAt: 'published_at',
+      updatedAt: 'updated_at',
+      readingTime: 'reading_time',
+      title: 'title'
+    }
+    const frontendSortBy = filters.sortBy || 'publishedAt'
+    const dbSortBy = sortFieldMap[frontendSortBy] || 'published_at'
     const sortOrder = filters.sortOrder || 'desc'
-    query = query.order(sortBy, { ascending: sortOrder === 'asc' })
+    query = query.order(dbSortBy, { ascending: sortOrder === 'asc' })
 
     // ページネーション
     const page = filters.page || 1

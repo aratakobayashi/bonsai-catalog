@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
       limit,
       category,
       search,
-      sortBy: 'published_at',
+      sortBy: 'publishedAt',
       sortOrder: 'desc'
     })
 
