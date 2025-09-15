@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { getInternalArticles } from '@/lib/cms/article-manager'
+import { getArticles } from '@/lib/database/articles'
 import { supabase } from '@/lib/supabase'
 
 const baseUrl = 'https://www.bonsai-collection.com'
@@ -68,9 +68,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 記事ページ
   let articlePages: MetadataRoute.Sitemap = []
   try {
-    const articles = await getInternalArticles()
+    const articlesData = await getArticles({
+      page: 1,
+      limit: 1000, // サイトマップでは全記事を取得
+      sortBy: 'publishedAt',
+      sortOrder: 'desc'
+    })
 
-    articlePages = articles.map((article) => ({
+    articlePages = articlesData.articles.map((article) => ({
       url: `${baseUrl}/guides/${article.slug}`,
       lastModified: new Date(article.updatedAt),
       changeFrequency: 'weekly' as const,
