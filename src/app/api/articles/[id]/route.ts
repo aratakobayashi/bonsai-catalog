@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getArticleBySlug, updateArticle, deleteArticle } from '@/lib/database/articles'
+import { getArticleBySlug, getArticleById, updateArticle, deleteArticle } from '@/lib/database/articles'
 
 interface RouteParams {
   params: {
@@ -7,12 +7,20 @@ interface RouteParams {
   }
 }
 
+// UUIDかどうかを判定するヘルパー関数
+function isUUID(str: string): boolean {
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+  return uuidRegex.test(str)
+}
+
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
     const { id } = params
 
-    // IDをslugとして扱う（edit pageではarticle-1, article-2などをIDとして使用）
-    const article = await getArticleBySlug(id)
+    // UUIDの場合はgetArticleById、それ以外はgetArticleBySlugを使用
+    const article = isUUID(id)
+      ? await getArticleById(id)
+      : await getArticleBySlug(id)
 
     if (!article) {
       return NextResponse.json(
@@ -45,7 +53,10 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     }
 
     // 既存記事の確認
-    const existingArticle = await getArticleBySlug(id)
+    const existingArticle = isUUID(id)
+      ? await getArticleById(id)
+      : await getArticleBySlug(id)
+
     if (!existingArticle) {
       return NextResponse.json(
         { error: '更新する記事が見つかりません' },
@@ -56,7 +67,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     // 記事を更新（IDとslugは変更しない）
     const updatedArticle = await updateArticle(existingArticle.id, {
       ...articleData,
-      slug: id, // スラッグは変更しない
+      slug: existingArticle.slug, // 既存のスラッグを保持
     })
 
     if (!updatedArticle) {
@@ -84,7 +95,10 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     const { id } = params
 
     // 既存記事の確認
-    const existingArticle = await getArticleBySlug(id)
+    const existingArticle = isUUID(id)
+      ? await getArticleById(id)
+      : await getArticleBySlug(id)
+
     if (!existingArticle) {
       return NextResponse.json(
         { error: '削除する記事が見つかりません' },

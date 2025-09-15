@@ -263,7 +263,7 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
   }
 }
 
-// 特定記事取得
+// 特定記事取得（スラッグによる）
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
   try {
     const { data, error } = await supabase
@@ -274,6 +274,41 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
       `)
       .eq('slug', slug)
       .eq('status', 'published')
+      .single()
+
+    if (error || !data) {
+      console.error('記事取得エラー:', error)
+      return null
+    }
+
+    // タグの取得
+    let tags: DatabaseArticleTag[] = []
+    if (data.tag_ids && data.tag_ids.length > 0) {
+      const { data: tagData } = await supabase
+        .from('article_tags')
+        .select('*')
+        .in('id', data.tag_ids)
+      tags = tagData || []
+    }
+
+    return transformDatabaseArticle(data, data.category, tags)
+
+  } catch (error) {
+    console.error('記事取得エラー:', error)
+    return null
+  }
+}
+
+// 特定記事取得（IDによる）
+export async function getArticleById(id: string): Promise<Article | null> {
+  try {
+    const { data, error } = await supabase
+      .from('articles')
+      .select(`
+        *,
+        category:article_categories!articles_category_id_fkey(*)
+      `)
+      .eq('id', id)
       .single()
 
     if (error || !data) {
