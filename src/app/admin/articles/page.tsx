@@ -113,21 +113,3 @@ export default async function ArticlesPage() {
     </div>
   )
 }
-        </div>
-
-        {articles.length === 0 && (
-          <div className="text-center py-12">
-            <div className="text-gray-400 text-lg mb-4">
-              まだ記事がありません
-            </div>
-            <Button asChild>
-              <Link href="/admin/articles/new">
-                最初の記事を作成する
-              </Link>
-            </Button>
-          </div>
-        )}
-      </div>
-    </div>
-  )
-}
