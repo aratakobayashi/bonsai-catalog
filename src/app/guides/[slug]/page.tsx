@@ -74,7 +74,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     openGraph: {
       title: seoTitle,
       description: seoDescription,
-      images: article.featuredImage ? [{ url: typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url }] : [],
+      images: article.featuredImage ? [{ url: `${typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url}?v=${new Date(article.updatedAt).getTime()}` }] : [],
       type: 'article',
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt,
@@ -84,7 +84,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       card: 'summary_large_image',
       title: seoTitle,
       description: seoDescription,
-      images: article.featuredImage ? [typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url] : [],
+      images: article.featuredImage ? [`${typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url}?v=${new Date(article.updatedAt).getTime()}`] : [],
     },
     alternates: {
       canonical: `https://www.bonsai-collection.com/guides/${params.slug}`,
@@ -158,7 +158,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               {article.featuredImage && (
                 <div className="aspect-video relative overflow-hidden">
                   <Image
-                    src={typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url}
+                    src={`${typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url}?v=${new Date(article.updatedAt).getTime()}`}
                     alt={typeof article.featuredImage === 'string' ? article.title : (article.featuredImage.alt || article.title)}
                     width={1200}
                     height={675}
