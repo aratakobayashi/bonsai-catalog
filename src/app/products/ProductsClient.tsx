@@ -36,16 +36,17 @@ export default function ProductsClient() {
 
     if (error) {
       console.error('商品データの取得エラー:', error)
+      return
     }
 
-    if (data) {
-      setProducts(data)
-      
+    if (data && data.length > 0) {
+      setProducts(data as Product[])
+
       // カテゴリとタグの一覧を生成
-      const categories = Array.from(new Set(data.map(p => p.category))).sort()
+      const categories = Array.from(new Set((data as Product[]).map(p => p.category))).filter(Boolean).sort()
       setAvailableCategories(categories)
-      
-      const allTags = data.flatMap(p => p.tags || [])
+
+      const allTags = (data as Product[]).flatMap(p => p.tags || [])
       const uniqueTags = Array.from(new Set(allTags)).sort()
       setAvailableTags(uniqueTags)
     }

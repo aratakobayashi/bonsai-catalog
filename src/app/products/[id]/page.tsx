@@ -18,7 +18,8 @@ import {
 import { ArrowLeft, ExternalLink, Tag, Calendar, Package, ShoppingBag, Ruler, Sun, Droplets, Heart } from 'lucide-react'
 import { generateProductSEO } from '@/lib/seo-utils'
 import { generateProductBreadcrumbs } from '@/lib/breadcrumb-utils'
-import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
+import { BreadcrumbStructuredData, ProductStructuredData, FAQStructuredData } from '@/components/seo/StructuredData'
+import { getProductFAQs } from '@/lib/faq-data'
 import type { Product } from '@/types'
 
 interface ProductPageProps {
@@ -90,9 +91,30 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const relatedProducts = await getRelatedProducts(product)
   const breadcrumbs = generateProductBreadcrumbs(product)
 
+  // 商品に関連するFAQを自動生成
+  const productFAQs = getProductFAQs(
+    product.name,
+    product.category,
+    product.tags || []
+  )
+
   return (
     <>
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
+      <ProductStructuredData
+        name={product.name}
+        description={product.description || ''}
+        image={product.image_url || ''}
+        price={product.price}
+        category={product.category}
+        availability="InStock"
+      />
+      {productFAQs.length > 0 && (
+        <FAQStructuredData
+          faqs={productFAQs}
+          baseUrl="https://www.bonsai-collection.com"
+        />
+      )}
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="container mx-auto px-4">
         {/* 戻るボタン */}

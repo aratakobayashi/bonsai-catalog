@@ -135,7 +135,7 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       }
 
       // タグの取得
-      const allTagIds = data.flatMap(article => article.tag_ids || [])
+      const allTagIds = (data as any[]).flatMap(article => article.tag_ids || [])
       const uniqueTagIds = [...new Set(allTagIds)]
 
       let tags: DatabaseArticleTag[] = []
@@ -220,7 +220,7 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       }
 
       // タグの取得（記事のtag_idsから）
-      const allTagIds = data.flatMap(article => article.tag_ids || [])
+      const allTagIds = (data as any[]).flatMap(article => article.tag_ids || [])
       const uniqueTagIds = [...new Set(allTagIds)]
 
       let tags: DatabaseArticleTag[] = []
@@ -283,15 +283,15 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
 
     // タグの取得
     let tags: DatabaseArticleTag[] = []
-    if (data.tag_ids && data.tag_ids.length > 0) {
+    if ((data as any).tag_ids && (data as any).tag_ids.length > 0) {
       const { data: tagData } = await supabase
         .from('article_tags')
         .select('*')
-        .in('id', data.tag_ids)
+        .in('id', (data as any).tag_ids)
       tags = tagData || []
     }
 
-    return transformDatabaseArticle(data, data.category, tags)
+    return transformDatabaseArticle(data as any, (data as any).category, tags)
 
   } catch (error) {
     console.error('記事取得エラー:', error)
@@ -318,15 +318,15 @@ export async function getArticleById(id: string): Promise<Article | null> {
 
     // タグの取得
     let tags: DatabaseArticleTag[] = []
-    if (data.tag_ids && data.tag_ids.length > 0) {
+    if ((data as any).tag_ids && (data as any).tag_ids.length > 0) {
       const { data: tagData } = await supabase
         .from('article_tags')
         .select('*')
-        .in('id', data.tag_ids)
+        .in('id', (data as any).tag_ids)
       tags = tagData || []
     }
 
-    return transformDatabaseArticle(data, data.category, tags)
+    return transformDatabaseArticle(data as any, (data as any).category, tags)
 
   } catch (error) {
     console.error('記事取得エラー:', error)
@@ -339,7 +339,7 @@ export async function createArticle(article: Omit<Article, 'id' | 'publishedAt' 
   try {
     const dbArticle = transformToDatabase(article)
 
-    const { data, error } = await supabase
+    const { data, error } = await (supabase as any)
       .from('articles')
       .insert(dbArticle)
       .select(`
@@ -355,15 +355,15 @@ export async function createArticle(article: Omit<Article, 'id' | 'publishedAt' 
 
     // タグの取得
     let tags: DatabaseArticleTag[] = []
-    if (data.tag_ids && data.tag_ids.length > 0) {
+    if ((data as any).tag_ids && (data as any).tag_ids.length > 0) {
       const { data: tagData } = await supabase
         .from('article_tags')
         .select('*')
-        .in('id', data.tag_ids)
+        .in('id', (data as any).tag_ids)
       tags = tagData || []
     }
 
-    return transformDatabaseArticle(data, data.category, tags)
+    return transformDatabaseArticle(data as any, (data as any).category, tags)
 
   } catch (error) {
     console.error('記事作成エラー:', error)
@@ -376,7 +376,7 @@ export async function updateArticle(id: string, updates: Partial<Article>): Prom
   try {
     const dbUpdates = transformToDatabase(updates)
 
-    const { data, error } = await supabase
+    const { data, error } = await (supabase as any)
       .from('articles')
       .update(dbUpdates)
       .eq('id', id)
@@ -393,15 +393,15 @@ export async function updateArticle(id: string, updates: Partial<Article>): Prom
 
     // タグの取得
     let tags: DatabaseArticleTag[] = []
-    if (data.tag_ids && data.tag_ids.length > 0) {
+    if ((data as any).tag_ids && (data as any).tag_ids.length > 0) {
       const { data: tagData } = await supabase
         .from('article_tags')
         .select('*')
-        .in('id', data.tag_ids)
+        .in('id', (data as any).tag_ids)
       tags = tagData || []
     }
 
-    return transformDatabaseArticle(data, data.category, tags)
+    return transformDatabaseArticle(data as any, (data as any).category, tags)
 
   } catch (error) {
     console.error('記事更新エラー:', error)
@@ -443,7 +443,7 @@ export async function getCategories(): Promise<ArticleCategory[]> {
       return []
     }
 
-    return (data || []).map(category => ({
+    return ((data as any) || []).map((category: any) => ({
       id: category.id,
       name: category.name,
       slug: category.slug,
@@ -471,7 +471,7 @@ export async function getTags(): Promise<ArticleTag[]> {
       return []
     }
 
-    return (data || []).map(tag => ({
+    return ((data as any) || []).map((tag: any) => ({
       id: tag.id,
       name: tag.name,
       slug: tag.slug,

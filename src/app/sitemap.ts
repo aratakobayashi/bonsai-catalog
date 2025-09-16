@@ -53,8 +53,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .select('id, created_at, updated_at')
       .eq('is_visible', true)
 
-    if (products) {
-      productPages = products.map((product) => ({
+    if (products && products.length > 0) {
+      productPages = (products as Array<{id: string, created_at: string, updated_at: string}>).map((product) => ({
         url: `${baseUrl}/products/${product.id}`,
         lastModified: new Date(product.updated_at || product.created_at),
         changeFrequency: 'weekly' as const,
@@ -92,8 +92,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .from('gardens')
       .select('id, created_at, updated_at')
 
-    if (gardens) {
-      gardenPages = gardens.map((garden) => ({
+    if (gardens && gardens.length > 0) {
+      gardenPages = (gardens as Array<{id: string, created_at: string, updated_at: string}>).map((garden) => ({
         url: `${baseUrl}/gardens/${garden.id}`,
         lastModified: new Date(garden.updated_at || garden.created_at),
         changeFrequency: 'monthly' as const,

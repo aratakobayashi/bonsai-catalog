@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "migrate-wordpress": "tsx src/scripts/wordpress-migration.ts"
+    "migrate-wordpress": "tsx src/scripts/wordpress-migration.ts",
+    "create-article": "tsx src/scripts/create-beginner-article.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.38.0",
@@ -21,6 +22,7 @@
     "@tiptap/react": "^3.4.2",
     "@tiptap/starter-kit": "^3.4.2",
     "@types/marked": "^6.0.0",
+    "@types/uuid": "^10.0.0",
     "cloudinary": "^2.7.0",
     "clsx": "^2.0.0",
     "dotenv": "^17.2.2",
@@ -32,6 +34,7 @@
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.6.0",
     "tailwind-merge": "^2.2.0",
+    "uuid": "^13.0.0",
     "web-vitals": "^5.1.0"
   },
   "devDependencies": {

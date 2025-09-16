@@ -71,7 +71,7 @@ export async function getRecommendedProducts(
     }
 
     // 関連度スコアで並び替え
-    const scoredProducts = products.map(product => ({
+    const scoredProducts = (products as any[]).map((product: any) => ({
       ...product,
       relevanceScore: calculateRelevanceScore(product, keywords, seasonalBoost)
     }))
