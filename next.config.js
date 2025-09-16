@@ -4,6 +4,12 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // TypeScript設定 - scriptsディレクトリを除外
+  typescript: {
+    ignoreBuildErrors: false,
+  },
+  // ビルド除外設定
+  excludeDefaultMomentLocales: true,
   // パフォーマンス最適化
   swcMinify: true,
   compiler: {
