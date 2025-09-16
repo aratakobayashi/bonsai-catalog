@@ -1,4 +1,5 @@
 import { Article } from '@/types'
+import type { FAQItem } from '@/lib/faq-data'
 
 interface ArticleStructuredDataProps {
   article: Article
@@ -237,6 +238,37 @@ export function BreadcrumbStructuredData({ breadcrumbs }: BreadcrumbStructuredDa
       "position": breadcrumb.position,
       "name": breadcrumb.name,
       "item": breadcrumb.url
+    }))
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(structuredData, null, 2)
+      }}
+    />
+  )
+}
+
+interface FAQStructuredDataProps {
+  faqs: FAQItem[]
+  baseUrl?: string
+}
+
+export function FAQStructuredData({ faqs, baseUrl = 'https://www.bonsai-collection.com' }: FAQStructuredDataProps) {
+  if (!faqs || faqs.length === 0) return null
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
     }))
   }
 

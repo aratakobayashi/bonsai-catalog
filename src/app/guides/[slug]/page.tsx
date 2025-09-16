@@ -12,9 +12,10 @@ import { RelatedArticles } from '@/components/features/RelatedArticles'
 import { ShareButtons } from '@/components/features/ShareButtons'
 import { TableOfContents } from '@/components/features/TableOfContents'
 import { ArticleProductCTA } from '@/components/features/ArticleProductCTA'
-import { ArticleStructuredData, HowToStructuredData, BreadcrumbStructuredData } from '@/components/seo/StructuredData'
+import { ArticleStructuredData, HowToStructuredData, BreadcrumbStructuredData, FAQStructuredData } from '@/components/seo/StructuredData'
 import { generateArticleSEO, generateHowToStructuredData } from '@/lib/seo-utils'
 import { generateArticleBreadcrumbs } from '@/lib/breadcrumb-utils'
+import { getRelatedFAQs } from '@/lib/faq-data'
 import { ArrowLeft, Calendar, Clock, Tag, User } from 'lucide-react'
 import { formatDate } from '@/lib/date-utils'
 import { processMarkdown, generateTableOfContents } from '@/lib/markdown'
@@ -120,6 +121,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   // パンくずリスト構造化データを生成
   const breadcrumbs = generateArticleBreadcrumbs(article)
 
+  // 記事に関連するFAQを自動生成
+  const relatedFAQs = getRelatedFAQs(article.title, article.content, 5)
+
   return (
     <>
       <ArticleStructuredData
@@ -135,6 +139,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         />
       )}
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
+      {relatedFAQs.length > 0 && (
+        <FAQStructuredData
+          faqs={relatedFAQs}
+          baseUrl="https://www.bonsai-collection.com"
+        />
+      )}
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       {/* 戻るボタン */}
       <div className="bg-white/90 backdrop-blur-sm border-b border-indigo-100">
