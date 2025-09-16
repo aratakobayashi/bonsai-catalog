@@ -4,7 +4,19 @@ import type { Product, Garden, Article, ArticleCategory, ArticleTag } from '@/ty
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// シングルトンパターンでSupabaseクライアントを作成
+let supabaseInstance: ReturnType<typeof createClient> | null = null
+
+export const supabase = (() => {
+  if (!supabaseInstance) {
+    supabaseInstance = createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        persistSession: false, // 認証セッションの永続化を無効にして重複を防ぐ
+      },
+    })
+  }
+  return supabaseInstance
+})()
 
 // データベース用の記事型（Supabase向けに調整）
 export interface DatabaseArticle {
