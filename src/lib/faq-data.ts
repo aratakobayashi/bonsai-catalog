@@ -3,7 +3,7 @@
 export interface FAQItem {
   question: string
   answer: string
-  category?: 'general' | 'care' | 'beginner' | 'purchase' | 'species'
+  category?: 'general' | 'care' | 'beginner' | 'purchase' | 'species' | 'trouble' | 'seasonal' | 'technique'
   keywords?: string[]
 }
 
