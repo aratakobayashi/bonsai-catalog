@@ -8,7 +8,7 @@ import { SearchWithAutocomplete } from '@/components/features/SearchWithAutocomp
 import { AdvancedFilter } from '@/components/features/AdvancedFilter'
 import { Button } from '@/components/ui/Button'
 import { PullToRefreshIndicator } from '@/components/ui/PullToRefreshIndicator'
-import { Grid, List, SlidersHorizontal } from 'lucide-react'
+import { Grid, List, SlidersHorizontal, ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { usePullToRefresh } from '@/hooks/usePullToRefresh'
 import type { Product, ProductFilters, SizeCategory } from '@/types'
@@ -23,6 +23,10 @@ export default function ProductsClient() {
   const [sortBy, setSortBy] = useState<'name' | 'price_asc' | 'price_desc' | 'created_at'>('created_at')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
+
+  // ページネーション関連のstate
+  const [currentPage, setCurrentPage] = useState(1)
+  const ITEMS_PER_PAGE = 18 // 18件/ページ
 
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -66,6 +70,7 @@ export default function ProductsClient() {
     const maxPrice = searchParams.get('maxPrice')
     const season = searchParams.get('season')
     const location = searchParams.get('location')
+    const page = searchParams.get('page')
 
     const newFilters: ProductFilters = {}
     if (category) newFilters.category = category
@@ -75,6 +80,10 @@ export default function ProductsClient() {
     if (maxPrice) newFilters.price_max = Number(maxPrice)
     if (season) newFilters.season = season.split(',')
     if (location) newFilters.location = location.split(',')
+
+    // ページ番号の復元
+    const pageNum = page ? Math.max(1, parseInt(page)) : 1
+    setCurrentPage(pageNum)
 
     setFilters(newFilters)
   }, [searchParams])
@@ -175,12 +184,16 @@ export default function ProductsClient() {
     })
 
     setFilteredProducts(filtered)
-  }, [products, filters, sortBy])
+    // フィルター変更時はページを1にリセット
+    if (currentPage > 1 && filtered.length <= ITEMS_PER_PAGE) {
+      setCurrentPage(1)
+    }
+  }, [products, filters, sortBy, currentPage])
 
   // URLパラメータを更新
-  const updateURLParams = (newFilters: ProductFilters) => {
+  const updateURLParams = (newFilters: ProductFilters, page: number = 1) => {
     const params = new URLSearchParams()
-    
+
     if (newFilters.category) params.set('category', newFilters.category)
     if (newFilters.tags && newFilters.tags[0]) params.set('tag', newFilters.tags[0])
     if (newFilters.size_category) params.set('size', newFilters.size_category)
@@ -188,6 +201,7 @@ export default function ProductsClient() {
     if (newFilters.price_max) params.set('maxPrice', newFilters.price_max.toString())
     if (newFilters.season && newFilters.season.length > 0) params.set('season', newFilters.season.join(','))
     if (newFilters.location && newFilters.location.length > 0) params.set('location', newFilters.location.join(','))
+    if (page > 1) params.set('page', page.toString())
 
     const queryString = params.toString()
     const url = queryString ? `/products?${queryString}` : '/products'
@@ -196,18 +210,37 @@ export default function ProductsClient() {
 
   const handleFilterChange = (newFilters: ProductFilters) => {
     setFilters(newFilters)
-    updateURLParams(newFilters)
+    setCurrentPage(1) // フィルター変更時はページを1にリセット
+    updateURLParams(newFilters, 1)
   }
 
   const handleSearch = (query: string) => {
     if (query) {
-      const searched = products.filter(p => 
+      const searched = products.filter(p =>
         p.name.toLowerCase().includes(query.toLowerCase()) ||
         p.description?.toLowerCase().includes(query.toLowerCase())
       )
       setFilteredProducts(searched)
     } else {
       setFilteredProducts(products)
+    }
+    setCurrentPage(1) // 検索時はページを1にリセット
+  }
+
+  // ページネーション計算
+  const totalItems = filteredProducts.length
+  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE)
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
+  const endIndex = startIndex + ITEMS_PER_PAGE
+  const currentPageProducts = filteredProducts.slice(startIndex, endIndex)
+
+  // ページ変更ハンドラー
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page)
+      updateURLParams(filters, page)
+      // ページ変更時はトップにスクロール
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 
@@ -287,7 +320,7 @@ export default function ProductsClient() {
               <div className="flex items-center justify-between w-full">
                 {!isLoading && (
                   <span className="text-neutral-600 font-medium">
-                    {filteredProducts.length}件の商品
+                    {totalItems}件中 {startIndex + 1}-{Math.min(endIndex, totalItems)}件を表示
                   </span>
                 )}
 
@@ -351,14 +384,15 @@ export default function ProductsClient() {
                   </div>
                 </div>
               </div>
-            ) : filteredProducts.length > 0 ? (
-              <div className={cn(
-                'transition-all duration-300',
-                viewMode === 'grid'
-                  ? 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6'
-                  : 'space-y-6'
-              )}>
-                {filteredProducts.map((product, index) => (
+            ) : currentPageProducts.length > 0 ? (
+              <>
+                <div className={cn(
+                  'transition-all duration-300',
+                  viewMode === 'grid'
+                    ? 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6'
+                    : 'space-y-6'
+                )}>
+                  {currentPageProducts.map((product, index) => (
                   <div
                     key={product.id}
                     className="animate-slide-up"
@@ -378,8 +412,109 @@ export default function ProductsClient() {
                       amazon_url={product.amazon_url}
                     />
                   </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+
+                {/* ページネーションUI */}
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-center space-x-2 mt-12 pt-8 border-t border-neutral-200">
+                    {/* 前へボタン */}
+                    <button
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className="flex items-center px-4 py-2 text-sm font-medium text-neutral-600 bg-white border border-neutral-300 rounded-lg hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    >
+                      <ChevronLeft className="h-4 w-4 mr-1" />
+                      前へ
+                    </button>
+
+                    {/* ページ番号ボタン */}
+                    <div className="flex items-center space-x-1">
+                      {(() => {
+                        const visiblePages = []
+                        const maxVisible = 7
+                        let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2))
+                        let endPage = Math.min(totalPages, startPage + maxVisible - 1)
+
+                        // 範囲調整
+                        if (endPage - startPage < maxVisible - 1) {
+                          startPage = Math.max(1, endPage - maxVisible + 1)
+                        }
+
+                        // 最初のページを表示
+                        if (startPage > 1) {
+                          visiblePages.push(
+                            <button
+                              key={1}
+                              onClick={() => handlePageChange(1)}
+                              className="px-3 py-2 text-sm font-medium text-neutral-600 bg-white border border-neutral-300 rounded-lg hover:bg-neutral-50 transition-colors"
+                            >
+                              1
+                            </button>
+                          )
+                          if (startPage > 2) {
+                            visiblePages.push(
+                              <span key="ellipsis1" className="px-2 text-neutral-400">
+                                ...
+                              </span>
+                            )
+                          }
+                        }
+
+                        // 中間のページを表示
+                        for (let i = startPage; i <= endPage; i++) {
+                          visiblePages.push(
+                            <button
+                              key={i}
+                              onClick={() => handlePageChange(i)}
+                              className={cn(
+                                'px-3 py-2 text-sm font-medium rounded-lg transition-colors',
+                                currentPage === i
+                                  ? 'bg-primary-600 text-white'
+                                  : 'text-neutral-600 bg-white border border-neutral-300 hover:bg-neutral-50'
+                              )}
+                            >
+                              {i}
+                            </button>
+                          )
+                        }
+
+                        // 最後のページを表示
+                        if (endPage < totalPages) {
+                          if (endPage < totalPages - 1) {
+                            visiblePages.push(
+                              <span key="ellipsis2" className="px-2 text-neutral-400">
+                                ...
+                              </span>
+                            )
+                          }
+                          visiblePages.push(
+                            <button
+                              key={totalPages}
+                              onClick={() => handlePageChange(totalPages)}
+                              className="px-3 py-2 text-sm font-medium text-neutral-600 bg-white border border-neutral-300 rounded-lg hover:bg-neutral-50 transition-colors"
+                            >
+                              {totalPages}
+                            </button>
+                          )
+                        }
+
+                        return visiblePages
+                      })()}
+                    </div>
+
+                    {/* 次へボタン */}
+                    <button
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      className="flex items-center px-4 py-2 text-sm font-medium text-neutral-600 bg-white border border-neutral-300 rounded-lg hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    >
+                      次へ
+                      <ChevronRight className="h-4 w-4 ml-1" />
+                    </button>
+                  </div>
+                )}
+              </>
             ) : (
               <div className="text-center py-24 animate-fade-in">
                 <div className="text-8xl text-neutral-300 mb-8 animate-float">🔍</div>
