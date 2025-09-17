@@ -24,7 +24,7 @@ export async function GET() {
     // 実際の商品データを取得
     const { data: products, error: dataError } = await supabase
       .from('products')
-      .select('id, name, category, price, status')
+      .select('id, name, category, price')
       .limit(10)
 
     if (dataError) {
