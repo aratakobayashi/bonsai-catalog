@@ -42,15 +42,30 @@ async function getProduct(id: string): Promise<Product | null> {
   return data
 }
 
-async function getRelatedProducts(product: Product, limit = 4): Promise<Product[]> {
+async function getRelatedProducts(category: string, excludeId: string, limit = 4): Promise<Product[]> {
   const { data } = await supabaseServer
     .from('products')
-    .select('*')
-    .eq('category', product.category)
-    .neq('id', product.id)
+    .select('id, name, price, category, image_url, amazon_url') // 必要フィールドのみ取得で高速化
+    .eq('category', category)
+    .neq('id', excludeId)
     .limit(limit)
 
   return data || []
+}
+
+// 🚀 パフォーマンス最適化: 完全並列データ取得関数
+async function getProductWithRelated(id: string) {
+  // 1回目: 商品詳細取得
+  const product = await getProduct(id)
+
+  if (!product) {
+    return { product: null, relatedProducts: [] }
+  }
+
+  // 2回目: カテゴリが分かったので関連商品を並列取得
+  const relatedProducts = await getRelatedProducts(product.category, id)
+
+  return { product, relatedProducts }
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
@@ -82,13 +97,13 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 }
 
 export default async function ProductDetailPage({ params }: ProductPageProps) {
-  const product = await getProduct(params.id)
+  // 🚀 並列データ取得で大幅高速化！
+  const { product, relatedProducts } = await getProductWithRelated(params.id)
 
   if (!product) {
     notFound()
   }
 
-  const relatedProducts = await getRelatedProducts(product)
   const breadcrumbs = generateProductBreadcrumbs(product)
 
   // 商品に関連するFAQを自動生成
