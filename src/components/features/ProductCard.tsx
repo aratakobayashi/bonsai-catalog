@@ -63,15 +63,17 @@ export function ProductCard({
       <div className={`border rounded-lg p-4 bg-white hover:shadow-md transition-shadow ${className}`}>
         <div className="flex items-start gap-3">
           {featured_image && (
-            <div className="w-16 h-16 rounded-md overflow-hidden flex-shrink-0">
-              <Image
-                src={featured_image}
-                alt={name}
-                width={64}
-                height={64}
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <Link href={`/products/${id}`}>
+              <div className="w-16 h-16 rounded-md overflow-hidden flex-shrink-0 cursor-pointer">
+                <Image
+                  src={featured_image}
+                  alt={name}
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </Link>
           )}
 
           <div className="flex-1 min-w-0">
@@ -111,38 +113,40 @@ export function ProductCard({
 
   return (
     <div className={`bg-white rounded-lg shadow-sm border hover:shadow-lg transition-all duration-300 hover:-translate-y-1 ${className}`}>
-      {/* 商品画像 */}
-      <div className="aspect-square relative overflow-hidden rounded-t-lg bg-gray-100">
-        {featured_image ? (
-          <Image
-            src={featured_image}
-            alt={name}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-green-100 to-blue-100">
-            <span className="text-4xl">🌲</span>
-          </div>
-        )}
+      {/* 商品画像 - クリック可能 */}
+      <Link href={`/products/${id}`}>
+        <div className="aspect-square relative overflow-hidden rounded-t-lg bg-gray-100 cursor-pointer">
+          {featured_image ? (
+            <Image
+              src={featured_image}
+              alt={name}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-green-100 to-blue-100">
+              <span className="text-4xl">🌲</span>
+            </div>
+          )}
 
-        {/* 価格バッジ */}
-        <div className="absolute top-3 right-3">
-          <Badge className="bg-white/90 backdrop-blur-sm shadow-sm text-gray-900 font-bold">
-            {formatPrice(price)}
-          </Badge>
-        </div>
-
-        {/* 難易度バッジ */}
-        {difficulty_level && (
-          <div className="absolute top-3 left-3">
-            <Badge variant="secondary" className={`${getDifficultyColor(difficulty_level)} backdrop-blur-sm`}>
-              {'⭐'.repeat(getDifficultyStars(difficulty_level))}
+          {/* 価格バッジ */}
+          <div className="absolute top-3 right-3">
+            <Badge className="bg-white/90 backdrop-blur-sm shadow-sm text-gray-900 font-bold">
+              {formatPrice(price)}
             </Badge>
           </div>
-        )}
-      </div>
+
+          {/* 難易度バッジ */}
+          {difficulty_level && (
+            <div className="absolute top-3 left-3">
+              <Badge variant="secondary" className={`${getDifficultyColor(difficulty_level)} backdrop-blur-sm`}>
+                {'⭐'.repeat(getDifficultyStars(difficulty_level))}
+              </Badge>
+            </div>
+          )}
+        </div>
+      </Link>
 
       {/* 商品情報 */}
       <div className="p-4">
