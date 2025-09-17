@@ -24,10 +24,10 @@ const nextConfig = {
   poweredByHeader: false,
   generateEtags: false,
   images: {
-    formats: ['image/webp', 'image/avif'],
+    formats: ['image/avif', 'image/webp'], // AVIF優先で最高圧縮
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 0, // キャッシュ完全無効化（記事画像更新テスト）
+    minimumCacheTTL: 60 * 60 * 24 * 30, // 30日間キャッシュでパフォーマンス大幅向上
     remotePatterns: [
       {
         protocol: 'https',

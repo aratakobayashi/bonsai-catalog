@@ -12,6 +12,7 @@ import { Toaster } from 'react-hot-toast'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://bonsai-catalog.vercel.app'), // OGP画像・SEO最適化
   title: '盆栽初心者から上級者まで - 盆栽コレクション | 育て方ガイド付き通販',
   description: '盆栽初心者におすすめ！真柏・ケヤキ・モミジなど人気の盆栽を育て方ガイド付きで販売。室内でも楽しめるミニ盆栽セットから本格派まで豊富な品揃え。水やり・手入れ方法も詳しく解説します。',
   keywords: [
