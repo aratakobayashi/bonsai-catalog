@@ -4,7 +4,7 @@ excerpt: >-
   盆栽の水やりを自動化する最新システムを徹底比較。スマホ連携、タイマー式、点滴式など、予算別・用途別におすすめの自動水やり器を紹介。旅行や出張が多い方必見の完全ガイド。
 category: お手入れ・管理
 tags: ["水やり", "自動化", "便利グッズ", "旅行対策", "初心者向け"]
-featuredImage: /images/articles/article-23-img-1.png
+featuredImage: /images/articles/article-18-img-1.png
 publishedAt: '2025-09-18T10:00:00'
 updatedAt: '2025-09-18T10:00:00'
 readingTime: 12
