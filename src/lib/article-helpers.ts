@@ -52,6 +52,18 @@ export const articleDatabase: ArticleLink[] = [
     tags: ['剪定', '芽摘み', '針金', '技術']
   },
   {
+    slug: 'article-8',
+    title: '初心者でもわかる！盆栽の肥料入門｜適切な施肥で健康な盆栽を育てる',
+    category: '初心者向け',
+    tags: ['肥料', '初心者', '管理']
+  },
+  {
+    slug: 'article-9',
+    title: '親子で楽しむ盆栽体験イベント7選｜家族で始める盆栽ライフ',
+    category: '初心者向け',
+    tags: ['体験', '親子', 'イベント']
+  },
+  {
     slug: 'article-10',
     title: '初心者でも安心！黒松の盆栽育て方マニュアル｜水やり・剪定・管理の基本',
     category: 'お手入れ・管理',
@@ -92,6 +104,12 @@ export const articleDatabase: ArticleLink[] = [
     title: '盆栽の植え替えガイド｜失敗しないタイミングと手順【初心者向け】',
     category: 'お手入れ・管理',
     tags: ['植え替え', '初心者', '手順']
+  },
+  {
+    slug: 'article-17',
+    title: '関東の盆栽展・展示会カレンダー｜2025年必見のイベント情報',
+    category: '初心者向け',
+    tags: ['展示会', 'イベント', '関東']
   },
   {
     slug: 'article-18',
@@ -182,6 +200,84 @@ export const articleDatabase: ArticleLink[] = [
     title: '【2025年版】結婚祝いに贈る盆栽5選｜夫婦の絆と家庭円満を願う縁起の良いギフト',
     category: '初心者向け',
     tags: ['結婚祝い', 'ギフト', '夫婦円満', '縁起物', '新生活']
+  },
+  {
+    slug: 'bonsai-annual-care-calendar-2025',
+    title: '【2025年完全版】盆栽初心者向け年間管理カレンダー',
+    category: '初心者向け',
+    tags: ['年間管理', 'カレンダー', '初心者', '管理']
+  },
+  {
+    slug: 'bonsai-pruning-master-guide-2025',
+    title: '【2025年完全版】盆栽剪定マスターガイド',
+    category: 'お手入れ・管理',
+    tags: ['剪定', 'マスターガイド', '技術']
+  },
+  {
+    slug: 'bonsai-watering-master-guide-2025',
+    title: '【2025年完全版】盆栽水やりマスターガイド',
+    category: 'お手入れ・管理',
+    tags: ['水やり', 'マスターガイド', '管理']
+  },
+  {
+    slug: 'bonsai-repotting-master-guide-2025',
+    title: '【2025年完全版】盆栽植え替えマスターガイド',
+    category: 'お手入れ・管理',
+    tags: ['植え替え', 'マスターガイド', '手順']
+  },
+  {
+    slug: 'elm-guide',
+    title: '欅（ニレ）の盆栽ガイド｜小さな巨樹を作る剪定テクニック【中級者向け】',
+    category: 'お手入れ・管理',
+    tags: ['欅', 'ニレ', '剪定', '中級者']
+  },
+  {
+    slug: 'sakura-general-guide',
+    title: '桜の盆栽入門｜一才桜・旭山桜の育て方と開花のコツ【初心者向け】',
+    category: '初心者向け',
+    tags: ['桜', '一才桜', '旭山桜', '花もの']
+  },
+  {
+    slug: 'maple-varieties-guide',
+    title: '山もみじ vs 野村もみじ｜美しい紅葉を楽しむ品種比較ガイド【初心者～中級者向け】',
+    category: 'お手入れ・管理',
+    tags: ['もみじ', '山もみじ', '野村もみじ', '紅葉']
+  },
+  {
+    slug: 'keyaki-guide',
+    title: 'ケヤキの盆栽完全マニュアル｜美しい箒作りと四季の管理【初心者～中級者向け】',
+    category: 'お手入れ・管理',
+    tags: ['ケヤキ', '箒作り', '管理']
+  },
+  {
+    slug: 'red-pine-guide',
+    title: '赤松の盆栽育て方｜黒松との違いと特徴的な管理法【初心者～中級者向け】',
+    category: 'お手入れ・管理',
+    tags: ['赤松', '松', '黒松', '管理']
+  },
+  {
+    slug: 'tosho-juniper-guide',
+    title: '杜松（トショウ）の盆栽入門｜自然な樹形作りと管理法【初心者～中級者向け】',
+    category: 'お手入れ・管理',
+    tags: ['杜松', 'トショウ', '樹形', '管理']
+  },
+  {
+    slug: 'issai-sakura-guide',
+    title: '一才桜の盆栽完全ガイド｜開花を楽しむ剪定・年間管理のコツ【初心者向け】',
+    category: '初心者向け',
+    tags: ['一才桜', '桜', '花もの', '剪定']
+  },
+  {
+    slug: 'beginner-tree-species-guide',
+    title: '盆栽初心者が最初に選ぶべき樹種5選【失敗しない選び方】',
+    category: '初心者向け',
+    tags: ['初心者', '樹種', '選び方']
+  },
+  {
+    slug: 'budget-guide',
+    title: '【2025年版】予算別盆栽購入ガイド｜3千円台から始める失敗しない選び方',
+    category: '初心者向け',
+    tags: ['予算', '購入ガイド', '初心者', '選び方']
   }
 ]
 
