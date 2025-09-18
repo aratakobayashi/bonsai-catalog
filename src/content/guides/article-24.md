@@ -4,7 +4,7 @@ excerpt: >-
   ダイソー、セリア、キャンドゥで揃う盆栽道具を徹底調査。たった1,100円で本格的な盆栽を始められる裏技を公開。初心者でも失敗しない100均活用術。
 category: 初心者向け
 tags: ["100均", "初心者", "節約", "ダイソー", "始め方"]
-featuredImage: /images/articles/article-11-img-1.png
+featuredImage: /images/articles/article-24-img-1.jpg
 publishedAt: '2025-09-18T11:00:00'
 updatedAt: '2025-09-18T11:00:00'
 readingTime: 15
