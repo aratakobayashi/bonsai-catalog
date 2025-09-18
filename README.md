@@ -263,4 +263,4 @@ WordPress(管理) → REST API → Next.js(表示)
 3. 🔄 記事機能統合開発（進行中）
 4. 📝 WordPress記事表示確認・最適化
 
----
+---# Force Vercel redeploy - 木  9 18 13:49:19 JST 2025
