@@ -1,6 +1,17 @@
 import { supabase, type DatabaseArticle, type DatabaseArticleCategory, type DatabaseArticleTag } from '@/lib/supabase'
 import type { Article, ArticleCategory, ArticleTag, ArticleListResponse, ArticleFilters } from '@/types'
 
+// Function to strip frontmatter from markdown content
+function stripFrontmatter(content: string): string {
+  if (content.startsWith('---')) {
+    const endIndex = content.indexOf('---', 3)
+    if (endIndex !== -1) {
+      return content.substring(endIndex + 3).trim()
+    }
+  }
+  return content
+}
+
 // データベース記事をフロントエンド用Article型に変換
 function transformDatabaseArticle(
   dbArticle: DatabaseArticle,
@@ -11,7 +22,7 @@ function transformDatabaseArticle(
     id: dbArticle.id,
     title: dbArticle.title,
     slug: dbArticle.slug,
-    content: dbArticle.content,
+    content: stripFrontmatter(dbArticle.content),
     excerpt: dbArticle.excerpt,
     featuredImage: dbArticle.featured_image_url ? {
       url: dbArticle.featured_image_url,
