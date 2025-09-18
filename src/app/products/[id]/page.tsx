@@ -20,6 +20,7 @@ import { generateProductSEO } from '@/lib/seo-utils'
 import { generateProductBreadcrumbs } from '@/lib/breadcrumb-utils'
 import { BreadcrumbStructuredData, ProductStructuredData, FAQStructuredData } from '@/components/seo/StructuredData'
 import { getProductFAQs } from '@/lib/faq-data'
+import { getRelatedArticles } from '@/lib/article-helpers'
 import type { Product } from '@/types'
 
 interface ProductPageProps {
@@ -111,6 +112,13 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     product.name,
     product.category,
     product.tags || []
+  )
+
+  // 商品に関連する記事を取得
+  const relatedArticles = getRelatedArticles(
+    product.category,
+    product.tags,
+    3
   )
 
   return (
@@ -361,7 +369,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
         {/* 関連商品 */}
         {relatedProducts.length > 0 && (
-          <div>
+          <div className="mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
               同じカテゴリの商品
             </h2>
@@ -396,6 +404,51 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+          </div>
+        )}
+
+        {/* 関連記事 */}
+        {relatedArticles.length > 0 && (
+          <div className="mb-16">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              📝 この商品に関連する育て方ガイド
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {relatedArticles.map((article) => (
+                <Card key={article.slug} className="overflow-hidden hover:shadow-lg transition-shadow group">
+                  <CardContent className="p-0">
+                    <Link href={`/guides/${article.slug}`}>
+                      <div className="p-6">
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
+                            {article.category}
+                          </span>
+                          <ExternalLink className="h-3 w-3 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                        </div>
+                        <h3 className="font-medium text-gray-900 mb-3 leading-snug group-hover:text-blue-600 transition-colors line-clamp-3">
+                          {article.title}
+                        </h3>
+                        <div className="flex flex-wrap gap-1">
+                          {article.tags?.slice(0, 3).map((tag, index) => (
+                            <span key={index} className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <div className="text-center mt-6">
+              <Button variant="outline" asChild>
+                <Link href="/guides" className="flex items-center gap-2">
+                  📚 すべての育て方ガイドを見る
+                  <ExternalLink className="h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </div>
         )}
