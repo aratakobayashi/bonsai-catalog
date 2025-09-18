@@ -30,6 +30,9 @@ interface ArticlesPageProps {
   }
 }
 
+// 動的レンダリングを強制してキャッシュ問題を回避
+export const dynamic = 'force-dynamic'
+
 export default async function ArticlesPage({ searchParams }: ArticlesPageProps) {
   // URLパラメータからフィルター条件を構築
   const filters = {
