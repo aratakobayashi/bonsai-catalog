@@ -58,7 +58,7 @@ slug: article-27
 
 ### 1. 黒松ミニ盆栽（コスパ最強の入門編）
 
-![黒松ミニ盆栽](https://m.media-amazon.com/images/I/41ESKwU6snL._AC_.jpg)
+![黒松ミニ盆栽](https://m.media-amazon.com/images/I/31-Y6ykvRjL._AC_.jpg)
 
 **おすすめ度：★★★★★**
 **実際の商品：[盆栽素材 黒松ミニ 曲あり](/products/b5f56831-a2e9-40b9-9d68-0e3ededab59c)**
@@ -80,7 +80,7 @@ slug: article-27
 
 ### 2. 糸魚川真柏（上品な曲がりの美）
 
-![糸魚川真柏](https://m.media-amazon.com/images/I/516DQWStJdL._AC_.jpg)
+![糸魚川真柏](https://m.media-amazon.com/images/I/51E5pGTA+KL._AC_.jpg)
 
 **おすすめ度：★★★★★**
 **実際の商品：[ミニ盆栽：糸魚川真柏（曲・3年生）](/products/e454fc48-b997-4e83-9341-1e8e9d487a07)**
@@ -108,7 +108,7 @@ slug: article-27
 
 ### 3. 五葉松小品盆栽（品格ある王道）
 
-![五葉松小品盆栽](https://m.media-amazon.com/images/I/514rKMbnmkL._AC_.jpg)
+![五葉松小品盆栽](/products/goyomatsu-bonsai.jpg)
 
 **おすすめ度：★★★★☆**
 **実際の商品：[五葉松 小品盆栽（瀬戸焼鉢）](/products/9858bd55-6d3e-406b-a3be-5db66fd23d38)**
@@ -132,7 +132,7 @@ slug: article-27
 
 ### 4. はじめてでも育てやすい五葉松（本格志向）
 
-![育てやすい五葉松](https://m.media-amazon.com/images/I/51t8pTKZdEL._AC_.jpg)
+![育てやすい五葉松](https://m.media-amazon.com/images/I/71x66VfHKHL._AC_SX679_.jpg)
 
 **おすすめ度：★★★★☆**
 **実際の商品：[盆栽妙 はじめてでも育てやすい五葉松](/products/749eb317-640a-486d-8ce2-272a83393ce3)**
@@ -158,7 +158,7 @@ slug: article-27
 
 ### 5. 四国五葉松（最高級ギフト）
 
-![四国五葉松](https://m.media-amazon.com/images/I/4154v4fhO7L._AC_.jpg)
+![四国五葉松](https://m.media-amazon.com/images/I/71CzZJIjfLL._AC_SY879_.jpg)
 
 **おすすめ度：★★★★★**
 **実際の商品：[四国五葉松 ミニ盆栽 鉢植え](/products/cebb1be6-436b-44e4-b130-c35cc626bf58)**
