@@ -4,7 +4,7 @@ excerpt: >-
   室内でも美しく育つ盆栽を厳選紹介。日当たりが限られるマンション・アパートでも失敗しない樹種選びと管理方法を専門家が解説。初心者でも安心の室内盆栽ライフを始めよう。
 category: 初心者向け
 tags: ["室内", "マンション", "アパート", "初心者", "おすすめ"]
-featuredImage: /images/articles/article-11-img-1.png
+featuredImage: /images/articles/article-25-img-1.png
 relatedProducts: ["b5f56831-a2e9-40b9-9d68-0e3ededab59c", "1a306dfb-6c1c-405b-a166-b594d4581dc2", "b8d84a68-4940-4cc8-8371-12cd795db934", "26b1245d-dde7-41a9-a926-bf921b09ae31", "939056dc-e5a1-48b7-8923-76399f23dc24"]
 publishedAt: '2025-09-18T13:00:00'
 updatedAt: '2025-09-18T13:00:00'

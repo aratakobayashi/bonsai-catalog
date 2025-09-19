@@ -4,7 +4,7 @@ excerpt: >-
   病気療養中の方への心のこもったお見舞い品として、癒し効果抜群の盆栽を厳選紹介。花咲く樹種や縁起の良い植物で、回復への願いを込めた特別な贈り物を。
 category: はじめての盆栽
 tags: ["お見舞い", "ギフト", "癒し", "花もの", "縁起物"]
-featuredImage: /images/articles/article-11-img-1.png
+featuredImage: /images/articles/article-28-img-1.png
 relatedProducts: ["ab18b6f7-d189-47f7-8405-24f6c7f806d9", "b524036f-edfe-4e26-a442-bb4d0e8a9c48", "0c382971-8be3-4765-987d-017f698476d8", "b9c5b238-8d51-4531-ac15-ca91647f6736", "fe4a33b5-d596-468f-a7f6-37387219e560"]
 publishedAt: '2025-09-18T16:00:00'
 updatedAt: '2025-09-18T16:00:00'

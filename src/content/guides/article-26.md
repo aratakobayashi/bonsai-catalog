@@ -4,7 +4,7 @@ excerpt: >-
   母の日に贈りたい美しい花咲く盆栽を厳選紹介。桜、藤、長寿梅など縁起の良い花もの盆栽で、お母さんへの感謝の気持ちを込めた特別なギフトを選ぼう。
 category: はじめての盆栽
 tags: ["母の日", "ギフト", "花もの", "プレゼント", "桜"]
-featuredImage: /images/articles/article-11-img-1.png
+featuredImage: /images/articles/article-26-ime-1.png
 relatedProducts: ["54e380bf-997f-4721-bb7e-a34e8e16f5de", "dff225fa-197b-4aad-9920-f5e553f9ff62", "b5051146-1f67-407f-9de3-d64f10811aac", "70b2d6ac-1322-43a0-baa3-38086b8b96ea", "9000c8af-6a24-46c4-85eb-a5117745d55d"]
 publishedAt: '2025-09-18T14:00:00'
 updatedAt: '2025-09-18T14:00:00'
