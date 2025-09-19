@@ -4,7 +4,7 @@ excerpt: "真柏盆栽の育て方を初心者にも分かりやすく完全解�
 category: "樹種別ガイド"
 tags: ["真柏盆栽", "糸魚川真柏", "ジンシャリ", "整枝", "針金かけ", "松柏類", "初心者向け"]
 publishedAt: "2025-01-19"
-featuredImage: "https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=800&h=600&fit=crop"
+featuredImage: "https://m.media-amazon.com/images/I/51E5pGTA+KL._AC_.jpg"
 seoDescription: "真柏盆栽の育て方を完全マスター。糸魚川真柏の特徴、ジンシャリ作り・整枝の年間管理法、針金かけの技術をプロが解説。初心者でも本格的な真柏盆栽を育てられます。"
 relatedProducts: ["e454fc48-b997-4e83-9341-1e8e9d487a07", "71f9036e-ae22-40b1-b019-be07dfee38b3", "1e54e7d2-6494-4d42-bfb6-c0033a46d59d"]
 ---
