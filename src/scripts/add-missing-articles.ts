@@ -105,8 +105,8 @@ async function addMissingArticles() {
     // 記事を追加
     const articlesToAdd = [
       {
-        slug: 'article-39',
-        filePath: 'src/content/guides/article-39.md',
+        slug: 'article-40',
+        filePath: 'src/content/guides/article-40.md',
         category: categoryToUse
       }
     ]
