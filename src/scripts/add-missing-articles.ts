@@ -102,32 +102,17 @@ async function addMissingArticles() {
     // 使用するカテゴリを決定
     const categoryToUse = beginnerCategory || defaultCategory
 
-    // 記事を更新（excerpt問題を修正）
-    const articlesToUpdate = [
+    // 記事を追加
+    const articlesToAdd = [
       {
-        slug: 'article-29',
-        filePath: 'src/content/guides/article-29.md',
-        category: categoryToUse
-      },
-      {
-        slug: 'article-32',
-        filePath: 'src/content/guides/article-32.md',
-        category: categoryToUse
-      },
-      {
-        slug: 'article-33',
-        filePath: 'src/content/guides/article-33.md',
-        category: categoryToUse
-      },
-      {
-        slug: 'article-34',
-        filePath: 'src/content/guides/article-34.md',
+        slug: 'article-39',
+        filePath: 'src/content/guides/article-39.md',
         category: categoryToUse
       }
     ]
 
-    for (const articleInfo of articlesToUpdate) {
-      console.log(`\n🔧 修正中: ${articleInfo.slug}`)
+    for (const articleInfo of articlesToAdd) {
+      console.log(`\n📝 処理中: ${articleInfo.slug}`)
 
       // 既存記事をチェック
       const { data: existingArticle } = await supabase
@@ -136,8 +121,8 @@ async function addMissingArticles() {
         .eq('slug', articleInfo.slug)
         .single()
 
-      if (!existingArticle) {
-        console.log(`⚠️  ${articleInfo.slug} が見つかりません。スキップ。`)
+      if (existingArticle) {
+        console.log(`⚠️  ${articleInfo.slug} は既に存在します。スキップ。`)
         continue
       }
 
@@ -197,23 +182,14 @@ async function addMissingArticles() {
         status: 'published' as const
       }
 
-      console.log(`💾 データベースを更新中...`)
+      console.log(`💾 データベースに追加中...`)
+      const createdArticle = await createArticle(article)
 
-      // 記事を更新
-      const { error } = await supabase
-        .from('articles')
-        .update({
-          excerpt: article.excerpt,
-          seo_description: article.seoDescription,
-          updated_at: new Date().toISOString()
-        })
-        .eq('slug', articleInfo.slug)
-
-      if (!error) {
-        console.log(`✅ ${articleInfo.slug} のexcerptを正常に更新しました`)
-        console.log(`📝 新しいExcerpt: ${article.excerpt}`)
+      if (createdArticle) {
+        console.log(`✅ ${articleInfo.slug} を正常に追加しました`)
+        console.log(`🔗 URL: https://bonsai-collection.com/guides/${articleInfo.slug}`)
       } else {
-        console.error(`❌ ${articleInfo.slug} の更新に失敗しました:`, error)
+        console.error(`❌ ${articleInfo.slug} の追加に失敗しました`)
       }
     }
 
