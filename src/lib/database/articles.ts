@@ -407,10 +407,15 @@ export async function updateArticle(id: string, updates: Partial<Article>): Prom
     // アイキャッチ画像が設定されていない場合、自動検出を試行
     // 既存記事でfeaturedImageがnullの場合、または明示的にfeaturedImageが未設定の場合
     if (existingArticle && !finalUpdates.featuredImage && !existingArticle.featured_image_url) {
-      const { detectFeaturedImage } = await import('@/lib/utils')
-      const detectedImage = detectFeaturedImage(existingArticle.slug)
-      if (detectedImage) {
-        finalUpdates.featuredImage = detectedImage
+      try {
+        const { detectFeaturedImage } = await import('@/lib/utils')
+        const detectedImage = detectFeaturedImage(existingArticle.slug)
+        if (detectedImage) {
+          finalUpdates.featuredImage = detectedImage
+        }
+      } catch (error) {
+        console.error('アイキャッチ自動検出エラー:', error)
+        // エラーが発生しても更新処理は続行
       }
     }
 

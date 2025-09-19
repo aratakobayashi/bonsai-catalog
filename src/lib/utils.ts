@@ -201,19 +201,17 @@ export function slugify(text: string): string {
  * 記事のslugに基づいてアイキャッチ画像を自動検出する
  * public/images/articles/ ディレクトリから対応する画像ファイルを探す
  */
-/**
- * 記事のslugに基づいてアイキャッチ画像を自動検出する
- * public/images/articles/ ディレクトリから対応する画像ファイルを探す
- */
 export function detectFeaturedImage(slug: string): { url: string; alt?: string } | null {
-  // サーバーサイドでのみファイルシステムにアクセス
+  // クライアントサイドでは何もしない
   if (typeof window !== 'undefined') {
-    return null // クライアントサイドでは何もしない
+    return null
   }
 
+  // サーバーサイドでのみファイルシステムにアクセス
   try {
-    const fs = require('fs')
-    const path = require('path')
+    // dynamic import to avoid bundling fs on client-side
+    const fs = eval('require')('fs')
+    const path = eval('require')('path')
     
     // 可能な画像拡張子
     const extensions = ['.png', '.jpg', '.jpeg', '.webp']
