@@ -79,4 +79,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withBundleAnalyzer(nextConfig)
+module.exports = withBundleAnalyzer(nextConfig)// Force deployment trigger 金  9 19 15:55:41 JST 2025
