@@ -395,7 +395,26 @@ export async function createArticle(article: Omit<Article, 'id' | 'publishedAt' 
 // 記事更新
 export async function updateArticle(id: string, updates: Partial<Article>): Promise<Article | null> {
   try {
-    const dbUpdates = transformToDatabase(updates)
+    // 既存記事を取得してslugを確認
+    const { data: existingArticle } = await supabase
+      .from('articles')
+      .select('slug, featured_image_url')
+      .eq('id', id)
+      .single()
+
+    let finalUpdates = { ...updates }
+    
+    // アイキャッチ画像が設定されていない場合、自動検出を試行
+    // 既存記事でfeaturedImageがnullの場合、または明示的にfeaturedImageが未設定の場合
+    if (existingArticle && !finalUpdates.featuredImage && !existingArticle.featured_image_url) {
+      const { detectFeaturedImage } = await import('@/lib/utils')
+      const detectedImage = detectFeaturedImage(existingArticle.slug)
+      if (detectedImage) {
+        finalUpdates.featuredImage = detectedImage
+      }
+    }
+
+    const dbUpdates = transformToDatabase(finalUpdates)
 
     const { data, error } = await (supabase as any)
       .from('articles')
