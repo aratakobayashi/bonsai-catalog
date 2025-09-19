@@ -86,7 +86,7 @@ export function ArticleList({ articlesData, currentFilters }: ArticleListProps) 
                 <div className="aspect-video relative overflow-hidden bg-gray-100 cursor-pointer">
                   {article.featuredImage ? (
                     <Image
-                      src={`${article.featuredImage.url}?v=${Date.now()}&r=${Math.random().toString(36)}`}
+                      src={article.featuredImage.url}
                       alt={article.featuredImage.alt || article.title}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

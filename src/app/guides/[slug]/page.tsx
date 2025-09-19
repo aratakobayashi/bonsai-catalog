@@ -60,15 +60,15 @@ export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
   const article = await getArticleBySlug(params.slug)
-
+  
   if (!article) {
     return {
-      title: '記事が見つかりません - 盆栽コレクション'
+      title: '記事が見つかりません',
+      description: 'お探しの記事は見つかりませんでした。'
     }
   }
 
-  // 🚀 自動SEO最適化エンジンを使用
-  const seo = generateArticleSEO(article)
+  const seo = generateSEOData(article)
 
   return {
     title: seo.title,
@@ -76,14 +76,14 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     keywords: seo.keywords,
     openGraph: {
       ...seo.openGraph,
-      images: article.featuredImage ? [{ url: `${typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url}?v=${Date.now()}&r=${Math.random().toString(36)}` }] : [],
+      images: article.featuredImage ? [{ url: typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url }] : [],
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt,
       authors: ['盆栽コレクション'],
     },
     twitter: {
       ...seo.twitter,
-      images: article.featuredImage ? [`${typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url}?v=${Date.now()}&r=${Math.random().toString(36)}`] : [],
+      images: article.featuredImage ? [typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url] : [],
     },
     alternates: {
       canonical: `https://www.bonsai-collection.com/guides/${params.slug}`,
@@ -181,7 +181,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               {article.featuredImage && (
                 <div className="aspect-video relative overflow-hidden">
                   <Image
-                    src={`${typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url}?v=${Date.now()}&r=${Math.random().toString(36)}`}
+                    src={typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url}
                     alt={typeof article.featuredImage === 'string' ? article.title : (article.featuredImage.alt || article.title)}
                     width={1200}
                     height={675}
