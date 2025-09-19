@@ -18,11 +18,34 @@ function parseFrontmatter(content: string) {
   const actualContent = content.substring(endIndex + 3).trim()
 
   const frontmatter: any = {}
-  frontmatterStr.split('\n').forEach(line => {
+  const lines = frontmatterStr.split('\n')
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
     const colonIndex = line.indexOf(':')
     if (colonIndex !== -1) {
       const key = line.substring(0, colonIndex).trim()
       let value = line.substring(colonIndex + 1).trim()
+
+      // Handle YAML folded block scalar (>- syntax)
+      if (value === '>-') {
+        // Collect subsequent indented lines
+        const indentedLines = []
+        for (let j = i + 1; j < lines.length; j++) {
+          const nextLine = lines[j]
+          // Check if line starts with spaces (indented)
+          if (nextLine.startsWith('  ') || nextLine.startsWith('\t')) {
+            indentedLines.push(nextLine.trim())
+          } else if (nextLine.trim() === '') {
+            // Skip empty lines
+            continue
+          } else {
+            // Non-indented line, stop collecting
+            break
+          }
+        }
+        value = indentedLines.join(' ').trim()
+      }
 
       // Remove quotes
       if ((value.startsWith('"') && value.endsWith('"')) ||
@@ -37,7 +60,7 @@ function parseFrontmatter(content: string) {
 
       frontmatter[key] = value
     }
-  })
+  }
 
   return { frontmatter, content: actualContent }
 }
@@ -79,42 +102,42 @@ async function addMissingArticles() {
     // 使用するカテゴリを決定
     const categoryToUse = beginnerCategory || defaultCategory
 
-    // 記事を追加
-    const articlesToAdd = [
+    // 記事を更新（excerpt問題を修正）
+    const articlesToUpdate = [
       {
-        slug: 'article-35',
-        filePath: 'src/content/guides/article-35.md',
+        slug: 'article-29',
+        filePath: 'src/content/guides/article-29.md',
         category: categoryToUse
       },
       {
-        slug: 'article-36',
-        filePath: 'src/content/guides/article-36.md',
+        slug: 'article-32',
+        filePath: 'src/content/guides/article-32.md',
         category: categoryToUse
       },
       {
-        slug: 'article-37',
-        filePath: 'src/content/guides/article-37.md',
+        slug: 'article-33',
+        filePath: 'src/content/guides/article-33.md',
         category: categoryToUse
       },
       {
-        slug: 'article-38',
-        filePath: 'src/content/guides/article-38.md',
+        slug: 'article-34',
+        filePath: 'src/content/guides/article-34.md',
         category: categoryToUse
       }
     ]
 
-    for (const articleInfo of articlesToAdd) {
-      console.log(`\n📝 処理中: ${articleInfo.slug}`)
+    for (const articleInfo of articlesToUpdate) {
+      console.log(`\n🔧 修正中: ${articleInfo.slug}`)
 
-      // 既存チェック
+      // 既存記事をチェック
       const { data: existingArticle } = await supabase
         .from('articles')
         .select('id')
         .eq('slug', articleInfo.slug)
         .single()
 
-      if (existingArticle) {
-        console.log(`⚠️  ${articleInfo.slug} は既に存在します。スキップ。`)
+      if (!existingArticle) {
+        console.log(`⚠️  ${articleInfo.slug} が見つかりません。スキップ。`)
         continue
       }
 
@@ -174,14 +197,23 @@ async function addMissingArticles() {
         status: 'published' as const
       }
 
-      console.log(`💾 データベースに追加中...`)
-      const createdArticle = await createArticle(article)
+      console.log(`💾 データベースを更新中...`)
 
-      if (createdArticle) {
-        console.log(`✅ ${articleInfo.slug} を正常に追加しました`)
-        console.log(`🔗 URL: https://bonsai-collection.com/guides/${articleInfo.slug}`)
+      // 記事を更新
+      const { error } = await supabase
+        .from('articles')
+        .update({
+          excerpt: article.excerpt,
+          seo_description: article.seoDescription,
+          updated_at: new Date().toISOString()
+        })
+        .eq('slug', articleInfo.slug)
+
+      if (!error) {
+        console.log(`✅ ${articleInfo.slug} のexcerptを正常に更新しました`)
+        console.log(`📝 新しいExcerpt: ${article.excerpt}`)
       } else {
-        console.error(`❌ ${articleInfo.slug} の追加に失敗しました`)
+        console.error(`❌ ${articleInfo.slug} の更新に失敗しました:`, error)
       }
     }
 
