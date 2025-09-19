@@ -248,7 +248,7 @@ relatedProducts: ["b8d84a68-4940-4cc8-8371-12cd795db934", "e4c9ecde-bf47-40a0-ae
 
 ### 【初心者イチオシ】ミニ盆栽：長寿梅(信楽焼藍色鉢）
 
-![長寿梅の小さく可憧らしい白い花](https://images.unsplash.com/photo-1612024188627-55b2ab8f6e9c?w=500)
+![長寿梅の小さく可憧らしい白い花](https://m.media-amazon.com/images/I/41G4wlwJr0L._AC_.jpg)
 
 **価格**: ¥3,480
 **特徴**: 初心者に最適な長寿梅
@@ -265,7 +265,7 @@ relatedProducts: ["b8d84a68-4940-4cc8-8371-12cd795db934", "e4c9ecde-bf47-40a0-ae
 
 ### 【上品な仕上がり】遊恵盆栽 ミニ盆栽：長寿梅(瀬戸焼三彩鉢)
 
-![瀬戸焼三彩鉢の上品な仕上がり](https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500)
+![瀬戸焼三彩鉢の上品な仕上がり](https://m.media-amazon.com/images/I/61-loxrp0sL._AC_.jpg)
 
 **価格**: ¥3,480
 **特徴**: 瀬戸焼三彩鉢の美しい仕上がり
@@ -282,7 +282,7 @@ relatedProducts: ["b8d84a68-4940-4cc8-8371-12cd795db934", "e4c9ecde-bf47-40a0-ae
 
 ### 【本格派向け】盆栽長寿梅
 
-![充実した樹形の本格長寿梅](https://images.unsplash.com/photo-1612024091734-6e36ba536b60?w=500)
+![充実した樹形の本格長寿梅](https://m.media-amazon.com/images/I/51e7ET6fgFL._AC_.jpg)
 
 **価格**: ¥4,980
 **特徴**: より充実した長寿梅盆栽
@@ -299,7 +299,7 @@ relatedProducts: ["b8d84a68-4940-4cc8-8371-12cd795db934", "e4c9ecde-bf47-40a0-ae
 
 ### 【優雅な魅力】しだれ梅盆栽 白色の八重咲き
 
-![優雅なしだれ梅の白い八重花](https://images.unsplash.com/photo-1583484963720-4dd8f87cf85b?w=500)
+![優雅なしだれ梅の白い八重花](https://m.media-amazon.com/images/I/51h8sFlrjjL._AC_.jpg)
 
 **価格**: ¥5,500
 **特徴**: 優雅なしだれ梅の八重咲き
@@ -316,7 +316,7 @@ relatedProducts: ["b8d84a68-4940-4cc8-8371-12cd795db934", "e4c9ecde-bf47-40a0-ae
 
 ### 【別バリエーション】ミニ盆栽：長寿梅(信楽焼藍色鉢）
 
-![異なる樹形の長寿梅個体](https://images.unsplash.com/photo-1551298370-8d3b0db2de1f?w=500)
+![異なる樹形の長寿梅個体](https://m.media-amazon.com/images/I/41G4wlwJr0L._AC_.jpg)
 
 **価格**: ¥3,480
 **特徴**: 長寿梅の別個体
