@@ -348,7 +348,17 @@ export async function getArticleById(id: string): Promise<Article | null> {
 // 記事作成
 export async function createArticle(article: Omit<Article, 'id' | 'publishedAt' | 'updatedAt'>): Promise<Article | null> {
   try {
-    const dbArticle = transformToDatabase(article)
+    // アイキャッチ画像が設定されていない場合、自動検出を試行
+    let finalArticle = { ...article }
+    if (!finalArticle.featuredImage && finalArticle.slug) {
+      const { detectFeaturedImage } = await import('@/lib/utils')
+      const detectedImage = detectFeaturedImage(finalArticle.slug)
+      if (detectedImage) {
+        finalArticle.featuredImage = detectedImage
+      }
+    }
+
+    const dbArticle = transformToDatabase(finalArticle)
 
     const { data, error } = await (supabase as any)
       .from('articles')

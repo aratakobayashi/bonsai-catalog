@@ -196,3 +196,60 @@ export function slugify(text: string): string {
     .replace(/[\s_-]+/g, '-')
     .replace(/^-+|-+$/g, '')
 }
+
+/**
+ * 記事のslugに基づいてアイキャッチ画像を自動検出する
+ * public/images/articles/ ディレクトリから対応する画像ファイルを探す
+ */
+/**
+ * 記事のslugに基づいてアイキャッチ画像を自動検出する
+ * public/images/articles/ ディレクトリから対応する画像ファイルを探す
+ */
+export function detectFeaturedImage(slug: string): { url: string; alt?: string } | null {
+  // サーバーサイドでのみファイルシステムにアクセス
+  if (typeof window !== 'undefined') {
+    return null // クライアントサイドでは何もしない
+  }
+
+  try {
+    const fs = require('fs')
+    const path = require('path')
+    
+    // 可能な画像拡張子
+    const extensions = ['.png', '.jpg', '.jpeg', '.webp']
+    
+    // 検索パターン（優先度順）
+    const patterns = [
+      `${slug}-main`,      // slug-main.png (最優先)
+      `${slug}-img-1`,     // slug-img-1.png  
+      `${slug}`,           // slug.png
+    ]
+    
+    const articlesDir = path.join(process.cwd(), 'public', 'images', 'articles')
+    
+    // ディレクトリが存在しない場合はnullを返す
+    if (!fs.existsSync(articlesDir)) {
+      return null
+    }
+    
+    // パターンと拡張子の組み合わせで検索
+    for (const pattern of patterns) {
+      for (const ext of extensions) {
+        const filename = `${pattern}${ext}`
+        const filePath = path.join(articlesDir, filename)
+        
+        if (fs.existsSync(filePath)) {
+          return {
+            url: `/images/articles/${filename}`,
+            alt: `${slug}のアイキャッチ画像`
+          }
+        }
+      }
+    }
+    
+    return null
+  } catch (error) {
+    console.error('アイキャッチ画像検出エラー:', error)
+    return null
+  }
+}
