@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     }
   }
 
-  const seo = generateSEOData(article)
+  const seo = generateArticleSEO(article)
 
   return {
     title: seo.title,
