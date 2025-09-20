@@ -1,22 +1,35 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
-import { createClient } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase'
 
-async function getPopularArticles() {
-  const supabase = createClient()
-  const { data: articles } = await supabase
+interface PopularArticle {
+  id: string
+  title: string
+  slug: string
+  excerpt: string | null
+  reading_time: number | null
+  seo_title: string | null
+  category: string | null
+}
+
+async function getPopularArticles(): Promise<PopularArticle[]> {
+  const { data: articles, error } = await supabase
     .from('articles')
     .select('id, title, slug, excerpt, reading_time, seo_title, category')
     .eq('status', 'published')
     .order('created_at', { ascending: false })
     .limit(6)
 
-  return articles || []
+  if (error) {
+    console.error('Error fetching articles:', error)
+    return []
+  }
+
+  return (articles as PopularArticle[]) || []
 }
 
 async function getArticleStats() {
-  const supabase = createClient()
   const { count } = await supabase
     .from('articles')
     .select('*', { count: 'exact', head: true })
