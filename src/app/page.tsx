@@ -205,7 +205,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Carousel - Ikyu Style */}
       <section className="relative overflow-hidden">
-        <div className="relative h-[70vh] md:h-[80vh]">
+        <div className="relative h-[50vh] md:h-[60vh]">
           {/* Carousel Images */}
           {heroSlides.map((slide, index) => (
             <div
@@ -297,23 +297,17 @@ export default function HomePage() {
       </section>
 
       {/* Search Section */}
-      <section className="relative bg-white py-16">
+      <section className="relative bg-white py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-slate-800 mb-4 tracking-wide">
-              理想の盆栽を見つける
-            </h2>
-            <div className="h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent w-48 mx-auto"></div>
-          </div>
 
           {/* Premium Search Card */}
           <div className="max-w-5xl mx-auto">
-            <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl border border-slate-200/50 p-8 md:p-12 hover:shadow-3xl transition-all duration-500">
-              <div className="space-y-8">
+            <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl border border-slate-200/50 p-4 md:p-8 lg:p-12 hover:shadow-3xl transition-all duration-500">
+              <div className="space-y-6 md:space-y-8">
                 {/* Category Selection */}
                 <div>
-                  <h3 className="text-lg font-medium text-slate-700 mb-6 text-center tracking-wide">樹種カテゴリ</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                  <h3 className="text-base md:text-lg font-medium text-slate-700 mb-4 md:mb-6 text-center tracking-wide">樹種カテゴリ</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
                     {[
                       { value: '松柏類', icon: '🌲', label: '松柏類' },
                       { value: '雑木類', icon: '🍂', label: '雑木類' },
@@ -325,19 +319,19 @@ export default function HomePage() {
                         key={category.value}
                         onClick={() => setSelectedCategory(selectedCategory === category.value ? '' : category.value)}
                         className={`
-                          group p-5 rounded-xl border transition-all duration-300 hover:shadow-lg hover:-translate-y-1
+                          group p-3 md:p-5 rounded-xl border transition-all duration-300 hover:shadow-lg hover:-translate-y-1
                           ${selectedCategory === category.value
                             ? 'border-slate-400 bg-gradient-to-br from-slate-600 to-slate-700 text-white shadow-lg shadow-slate-600/30'
                             : 'border-slate-200 bg-white hover:border-slate-400 hover:shadow-slate-200/50 text-slate-700'
                           }
                         `}
                       >
-                        <div className={`text-2xl mb-3 transition-transform duration-300 group-hover:scale-110 ${
+                        <div className={`text-xl md:text-2xl mb-2 md:mb-3 transition-transform duration-300 group-hover:scale-110 ${
                           selectedCategory === category.value ? '' : 'group-hover:scale-110'
                         }`}>
                           {category.icon}
                         </div>
-                        <div className="text-sm font-medium tracking-wide">{category.label}</div>
+                        <div className="text-xs md:text-sm font-medium tracking-wide">{category.label}</div>
                       </button>
                     ))}
                   </div>
@@ -345,8 +339,8 @@ export default function HomePage() {
 
                 {/* Price Range */}
                 <div>
-                  <h3 className="text-lg font-medium text-slate-700 mb-6 text-center tracking-wide">価格帯</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                  <h3 className="text-base md:text-lg font-medium text-slate-700 mb-4 md:mb-6 text-center tracking-wide">価格帯</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
                     {[
                       { value: '0-10000', label: '〜1万円' },
                       { value: '10000-30000', label: '1万〜3万円' },
@@ -358,14 +352,14 @@ export default function HomePage() {
                         key={priceRange.value}
                         onClick={() => setSelectedPriceRange(selectedPriceRange === priceRange.value ? '' : priceRange.value)}
                         className={`
-                          group p-5 rounded-xl border transition-all duration-300 hover:shadow-lg hover:-translate-y-1
+                          group p-3 md:p-5 rounded-xl border transition-all duration-300 hover:shadow-lg hover:-translate-y-1
                           ${selectedPriceRange === priceRange.value
                             ? 'border-slate-400 bg-gradient-to-br from-slate-600 to-slate-700 text-white shadow-lg shadow-slate-600/30'
                             : 'border-slate-200 bg-white hover:border-slate-400 hover:shadow-slate-200/50 text-slate-700'
                           }
                         `}
                       >
-                        <div className="text-sm font-medium tracking-wide">{priceRange.label}</div>
+                        <div className="text-xs md:text-sm font-medium tracking-wide">{priceRange.label}</div>
                       </button>
                     ))}
                   </div>
@@ -373,15 +367,15 @@ export default function HomePage() {
 
 
                 {/* Premium Search Button */}
-                <div className="flex justify-center pt-6">
+                <div className="flex justify-center pt-4 md:pt-6">
                   <button
                     onClick={handleSearch}
                     disabled={!selectedCategory && !selectedPriceRange}
-                    className="group relative bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 hover:from-slate-600 hover:via-slate-500 hover:to-slate-600 text-white font-medium py-4 px-16 rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl hover:-translate-y-1 border border-slate-500/30"
+                    className="group relative bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 hover:from-slate-600 hover:via-slate-500 hover:to-slate-600 text-white font-medium py-3 px-8 md:py-4 md:px-16 rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl hover:-translate-y-1 border border-slate-500/30"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <span className="relative flex items-center gap-3 text-lg tracking-wide">
-                      <svg className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <span className="relative flex items-center gap-2 md:gap-3 text-base md:text-lg tracking-wide">
+                      <svg className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                       </svg>
                       盆栽を探す
