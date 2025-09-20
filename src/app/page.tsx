@@ -205,7 +205,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Carousel - Ikyu Style */}
       <section className="relative overflow-hidden">
-        <div className="relative h-[50vh] md:h-[60vh]">
+        <div className="relative h-[40vh] md:h-[45vh]">
           {/* Carousel Images */}
           {heroSlides.map((slide, index) => (
             <div
