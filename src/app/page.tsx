@@ -2,17 +2,8 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { supabase } from '@/lib/supabase'
-
-interface PopularArticle {
-  id: string
-  title: string
-  slug: string
-  excerpt: string | null
-  reading_time: number | null
-  seo_title: string | null
-  category: string | null
-  featured_image_url: string | null
-}
+import { getArticles } from '@/lib/database/articles'
+import type { Article } from '@/types'
 
 interface PopularProduct {
   id: string
@@ -65,20 +56,19 @@ async function getPopularGardens(): Promise<PopularGarden[]> {
   return (gardens as PopularGarden[]) || []
 }
 
-async function getPopularArticles(): Promise<PopularArticle[]> {
-  const { data: articles, error } = await supabase
-    .from('articles')
-    .select('id, title, slug, excerpt, reading_time, seo_title, category, featured_image_url')
-    .eq('status', 'published')
-    .order('created_at', { ascending: false })
-    .limit(6)
+async function getPopularArticles() {
+  try {
+    const articlesData = await getArticles({
+      limit: 6,
+      sortBy: 'publishedAt',
+      sortOrder: 'desc'
+    })
 
-  if (error) {
+    return articlesData.articles || []
+  } catch (error) {
     console.error('Error fetching articles:', error)
     return []
   }
-
-  return (articles as PopularArticle[]) || []
 }
 
 async function getArticleStats() {
@@ -222,14 +212,14 @@ export default async function HomePage() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {popularArticles.length > 0 ? (
-              popularArticles.map((article) => (
+              popularArticles.map((article: Article) => (
                 <Link key={article.id} href={`/guides/${article.slug}`}>
                   <Card className="hover:shadow-lg transition-shadow duration-300 h-full overflow-hidden">
-                    {article.featured_image_url && (
+                    {article.featuredImage?.url && (
                       <div className="h-48 relative">
                         <img
-                          src={article.featured_image_url}
-                          alt={article.title}
+                          src={article.featuredImage.url}
+                          alt={article.featuredImage.alt || article.title}
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -237,10 +227,10 @@ export default async function HomePage() {
                     <CardContent className="p-6">
                       <div className="flex items-center justify-between mb-3">
                         <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded">
-                          {article.category || 'ガイド'}
+                          {article.category?.name || 'ガイド'}
                         </span>
                         <span className="text-xs text-gray-500">
-                          {article.reading_time}分読了
+                          {article.readingTime}分読了
                         </span>
                       </div>
                       <h3 className="text-lg font-medium text-gray-900 mb-3 line-clamp-2">
