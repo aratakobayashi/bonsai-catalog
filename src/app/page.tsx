@@ -389,45 +389,57 @@ export default function HomePage() {
       </section>
 
       {/* Popular Products Section */}
-      <section className="py-16">
+      <section className="py-16 md:py-20 bg-slate-50/30">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between mb-10">
-            <h2 className="text-3xl font-light text-gray-900">人気の盆栽</h2>
-            <Button variant="outline" asChild>
-              <Link href="/products">すべて見る</Link>
-            </Button>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-light text-slate-800 mb-4 tracking-wide">
+              人気の盆栽
+            </h2>
+            <div className="h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent w-32 mx-auto mb-6"></div>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-800 font-medium transition-colors duration-300 group"
+            >
+              すべて見る
+              <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {popularProducts.length > 0 ? (
               popularProducts.map((product) => (
-                <Link key={product.id} href={`/products/${product.id}`}>
-                  <Card className="hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                    <div className="aspect-square relative">
+                <Link key={product.id} href={`/products/${product.id}`} className="group">
+                  <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-slate-100">
+                    <div className="aspect-square relative overflow-hidden">
                       <img
                         src={product.image_url}
                         alt={product.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className="absolute top-3 right-3 bg-white px-2 py-1 rounded-full text-sm font-medium">
-                        ¥{product.price.toLocaleString()}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-500"></div>
+                      <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg">
+                        <span className="text-sm font-semibold text-slate-700 tracking-wide">
+                          ¥{product.price.toLocaleString()}
+                        </span>
                       </div>
                     </div>
-                    <CardContent className="p-4">
-                      <h3 className="font-medium text-gray-900 mb-1 line-clamp-2">
+                    <div className="p-6">
+                      <h3 className="font-medium text-slate-800 mb-2 line-clamp-2 text-lg leading-relaxed tracking-wide">
                         {product.name}
                       </h3>
-                      <p className="text-sm text-gray-500 mb-2">{product.category}</p>
+                      <p className="text-sm text-slate-500 mb-3 tracking-wide">{product.category}</p>
                       <div className="flex items-center justify-between">
-                        <span className="text-xs text-gray-400">{product.size_category}</span>
+                        <span className="text-xs text-slate-400 tracking-wide">{product.size_category}</span>
                         {product.beginner_friendly && (
-                          <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded">
+                          <span className="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">
                             初心者向け
                           </span>
                         )}
                       </div>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 </Link>
               ))
             ) : (
@@ -440,46 +452,56 @@ export default function HomePage() {
       </section>
 
       {/* Popular Articles Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between mb-10">
-            <h2 className="text-3xl font-light text-gray-900">人気の記事</h2>
-            <Button variant="outline" asChild>
-              <Link href="/guides">すべて見る</Link>
-            </Button>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-light text-slate-800 mb-4 tracking-wide">
+              人気の記事
+            </h2>
+            <div className="h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent w-32 mx-auto mb-6"></div>
+            <Link
+              href="/guides"
+              className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-800 font-medium transition-colors duration-300 group"
+            >
+              すべて見る
+              <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {popularArticles.length > 0 ? (
               popularArticles.map((article: Article) => (
-                <Link key={article.id} href={`/guides/${article.slug}`}>
-                  <Card className="hover:shadow-lg transition-shadow duration-300 h-full overflow-hidden">
+                <Link key={article.id} href={`/guides/${article.slug}`} className="group">
+                  <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-slate-100 h-full">
                     {article.featuredImage?.url && (
-                      <div className="h-48 relative">
+                      <div className="h-56 relative overflow-hidden">
                         <img
                           src={article.featuredImage.url}
                           alt={article.featuredImage.alt || article.title}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-500"></div>
                       </div>
                     )}
-                    <CardContent className="p-6">
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded">
+                    <div className="p-6 flex-1">
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium tracking-wide">
                           {article.category?.name || 'ガイド'}
                         </span>
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-slate-400 tracking-wide">
                           {article.readingTime}分読了
                         </span>
                       </div>
-                      <h3 className="text-lg font-medium text-gray-900 mb-3 line-clamp-2">
+                      <h3 className="text-lg font-medium text-slate-800 mb-3 line-clamp-2 leading-relaxed tracking-wide">
                         {article.title}
                       </h3>
-                      <p className="text-gray-600 text-sm line-clamp-3">
+                      <p className="text-slate-600 text-sm line-clamp-3 leading-relaxed">
                         {article.excerpt}
                       </p>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 </Link>
               ))
             ) : (
@@ -492,45 +514,54 @@ export default function HomePage() {
       </section>
 
       {/* Popular Gardens Section */}
-      <section className="py-16">
+      <section className="py-16 md:py-20 bg-slate-50/30">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between mb-10">
-            <h2 className="text-3xl font-light text-gray-900">人気の盆栽園</h2>
-            <Button variant="outline" asChild>
-              <Link href="/gardens">すべて見る</Link>
-            </Button>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-light text-slate-800 mb-4 tracking-wide">
+              人気の盆栽園
+            </h2>
+            <div className="h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent w-32 mx-auto mb-6"></div>
+            <Link
+              href="/gardens"
+              className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-800 font-medium transition-colors duration-300 group"
+            >
+              すべて見る
+              <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {popularGardens.length > 0 ? (
               popularGardens.map((garden) => (
-                <Link key={garden.id} href={`/gardens/${garden.id}`}>
-                  <Card className="hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-6">
-                      <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <Link key={garden.id} href={`/gardens/${garden.id}`} className="group">
+                  <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-slate-100 h-full">
+                    <div className="p-6">
+                      <h3 className="text-lg font-medium text-slate-800 mb-3 leading-relaxed tracking-wide">
                         {garden.name}
                       </h3>
-                      <p className="text-sm text-gray-500 mb-3">{garden.prefecture}</p>
-                      <p className="text-gray-600 text-sm line-clamp-3 mb-4">
+                      <p className="text-sm text-slate-500 mb-4 tracking-wide">{garden.prefecture}</p>
+                      <p className="text-slate-600 text-sm line-clamp-3 mb-6 leading-relaxed">
                         {garden.description}
                       </p>
                       <div className="flex items-center justify-between">
                         {garden.rating && (
                           <div className="flex items-center">
-                            <span className="text-yellow-400">★</span>
-                            <span className="text-sm text-gray-600 ml-1">
+                            <span className="text-amber-400">★</span>
+                            <span className="text-sm text-slate-600 ml-1 font-medium">
                               {garden.rating}
                             </span>
                           </div>
                         )}
                         {garden.specialties && garden.specialties.length > 0 && (
-                          <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded">
+                          <span className="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium tracking-wide">
                             {garden.specialties[0]}
                           </span>
                         )}
                       </div>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 </Link>
               ))
             ) : (
