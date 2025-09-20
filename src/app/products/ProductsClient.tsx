@@ -70,6 +70,7 @@ export default function ProductsClient() {
     const maxPrice = searchParams.get('maxPrice')
     const season = searchParams.get('season')
     const location = searchParams.get('location')
+    const beginnerFriendly = searchParams.get('beginnerFriendly')
     const page = searchParams.get('page')
 
     const newFilters: ProductFilters = {}
@@ -80,6 +81,7 @@ export default function ProductsClient() {
     if (maxPrice) newFilters.price_max = Number(maxPrice)
     if (season) newFilters.season = season.split(',')
     if (location) newFilters.location = location.split(',')
+    if (beginnerFriendly === 'true') newFilters.beginner_friendly = true
 
     // ページ番号の復元
     const pageNum = page ? Math.max(1, parseInt(page)) : 1
@@ -168,6 +170,11 @@ export default function ProductsClient() {
       })
     }
 
+    // 初心者向けでフィルタ
+    if (filters.beginner_friendly) {
+      filtered = filtered.filter(p => p.beginner_friendly === true)
+    }
+
     // ソート
     filtered.sort((a, b) => {
       switch (sortBy) {
@@ -201,6 +208,7 @@ export default function ProductsClient() {
     if (newFilters.price_max) params.set('maxPrice', newFilters.price_max.toString())
     if (newFilters.season && newFilters.season.length > 0) params.set('season', newFilters.season.join(','))
     if (newFilters.location && newFilters.location.length > 0) params.set('location', newFilters.location.join(','))
+    if (newFilters.beginner_friendly) params.set('beginnerFriendly', 'true')
     if (page > 1) params.set('page', page.toString())
 
     const queryString = params.toString()

@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { Home, Package, User } from 'lucide-react'
+import { Home, Package, User, BookOpen } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navItems = [
@@ -12,8 +12,13 @@ const navItems = [
     icon: Home,
   },
   {
+    href: '/guides',
+    label: 'ガイド',
+    icon: BookOpen,
+  },
+  {
     href: '/products',
-    label: '商品一覧',
+    label: '商品',
     icon: Package,
   },
   {
