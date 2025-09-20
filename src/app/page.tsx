@@ -1,4 +1,8 @@
+'use client'
+
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { supabase } from '@/lib/supabase'
@@ -80,12 +84,68 @@ async function getArticleStats() {
   return count || 0
 }
 
-export default async function HomePage() {
-  const [popularProducts, popularArticles, popularGardens] = await Promise.all([
-    getPopularProducts(),
-    getPopularArticles(),
-    getPopularGardens()
-  ])
+export default function HomePage() {
+  const router = useRouter()
+  const [popularProducts, setPopularProducts] = useState<PopularProduct[]>([])
+  const [popularArticles, setPopularArticles] = useState<Article[]>([])
+  const [popularGardens, setPopularGardens] = useState<PopularGarden[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  // 検索フォームの状態
+  const [selectedCategory, setSelectedCategory] = useState('')
+  const [selectedPriceRange, setSelectedPriceRange] = useState('')
+
+  // データ取得
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [products, articles, gardens] = await Promise.all([
+          getPopularProducts(),
+          getPopularArticles(),
+          getPopularGardens()
+        ])
+        setPopularProducts(products)
+        setPopularArticles(articles)
+        setPopularGardens(gardens)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  // 検索ボタンクリック時の処理
+  const handleSearch = () => {
+    const params = new URLSearchParams()
+
+    if (selectedCategory) {
+      params.set('category', selectedCategory)
+    }
+
+    if (selectedPriceRange) {
+      const [min, max] = selectedPriceRange.split('-')
+      if (min && min !== '0') params.set('minPrice', min)
+      if (max && max !== '') params.set('maxPrice', max)
+    }
+
+    const queryString = params.toString()
+    const url = queryString ? `/products?${queryString}` : '/products'
+    router.push(url)
+  }
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600 mb-4"></div>
+          <p className="text-gray-600">読み込み中...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -112,7 +172,11 @@ export default async function HomePage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     種類
                   </label>
-                  <select className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+                  <select
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  >
                     <option value="">すべての種類</option>
                     <option value="松柏類">松柏類</option>
                     <option value="雑木類">雑木類</option>
@@ -127,7 +191,11 @@ export default async function HomePage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     価格帯
                   </label>
-                  <select className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+                  <select
+                    value={selectedPriceRange}
+                    onChange={(e) => setSelectedPriceRange(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  >
                     <option value="">価格を選択</option>
                     <option value="0-10000">〜1万円</option>
                     <option value="10000-30000">1万円〜3万円</option>
@@ -139,7 +207,11 @@ export default async function HomePage() {
 
                 {/* Search Button */}
                 <div className="flex items-end">
-                  <button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200">
+                  <button
+                    onClick={handleSearch}
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={!selectedCategory && !selectedPriceRange}
+                  >
                     検索する
                   </button>
                 </div>
