@@ -93,6 +93,7 @@ export interface ProductFilters {
   search?: string
   season?: string[]
   location?: string[]
+  beginner_friendly?: boolean
 }
 
 // 盆栽園の専門分野enum
