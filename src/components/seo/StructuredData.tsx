@@ -281,3 +281,131 @@ export function FAQStructuredData({ faqs, baseUrl = 'https://www.bonsai-collecti
     />
   )
 }
+
+interface LocalBusinessStructuredDataProps {
+  name: string
+  description: string
+  address?: string
+  phone?: string
+  website?: string
+  image?: string
+  rating?: number
+  reviewCount?: number
+  latitude?: number
+  longitude?: number
+  businessHours?: string
+  specialties?: string[]
+  baseUrl: string
+  businessId: string
+}
+
+export function LocalBusinessStructuredData({
+  name,
+  description,
+  address,
+  phone,
+  website,
+  image,
+  rating,
+  reviewCount,
+  latitude,
+  longitude,
+  businessHours,
+  specialties = [],
+  baseUrl,
+  businessId
+}: LocalBusinessStructuredDataProps) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": name,
+    "description": description,
+    "url": `${baseUrl}/gardens/${businessId}`,
+    ...(image && { "image": image }),
+    ...(address && { "address": address }),
+    ...(phone && { "telephone": phone }),
+    ...(website && { "sameAs": [website] }),
+    ...(latitude && longitude && {
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": latitude,
+        "longitude": longitude
+      }
+    }),
+    ...(businessHours && { "openingHours": businessHours }),
+    ...(rating && {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": rating,
+        "bestRating": 5,
+        "worstRating": 1,
+        ...(reviewCount && { "reviewCount": reviewCount })
+      }
+    }),
+    ...(specialties.length > 0 && {
+      "makesOffer": specialties.map(specialty => ({
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": `${specialty}専門サービス`,
+          "category": specialty
+        }
+      }))
+    }),
+    "priceRange": "$$",
+    "servesCuisine": "盆栽・園芸",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `${baseUrl}/gardens/${businessId}`
+    }
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(structuredData, null, 2)
+      }}
+    />
+  )
+}
+
+interface OrganizationStructuredDataProps {
+  baseUrl: string
+}
+
+export function OrganizationStructuredData({ baseUrl }: OrganizationStructuredDataProps) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "盆栽コレクション",
+    "description": "盆栽初心者から上級者まで、美しい盆栽とその育て方をご案内する専門サイトです。",
+    "url": baseUrl,
+    "logo": `${baseUrl}/logo.png`,
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "availableLanguage": ["Japanese"]
+    },
+    "sameAs": [
+      // SNSアカウントがあれば追加
+    ],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${baseUrl}/products?search={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(structuredData, null, 2)
+      }}
+    />
+  )
+}

@@ -5,7 +5,7 @@ import '@/styles/editor.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { BottomNavigation } from '@/components/layout/BottomNavigation'
-import { WebSiteStructuredData } from '@/components/seo/StructuredData'
+import { WebSiteStructuredData, OrganizationStructuredData } from '@/components/seo/StructuredData'
 import { WebVitals } from '@/components/performance/WebVitals'
 import { Toaster } from 'react-hot-toast'
 
@@ -60,6 +60,7 @@ export default function RootLayout({
     <html lang="ja">
       <body className={inter.className}>
         <WebSiteStructuredData baseUrl="https://www.bonsai-collection.com" />
+        <OrganizationStructuredData baseUrl="https://www.bonsai-collection.com" />
         <WebVitals />
         <div className="min-h-screen flex flex-col">
           <Header />

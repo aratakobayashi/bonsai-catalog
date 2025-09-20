@@ -12,3 +12,4 @@ Disallow: /_next/
 
 # サイトマップの場所を指定
 Sitemap: https://www.bonsai-collection.com/sitemap.xml
+Sitemap: https://www.bonsai-collection.com/sitemap-images.xml
