@@ -11,6 +11,7 @@ interface PopularArticle {
   reading_time: number | null
   seo_title: string | null
   category: string | null
+  featured_image_url: string | null
 }
 
 interface PopularProduct {
@@ -67,7 +68,7 @@ async function getPopularGardens(): Promise<PopularGarden[]> {
 async function getPopularArticles(): Promise<PopularArticle[]> {
   const { data: articles, error } = await supabase
     .from('articles')
-    .select('id, title, slug, excerpt, reading_time, seo_title, category')
+    .select('id, title, slug, excerpt, reading_time, seo_title, category, featured_image_url')
     .eq('status', 'published')
     .order('created_at', { ascending: false })
     .limit(6)
@@ -169,36 +170,42 @@ export default async function HomePage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {popularProducts.map((product) => (
-              <Link key={product.id} href={`/products/${product.id}`}>
-                <Card className="hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                  <div className="aspect-square relative">
-                    <img 
-                      src={product.image_url} 
-                      alt={product.name}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute top-3 right-3 bg-white px-2 py-1 rounded-full text-sm font-medium">
-                      ¥{product.price.toLocaleString()}
+            {popularProducts.length > 0 ? (
+              popularProducts.map((product) => (
+                <Link key={product.id} href={`/products/${product.id}`}>
+                  <Card className="hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                    <div className="aspect-square relative">
+                      <img
+                        src={product.image_url}
+                        alt={product.name}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute top-3 right-3 bg-white px-2 py-1 rounded-full text-sm font-medium">
+                        ¥{product.price.toLocaleString()}
+                      </div>
                     </div>
-                  </div>
-                  <CardContent className="p-4">
-                    <h3 className="font-medium text-gray-900 mb-1 line-clamp-2">
-                      {product.name}
-                    </h3>
-                    <p className="text-sm text-gray-500 mb-2">{product.category}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-400">{product.size_category}</span>
-                      {product.beginner_friendly && (
-                        <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded">
-                          初心者向け
-                        </span>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+                    <CardContent className="p-4">
+                      <h3 className="font-medium text-gray-900 mb-1 line-clamp-2">
+                        {product.name}
+                      </h3>
+                      <p className="text-sm text-gray-500 mb-2">{product.category}</p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-gray-400">{product.size_category}</span>
+                        {product.beginner_friendly && (
+                          <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded">
+                            初心者向け
+                          </span>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <p className="text-gray-500">盆栽商品を準備中です...</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -214,28 +221,43 @@ export default async function HomePage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {popularArticles.map((article) => (
-              <Link key={article.id} href={`/guides/${article.slug}`}>
-                <Card className="hover:shadow-lg transition-shadow duration-300 h-full">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
-                        {article.category || 'ガイド'}
-                      </span>
-                      <span className="text-xs text-gray-500">
-                        {article.reading_time}分読了
-                      </span>
-                    </div>
-                    <h3 className="text-lg font-medium text-gray-900 mb-3 line-clamp-2">
-                      {article.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm line-clamp-3">
-                      {article.excerpt}
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+            {popularArticles.length > 0 ? (
+              popularArticles.map((article) => (
+                <Link key={article.id} href={`/guides/${article.slug}`}>
+                  <Card className="hover:shadow-lg transition-shadow duration-300 h-full overflow-hidden">
+                    {article.featured_image_url && (
+                      <div className="h-48 relative">
+                        <img
+                          src={article.featured_image_url}
+                          alt={article.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded">
+                          {article.category || 'ガイド'}
+                        </span>
+                        <span className="text-xs text-gray-500">
+                          {article.reading_time}分読了
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-medium text-gray-900 mb-3 line-clamp-2">
+                        {article.title}
+                      </h3>
+                      <p className="text-gray-600 text-sm line-clamp-3">
+                        {article.excerpt}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <p className="text-gray-500">記事を準備中です...</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -251,45 +273,42 @@ export default async function HomePage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {popularGardens.map((garden) => (
-              <Link key={garden.id} href={`/gardens/${garden.id}`}>
-                <Card className="hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                  {garden.image_url && (
-                    <div className="h-48 relative">
-                      <img 
-                        src={garden.image_url} 
-                        alt={garden.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  )}
-                  <CardContent className="p-4">
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">
-                      {garden.name}
-                    </h3>
-                    <p className="text-sm text-gray-500 mb-2">{garden.prefecture}</p>
-                    <p className="text-gray-600 text-sm line-clamp-2 mb-3">
-                      {garden.description}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      {garden.rating && (
-                        <div className="flex items-center">
-                          <span className="text-yellow-400">★</span>
-                          <span className="text-sm text-gray-600 ml-1">
-                            {garden.rating}
+            {popularGardens.length > 0 ? (
+              popularGardens.map((garden) => (
+                <Link key={garden.id} href={`/gardens/${garden.id}`}>
+                  <Card className="hover:shadow-lg transition-shadow duration-300">
+                    <CardContent className="p-6">
+                      <h3 className="text-lg font-medium text-gray-900 mb-2">
+                        {garden.name}
+                      </h3>
+                      <p className="text-sm text-gray-500 mb-3">{garden.prefecture}</p>
+                      <p className="text-gray-600 text-sm line-clamp-3 mb-4">
+                        {garden.description}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        {garden.rating && (
+                          <div className="flex items-center">
+                            <span className="text-yellow-400">★</span>
+                            <span className="text-sm text-gray-600 ml-1">
+                              {garden.rating}
+                            </span>
+                          </div>
+                        )}
+                        {garden.specialties && garden.specialties.length > 0 && (
+                          <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded">
+                            {garden.specialties[0]}
                           </span>
-                        </div>
-                      )}
-                      {garden.specialties && garden.specialties.length > 0 && (
-                        <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded">
-                          {garden.specialties[0]}
-                        </span>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <p className="text-gray-500">盆栽園情報を準備中です...</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
