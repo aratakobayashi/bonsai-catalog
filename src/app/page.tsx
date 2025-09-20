@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
@@ -95,6 +95,59 @@ export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedPriceRange, setSelectedPriceRange] = useState('')
 
+  // カルーセルの状態
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  // ヒーローカルーセルデータ
+  const heroSlides = [
+    {
+      id: 1,
+      image: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?q=80&w=2940&auto=format&fit=crop',
+      title: '松柏類の美学',
+      subtitle: '時を超えた伝統美',
+      description: '風雪に耐え抜いた力強さと優雅さを併せ持つ松柏類盆栽',
+      cta: '松柏類を見る',
+      link: '/products?category=松柏類'
+    },
+    {
+      id: 2,
+      image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2942&auto=format&fit=crop',
+      title: '雑木類の季節美',
+      subtitle: '四季の移ろいを楽しむ',
+      description: '春の新緑から秋の紅葉まで、季節ごとの表情を魅せる雑木類',
+      cta: '雑木類を見る',
+      link: '/products?category=雑木類'
+    },
+    {
+      id: 3,
+      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2946&auto=format&fit=crop',
+      title: '花ものの華やかさ',
+      subtitle: '咲き誇る美しい瞬間',
+      description: '桜や梅など、開花時期の華やかな美しさを堪能する花もの盆栽',
+      cta: '花ものを見る',
+      link: '/products?category=花もの'
+    }
+  ]
+
+  // カルーセル制御
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+  }, [heroSlides.length])
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
+  }, [heroSlides.length])
+
+  const goToSlide = useCallback((index: number) => {
+    setCurrentSlide(index)
+  }, [])
+
+  // 自動再生
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 5000) // 5秒ごと
+    return () => clearInterval(interval)
+  }, [nextSlide])
+
   // データ取得
   useEffect(() => {
     const fetchData = async () => {
@@ -150,43 +203,112 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section with Search - Ikyu Style */}
-      <section className="relative bg-white overflow-hidden">
-        {/* Elegant background with subtle pattern */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-slate-50"></div>
-        <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a4473' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"
-        }}></div>
+      {/* Hero Carousel - Ikyu Style */}
+      <section className="relative overflow-hidden">
+        <div className="relative h-[70vh] md:h-[80vh]">
+          {/* Carousel Images */}
+          {heroSlides.map((slide, index) => (
+            <div
+              key={slide.id}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                index === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <div className="relative w-full h-full">
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  className="w-full h-full object-cover object-center"
+                />
+                {/* Elegant Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent"></div>
 
-        <div className="relative z-10 container mx-auto px-4 pt-24 pb-32">
-          {/* Premium Typography */}
-          <div className="text-center mb-16">
-            <div className="inline-block">
-              <h1 className="text-5xl md:text-7xl font-extralight text-slate-800 mb-6 tracking-tight leading-tight">
-                最高品質の
-                <br />
-                <span className="font-light text-6xl md:text-8xl bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 bg-clip-text text-transparent">
-                  盆栽
-                </span>
-                を
-              </h1>
-              <div className="h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent w-64 mx-auto mb-6"></div>
-              <p className="text-xl md:text-2xl text-slate-600 font-light tracking-wide">
-                心を込めて選び抜かれた美しい盆栽との出会い
-              </p>
+                {/* Content Overlay */}
+                <div className="absolute inset-0 flex items-center">
+                  <div className="container mx-auto px-4">
+                    <div className="max-w-2xl">
+                      <div className="text-white space-y-6">
+                        <div>
+                          <p className="text-sm md:text-base font-light tracking-widest text-white/80 mb-2">
+                            {slide.subtitle}
+                          </p>
+                          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light tracking-tight leading-tight mb-4">
+                            {slide.title}
+                          </h1>
+                          <div className="h-px bg-gradient-to-r from-white/60 to-transparent w-32 mb-6"></div>
+                        </div>
+                        <p className="text-lg md:text-xl font-light leading-relaxed text-white/90 max-w-xl">
+                          {slide.description}
+                        </p>
+                        <div className="pt-4">
+                          <Link
+                            href={slide.link}
+                            className="inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-medium px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 border border-white/20 hover:border-white/40"
+                          >
+                            {slide.cta}
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          ))}
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-6 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-6 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Dot Indicators */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+            <div className="flex space-x-3">
+              {heroSlides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentSlide
+                      ? 'bg-white scale-125'
+                      : 'bg-white/50 hover:bg-white/80'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Search Section */}
+      <section className="relative bg-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-light text-slate-800 mb-4 tracking-wide">
+              理想の盆栽を見つける
+            </h2>
+            <div className="h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent w-48 mx-auto"></div>
           </div>
 
           {/* Premium Search Card */}
           <div className="max-w-5xl mx-auto">
             <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl border border-slate-200/50 p-8 md:p-12 hover:shadow-3xl transition-all duration-500">
-              {/* Search Header */}
-              <div className="text-center mb-10">
-                <h2 className="text-2xl md:text-3xl font-light text-slate-700 mb-3 tracking-wide">
-                  理想の盆栽を見つける
-                </h2>
-                <div className="h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent w-48 mx-auto"></div>
-              </div>
               <div className="space-y-8">
                 {/* Category Selection */}
                 <div>
