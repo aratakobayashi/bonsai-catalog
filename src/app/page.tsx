@@ -94,7 +94,6 @@ export default function HomePage() {
   // 検索フォームの状態
   const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedPriceRange, setSelectedPriceRange] = useState('')
-  const [isBeginnerFriendly, setIsBeginnerFriendly] = useState(false)
 
   // データ取得
   useEffect(() => {
@@ -132,9 +131,6 @@ export default function HomePage() {
       if (max && max !== '') params.set('maxPrice', max)
     }
 
-    if (isBeginnerFriendly) {
-      params.set('beginnerFriendly', 'true')
-    }
 
     const queryString = params.toString()
     const url = queryString ? `/products?${queryString}` : '/products'
@@ -170,11 +166,11 @@ export default function HomePage() {
 
           {/* Search Section */}
           <div className="max-w-6xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-xl p-8">
+            <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl shadow-2xl border border-slate-700 p-8 backdrop-blur-sm">
               <div className="space-y-8">
                 {/* Category Selection */}
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4 text-center">種類を選ぶ</h3>
+                  <h3 className="text-xl font-semibold text-slate-100 mb-6 text-center tracking-wide">種類を選ぶ</h3>
                   <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
                     {[
                       { value: '松柏類', icon: '🌲', label: '松柏類' },
@@ -187,10 +183,10 @@ export default function HomePage() {
                         key={category.value}
                         onClick={() => setSelectedCategory(selectedCategory === category.value ? '' : category.value)}
                         className={`
-                          p-4 rounded-xl border-2 transition-all duration-200 hover:shadow-md
+                          p-4 rounded-xl border transition-all duration-300 hover:shadow-lg hover:shadow-slate-500/25 hover:scale-105
                           ${selectedCategory === category.value
-                            ? 'border-emerald-500 bg-emerald-50 text-emerald-700'
-                            : 'border-gray-200 bg-white text-gray-700 hover:border-emerald-300'
+                            ? 'border-slate-400 bg-gradient-to-br from-slate-600 to-slate-700 text-slate-100 shadow-lg shadow-slate-500/30'
+                            : 'border-slate-600 bg-gradient-to-br from-slate-700 to-slate-800 text-slate-300 hover:border-slate-400 hover:text-slate-100'
                           }
                         `}
                       >
@@ -203,62 +199,39 @@ export default function HomePage() {
 
                 {/* Price Range */}
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4 text-center">価格帯を選ぶ</h3>
+                  <h3 className="text-xl font-semibold text-slate-100 mb-6 text-center tracking-wide">価格帯を選ぶ</h3>
                   <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
                     {[
-                      { value: '0-10000', icons: '💰', label: '〜1万円' },
-                      { value: '10000-30000', icons: '💰💰', label: '1万〜3万円' },
-                      { value: '30000-50000', icons: '💰💰💰', label: '3万〜5万円' },
-                      { value: '50000-100000', icons: '💰💰💰💰', label: '5万〜10万円' },
-                      { value: '100000-', icons: '💰💰💰💰💰', label: '10万円〜' }
+                      { value: '0-10000', label: '〜1万円' },
+                      { value: '10000-30000', label: '1万〜3万円' },
+                      { value: '30000-50000', label: '3万〜5万円' },
+                      { value: '50000-100000', label: '5万〜10万円' },
+                      { value: '100000-', label: '10万円〜' }
                     ].map((priceRange) => (
                       <button
                         key={priceRange.value}
                         onClick={() => setSelectedPriceRange(selectedPriceRange === priceRange.value ? '' : priceRange.value)}
                         className={`
-                          p-4 rounded-xl border-2 transition-all duration-200 hover:shadow-md
+                          p-4 rounded-xl border transition-all duration-300 hover:shadow-lg hover:shadow-slate-500/25 hover:scale-105
                           ${selectedPriceRange === priceRange.value
-                            ? 'border-emerald-500 bg-emerald-50 text-emerald-700'
-                            : 'border-gray-200 bg-white text-gray-700 hover:border-emerald-300'
+                            ? 'border-slate-400 bg-gradient-to-br from-slate-600 to-slate-700 text-slate-100 shadow-lg shadow-slate-500/30'
+                            : 'border-slate-600 bg-gradient-to-br from-slate-700 to-slate-800 text-slate-300 hover:border-slate-400 hover:text-slate-100'
                           }
                         `}
                       >
-                        <div className="text-lg mb-2">{priceRange.icons}</div>
                         <div className="text-sm font-medium">{priceRange.label}</div>
                       </button>
                     ))}
                   </div>
                 </div>
 
-                {/* Beginner Friendly Toggle */}
-                <div className="flex items-center justify-center">
-                  <button
-                    onClick={() => setIsBeginnerFriendly(!isBeginnerFriendly)}
-                    className={`
-                      flex items-center gap-3 px-6 py-3 rounded-full transition-all duration-200
-                      ${isBeginnerFriendly
-                        ? 'bg-green-100 border-2 border-green-500 text-green-700'
-                        : 'bg-gray-50 border-2 border-gray-300 text-gray-600 hover:border-green-400'
-                      }
-                    `}
-                  >
-                    <span className="text-xl">🌱</span>
-                    <span className="font-medium">育てやすい盆栽のみ</span>
-                    <div className={`
-                      w-6 h-6 rounded-full border-2 flex items-center justify-center
-                      ${isBeginnerFriendly ? 'bg-green-500 border-green-500' : 'border-gray-400'}
-                    `}>
-                      {isBeginnerFriendly && <span className="text-white text-xs">✓</span>}
-                    </div>
-                  </button>
-                </div>
 
                 {/* Search Button */}
                 <div className="flex justify-center">
                   <button
                     onClick={handleSearch}
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-4 px-12 rounded-xl transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
-                    disabled={!selectedCategory && !selectedPriceRange && !isBeginnerFriendly}
+                    className="bg-gradient-to-r from-slate-600 via-slate-500 to-slate-600 hover:from-slate-500 hover:via-slate-400 hover:to-slate-500 text-white font-semibold py-4 px-12 rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-xl shadow-slate-900/50 hover:shadow-2xl hover:shadow-slate-900/60 hover:scale-105 border border-slate-400/30"
+                    disabled={!selectedCategory && !selectedPriceRange}
                   >
                     <span className="text-lg">🔍 検索する</span>
                   </button>
