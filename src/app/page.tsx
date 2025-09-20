@@ -150,28 +150,48 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section with Search */}
-      <section className="relative bg-white">
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-50 to-teal-50"></div>
-        
-        <div className="relative z-10 container mx-auto px-4 pt-20 pb-24">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-light text-gray-900 mb-4">
-              盆栽を探す
-            </h1>
-            <p className="text-xl text-gray-600">
-              お気に入りの盆栽を見つけましょう
-            </p>
+      {/* Hero Section with Search - Ikyu Style */}
+      <section className="relative bg-white overflow-hidden">
+        {/* Elegant background with subtle pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-slate-50"></div>
+        <div className="absolute inset-0 opacity-5" style={{
+          backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a4473' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"
+        }}></div>
+
+        <div className="relative z-10 container mx-auto px-4 pt-24 pb-32">
+          {/* Premium Typography */}
+          <div className="text-center mb-16">
+            <div className="inline-block">
+              <h1 className="text-5xl md:text-7xl font-extralight text-slate-800 mb-6 tracking-tight leading-tight">
+                最高品質の
+                <br />
+                <span className="font-light text-6xl md:text-8xl bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 bg-clip-text text-transparent">
+                  盆栽
+                </span>
+                を
+              </h1>
+              <div className="h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent w-64 mx-auto mb-6"></div>
+              <p className="text-xl md:text-2xl text-slate-600 font-light tracking-wide">
+                心を込めて選び抜かれた美しい盆栽との出会い
+              </p>
+            </div>
           </div>
 
-          {/* Search Section */}
-          <div className="max-w-6xl mx-auto">
-            <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl shadow-2xl border border-slate-700 p-8 backdrop-blur-sm">
+          {/* Premium Search Card */}
+          <div className="max-w-5xl mx-auto">
+            <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl border border-slate-200/50 p-8 md:p-12 hover:shadow-3xl transition-all duration-500">
+              {/* Search Header */}
+              <div className="text-center mb-10">
+                <h2 className="text-2xl md:text-3xl font-light text-slate-700 mb-3 tracking-wide">
+                  理想の盆栽を見つける
+                </h2>
+                <div className="h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent w-48 mx-auto"></div>
+              </div>
               <div className="space-y-8">
                 {/* Category Selection */}
                 <div>
-                  <h3 className="text-xl font-semibold text-slate-100 mb-6 text-center tracking-wide">種類を選ぶ</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                  <h3 className="text-lg font-medium text-slate-700 mb-6 text-center tracking-wide">樹種カテゴリ</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                     {[
                       { value: '松柏類', icon: '🌲', label: '松柏類' },
                       { value: '雑木類', icon: '🍂', label: '雑木類' },
@@ -183,15 +203,19 @@ export default function HomePage() {
                         key={category.value}
                         onClick={() => setSelectedCategory(selectedCategory === category.value ? '' : category.value)}
                         className={`
-                          p-4 rounded-xl border transition-all duration-300 hover:shadow-lg hover:shadow-slate-500/25 hover:scale-105
+                          group p-5 rounded-xl border transition-all duration-300 hover:shadow-lg hover:-translate-y-1
                           ${selectedCategory === category.value
-                            ? 'border-slate-400 bg-gradient-to-br from-slate-600 to-slate-700 text-slate-100 shadow-lg shadow-slate-500/30'
-                            : 'border-slate-600 bg-gradient-to-br from-slate-700 to-slate-800 text-slate-300 hover:border-slate-400 hover:text-slate-100'
+                            ? 'border-slate-400 bg-gradient-to-br from-slate-600 to-slate-700 text-white shadow-lg shadow-slate-600/30'
+                            : 'border-slate-200 bg-white hover:border-slate-400 hover:shadow-slate-200/50 text-slate-700'
                           }
                         `}
                       >
-                        <div className="text-2xl mb-2">{category.icon}</div>
-                        <div className="text-sm font-medium">{category.label}</div>
+                        <div className={`text-2xl mb-3 transition-transform duration-300 group-hover:scale-110 ${
+                          selectedCategory === category.value ? '' : 'group-hover:scale-110'
+                        }`}>
+                          {category.icon}
+                        </div>
+                        <div className="text-sm font-medium tracking-wide">{category.label}</div>
                       </button>
                     ))}
                   </div>
@@ -199,8 +223,8 @@ export default function HomePage() {
 
                 {/* Price Range */}
                 <div>
-                  <h3 className="text-xl font-semibold text-slate-100 mb-6 text-center tracking-wide">価格帯を選ぶ</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                  <h3 className="text-lg font-medium text-slate-700 mb-6 text-center tracking-wide">価格帯</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                     {[
                       { value: '0-10000', label: '〜1万円' },
                       { value: '10000-30000', label: '1万〜3万円' },
@@ -212,28 +236,34 @@ export default function HomePage() {
                         key={priceRange.value}
                         onClick={() => setSelectedPriceRange(selectedPriceRange === priceRange.value ? '' : priceRange.value)}
                         className={`
-                          p-4 rounded-xl border transition-all duration-300 hover:shadow-lg hover:shadow-slate-500/25 hover:scale-105
+                          group p-5 rounded-xl border transition-all duration-300 hover:shadow-lg hover:-translate-y-1
                           ${selectedPriceRange === priceRange.value
-                            ? 'border-slate-400 bg-gradient-to-br from-slate-600 to-slate-700 text-slate-100 shadow-lg shadow-slate-500/30'
-                            : 'border-slate-600 bg-gradient-to-br from-slate-700 to-slate-800 text-slate-300 hover:border-slate-400 hover:text-slate-100'
+                            ? 'border-slate-400 bg-gradient-to-br from-slate-600 to-slate-700 text-white shadow-lg shadow-slate-600/30'
+                            : 'border-slate-200 bg-white hover:border-slate-400 hover:shadow-slate-200/50 text-slate-700'
                           }
                         `}
                       >
-                        <div className="text-sm font-medium">{priceRange.label}</div>
+                        <div className="text-sm font-medium tracking-wide">{priceRange.label}</div>
                       </button>
                     ))}
                   </div>
                 </div>
 
 
-                {/* Search Button */}
-                <div className="flex justify-center">
+                {/* Premium Search Button */}
+                <div className="flex justify-center pt-6">
                   <button
                     onClick={handleSearch}
-                    className="bg-gradient-to-r from-slate-600 via-slate-500 to-slate-600 hover:from-slate-500 hover:via-slate-400 hover:to-slate-500 text-white font-semibold py-4 px-12 rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-xl shadow-slate-900/50 hover:shadow-2xl hover:shadow-slate-900/60 hover:scale-105 border border-slate-400/30"
                     disabled={!selectedCategory && !selectedPriceRange}
+                    className="group relative bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 hover:from-slate-600 hover:via-slate-500 hover:to-slate-600 text-white font-medium py-4 px-16 rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl hover:-translate-y-1 border border-slate-500/30"
                   >
-                    <span className="text-lg">🔍 検索する</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <span className="relative flex items-center gap-3 text-lg tracking-wide">
+                      <svg className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                      盆栽を探す
+                    </span>
                   </button>
                 </div>
               </div>
