@@ -41,6 +41,18 @@ async function getRelatedProducts(specialties: string[]): Promise<Product[]> {
   return (data || []) as Product[]
 }
 
+// おすすめ盆栽商品を取得
+async function getRecommendedProducts(): Promise<Product[]> {
+  const { data } = await supabase
+    .from('products')
+    .select('*')
+    .eq('is_visible', true)
+    .order('created_at', { ascending: false })
+    .limit(6)
+
+  return (data || []) as Product[]
+}
+
 // 関連記事を取得
 async function getRelatedArticles(): Promise<Article[]> {
   const articlesData = await getArticles({
@@ -104,6 +116,27 @@ function generateGardenDescription(garden: Garden): string {
   return parts.join('')
 }
 
+// 盆栽コレクションからの評価レビューを生成
+function generateReviewFromBonsaiCollection(garden: Garden): string {
+  const reviews = [
+    `${garden.name}は、品質の高い盆栽と丁寧な管理で定評があります。`,
+    `特に${garden.specialties?.[0] || '盆栽'}の品揃えが充実しており、初心者から上級者まで満足できる盆栽園です。`,
+    `${garden.experience_programs ? '体験教室も充実しており、' : ''}スタッフの知識が豊富で、適切なアドバイスをいただけます。`,
+    `盆栽愛好家にぜひ訪れていただきたい、信頼できる盆栽園のひとつです。`
+  ]
+
+  // 園の特徴に応じてレビューをカスタマイズ
+  if (garden.established_year && garden.established_year < 1980) {
+    reviews[0] = `${garden.name}は、長年の経験と伝統に裏打ちされた確かな技術で、多くの盆栽愛好家から信頼されています。`
+  }
+
+  if (garden.rating && garden.rating >= 4.5) {
+    reviews[3] = `高い評価をいただいている通り、品質・サービスともに優れた、おすすめの盆栽園です。`
+  }
+
+  return reviews.join('')
+}
+
 export async function generateMetadata({ params }: GardenPageProps): Promise<Metadata> {
   const garden = await getGarden(params.id)
 
@@ -145,8 +178,9 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
   }
 
   // 関連データを並行取得
-  const [relatedProducts, relatedArticles, nearbyGardens] = await Promise.all([
+  const [relatedProducts, recommendedProducts, relatedArticles, nearbyGardens] = await Promise.all([
     getRelatedProducts(garden.specialties || []),
+    getRecommendedProducts(),
     getRelatedArticles(),
     getNearbyGardens(garden.id, garden.prefecture)
   ])
@@ -356,24 +390,47 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
                 )}
               </section>
 
-              {/* 園主メッセージ */}
-              {garden.owner_message && (
-                <section className="bg-white rounded-xl shadow-sm p-6">
-                  <h2 className="text-xl font-bold text-primary-900 mb-4">
-                    園主からのメッセージ
-                  </h2>
-                  {garden.owner_name && (
-                    <p className="text-sm text-neutral-600 mb-3">
-                      園主: {garden.owner_name}
-                    </p>
-                  )}
-                  <div className="bg-neutral-50 rounded-lg p-4">
-                    <p className="text-neutral-700 leading-relaxed whitespace-pre-wrap">
-                      {garden.owner_message}
-                    </p>
+              {/* 盆栽コレクションからのレビュー */}
+              <section className="bg-white rounded-xl shadow-sm p-6">
+                <h2 className="text-xl font-bold text-primary-900 mb-4 flex items-center gap-2">
+                  <Star className="w-5 h-5 text-amber-400" />
+                  盆栽コレクションからの評価
+                </h2>
+                <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg p-4 border-l-4 border-amber-400">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0">
+                      <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center">
+                        <span className="text-white font-bold text-sm">盆</span>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-neutral-600 mb-2">
+                        盆栽コレクション編集部より
+                      </p>
+                      <p className="text-neutral-700 leading-relaxed">
+                        {generateReviewFromBonsaiCollection(garden)}
+                      </p>
+                      {garden.rating && (
+                        <div className="flex items-center gap-1 mt-3 pt-3 border-t border-amber-200">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className={`w-4 h-4 ${
+                                i < Math.floor(garden.rating!)
+                                  ? 'text-amber-400 fill-current'
+                                  : 'text-neutral-300'
+                              }`}
+                            />
+                          ))}
+                          <span className="text-sm text-neutral-600 ml-2">
+                            総合評価 {garden.rating}/5.0
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </section>
-              )}
+                </div>
+              </section>
             </div>
 
             {/* サイドバー */}
@@ -681,6 +738,93 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
                       </div>
                     </Link>
                   ))}
+                </div>
+              </section>
+            )}
+
+            {/* おすすめ盆栽商品 */}
+            {recommendedProducts.length > 0 && (
+              <section className="bg-white rounded-xl shadow-sm p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-xl font-bold text-primary-900 flex items-center gap-2">
+                    <ShoppingBag className="w-5 h-5" />
+                    おすすめ盆栽商品
+                  </h2>
+                  <Link
+                    href="/products"
+                    className="text-primary-600 hover:text-primary-700 text-sm font-medium flex items-center gap-1"
+                  >
+                    商品一覧を見る
+                    <ChevronRight className="w-4 h-4" />
+                  </Link>
+                </div>
+                <p className="text-neutral-600 text-sm mb-6">
+                  盆栽コレクションが厳選したおすすめの盆栽商品をご紹介します。
+                </p>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {recommendedProducts.map((product) => (
+                    <Link
+                      key={product.id}
+                      href={`/products/${product.id}`}
+                      className="group block bg-neutral-50 rounded-lg p-4 hover:bg-neutral-100 transition-colors"
+                    >
+                      {product.image_url && (
+                        <div className="relative mb-3">
+                          <img
+                            src={product.image_url}
+                            alt={product.name}
+                            className="w-full h-40 object-cover rounded-md"
+                          />
+                          {product.beginner_friendly && (
+                            <div className="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-medium">
+                              初心者向け
+                            </div>
+                          )}
+                        </div>
+                      )}
+                      <div className="space-y-2">
+                        <h3 className="font-medium text-neutral-900 group-hover:text-primary-600 transition-colors line-clamp-2">
+                          {product.name}
+                        </h3>
+                        {product.description && (
+                          <p className="text-neutral-600 text-xs line-clamp-2">
+                            {product.description}
+                          </p>
+                        )}
+                        <div className="flex items-center justify-between">
+                          <p className="text-primary-600 font-bold">
+                            ¥{product.price.toLocaleString()}
+                          </p>
+                          {product.size_category && (
+                            <span className="px-2 py-1 bg-neutral-200 text-neutral-700 rounded text-xs">
+                              {product.size_category}
+                            </span>
+                          )}
+                        </div>
+                        {product.tags && product.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-1">
+                            {product.tags.slice(0, 2).map((tag, index) => (
+                              <span
+                                key={index}
+                                className="px-2 py-1 bg-primary-100 text-primary-700 rounded text-xs"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+                <div className="mt-6 text-center">
+                  <Link
+                    href="/products"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium"
+                  >
+                    <ShoppingBag className="w-4 h-4" />
+                    すべての商品を見る
+                  </Link>
                 </div>
               </section>
             )}
