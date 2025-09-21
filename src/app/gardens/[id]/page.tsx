@@ -348,6 +348,23 @@ const gardenImageMap: Record<string, string> = {
   '31142d3a-2209-449d-aa74-d9e3e80a6e38': '/images/gardens/midorien.svg', // 緑昇園
   '99ccb893-5976-423a-8773-220bb7efe6b6': '/images/gardens/kinakan.svg', // 紀菜柑
 };
+  // フェーズ9（完全制覇記念コレクション）
+  '688366e5-736d-4269-b2eb-296a167d8866': '/images/gardens/annakaen.svg', // アンナカ造園
+  'a130db6c-894b-4aef-adc2-fc8967fe0dec': '/images/gardens/haradashubyo.svg', // 原田種苗
+  '3d05bfc7-ece2-4ec0-8451-1423206b52eb': '/images/gardens/kumozugawaendoboku.svg', // 雲出川造園土木
+  '138b87f3-7d94-453d-a67d-083932ac6ca9': '/images/gardens/takigamigardencenter.svg', // 滝上ガーデンセンター
+  '0d26d45f-ad4c-43d0-bd44-18e773688cc1': '/images/gardens/odakyufloristsendaiten.svg', // 小田急フローリスト仙台店
+  '443ac8d4-1bb7-4415-82a7-b9eeee19273b': '/images/gardens/matsushitagarden.svg', // マツシタガーデン
+  'e4d6382a-0018-44e1-aef5-584394282700': '/images/gardens/ikiyamagarden.svg', // 伊木山ガーデン
+  'd2c1fc74-9ea1-4c8c-9625-89ed1130a7f0': '/images/gardens/matsunagahana.svg', // 松永花壇
+  'b306b511-bdeb-43b6-9ea7-87c714888d89': '/images/gardens/hanaryutsucenter.svg', // 花木流通センター
+  '6983e29b-2c1b-49f6-b758-07a7570fcec2': '/images/gardens/tokunanen.svg', // 徳南園
+  '23771875-d4a4-48b8-a777-6cd1c52dba16': '/images/gardens/kinashibonsaicenter.svg', // 鬼無植木盆栽センター
+  '35836283-1b95-48c5-a364-c09aeeb43f28': '/images/gardens/greensam.svg', // グリーンサム
+  '8aa40340-009f-429d-a18d-dd46f83dc655': '/images/gardens/seikaen.svg', // 精華園
+  '2afde46e-67aa-47d5-a8bb-737e0ab747a1': '/images/gardens/bosobonsaimura.svg', // 房総盆栽村
+  'c8190e38-03f3-421a-800c-8c5e2c7692e6': '/images/gardens/kokimidori.svg', // 広輝緑化
+};
 
 export default async function GardenDetailPage({ params }: GardenPageProps) {
   const garden = await getGarden(params.id)

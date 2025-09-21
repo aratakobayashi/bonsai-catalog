@@ -1,8 +1,8 @@
 <svg width="512" height="384" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#4169E1;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#6495ED;stop-opacity:0.3" />
+      <stop offset="0%" style="stop-color:#FF6347;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFA07A;stop-opacity:0.3" />
     </linearGradient>
     <linearGradient id="buildingGradient" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" style="stop-color:#FF6347;stop-opacity:1" />
@@ -13,7 +13,7 @@
       <stop offset="100%" style="stop-color:#FF6347;stop-opacity:1" />
     </radialGradient>
     <pattern id="completionPattern" patternUnits="userSpaceOnUse" width="60" height="30">
-      <rect width="60" height="30" fill="#6495ED" opacity="0.1"/>
+      <rect width="60" height="30" fill="#FFA07A" opacity="0.1"/>
       <circle cx="15" cy="15" r="4" fill="#FF6347" opacity="0.3"/>
       <circle cx="45" cy="15" r="3" fill="#FFD700" opacity="0.2"/>
       <polygon points="30,5 32,10 37,10 33,13 35,18 30,15 25,18 27,13 23,10 28,10" fill="#FFA07A" opacity="0.4"/>
@@ -59,14 +59,14 @@
 
   <!-- 完全制覇記念モニュメント -->
   <rect x="440" y="150" width="60" height="90" fill="rgba(FF6347, 0.5)" rx="10"/>
-  <text x="445" y="170" font-family="serif" font-size="10" fill="#FFD700" font-weight="bold">東京</text>
+  <text x="445" y="170" font-family="serif" font-size="10" fill="#FFD700" font-weight="bold">千葉</text>
   <text x="445" y="185" font-family="serif" font-size="8" fill="#FFD700">地域</text>
   <text x="445" y="200" font-family="serif" font-size="8" fill="#FFD700">共同</text>
   <text x="445" y="215" font-family="serif" font-size="8" fill="#FFD700">文化</text>
   <text x="445" y="230" font-family="serif" font-size="8" fill="#FFD700">完全制覇</text>
 
   <!-- 記念の道（完全制覇バージョン） -->
-  <path d="M 0 320 Q 128 300 256 320 Q 384 340 512 320" stroke="#191970" stroke-width="30" fill="none" opacity="0.7"/>
+  <path d="M 0 320 Q 128 300 256 320 Q 384 340 512 320" stroke="#CD5C5C" stroke-width="30" fill="none" opacity="0.7"/>
   <path d="M 0 318 Q 128 298 256 318 Q 384 338 512 318" stroke="#FFA07A" stroke-width="12" fill="none"/>
   <path d="M 0 316 Q 128 296 256 316 Q 384 336 512 316" stroke="white" stroke-width="4" fill="none" opacity="0.9"/>
   <path d="M 0 314 Q 128 294 256 314 Q 384 334 512 314" stroke="#FF6347" stroke-width="1" fill="none"/>
@@ -81,14 +81,14 @@
   </g>
 
   <!-- メインタイトル（完全制覇特別版） -->
-  <rect x="10" y="10" width="76" height="60" fill="rgba(255,255,255,0.99)" rx="15" stroke="#FF6347" stroke-width="4" filter="url(#glow)"/>
-  <text x="20" y="35" font-family="serif" font-size="16" fill="#2F4F4F" font-weight="bold">精華園</text>
+  <rect x="10" y="10" width="112" height="60" fill="rgba(255,255,255,0.99)" rx="15" stroke="#FF6347" stroke-width="4" filter="url(#glow)"/>
+  <text x="20" y="35" font-family="serif" font-size="16" fill="#2F4F4F" font-weight="bold">グリーンサム</text>
   <text x="20" y="55" font-family="sans-serif" font-size="10" fill="#FF6347" font-weight="bold">完全制覇記念園</text>
 
   <!-- 地域情報（完全制覇版） -->
-  <rect x="10" y="80" width="140" height="45" fill="rgba(255,255,255,0.98)" rx="8" stroke="#191970" stroke-width="2"/>
-  <text x="15" y="95" font-family="sans-serif" font-size="12" fill="#191970" font-weight="bold">東京都</text>
-  <text x="15" y="110" font-family="sans-serif" font-size="9" fill="#666">東京地域</text>
+  <rect x="10" y="80" width="140" height="45" fill="rgba(255,255,255,0.98)" rx="8" stroke="#CD5C5C" stroke-width="2"/>
+  <text x="15" y="95" font-family="sans-serif" font-size="12" fill="#CD5C5C" font-weight="bold">千葉県</text>
+  <text x="15" y="110" font-family="sans-serif" font-size="9" fill="#666">千葉地域</text>
   <text x="15" y="122" font-family="sans-serif" font-size="8" fill="#FF6347">第187園達成</text>
 
   <!-- 完全制覇特色表示 -->
