@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: EventDetailPageProps): Promis
       '即売会',
       'ワークショップ',
       '講習会'
-    ].filter(Boolean),
+    ].filter((keyword): keyword is string => Boolean(keyword)),
     openGraph: {
       title,
       description,
