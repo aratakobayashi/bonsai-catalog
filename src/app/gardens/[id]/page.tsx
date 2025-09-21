@@ -191,6 +191,26 @@ const gardenImageMap: Record<string, string> = {
 
   // プレミアム園（第2弾）
   '20702388-f8b8-408e-8d6e-dd158031b048': '/images/gardens/shunkaen-bonsai-museum.svg', // 春花園BONSAI美術館
+  'a23957ee-4154-4d59-9bb8-f18ee1c8ca26': '/images/gardens/nakanishi-chinshouen.svg', // 中西珍松園
+  'f0f86407-1a4b-4100-987c-2743b441fcee': '/images/gardens/yoshunen.svg', // 陽春園
+  'b5305c48-7ebe-4486-8391-622f282ebfbc': '/images/gardens/kyoto-dentou-teien-center.svg', // 京都伝統庭園センター
+  '5e7de278-e355-42be-943d-3e877f04bfcf': '/images/gardens/okinawa-bonsai-en.svg', // 沖縄盆栽園
+  '1cdef4ba-d729-47c4-be31-86c879ea0aa2': '/images/gardens/kansai-bonsai-center.svg', // 関西盆栽センター
+  'f61bc0fe-53e8-4ec3-a3a8-29bfff2c0870': '/images/gardens/kyoto-bonsai-kaikan.svg', // 京都盆栽会館
+  '34ba6634-3e68-4ed6-a766-07ac2d3aba33': '/images/gardens/musashino-bonsai-en.svg', // 武蔵野盆栽園
+  '5266402a-5bda-4a5b-bfbd-eaf58e8d9f99': '/images/gardens/kamakura-bonsai-en.svg', // 鎌倉盆栽苑
+  'cfd47538-d3b2-4c33-869a-68652c2d0563': '/images/gardens/asakusa-bonsai-koubou.svg', // 浅草盆栽工房
+  // フェーズ3（地域多様性コレクション）
+  '3c4f5845-c6f7-47e7-87d5-d68b5cafc0ae': '/images/gardens/matsuo-engei.svg', // まつおえんげい
+  'd59a502e-61cb-427e-ac93-bb4da4dfc5f6': '/images/gardens/yoshoen.svg', // 養庄園
+  '253b3027-463f-4bd9-847e-90547715cb9b': '/images/gardens/solso-farm.svg', // SOLSO FARM
+  '9a1819fd-05a1-4d66-9877-bc07607ba19a': '/images/gardens/mimoto-engei.svg', // 見元園芸
+  '323ae2c8-82a0-480a-a0bf-3eeab52baa3a': '/images/gardens/kaze-no-sanpomichi-salon.svg', // ガーデニングサロン 風の散歩道
+  'aec3cb3b-ff22-476a-9728-b52547ab3a98': '/images/gardens/matsue-bonsai-center.svg', // 松江盆栽センター
+  '40a5e7c5-8cb6-46ef-bd83-cb830d7da0cd': '/images/gardens/bonsai-shiki-no-mori.svg', // 盆栽四季の杜
+  '929b849b-0b11-45b7-b5d8-9bf09cfd64d0': '/images/gardens/kobe-bonsai-kan.svg', // 神戸盆栽館
+  'b81646b0-261b-4e3b-b6f3-8ebfb2fb0cb9': '/images/gardens/sanuki-bonsai-no-sato.svg', // さぬき盆栽の郷
+  '29a49dbc-e5e1-4201-afe9-0b4a09223095': '/images/gardens/yamato-damashii-bonsai.svg', // 大和魂盆栽
   'a23957ee-4154-4d59-9bb8-f18ee1c8ca26': '/images/gardens/nakanishi-chinshoen.svg', // 中西珍松園
   'f0f86407-1a4b-4100-987c-2743b441fcee': '/images/gardens/yoshunen.svg', // 陽春園
   'b5305c48-7ebe-4486-8391-622f282ebfbc': '/images/gardens/kyoto-traditional-garden-center.svg', // 京都伝統庭園センター

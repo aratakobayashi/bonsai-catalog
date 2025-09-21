@@ -1,0 +1,80 @@
+<svg width="512" height="384" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00CED1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#32CD32;stop-opacity:0.2" />
+    </linearGradient>
+    <linearGradient id="buildingGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#D2B48C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B4513;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="flowerGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFB6C1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF69B4;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="512" height="384" fill="url(#skyGradient)"/>
+
+  <!-- 地面 -->
+  <rect x="0" y="280" width="512" height="104" fill="#32CD32"/>
+
+  
+  <!-- 伝統的な建物 -->
+  <rect x="50" y="200" width="200" height="100" fill="url(#buildingGradient)"/>
+  <polygon points="50,200 150,150 250,200" fill="#8B4513"/>
+  
+
+  <!-- 専門分野による特別展示 -->
+  
+  <!-- ビオラ専門園 - カラフルな花畑 -->
+  <circle cx="330" cy="270" r="5" fill="#9370DB"/>
+  <circle cx="340" cy="275" r="4" fill="#4169E1"/>
+  <circle cx="350" cy="265" r="5" fill="#FFD700"/>
+  <circle cx="360" cy="270" r="4" fill="#FF69B4"/>
+  <circle cx="370" cy="275" r="5" fill="#32CD32"/>
+  <circle cx="380" cy="265" r="4" fill="#FF4500"/>
+  <circle cx="390" cy="270" r="5" fill="#8A2BE2"/>
+  <circle cx="400" cy="275" r="4" fill="#00CED1"/>
+  <circle cx="410" cy="265" r="5" fill="#FF1493"/>
+  <circle cx="420" cy="270" r="4" fill="#32CD32"/>
+  
+
+  
+
+  <!-- 地域特色の装飾 -->
+  
+  <!-- 高知地域の特色 -->
+  <circle cx="480" cy="110" r="12" fill="#FF4500"/>
+  <text x="475" y="130" font-family="serif" font-size="8" fill="#FF4500">土佐</text>
+  
+
+  <!-- プレミアム小道 -->
+  <path d="M 0 320 Q 128 300 256 320 Q 384 340 512 320" stroke="#D2B48C" stroke-width="25" fill="none"/>
+  <path d="M 0 318 Q 128 298 256 318 Q 384 338 512 318" stroke="#F0E68C" stroke-width="5" fill="none"/>
+
+  <!-- 評価星（4.6以上） -->
+  
+  <g transform="translate(450, 15)">
+    <circle cx="15" cy="15" r="12" fill="rgba(255,215,0,0.9)"/>
+    <polygon points="15,8 17,13 22,13 18,16 20,21 15,18 10,21 12,16 8,13 13,13" fill="#FFD700"/>
+    <text x="15" y="35" font-family="sans-serif" font-size="8" fill="#333" text-anchor="middle">4.6</text>
+  </g>
+  
+
+  <!-- メインタイトル -->
+  <rect x="10" y="10" width="106" height="45" fill="rgba(255,255,255,0.95)" rx="8" stroke="#FF4500" stroke-width="2"/>
+  <text x="20" y="35" font-family="serif" font-size="16" fill="#2F4F4F" font-weight="bold">見元園芸</text>
+
+  <!-- 地域・専門情報 -->
+  <rect x="10" y="60" width="140" height="35" fill="rgba(255,255,255,0.9)" rx="5"/>
+  <text x="15" y="75" font-family="sans-serif" font-size="11" fill="#666" font-weight="bold">高知県</text>
+  <text x="15" y="88" font-family="sans-serif" font-size="9" fill="#888">オリジナル品種</text>
+
+  <!-- 特色バッジ -->
+  
+  <rect x="15" y="105" width="50" height="18" fill="#FF4500" rx="9"/>
+  <text x="40" y="117" font-family="sans-serif" font-size="9" fill="white" text-anchor="middle" font-weight="bold">注目園</text>
+  
+</svg>
