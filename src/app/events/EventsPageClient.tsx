@@ -7,6 +7,7 @@ import { EventCard } from '@/components/features/EventCard'
 import { EventCalendar } from '@/components/features/EventCalendar'
 import { EventFilters } from '@/components/features/EventFilters'
 import { EventMap } from '@/components/features/EventMap'
+import { EventListView } from '@/components/features/EventListView'
 import { cn } from '@/lib/utils'
 import { Calendar, List, Map, ChevronLeft, ChevronRight } from 'lucide-react'
 
@@ -212,83 +213,8 @@ export default function EventsPageClient() {
         <EventCalendar events={events} />
       ) : view === 'list' ? (
         <div className="space-y-6">
-          {/* ショートカット */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <button
-              onClick={() => {
-                const today = new Date()
-                const startOfWeek = new Date(today)
-                startOfWeek.setDate(today.getDate() - today.getDay())
-                const endOfWeek = new Date(startOfWeek)
-                endOfWeek.setDate(startOfWeek.getDate() + 6)
-
-                // 今週末のフィルターを適用
-                handleFiltersChange({
-                  ...filters,
-                  search: undefined,
-                  page: 1
-                })
-              }}
-              className="p-4 bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all text-left"
-            >
-              <h3 className="font-semibold text-gray-900 mb-2">今週末のイベント</h3>
-              <p className="text-sm text-gray-600">土日に開催されるイベントを表示</p>
-            </button>
-
-            <button
-              onClick={() => {
-                const currentMonth = new Date().toISOString().slice(0, 7)
-                handleFiltersChange({
-                  ...filters,
-                  month: currentMonth,
-                  page: 1
-                })
-              }}
-              className="p-4 bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all text-left"
-            >
-              <h3 className="font-semibold text-gray-900 mb-2">今月のおすすめ</h3>
-              <p className="text-sm text-gray-600">今月開催のイベントを表示</p>
-            </button>
-
-            <button
-              onClick={() => {
-                handleFiltersChange({
-                  ...filters,
-                  types: ['workshop', 'lecture'],
-                  page: 1
-                })
-              }}
-              className="p-4 bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all text-left"
-            >
-              <h3 className="font-semibold text-gray-900 mb-2">体験・学習イベント</h3>
-              <p className="text-sm text-gray-600">ワークショップと講習会を表示</p>
-            </button>
-          </div>
-
-          {/* イベントリスト */}
-          {events.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {events.map((event) => (
-                <EventCard key={event.id} event={event} />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-12">
-              <Calendar className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
-                イベントが見つかりませんでした
-              </h3>
-              <p className="text-gray-600 mb-4">
-                検索条件を変更して再度お試しください
-              </p>
-              <button
-                onClick={() => handleFiltersChange({ page: 1, limit: 20 })}
-                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-              >
-                全てのイベントを表示
-              </button>
-            </div>
-          )}
+          {/* 新しいリストビュー */}
+          <EventListView events={events} />
 
           {/* ページネーション */}
           {eventsResponse && eventsResponse.total > eventsResponse.limit && (
