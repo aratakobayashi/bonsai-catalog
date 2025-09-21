@@ -41,11 +41,15 @@ export async function GET() {
     try {
       const { data: products } = await supabase
         .from('products')
-        .select('id, created_at, updated_at')
-        .eq('is_visible', true)
+        .select('id, created_at, updated_at, is_visible')
 
       if (products && products.length > 0) {
-        const productUrls = products.map((product: any) =>
+        // Filter visible products in JavaScript since is_visible field may not exist or be properly set
+        const visibleProducts = products.filter((product: any) =>
+          product.is_visible !== false && product.is_visible !== null
+        )
+
+        const productUrls = visibleProducts.map((product: any) =>
           generateUrlElement(
             `${baseUrl}/products/${product.id}`,
             new Date(product.updated_at || product.created_at).toISOString().split('T')[0],
