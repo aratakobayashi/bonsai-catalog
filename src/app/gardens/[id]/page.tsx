@@ -211,15 +211,22 @@ const gardenImageMap: Record<string, string> = {
   '929b849b-0b11-45b7-b5d8-9bf09cfd64d0': '/images/gardens/kobe-bonsai-kan.svg', // 神戸盆栽館
   'b81646b0-261b-4e3b-b6f3-8ebfb2fb0cb9': '/images/gardens/sanuki-bonsai-no-sato.svg', // さぬき盆栽の郷
   '29a49dbc-e5e1-4201-afe9-0b4a09223095': '/images/gardens/yamato-damashii-bonsai.svg', // 大和魂盆栽
-  'a23957ee-4154-4d59-9bb8-f18ee1c8ca26': '/images/gardens/nakanishi-chinshoen.svg', // 中西珍松園
-  'f0f86407-1a4b-4100-987c-2743b441fcee': '/images/gardens/yoshunen.svg', // 陽春園
-  'b5305c48-7ebe-4486-8391-622f282ebfbc': '/images/gardens/kyoto-traditional-garden-center.svg', // 京都伝統庭園センター
-  '5e7de278-e355-42be-943d-3e877f04bfcf': '/images/gardens/okinawa-bonsai-en.svg', // 沖縄盆栽園
-  '1cdef4ba-d729-47c4-be31-86c879ea0aa2': '/images/gardens/kansai-bonsai-center.svg', // 関西盆栽センター
-  'f61bc0fe-53e8-4ec3-a3a8-29bfff2c0870': '/images/gardens/kyoto-bonsai-kaikan.svg', // 京都盆栽会館
-  '34ba6634-3e68-4ed6-a766-07ac2d3aba33': '/images/gardens/musashino-bonsai-en.svg', // 武蔵野盆栽園
-  '5266402a-5bda-4a5b-bfbd-eaf58e8d9f99': '/images/gardens/kamakura-bonsai-en.svg', // 鎌倉盆栽苑
-  'cfd47538-d3b2-4c33-869a-68652c2d0563': '/images/gardens/asakusa-bonsai-koubou.svg', // 浅草盆栽工房
+  // フェーズ4（全国拡充コレクション）
+  '299bced1-91e7-424b-bdd3-6391ccc5c622': '/images/gardens/ozaki-flower-park.svg', // オザキフラワーパーク
+  '34dd9a7c-45cd-467b-9650-dd919ef51373': '/images/gardens/yamashiro-aisen-en.svg', // 山城愛仙園
+  '43bef990-75ae-431b-bcd9-3627879cf4eb': '/images/gardens/awa-en.svg', // 阿波園
+  '96aa3db9-0ea0-4f13-9768-1c81f6ad3416': '/images/gardens/hana-hiroba.svg', // 花ひろば
+  '97e7553f-109d-4631-939a-8d292eeb625b': '/images/gardens/hanju-en-green-center.svg', // 班樹園グリーンセンター
+  'f3418bb6-eef6-47a7-8c54-905ed1d6d3cb': '/images/gardens/hamakita-eino-ryokka-center.svg', // 浜北営農緑花木センター
+  'c461d493-c16b-4b45-9a26-e3e15624e3c4': '/images/gardens/koju-en.svg', // 古樹園
+  '1f54a5e8-d50a-438f-aecd-67b9f2499903': '/images/gardens/takamatsu-bonsai-no-sato.svg', // 高松盆栽の郷
+  'a38daf6e-445f-481b-a9a8-55ea631428e3': '/images/gardens/kamakura-kibana-so.svg', // かまくら木花草
+  '7cb38263-35fd-4fdb-b0a5-9c31227d6ebc': '/images/gardens/kawaguchi-bonsai-mura.svg', // 川口BONSAI村
+  '2a93e2ed-3bea-4855-b69c-9d5df4d0d1e3': '/images/gardens/nasu-kogen-bonsai-center.svg', // 那須高原盆栽センター
+  '0a120c74-2bf1-4ca1-a16c-b34865967245': '/images/gardens/yokohama-kohoku-bonsai-en.svg', // 横浜港北盆栽苑
+  'd432d4bf-908e-4952-86c5-b8c5798a1225': '/images/gardens/ueno-green-club.svg', // 上野グリーンクラブ
+  '6897be01-8059-41b6-9749-436eebb5e678': '/images/gardens/nagoya-bonsai-kaikan.svg', // 名古屋盆栽会館
+  '71d984be-89d6-427c-a27c-0139fbc3e889': '/images/gardens/sagano-bonsai-en.svg', // 嵯峨野盆栽苑
 }
 
 export default async function GardenDetailPage({ params }: GardenPageProps) {
