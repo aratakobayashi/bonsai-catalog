@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo, useEffect } from 'react'
+import Link from 'next/link'
 import { Event, EventType } from '@/types'
 import { cn } from '@/lib/utils'
 import { ChevronLeft, ChevronRight, Calendar, List, Grid3X3 } from 'lucide-react'
@@ -158,7 +159,9 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
 
     return sortedEvents.map(event => ({
       icon: eventTypeConfig[event.types[0]]?.icon || '📅',
-      title: truncateEventTitle(event.title, 6)
+      title: truncateEventTitle(event.title, 6),
+      slug: event.slug,
+      fullTitle: event.title
     }))
   }
 
@@ -293,18 +296,28 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
                       return (
                         <div className="flex-1 space-y-0.5 overflow-hidden">
                           {eventSummary.slice(0, isMobile ? 1 : 2).map((event, eventIndex) => (
-                            <div
+                            <Link
                               key={eventIndex}
-                              className="flex items-center gap-0.5 text-xs text-gray-700"
+                              href={`/events/${event.slug}`}
+                              onClick={(e) => e.stopPropagation()}
+                              className="flex items-center gap-0.5 text-xs text-gray-700 hover:text-green-600 transition-colors block group"
+                              title={`${event.fullTitle}の詳細を見る`}
                             >
                               <span className="text-xs leading-none flex-shrink-0">{event.icon}</span>
-                              <span className="truncate leading-tight text-xs">
+                              <span className="truncate leading-tight text-xs group-hover:underline">
                                 {isMobile ? event.title.slice(0, 4) + '...' : event.title}
                               </span>
-                            </div>
+                            </Link>
                           ))}
                           {dayEvents.length > (isMobile ? 1 : 2) && (
-                            <div className="text-xs text-gray-500 text-center">
+                            <div
+                              className="text-xs text-gray-500 text-center cursor-pointer hover:text-gray-700 transition-colors"
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                setSelectedDate(date)
+                              }}
+                              title="すべてのイベントを表示"
+                            >
                               +{dayEvents.length - (isMobile ? 1 : 2)}件
                             </div>
                           )}

@@ -160,6 +160,18 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
                 {event.description}
               </p>
             )}
+
+            {/* CTA（モバイル用） */}
+            <div className="sm:hidden mt-3 pt-3 border-t border-gray-100">
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-green-600 font-medium group-hover:text-green-700">
+                  詳細を見る →
+                </span>
+                <div className="text-xs text-gray-500">
+                  {getDateRange()}
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* ステータス */}
@@ -249,13 +261,24 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
         </div>
 
         {/* フッター */}
-        {event.description && (
-          <div className="px-4 pb-4">
-            <p className="text-sm text-gray-600 line-clamp-2">
+        <div className="px-4 pb-4">
+          {event.description && (
+            <p className="text-sm text-gray-600 line-clamp-2 mb-3">
               {event.description}
             </p>
+          )}
+
+          {/* CTA（デスクトップ用） */}
+          <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+            <span className="text-sm text-green-600 font-medium group-hover:text-green-700 transition-colors">
+              詳細を見る →
+            </span>
+            <div className="flex items-center gap-1 text-xs text-gray-500">
+              {isPast() && <span className="text-gray-400">終了</span>}
+              {isUpcoming() && <span className="text-green-600">開催予定</span>}
+            </div>
           </div>
-        )}
+        </div>
 
         {isPast() && (
           <div className="bg-gray-50 px-4 py-2 border-t">
