@@ -29,44 +29,79 @@ export async function getEvents(params: EventQueryParams = {}) {
   const offset = (page - 1) * limit
 
   try {
-    // ベースクエリを構築
-    let query = supabaseServer
-      .from('events')
-      .select(`
-        *,
-        garden:gardens(id, name, prefecture, address)
-      `)
+    // ベースクエリビルダー関数
+    const buildQuery = () => {
+      let query = supabaseServer.from('events').select('*')
 
-    // 期間フィルター（月指定）
+      // 期間フィルター（月指定）
+      if (month) {
+        const [year, monthNum] = month.split('-')
+        const startOfMonth = `${year}-${monthNum.padStart(2, '0')}-01`
+        const endOfMonth = new Date(parseInt(year), parseInt(monthNum), 0)
+          .toISOString().split('T')[0]
+
+        query = query
+          .gte('start_date', startOfMonth)
+          .lte('start_date', endOfMonth)
+      }
+
+      // 地域フィルター
+      if (prefecture) {
+        query = query.eq('prefecture', prefecture)
+      }
+
+      // イベント種別フィルター
+      if (types && types.length > 0) {
+        query = query.overlaps('types', types)
+      }
+
+      // 盆栽園フィルター
+      if (gardenId) {
+        query = query.eq('garden_id', gardenId)
+      }
+
+      // キーワード検索（タイトル、会場、主催者、説明文で検索）
+      if (q) {
+        query = query.or(`
+          title.ilike.%${q}%,
+          venue_name.ilike.%${q}%,
+          organizer_name.ilike.%${q}%,
+          description.ilike.%${q}%
+        `)
+      }
+
+      return query
+    }
+
+    // カウントクエリ
+    let countQuery = supabaseServer.from('events').select('*', { count: 'exact', head: true })
+
+    // カウントクエリにフィルターを適用
     if (month) {
       const [year, monthNum] = month.split('-')
       const startOfMonth = `${year}-${monthNum.padStart(2, '0')}-01`
       const endOfMonth = new Date(parseInt(year), parseInt(monthNum), 0)
         .toISOString().split('T')[0]
 
-      query = query
+      countQuery = countQuery
         .gte('start_date', startOfMonth)
         .lte('start_date', endOfMonth)
     }
 
-    // 地域フィルター
     if (prefecture) {
-      query = query.eq('prefecture', prefecture)
+      countQuery = countQuery.eq('prefecture', prefecture)
     }
 
-    // イベント種別フィルター
     if (types && types.length > 0) {
-      query = query.overlaps('types', types)
+      countQuery = countQuery.overlaps('types', types)
     }
 
-    // 盆栽園フィルター
     if (gardenId) {
-      query = query.eq('garden_id', gardenId)
+      countQuery = countQuery.eq('garden_id', gardenId)
     }
 
-    // キーワード検索（タイトル、会場、主催者、説明文で検索）
     if (q) {
-      query = query.or(`
+      countQuery = countQuery.or(`
         title.ilike.%${q}%,
         venue_name.ilike.%${q}%,
         organizer_name.ilike.%${q}%,
@@ -74,12 +109,14 @@ export async function getEvents(params: EventQueryParams = {}) {
       `)
     }
 
-    // カウントクエリ
-    const { count } = await query
-      .select('*', { count: 'exact', head: true })
+    const { count } = await countQuery
 
     // データクエリ（ページネーション付き）
-    const { data: events, error } = await query
+    const { data: events, error } = await buildQuery()
+      .select(`
+        *,
+        garden:gardens(id, name, prefecture, address)
+      `)
       .order('start_date', { ascending: true })
       .range(offset, offset + limit - 1)
 
@@ -121,6 +158,9 @@ export async function getEventBySlug(slug: string) {
       return null
     }
 
+    // TypeScript用に型を明示的にアサート
+    const typedEvent = event as any
+
     // 関連記事取得
     const { data: eventArticles } = await supabaseServer
       .from('event_articles')
@@ -128,20 +168,20 @@ export async function getEventBySlug(slug: string) {
         *,
         article:articles(id, title, slug, excerpt, eyecatch_url)
       `)
-      .eq('event_id', event.id)
+      .eq('event_id', typedEvent.id)
 
     // 関連イベント取得（同じ地域の近日中のイベント）
     const { data: relatedEvents } = await supabaseServer
       .from('events')
       .select('id, title, slug, start_date, end_date, venue_name, types, price_type')
-      .eq('prefecture', event.prefecture)
-      .neq('id', event.id)
+      .eq('prefecture', typedEvent.prefecture)
+      .neq('id', typedEvent.id)
       .gte('start_date', new Date().toISOString().split('T')[0])
       .order('start_date', { ascending: true })
       .limit(5)
 
     return {
-      event,
+      event: typedEvent,
       event_articles: eventArticles || [],
       related_events: relatedEvents || []
     }
@@ -162,7 +202,7 @@ export async function getEventPrefectures() {
       .select('prefecture')
       .order('prefecture')
 
-    const prefectures = [...new Set(data?.map(p => p.prefecture) || [])]
+    const prefectures = [...new Set(data?.map((p: any) => p.prefecture) || [])]
     return prefectures
 
   } catch (error) {

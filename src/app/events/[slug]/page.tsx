@@ -126,7 +126,7 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
   }
 
   if (event.address) {
-    eventJsonLd.location.address = {
+    (eventJsonLd.location as any).address = {
       "@type": "PostalAddress",
       "streetAddress": event.address,
       "addressLocality": event.prefecture,
