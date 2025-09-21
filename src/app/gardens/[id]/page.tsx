@@ -305,7 +305,7 @@ const gardenImageMap: Record<string, string> = {
   '770def0-0789-0014-6345-012345678912': '/images/gardens/tosa-seiryu-engei.svg', // 土佐清流園芸
   '881ef01-1890-1125-7456-123456789123': '/images/gardens/chikushino-garden-center.svg', // 筑紫野ガーデンセンター
   '992f012-2901-2236-8567-234567891234': '/images/gardens/amakusa-shotou-engei-farm.svg', // 天草諸島園芸ファーム
-}
+
   // フェーズ8（最終拡充コレクション）
   '32f621fa-68bd-436e-82e0-d97a483f322d': '/images/gardens/enomotosatsukien.svg', // 榎本皐月園
   'a84680ba-4aa4-44e1-a878-94d20c805649': '/images/gardens/hana.svg', // 花伝
