@@ -48,10 +48,14 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
 
   if (layout === 'list') {
     return (
-      <Link href={`/events/${event.slug}`} className={cn("group", className)}>
-        <div className="flex items-center gap-4 p-4 bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all duration-200">
+      <Link
+        href={`/events/${event.slug}`}
+        className={cn("group", className)}
+        aria-label={`${event.title} - ${formatDate(event.start_date)}開催のイベント詳細を見る`}
+      >
+        <div className="flex items-center gap-4 p-4 bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all duration-200 focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2">
           {/* 日付 */}
-          <div className="flex-shrink-0 text-center min-w-[60px]">
+          <div className="flex-shrink-0 text-center min-w-[60px]" role="img" aria-label={`${formatDate(event.start_date)}開催`}>
             <div className="text-sm font-semibold text-gray-900">
               {new Date(event.start_date).getDate()}
             </div>
@@ -75,6 +79,7 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
                       eventTypeConfig[type].color
                     )}
                     title={eventTypeConfig[type].label}
+                    aria-label={`イベント種別: ${eventTypeConfig[type].label}`}
                   >
                     {eventTypeConfig[type].icon}
                   </span>
@@ -117,8 +122,12 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
   }
 
   return (
-    <Link href={`/events/${event.slug}`} className={cn("group", className)}>
-      <div className="bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-lg transition-all duration-300 overflow-hidden">
+    <Link
+      href={`/events/${event.slug}`}
+      className={cn("group", className)}
+      aria-label={`${event.title} - ${getDateRange()}開催のイベント詳細を見る`}
+    >
+      <div className="bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-lg transition-all duration-300 overflow-hidden focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2">
         {/* ヘッダー */}
         <div className="p-4 pb-3">
           <div className="flex items-start justify-between mb-2">

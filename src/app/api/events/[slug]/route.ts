@@ -1,55 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseServer } from '@/lib/supabase-server'
+import { getEventBySlug } from '@/lib/events'
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { slug: string } }
 ) {
   try {
-    const supabase = supabaseServer
     const { slug } = params
 
-    // イベント詳細を取得
-    const { data: event, error: eventError } = await supabase
-      .from('events')
-      .select(`
-        *,
-        garden:gardens(id, name, prefecture, address, phone, website_url)
-      `)
-      .eq('slug', slug)
-      .single()
+    // lib/events.tsの関数を使用
+    const result = await getEventBySlug(slug)
 
-    if (eventError || !event) {
+    if (!result) {
       return NextResponse.json({ error: 'Event not found' }, { status: 404 })
     }
 
-    // 関連記事を取得
-    const { data: eventArticles } = await supabase
-      .from('event_articles')
-      .select(`
-        *,
-        article:articles(id, title, slug, excerpt, eyecatch_url)
-      `)
-      .eq('event_id', event.id)
-
-    // 同じ地域の近日中のイベントを取得（関連イベント）
-    const { data: relatedEvents } = await supabase
-      .from('events')
-      .select('id, title, slug, start_date, end_date, venue_name, types, price_type')
-      .eq('prefecture', event.prefecture)
-      .neq('id', event.id)
-      .gte('start_date', new Date().toISOString().split('T')[0])
-      .order('start_date', { ascending: true })
-      .limit(5)
-
-    return NextResponse.json({
-      event,
-      event_articles: eventArticles || [],
-      related_events: relatedEvents || []
+    // JSON返却（日本語対応）
+    return NextResponse.json(result, {
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
     })
 
   } catch (error) {
     console.error('Event detail API error:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Internal server error', message: error instanceof Error ? error.message : 'Unknown error' },
+      { status: 500 }
+    )
   }
 }
