@@ -86,10 +86,23 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
     return eventsByDate.get(dateKey) || []
   }, [selectedDate, eventsByDate])
 
-  // 月のイベントをリスト表示用にソート
+  // 月のイベントをリスト表示用にソート（開催予定 → 開催中 → 過去の順）
   const monthEvents = useMemo(() => {
     const firstDay = new Date(currentYear, currentMonth, 1)
     const lastDay = new Date(currentYear, currentMonth + 1, 0)
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+
+    const getEventStatus = (event: Event) => {
+      const startDate = new Date(event.start_date)
+      const endDate = new Date(event.end_date)
+      startDate.setHours(0, 0, 0, 0)
+      endDate.setHours(23, 59, 59, 999)
+
+      if (startDate > today) return 'upcoming' // 開催予定
+      if (startDate <= today && endDate >= today) return 'ongoing' // 開催中
+      return 'past' // 過去
+    }
 
     return events
       .filter(event => {
@@ -99,7 +112,23 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
                (eventEnd >= firstDay && eventEnd <= lastDay) ||
                (eventStart <= firstDay && eventEnd >= lastDay)
       })
-      .sort((a, b) => new Date(a.start_date).getTime() - new Date(b.start_date).getTime())
+      .sort((a, b) => {
+        const statusOrder = { upcoming: 0, ongoing: 1, past: 2 }
+        const aStatus = getEventStatus(a)
+        const bStatus = getEventStatus(b)
+
+        // ステータスが異なる場合は、ステータス順
+        if (aStatus !== bStatus) {
+          return statusOrder[aStatus] - statusOrder[bStatus]
+        }
+
+        // 同じステータス内では日付順
+        const aDate = new Date(a.start_date).getTime()
+        const bDate = new Date(b.start_date).getTime()
+
+        // 開催予定・開催中は近い順、過去は新しい順
+        return aStatus === 'past' ? bDate - aDate : aDate - bDate
+      })
   }, [events, currentYear, currentMonth])
 
   const goToPrevMonth = () => {
@@ -354,7 +383,7 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
                         <EventCard
                           key={event.id}
                           event={event}
-                          layout="list"
+                          layout="compact"
                         />
                       ))}
                     </div>

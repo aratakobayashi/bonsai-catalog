@@ -53,7 +53,10 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
         className={cn("group", className)}
         aria-label={`${event.title} - ${formatDate(event.start_date)}開催のイベント詳細を見る`}
       >
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all duration-200 focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2 active:scale-[0.98] touch-manipulation">
+        <div className={cn(
+          "flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all duration-200 focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2 active:scale-[0.98] touch-manipulation",
+          isPast() && "opacity-75 hover:opacity-90"
+        )}>
           {/* モバイル：上部に日付とタイプ */}
           <div className="flex items-center justify-between sm:hidden">
             <div className="flex items-center gap-2">
@@ -199,7 +202,10 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
         className={cn("group", className)}
         aria-label={`${event.title} - ${formatDate(event.start_date)}開催のイベント詳細を見る`}
       >
-        <div className="p-3 bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-sm transition-all duration-200">
+        <div className={cn(
+          "p-3 bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-sm transition-all duration-200",
+          isPast() && "opacity-75 hover:opacity-90"
+        )}>
           {/* ヘッダー：日付とタイプ */}
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-1 text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded-full">
@@ -259,7 +265,10 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
       className={cn("group", className)}
       aria-label={`${event.title} - ${getDateRange()}開催のイベント詳細を見る`}
     >
-      <div className="bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-lg transition-all duration-300 overflow-hidden focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2">
+      <div className={cn(
+        "bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-lg transition-all duration-300 overflow-hidden focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2",
+        isPast() && "opacity-75 hover:opacity-90"
+      )}>
         {/* ヘッダー */}
         <div className="p-4 pb-3">
           <div className="flex items-start justify-between mb-2">
