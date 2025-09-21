@@ -26,8 +26,8 @@ export default function EventsPageClient() {
   // URLパラメータから初期フィルターを設定（useMemoで最適化）
   const initialFilters = useMemo((): EventSearchParams => {
     const filters: EventSearchParams = {
-      page: parseInt(searchParams.get('page') || '1'),
-      limit: 20
+      page: 1,
+      limit: 1000 // 全イベントを取得（ページネーション無効化）
     }
 
     if (searchParams.get('prefecture')) filters.prefecture = searchParams.get('prefecture')!
@@ -118,11 +118,7 @@ export default function EventsPageClient() {
     updateURL(filters, newView)
   }
 
-  // ページネーション
-  const handlePageChange = (page: number) => {
-    const newFilters = { ...filters, page }
-    handleFiltersChange(newFilters)
-  }
+  // ページネーション無効化（全イベント一覧表示）
 
   // 初回データ取得（initialFiltersを使用）
   useEffect(() => {
@@ -224,30 +220,7 @@ export default function EventsPageClient() {
           {/* 新しいリストビュー */}
           <EventListView events={events} />
 
-          {/* ページネーション */}
-          {eventsResponse && eventsResponse.total > eventsResponse.limit && (
-            <div className="flex items-center justify-center gap-2 mt-8">
-              <button
-                onClick={() => handlePageChange(Math.max(1, filters.page! - 1))}
-                disabled={filters.page === 1}
-                className="p-2 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </button>
-
-              <span className="px-4 py-2 text-sm text-gray-600">
-                {filters.page} / {Math.ceil(eventsResponse.total / eventsResponse.limit)}
-              </span>
-
-              <button
-                onClick={() => handlePageChange(filters.page! + 1)}
-                disabled={filters.page! >= Math.ceil(eventsResponse.total / eventsResponse.limit)}
-                className="p-2 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
-          )}
+          {/* ページネーション無効化 */}
         </div>
       ) : view === 'map' ? (
         <EventMap events={events} />
