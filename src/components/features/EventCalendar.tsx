@@ -146,12 +146,12 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
     if (events.length === 0) return null
 
     // 最大2件まで表示、重要度順（展示 > 即売 > ワークショップ > 講習）
-    const typeOrder = { exhibition: 0, sale: 1, workshop: 2, lecture: 3 }
+    const typeOrder: Record<EventType, number> = { exhibition: 0, sale: 1, workshop: 2, lecture: 3 }
     const sortedEvents = events
       .slice()
       .sort((a, b) => {
-        const aMinType = Math.min(...a.types.map(t => typeOrder[t]))
-        const bMinType = Math.min(...b.types.map(t => typeOrder[t]))
+        const aMinType = Math.min(...a.types.map(t => typeOrder[t] ?? 999))
+        const bMinType = Math.min(...b.types.map(t => typeOrder[t] ?? 999))
         return aMinType - bMinType
       })
       .slice(0, 2)
