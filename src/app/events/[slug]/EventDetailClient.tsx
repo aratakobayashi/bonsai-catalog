@@ -376,12 +376,12 @@ export default function EventDetailClient({
                     <h3 className="font-bold text-gray-900 mb-4">
                       {event.prefecture}の関連イベント
                     </h3>
-                    <div className="space-y-4">
+                    <div className="space-y-3">
                       {relatedEvents.slice(0, 3).map((relatedEvent) => (
                         <EventCard
                           key={relatedEvent.id}
                           event={relatedEvent}
-                          layout="list"
+                          layout="compact"
                         />
                       ))}
                     </div>

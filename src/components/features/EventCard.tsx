@@ -15,7 +15,7 @@ const eventTypeConfig = {
 interface EventCardProps {
   event: Event
   className?: string
-  layout?: 'card' | 'list'
+  layout?: 'card' | 'list' | 'compact'
 }
 
 export function EventCard({ event, className, layout = 'card' }: EventCardProps) {
@@ -186,6 +186,67 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
                 開催予定
               </span>
             )}
+          </div>
+        </div>
+      </Link>
+    )
+  }
+
+  if (layout === 'compact') {
+    return (
+      <Link
+        href={`/events/${event.slug}`}
+        className={cn("group", className)}
+        aria-label={`${event.title} - ${formatDate(event.start_date)}開催のイベント詳細を見る`}
+      >
+        <div className="p-3 bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-sm transition-all duration-200">
+          {/* ヘッダー：日付とタイプ */}
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-1 text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded-full">
+              <Calendar className="h-3 w-3" />
+              <span>{formatDate(event.start_date)}</span>
+            </div>
+            <div className="flex gap-1">
+              {event.types.slice(0, 1).map((type) => (
+                <span
+                  key={type}
+                  className={cn(
+                    'inline-flex items-center px-1.5 py-0.5 text-xs font-medium rounded',
+                    eventTypeConfig[type].color
+                  )}
+                  title={eventTypeConfig[type].label}
+                >
+                  {eventTypeConfig[type].icon}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* タイトル */}
+          <h4 className="font-semibold text-gray-900 group-hover:text-green-600 transition-colors text-sm leading-tight mb-2 line-clamp-2">
+            {event.title}
+          </h4>
+
+          {/* 場所・料金 */}
+          <div className="space-y-1">
+            <div className="flex items-center gap-1 text-xs text-gray-600">
+              <MapPin className="h-3 w-3 flex-shrink-0" />
+              <span className="truncate">{event.prefecture}</span>
+              {event.venue_name && (
+                <span className="truncate">• {event.venue_name}</span>
+              )}
+            </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1 text-xs text-gray-600">
+                <DollarSign className="h-3 w-3" />
+                <span>{event.price_type === 'free' ? '無料' : '有料'}</span>
+              </div>
+              {isUpcoming() && (
+                <span className="text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded">
+                  開催予定
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </Link>
