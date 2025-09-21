@@ -10,7 +10,7 @@ import { EventCard } from './EventCard'
 const eventTypeConfig = {
   exhibition: { color: 'text-green-600 bg-green-50', icon: '🌳', label: '展示' },
   sale: { color: 'text-blue-600 bg-blue-50', icon: '🛒', label: '即売' },
-  workshop: { color: 'text-orange-600 bg-orange-50', icon: '✂️', label: 'WS' },
+  workshop: { color: 'text-orange-600 bg-orange-50', icon: '✂️', label: '体験' },
   lecture: { color: 'text-purple-600 bg-purple-50', icon: '📖', label: '講習' }
 }
 
@@ -21,7 +21,7 @@ interface EventCalendarProps {
 }
 
 export function EventCalendar({ events, className, viewMode = 'calendar' }: EventCalendarProps) {
-  const [currentDate, setCurrentDate] = useState(new Date())
+  const [currentDate, setCurrentDate] = useState(() => new Date())
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   const [isMobile, setIsMobile] = useState(false)
 

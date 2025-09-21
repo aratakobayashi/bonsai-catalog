@@ -9,7 +9,7 @@ import { Calendar, MapPin, DollarSign, Users, Clock, ChevronRight, Star } from '
 const eventTypeConfig = {
   exhibition: { color: 'text-green-600 bg-green-50 border-green-200', icon: '🌳', label: '展示' },
   sale: { color: 'text-blue-600 bg-blue-50 border-blue-200', icon: '🛒', label: '即売' },
-  workshop: { color: 'text-orange-600 bg-orange-50 border-orange-200', icon: '✂️', label: 'WS' },
+  workshop: { color: 'text-orange-600 bg-orange-50 border-orange-200', icon: '✂️', label: '体験' },
   lecture: { color: 'text-purple-600 bg-purple-50 border-purple-200', icon: '📖', label: '講習' }
 }
 
@@ -29,10 +29,12 @@ interface EventGroup {
 }
 
 export function EventListView({ events, className }: EventListViewProps) {
-  // スマートグループ化
+  // スマートグループ化（年月別＋ステータス別）
   const eventGroups = useMemo(() => {
     const now = new Date()
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+    const currentYear = now.getFullYear()
+    const currentMonth = now.getMonth()
 
     const tomorrow = new Date(today)
     tomorrow.setDate(tomorrow.getDate() + 1)
@@ -40,8 +42,8 @@ export function EventListView({ events, className }: EventListViewProps) {
     const weekEnd = new Date(today)
     weekEnd.setDate(weekEnd.getDate() + 7)
 
-    const monthEnd = new Date(today)
-    monthEnd.setMonth(monthEnd.getMonth() + 1)
+    const monthEnd = new Date(currentYear, currentMonth + 1, 0) // 今月末
+    const nextMonthEnd = new Date(currentYear, currentMonth + 2, 0) // 来月末
 
     const getEventStatus = (event: Event) => {
       const startDate = new Date(event.start_date)
@@ -54,10 +56,17 @@ export function EventListView({ events, className }: EventListViewProps) {
       return 'past'
     }
 
+    // 年月の表示形式を生成
+    const formatMonthYear = (date: Date) => {
+      const year = date.getFullYear()
+      const month = date.getMonth() + 1
+      return `${year}年${month}月`
+    }
+
     const groups: EventGroup[] = [
       {
-        title: '開催中のイベント',
-        description: '今すぐ参加できます',
+        title: '🔥 開催中',
+        description: '現在開催中のイベント',
         events: [],
         priority: 1,
         icon: <Star className="h-5 w-5" />,
@@ -65,8 +74,8 @@ export function EventListView({ events, className }: EventListViewProps) {
         borderColor: 'border-green-200'
       },
       {
-        title: '明日開催',
-        description: '明日から開始予定',
+        title: '📅 まもなく開催（7日以内）',
+        description: '今週中に開催予定',
         events: [],
         priority: 2,
         icon: <Clock className="h-5 w-5" />,
@@ -74,8 +83,8 @@ export function EventListView({ events, className }: EventListViewProps) {
         borderColor: 'border-blue-200'
       },
       {
-        title: '今週のイベント',
-        description: '今週中に開催予定',
+        title: `${formatMonthYear(now)}のイベント`,
+        description: '今月開催予定',
         events: [],
         priority: 3,
         icon: <Calendar className="h-5 w-5" />,
@@ -83,8 +92,8 @@ export function EventListView({ events, className }: EventListViewProps) {
         borderColor: 'border-purple-200'
       },
       {
-        title: '今月のイベント',
-        description: '今月中に開催予定',
+        title: `${formatMonthYear(new Date(currentYear, currentMonth + 1, 1))}のイベント`,
+        description: '来月開催予定',
         events: [],
         priority: 4,
         icon: <Calendar className="h-5 w-5" />,
@@ -92,13 +101,13 @@ export function EventListView({ events, className }: EventListViewProps) {
         borderColor: 'border-orange-200'
       },
       {
-        title: '今後のイベント',
-        description: '来月以降の開催予定',
+        title: '今後の開催予定',
+        description: `${formatMonthYear(new Date(currentYear, currentMonth + 2, 1))}以降`,
         events: [],
         priority: 5,
         icon: <Calendar className="h-5 w-5" />,
-        bgColor: 'bg-gray-50',
-        borderColor: 'border-gray-200'
+        bgColor: 'bg-indigo-50',
+        borderColor: 'border-indigo-200'
       },
       {
         title: '終了したイベント',
@@ -118,19 +127,19 @@ export function EventListView({ events, className }: EventListViewProps) {
       const status = getEventStatus(event)
 
       if (status === 'ongoing') {
-        groups[0].events.push(event)
+        groups[0].events.push(event) // 開催中
       } else if (status === 'upcoming') {
-        if (startDateOnly.getTime() === tomorrow.getTime()) {
-          groups[1].events.push(event)
-        } else if (startDateOnly < weekEnd) {
-          groups[2].events.push(event)
-        } else if (startDateOnly < monthEnd) {
-          groups[3].events.push(event)
+        if (startDateOnly <= weekEnd) {
+          groups[1].events.push(event) // 7日以内
+        } else if (startDateOnly <= monthEnd) {
+          groups[2].events.push(event) // 今月
+        } else if (startDateOnly <= nextMonthEnd) {
+          groups[3].events.push(event) // 来月
         } else {
-          groups[4].events.push(event)
+          groups[4].events.push(event) // それ以降
         }
       } else {
-        groups[5].events.push(event)
+        groups[5].events.push(event) // 終了
       }
     })
 
@@ -152,13 +161,17 @@ export function EventListView({ events, className }: EventListViewProps) {
     const today = new Date()
     const tomorrow = new Date(today)
     tomorrow.setDate(today.getDate() + 1)
+    const currentYear = today.getFullYear()
 
     if (date.toDateString() === today.toDateString()) {
       return '今日'
     } else if (date.toDateString() === tomorrow.toDateString()) {
       return '明日'
     } else {
+      // 年が異なる場合は年も表示
+      const includeYear = date.getFullYear() !== currentYear
       return date.toLocaleDateString('ja-JP', {
+        year: includeYear ? 'numeric' : undefined,
         month: 'short',
         day: 'numeric',
         weekday: 'short'

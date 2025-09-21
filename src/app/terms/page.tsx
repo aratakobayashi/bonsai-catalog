@@ -14,7 +14,7 @@ export default function TermsPage() {
         </h1>
         
         <p className="text-neutral-600 mb-8">
-          最終更新日: {new Date().getFullYear()}年{new Date().getMonth() + 1}月{new Date().getDate()}日
+          最終更新日: 2024年9月21日
         </p>
 
         <div className="space-y-8">
