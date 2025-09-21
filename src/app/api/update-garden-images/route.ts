@@ -13,9 +13,9 @@ export async function POST(request: NextRequest) {
     }
 
     // データベースの盆栽園画像を更新
-    const { data, error } = await supabaseServer
+    const { data, error } = await (supabaseServer as any)
       .from('gardens')
-      .update({ image_url: imageUrl } as any)
+      .update({ image_url: imageUrl })
       .eq('id', gardenId)
       .select()
 
@@ -46,7 +46,7 @@ export async function PUT() {
     console.log('🚀 全盆栽園の画像一括生成開始...')
 
     // プレースホルダー画像の盆栽園を取得
-    const { data: gardens, error: fetchError } = await supabaseServer
+    const { data: gardens, error: fetchError } = await (supabaseServer as any)
       .from('gardens')
       .select('id, name, prefecture, city, specialties, image_url')
       .or('image_url.is.null,image_url.like.%placeholder%')
@@ -95,9 +95,9 @@ export async function PUT() {
         }
 
         // データベース更新
-        const { error: updateError } = await supabaseServer
+        const { error: updateError } = await (supabaseServer as any)
           .from('gardens')
-          .update({ image_url: generateResult.imageUrl } as any)
+          .update({ image_url: generateResult.imageUrl })
           .eq('id', garden.id)
 
         if (updateError) {
