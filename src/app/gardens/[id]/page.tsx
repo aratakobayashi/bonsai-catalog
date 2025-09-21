@@ -248,6 +248,32 @@ const gardenImageMap: Record<string, string> = {
   'b2974592-38df-4f4b-907b-e5fe1df60620': '/images/gardens/bonsai-fukushima-en.svg', // 盆栽福島園
   'd890f754-cf36-4724-bdd0-ee07b95b4a88': '/images/gardens/shohin-bonsai-yamato-en.svg', // 小品盆栽専門店 やまと園
   '9edd8075-1637-4f74-8f42-8b3f689785bc': '/images/gardens/manju-en.svg', // 萬樹園
+  // フェーズ6（究極拡充コレクション）
+  'aa02f356-72e3-49dd-9511-fea249002fdf': '/images/gardens/bonsai-no-mori-tsukuba.svg', // 盆栽の森つくば
+  'f7d24f87-828d-40ab-a330-8c03b7879a28': '/images/gardens/sagamihara-bonsai-no-mori.svg', // 相模原盆栽の森
+  '1da87f61-d5cc-456c-827b-8a2ef675b68a': '/images/gardens/greenscape.svg', // GREENSCAPE
+  '8d33d8ac-60a3-49e7-a7b8-4507cfaf0a13': '/images/gardens/yokohama-chinatown-bonsai-kan.svg', // 横浜中華街盆栽館
+  '8a3ce3f8-8503-4dd7-beee-bbc4d45bf5d3': '/images/gardens/mikawa-bonsai-en.svg', // 三河盆栽園
+  'fa96de24-e49e-4dc6-a969-d7e81462a0d5': '/images/gardens/sainokuni-bonsai-center.svg', // 彩の国盆栽センター
+  '639402ee-a9e5-459f-8772-463ab6413598': '/images/gardens/edogawa-bonsai-mura.svg', // 江戸川盆栽村
+  '588e5f53-2541-489d-b991-6b28375df649': '/images/gardens/garden-plaza-hana.svg', // ガーデンプラザ華
+  '5825c02c-84a3-4a56-85fe-e816103aef06': '/images/gardens/utsunomiya-engei-center.svg', // 宇都宮園芸センター
+  'e4ac72e0-8a4b-410e-9e99-d9f6778b7b9f': '/images/gardens/okayama-green-center.svg', // 岡山グリーンセンター
+  '9d395b67-bad0-44fe-87fb-7b4df3417307': '/images/gardens/akagisan-bonsai-koubou.svg', // 赤城山盆栽工房
+  '500e6ae7-92bd-4758-8550-a50ca2baaa60': '/images/gardens/the-garden-yoneyama-plantation.svg', // ザ・ガーデン 本店 ヨネヤマプランテイション
+  '5f6ef2d7-6540-4a1c-9739-1dc48254fa8e': '/images/gardens/yamanaka-juraku-en.svg', // 山中樹楽園
+  'bc8f2e83-04cb-48a0-b213-75d1e6b09fee': '/images/gardens/ayumino-nokyo-angyou-engei-center.svg', // あゆみ野農協安行園芸センター
+  '5f2057cb-4757-428f-befc-4af8e6bef25b': '/images/gardens/joshu-bonsai-en.svg', // 上州盆栽園
+  'aaab7bde-68f9-4ccb-8e78-871ca5ee8fc5': '/images/gardens/inbanuma-bonsai-en.svg', // 印旛沼盆栽園
+  '8c90b21d-54dd-4811-b5b7-1282f3fb1f25': '/images/gardens/satsuma-engei-center.svg', // 薩摩園芸センター
+  '3cc5336e-28ba-4555-b834-351436bdbca0': '/images/gardens/omi-engei-center.svg', // 近江園芸センター
+  '8ed687ca-0e7a-470a-9960-5dfa1592d088': '/images/gardens/nakatsutaya.svg', // 株式会社ナカツタヤ
+  '9a9dc214-6dd8-4d31-ba99-a2e475d302f8': '/images/gardens/kasuga-ryokka.svg', // 春日緑化株式会社
+  '174b8907-df0e-492c-a93a-adf2bc868081': '/images/gardens/kasumigaura-bonsai-en.svg', // 霞ヶ浦盆栽園
+  '78e25ed5-8a97-4a3e-9f3d-77fdd5054e8b': '/images/gardens/green-farm-higashiosaka.svg', // グリーンファーム東大阪
+  '6b9181e5-f2df-4c32-a2ad-5700ac7f866f': '/images/gardens/uekiya-honpo.svg', // 植木屋本舗
+  '63515450-e9f3-40f6-852d-b726e7ea7552': '/images/gardens/hana-no-niwa.svg', // 花の庭
+  'a035baf6-e9e9-427c-8245-10e6d0c11435': '/images/gardens/nakagawa-zouen.svg', // 中川造園
 }
 
 export default async function GardenDetailPage({ params }: GardenPageProps) {
