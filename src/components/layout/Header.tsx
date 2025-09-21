@@ -16,6 +16,7 @@ const Header = () => {
     { href: '/products', label: '商品一覧' },
     { href: '/guides', label: '記事ガイド' },
     { href: '/gardens', label: '盆栽園紹介' },
+    { href: '/events', label: 'イベント' },
   ]
 
   return (

@@ -184,3 +184,61 @@ export interface ArticleListResponse {
   hasNext: boolean
   hasPrev: boolean
 }
+
+// イベント関連の型定義
+export type EventType = 'exhibition' | 'sale' | 'workshop' | 'lecture'
+export type EventPriceType = 'free' | 'paid'
+export type EventRelationType = 'announcement' | 'report' | 'summary'
+
+export interface Event {
+  id: string
+  title: string
+  slug: string
+  start_date: string
+  end_date: string
+  prefecture: string
+  venue_name?: string
+  address?: string
+  lat?: number
+  lng?: number
+  types: EventType[]
+  price_type: EventPriceType
+  price_note?: string
+  organizer_name?: string
+  official_url?: string
+  garden_id?: string
+  related_product_tags?: string[]
+  description?: string
+  created_at: string
+  updated_at: string
+  garden?: Garden
+}
+
+export interface EventArticle {
+  id: string
+  event_id: string
+  article_id: string
+  relation_type: EventRelationType
+  created_at: string
+  article?: Article
+}
+
+export interface EventSearchParams {
+  prefecture?: string
+  types?: EventType[]
+  garden_id?: string
+  month?: string
+  search?: string
+  view?: 'month' | 'list' | 'map'
+  page?: number
+  limit?: number
+}
+
+export interface EventsResponse {
+  events: Event[]
+  total: number
+  page: number
+  limit: number
+  prefectures: string[]
+  upcoming_count: number
+}
