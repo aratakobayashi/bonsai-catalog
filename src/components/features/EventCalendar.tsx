@@ -61,6 +61,8 @@ export function EventCalendar({ events, className, viewMode = 'calendar' }: Even
   const eventsByDate = useMemo(() => {
     const dateEvents: Record<string, Event[]> = {}
 
+    console.log('🗺️ EventsByDate Mapping - Total events:', events.length)
+
     events.forEach(event => {
       const startDate = new Date(event.start_date)
       const endDate = new Date(event.end_date)
@@ -73,9 +75,24 @@ export function EventCalendar({ events, className, viewMode = 'calendar' }: Even
           dateEvents[dateKey] = []
         }
         dateEvents[dateKey].push(event)
+
+        // 9月のイベントをデバッグ
+        if (dateKey.includes('2025-09')) {
+          console.log('📍 September Event Mapped:', {
+            dateKey,
+            title: event.title,
+            eventsOnThisDate: dateEvents[dateKey].length
+          })
+        }
+
         // 安全な日付加算（月境界を考慮）
         currentDate.setTime(currentDate.getTime() + 24 * 60 * 60 * 1000)
       }
+    })
+
+    console.log('🗓️ EventsByDate Result:', {
+      totalDates: Object.keys(dateEvents).length,
+      septemberDates: Object.keys(dateEvents).filter(date => date.includes('2025-09')).length
     })
 
     return dateEvents
@@ -95,6 +112,16 @@ export function EventCalendar({ events, className, viewMode = 'calendar' }: Even
     const today = new Date()
     today.setHours(0, 0, 0, 0)
 
+    // デバッグログ
+    console.log('🗓️ EventCalendar Debug:', {
+      currentYear,
+      currentMonth: currentMonth + 1, // 表示用に+1
+      firstDay: firstDay.toISOString().split('T')[0],
+      lastDay: lastDay.toISOString().split('T')[0],
+      today: today.toISOString().split('T')[0],
+      totalEvents: events.length
+    })
+
     const getEventStatus = (event: Event) => {
       const startDate = new Date(event.start_date)
       const endDate = new Date(event.end_date)
@@ -106,15 +133,37 @@ export function EventCalendar({ events, className, viewMode = 'calendar' }: Even
       return 'past' // 過去
     }
 
-    return events
-      .filter(event => {
-        const eventStart = new Date(event.start_date)
-        const eventEnd = new Date(event.end_date)
-        return (eventStart >= firstDay && eventStart <= lastDay) ||
-               (eventEnd >= firstDay && eventEnd <= lastDay) ||
-               (eventStart <= firstDay && eventEnd >= lastDay)
-      })
-      .sort((a, b) => {
+    const filtered = events.filter(event => {
+      const eventStart = new Date(event.start_date)
+      const eventEnd = new Date(event.end_date)
+
+      // 時間をリセット
+      eventStart.setHours(0, 0, 0, 0)
+      eventEnd.setHours(23, 59, 59, 999)
+
+      const isInMonth = (eventStart >= firstDay && eventStart <= lastDay) ||
+                       (eventEnd >= firstDay && eventEnd <= lastDay) ||
+                       (eventStart <= firstDay && eventEnd >= lastDay)
+
+      // デバッグログ
+      if (event.start_date.includes('2025-09')) {
+        console.log('📅 September Event Check:', {
+          title: event.title,
+          start_date: event.start_date,
+          eventStart: eventStart.toISOString().split('T')[0],
+          eventEnd: eventEnd.toISOString().split('T')[0],
+          firstDay: firstDay.toISOString().split('T')[0],
+          lastDay: lastDay.toISOString().split('T')[0],
+          isInMonth
+        })
+      }
+
+      return isInMonth
+    })
+
+    console.log('📊 Filtered Events:', filtered.length, 'out of', events.length)
+
+    return filtered.sort((a, b) => {
         const statusOrder = { upcoming: 0, ongoing: 1, past: 2 }
         const aStatus = getEventStatus(a)
         const bStatus = getEventStatus(b)
