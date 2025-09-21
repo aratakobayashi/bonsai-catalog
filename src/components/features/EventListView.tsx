@@ -316,15 +316,19 @@ export function EventListView({ events, className }: EventListViewProps) {
                     {/* 日付 */}
                     <div className="col-span-1">
                       <div className={cn(
-                        "text-center p-2 rounded-xl text-sm font-bold shadow-sm",
+                        "text-center px-3 py-2 rounded-xl text-sm font-bold shadow-sm",
                         isOngoing(event) ? "bg-gradient-to-br from-green-100 to-green-200 text-green-800 ring-2 ring-green-300" :
                         isUpcoming(event) ? "bg-gradient-to-br from-blue-100 to-blue-200 text-blue-800" :
                         "bg-gray-100 text-gray-600"
                       )}>
-                        <div className="text-lg leading-none">{new Date(event.start_date).getDate()}</div>
-                        <div className="text-xs mt-1">{new Date(event.start_date).toLocaleDateString('ja-JP', { month: 'short' })}</div>
+                        <div className="text-base leading-none">
+                          {new Date(event.start_date).toLocaleDateString('ja-JP', {
+                            month: 'numeric',
+                            day: 'numeric'
+                          })}
+                        </div>
                         {new Date(event.start_date).getFullYear() !== new Date().getFullYear() && (
-                          <div className="text-xs opacity-75">{new Date(event.start_date).getFullYear()}</div>
+                          <div className="text-xs opacity-75 mt-1">{new Date(event.start_date).getFullYear()}</div>
                         )}
                       </div>
                     </div>
@@ -413,10 +417,14 @@ export function EventListView({ events, className }: EventListViewProps) {
                         isUpcoming(event) ? "bg-gradient-to-br from-blue-100 to-blue-200 text-blue-800" :
                         "bg-gray-100 text-gray-600"
                       )}>
-                        <div className="text-lg leading-none">{new Date(event.start_date).getDate()}</div>
-                        <div className="text-xs mt-1">{new Date(event.start_date).toLocaleDateString('ja-JP', { month: 'short' })}</div>
+                        <div className="text-base leading-none">
+                          {new Date(event.start_date).toLocaleDateString('ja-JP', {
+                            month: 'numeric',
+                            day: 'numeric'
+                          })}
+                        </div>
                         {new Date(event.start_date).getFullYear() !== new Date().getFullYear() && (
-                          <div className="text-xs opacity-75">{new Date(event.start_date).getFullYear()}</div>
+                          <div className="text-xs opacity-75 mt-1">{new Date(event.start_date).getFullYear()}</div>
                         )}
                       </div>
 
