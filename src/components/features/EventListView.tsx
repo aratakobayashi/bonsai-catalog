@@ -271,23 +271,53 @@ export function EventListView({ events, className }: EventListViewProps) {
 
   return (
     <div className={cn("space-y-8", className)}>
+      {/* サマリーカード */}
+      <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6 border border-green-200">
+        <div className="flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <h2 className="text-lg font-semibold text-gray-900">イベント概要</h2>
+            <p className="text-sm text-gray-600 mt-1">
+              全{events.length}件のイベント
+            </p>
+          </div>
+          <div className="flex gap-3">
+            {events.filter(e => isOngoing(e)).length > 0 && (
+              <div className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+                🔥 {events.filter(e => isOngoing(e)).length}件開催中
+              </div>
+            )}
+            {events.filter(e => isUpcoming(e)).length > 0 && (
+              <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                📅 {events.filter(e => isUpcoming(e)).length}件開催予定
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
       {eventGroups.map((group, groupIndex) => (
         <div key={groupIndex} className="space-y-4">
           {/* グループヘッダー */}
           <div className={cn(
-            "flex items-center gap-3 p-4 rounded-lg border",
+            "flex items-center gap-3 p-4 rounded-xl border-2 shadow-sm",
             group.bgColor,
-            group.borderColor
+            group.borderColor,
+            group.priority === 1 && "ring-2 ring-green-400 ring-offset-2"
           )}>
-            <div className="text-gray-600">
-              {group.icon}
+            <div className="text-2xl">
+              {group.priority === 1 ? '🔥' :
+               group.priority === 2 ? '⏰' :
+               group.priority === 3 ? '📅' :
+               group.priority === 4 ? '📆' :
+               group.priority === 5 ? '🗓️' : '✅'}
             </div>
             <div className="flex-1">
-              <h2 className="font-semibold text-gray-900">{group.title}</h2>
+              <h2 className="font-bold text-lg text-gray-900">{group.title}</h2>
               <p className="text-sm text-gray-600">{group.description}</p>
             </div>
-            <div className="text-sm text-gray-500 bg-white px-2 py-1 rounded-full">
-              {group.events.length}件
+            <div className="flex items-center gap-2">
+              <span className="text-2xl font-bold text-gray-700">{group.events.length}</span>
+              <span className="text-sm text-gray-500">件</span>
             </div>
           </div>
 
@@ -309,32 +339,38 @@ export function EventListView({ events, className }: EventListViewProps) {
                 <Link
                   key={event.id}
                   href={`/events/${event.slug}`}
-                  className="block hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-inset"
+                  className="block hover:bg-gradient-to-r hover:from-green-50 hover:to-transparent transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-inset group"
                 >
                   {/* デスクトップレイアウト */}
                   <div className="hidden lg:grid lg:grid-cols-12 gap-4 p-4 items-center">
                     {/* 日付 */}
                     <div className="col-span-1">
                       <div className={cn(
-                        "text-center p-2 rounded-lg text-sm font-medium",
-                        isOngoing(event) ? "bg-green-100 text-green-800" :
-                        isUpcoming(event) ? "bg-blue-100 text-blue-800" :
+                        "text-center p-2 rounded-xl text-sm font-bold shadow-sm",
+                        isOngoing(event) ? "bg-gradient-to-br from-green-100 to-green-200 text-green-800 ring-2 ring-green-300" :
+                        isUpcoming(event) ? "bg-gradient-to-br from-blue-100 to-blue-200 text-blue-800" :
                         "bg-gray-100 text-gray-600"
                       )}>
-                        <div className="text-xs">{new Date(event.start_date).getDate()}</div>
-                        <div className="text-xs">{new Date(event.start_date).toLocaleDateString('ja-JP', { month: 'short' })}</div>
+                        <div className="text-lg leading-none">{new Date(event.start_date).getDate()}</div>
+                        <div className="text-xs mt-1">{new Date(event.start_date).toLocaleDateString('ja-JP', { month: 'short' })}</div>
+                        {new Date(event.start_date).getFullYear() !== new Date().getFullYear() && (
+                          <div className="text-xs opacity-75">{new Date(event.start_date).getFullYear()}</div>
+                        )}
                       </div>
                     </div>
 
                     {/* イベント名 */}
                     <div className="col-span-4">
-                      <h3 className="font-semibold text-gray-900 group-hover:text-green-600 transition-colors leading-tight" title={event.title}>
-                        {truncateTitle(event.title, 60)}
+                      <h3 className="font-bold text-gray-900 group-hover:text-green-600 transition-colors leading-tight text-base" title={event.title}>
+                        {isOngoing(event) && (
+                          <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                        )}
+                        {truncateTitle(event.title, 50)}
                       </h3>
-                      <div className="text-sm text-gray-600 mt-1">
-                        {getDateRange(event)}
+                      <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
+                        <span className="font-medium">{getDateRange(event)}</span>
                         {event.organizer_name && (
-                          <span className="ml-2">• {event.organizer_name}</span>
+                          <span className="text-gray-500">• {event.organizer_name}</span>
                         )}
                       </div>
                     </div>
@@ -397,59 +433,73 @@ export function EventListView({ events, className }: EventListViewProps) {
                     </div>
                   </div>
 
-                  {/* モバイルレイアウト */}
-                  <div className="lg:hidden p-4 space-y-3">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-gray-900 leading-tight" title={event.title}>
-                          {truncateTitle(event.title, 40)}
-                        </h3>
-                        <div className="text-sm text-gray-600 mt-1">
-                          {getDateRange(event)}
-                        </div>
-                      </div>
+                  {/* モバイルレイアウト（カード形式） */}
+                  <div className="lg:hidden p-4">
+                    <div className="flex gap-3">
+                      {/* 日付バッジ */}
                       <div className={cn(
-                        "ml-3 px-2 py-1 rounded-full text-xs font-medium",
-                        isOngoing(event) ? "bg-green-100 text-green-800" :
-                        isUpcoming(event) ? "bg-blue-100 text-blue-800" :
+                        "text-center px-3 py-2 rounded-xl text-sm font-bold shadow-sm flex-shrink-0",
+                        isOngoing(event) ? "bg-gradient-to-br from-green-100 to-green-200 text-green-800 ring-2 ring-green-300" :
+                        isUpcoming(event) ? "bg-gradient-to-br from-blue-100 to-blue-200 text-blue-800" :
                         "bg-gray-100 text-gray-600"
                       )}>
-                        {isOngoing(event) ? '開催中' :
-                         isUpcoming(event) ? '開催予定' : '終了'}
-                      </div>
-                    </div>
-
-                    <div className="flex gap-1 flex-wrap">
-                      {event.types.map((type) => (
-                        <span
-                          key={type}
-                          className={cn(
-                            'inline-flex items-center px-2 py-1 text-xs font-medium rounded-full border',
-                            eventTypeConfig[type].color
-                          )}
-                        >
-                          <span className="mr-1">{eventTypeConfig[type].icon}</span>
-                          {eventTypeConfig[type].label}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="flex items-center justify-between text-sm text-gray-600">
-                      <div className="flex items-center gap-1">
-                        <MapPin className="h-4 w-4" />
-                        <span>{event.prefecture}</span>
-                        {event.venue_name && (
-                          <span>• {event.venue_name}</span>
+                        <div className="text-lg leading-none">{new Date(event.start_date).getDate()}</div>
+                        <div className="text-xs mt-1">{new Date(event.start_date).toLocaleDateString('ja-JP', { month: 'short' })}</div>
+                        {new Date(event.start_date).getFullYear() !== new Date().getFullYear() && (
+                          <div className="text-xs opacity-75">{new Date(event.start_date).getFullYear()}</div>
                         )}
                       </div>
-                      <div className="flex items-center gap-1">
-                        <DollarSign className="h-4 w-4" />
-                        <span className={cn(
-                          "font-medium",
-                          event.price_type === 'free' ? "text-green-600" : "text-gray-900"
-                        )}>
-                          {event.price_type === 'free' ? '無料' : '有料'}
-                        </span>
+
+                      {/* コンテンツ */}
+                      <div className="flex-1 space-y-2">
+                        <div>
+                          <h3 className="font-bold text-gray-900 leading-tight group-hover:text-green-600 transition-colors" title={event.title}>
+                            {isOngoing(event) && (
+                              <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                            )}
+                            {truncateTitle(event.title, 35)}
+                          </h3>
+                          <div className="text-sm text-gray-600 mt-1">
+                            {getDateRange(event)}
+                          </div>
+                        </div>
+
+                        {/* タグ */}
+                        <div className="flex gap-1 flex-wrap">
+                          {event.types.slice(0, 3).map((type) => (
+                            <span
+                              key={type}
+                              className={cn(
+                                'inline-flex items-center px-2 py-1 text-xs font-medium rounded-full border',
+                                eventTypeConfig[type].color
+                              )}
+                            >
+                              <span className="mr-1 text-xs">{eventTypeConfig[type].icon}</span>
+                              {eventTypeConfig[type].label}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* 場所と料金 */}
+                        <div className="flex items-center justify-between text-sm">
+                          <div className="flex items-center gap-1 text-gray-600">
+                            <MapPin className="h-3 w-3" />
+                            <span className="text-xs">{event.prefecture}</span>
+                          </div>
+                          <div className={cn(
+                            "px-2 py-1 rounded-full text-xs font-bold",
+                            event.price_type === 'free'
+                              ? "bg-green-100 text-green-700"
+                              : "bg-gray-100 text-gray-700"
+                          )}>
+                            {event.price_type === 'free' ? '🎫 無料' : '💴 有料'}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 矢印 */}
+                      <div className="flex items-center">
+                        <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-green-600 transition-colors" />
                       </div>
                     </div>
                   </div>
