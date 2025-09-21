@@ -59,7 +59,7 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
 
   // 日付ごとのイベントをマップ
   const eventsByDate = useMemo(() => {
-    const map = new Map() as Map<string, Event[]>
+    const dateEvents: Record<string, Event[]> = {}
 
     events.forEach(event => {
       const startDate = new Date(event.start_date)
@@ -69,22 +69,22 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
       const current = new Date(startDate)
       while (current <= endDate) {
         const dateKey = current.toISOString().split('T')[0]
-        if (!map.has(dateKey)) {
-          map.set(dateKey, [])
+        if (!dateEvents[dateKey]) {
+          dateEvents[dateKey] = []
         }
-        map.get(dateKey)!.push(event)
+        dateEvents[dateKey].push(event)
         current.setDate(current.getDate() + 1)
       }
     })
 
-    return map
+    return dateEvents
   }, [events])
 
   // 選択された日のイベント
   const selectedDateEvents = useMemo(() => {
     if (!selectedDate) return []
     const dateKey = selectedDate.toISOString().split('T')[0]
-    return eventsByDate.get(dateKey) || []
+    return eventsByDate[dateKey] || []
   }, [selectedDate, eventsByDate])
 
   // 月のイベントをリスト表示用にソート（開催予定 → 開催中 → 過去の順）
@@ -158,12 +158,12 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
 
   const hasEvents = (date: Date) => {
     const dateKey = date.toISOString().split('T')[0]
-    return eventsByDate.has(dateKey)
+    return !!eventsByDate[dateKey]
   }
 
   const getEventCount = (date: Date) => {
     const dateKey = date.toISOString().split('T')[0]
-    return eventsByDate.get(dateKey)?.length || 0
+    return eventsByDate[dateKey]?.length || 0
   }
 
   // イベント名を省略（レスポンシブ対応）
@@ -360,7 +360,7 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
             <div className="grid grid-cols-7 gap-px bg-gray-200 rounded-lg overflow-hidden">
               {calendarDays.map((date, index) => {
                 const dateKey = date.toISOString().split('T')[0]
-                const dayEvents = eventsByDate.get(dateKey) || []
+                const dayEvents = eventsByDate[dateKey] || []
                 const isSelected = selectedDate?.toDateString() === date.toDateString()
 
                 return (
@@ -441,7 +441,7 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
                 {selectedDate ? (
                   selectedDateEvents.length > 0 ? (
                     <div className="space-y-3">
-                      {selectedDateEvents.map((event) => (
+                      {selectedDateEvents.map((event: Event) => (
                         <EventCard
                           key={event.id}
                           event={event}
