@@ -6,6 +6,7 @@ import { Event, EventSearchParams, EventsResponse } from '@/types'
 import { EventCard } from '@/components/features/EventCard'
 import { EventCalendar } from '@/components/features/EventCalendar'
 import { EventFilters } from '@/components/features/EventFilters'
+import { EventMap } from '@/components/features/EventMap'
 import { cn } from '@/lib/utils'
 import { Calendar, List, Map, ChevronLeft, ChevronRight } from 'lucide-react'
 
@@ -184,11 +185,16 @@ export default function EventsPageClient() {
             リスト
           </button>
           <button
-            disabled
-            className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium text-gray-400 cursor-not-allowed"
+            onClick={() => handleViewChange('map')}
+            className={cn(
+              'flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors',
+              view === 'map'
+                ? 'bg-white text-gray-900 shadow-sm'
+                : 'text-gray-600 hover:text-gray-900'
+            )}
           >
             <Map className="h-4 w-4" />
-            マップ (準備中)
+            マップ
           </button>
         </div>
 
@@ -309,18 +315,9 @@ export default function EventsPageClient() {
             </div>
           )}
         </div>
-      ) : (
-        // Map view (placeholder)
-        <div className="bg-white rounded-lg border border-gray-200 p-12 text-center">
-          <Map className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">
-            マップビュー (準備中)
-          </h3>
-          <p className="text-gray-600">
-            地図上でイベントを確認できる機能を準備中です
-          </p>
-        </div>
-      )}
+      ) : view === 'map' ? (
+        <EventMap events={events} />
+      ) : null}
     </div>
   )
 }
