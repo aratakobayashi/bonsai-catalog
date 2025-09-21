@@ -227,48 +227,6 @@ export function EventListView({ events, className }: EventListViewProps) {
     )
   }
 
-  // 全てのイベントが終了している場合の特別な表示
-  const allPastEvents = events.every(event => isPast(event))
-  if (allPastEvents && events.length > 0) {
-    return (
-      <div className="space-y-6">
-        <div className="text-center py-8 bg-gray-50 rounded-lg">
-          <Calendar className="h-10 w-10 text-gray-400 mx-auto mb-3" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">
-            全て終了したイベントです
-          </h3>
-          <p className="text-gray-600">
-            新しいイベントをお探しの場合は、フィルターを調整してください
-          </p>
-        </div>
-        {/* 終了したイベントも表示 */}
-        <div className="space-y-8">
-          {eventGroups.map((group, groupIndex) => (
-            <div key={groupIndex} className="space-y-4 opacity-75">
-              <div className={cn(
-                "flex items-center gap-3 p-4 rounded-lg border",
-                group.bgColor,
-                group.borderColor
-              )}>
-                <div className="text-gray-600">
-                  {group.icon}
-                </div>
-                <div className="flex-1">
-                  <h2 className="font-semibold text-gray-900">{group.title}</h2>
-                  <p className="text-sm text-gray-600">{group.description}</p>
-                </div>
-                <div className="text-sm text-gray-500 bg-white px-2 py-1 rounded-full">
-                  {group.events.length}件
-                </div>
-              </div>
-              {/* 省略: 以下同じテーブル表示 */}
-            </div>
-          ))}
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div className={cn("space-y-8", className)}>
       {/* サマリーカード */}
