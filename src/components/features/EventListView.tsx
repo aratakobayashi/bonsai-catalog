@@ -75,9 +75,10 @@ export function EventListView({ events, className }: EventListViewProps) {
       return `${year}年${month}月`
     }
 
+    // シンプルなグループ分け
     const groups: EventGroup[] = [
       {
-        title: '🔥 開催中',
+        title: '🔥 開催中のイベント',
         description: '現在開催中のイベント',
         events: [],
         priority: 1,
@@ -86,90 +87,65 @@ export function EventListView({ events, className }: EventListViewProps) {
         borderColor: 'border-green-200'
       },
       {
-        title: '📅 まもなく開催（7日以内）',
-        description: '今週中に開催予定',
+        title: '📅 今後のイベント',
+        description: '開催予定のイベント（開催日順）',
         events: [],
         priority: 2,
-        icon: <Clock className="h-5 w-5" />,
+        icon: <Calendar className="h-5 w-5" />,
         bgColor: 'bg-blue-50',
         borderColor: 'border-blue-200'
       },
       {
-        title: `${formatMonthYear(now)}のイベント`,
-        description: '今月開催予定',
+        title: '✅ 終了したイベント',
+        description: '過去に開催されたイベント（新しい順）',
         events: [],
         priority: 3,
-        icon: <Calendar className="h-5 w-5" />,
-        bgColor: 'bg-purple-50',
-        borderColor: 'border-purple-200'
-      },
-      {
-        title: `${formatMonthYear(new Date(currentYear, currentMonth + 1, 1))}のイベント`,
-        description: '来月開催予定',
-        events: [],
-        priority: 4,
-        icon: <Calendar className="h-5 w-5" />,
-        bgColor: 'bg-orange-50',
-        borderColor: 'border-orange-200'
-      },
-      {
-        title: '今後の開催予定',
-        description: `${formatMonthYear(new Date(currentYear, currentMonth + 2, 1))}以降`,
-        events: [],
-        priority: 5,
-        icon: <Calendar className="h-5 w-5" />,
-        bgColor: 'bg-indigo-50',
-        borderColor: 'border-indigo-200'
-      },
-      {
-        title: '終了したイベント',
-        description: '過去に開催されたイベント',
-        events: [],
-        priority: 6,
         icon: <Calendar className="h-5 w-5" />,
         bgColor: 'bg-gray-50',
         borderColor: 'border-gray-200'
       }
     ]
 
-    // イベントをグループに分類
+    // シンプルな分類
     events.forEach(event => {
-      const startDate = new Date(event.start_date)
-      const startDateOnly = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate())
       const status = getEventStatus(event)
 
       if (status === 'ongoing') {
         groups[0].events.push(event) // 開催中
       } else if (status === 'upcoming') {
-        if (startDateOnly <= weekEnd) {
-          groups[1].events.push(event) // 7日以内
-        } else if (startDateOnly <= monthEnd) {
-          groups[2].events.push(event) // 今月
-        } else if (startDateOnly <= nextMonthEnd) {
-          groups[3].events.push(event) // 来月
-        } else {
-          groups[4].events.push(event) // それ以降
-        }
+        groups[1].events.push(event) // 今後
       } else {
-        groups[5].events.push(event) // 終了
+        groups[2].events.push(event) // 終了
       }
     })
 
-    // 各グループ内でソート
+    // シンプルなソート
     groups.forEach(group => {
       group.events.sort((a, b) => {
         const aDate = new Date(a.start_date).getTime()
         const bDate = new Date(b.start_date).getTime()
-        return group.priority === 6 ? bDate - aDate : aDate - bDate // 終了したイベントは新しい順
+
+        if (group.priority === 1) {
+          // 開催中: 終了日が近い順
+          const aEndDate = new Date(a.end_date).getTime()
+          const bEndDate = new Date(b.end_date).getTime()
+          return aEndDate - bEndDate
+        } else if (group.priority === 2) {
+          // 今後: 開始日が近い順
+          return aDate - bDate
+        } else {
+          // 終了: 開始日が新しい順
+          return bDate - aDate
+        }
       })
     })
 
-    // 優先度1: デフォルトでは開催中+開催予定のみ表示
+    // デフォルトでは開催中+開催予定のみ表示
     const filteredGroups = groups.filter(group => {
       if (group.events.length === 0) return false
 
-      // 過去イベントグループ（priority: 6）は showPastEvents が true の時のみ表示
-      if (group.priority === 6) {
+      // 過去イベントグループ（priority: 3）は showPastEvents が true の時のみ表示
+      if (group.priority === 3) {
         return showPastEvents
       }
 
