@@ -112,47 +112,35 @@ WHERE prefecture = '対象都道府県'
 
 ```sql
 -- ===========================================
--- 盆栽イベント追加用テンプレート
+-- 盆栽イベント追加用テンプレート（動作確認済み）
 -- ===========================================
 
 INSERT INTO events (
-  -- 必須項目
-  title, slug, start_date, end_date, prefecture,
-  types, price_type,
-
-  -- 推奨項目
-  venue_name, address, description,
-  price_note, organizer_name,
-
-  -- オプション項目
-  official_url, garden_id, lat, lng,
-  related_product_tags,
-
-  -- システム項目
-  created_at, updated_at
+  title,
+  slug,
+  start_date,
+  end_date,
+  prefecture,
+  venue_name,
+  address,
+  description,
+  types,
+  price_type,
+  price_note,
+  organizer_name
 ) VALUES (
   '【イベント名】',
   '【slug】',                    -- 命名規則: {地域}-{主催者}-{年}-{月}
   '【YYYY-MM-DD】',             -- 開始日
   '【YYYY-MM-DD】',             -- 終了日
   '【都道府県】',               -- 例: '東京都', '京都府'
-  ARRAY['exhibition']::event_type[], -- 適切なタイプを選択
-  'free',                       -- または 'paid'
-
   '【会場名】',
   '【住所】',
   '【説明文】',
+  '["exhibition","sale"]',      -- JSON配列形式（複数可）
+  'free',                       -- または 'paid'
   '【料金補足】',               -- 例: '入場無料', '前売券1,200円'
-  '【主催者名】',
-
-  '【URL】',                    -- NULL可
-  '【盆栽園UUID】',             -- NULL可
-  【緯度】,                     -- NULL可
-  【経度】,                     -- NULL可
-  ARRAY['タグ1', 'タグ2'],      -- NULL可
-
-  now(),
-  now()
+  '【主催者名】'
 );
 ```
 

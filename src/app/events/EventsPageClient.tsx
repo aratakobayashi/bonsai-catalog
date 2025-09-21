@@ -17,7 +17,18 @@ export default function EventsPageClient() {
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  const [view, setView] = useState<ViewType>('month')
+  // レスポンシブなデフォルトビュー設定
+  const getDefaultView = (): ViewType => {
+    if (typeof window !== 'undefined') {
+      // モバイル判定（768px未満）
+      if (window.innerWidth < 768) {
+        return 'list'  // SPはリストビュー
+      }
+    }
+    return 'month'  // PCはカレンダービュー
+  }
+
+  const [view, setView] = useState<ViewType>(getDefaultView())
   const [events, setEvents] = useState<Event[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -46,7 +57,23 @@ export default function EventsPageClient() {
     const viewParam = searchParams.get('view')
     if (viewParam && (viewParam === 'month' || viewParam === 'list' || viewParam === 'map')) {
       setView(viewParam as ViewType)
+    } else {
+      // URLパラメータがない場合はレスポンシブなデフォルトビューを設定
+      setView(getDefaultView())
     }
+  }, [searchParams])
+
+  // ウィンドウリサイズ時の対応
+  useEffect(() => {
+    const handleResize = () => {
+      // URLにviewパラメータがない場合のみレスポンシブ切り替え
+      if (!searchParams.get('view')) {
+        setView(getDefaultView())
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
   }, [searchParams])
 
   // イベントデータを取得
