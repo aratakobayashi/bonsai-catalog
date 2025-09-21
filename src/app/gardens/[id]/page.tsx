@@ -306,6 +306,48 @@ const gardenImageMap: Record<string, string> = {
   '881ef01-1890-1125-7456-123456789123': '/images/gardens/chikushino-garden-center.svg', // 筑紫野ガーデンセンター
   '992f012-2901-2236-8567-234567891234': '/images/gardens/amakusa-shotou-engei-farm.svg', // 天草諸島園芸ファーム
 }
+  // フェーズ8（最終拡充コレクション）
+  '32f621fa-68bd-436e-82e0-d97a483f322d': '/images/gardens/enomotosatsukien.svg', // 榎本皐月園
+  'a84680ba-4aa4-44e1-a878-94d20c805649': '/images/gardens/hana.svg', // 花伝
+  'b59cb7db-2804-4486-b2ac-483fea1d792d': '/images/gardens/bonsaitakumi.svg', // 盆栽の匠
+  'e2c19d95-5d0f-4f68-9a6e-637776703a85': '/images/gardens/tsukubasanrokubonsaien.svg', // 筑波山麓盆栽園
+  '1463d7db-74d7-44cf-ac4c-78f8696dc8e9': '/images/gardens/itoyaen.svg', // 伊東屋園芸
+  'bd12fb51-7998-4576-952d-081c242d4905': '/images/gardens/kofuen.svg', // 香風園
+  'ffc6d15a-d3a2-4fde-b556-dfed23b8919a': '/images/gardens/ichirakuen.svg', // 一楽園
+  '447f6eea-99d2-4a32-8a66-57d2af66061e': '/images/gardens/marukyobonsaiauction.svg', // 丸京盆栽オークション
+  '256a3959-064d-4146-a7b7-ba84069bcd5b': '/images/gardens/shonanbonsaicenter.svg', // 湘南盆栽センター
+  'ce0c2233-da20-4f84-8540-9e37415c60ce': '/images/gardens/yashimabonsaicenter.svg', // 屋島盆栽センター
+  '75c14be8-3105-4b40-8575-2498859c6de8': '/images/gardens/awajibonsaisato.svg', // 淡路盆栽の里
+  '9198cb49-3338-4f96-8fd0-3e63e5bc3d5b': '/images/gardens/komorien.svg', // 小森造園
+  '98b9a95c-09df-4a33-a49b-776560a8d90f': '/images/gardens/nurseries.svg', // ナーセリーズ
+  'ed0ceac0-f2fa-4f27-8970-10fbe720ff39': '/images/gardens/niitsuflowerland.svg', // 新津フラワーランド
+  '5a3bdecf-5c77-4552-b619-2ec61541d095': '/images/gardens/togashihakuyoen.svg', // とがし白陽園
+  'f1b5582d-56ae-4cb4-9625-d95ad486709e': '/images/gardens/tsutsuien.svg', // 筒井造園
+  '02730e03-63d8-4530-876b-a353e256a4d4': '/images/gardens/nishinomiyagardenplaza.svg', // 西宮ガーデンプラザ
+  '094d5670-7da7-4b4a-9e6a-860b035dd994': '/images/gardens/ltden.svg', // 有限会社宮崎園芸
+  '5b96fdd2-471b-47fd-874b-3982a1e7d5f2': '/images/gardens/saniberu-gardencenter.svg', // さにべる ガーデンセンター
+  '4f694d8a-67ba-4a0c-8144-8ffb2ed5d494': '/images/gardens/gardenplaza.svg', // 京都ガーデンプラザ
+  '7e5804c7-8401-4db8-95aa-d2af1886d157': '/images/gardens/uechuu.svg', // 植忠
+  'f9283387-4c71-47b9-b641-45c514d27117': '/images/gardens/the-gardenkohokutownten.svg', // ザ・ガーデン港北ニュータウン店
+  '3efc1c32-1014-4cc0-a14b-db971bffa621': '/images/gardens/yamaichien.svg', // やまいち園芸
+  '0b082ac1-084a-4f81-9fce-20fb974461a9': '/images/gardens/shofuen.svg', // 松風園
+  '537542f3-cea3-424f-908a-6d8b3c0d25d8': '/images/gardens/midoritsurugaten.svg', // 緑香庭敦賀店
+  '1d28d60c-d2e5-4d13-b20a-5d4ddaf9af2e': '/images/gardens/fujigokoshokubutsuen.svg', // 富士五湖植物園
+  '9724f853-3659-4c80-bbec-bd411021b872': '/images/gardens/izumiparktowngardencenter.svg', // 泉パークタウンガーデンセンター
+  '9ae13df5-9bfc-4ca3-b137-5535f5b34f39': '/images/gardens/greenterrace.svg', // グリーンテラスマツイ
+  'e72b0605-065d-4a70-9223-54a868d8fef3': '/images/gardens/hanakicenter.svg', // 花木センター
+  '21baaa4e-9d4b-4df6-9de9-cb51fe455a26': '/images/gardens/meikoen.svg', // 明幸園
+  'f2c3e16a-6274-48eb-9847-77ff098f6960': '/images/gardens/kawaikosoen.svg', // 河合香艸園
+  'bfa4fe8a-c414-4a5b-9dc9-c3de4b0dcb6b': '/images/gardens/kurumemidorihanacenter.svg', // くるめ緑花センター
+  '8d9f01bf-4644-4f53-8198-783ae1232529': '/images/gardens/mutsumienkicorp.svg', // むつみ造園土木株式会社
+  '91f0525a-be18-4bac-b162-373d4bc03d3e': '/images/gardens/toyotagarden.svg', // 豊田ガーデン
+  '201fd0b1-e40c-41ac-83c6-a871ce540972': '/images/gardens/umaharaenkensetsu.svg', // 馬原造園建設
+  '92ff30aa-bcdd-4323-b2a6-1fea440138cc': '/images/gardens/onegarden.svg', // ワンガーデン
+  '49f0eef9-43e7-4881-8f7d-169467c114db': '/images/gardens/corpsansogreen.svg', // 株式会社三創グリーン
+  '89151019-0e22-4a6f-81dd-dee6f9ab0123': '/images/gardens/yamagataencenter.svg', // 山形園芸センター
+  '31142d3a-2209-449d-aa74-d9e3e80a6e38': '/images/gardens/midorien.svg', // 緑昇園
+  '99ccb893-5976-423a-8773-220bb7efe6b6': '/images/gardens/kinakan.svg', // 紀菜柑
+};
 
 export default async function GardenDetailPage({ params }: GardenPageProps) {
   const garden = await getGarden(params.id)

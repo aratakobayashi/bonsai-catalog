@@ -1,0 +1,100 @@
+<svg width="512" height="384" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4169E1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6495ED;stop-opacity:0.3" />
+    </linearGradient>
+    <linearGradient id="buildingGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#228B22;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#90EE90;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="treeGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#32CD32;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#228B22;stop-opacity:1" />
+    </radialGradient>
+    <pattern id="groundPattern" patternUnits="userSpaceOnUse" width="40" height="20">
+      <rect width="40" height="20" fill="#6495ED"/>
+      <circle cx="10" cy="10" r="3" fill="#191970" opacity="0.3"/>
+      <circle cx="30" cy="10" r="2" fill="#191970" opacity="0.2"/>
+    </pattern>
+  </defs>
+
+  <!-- 背景空 -->
+  <rect width="512" height="384" fill="url(#skyGradient)"/>
+
+  <!-- 地面パターン -->
+  <rect x="0" y="280" width="512" height="104" fill="url(#groundPattern)"/>
+
+  <!-- メイン建物群 -->
+  <rect x="40" y="180" width="180" height="120" fill="url(#buildingGradient)" rx="8"/>
+  <polygon points="40,180 130,130 220,180" fill="#228B22"/>
+
+  <!-- サブ建物 -->
+  <rect x="250" y="200" width="120" height="80" fill="rgba(228B22, 0.8)" rx="5"/>
+  <polygon points="250,200 310,170 370,200" fill="#32CD32"/>
+
+  <!-- 盆栽コレクション（多様化） -->
+  <circle cx="320" cy="240" r="40" fill="url(#treeGradient)"/>
+  <rect x="315" y="240" width="10" height="35" fill="#90EE90"/>
+
+  <circle cx="380" cy="250" r="35" fill="url(#treeGradient)"/>
+  <rect x="375" y="250" width="10" height="30" fill="#90EE90"/>
+
+  <circle cx="430" cy="230" r="30" fill="url(#treeGradient)"/>
+  <rect x="425" y="230" width="8" height="25" fill="#90EE90"/>
+
+  <circle cx="460" cy="255" r="25" fill="url(#treeGradient)"/>
+  <rect x="457" y="255" width="6" height="20" fill="#90EE90"/>
+
+  <!-- 特色建造物 -->
+  <rect x="450" y="180" width="50" height="80" fill="rgba(90EE90, 0.4)" rx="8"/>
+  <text x="455" y="200" font-family="serif" font-size="9" fill="#90EE90">東京</text>
+  <text x="455" y="215" font-family="serif" font-size="8" fill="#90EE90">地域</text>
+  <text x="455" y="230" font-family="serif" font-size="8" fill="#90EE90">観光</text>
+  <text x="455" y="245" font-family="serif" font-size="8" fill="#90EE90">文化</text>
+
+  <!-- 装飾的小道（改良版） -->
+  <path d="M 0 320 Q 128 305 256 320 Q 384 335 512 320" stroke="#191970" stroke-width="25" fill="none" opacity="0.6"/>
+  <path d="M 0 318 Q 128 303 256 318 Q 384 333 512 318" stroke="#32CD32" stroke-width="8" fill="none"/>
+  <path d="M 0 316 Q 128 301 256 316 Q 384 331 512 316" stroke="white" stroke-width="2" fill="none" opacity="0.8"/>
+
+  <!-- 評価表示（改良版） -->
+  <g transform="translate(420, 15)">
+    <rect x="0" y="0" width="85" height="35" fill="rgba(255,255,255,0.95)" rx="8" stroke="#228B22" stroke-width="2"/>
+    <text x="8" y="15" font-family="sans-serif" font-size="8" fill="#90EE90">評価</text>
+    <text x="8" y="28" font-family="sans-serif" font-size="11" fill="#228B22" font-weight="bold">★★★★</text>
+    <text x="52" y="28" font-family="sans-serif" font-size="10" fill="#90EE90">4.3</text>
+  </g>
+
+  <!-- メインタイトル（改良版） -->
+  <rect x="10" y="10" width="56" height="50" fill="rgba(255,255,255,0.98)" rx="10" stroke="#228B22" stroke-width="3"/>
+  <text x="20" y="35" font-family="serif" font-size="15" fill="#2F4F4F" font-weight="bold">香風園</text>
+
+  <!-- 地域情報 -->
+  <rect x="10" y="70" width="120" height="35" fill="rgba(255,255,255,0.95)" rx="6" stroke="#191970" stroke-width="1"/>
+  <text x="15" y="85" font-family="sans-serif" font-size="11" fill="#191970" font-weight="bold">東京都</text>
+  <text x="15" y="98" font-family="sans-serif" font-size="9" fill="#666">東京地域</text>
+
+  <!-- カテゴリー特色表示 -->
+  <rect x="350" y="70" width="150" height="90" fill="rgba(255,255,255,0.95)" rx="8" stroke="#228B22" stroke-width="2"/>
+  <text x="355" y="85" font-family="sans-serif" font-size="10" fill="#228B22" font-weight="bold">特色カテゴリー</text>
+  <text x="355" y="100" font-family="sans-serif" font-size="9" fill="#90EE90">• 地域重点</text>
+  <text x="355" y="115" font-family="sans-serif" font-size="9" fill="#90EE90">• 観光対応</text>
+  <text x="355" y="130" font-family="sans-serif" font-size="9" fill="#90EE90">• 文化充実</text>
+  <text x="355" y="145" font-family="sans-serif" font-size="9" fill="#90EE90">• 品質保証</text>
+
+  <!-- 専門性アイコン -->
+  <g transform="translate(470, 300)">
+    <circle cx="15" cy="15" r="15" fill="#228B22" opacity="0.8"/>
+    <text x="15" y="20" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle">🗾</text>
+  </g>
+  <g transform="translate(440, 320)">
+    <circle cx="15" cy="15" r="12" fill="#32CD32" opacity="0.8"/>
+    <text x="15" y="19" font-family="sans-serif" font-size="10" fill="white" text-anchor="middle">🌸</text>
+  </g>
+  <g transform="translate(410, 340)">
+    <circle cx="15" cy="15" r="10" fill="#90EE90" opacity="0.8"/>
+    <text x="15" y="18" font-family="sans-serif" font-size="8" fill="white" text-anchor="middle">⛩️</text>
+  </g>
+
+</svg>
