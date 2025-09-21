@@ -274,6 +274,37 @@ const gardenImageMap: Record<string, string> = {
   '6b9181e5-f2df-4c32-a2ad-5700ac7f866f': '/images/gardens/uekiya-honpo.svg', // 植木屋本舗
   '63515450-e9f3-40f6-852d-b726e7ea7552': '/images/gardens/hana-no-niwa.svg', // 花の庭
   'a035baf6-e9e9-427c-8245-10e6d0c11435': '/images/gardens/nakagawa-zouen.svg', // 中川造園
+  // フェーズ7（完全制覇コレクション）
+  'c0447fc7-a3fb-41e5-8a2f-3412d9ca8334': '/images/gardens/nagasaki-ryokuju-center.svg', // ながさき緑樹センター
+  'ab79571b-1b5d-4506-8b44-185006d97df5': '/images/gardens/hana-no-yamato-hiroomote.svg', // 花のヤマト 広面本店
+  '6f7b4c0f-576b-4a45-b2e8-daab0be9a41f': '/images/gardens/kaou-koku-aichi-garden-center.svg', // 花王国愛知ガーデンセンター
+  '264b713f-5d1a-4eba-b72b-7bac3c7aefbf': '/images/gardens/shibuya-engei-nerima.svg', // 渋谷園芸練馬本店
+  '6d77d1c5-4093-4741-90cd-2bdf5395d5e6': '/images/gardens/land-garden.svg', // ランド・ガーデン
+  '41e3139a-cc9e-4002-a9d9-f196355fe597': '/images/gardens/sakata-no-tane-yokohama.svg', // サカタのタネガーデンセンター横浜
+  'f157053e-1a0c-4952-ac48-f3c2bc3fa7c5': '/images/gardens/nakayama-nouen.svg', // 中山農園
+  '3b6b5be3-3a03-424b-b9e1-3d715e331402': '/images/gardens/hirosaki-ringo-kouen.svg', // 弘前市りんご公園
+  'a5a67276-c380-4939-9f91-de9d64a44993': '/images/gardens/kamiyama-nouen.svg', // 神山農園
+  'ae781a4a-4c9c-46fc-bf99-f591d12a08f0': '/images/gardens/shinshu-alps-engei.svg', // 信州アルプス園芸
+  'ca267915-f5fa-4aa5-a797-bb5931d65dcc': '/images/gardens/seikou-engei.svg', // 清光園芸
+  '5567c35f-b596-4023-b48d-f2246bf1f56d': '/images/gardens/aisai-kazoku.svg', // 愛栽家族
+  'b642b59f-2c76-4084-8bc4-7a7908d52f57': '/images/gardens/minori-kaboku-center-interpark.svg', // みのり花木センターインターパーク店
+  '47db77f2-c1f6-44b7-bdbd-453642111eb3': '/images/gardens/hana-no-tobitsuka.svg', // 花のとびつか
+  'c37bab9a-f025-4dec-b4d6-75361eb768b8': '/images/gardens/koi-garden-square.svg', // 己斐ガーデンスクエア
+  'bb8f1c23-4d67-4892-a123-456789abcdef': '/images/gardens/shiki-no-mori-garden.svg', // 四季の森ガーデン
+  'cc9e2d34-5e78-5903-b234-56789abcde01': '/images/gardens/yamagata-engei-center.svg', // 山形園芸センター
+  'dd0f3e45-6f89-6014-c345-6789abcdef12': '/images/gardens/shinetsu-green-farm.svg', // 信越グリーンファーム
+  'ee1041567-7890-7125-d456-789abcdef123': '/images/gardens/hida-takayama-engei.svg', // 飛騨高山園芸
+  'ff215678-8901-8236-e567-89abcdef1234': '/images/gardens/izu-hantou-garden.svg', // 伊豆半島ガーデン
+  '00326789-9012-9347-f678-9abcdef12345': '/images/gardens/omi-hachiman-engei-center.svg', // 近江八幡園芸センター
+  '1143789a-a123-a458-0789-abcdef123456': '/images/gardens/tanba-sasayama-garden.svg', // 丹波篠山ガーデン
+  '22548ab-b234-b569-1890-bcdef1234567': '/images/gardens/uda-matsuyama-engei.svg', // 宇陀松山園芸
+  '3365a9bc-c345-c670-2901-cdef12345678': '/images/gardens/awajishima-green-park.svg', // 淡路島グリーンパーク
+  '447bacd-d456-d781-3012-def123456789': '/images/gardens/izumo-taisha-engei-center.svg', // 出雲大社園芸センター
+  '558bcde-e567-e892-4123-ef1234567890': '/images/gardens/sanuki-udon-ken-engei.svg', // 讃岐うどん県園芸
+  '669cdef-f678-f903-5234-f12345678901': '/images/gardens/ehime-mikan-engei-center.svg', // 愛媛みかん園芸センター
+  '770def0-0789-0014-6345-012345678912': '/images/gardens/tosa-seiryu-engei.svg', // 土佐清流園芸
+  '881ef01-1890-1125-7456-123456789123': '/images/gardens/chikushino-garden-center.svg', // 筑紫野ガーデンセンター
+  '992f012-2901-2236-8567-234567891234': '/images/gardens/amakusa-shotou-engei-farm.svg', // 天草諸島園芸ファーム
 }
 
 export default async function GardenDetailPage({ params }: GardenPageProps) {

@@ -1,0 +1,73 @@
+<svg width="512" height="384" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4ECDC4;stop-opacity:0.3" />
+    </linearGradient>
+    <linearGradient id="buildingGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B4513;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="treeGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#32CD32;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#228B22;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="512" height="384" fill="url(#skyGradient)"/>
+
+  <!-- 地面レイヤー -->
+  <rect x="0" y="280" width="512" height="104" fill="#90EE90"/>
+
+  <!-- メイン建物 -->
+  <rect x="50" y="200" width="200" height="100" fill="url(#buildingGradient)"/>
+  <polygon points="50,200 150,150 250,200" fill="#FF6B6B"/>
+
+  <!-- 盆栽コレクション -->
+  <circle cx="340" cy="250" r="35" fill="url(#treeGradient)"/>
+  <rect x="335" y="250" width="10" height="30" fill="#8B4513"/>
+
+  <circle cx="390" cy="260" r="30" fill="url(#treeGradient)"/>
+  <rect x="385" y="260" width="10" height="25" fill="#8B4513"/>
+
+  <circle cx="430" cy="240" r="25" fill="url(#treeGradient)"/>
+  <rect x="425" y="240" width="8" height="20" fill="#8B4513"/>
+
+  
+
+  <!-- 地域特色の装飾 -->
+  <rect x="460" y="200" width="40" height="60" fill="rgba(139,69,19,0.3)" rx="5"/>
+  <text x="465" y="220" font-family="serif" font-size="8" fill="#654321">東京</text>
+  <text x="465" y="235" font-family="serif" font-size="8" fill="#654321">特色</text>
+
+  <!-- 装飾的な小道 -->
+  <path d="M 0 320 Q 128 310 256 320 Q 384 330 512 320" stroke="#D2B48C" stroke-width="20" fill="none"/>
+  <path d="M 0 318 Q 128 308 256 318 Q 384 328 512 318" stroke="#E6D3A3" stroke-width="4" fill="none"/>
+
+  <!-- 評価星 -->
+  <g transform="translate(450, 20)">
+    <circle cx="15" cy="15" r="12" fill="rgba(255,215,0,0.8)"/>
+    <polygon points="15,8 17,13 22,13 18,16 20,21 15,18 10,21 12,16 8,13 13,13" fill="#FFD700"/>
+    <text x="15" y="35" font-family="sans-serif" font-size="8" fill="#333" text-anchor="middle">4.4</text>
+  </g>
+
+  <!-- メインタイトル -->
+  <rect x="10" y="10" width="100" height="45" fill="rgba(255,255,255,0.95)" rx="8" stroke="#FF6B6B" stroke-width="2"/>
+  <text x="20" y="35" font-family="serif" font-size="14" fill="#2F4F4F" font-weight="bold">渋谷園芸練馬本店</text>
+
+  <!-- 地域情報 -->
+  <rect x="10" y="60" width="80" height="30" fill="rgba(255,255,255,0.9)" rx="5"/>
+  <text x="15" y="75" font-family="sans-serif" font-size="11" fill="#666">東京都</text>
+
+  <!-- 専門分野表示 -->
+  <rect x="350" y="60" width="150" height="66" fill="rgba(255,255,255,0.9)" rx="5"/>
+  <text x="355" y="75" font-family="sans-serif" font-size="9" fill="#666" font-weight="bold">専門分野</text>
+  <text x="355" y="90" font-family="sans-serif" font-size="8" fill="#333">• 大型温室</text><text x="355" y="102" font-family="sans-serif" font-size="8" fill="#333">• 熱帯樹木</text><text x="355" y="114" font-family="sans-serif" font-size="8" fill="#333">• 都市園芸</text>
+
+  
+  <!-- 注目園バッジ -->
+  <rect x="15" y="100" width="60" height="20" fill="#FF6B6B" rx="10"/>
+  <text x="45" y="113" font-family="sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="bold">注目園</text>
+  
+</svg>
