@@ -1,0 +1,63 @@
+<svg width="512" height="384" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#90EE90;stop-opacity:0.3" />
+    </linearGradient>
+    <linearGradient id="buildingGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#D2B48C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B4513;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="512" height="384" fill="url(#skyGradient)"/>
+
+  <!-- 地面 -->
+  <rect x="0" y="280" width="512" height="104" fill="#90EE90"/>
+
+  <!-- メイン建物 -->
+  <rect x="50" y="200" width="200" height="100" fill="url(#buildingGradient)"/>
+  <polygon points="50,200 150,150 250,200" fill="#8B4513"/>
+
+  <!-- 盆栽の木々 -->
+  
+  <!-- 松専門園 - 三角形の松 -->
+  <polygon points="350,250 330,220 370,220" fill="#228B22"/>
+  <rect x="347" y="250" width="6" height="30" fill="#8B4513"/>
+  <polygon points="400,260 385,235 415,235" fill="#228B22"/>
+  <rect x="397" y="260" width="6" height="25" fill="#8B4513"/>
+  <polygon points="420,240 410,215 430,215" fill="#006400"/>
+  <rect x="417" y="240" width="6" height="20" fill="#8B4513"/>
+  
+
+  
+
+  
+
+  <!-- 小道 -->
+  <path d="M 0 320 Q 256 300 512 320" stroke="#D2B48C" stroke-width="20" fill="none"/>
+
+  <!-- 装飾石 -->
+  <circle cx="100" cy="320" r="8" fill="#A0522D"/>
+  <circle cx="150" cy="310" r="6" fill="#A0522D"/>
+  <circle cx="200" cy="325" r="7" fill="#A0522D"/>
+
+  <!-- タイトル背景 -->
+  <rect x="10" y="10" width="88" height="40" fill="rgba(255,255,255,0.9)" rx="5"/>
+  <text x="20" y="35" font-family="serif" font-size="18" fill="#2F4F4F">九霞園</text>
+
+  <!-- 地域表示 -->
+  
+  <rect x="10" y="55" width="56" height="25" fill="rgba(255,255,255,0.8)" rx="3"/>
+  <text x="15" y="72" font-family="sans-serif" font-size="12" fill="#666">埼玉県</text>
+  
+
+  <!-- 専門分野アイコン -->
+  
+  <rect x="400" y="10" width="100" height="60" fill="rgba(255,255,255,0.8)" rx="3"/>
+  <text x="405" y="25" font-family="sans-serif" font-size="10" fill="#666">専門分野</text>
+  <text x="405" y="40" font-family="sans-serif" font-size="9" fill="#333">自然樹形・伝統技法</text>
+  <text x="405" y="55" font-family="sans-serif" font-size="9" fill="#333">他1分野</text>
+  
+</svg>

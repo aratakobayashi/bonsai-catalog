@@ -179,6 +179,16 @@ export async function generateMetadata({ params }: GardenPageProps): Promise<Met
   }
 }
 
+// 盆栽園の静的画像マッピング
+const gardenImageMap: Record<string, string> = {
+  '3000a4b6-0a10-4896-9ff2-b3a9d09c14db': '/images/gardens/kawaguchi-ryokuka-center-jurian.svg', // 川口緑化センター 樹里安
+  '8f99da6b-ee77-4c5f-86a9-92b0f5c7f99d': '/images/gardens/kyukaen.svg',        // 九霞園
+  '60842140-ce64-4848-a55c-5457a8703d33': '/images/gardens/tojuen.svg',         // 藤樹園
+  'e695fdf3-4e1c-4b6b-b20b-59e17cba279a': '/images/gardens/seikaen.svg',       // 清香園
+  'eb263d7a-701b-4b4b-9b01-776a8ea2cdf4': '/images/gardens/manseien.svg',      // 蔓青園
+  '75779219-963c-49eb-942a-c2f6caa3c7a1': '/images/gardens/fuyoen.svg',        // 芙蓉園
+}
+
 export default async function GardenDetailPage({ params }: GardenPageProps) {
   const garden = await getGarden(params.id)
 
@@ -248,12 +258,10 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
           {/* ヘッダーセクション */}
           <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
             {/* 画像がある場合のみ表示 */}
-            {(garden.image_url || garden.id === '3000a4b6-0a10-4896-9ff2-b3a9d09c14db') && (
+            {(garden.image_url || gardenImageMap[garden.id]) && (
               <div className="relative h-48 md:h-64 w-full">
                 <img
-                  src={garden.id === '3000a4b6-0a10-4896-9ff2-b3a9d09c14db'
-                    ? '/images/gardens/kawaguchi-ryokuka-center-jurian.svg'
-                    : garden.image_url}
+                  src={gardenImageMap[garden.id] || garden.image_url}
                   alt={`${garden.name}の外観`}
                   className="w-full h-full object-cover"
                 />
