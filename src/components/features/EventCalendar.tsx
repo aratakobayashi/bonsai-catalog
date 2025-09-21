@@ -59,7 +59,7 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
 
   // 日付ごとのイベントをマップ
   const eventsByDate = useMemo(() => {
-    const map = new Map<string, Event[]>()
+    const map: Map<string, Event[]> = new Map()
 
     events.forEach(event => {
       const startDate = new Date(event.start_date)
