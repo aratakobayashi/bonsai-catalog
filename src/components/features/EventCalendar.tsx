@@ -317,49 +317,50 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
             </div>
           </div>
 
-        {/* 選択された日のイベント一覧 */}
-        <div className="lg:col-span-1">
-          <div className="sticky top-6">
-            <div className="bg-gray-50 rounded-lg p-4">
-              <h3 className="flex items-center gap-2 font-semibold text-gray-900 mb-4">
-                <Calendar className="h-5 w-5" />
-                {selectedDate ? (
-                  selectedDate.toLocaleDateString('ja-JP', {
-                    month: 'long',
-                    day: 'numeric',
-                    weekday: 'short'
-                  })
-                ) : (
-                  '日付を選択'
-                )}
-              </h3>
+          {/* 選択された日のイベント一覧 */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-6">
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="flex items-center gap-2 font-semibold text-gray-900 mb-4">
+                  <Calendar className="h-5 w-5" />
+                  {selectedDate ? (
+                    selectedDate.toLocaleDateString('ja-JP', {
+                      month: 'long',
+                      day: 'numeric',
+                      weekday: 'short'
+                    })
+                  ) : (
+                    '日付を選択'
+                  )}
+                </h3>
 
-              {selectedDate ? (
-                selectedDateEvents.length > 0 ? (
-                  <div className="space-y-3">
-                    {selectedDateEvents.map((event) => (
-                      <EventCard
-                        key={event.id}
-                        event={event}
-                        layout="list"
-                      />
-                    ))}
-                  </div>
+                {selectedDate ? (
+                  selectedDateEvents.length > 0 ? (
+                    <div className="space-y-3">
+                      {selectedDateEvents.map((event) => (
+                        <EventCard
+                          key={event.id}
+                          event={event}
+                          layout="list"
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-gray-600 text-center py-8">
+                      この日はイベントがありません
+                    </p>
+                  )
                 ) : (
                   <p className="text-sm text-gray-600 text-center py-8">
-                    この日はイベントがありません
+                    カレンダーの日付をクリックして<br />
+                    その日のイベントを確認
                   </p>
-                )
-              ) : (
-                <p className="text-sm text-gray-600 text-center py-8">
-                  カレンダーの日付をクリックして<br />
-                  その日のイベントを確認
-                </p>
-              )}
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }
