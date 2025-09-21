@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Event, EventArticle } from '@/types'
+import Image from 'next/image'
+import { Event, EventArticle, Product } from '@/types'
 import { cn } from '@/lib/utils'
 import {
   Calendar,
@@ -38,6 +39,27 @@ export default function EventDetailClient({
   relatedEvents
 }: EventDetailClientProps) {
   const [activeTab, setActiveTab] = useState<'announcement' | 'report' | 'summary'>('announcement')
+  const [popularProducts, setPopularProducts] = useState<Product[]>([])
+  const [loadingProducts, setLoadingProducts] = useState(true)
+
+  // 人気商品を取得
+  useEffect(() => {
+    const fetchPopularProducts = async () => {
+      try {
+        const response = await fetch('/api/popular-products')
+        if (response.ok) {
+          const data = await response.json()
+          setPopularProducts(data.products || [])
+        }
+      } catch (error) {
+        console.error('Error fetching popular products:', error)
+      } finally {
+        setLoadingProducts(false)
+      }
+    }
+
+    fetchPopularProducts()
+  }, [])
 
   const formatDate = (dateStr: string) => {
     return new Date(dateStr).toLocaleDateString('ja-JP', {
@@ -313,31 +335,56 @@ export default function EventDetailClient({
                     ))}
                   </div>
 
-                  {/* 記事一覧 */}
-                  <div className="space-y-4">
+                  {/* 記事一覧 - 画像付きカード表示 */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {articlesGrouped[activeTab].length > 0 ? (
                       articlesGrouped[activeTab].map((eventArticle) => (
                         <Link
                           key={eventArticle.id}
                           href={`/guides/${eventArticle.article?.slug}`}
-                          className="block p-4 border border-gray-200 rounded-lg hover:border-green-300 hover:shadow-md transition-all"
+                          className="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:border-green-300 hover:shadow-lg transition-all duration-300"
                         >
-                          <h3 className="font-semibold text-gray-900 mb-2">
-                            {eventArticle.article?.title}
-                          </h3>
-                          {eventArticle.article?.excerpt && (
-                            <p className="text-sm text-gray-600 line-clamp-2">
-                              {eventArticle.article.excerpt}
-                            </p>
-                          )}
+                          {/* 画像部分 */}
+                          <div className="relative h-48 bg-gradient-to-br from-green-50 to-green-100">
+                            {eventArticle.article?.featured_image ? (
+                              <Image
+                                src={eventArticle.article.featured_image}
+                                alt={eventArticle.article.title || ''}
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                              />
+                            ) : (
+                              <div className="flex items-center justify-center h-full">
+                                <div className="text-center">
+                                  <div className="text-4xl mb-2">📰</div>
+                                  <p className="text-sm text-green-600 font-medium">記事</p>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* コンテンツ部分 */}
+                          <div className="p-4">
+                            <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-green-600 transition-colors">
+                              {eventArticle.article?.title}
+                            </h3>
+                            {eventArticle.article?.excerpt && (
+                              <p className="text-sm text-gray-600 line-clamp-2">
+                                {eventArticle.article.excerpt}
+                              </p>
+                            )}
+                          </div>
                         </Link>
                       ))
                     ) : (
-                      <p className="text-gray-600 text-center py-8">
-                        {activeTab === 'announcement' && '開催案内記事はまだありません'}
-                        {activeTab === 'report' && 'レポート記事はまだありません'}
-                        {activeTab === 'summary' && 'まとめ記事はまだありません'}
-                      </p>
+                      <div className="col-span-full text-gray-600 text-center py-8">
+                        <div className="text-4xl mb-2">📝</div>
+                        <p>
+                          {activeTab === 'announcement' && '開催案内記事はまだありません'}
+                          {activeTab === 'report' && 'レポート記事はまだありません'}
+                          {activeTab === 'summary' && 'まとめ記事はまだありません'}
+                        </p>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -369,6 +416,71 @@ export default function EventDetailClient({
                     </Link>
                   </div>
                 )}
+
+                {/* 人気盆栽商品 */}
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                  <h3 className="font-bold text-gray-900 mb-4">人気の盆栽商品</h3>
+                  {loadingProducts ? (
+                    <div className="space-y-3">
+                      {[1, 2, 3].map((i) => (
+                        <div key={i} className="animate-pulse">
+                          <div className="bg-gray-200 h-20 rounded-lg mb-2"></div>
+                          <div className="bg-gray-200 h-4 rounded mb-1"></div>
+                          <div className="bg-gray-200 h-3 rounded w-2/3"></div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : popularProducts.length > 0 ? (
+                    <div className="space-y-4">
+                      {popularProducts.slice(0, 3).map((product) => (
+                        <Link
+                          key={product.id}
+                          href={`/products/${product.id}`}
+                          className="group block border border-gray-200 rounded-lg overflow-hidden hover:border-green-300 hover:shadow-md transition-all"
+                        >
+                          <div className="flex">
+                            {/* 商品画像 */}
+                            <div className="relative w-20 h-20 bg-gradient-to-br from-green-50 to-green-100 flex-shrink-0">
+                              {product.image_url ? (
+                                <Image
+                                  src={product.image_url}
+                                  alt={product.name}
+                                  fill
+                                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                                />
+                              ) : (
+                                <div className="flex items-center justify-center h-full">
+                                  <span className="text-2xl">🌿</span>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* 商品情報 */}
+                            <div className="flex-1 p-3">
+                              <h4 className="font-semibold text-sm text-gray-900 line-clamp-2 group-hover:text-green-600 transition-colors">
+                                {product.name}
+                              </h4>
+                              <p className="text-lg font-bold text-green-600 mt-1">
+                                ¥{product.price?.toLocaleString()}
+                              </p>
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                      <Link
+                        href="/products"
+                        className="block text-center text-sm text-green-600 hover:text-green-700 font-medium py-2"
+                      >
+                        商品一覧を見る →
+                      </Link>
+                    </div>
+                  ) : (
+                    <div className="text-center py-6 text-gray-500">
+                      <div className="text-3xl mb-2">🌿</div>
+                      <p className="text-sm">商品を準備中です</p>
+                    </div>
+                  )}
+                </div>
 
                 {/* 関連イベント */}
                 {relatedEvents.length > 0 && (
