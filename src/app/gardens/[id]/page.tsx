@@ -248,10 +248,12 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
           {/* ヘッダーセクション */}
           <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
             {/* 画像がある場合のみ表示 */}
-            {garden.image_url && (
+            {(garden.image_url || garden.id === '3000a4b6-0a10-4896-9ff2-b3a9d09c14db') && (
               <div className="relative h-48 md:h-64 w-full">
                 <img
-                  src={garden.image_url}
+                  src={garden.id === '3000a4b6-0a10-4896-9ff2-b3a9d09c14db'
+                    ? '/images/gardens/kawaguchi-ryokuka-center-jurian.svg'
+                    : garden.image_url}
                   alt={`${garden.name}の外観`}
                   className="w-full h-full object-cover"
                 />
