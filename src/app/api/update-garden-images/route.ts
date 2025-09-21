@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     // データベースの盆栽園画像を更新
     const { data, error } = await supabaseServer
       .from('gardens')
-      .update({ image_url: imageUrl })
+      .update({ image_url: imageUrl } as any)
       .eq('id', gardenId)
       .select()
 
@@ -97,7 +97,7 @@ export async function PUT() {
         // データベース更新
         const { error: updateError } = await supabaseServer
           .from('gardens')
-          .update({ image_url: generateResult.imageUrl })
+          .update({ image_url: generateResult.imageUrl } as any)
           .eq('id', garden.id)
 
         if (updateError) {
