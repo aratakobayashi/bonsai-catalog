@@ -53,9 +53,49 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
         className={cn("group", className)}
         aria-label={`${event.title} - ${formatDate(event.start_date)}開催のイベント詳細を見る`}
       >
-        <div className="flex items-center gap-4 p-4 bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all duration-200 focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2">
-          {/* 日付 */}
-          <div className="flex-shrink-0 text-center min-w-[60px]" role="img" aria-label={`${formatDate(event.start_date)}開催`}>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all duration-200 focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2 active:scale-[0.98] touch-manipulation">
+          {/* モバイル：上部に日付とタイプ */}
+          <div className="flex items-center justify-between sm:hidden">
+            <div className="flex items-center gap-2">
+              {/* 日付 */}
+              <div className="flex items-center gap-2 text-sm font-semibold text-gray-900 bg-gray-50 px-3 py-1 rounded-full">
+                <Calendar className="h-4 w-4" />
+                <span>{getDateRange()}</span>
+              </div>
+
+              {/* ステータス */}
+              {isPast() && (
+                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
+                  終了
+                </span>
+              )}
+              {isUpcoming() && (
+                <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
+                  開催予定
+                </span>
+              )}
+            </div>
+
+            {/* イベントタイプ */}
+            <div className="flex gap-1">
+              {event.types.map((type) => (
+                <span
+                  key={type}
+                  className={cn(
+                    'inline-flex items-center px-2 py-1 text-xs font-medium rounded-full',
+                    eventTypeConfig[type].color
+                  )}
+                  title={eventTypeConfig[type].label}
+                  aria-label={`イベント種別: ${eventTypeConfig[type].label}`}
+                >
+                  {eventTypeConfig[type].icon}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* デスクトップ：左側の日付 */}
+          <div className="hidden sm:flex flex-shrink-0 text-center min-w-[60px]" role="img" aria-label={`${formatDate(event.start_date)}開催`}>
             <div className="text-sm font-semibold text-gray-900">
               {new Date(event.start_date).getDate()}
             </div>
@@ -66,11 +106,13 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
 
           {/* メイン情報 */}
           <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between">
-              <h3 className="font-semibold text-gray-900 group-hover:text-green-600 transition-colors truncate pr-2">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+              <h3 className="font-semibold text-gray-900 group-hover:text-green-600 transition-colors leading-tight">
                 {event.title}
               </h3>
-              <div className="flex gap-1 flex-shrink-0">
+
+              {/* デスクトップ：右側のタイプ */}
+              <div className="hidden sm:flex gap-1 flex-shrink-0">
                 {event.types.map((type) => (
                   <span
                     key={type}
@@ -87,20 +129,37 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
               </div>
             </div>
 
-            <div className="flex items-center gap-4 mt-1 text-sm text-gray-600">
+            {/* 詳細情報 */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mt-2 text-sm text-gray-600">
               <div className="flex items-center gap-1">
-                <MapPin className="h-4 w-4" />
+                <MapPin className="h-4 w-4 flex-shrink-0" />
                 <span className="truncate">{event.prefecture}</span>
                 {event.venue_name && (
                   <span className="truncate">• {event.venue_name}</span>
                 )}
               </div>
 
-              <div className="flex items-center gap-1">
-                <DollarSign className="h-4 w-4" />
-                <span>{event.price_type === 'free' ? '無料' : '有料'}</span>
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1">
+                  <DollarSign className="h-4 w-4" />
+                  <span>{event.price_type === 'free' ? '無料' : '有料'}</span>
+                </div>
+
+                {/* モバイル：日付表示を補完 */}
+                <div className="sm:hidden flex items-center gap-1 text-xs">
+                  {event.start_date !== event.end_date && (
+                    <span>〜 {formatDate(event.end_date)}</span>
+                  )}
+                </div>
               </div>
             </div>
+
+            {/* 説明文（モバイル用） */}
+            {event.description && (
+              <p className="sm:hidden mt-2 text-sm text-gray-600 line-clamp-2">
+                {event.description}
+              </p>
+            )}
           </div>
 
           {/* ステータス */}

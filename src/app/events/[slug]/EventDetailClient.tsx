@@ -96,13 +96,15 @@ export default function EventDetailClient({
     <div className="min-h-screen bg-gray-50">
       {/* パンくずナビ */}
       <div className="bg-white border-b">
-        <div className="container mx-auto px-4 py-4">
-          <nav className="flex items-center gap-2 text-sm text-gray-600">
-            <Link href="/" className="hover:text-gray-900">ホーム</Link>
-            <span>/</span>
-            <Link href="/events" className="hover:text-gray-900">イベント</Link>
-            <span>/</span>
-            <span className="text-gray-900 font-medium">{event.title}</span>
+        <div className="container mx-auto px-4 py-3 md:py-4">
+          <nav className="flex items-center gap-1 md:gap-2 text-xs md:text-sm text-gray-600 overflow-x-auto whitespace-nowrap">
+            <Link href="/" className="hover:text-gray-900 flex-shrink-0">ホーム</Link>
+            <span className="flex-shrink-0">/</span>
+            <Link href="/events" className="hover:text-gray-900 flex-shrink-0">イベント</Link>
+            <span className="flex-shrink-0">/</span>
+            <span className="text-gray-900 font-medium truncate">
+              {event.title.length > 20 ? event.title.slice(0, 20) + '...' : event.title}
+            </span>
           </nav>
         </div>
       </div>
@@ -122,20 +124,20 @@ export default function EventDetailClient({
               </Link>
 
               {/* ヘッダー */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-start justify-between mb-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-4 md:p-6">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                   <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-3">
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
                       {event.types.map((type) => (
                         <span
                           key={type}
                           className={cn(
-                            'inline-flex items-center gap-1 px-3 py-1 text-sm font-medium rounded-full',
+                            'inline-flex items-center gap-1 px-2 md:px-3 py-1 text-xs md:text-sm font-medium rounded-full',
                             eventTypeConfig[type].color
                           )}
                         >
                           {eventTypeConfig[type].icon}
-                          {eventTypeConfig[type].label}
+                          <span className="hidden sm:inline">{eventTypeConfig[type].label}</span>
                         </span>
                       ))}
 
@@ -152,19 +154,19 @@ export default function EventDetailClient({
                       )}
                     </div>
 
-                    <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                    <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 leading-tight">
                       {event.title}
                     </h1>
 
-                    <p className="text-lg text-gray-600">
+                    <p className="text-base md:text-lg text-gray-600">
                       {event.prefecture} • {getDateRange()}
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-2 ml-4">
+                  <div className="flex items-center gap-2 self-start">
                     <button
                       onClick={handleShare}
-                      className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                      className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors touch-manipulation active:scale-95"
                       title="シェア"
                     >
                       <Share2 className="h-5 w-5" />

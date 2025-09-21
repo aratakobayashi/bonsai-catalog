@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Event, EventType } from '@/types'
 import { cn } from '@/lib/utils'
-import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Calendar, List, Grid3X3 } from 'lucide-react'
 import { EventCard } from './EventCard'
 
 const eventTypeConfig = {
@@ -21,6 +21,18 @@ interface EventCalendarProps {
 export function EventCalendar({ events, className }: EventCalendarProps) {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+  const [viewMode, setViewMode] = useState<'calendar' | 'list'>('calendar')
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const currentYear = currentDate.getFullYear()
   const currentMonth = currentDate.getMonth()
@@ -72,6 +84,22 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
     const dateKey = selectedDate.toISOString().split('T')[0]
     return eventsByDate.get(dateKey) || []
   }, [selectedDate, eventsByDate])
+
+  // 月のイベントをリスト表示用にソート
+  const monthEvents = useMemo(() => {
+    const firstDay = new Date(currentYear, currentMonth, 1)
+    const lastDay = new Date(currentYear, currentMonth + 1, 0)
+
+    return events
+      .filter(event => {
+        const eventStart = new Date(event.start_date)
+        const eventEnd = new Date(event.end_date)
+        return (eventStart >= firstDay && eventStart <= lastDay) ||
+               (eventEnd >= firstDay && eventEnd <= lastDay) ||
+               (eventStart <= firstDay && eventEnd >= lastDay)
+      })
+      .sort((a, b) => new Date(a.start_date).getTime() - new Date(b.start_date).getTime())
+  }, [events, currentYear, currentMonth])
 
   const goToPrevMonth = () => {
     setCurrentDate(new Date(currentYear, currentMonth - 1, 1))
@@ -137,101 +165,157 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
   return (
     <div className={cn("space-y-6", className)}>
       {/* カレンダーヘッダー */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <h2 className="text-xl font-semibold text-gray-900">
           {currentYear}年{currentMonth + 1}月
         </h2>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={goToToday}
-            className="px-3 py-1 text-sm font-medium text-green-600 hover:text-green-700 hover:bg-green-50 rounded-md transition-colors"
-          >
-            今日
-          </button>
-          <button
-            onClick={goToPrevMonth}
-            className="p-1 hover:bg-gray-100 rounded-md transition-colors"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            onClick={goToNextMonth}
-            className="p-1 hover:bg-gray-100 rounded-md transition-colors"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
+        <div className="flex items-center justify-between gap-2">
+          {/* 表示切り替えボタン（モバイル用） */}
+          <div className="flex items-center bg-gray-100 rounded-lg p-1 md:hidden">
+            <button
+              onClick={() => setViewMode('calendar')}
+              className={cn(
+                "px-3 py-1.5 text-sm font-medium rounded-md transition-colors",
+                viewMode === 'calendar'
+                  ? "bg-white text-gray-900 shadow-sm"
+                  : "text-gray-600 hover:text-gray-900"
+              )}
+            >
+              <Grid3X3 className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => setViewMode('list')}
+              className={cn(
+                "px-3 py-1.5 text-sm font-medium rounded-md transition-colors",
+                viewMode === 'list'
+                  ? "bg-white text-gray-900 shadow-sm"
+                  : "text-gray-600 hover:text-gray-900"
+              )}
+            >
+              <List className="h-4 w-4" />
+            </button>
+          </div>
+
+          {/* ナビゲーションボタン */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={goToToday}
+              className="px-3 py-1 text-sm font-medium text-green-600 hover:text-green-700 hover:bg-green-50 rounded-md transition-colors"
+            >
+              今日
+            </button>
+            <button
+              onClick={goToPrevMonth}
+              className="p-1 hover:bg-gray-100 rounded-md transition-colors"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              onClick={goToNextMonth}
+              className="p-1 hover:bg-gray-100 rounded-md transition-colors"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* カレンダーグリッド */}
-        <div className="lg:col-span-2">
-          {/* 曜日ヘッダー */}
-          <div className="grid grid-cols-7 gap-px mb-2">
-            {['日', '月', '火', '水', '木', '金', '土'].map((day, index) => (
-              <div
-                key={day}
-                className={cn(
-                  "p-2 text-sm font-medium text-center",
-                  index === 0 ? "text-red-600" : index === 6 ? "text-blue-600" : "text-gray-600"
-                )}
-              >
-                {day}
+      {/* モバイル：リスト表示 */}
+      {viewMode === 'list' && (
+        <div className="md:hidden">
+          <div className="space-y-4">
+            {monthEvents.length > 0 ? (
+              monthEvents.map((event) => (
+                <EventCard
+                  key={event.id}
+                  event={event}
+                  layout="list"
+                />
+              ))
+            ) : (
+              <div className="text-center py-8 text-gray-500">
+                <Calendar className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+                <p>この月にはイベントがありません</p>
               </div>
-            ))}
-          </div>
-
-          {/* 日付グリッド */}
-          <div className="grid grid-cols-7 gap-px bg-gray-200 rounded-lg overflow-hidden">
-            {calendarDays.map((date, index) => {
-              const dateKey = date.toISOString().split('T')[0]
-              const dayEvents = eventsByDate.get(dateKey) || []
-              const isSelected = selectedDate?.toDateString() === date.toDateString()
-
-              return (
-                <button
-                  key={index}
-                  onClick={() => setSelectedDate(date)}
-                  className={cn(
-                    "relative p-1.5 h-20 sm:h-24 bg-white hover:bg-gray-50 transition-colors text-left flex flex-col",
-                    !isCurrentMonth(date) && "text-gray-400 bg-gray-50",
-                    isToday(date) && "bg-green-50 text-green-700",
-                    isSelected && "bg-green-100 text-green-800",
-                    index % 7 === 0 && isCurrentMonth(date) && "text-red-600", // 日曜日
-                    index % 7 === 6 && isCurrentMonth(date) && "text-blue-600" // 土曜日
-                  )}
-                >
-                  <span className="text-sm font-medium mb-1">{date.getDate()}</span>
-
-                  {/* イベント概要表示 */}
-                  {(() => {
-                    const eventSummary = getEventSummary(dayEvents)
-                    if (!eventSummary) return null
-
-                    return (
-                      <div className="flex-1 space-y-0.5 overflow-hidden">
-                        {eventSummary.map((event, eventIndex) => (
-                          <div
-                            key={eventIndex}
-                            className="flex items-center gap-0.5 sm:gap-1 text-xs text-gray-700"
-                          >
-                            <span className="text-xs leading-none flex-shrink-0">{event.icon}</span>
-                            <span className="truncate leading-tight text-xs sm:text-xs">{event.title}</span>
-                          </div>
-                        ))}
-                        {dayEvents.length > 2 && (
-                          <div className="text-xs text-gray-500 text-center">
-                            +{dayEvents.length - 2}件
-                          </div>
-                        )}
-                      </div>
-                    )
-                  })()}
-                </button>
-              )
-            })}
+            )}
           </div>
         </div>
+      )}
+
+      {/* デスクトップ：カレンダー表示 */}
+      {(viewMode === 'calendar' || !isMobile) && (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* カレンダーグリッド */}
+          <div className="lg:col-span-2">
+            {/* 曜日ヘッダー */}
+            <div className="grid grid-cols-7 gap-px mb-2">
+              {['日', '月', '火', '水', '木', '金', '土'].map((day, index) => (
+                <div
+                  key={day}
+                  className={cn(
+                    "p-1 sm:p-2 text-xs sm:text-sm font-medium text-center",
+                    index === 0 ? "text-red-600" : index === 6 ? "text-blue-600" : "text-gray-600"
+                  )}
+                >
+                  {day}
+                </div>
+              ))}
+            </div>
+
+            {/* 日付グリッド */}
+            <div className="grid grid-cols-7 gap-px bg-gray-200 rounded-lg overflow-hidden">
+              {calendarDays.map((date, index) => {
+                const dateKey = date.toISOString().split('T')[0]
+                const dayEvents = eventsByDate.get(dateKey) || []
+                const isSelected = selectedDate?.toDateString() === date.toDateString()
+
+                return (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedDate(date)}
+                    className={cn(
+                      "relative p-1 sm:p-1.5 h-16 sm:h-20 md:h-24 bg-white hover:bg-gray-50 transition-all duration-200 text-left flex flex-col touch-manipulation",
+                      "active:scale-95 active:bg-gray-100", // タッチフィードバック
+                      !isCurrentMonth(date) && "text-gray-400 bg-gray-50",
+                      isToday(date) && "bg-green-50 text-green-700 ring-2 ring-green-200",
+                      isSelected && "bg-green-100 text-green-800 ring-2 ring-green-300",
+                      index % 7 === 0 && isCurrentMonth(date) && "text-red-600", // 日曜日
+                      index % 7 === 6 && isCurrentMonth(date) && "text-blue-600" // 土曜日
+                    )}
+                  >
+                    <span className="text-xs sm:text-sm font-medium mb-0.5 sm:mb-1">{date.getDate()}</span>
+
+                    {/* イベント概要表示 */}
+                    {(() => {
+                      const eventSummary = getEventSummary(dayEvents)
+                      if (!eventSummary) return null
+
+                      return (
+                        <div className="flex-1 space-y-0.5 overflow-hidden">
+                          {eventSummary.slice(0, isMobile ? 1 : 2).map((event, eventIndex) => (
+                            <div
+                              key={eventIndex}
+                              className="flex items-center gap-0.5 text-xs text-gray-700"
+                            >
+                              <span className="text-xs leading-none flex-shrink-0">{event.icon}</span>
+                              <span className="truncate leading-tight text-xs">
+                                {isMobile ? event.title.slice(0, 4) + '...' : event.title}
+                              </span>
+                            </div>
+                          ))}
+                          {dayEvents.length > (isMobile ? 1 : 2) && (
+                            <div className="text-xs text-gray-500 text-center">
+                              +{dayEvents.length - (isMobile ? 1 : 2)}件
+                            </div>
+                          )}
+                        </div>
+                      )
+                    })()}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
 
         {/* 選択された日のイベント一覧 */}
         <div className="lg:col-span-1">
