@@ -49,8 +49,9 @@ export function EventCalendar({ events, className, viewMode = 'calendar' }: Even
     const current = new Date(startDate)
 
     for (let i = 0; i < 42; i++) { // 6週間分
-      days.push(new Date(current))
-      current.setDate(current.getDate() + 1)
+      days.push(new Date(current.getTime()))
+      // 安全な日付加算
+      current.setTime(current.getTime() + 24 * 60 * 60 * 1000)
     }
 
     return days
@@ -64,15 +65,16 @@ export function EventCalendar({ events, className, viewMode = 'calendar' }: Even
       const startDate = new Date(event.start_date)
       const endDate = new Date(event.end_date)
 
-      // イベント期間中のすべての日にちにイベントを割り当て
-      const current = new Date(startDate)
-      while (current <= endDate) {
-        const dateKey = current.toISOString().split('T')[0]
+      // イベント期間中のすべての日にちにイベントを割り当て（安全な日付計算）
+      const currentDate = new Date(startDate.getTime())
+      while (currentDate <= endDate) {
+        const dateKey = currentDate.toISOString().split('T')[0]
         if (!dateEvents[dateKey]) {
           dateEvents[dateKey] = []
         }
         dateEvents[dateKey].push(event)
-        current.setDate(current.getDate() + 1)
+        // 安全な日付加算（月境界を考慮）
+        currentDate.setTime(currentDate.getTime() + 24 * 60 * 60 * 1000)
       }
     })
 
@@ -246,7 +248,11 @@ export function EventCalendar({ events, className, viewMode = 'calendar' }: Even
             </div>
 
             {/* 日付グリッド */}
-            <div className="grid grid-cols-7 gap-px bg-gray-200 rounded-lg overflow-hidden">
+            <div
+              className="grid grid-cols-7 gap-px bg-gray-200 rounded-lg overflow-hidden"
+              role="grid"
+              aria-label={`${currentYear}年${currentMonth + 1}月のカレンダー`}
+            >
               {calendarDays.map((date, index) => {
                 const dateKey = date.toISOString().split('T')[0]
                 const dayEvents = eventsByDate[dateKey] || []
@@ -256,9 +262,13 @@ export function EventCalendar({ events, className, viewMode = 'calendar' }: Even
                   <button
                     key={index}
                     onClick={() => setSelectedDate(date)}
+                    aria-label={`${date.getDate()}日${hasEvents(date) ? ` - ${getEventCount(date)}件のイベントあり` : ''}`}
+                    aria-pressed={isSelected}
+                    role="gridcell"
+                    tabIndex={isSelected ? 0 : -1}
                     className={cn(
-                      "relative p-1 sm:p-1.5 h-16 sm:h-20 md:h-24 bg-white hover:bg-gray-50 transition-all duration-200 text-left flex flex-col touch-manipulation",
-                      "active:scale-95 active:bg-gray-100", // タッチフィードバック
+                      "relative p-2 sm:p-2 h-20 sm:h-24 md:h-28 bg-white hover:bg-gray-50 transition-all duration-200 text-left flex flex-col touch-manipulation min-h-[44px]", // WCAG準拠のタッチターゲット
+                      "active:scale-95 active:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-1", // アクセシビリティ改善
                       !isCurrentMonth(date) && "text-gray-400 bg-gray-50",
                       isToday(date) && "bg-green-50 text-green-700 ring-2 ring-green-200",
                       isSelected && "bg-green-100 text-green-800 ring-2 ring-green-300",
@@ -266,7 +276,12 @@ export function EventCalendar({ events, className, viewMode = 'calendar' }: Even
                       index % 7 === 6 && isCurrentMonth(date) && "text-blue-600" // 土曜日
                     )}
                   >
-                    <span className="text-xs sm:text-sm font-medium mb-0.5 sm:mb-1">{date.getDate()}</span>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-sm sm:text-base font-medium">{date.getDate()}</span>
+                      {hasEvents(date) && (
+                        <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0" title={`${getEventCount(date)}件のイベント`}></div>
+                      )}
+                    </div>
 
                     {/* イベント概要表示 */}
                     {(() => {
@@ -274,32 +289,32 @@ export function EventCalendar({ events, className, viewMode = 'calendar' }: Even
                       if (!eventSummary) return null
 
                       return (
-                        <div className="flex-1 space-y-0.5 overflow-hidden">
+                        <div className="flex-1 space-y-1 overflow-hidden">
                           {eventSummary.slice(0, isMobile ? 1 : 2).map((event, eventIndex) => (
                             <Link
                               key={eventIndex}
                               href={`/events/${event.slug}`}
                               onClick={(e) => e.stopPropagation()}
-                              className="flex items-center gap-0.5 text-xs text-gray-700 hover:text-green-600 transition-colors block group"
+                              className="flex items-center gap-1 p-1 rounded text-xs bg-white bg-opacity-80 text-gray-700 hover:text-green-600 hover:bg-green-50 transition-colors block group border border-gray-200"
                               title={`${event.fullTitle}の詳細を見る`}
                             >
                               <span className="text-xs leading-none flex-shrink-0">{event.icon}</span>
-                              <span className="truncate leading-tight text-xs group-hover:underline">
-                                {isMobile ? event.title.slice(0, 4) + '...' : event.title}
+                              <span className="truncate leading-tight text-xs font-medium group-hover:underline">
+                                {isMobile ? event.title.slice(0, 6) + '...' : event.title.slice(0, 12) + (event.title.length > 12 ? '...' : '')}
                               </span>
                             </Link>
                           ))}
                           {dayEvents.length > (isMobile ? 1 : 2) && (
-                            <div
-                              className="text-xs text-gray-500 text-center cursor-pointer hover:text-gray-700 transition-colors"
+                            <button
+                              className="w-full text-xs text-gray-500 bg-gray-100 hover:bg-gray-200 py-1 px-2 rounded cursor-pointer hover:text-gray-700 transition-colors border border-gray-300"
                               onClick={(e) => {
                                 e.stopPropagation()
                                 setSelectedDate(date)
                               }}
                               title="すべてのイベントを表示"
                             >
-                              +{dayEvents.length - (isMobile ? 1 : 2)}件
-                            </div>
+                              他 {dayEvents.length - (isMobile ? 1 : 2)}件
+                            </button>
                           )}
                         </div>
                       )
