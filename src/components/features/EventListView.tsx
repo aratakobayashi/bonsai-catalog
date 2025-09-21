@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { Event, EventType } from '@/types'
 import { cn } from '@/lib/utils'
@@ -29,6 +29,8 @@ interface EventGroup {
 }
 
 export function EventListView({ events, className }: EventListViewProps) {
+  const [showPastEvents, setShowPastEvents] = useState(false)
+
   // スマートグループ化（年月別＋ステータス別）
   const eventGroups = useMemo(() => {
     const now = new Date()
@@ -52,9 +54,19 @@ export function EventListView({ events, className }: EventListViewProps) {
       endDate.setHours(23, 59, 59, 999)
 
       if (startDate <= today && endDate >= today) return 'ongoing'
-      if (startDate >= today) return 'upcoming'  // >= に修正
+      if (startDate > today) return 'upcoming'  // > に修正（厳密に未来）
       return 'past'
     }
+
+    // デバッグログ
+    console.log('📋 EventListView Debug:', {
+      today: today.toISOString().split('T')[0],
+      totalEvents: events.length,
+      showPastEvents,
+      ongoingCount: events.filter(e => getEventStatus(e) === 'ongoing').length,
+      upcomingCount: events.filter(e => getEventStatus(e) === 'upcoming').length,
+      pastCount: events.filter(e => getEventStatus(e) === 'past').length
+    })
 
     // 年月の表示形式を生成
     const formatMonthYear = (date: Date) => {
@@ -152,10 +164,26 @@ export function EventListView({ events, className }: EventListViewProps) {
       })
     })
 
-    // イベントがあるグループのみ返す
-    const filteredGroups = groups.filter(group => group.events.length > 0)
+    // 優先度1: デフォルトでは開催中+開催予定のみ表示
+    const filteredGroups = groups.filter(group => {
+      if (group.events.length === 0) return false
+
+      // 過去イベントグループ（priority: 6）は showPastEvents が true の時のみ表示
+      if (group.priority === 6) {
+        return showPastEvents
+      }
+
+      return true
+    })
+
+    console.log('📊 Filtered Groups:', {
+      totalGroups: groups.length,
+      visibleGroups: filteredGroups.length,
+      groupTitles: filteredGroups.map(g => g.title)
+    })
+
     return filteredGroups
-  }, [events])
+  }, [events, showPastEvents])
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr)
@@ -260,6 +288,32 @@ export function EventListView({ events, className }: EventListViewProps) {
           </div>
         </div>
       </div>
+
+      {/* 過去イベント表示ボタン */}
+      {!showPastEvents && events.filter(e => isPast(e)).length > 0 && (
+        <div className="text-center">
+          <button
+            onClick={() => setShowPastEvents(true)}
+            className="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg border border-gray-300 font-medium transition-colors duration-200 flex items-center gap-2 mx-auto"
+          >
+            <Calendar className="h-4 w-4" />
+            過去のイベントも表示する ({events.filter(e => isPast(e)).length}件)
+          </button>
+        </div>
+      )}
+
+      {/* 過去イベントを非表示にするボタン */}
+      {showPastEvents && (
+        <div className="text-center">
+          <button
+            onClick={() => setShowPastEvents(false)}
+            className="px-6 py-3 bg-green-100 hover:bg-green-200 text-green-700 rounded-lg border border-green-300 font-medium transition-colors duration-200 flex items-center gap-2 mx-auto"
+          >
+            <Star className="h-4 w-4" />
+            現在・今後のイベントのみ表示
+          </button>
+        </div>
+      )}
 
       {eventGroups.map((group, groupIndex) => (
         <div key={groupIndex} className="space-y-4">
