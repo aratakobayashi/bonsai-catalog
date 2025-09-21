@@ -1,10 +1,17 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { Event } from '@/types'
+import { Event, EventType } from '@/types'
 import { cn } from '@/lib/utils'
 import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react'
 import { EventCard } from './EventCard'
+
+const eventTypeConfig = {
+  exhibition: { color: 'text-green-600 bg-green-50', icon: '🌳', label: '展示' },
+  sale: { color: 'text-blue-600 bg-blue-50', icon: '🛒', label: '即売' },
+  workshop: { color: 'text-orange-600 bg-orange-50', icon: '✂️', label: 'WS' },
+  lecture: { color: 'text-purple-600 bg-purple-50', icon: '📖', label: '講習' }
+}
 
 interface EventCalendarProps {
   events: Event[]
@@ -100,6 +107,33 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
     return eventsByDate.get(dateKey)?.length || 0
   }
 
+  // イベント名を省略（レスポンシブ対応）
+  const truncateEventTitle = (title: string, maxLength: number = 8) => {
+    if (title.length <= maxLength) return title
+    return title.slice(0, maxLength) + '...'
+  }
+
+  // 日付セル内に表示するイベント概要を生成
+  const getEventSummary = (events: Event[]) => {
+    if (events.length === 0) return null
+
+    // 最大2件まで表示、重要度順（展示 > 即売 > ワークショップ > 講習）
+    const typeOrder = { exhibition: 0, sale: 1, workshop: 2, lecture: 3 }
+    const sortedEvents = events
+      .slice()
+      .sort((a, b) => {
+        const aMinType = Math.min(...a.types.map(t => typeOrder[t]))
+        const bMinType = Math.min(...b.types.map(t => typeOrder[t]))
+        return aMinType - bMinType
+      })
+      .slice(0, 2)
+
+    return sortedEvents.map(event => ({
+      icon: eventTypeConfig[event.types[0]]?.icon || '📅',
+      title: truncateEventTitle(event.title, 6)
+    }))
+  }
+
   return (
     <div className={cn("space-y-6", className)}>
       {/* カレンダーヘッダー */}
@@ -159,7 +193,7 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
                   key={index}
                   onClick={() => setSelectedDate(date)}
                   className={cn(
-                    "relative p-2 h-20 bg-white hover:bg-gray-50 transition-colors text-left",
+                    "relative p-1.5 h-20 sm:h-24 bg-white hover:bg-gray-50 transition-colors text-left flex flex-col",
                     !isCurrentMonth(date) && "text-gray-400 bg-gray-50",
                     isToday(date) && "bg-green-50 text-green-700",
                     isSelected && "bg-green-100 text-green-800",
@@ -167,24 +201,32 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
                     index % 7 === 6 && isCurrentMonth(date) && "text-blue-600" // 土曜日
                   )}
                 >
-                  <span className="text-sm font-medium">{date.getDate()}</span>
+                  <span className="text-sm font-medium mb-1">{date.getDate()}</span>
 
-                  {/* イベントドット */}
-                  {dayEvents.length > 0 && (
-                    <div className="absolute bottom-1 left-1 right-1">
-                      <div className="flex gap-1">
-                        {dayEvents.slice(0, 3).map((event, eventIndex) => (
+                  {/* イベント概要表示 */}
+                  {(() => {
+                    const eventSummary = getEventSummary(dayEvents)
+                    if (!eventSummary) return null
+
+                    return (
+                      <div className="flex-1 space-y-0.5 overflow-hidden">
+                        {eventSummary.map((event, eventIndex) => (
                           <div
                             key={eventIndex}
-                            className="w-1.5 h-1.5 rounded-full bg-green-500"
-                          />
+                            className="flex items-center gap-0.5 sm:gap-1 text-xs text-gray-700"
+                          >
+                            <span className="text-xs leading-none flex-shrink-0">{event.icon}</span>
+                            <span className="truncate leading-tight text-xs sm:text-xs">{event.title}</span>
+                          </div>
                         ))}
-                        {dayEvents.length > 3 && (
-                          <span className="text-xs text-gray-500">+{dayEvents.length - 3}</span>
+                        {dayEvents.length > 2 && (
+                          <div className="text-xs text-gray-500 text-center">
+                            +{dayEvents.length - 2}件
+                          </div>
                         )}
                       </div>
-                    </div>
-                  )}
+                    )
+                  })()}
                 </button>
               )
             })}
