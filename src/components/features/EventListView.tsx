@@ -52,7 +52,7 @@ export function EventListView({ events, className }: EventListViewProps) {
       endDate.setHours(23, 59, 59, 999)
 
       if (startDate <= today && endDate >= today) return 'ongoing'
-      if (startDate > today) return 'upcoming'
+      if (startDate >= today) return 'upcoming'  // >= に修正
       return 'past'
     }
 
@@ -188,20 +188,27 @@ export function EventListView({ events, className }: EventListViewProps) {
 
   const isUpcoming = (event: Event) => {
     const today = new Date()
+    today.setHours(0, 0, 0, 0)  // 時間を正規化
     const startDate = new Date(event.start_date)
-    return startDate >= today
+    startDate.setHours(0, 0, 0, 0)
+    return startDate > today  // 今日より後
   }
 
   const isPast = (event: Event) => {
     const today = new Date()
+    today.setHours(0, 0, 0, 0)  // 時間を正規化
     const endDate = new Date(event.end_date)
-    return endDate < today
+    endDate.setHours(23, 59, 59, 999)  // 終了日の終わりまで
+    return endDate < today  // 今日より前に終了
   }
 
   const isOngoing = (event: Event) => {
     const today = new Date()
+    today.setHours(0, 0, 0, 0)  // 時間を正規化
     const startDate = new Date(event.start_date)
     const endDate = new Date(event.end_date)
+    startDate.setHours(0, 0, 0, 0)
+    endDate.setHours(23, 59, 59, 999)
     return startDate <= today && endDate >= today
   }
 
