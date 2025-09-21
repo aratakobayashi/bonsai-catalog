@@ -4,8 +4,9 @@ import { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { Event, EventType } from '@/types'
 import { cn } from '@/lib/utils'
-import { ChevronLeft, ChevronRight, Calendar, List, Grid3X3 } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Calendar, List, Grid3X3, Map } from 'lucide-react'
 import { EventCard } from './EventCard'
+import { EventMap } from './EventMap'
 
 const eventTypeConfig = {
   exhibition: { color: 'text-green-600 bg-green-50', icon: '🌳', label: '展示' },
@@ -22,7 +23,7 @@ interface EventCalendarProps {
 export function EventCalendar({ events, className }: EventCalendarProps) {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
-  const [viewMode, setViewMode] = useState<'calendar' | 'list'>('calendar')
+  const [viewMode, setViewMode] = useState<'calendar' | 'list' | 'map'>('calendar')
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -207,7 +208,7 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
             <button
               onClick={() => setViewMode('calendar')}
               className={cn(
-                "px-3 py-1.5 text-sm font-medium rounded-md transition-colors",
+                "px-2 py-1.5 text-sm font-medium rounded-md transition-colors",
                 viewMode === 'calendar'
                   ? "bg-white text-gray-900 shadow-sm"
                   : "text-gray-600 hover:text-gray-900"
@@ -218,13 +219,64 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
             <button
               onClick={() => setViewMode('list')}
               className={cn(
-                "px-3 py-1.5 text-sm font-medium rounded-md transition-colors",
+                "px-2 py-1.5 text-sm font-medium rounded-md transition-colors",
                 viewMode === 'list'
                   ? "bg-white text-gray-900 shadow-sm"
                   : "text-gray-600 hover:text-gray-900"
               )}
             >
               <List className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => setViewMode('map')}
+              className={cn(
+                "px-2 py-1.5 text-sm font-medium rounded-md transition-colors",
+                viewMode === 'map'
+                  ? "bg-white text-gray-900 shadow-sm"
+                  : "text-gray-600 hover:text-gray-900"
+              )}
+            >
+              <Map className="h-4 w-4" />
+            </button>
+          </div>
+
+          {/* 表示切り替えボタン（デスクトップ用） */}
+          <div className="hidden md:flex items-center bg-gray-100 rounded-lg p-1">
+            <button
+              onClick={() => setViewMode('calendar')}
+              className={cn(
+                "px-3 py-1.5 text-sm font-medium rounded-md transition-colors flex items-center gap-2",
+                viewMode === 'calendar'
+                  ? "bg-white text-gray-900 shadow-sm"
+                  : "text-gray-600 hover:text-gray-900"
+              )}
+            >
+              <Grid3X3 className="h-4 w-4" />
+              <span>カレンダー</span>
+            </button>
+            <button
+              onClick={() => setViewMode('list')}
+              className={cn(
+                "px-3 py-1.5 text-sm font-medium rounded-md transition-colors flex items-center gap-2",
+                viewMode === 'list'
+                  ? "bg-white text-gray-900 shadow-sm"
+                  : "text-gray-600 hover:text-gray-900"
+              )}
+            >
+              <List className="h-4 w-4" />
+              <span>リスト</span>
+            </button>
+            <button
+              onClick={() => setViewMode('map')}
+              className={cn(
+                "px-3 py-1.5 text-sm font-medium rounded-md transition-colors flex items-center gap-2",
+                viewMode === 'map'
+                  ? "bg-white text-gray-900 shadow-sm"
+                  : "text-gray-600 hover:text-gray-900"
+              )}
+            >
+              <Map className="h-4 w-4" />
+              <span>マップ</span>
             </button>
           </div>
 
@@ -252,9 +304,9 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
         </div>
       </div>
 
-      {/* モバイル：リスト表示 */}
+      {/* リスト表示 */}
       {viewMode === 'list' && (
-        <div className="md:hidden">
+        <div>
           <div className="space-y-4">
             {monthEvents.length > 0 ? (
               monthEvents.map((event) => (
@@ -274,8 +326,18 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
         </div>
       )}
 
+      {/* マップ表示 */}
+      {viewMode === 'map' && (
+        <div>
+          <EventMap
+            events={monthEvents}
+            className="w-full"
+          />
+        </div>
+      )}
+
       {/* デスクトップ：カレンダー表示 */}
-      {(viewMode === 'calendar' || !isMobile) && (
+      {viewMode === 'calendar' && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* カレンダーグリッド */}
           <div className="lg:col-span-2">
