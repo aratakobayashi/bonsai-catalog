@@ -347,7 +347,7 @@ const gardenImageMap: Record<string, string> = {
   '89151019-0e22-4a6f-81dd-dee6f9ab0123': '/images/gardens/yamagataencenter.svg', // 山形園芸センター
   '31142d3a-2209-449d-aa74-d9e3e80a6e38': '/images/gardens/midorien.svg', // 緑昇園
   '99ccb893-5976-423a-8773-220bb7efe6b6': '/images/gardens/kinakan.svg', // 紀菜柑
-};
+
   // フェーズ9（完全制覇記念コレクション）
   '688366e5-736d-4269-b2eb-296a167d8866': '/images/gardens/annakaen.svg', // アンナカ造園
   'a130db6c-894b-4aef-adc2-fc8967fe0dec': '/images/gardens/haradashubyo.svg', // 原田種苗
