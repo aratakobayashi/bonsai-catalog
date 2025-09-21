@@ -227,6 +227,27 @@ const gardenImageMap: Record<string, string> = {
   'd432d4bf-908e-4952-86c5-b8c5798a1225': '/images/gardens/ueno-green-club.svg', // 上野グリーンクラブ
   '6897be01-8059-41b6-9749-436eebb5e678': '/images/gardens/nagoya-bonsai-kaikan.svg', // 名古屋盆栽会館
   '71d984be-89d6-427c-a27c-0139fbc3e889': '/images/gardens/sagano-bonsai-en.svg', // 嵯峨野盆栽苑
+  // フェーズ5（総合拡充コレクション）
+  'fe68bd0f-0a04-4c35-b721-ae89c2963247': '/images/gardens/naniwa-bonsai-en.svg', // 浪華盆栽園
+  '7163682f-97fd-4178-bf2f-f64683af32fc': '/images/gardens/sogou-engei-barns.svg', // 総合園芸 Barns
+  'a45f1770-9d15-40c7-a9b3-332f9edc0530': '/images/gardens/shikoku-green-center.svg', // 四国グリーンセンター
+  '4557fb2e-7e5f-488e-8ef4-55b3a95dd60d': '/images/gardens/kitayama-nursery.svg', // 北山ナーセリー
+  'd85b297c-528c-4861-8f7b-e07a6beef5d1': '/images/gardens/garden-marche-shimonoseki.svg', // ガーデンマルシェ 下関店
+  'fc9f4072-151e-463f-8acc-e20935740398': '/images/gardens/fujisan-roku-garden-center.svg', // 富士山麓ガーデンセンター
+  '7d49d321-50a2-4729-b6bd-8f100dbc7e19': '/images/gardens/sakata-no-tane-sagamihara.svg', // サカタのタネガーデンセンター相模原
+  'a7c48e64-0ab4-46ed-9e85-6d533364ba4f': '/images/gardens/houkoen.svg', // 有限会社豊香園
+  '58e02c92-8918-4212-9560-c56e31606724': '/images/gardens/ryokuka-ki-ichiba.svg', // 緑花木市場
+  '5ec52f80-073d-45d0-aae2-b72f11672721': '/images/gardens/gardening-club-hanamidori.svg', // ガーデニング倶楽部花みどり
+  '1c839911-a0bb-40cd-9733-5945a1192270': '/images/gardens/kobayashi-nouen.svg', // 小林農園
+  'c8ddaa61-7922-40b8-8133-7b1e0ab36e9c': '/images/gardens/shikoku-garden.svg', // 四国ガーデン
+  'c5abd99b-808b-48fd-b5f2-8353385ac719': '/images/gardens/nihon-line-kaboku-center.svg', // 協同組合日本ライン花木センター
+  '77a2d6e0-8b2a-455e-af37-7d4cd89257c7': '/images/gardens/fujikawa-kouka-en.svg', // 藤川光花園
+  '1191e28b-15ef-4363-b43e-8ed007154b22': '/images/gardens/shohin-bonsai-ki-no-kaze.svg', // 小品盆栽 季の風
+  '29d8a441-bdd5-4fc5-8514-164ff37e3234': '/images/gardens/taiyo-green.svg', // 大洋グリーン
+  'c62357fb-f3de-4aa4-add5-eb1bb7f95922': '/images/gardens/nasu-kogen-bonsai-no-sato.svg', // 那須高原盆栽の里
+  'b2974592-38df-4f4b-907b-e5fe1df60620': '/images/gardens/bonsai-fukushima-en.svg', // 盆栽福島園
+  'd890f754-cf36-4724-bdd0-ee07b95b4a88': '/images/gardens/shohin-bonsai-yamato-en.svg', // 小品盆栽専門店 やまと園
+  '9edd8075-1637-4f74-8f42-8b3f689785bc': '/images/gardens/manju-en.svg', // 萬樹園
 }
 
 export default async function GardenDetailPage({ params }: GardenPageProps) {
