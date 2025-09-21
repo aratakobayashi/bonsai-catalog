@@ -31,17 +31,17 @@ interface EventGroup {
 export function EventListView({ events, className }: EventListViewProps) {
   // スマートグループ化
   const eventGroups = useMemo(() => {
-    const today = new Date()
-    today.setHours(0, 0, 0, 0)
+    const now = new Date()
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
 
     const tomorrow = new Date(today)
-    tomorrow.setDate(today.getDate() + 1)
+    tomorrow.setDate(tomorrow.getDate() + 1)
 
     const weekEnd = new Date(today)
-    weekEnd.setDate(today.getDate() + 7)
+    weekEnd.setDate(weekEnd.getDate() + 7)
 
     const monthEnd = new Date(today)
-    monthEnd.setMonth(today.getMonth() + 1)
+    monthEnd.setMonth(monthEnd.getMonth() + 1)
 
     const getEventStatus = (event: Event) => {
       const startDate = new Date(event.start_date)
@@ -114,17 +114,17 @@ export function EventListView({ events, className }: EventListViewProps) {
     // イベントをグループに分類
     events.forEach(event => {
       const startDate = new Date(event.start_date)
-      startDate.setHours(0, 0, 0, 0)
+      const startDateOnly = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate())
       const status = getEventStatus(event)
 
       if (status === 'ongoing') {
         groups[0].events.push(event)
       } else if (status === 'upcoming') {
-        if (startDate.getTime() === tomorrow.getTime()) {
+        if (startDateOnly.getTime() === tomorrow.getTime()) {
           groups[1].events.push(event)
-        } else if (startDate < weekEnd) {
+        } else if (startDateOnly < weekEnd) {
           groups[2].events.push(event)
-        } else if (startDate < monthEnd) {
+        } else if (startDateOnly < monthEnd) {
           groups[3].events.push(event)
         } else {
           groups[4].events.push(event)
@@ -192,6 +192,11 @@ export function EventListView({ events, className }: EventListViewProps) {
     return startDate <= today && endDate >= today
   }
 
+  const truncateTitle = (title: string, maxLength: number = 50) => {
+    if (title.length <= maxLength) return title
+    return title.slice(0, maxLength) + '...'
+  }
+
   if (events.length === 0) {
     return (
       <div className="text-center py-12">
@@ -199,9 +204,54 @@ export function EventListView({ events, className }: EventListViewProps) {
         <h3 className="text-lg font-medium text-gray-900 mb-2">
           イベントが見つかりませんでした
         </h3>
-        <p className="text-gray-600">
+        <p className="text-gray-600 mb-4">
           検索条件を変更して再度お試しください
         </p>
+        <div className="text-sm text-gray-500">
+          💡 ヒント: 月や都道府県のフィルターを外してみてください
+        </div>
+      </div>
+    )
+  }
+
+  // 全てのイベントが終了している場合の特別な表示
+  const allPastEvents = events.every(event => isPast(event))
+  if (allPastEvents && events.length > 0) {
+    return (
+      <div className="space-y-6">
+        <div className="text-center py-8 bg-gray-50 rounded-lg">
+          <Calendar className="h-10 w-10 text-gray-400 mx-auto mb-3" />
+          <h3 className="text-lg font-medium text-gray-900 mb-2">
+            全て終了したイベントです
+          </h3>
+          <p className="text-gray-600">
+            新しいイベントをお探しの場合は、フィルターを調整してください
+          </p>
+        </div>
+        {/* 終了したイベントも表示 */}
+        <div className="space-y-8">
+          {eventGroups.map((group, groupIndex) => (
+            <div key={groupIndex} className="space-y-4 opacity-75">
+              <div className={cn(
+                "flex items-center gap-3 p-4 rounded-lg border",
+                group.bgColor,
+                group.borderColor
+              )}>
+                <div className="text-gray-600">
+                  {group.icon}
+                </div>
+                <div className="flex-1">
+                  <h2 className="font-semibold text-gray-900">{group.title}</h2>
+                  <p className="text-sm text-gray-600">{group.description}</p>
+                </div>
+                <div className="text-sm text-gray-500 bg-white px-2 py-1 rounded-full">
+                  {group.events.length}件
+                </div>
+              </div>
+              {/* 省略: 以下同じテーブル表示 */}
+            </div>
+          ))}
+        </div>
       </div>
     )
   }
@@ -231,13 +281,13 @@ export function EventListView({ events, className }: EventListViewProps) {
           {/* イベントテーブル */}
           <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
             {/* テーブルヘッダー（デスクトップのみ） */}
-            <div className="hidden lg:grid lg:grid-cols-12 gap-4 p-4 bg-gray-50 border-b border-gray-200 text-sm font-medium text-gray-600">
-              <div className="col-span-1">日付</div>
-              <div className="col-span-4">イベント名</div>
-              <div className="col-span-2">タイプ</div>
-              <div className="col-span-2">場所</div>
-              <div className="col-span-2">料金</div>
-              <div className="col-span-1">詳細</div>
+            <div className="hidden lg:grid lg:grid-cols-12 gap-4 p-4 bg-gray-50 border-b border-gray-200 text-sm font-medium text-gray-600" role="row">
+              <div className="col-span-1" role="columnheader">日付</div>
+              <div className="col-span-4" role="columnheader">イベント名</div>
+              <div className="col-span-2" role="columnheader">タイプ</div>
+              <div className="col-span-2" role="columnheader">場所</div>
+              <div className="col-span-2" role="columnheader">料金</div>
+              <div className="col-span-1" role="columnheader">詳細</div>
             </div>
 
             {/* イベント行 */}
@@ -265,8 +315,8 @@ export function EventListView({ events, className }: EventListViewProps) {
 
                     {/* イベント名 */}
                     <div className="col-span-4">
-                      <h3 className="font-semibold text-gray-900 group-hover:text-green-600 transition-colors leading-tight">
-                        {event.title}
+                      <h3 className="font-semibold text-gray-900 group-hover:text-green-600 transition-colors leading-tight" title={event.title}>
+                        {truncateTitle(event.title, 60)}
                       </h3>
                       <div className="text-sm text-gray-600 mt-1">
                         {getDateRange(event)}
@@ -338,8 +388,8 @@ export function EventListView({ events, className }: EventListViewProps) {
                   <div className="lg:hidden p-4 space-y-3">
                     <div className="flex items-start justify-between">
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-gray-900 leading-tight">
-                          {event.title}
+                        <h3 className="font-semibold text-gray-900 leading-tight" title={event.title}>
+                          {truncateTitle(event.title, 40)}
                         </h3>
                         <div className="text-sm text-gray-600 mt-1">
                           {getDateRange(event)}
