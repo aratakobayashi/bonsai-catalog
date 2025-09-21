@@ -265,32 +265,6 @@ export function EventListView({ events, className }: EventListViewProps) {
         </div>
       </div>
 
-      {/* 過去イベント表示ボタン */}
-      {!showPastEvents && events.filter(e => isPast(e)).length > 0 && (
-        <div className="text-center">
-          <button
-            onClick={() => setShowPastEvents(true)}
-            className="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg border border-gray-300 font-medium transition-colors duration-200 flex items-center gap-2 mx-auto"
-          >
-            <Calendar className="h-4 w-4" />
-            過去のイベントも表示する ({events.filter(e => isPast(e)).length}件)
-          </button>
-        </div>
-      )}
-
-      {/* 過去イベントを非表示にするボタン */}
-      {showPastEvents && (
-        <div className="text-center">
-          <button
-            onClick={() => setShowPastEvents(false)}
-            className="px-6 py-3 bg-green-100 hover:bg-green-200 text-green-700 rounded-lg border border-green-300 font-medium transition-colors duration-200 flex items-center gap-2 mx-auto"
-          >
-            <Star className="h-4 w-4" />
-            現在・今後のイベントのみ表示
-          </button>
-        </div>
-      )}
-
       {eventGroups.map((group, groupIndex) => (
         <div key={groupIndex} className="space-y-4">
           {/* グループヘッダー */}
@@ -505,6 +479,32 @@ export function EventListView({ events, className }: EventListViewProps) {
           </div>
         </div>
       ))}
+
+      {/* 過去イベント表示ボタン */}
+      {!showPastEvents && events.filter(e => isPast(e)).length > 0 && (
+        <div className="text-center mt-8">
+          <button
+            onClick={() => setShowPastEvents(true)}
+            className="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg border border-gray-300 font-medium transition-colors duration-200 flex items-center gap-2 mx-auto"
+          >
+            <Calendar className="h-4 w-4" />
+            過去のイベントも表示する ({events.filter(e => isPast(e)).length}件)
+          </button>
+        </div>
+      )}
+
+      {/* 過去イベントを非表示にするボタン */}
+      {showPastEvents && (
+        <div className="text-center mt-8">
+          <button
+            onClick={() => setShowPastEvents(false)}
+            className="px-6 py-3 bg-green-100 hover:bg-green-200 text-green-700 rounded-lg border border-green-300 font-medium transition-colors duration-200 flex items-center gap-2 mx-auto"
+          >
+            <Star className="h-4 w-4" />
+            現在・今後のイベントのみ表示
+          </button>
+        </div>
+      )}
     </div>
   )
 }
