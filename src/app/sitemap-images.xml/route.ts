@@ -3,6 +3,16 @@ import { supabase } from '@/lib/supabase'
 
 const baseUrl = 'https://www.bonsai-collection.com'
 
+// XMLエスケープ用のヘルパー関数
+function escapeXml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
 export async function GET() {
   try {
     // 商品画像を取得
@@ -25,15 +35,15 @@ export async function GET() {
     // 商品画像をXMLに追加
     if (products && products.length > 0) {
       (products as Array<{id: string, name: string, image_url: string, updated_at: string}>).forEach(product => {
+        const escapedName = escapeXml(product.name)
         xmlContent += `
   <url>
     <loc>${baseUrl}/products/${product.id}</loc>
     <image:image>
-      <image:loc>${product.image_url}</image:loc>
-      <image:title>${product.name}</image:title>
-      <image:caption>盆栽「${product.name}」の商品画像</image:caption>
+      <image:loc>${escapeXml(product.image_url)}</image:loc>
+      <image:title>${escapedName}</image:title>
+      <image:caption>盆栽「${escapedName}」の商品画像</image:caption>
     </image:image>
-    <lastmod>${new Date(product.updated_at).toISOString()}</lastmod>
   </url>`
       })
     }
@@ -42,15 +52,15 @@ export async function GET() {
     if (gardens && gardens.length > 0) {
       (gardens as Array<{id: string, name: string, image_url: string | null, updated_at: string}>).forEach(garden => {
         if (garden.image_url) {
+          const escapedName = escapeXml(garden.name)
           xmlContent += `
   <url>
     <loc>${baseUrl}/gardens/${garden.id}</loc>
     <image:image>
-      <image:loc>${garden.image_url}</image:loc>
-      <image:title>${garden.name}</image:title>
-      <image:caption>盆栽園「${garden.name}」の画像</image:caption>
+      <image:loc>${escapeXml(garden.image_url)}</image:loc>
+      <image:title>${escapedName}</image:title>
+      <image:caption>盆栽園「${escapedName}」の画像</image:caption>
     </image:image>
-    <lastmod>${new Date(garden.updated_at).toISOString()}</lastmod>
   </url>`
         }
       })
