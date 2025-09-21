@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServerClient } from '@/lib/supabase-server'
+import { supabaseServer } from '@/lib/supabase-server'
 import { EventSearchParams } from '@/types'
 
 export async function GET(request: NextRequest) {
   try {
-    const supabase = createServerClient()
+    const supabase = supabaseServer
     const { searchParams } = new URL(request.url)
 
     // パラメータを取得

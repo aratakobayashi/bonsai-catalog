@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { createServerClient } from '@/lib/supabase-server'
+import { supabaseServer } from '@/lib/supabase-server'
 import { Event, EventArticle } from '@/types'
 import EventDetailClient from './EventDetailClient'
 
