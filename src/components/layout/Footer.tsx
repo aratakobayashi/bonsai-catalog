@@ -40,6 +40,16 @@ const Footer = () => {
                   盆栽園紹介
                 </Link>
               </li>
+              <li>
+                <Link href="/events" className="text-sm text-gray-600 hover:text-bonsai-green-600">
+                  イベント情報
+                </Link>
+              </li>
+              <li>
+                <Link href="/guides" className="text-sm text-gray-600 hover:text-bonsai-green-600">
+                  記事・ガイド
+                </Link>
+              </li>
             </ul>
           </div>
 
