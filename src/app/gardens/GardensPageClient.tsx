@@ -106,33 +106,32 @@ function GardenCard({ garden }: { garden: Garden }) {
           {/* 公式サイトボタン - 最優先 */}
           {garden.website_url && (
             <Button
-              asChild
               className={`w-full ${theme.buttonColor} text-white`}
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                window.open(garden.website_url, '_blank', 'noopener,noreferrer')
+              }}
             >
-              <a
-                href={garden.website_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2"
-              >
-                <Globe className="h-4 w-4" />
-                公式サイトを見る
-                <ExternalLink className="h-3 w-3" />
-              </a>
+              <Globe className="h-4 w-4" />
+              公式サイトを見る
+              <ExternalLink className="h-3 w-3" />
             </Button>
           )}
 
           {/* 電話ボタン - セカンダリー */}
           {garden.phone && (
             <Button
-              asChild
               variant="outline"
               className="w-full border-gray-300 text-gray-700 hover:bg-gray-50"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                window.location.href = `tel:${garden.phone}`
+              }}
             >
-              <a href={`tel:${garden.phone}`} className="flex items-center justify-center gap-2">
-                <Phone className="h-4 w-4" />
-                {garden.phone}
-              </a>
+              <Phone className="h-4 w-4" />
+              {garden.phone}
             </Button>
           )}
 

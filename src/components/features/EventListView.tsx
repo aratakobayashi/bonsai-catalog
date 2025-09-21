@@ -153,7 +153,8 @@ export function EventListView({ events, className }: EventListViewProps) {
     })
 
     // イベントがあるグループのみ返す
-    return groups.filter(group => group.events.length > 0)
+    const filteredGroups = groups.filter(group => group.events.length > 0)
+    return filteredGroups
   }, [events])
 
   const formatDate = (dateStr: string) => {

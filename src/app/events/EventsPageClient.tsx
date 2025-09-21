@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { Event, EventSearchParams, EventsResponse } from '@/types'
 import { EventCard } from '@/components/features/EventCard'
@@ -23,8 +23,8 @@ export default function EventsPageClient() {
   const [error, setError] = useState<string | null>(null)
   const [eventsResponse, setEventsResponse] = useState<EventsResponse | null>(null)
 
-  // URLパラメータから初期フィルターを設定
-  const getInitialFilters = (): EventSearchParams => {
+  // URLパラメータから初期フィルターを設定（useMemoで最適化）
+  const initialFilters = useMemo((): EventSearchParams => {
     const filters: EventSearchParams = {
       page: parseInt(searchParams.get('page') || '1'),
       limit: 20
@@ -35,12 +35,19 @@ export default function EventsPageClient() {
     if (searchParams.get('garden_id')) filters.garden_id = searchParams.get('garden_id')!
     if (searchParams.get('month')) filters.month = searchParams.get('month')!
     if (searchParams.get('search')) filters.search = searchParams.get('search')!
-    if (searchParams.get('view')) setView(searchParams.get('view') as ViewType)
 
     return filters
-  }
+  }, [searchParams])
 
-  const [filters, setFilters] = useState<EventSearchParams>(getInitialFilters)
+  const [filters, setFilters] = useState<EventSearchParams>(initialFilters)
+
+  // URLのviewパラメータを初期化時に設定
+  useEffect(() => {
+    const viewParam = searchParams.get('view')
+    if (viewParam && (viewParam === 'month' || viewParam === 'list' || viewParam === 'map')) {
+      setView(viewParam as ViewType)
+    }
+  }, [searchParams])
 
   // イベントデータを取得
   const fetchEvents = async (currentFilters: EventSearchParams) => {
@@ -68,6 +75,7 @@ export default function EventsPageClient() {
       setEvents(data.events)
       setEventsResponse(data)
     } catch (err) {
+      console.error('❌ Error fetching events:', err)
       setError(err instanceof Error ? err.message : 'エラーが発生しました')
     } finally {
       setLoading(false)
@@ -116,10 +124,10 @@ export default function EventsPageClient() {
     handleFiltersChange(newFilters)
   }
 
-  // 初回データ取得
+  // 初回データ取得（initialFiltersを使用）
   useEffect(() => {
-    fetchEvents(filters)
-  }, [])
+    fetchEvents(initialFilters)
+  }, []) // 依存配列を空にして初回のみ実行
 
   // フィルター変更時にデータを再取得
   useEffect(() => {

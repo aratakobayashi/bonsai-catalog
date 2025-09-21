@@ -25,6 +25,20 @@ const Popup = dynamic(
   { ssr: false }
 )
 
+// Fix Leaflet default markers
+const FixLeafletIcons = dynamic(
+  () => import('leaflet').then((L) => {
+    delete (L.Icon.Default.prototype as any)._getIconUrl
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+    })
+    return () => null
+  }),
+  { ssr: false }
+)
+
 // Prefecture coordinates (approximate center points)
 const prefectureCoordinates: Record<string, [number, number]> = {
   '北海道': [43.2203, 142.8635],
@@ -176,6 +190,7 @@ export function EventMap({ events, className, selectedEvent, onEventSelect }: Ev
           style={{ height: '100%', width: '100%' }}
           className="z-0"
         >
+          <FixLeafletIcons />
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
