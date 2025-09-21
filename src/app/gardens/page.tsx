@@ -31,7 +31,8 @@ function GardenCard({ garden }: { garden: Garden }) {
   const theme = getRegionTheme(region)
 
   return (
-    <Card className={`h-full hover:shadow-lg transition-all duration-300 ${theme.borderColor} hover:scale-[1.02]`}>
+    <Link href={`/gardens/${garden.id}`} className="block h-full">
+      <Card className={`h-full hover:shadow-lg transition-all duration-300 ${theme.borderColor} hover:scale-[1.02]`}>
       {/* ビジュアルヘッダー */}
       <div className={`bg-gradient-to-br ${theme.lightColor} p-6 relative overflow-hidden`}>
         <div className="flex justify-between items-start">
@@ -162,6 +163,7 @@ function GardenCard({ garden }: { garden: Garden }) {
         </div>
       </CardContent>
     </Card>
+    </Link>
   )
 }
 

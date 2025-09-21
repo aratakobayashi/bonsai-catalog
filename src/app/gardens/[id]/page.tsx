@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { MapPin, Phone, Globe, Clock, Car, Star, Instagram, Twitter, Facebook, ExternalLink, Trees, Calendar, Users, ShoppingBag, ChevronRight } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { supabaseServer } from '@/lib/supabase-server'
 import { Garden, Product, Article } from '@/types'
 import { LocalBusinessStructuredData, BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { getArticles } from '@/lib/database/articles'
@@ -14,7 +14,7 @@ interface GardenPageProps {
 }
 
 async function getGarden(id: string): Promise<Garden | null> {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseServer
     .from('gardens')
     .select('*')
     .eq('id', id)
@@ -31,7 +31,7 @@ async function getGarden(id: string): Promise<Garden | null> {
 async function getRelatedProducts(specialties: string[]): Promise<Product[]> {
   if (!specialties || specialties.length === 0) return []
 
-  const { data } = await supabase
+  const { data } = await supabaseServer
     .from('products')
     .select('*')
     .in('category', specialties)
@@ -43,14 +43,23 @@ async function getRelatedProducts(specialties: string[]): Promise<Product[]> {
 
 // おすすめ盆栽商品を取得
 async function getRecommendedProducts(): Promise<Product[]> {
-  const { data } = await supabase
+  const { data, error } = await supabaseServer
     .from('products')
     .select('*')
-    .eq('is_visible', true)
     .order('created_at', { ascending: false })
     .limit(6)
 
-  return (data || []) as Product[]
+  if (error) {
+    console.error('Error fetching recommended products:', error)
+    return []
+  }
+
+  // Filter visible products in JavaScript since is_visible field may not exist or be properly set
+  const visibleProducts = (data || []).filter((product: any) =>
+    product.is_visible !== false && product.is_visible !== null
+  )
+
+  return visibleProducts as Product[]
 }
 
 // 関連記事を取得
@@ -68,7 +77,7 @@ async function getRelatedArticles(): Promise<Article[]> {
 async function getNearbyGardens(currentId: string, prefecture?: string): Promise<Garden[]> {
   if (!prefecture) return []
 
-  const { data } = await supabase
+  const { data } = await supabaseServer
     .from('gardens')
     .select('id, name, address, specialties')
     .eq('prefecture', prefecture)

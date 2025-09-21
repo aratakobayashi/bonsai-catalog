@@ -24,6 +24,7 @@ export async function GET() {
       withImage: typedGardens?.filter(g => g.image_url).length || 0,
       withoutImage: typedGardens?.filter(g => !g.image_url).length || 0,
       gardens: typedGardens?.map(g => ({
+        id: g.id,
         name: g.name,
         hasImage: !!g.image_url,
         hasDescription: !!g.description
