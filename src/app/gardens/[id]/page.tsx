@@ -181,12 +181,25 @@ export async function generateMetadata({ params }: GardenPageProps): Promise<Met
 
 // 盆栽園の静的画像マッピング
 const gardenImageMap: Record<string, string> = {
+  // 初期実装園
   '3000a4b6-0a10-4896-9ff2-b3a9d09c14db': '/images/gardens/kawaguchi-ryokuka-center-jurian.svg', // 川口緑化センター 樹里安
   '8f99da6b-ee77-4c5f-86a9-92b0f5c7f99d': '/images/gardens/kyukaen.svg',        // 九霞園
   '60842140-ce64-4848-a55c-5457a8703d33': '/images/gardens/tojuen.svg',         // 藤樹園
   'e695fdf3-4e1c-4b6b-b20b-59e17cba279a': '/images/gardens/seikaen.svg',       // 清香園
   'eb263d7a-701b-4b4b-9b01-776a8ea2cdf4': '/images/gardens/manseien.svg',      // 蔓青園
   '75779219-963c-49eb-942a-c2f6caa3c7a1': '/images/gardens/fuyoen.svg',        // 芙蓉園
+
+  // プレミアム園（第2弾）
+  '20702388-f8b8-408e-8d6e-dd158031b048': '/images/gardens/shunkaen-bonsai-museum.svg', // 春花園BONSAI美術館
+  'a23957ee-4154-4d59-9bb8-f18ee1c8ca26': '/images/gardens/nakanishi-chinshoen.svg', // 中西珍松園
+  'f0f86407-1a4b-4100-987c-2743b441fcee': '/images/gardens/yoshunen.svg', // 陽春園
+  'b5305c48-7ebe-4486-8391-622f282ebfbc': '/images/gardens/kyoto-traditional-garden-center.svg', // 京都伝統庭園センター
+  '5e7de278-e355-42be-943d-3e877f04bfcf': '/images/gardens/okinawa-bonsai-en.svg', // 沖縄盆栽園
+  '1cdef4ba-d729-47c4-be31-86c879ea0aa2': '/images/gardens/kansai-bonsai-center.svg', // 関西盆栽センター
+  'f61bc0fe-53e8-4ec3-a3a8-29bfff2c0870': '/images/gardens/kyoto-bonsai-kaikan.svg', // 京都盆栽会館
+  '34ba6634-3e68-4ed6-a766-07ac2d3aba33': '/images/gardens/musashino-bonsai-en.svg', // 武蔵野盆栽園
+  '5266402a-5bda-4a5b-bfbd-eaf58e8d9f99': '/images/gardens/kamakura-bonsai-en.svg', // 鎌倉盆栽苑
+  'cfd47538-d3b2-4c33-869a-68652c2d0563': '/images/gardens/asakusa-bonsai-koubou.svg', // 浅草盆栽工房
 }
 
 export default async function GardenDetailPage({ params }: GardenPageProps) {
