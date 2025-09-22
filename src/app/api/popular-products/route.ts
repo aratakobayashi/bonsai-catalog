@@ -16,7 +16,7 @@ export async function GET() {
         description
       `)
       .eq('published', true)
-      .order('view_count', { ascending: false, nullsLast: true })
+      .order('view_count', { ascending: false })
       .limit(6)
 
     if (error) {
