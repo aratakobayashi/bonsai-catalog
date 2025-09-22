@@ -74,21 +74,41 @@ function transformToDatabase(article: Partial<Article>): Partial<DatabaseArticle
   }
 }
 
+// カテゴリーキャッシュ（メモリキャッシュでパフォーマンス向上）
+let categoryCache: any[] | null = null
+let cacheTimestamp = 0
+const CACHE_TTL = 5 * 60 * 1000 // 5分間キャッシュ
+
+async function getCategoriesWithCache() {
+  const now = Date.now()
+  if (categoryCache && (now - cacheTimestamp) < CACHE_TTL) {
+    return categoryCache
+  }
+
+  const { data: categories } = await supabase
+    .from('article_categories')
+    .select('id, slug, name, icon, color')
+
+  categoryCache = categories || []
+  cacheTimestamp = now
+  return categoryCache
+}
+
 // 記事一覧取得
 export async function getArticles(filters: ArticleFilters = {}): Promise<ArticleListResponse> {
   try {
-    // カテゴリーフィルターがある場合、最初にカテゴリーIDを取得
+    // カテゴリーをキャッシュから取得
+    const categories = await getCategoriesWithCache()
+
+    const categoryMap = new Map(categories?.map(cat => [cat.slug, cat]) || [])
+    
     let categoryId: string | null = null
+    let selectedCategory: any = null
+    
     if (filters.category) {
-      const { data: categoryData } = await supabase
-        .from('article_categories')
-        .select('id')
-        .eq('slug', filters.category)
-        .single()
+      selectedCategory = categoryMap.get(filters.category)
+      categoryId = selectedCategory?.id || null
       
-      categoryId = (categoryData as any)?.id || null
-      
-      // カテゴリーが見つからない場合は空の結果を返す
       if (!categoryId) {
         return {
           articles: [],
@@ -101,40 +121,30 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       }
     }
 
-    // 総数を取得
-    let countQuery = supabase
-      .from('articles')
-      .select('*', { count: 'exact', head: true })
-      .eq('status', 'published')
-
-    if (categoryId) {
-      countQuery = countQuery.eq('category_id', categoryId)
-    }
-
-    if (filters.search) {
-      countQuery = countQuery.or(`title.ilike.%${filters.search}%,content.ilike.%${filters.search}%,excerpt.ilike.%${filters.search}%`)
-    }
-
-    const { count: totalCount } = await countQuery
-    const actualTotalCount = totalCount || 0
-
-    // メインクエリ
+    // カウントとデータを1つのクエリで取得（最適化）
     let query = supabase
       .from('articles')
       .select(`
-        *,
-        category:article_categories!articles_category_id_fkey(*)
-      `)
+        id,
+        title,
+        slug,
+        excerpt,
+        featured_image_url,
+        published_at,
+        updated_at,
+        reading_time,
+        category_id,
+        tag_ids
+      `, { count: 'exact' })
       .eq('status', 'published')
 
-    // カテゴリーフィルター（IDで絞り込み）
+    // フィルター適用
     if (categoryId) {
       query = query.eq('category_id', categoryId)
     }
 
-    // 検索フィルター
     if (filters.search) {
-      query = query.or(`title.ilike.%${filters.search}%,content.ilike.%${filters.search}%,excerpt.ilike.%${filters.search}%`)
+      query = query.or(`title.ilike.%${filters.search}%,excerpt.ilike.%${filters.search}%`)
     }
 
     // ソート
@@ -155,17 +165,19 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
     const offset = (page - 1) * limit
     query = query.range(offset, offset + limit - 1)
 
-    const { data, error } = await query
+    const { data, error, count } = await query
 
     if (error) {
       console.error('記事取得エラー:', error)
       throw error
     }
 
-    if (!data) {
+    const actualTotalCount = count || 0
+
+    if (!data || data.length === 0) {
       return {
         articles: [],
-        totalCount: 0,
+        totalCount: actualTotalCount,
         currentPage: page,
         totalPages: 0,
         hasNext: false,
@@ -173,7 +185,7 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       }
     }
 
-    // タグの取得
+    // タグの取得（必要な場合のみ）
     const allTagIds = (data as any[]).flatMap(article => article.tag_ids || [])
     const uniqueTagIds = [...new Set(allTagIds)]
 
@@ -181,15 +193,18 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
     if (uniqueTagIds.length > 0) {
       const { data: tagData } = await supabase
         .from('article_tags')
-        .select('*')
+        .select('id, name, slug, color')
         .in('id', uniqueTagIds)
       tags = tagData || []
     }
 
-    // データ変換
+    // データ変換（軽量化）
     const articles = data.map((item: any) => {
+      // カテゴリー情報をIDから直接取得（JOINなし）
+      const category = categories?.find(c => c.id === item.category_id) || null
       const articleTags = tags.filter(tag => item.tag_ids?.includes(tag.id))
-      return transformDatabaseArticle(item, item.category, articleTags)
+
+      return transformDatabaseArticle(item, category, articleTags)
     })
 
     const totalPages = Math.ceil(actualTotalCount / limit)
@@ -396,21 +411,14 @@ export async function deleteArticle(id: string): Promise<boolean> {
 // カテゴリー一覧取得
 export async function getCategories(): Promise<ArticleCategory[]> {
   try {
-    const { data, error } = await supabase
-      .from('article_categories')
-      .select('*')
-      .order('name')
+    // 同じキャッシュを使用してパフォーマンス向上
+    const categories = await getCategoriesWithCache()
 
-    if (error) {
-      console.error('カテゴリー取得エラー:', error)
-      return []
-    }
-
-    return ((data as any) || []).map((category: any) => ({
+    return categories.map((category: any) => ({
       id: category.id,
       name: category.name,
       slug: category.slug,
-      description: category.description,
+      description: category.description || '',
       color: category.color,
       icon: category.icon
     }))
