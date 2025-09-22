@@ -87,7 +87,7 @@ async function getCategoriesWithCache() {
 
   const { data: categories } = await supabase
     .from('article_categories')
-    .select('id, slug, name, icon, color')
+    .select('id, slug, name, icon, color, description')
 
   categoryCache = categories || []
   cacheTimestamp = now
