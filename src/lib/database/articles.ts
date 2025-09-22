@@ -77,188 +77,130 @@ function transformToDatabase(article: Partial<Article>): Partial<DatabaseArticle
 // 記事一覧取得
 export async function getArticles(filters: ArticleFilters = {}): Promise<ArticleListResponse> {
   try {
-    // 最初に総数を取得（シンプルなクエリで）
+    // カテゴリーフィルターがある場合、最初にカテゴリーIDを取得
+    let categoryId: string | null = null
+    if (filters.category) {
+      const { data: categoryData } = await supabase
+        .from('article_categories')
+        .select('id')
+        .eq('slug', filters.category)
+        .single()
+      
+      categoryId = categoryData?.id || null
+      
+      // カテゴリーが見つからない場合は空の結果を返す
+      if (!categoryId) {
+        return {
+          articles: [],
+          totalCount: 0,
+          currentPage: 1,
+          totalPages: 0,
+          hasNext: false,
+          hasPrev: false
+        }
+      }
+    }
+
+    // 総数を取得
     let countQuery = supabase
       .from('articles')
       .select('*', { count: 'exact', head: true })
       .eq('status', 'published')
 
-    // フィルターがある場合は、countQueryにも同じフィルターを適用
-    if (filters.category) {
-      // カテゴリーフィルターの場合、joinが必要
-      const { count: totalCount } = await supabase
-        .from('articles')
-        .select('*, category:article_categories!articles_category_id_fkey(*)', { count: 'exact', head: true })
-        .eq('status', 'published')
-        .eq('article_categories.slug', filters.category)
+    if (categoryId) {
+      countQuery = countQuery.eq('category_id', categoryId)
+    }
 
-      const actualTotalCount = totalCount || 0
+    if (filters.search) {
+      countQuery = countQuery.or(`title.ilike.%${filters.search}%,content.ilike.%${filters.search}%,excerpt.ilike.%${filters.search}%`)
+    }
 
-      // メインクエリ
-      let query = supabase
-        .from('articles')
-        .select(`
-          *,
-          category:article_categories!articles_category_id_fkey(*)
-        `)
-        .eq('status', 'published')
-        .eq('article_categories.slug', filters.category)
+    const { count: totalCount } = await countQuery
+    const actualTotalCount = totalCount || 0
 
-      // 検索フィルター
-      if (filters.search) {
-        query = query.or(`title.ilike.%${filters.search}%,content.ilike.%${filters.search}%,excerpt.ilike.%${filters.search}%`)
-      }
+    // メインクエリ
+    let query = supabase
+      .from('articles')
+      .select(`
+        *,
+        category:article_categories!articles_category_id_fkey(*)
+      `)
+      .eq('status', 'published')
 
-      // ソート
-      const sortFieldMap: Record<string, string> = {
-        publishedAt: 'published_at',
-        updatedAt: 'updated_at',
-        readingTime: 'reading_time',
-        title: 'title'
-      }
-      const frontendSortBy = filters.sortBy || 'publishedAt'
-      const dbSortBy = sortFieldMap[frontendSortBy] || 'published_at'
-      const sortOrder = filters.sortOrder || 'desc'
-      query = query.order(dbSortBy, { ascending: sortOrder === 'asc' })
+    // カテゴリーフィルター（IDで絞り込み）
+    if (categoryId) {
+      query = query.eq('category_id', categoryId)
+    }
 
-      // ページネーション
-      const page = filters.page || 1
-      const limit = filters.limit || 12
-      const offset = (page - 1) * limit
-      query = query.range(offset, offset + limit - 1)
+    // 検索フィルター
+    if (filters.search) {
+      query = query.or(`title.ilike.%${filters.search}%,content.ilike.%${filters.search}%,excerpt.ilike.%${filters.search}%`)
+    }
 
-      const { data, error } = await query
+    // ソート
+    const sortFieldMap: Record<string, string> = {
+      publishedAt: 'published_at',
+      updatedAt: 'updated_at',
+      readingTime: 'reading_time',
+      title: 'title'
+    }
+    const frontendSortBy = filters.sortBy || 'publishedAt'
+    const dbSortBy = sortFieldMap[frontendSortBy] || 'published_at'
+    const sortOrder = filters.sortOrder || 'desc'
+    query = query.order(dbSortBy, { ascending: sortOrder === 'asc' })
 
-      if (error) {
-        console.error('記事取得エラー:', error)
-        throw error
-      }
+    // ページネーション
+    const page = filters.page || 1
+    const limit = filters.limit || 12
+    const offset = (page - 1) * limit
+    query = query.range(offset, offset + limit - 1)
 
-      if (!data) {
-        return {
-          articles: [],
-          totalCount: 0,
-          currentPage: page,
-          totalPages: 0,
-          hasNext: false,
-          hasPrev: false
-        }
-      }
+    const { data, error } = await query
 
-      // タグの取得
-      const allTagIds = (data as any[]).flatMap(article => article.tag_ids || [])
-      const uniqueTagIds = [...new Set(allTagIds)]
+    if (error) {
+      console.error('記事取得エラー:', error)
+      throw error
+    }
 
-      let tags: DatabaseArticleTag[] = []
-      if (uniqueTagIds.length > 0) {
-        const { data: tagData } = await supabase
-          .from('article_tags')
-          .select('*')
-          .in('id', uniqueTagIds)
-        tags = tagData || []
-      }
-
-      // データ変換
-      const articles = data.map((item: any) => {
-        const articleTags = tags.filter(tag => item.tag_ids?.includes(tag.id))
-        return transformDatabaseArticle(item, item.category, articleTags)
-      })
-
-      const totalPages = Math.ceil(actualTotalCount / limit)
-
+    if (!data) {
       return {
-        articles,
-        totalCount: actualTotalCount,
+        articles: [],
+        totalCount: 0,
         currentPage: page,
-        totalPages,
-        hasNext: page < totalPages,
-        hasPrev: page > 1
+        totalPages: 0,
+        hasNext: false,
+        hasPrev: false
       }
-    } else {
-      // フィルターなしの場合の簡単なケース
-      const { count: totalCount } = await countQuery
+    }
 
-      const actualTotalCount = totalCount || 0
+    // タグの取得
+    const allTagIds = (data as any[]).flatMap(article => article.tag_ids || [])
+    const uniqueTagIds = [...new Set(allTagIds)]
 
-      // メインクエリ
-      let query = supabase
-        .from('articles')
-        .select(`
-          *,
-          category:article_categories!articles_category_id_fkey(*)
-        `)
-        .eq('status', 'published')
+    let tags: DatabaseArticleTag[] = []
+    if (uniqueTagIds.length > 0) {
+      const { data: tagData } = await supabase
+        .from('article_tags')
+        .select('*')
+        .in('id', uniqueTagIds)
+      tags = tagData || []
+    }
 
-      // 検索フィルター
-      if (filters.search) {
-        query = query.or(`title.ilike.%${filters.search}%,content.ilike.%${filters.search}%,excerpt.ilike.%${filters.search}%`)
-      }
+    // データ変換
+    const articles = data.map((item: any) => {
+      const articleTags = tags.filter(tag => item.tag_ids?.includes(tag.id))
+      return transformDatabaseArticle(item, item.category, articleTags)
+    })
 
-      // ソート
-      const sortFieldMap: Record<string, string> = {
-        publishedAt: 'published_at',
-        updatedAt: 'updated_at',
-        readingTime: 'reading_time',
-        title: 'title'
-      }
-      const frontendSortBy = filters.sortBy || 'publishedAt'
-      const dbSortBy = sortFieldMap[frontendSortBy] || 'published_at'
-      const sortOrder = filters.sortOrder || 'desc'
-      query = query.order(dbSortBy, { ascending: sortOrder === 'asc' })
+    const totalPages = Math.ceil(actualTotalCount / limit)
 
-      // ページネーション
-      const page = filters.page || 1
-      const limit = filters.limit || 12
-      const offset = (page - 1) * limit
-      query = query.range(offset, offset + limit - 1)
-
-      const { data, error } = await query
-
-      if (error) {
-        console.error('記事取得エラー:', error)
-        throw error
-      }
-
-      if (!data) {
-        return {
-          articles: [],
-          totalCount: 0,
-          currentPage: page,
-          totalPages: 0,
-          hasNext: false,
-          hasPrev: false
-        }
-      }
-
-      // タグの取得（記事のtag_idsから）
-      const allTagIds = (data as any[]).flatMap(article => article.tag_ids || [])
-      const uniqueTagIds = [...new Set(allTagIds)]
-
-      let tags: DatabaseArticleTag[] = []
-      if (uniqueTagIds.length > 0) {
-        const { data: tagData } = await supabase
-          .from('article_tags')
-          .select('*')
-          .in('id', uniqueTagIds)
-        tags = tagData || []
-      }
-
-      // データ変換
-      const articles = data.map((item: any) => {
-        const articleTags = tags.filter(tag => item.tag_ids?.includes(tag.id))
-        return transformDatabaseArticle(item, item.category, articleTags)
-      })
-
-      const totalPages = Math.ceil(actualTotalCount / limit)
-
-      return {
-        articles,
-        totalCount: actualTotalCount,
-        currentPage: page,
-        totalPages,
-        hasNext: page < totalPages,
-        hasPrev: page > 1
-      }
+    return {
+      articles,
+      totalCount: actualTotalCount,
+      currentPage: page,
+      totalPages,
+      hasNext: page < totalPages,
+      hasPrev: page > 1
     }
 
   } catch (error) {
