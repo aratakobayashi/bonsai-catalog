@@ -85,7 +85,7 @@ async function debugCategories() {
       return
     }
 
-    const categoryCount = distribution?.reduce((acc: any, article) => {
+    const categoryCount = distribution?.reduce((acc: any, article: any) => {
       const categoryName = article.category?.name || 'No category'
       acc[categoryName] = (acc[categoryName] || 0) + 1
       return acc
