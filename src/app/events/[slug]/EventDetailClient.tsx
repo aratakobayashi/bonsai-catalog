@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Event, EventArticle, Product } from '@/types'
+import { Event, EventArticle, Product, Article } from '@/types'
 import { cn } from '@/lib/utils'
 import {
   Calendar,
@@ -31,35 +31,18 @@ interface EventDetailClientProps {
   event: Event
   eventArticles: EventArticle[]
   relatedEvents: Event[]
+  popularProducts: Product[]
+  recommendedArticles: Article[]
 }
 
 export default function EventDetailClient({
   event,
   eventArticles,
-  relatedEvents
+  relatedEvents,
+  popularProducts,
+  recommendedArticles
 }: EventDetailClientProps) {
   const [activeTab, setActiveTab] = useState<'announcement' | 'report' | 'summary'>('announcement')
-  const [popularProducts, setPopularProducts] = useState<Product[]>([])
-  const [loadingProducts, setLoadingProducts] = useState(true)
-
-  // 人気商品を取得
-  useEffect(() => {
-    const fetchPopularProducts = async () => {
-      try {
-        const response = await fetch('/api/popular-products')
-        if (response.ok) {
-          const data = await response.json()
-          setPopularProducts(data.products || [])
-        }
-      } catch (error) {
-        console.error('Error fetching popular products:', error)
-      } finally {
-        setLoadingProducts(false)
-      }
-    }
-
-    fetchPopularProducts()
-  }, [])
 
   const formatDate = (dateStr: string) => {
     return new Date(dateStr).toLocaleDateString('ja-JP', {
@@ -389,6 +372,73 @@ export default function EventDetailClient({
                   </div>
                 </div>
               )}
+
+              {/* おすすめ記事 */}
+              {recommendedArticles.length > 0 && (
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                  <h2 className="text-xl font-bold text-gray-900 mb-6">おすすめ記事</h2>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {recommendedArticles.slice(0, 6).map((article) => (
+                      <Link
+                        key={article.id}
+                        href={`/guides/${article.slug}`}
+                        className="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:border-green-300 hover:shadow-lg transition-all duration-300"
+                      >
+                        {/* 画像部分 */}
+                        <div className="relative h-40 bg-gradient-to-br from-green-50 to-green-100">
+                          {article.featuredImage?.url ? (
+                            <Image
+                              src={article.featuredImage.url}
+                              alt={article.title || ''}
+                              fill
+                              className="object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          ) : (
+                            <div className="flex items-center justify-center h-full">
+                              <div className="text-center">
+                                <div className="text-3xl mb-2">📖</div>
+                                <p className="text-sm text-green-600 font-medium">記事</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* コンテンツ部分 */}
+                        <div className="p-4">
+                          <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-green-600 transition-colors">
+                            {article.title}
+                          </h3>
+                          {article.excerpt && (
+                            <p className="text-sm text-gray-600 line-clamp-2">
+                              {article.excerpt}
+                            </p>
+                          )}
+                          <div className="mt-2 flex items-center justify-between">
+                            <span className="text-xs text-gray-500">
+                              {article.category?.name || 'ガイド'}
+                            </span>
+                            {article.publishedAt && (
+                              <span className="text-xs text-gray-500">
+                                {new Date(article.publishedAt).toLocaleDateString('ja-JP')}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 text-center">
+                    <Link
+                      href="/guides"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors"
+                    >
+                      すべての記事を見る
+                    </Link>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* サイドバー */}
@@ -420,17 +470,7 @@ export default function EventDetailClient({
                 {/* 人気盆栽商品 */}
                 <div className="bg-white rounded-lg border border-gray-200 p-6">
                   <h3 className="font-bold text-gray-900 mb-4">人気の盆栽商品</h3>
-                  {loadingProducts ? (
-                    <div className="space-y-3">
-                      {[1, 2, 3].map((i) => (
-                        <div key={i} className="animate-pulse">
-                          <div className="bg-gray-200 h-20 rounded-lg mb-2"></div>
-                          <div className="bg-gray-200 h-4 rounded mb-1"></div>
-                          <div className="bg-gray-200 h-3 rounded w-2/3"></div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : popularProducts.length > 0 ? (
+                  {popularProducts.length > 0 ? (
                     <div className="space-y-4">
                       {popularProducts.slice(0, 3).map((product) => (
                         <Link

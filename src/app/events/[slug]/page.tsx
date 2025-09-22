@@ -1,11 +1,35 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { supabaseServer } from '@/lib/supabase-server'
-import { Event, EventArticle } from '@/types'
+import { Event, EventArticle, Product, Article } from '@/types'
 import EventDetailClient from './EventDetailClient'
 
 interface EventDetailPageProps {
   params: { slug: string }
+}
+
+// 人気商品を取得
+async function getPopularProducts(limit = 6): Promise<Product[]> {
+  const { data } = await supabaseServer
+    .from('products')
+    .select('id, name, price, image_url, slug, category, description')
+    .eq('published', true)
+    .order('view_count', { ascending: false })
+    .limit(limit)
+
+  return data || []
+}
+
+// おすすめ記事を取得
+async function getRecommendedArticles(limit = 6): Promise<Article[]> {
+  const { data } = await supabaseServer
+    .from('articles')
+    .select('id, title, slug, excerpt, featuredImage, category, publishedAt')
+    .eq('published', true)
+    .order('view_count', { ascending: false })
+    .limit(limit)
+
+  return data || []
 }
 
 async function getEventDetail(slug: string) {
@@ -79,7 +103,11 @@ export async function generateMetadata({ params }: EventDetailPageProps): Promis
 }
 
 export default async function EventDetailPage({ params }: EventDetailPageProps) {
-  const data = await getEventDetail(params.slug)
+  const [data, popularProducts, recommendedArticles] = await Promise.all([
+    getEventDetail(params.slug),
+    getPopularProducts(),
+    getRecommendedArticles()
+  ])
 
   if (!data?.event) {
     notFound()
@@ -148,6 +176,8 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
         event={event}
         eventArticles={event_articles}
         relatedEvents={related_events}
+        popularProducts={popularProducts}
+        recommendedArticles={recommendedArticles}
       />
     </>
   )
