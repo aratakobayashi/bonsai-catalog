@@ -13,8 +13,6 @@ async function getPopularProducts(limit = 6): Promise<Product[]> {
   const { data } = await supabaseServer
     .from('products')
     .select('id, name, price, image_url, slug, category, description')
-    .eq('published', true)
-    .order('view_count', { ascending: false })
     .limit(limit)
 
   return data || []
@@ -24,12 +22,35 @@ async function getPopularProducts(limit = 6): Promise<Product[]> {
 async function getRecommendedArticles(limit = 6): Promise<Article[]> {
   const { data } = await supabaseServer
     .from('articles')
-    .select('id, title, slug, excerpt, featuredImage, category, publishedAt')
-    .eq('published', true)
-    .order('view_count', { ascending: false })
+    .select(`
+      id,
+      title,
+      slug,
+      excerpt,
+      featured_image_url,
+      published_at,
+      category:article_categories!articles_category_id_fkey(*)
+    `)
+    .eq('status', 'published')
+    .order('published_at', { ascending: false })
     .limit(limit)
 
-  return data || []
+  // データを変換してArticle型に合わせる
+  const articles = (data || []).map((item: any) => ({
+    id: item.id,
+    title: item.title,
+    slug: item.slug,
+    excerpt: item.excerpt,
+    featuredImage: item.featured_image_url ? {
+      url: item.featured_image_url
+    } : undefined,
+    publishedAt: item.published_at,
+    category: item.category,
+    content: '', // 必須フィールドだが詳細は不要
+    updatedAt: item.published_at // フォールバック
+  }))
+
+  return articles
 }
 
 async function getEventDetail(slug: string) {
