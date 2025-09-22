@@ -136,14 +136,14 @@ async function suggestCategories() {
       const primaryCat = categoryKeywords[suggestion.primary as keyof typeof categoryKeywords]
 
       // 現在のカテゴリーと異なる場合のみ提案
-      const currentCategorySlug = article.category?.slug
+      const currentCategorySlug = (article as any).category?.slug
       if (currentCategorySlug !== suggestion.primary) {
         if (!suggestions[suggestion.primary]) {
           suggestions[suggestion.primary] = []
         }
         suggestions[suggestion.primary].push({
           title: article.title,
-          currentCategory: article.category?.name || 'なし',
+          currentCategory: (article as any).category?.name || 'なし',
           id: article.id
         })
       }
