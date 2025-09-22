@@ -86,7 +86,7 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
         .eq('slug', filters.category)
         .single()
       
-      categoryId = categoryData?.id || null
+      categoryId = (categoryData as any)?.id || null
       
       // カテゴリーが見つからない場合は空の結果を返す
       if (!categoryId) {
