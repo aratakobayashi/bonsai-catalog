@@ -65,7 +65,7 @@ async function debugCategories() {
       return
     }
 
-    articles?.forEach((article, index) => {
+    articles?.forEach((article: any, index) => {
       console.log(`  ${index + 1}. "${article.title}"`)
       console.log(`     Category: ${article.category?.name || 'No category'} (${article.category?.slug || 'N/A'})`)
     })
