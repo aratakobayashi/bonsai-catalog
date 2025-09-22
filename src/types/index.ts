@@ -137,7 +137,8 @@ export interface Article {
     width?: number
     height?: number
   }
-  category: ArticleCategory
+  category: ArticleCategory // メインカテゴリー（後方互換性）
+  categories?: string[] // 複数カテゴリー（新機能）
   tags?: ArticleTag[]
   relatedProducts?: string[] // 商品IDの配列
   seoTitle?: string

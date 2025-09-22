@@ -28,6 +28,7 @@ export interface DatabaseArticle {
   featured_image_url?: string
   featured_image_alt?: string
   category_id: string
+  categories?: string[] // 新しい複数カテゴリーフィールド
   tag_ids?: string[]
   related_product_ids?: string[]
   seo_title?: string
