@@ -12,7 +12,8 @@ interface EventDetailPageProps {
 async function getPopularProducts(limit = 6): Promise<Product[]> {
   const { data } = await supabaseServer
     .from('products')
-    .select('id, name, price, image_url, slug, category, description')
+    .select('id, name, price, image_url, slug, category, description, created_at')
+    .order('created_at', { ascending: false })
     .limit(limit)
 
   return data || []
