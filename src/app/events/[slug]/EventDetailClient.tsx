@@ -346,9 +346,9 @@ export default function EventDetailClient({
                         >
                           {/* 画像部分 */}
                           <div className="relative h-48 bg-gradient-to-br from-green-50 to-green-100">
-                            {eventArticle.article?.featured_image ? (
+                            {eventArticle.article?.featuredImage ? (
                               <Image
-                                src={eventArticle.article.featured_image}
+                                src={eventArticle.article.featuredImage}
                                 alt={eventArticle.article.title || ''}
                                 fill
                                 className="object-cover group-hover:scale-105 transition-transform duration-300"
