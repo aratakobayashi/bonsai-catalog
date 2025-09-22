@@ -97,16 +97,17 @@ async function getCategoriesWithCache() {
 // 記事一覧取得
 export async function getArticles(filters: ArticleFilters = {}): Promise<ArticleListResponse> {
   try {
-    // カテゴリーをキャッシュから取得
-    const categories = await getCategoriesWithCache()
+    // カテゴリーを直接取得（キャッシュなし）
+    const { data: categories } = await supabase
+      .from('article_categories')
+      .select('id, slug, name, icon, color, description')
 
     const categoryMap = new Map(categories?.map(cat => [cat.slug, cat]) || [])
     
     let categoryId: string | null = null
-    let selectedCategory: any = null
     
     if (filters.category) {
-      selectedCategory = categoryMap.get(filters.category)
+      const selectedCategory = categoryMap.get(filters.category)
       categoryId = selectedCategory?.id || null
       
       if (!categoryId) {
@@ -121,20 +122,12 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       }
     }
 
-    // カウントとデータを1つのクエリで取得（最適化）
+    // 記事データの取得
     let query = supabase
       .from('articles')
       .select(`
-        id,
-        title,
-        slug,
-        excerpt,
-        featured_image_url,
-        published_at,
-        updated_at,
-        reading_time,
-        category_id,
-        tag_ids
+        *,
+        category:article_categories!articles_category_id_fkey(*)
       `, { count: 'exact' })
       .eq('status', 'published')
 
@@ -185,7 +178,7 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       }
     }
 
-    // タグの取得（必要な場合のみ）
+    // タグの取得
     const allTagIds = (data as any[]).flatMap(article => article.tag_ids || [])
     const uniqueTagIds = [...new Set(allTagIds)]
 
@@ -198,13 +191,10 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       tags = tagData || []
     }
 
-    // データ変換（軽量化）
+    // データ変換
     const articles = data.map((item: any) => {
-      // カテゴリー情報をIDから直接取得（JOINなし）
-      const category = categories?.find(c => c.id === item.category_id) || null
       const articleTags = tags.filter(tag => item.tag_ids?.includes(tag.id))
-
-      return transformDatabaseArticle(item, category, articleTags)
+      return transformDatabaseArticle(item, item.category, articleTags)
     })
 
     const totalPages = Math.ceil(actualTotalCount / limit)
