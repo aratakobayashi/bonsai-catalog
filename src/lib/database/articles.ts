@@ -102,7 +102,7 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       .from('article_categories')
       .select('id, slug, name, icon, color, description')
 
-    const categoryMap = new Map(categories?.map(cat => [cat.slug, cat]) || [])
+    const categoryMap = new Map((categories as any[])?.map(cat => [cat.slug, cat]) || [])
     
     let categoryId: string | null = null
     
