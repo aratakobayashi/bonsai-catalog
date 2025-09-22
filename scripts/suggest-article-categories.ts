@@ -133,7 +133,7 @@ async function suggestCategories() {
 
     for (const article of articles || []) {
       const suggestion = suggestCategory(article.title, article.excerpt)
-      const primaryCat = categoryKeywords[suggestion.primary]
+      const primaryCat = categoryKeywords[suggestion.primary as keyof typeof categoryKeywords]
 
       // 現在のカテゴリーと異なる場合のみ提案
       const currentCategorySlug = article.category?.slug
@@ -162,7 +162,7 @@ async function suggestCategories() {
     // 結果を表示
     console.log('🔄 カテゴリー変更の提案:\n')
     for (const [slug, articles] of Object.entries(suggestions)) {
-      const category = categoryKeywords[slug]
+      const category = categoryKeywords[slug as keyof typeof categoryKeywords]
       console.log(`\n${category.name} への移動を提案 (${articles.length}件):`)
       console.log('=' .repeat(50))
       articles.slice(0, 5).forEach((article, idx) => {
@@ -179,8 +179,8 @@ async function suggestCategories() {
     console.log('=' .repeat(50))
     multiCategorySuggestions.slice(0, 10).forEach((article, idx) => {
       console.log(`  ${idx + 1}. ${article.title.substring(0, 50)}...`)
-      const primaryName = categoryKeywords[article.primary].name
-      const secondaryNames = article.secondary.map((s: string) => categoryKeywords[s].name)
+      const primaryName = categoryKeywords[article.primary as keyof typeof categoryKeywords].name
+      const secondaryNames = article.secondary.map((s: string) => categoryKeywords[s as keyof typeof categoryKeywords].name)
       console.log(`     メイン: ${primaryName}`)
       console.log(`     サブ: ${secondaryNames.join(', ')}`)
     })
@@ -190,7 +190,7 @@ async function suggestCategories() {
     console.log('=' .repeat(50))
     let sqlCount = 0
     for (const [slug, articles] of Object.entries(suggestions)) {
-      const category = categoryKeywords[slug]
+      const category = categoryKeywords[slug as keyof typeof categoryKeywords]
       for (const article of articles.slice(0, 2)) {
         console.log(`UPDATE articles SET category_id = '${category.id}', categories = '["${slug}"]'::jsonb WHERE id = '${article.id}'; -- ${article.title.substring(0, 30)}...`)
         sqlCount++
