@@ -1,12 +1,15 @@
 ---
 title: "盆栽展示会での正しい鑑賞方法｜作品の見方とポイント"
+slug: "bonsai-exhibition-viewing-guide"
 description: "盆栽展示会を初めて訪れる方から中級者まで、作品の正しい鑑賞方法とマナーを詳しく解説。展示会での楽しみ方、見るべきポイント、避けるべき行動まで完全ガイド。"
-category: "events"
-tags: ["展示会", "鑑賞方法", "マナー", "初心者", "イベント"]
-featured_image_url: "/images/guides/bonsai-exhibition-viewing.jpg"
-author: "盆栽カタログ編集部"
+seoTitle: "盆栽展示会での正しい鑑賞方法｜作品の見方とポイント"
+seoDescription: "盆栽展示会を初めて訪れる方から中級者まで、作品の正しい鑑賞方法とマナーを詳しく解説。展示会での楽しみ方、見るべきポイント、避けるべき行動まで完全ガイド。"
 publishedAt: "2025-09-23"
-updatedAt: "2025-09-23"
+category: "イベントガイド"
+tags: ["展示会", "鑑賞方法", "マナー", "初心者", "イベント"]
+excerpt: "盆栽展示会での正しい鑑賞方法とマナーを解説。初心者から中級者まで、作品をより深く理解するためのポイントを詳しく紹介します。"
+readingTime: 12
+featured: false
 ---
 
 # 盆栽展示会での正しい鑑賞方法｜作品の見方とポイント
