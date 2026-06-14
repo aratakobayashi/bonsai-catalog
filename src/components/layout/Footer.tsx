@@ -58,6 +58,11 @@ const Footer = () => {
             <h3 className="font-semibold text-gray-900 mb-4">サポート・法的情報</h3>
             <ul className="space-y-2">
               <li>
+                <Link href="/about" className="text-sm text-gray-600 hover:text-bonsai-green-600">
+                  このサイトについて
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className="text-sm text-gray-600 hover:text-bonsai-green-600">
                   お問い合わせ
                 </Link>
