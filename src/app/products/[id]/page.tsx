@@ -339,31 +339,45 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             </Card>
 
             {/* 購入ボタン */}
-            <div className="space-y-4 pt-6">
-              <div className="bg-gradient-to-r from-orange-50 to-yellow-50 border border-orange-200 rounded-xl p-6">
-                <div className="text-center mb-4">
-                  <div className="text-3xl font-bold text-orange-600 mb-2">
-                    {formatPrice(product.price)}
+            {(() => {
+              const isRakuten = (product as any).source === 'rakuten'
+              const buyUrl    = isRakuten ? (product as any).rakuten_url : product.amazon_url
+              const shopName  = isRakuten ? '楽天市場' : 'Amazon'
+              const btnClass  = isRakuten
+                ? 'bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700'
+                : 'bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700'
+              const bgClass   = isRakuten
+                ? 'bg-gradient-to-r from-red-50 to-pink-50 border border-red-200'
+                : 'bg-gradient-to-r from-orange-50 to-yellow-50 border border-orange-200'
+              const priceClass = isRakuten ? 'text-red-600' : 'text-orange-600'
+              return (
+                <div className="space-y-4 pt-6">
+                  <div className={`${bgClass} rounded-xl p-6`}>
+                    <div className="text-center mb-4">
+                      <div className={`text-3xl font-bold ${priceClass} mb-2`}>
+                        {formatPrice(product.price)}
+                      </div>
+                      <p className="text-sm text-gray-600">送料・返品は{shopName}の規約に従います</p>
+                    </div>
+                    <Button
+                      size="lg"
+                      className={`w-full h-14 text-lg font-semibold ${btnClass} shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105`}
+                      asChild
+                    >
+                      <a
+                        href={buyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-3"
+                      >
+                        <ShoppingBag className="h-6 w-6" />
+                        🛒 今すぐ{shopName}で注文
+                      </a>
+                    </Button>
                   </div>
-                  <p className="text-sm text-gray-600">送料・返品はAmazonの規約に従います</p>
                 </div>
-                <Button 
-                  size="lg" 
-                  className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105" 
-                  asChild
-                >
-                  <a
-                    href={product.amazon_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-3"
-                  >
-                    <ShoppingBag className="h-6 w-6" />
-                    🛒 今すぐAmazonで注文
-                  </a>
-                </Button>
-              </div>
-            </div>
+              )
+            })()}
           </div>
         </div>
 
