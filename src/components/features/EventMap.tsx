@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect } from 'react'
 import dynamic from 'next/dynamic'
+import 'leaflet/dist/leaflet.css'
 import { Event } from '@/types'
 import { cn } from '@/lib/utils'
 import { MapPin, Calendar, DollarSign } from 'lucide-react'

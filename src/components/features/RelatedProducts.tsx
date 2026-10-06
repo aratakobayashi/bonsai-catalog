@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/Badge'
 import { ShoppingBag, ExternalLink } from 'lucide-react'
 import { formatPrice } from '@/lib/utils'
 import type { Product } from '@/types'
+import { AFFILIATE_LINK_REL } from '@/lib/affiliate'
 
 interface RelatedProductsProps {
   products: Product[]
@@ -89,7 +90,7 @@ export function RelatedProducts({ products, articleTitle }: RelatedProductsProps
                 <Link 
                   href={product.amazon_url} 
                   target="_blank" 
-                  rel="noopener noreferrer"
+                  rel={AFFILIATE_LINK_REL}
                 >
                   <Button size="sm" className="w-full bg-[#FF9500] hover:bg-[#FF9500]/90 text-white">
                     <ExternalLink className="h-3 w-3 mr-1" />

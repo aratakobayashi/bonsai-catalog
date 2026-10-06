@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useCallback, useEffect, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { ProductCard } from '@/components/features/ProductCard'
 import { SearchWithAutocomplete } from '@/components/features/SearchWithAutocomplete'
 import { AdvancedFilter } from '@/components/features/AdvancedFilter'
@@ -13,13 +13,31 @@ import { cn } from '@/lib/utils'
 import { usePullToRefresh } from '@/hooks/usePullToRefresh'
 import type { Product, ProductFilters, SizeCategory } from '@/types'
 
-export default function ProductsClient() {
-  const [products, setProducts] = useState<Product[]>([])
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
+// useSearchParams を使う部分だけを Suspense で切り出し、
+// 商品一覧そのものはサーバー側で描画されるようにする
+function SearchParamsSync({ onChange }: { onChange: (params: URLSearchParams) => void }) {
+  const searchParams = useSearchParams()
+  useEffect(() => {
+    onChange(new URLSearchParams(searchParams.toString()))
+  }, [searchParams, onChange])
+  return null
+}
+
+function uniqueCategories(products: Product[]) {
+  return Array.from(new Set(products.map(p => p.category))).filter(Boolean).sort()
+}
+
+function uniqueTags(products: Product[]) {
+  return Array.from(new Set(products.flatMap(p => p.tags || []))).sort()
+}
+
+export default function ProductsClient({ initialProducts }: { initialProducts: Product[] }) {
+  const [products, setProducts] = useState<Product[]>(initialProducts)
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>(initialProducts)
   const [filters, setFilters] = useState<ProductFilters>({})
-  const [isLoading, setIsLoading] = useState(true)
-  const [availableCategories, setAvailableCategories] = useState<string[]>([])
-  const [availableTags, setAvailableTags] = useState<string[]>([])
+  const isLoading = false
+  const [availableCategories, setAvailableCategories] = useState<string[]>(() => uniqueCategories(initialProducts))
+  const [availableTags, setAvailableTags] = useState<string[]>(() => uniqueTags(initialProducts))
   const [sortBy, setSortBy] = useState<'name' | 'price_asc' | 'price_desc' | 'created_at'>('created_at')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
@@ -28,41 +46,17 @@ export default function ProductsClient() {
   const [currentPage, setCurrentPage] = useState(1)
   const ITEMS_PER_PAGE = 18 // 18件/ページ
 
-  const searchParams = useSearchParams()
   const router = useRouter()
 
-  // 商品データの取得
-  const fetchProducts = async () => {
-    const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .order('created_at', { ascending: false })
-
-    if (error) {
-      console.error('商品データの取得エラー:', error)
-      return
-    }
-
-    if (data && data.length > 0) {
-      setProducts(data as Product[])
-
-      // カテゴリとタグの一覧を生成
-      const categories = Array.from(new Set((data as Product[]).map(p => p.category))).filter(Boolean).sort()
-      setAvailableCategories(categories)
-
-      const allTags = (data as Product[]).flatMap(p => p.tags || [])
-      const uniqueTags = Array.from(new Set(allTags)).sort()
-      setAvailableTags(uniqueTags)
-    }
-    setIsLoading(false)
-  }
-
+  // サーバーから最新の商品一覧を受け取ったら反映する（プルトゥリフレッシュ後など）
   useEffect(() => {
-    fetchProducts()
-  }, [])
+    setProducts(initialProducts)
+    setAvailableCategories(uniqueCategories(initialProducts))
+    setAvailableTags(uniqueTags(initialProducts))
+  }, [initialProducts])
 
   // URLパラメータからフィルターを復元
-  useEffect(() => {
+  const applySearchParams = useCallback((searchParams: URLSearchParams) => {
     const category = searchParams.get('category')
     const tag = searchParams.get('tag')
     const size = searchParams.get('size')
@@ -88,7 +82,7 @@ export default function ProductsClient() {
     setCurrentPage(pageNum)
 
     setFilters(newFilters)
-  }, [searchParams])
+  }, [])
 
   // フィルタリングとソート
   useEffect(() => {
@@ -255,7 +249,7 @@ export default function ProductsClient() {
   // プルトゥリフレッシュ機能
   const pullToRefresh = usePullToRefresh({
     onRefresh: async () => {
-      await fetchProducts()
+      router.refresh()
     },
     threshold: 80,
     enabled: true
@@ -276,6 +270,10 @@ export default function ProductsClient() {
         />
       )}
       
+      <Suspense fallback={null}>
+        <SearchParamsSync onChange={applySearchParams} />
+      </Suspense>
+
       <div className="container mx-auto px-4">
         {/* ヘッダー */}
         <div className="text-center mb-12">
@@ -286,6 +284,7 @@ export default function ProductsClient() {
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
             厳選された盆栽を豊富に取り揃えています。あなたにぴったりの一品を見つけてください。
           </p>
+          <PrDisclosure className="max-w-2xl mx-auto mt-6 text-left" />
         </div>
 
         {/* 検索バー */}
@@ -403,11 +402,6 @@ export default function ProductsClient() {
                   {currentPageProducts.map((product, index) => (
                   <div
                     key={product.id}
-                    className="animate-slide-up"
-                    style={{ 
-                      animationDelay: `${Math.min(index * 0.1, 1)}s`,
-                      animationFillMode: 'both'
-                    }}
                   >
                     <ProductCard
                       id={product.id}
@@ -418,6 +412,7 @@ export default function ProductsClient() {
                       height_cm={product.height_cm}
                       featured_image={product.image_url}
                       amazon_url={product.amazon_url}
+                      priority={index < 2}
                     />
                   </div>
                   ))}

@@ -1,8 +1,9 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '利用規約 | 盆栽カタログ',
-  description: '盆栽カタログの利用規約です。サービス利用条件、免責事項、著作権について説明しています。',
+  alternates: { canonical: '/terms' },
+  title: '利用規約 | 盆栽コレクション',
+  description: '盆栽コレクションの利用規約です。サービス利用条件、免責事項、著作権について説明しています。',
 }
 
 export default function TermsPage() {
@@ -23,7 +24,7 @@ export default function TermsPage() {
               第1条（適用）
             </h2>
             <p className="text-neutral-700 leading-relaxed">
-              本利用規約（以下「本規約」）は、盆栽カタログ（以下「当サイト」）が提供するサービス（以下「本サービス」）の
+              本利用規約（以下「本規約」）は、盆栽コレクション（以下「当サイト」）が提供するサービス（以下「本サービス」）の
               利用条件を定めるものです。ユーザーの皆様（以下「ユーザー」）には、本規約に従って、
               本サービスをご利用いただきます。
             </p>

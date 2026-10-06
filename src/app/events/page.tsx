@@ -34,7 +34,7 @@ export default function EventsPage() {
             "@type": "WebPage",
             "name": "盆栽イベント情報",
             "description": "全国の盆栽イベント情報をカレンダー形式で掲載",
-            "url": "https://bonsai-catalog.vercel.app/events",
+            "url": "https://www.bonsai-collection.com/events",
             "mainEntity": {
               "@type": "ItemList",
               "name": "盆栽イベント一覧",

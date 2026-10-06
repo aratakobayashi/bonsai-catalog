@@ -1,4 +1,6 @@
 import { marked } from 'marked'
+import { AFFILIATE_LINK_REL, isAffiliateUrl } from '@/lib/affiliate'
+import { SITE_URL } from '@/lib/site'
 
 // シンプルなmarkdown設定
 marked.setOptions({
@@ -13,8 +15,14 @@ export function processMarkdown(content: string): string {
       return ''
     }
 
+    // 旧ドメイン・www なしの内部リンクを正規ドメインに統一
+    const normalized = content.replace(
+      /https?:\/\/(?:bonsai-catalog\.vercel\.app|bonsai-collection\.com)(?=[/"')\s]|$)/g,
+      SITE_URL
+    )
+
     // markedでHTMLに変換
-    let html = marked(content) as string
+    let html = marked(normalized) as string
 
     // 見出しにIDを手動で追加（markedのデフォルトIDと一致するように）
     html = html.replace(/<h([1-6])([^>]*?)>(.*?)<\/h[1-6]>/g, (match, level, attrs, text) => {
@@ -46,11 +54,16 @@ export function processMarkdown(content: string): string {
     html = html.replace(/<ol>/g, '<ol class="list-decimal list-inside space-y-2 mb-4 ml-4">')
     html = html.replace(/<li>/g, '<li class="leading-relaxed">')
 
-    // リンクにクラスを追加（外部リンクは新しいタブで開く）
+    // ダミーURL（example.com）へのリンクはテキストだけ残す
+    html = html.replace(/<a [^>]*href="https?:\/\/(?:www\.)?example\.com[^"]*"[^>]*>([\s\S]*?)<\/a>/g, '$1')
+
+    // リンクにクラスを追加（外部リンクは新しいタブで開き、広告リンクには sponsored を付ける）
     html = html.replace(/<a href="([^"]*)"([^>]*)>/g, (match, href, attrs) => {
       const isExternal = href.startsWith('http') && !href.includes('bonsai-collection.com')
-      const target = isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''
-      return `<a href="${href}"${attrs}${target} class="text-blue-600 hover:text-blue-800 underline font-medium">`
+      const rel = isAffiliateUrl(href) ? AFFILIATE_LINK_REL : 'noopener noreferrer'
+      const cleanAttrs = String(attrs).replace(/\s(?:rel|target)="[^"]*"/g, '')
+      const target = isExternal ? ` target="_blank" rel="${rel}"` : ''
+      return `<a href="${href}"${cleanAttrs}${target} class="text-blue-600 hover:text-blue-800 underline font-medium">`
     })
 
     // ブロッククォートを WordPress スタイルの情報ボックスに変換

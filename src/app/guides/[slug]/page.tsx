@@ -19,6 +19,8 @@ import { getRelatedFAQs } from '@/lib/faq-data'
 import { ArrowLeft, Calendar, Clock, Tag, User } from 'lucide-react'
 import { formatDate } from '@/lib/date-utils'
 import { processMarkdown, generateTableOfContents } from '@/lib/markdown'
+import { PrDisclosure } from '@/components/ui/PrDisclosure'
+import { isArticleIndexable } from '@/lib/content-policy'
 import type { Product } from '@/types'
 
 interface ArticlePageProps {
@@ -55,8 +57,12 @@ async function getRelatedProducts(productIds?: string[], article?: any): Promise
   return []
 }
 
-// 動的レンダリング設定（静的生成は一旦無効化）
-export const dynamic = 'force-dynamic'
+// 初回アクセス時に生成してキャッシュし、1時間ごとに再生成（ISR）
+export const revalidate = 3600
+
+export function generateStaticParams() {
+  return []
+}
 
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
   const article = await getArticleBySlug(params.slug)
@@ -87,7 +93,8 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     },
     alternates: {
       canonical: `https://www.bonsai-collection.com/guides/${params.slug}`,
-    }
+    },
+    ...(!isArticleIndexable(params.slug) && { robots: { index: false, follow: true } }),
   }
 }
 
@@ -249,6 +256,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 url={`https://your-domain.com/guides/${article.slug}`}
                 title={article.title}
               />
+              <PrDisclosure className="mt-4" />
             </header>
 
                 {/* 記事本文 */}

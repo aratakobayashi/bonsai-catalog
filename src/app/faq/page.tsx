@@ -1,6 +1,5 @@
 'use client'
 
-import Head from 'next/head'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
@@ -13,7 +12,7 @@ import {
   searchFAQs,
   type FAQItem
 } from '@/lib/faq-data'
-import { FAQStructuredData, WebSiteStructuredData } from '@/components/seo/StructuredData'
+import { FAQStructuredData } from '@/components/seo/StructuredData'
 import { generateStaticPageBreadcrumbs } from '@/lib/breadcrumb-utils'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { Search, HelpCircle, BookOpen, ShoppingCart, Leaf, ChevronDown, ChevronUp } from 'lucide-react'
@@ -135,25 +134,11 @@ export default function FAQPage() {
 
   return (
     <>
-      <Head>
-        <title>よくある質問 - 盆栽コレクション</title>
-        <meta name="description" content="盆栽に関するよくある質問と回答をまとめました。初心者の方から上級者まで、盆栽の育て方、選び方、購入方法など幅広い質問にお答えします。" />
-        <meta name="keywords" content="盆栽,FAQ,よくある質問,育て方,初心者,購入方法,管理,手入れ" />
-        <meta property="og:title" content="よくある質問 - 盆栽コレクション" />
-        <meta property="og:description" content="盆栽に関するよくある質問と回答をまとめました。初心者から上級者まで役立つ情報満載。" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.bonsai-collection.com/faq" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="よくある質問 - 盆栽コレクション" />
-        <meta name="twitter:description" content="盆栽に関するよくある質問と回答をまとめました。" />
-        <link rel="canonical" href="https://www.bonsai-collection.com/faq" />
-      </Head>
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
       <FAQStructuredData
         faqs={filteredFAQs.slice(0, 10)}
         baseUrl="https://www.bonsai-collection.com"
       />
-      <WebSiteStructuredData baseUrl="https://www.bonsai-collection.com" />
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         <div className="container mx-auto px-4 py-8">

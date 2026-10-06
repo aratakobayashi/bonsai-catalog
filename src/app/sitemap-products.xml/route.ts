@@ -1,18 +1,7 @@
 import { supabase } from '@/lib/supabase'
 import { baseUrl, SITEMAP_CONFIG, createSitemapResponse, generateXmlHeader, generateXmlFooter, generateUrlElement } from '@/lib/sitemap-utils'
 
-const bonsaiCategories = [
-  '松柏類', '雑木類', '花もの', '実もの', '草もの',
-  'ミニ盆栽', '初心者向け', '室内向け'
-]
-
-const priceRanges = [
-  { min: 0, max: 5000 },
-  { min: 5000, max: 10000 },
-  { min: 10000, max: 20000 },
-  { min: 20000, max: 50000 },
-  { min: 50000, max: null }
-]
+export const revalidate = 3600
 
 export async function GET() {
   try {
@@ -21,21 +10,8 @@ export async function GET() {
 
     let urls: string[] = []
 
-    // カテゴリページ
-    const categoryUrls = bonsaiCategories.map(category =>
-      generateUrlElement(`${baseUrl}/products?category=${encodeURIComponent(category)}`, lastMod, 'weekly', 0.8)
-    )
-    urls.push(...categoryUrls)
-
-    // 価格帯ページ
-    const priceUrls = priceRanges.map(range => {
-      const params = new URLSearchParams()
-      params.set('price_min', range.min.toString())
-      if (range.max) params.set('price_max', range.max.toString())
-
-      return generateUrlElement(`${baseUrl}/products?${params.toString()}`, lastMod, 'weekly', 0.7)
-    })
-    urls.push(...priceUrls)
+    // 商品一覧（パラメータ付きの絞り込みURLは canonical と重複するため含めない）
+    urls.push(generateUrlElement(`${baseUrl}/products`, lastMod, 'daily', 0.9))
 
     // 商品詳細ページ
     try {
@@ -44,7 +20,6 @@ export async function GET() {
         .select('id, created_at, updated_at')
 
       if (products && products.length > 0) {
-        // Include all products since visibility filtering is handled at the application level
         const productUrls = products.map((product: any) =>
           generateUrlElement(
             `${baseUrl}/products/${product.id}`,

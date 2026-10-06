@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { getArticleBySlug, getArticleById, updateArticle, deleteArticle } from '@/lib/database/articles'
 
 interface RouteParams {
@@ -77,6 +78,11 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
       )
     }
 
+    // ISR のキャッシュを更新して、編集内容をすぐ反映する
+    revalidatePath(`/guides/${existingArticle.slug}`)
+    revalidatePath('/guides')
+    revalidatePath('/')
+
     return NextResponse.json({
       message: '記事が正常に更新されました',
       article: updatedArticle
@@ -115,6 +121,10 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
         { status: 500 }
       )
     }
+
+    revalidatePath(`/guides/${existingArticle.slug}`)
+    revalidatePath('/guides')
+    revalidatePath('/')
 
     return NextResponse.json({
       message: '記事が正常に削除されました'

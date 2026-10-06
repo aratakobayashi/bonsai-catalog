@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/about' },
   title: '盆栽コレクションについて | 運営者情報・サイトの目的',
   description: '盆栽コレクションは、盆栽の魅力を多くの方に伝えるために運営する情報サイトです。育て方ガイド・樹種別解説・盆栽園情報を通じて、初心者から愛好家まで盆栽ライフをサポートします。',
   openGraph: {

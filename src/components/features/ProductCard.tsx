@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Star, ShoppingBag } from 'lucide-react'
+import { AFFILIATE_LINK_REL } from '@/lib/affiliate'
 
 interface ProductCardProps {
   id: string
@@ -17,6 +18,8 @@ interface ProductCardProps {
   amazon_url?: string
   className?: string
   compact?: boolean
+  // 一覧の先頭など、画面に最初から見える画像は優先読み込みする
+  priority?: boolean
 }
 
 export function ProductCard({
@@ -29,7 +32,8 @@ export function ProductCard({
   featured_image,
   amazon_url,
   className = "",
-  compact = false
+  compact = false,
+  priority = false
 }: ProductCardProps) {
 
   const getDifficultyColor = (level?: string) => {
@@ -97,7 +101,7 @@ export function ProductCard({
                 </Button>
               </Link>
               {amazon_url && (
-                <a href={amazon_url} target="_blank" rel="noopener noreferrer">
+                <a href={amazon_url} target="_blank" rel={AFFILIATE_LINK_REL}>
                   <Button size="sm" className="text-xs h-7 bg-orange-500 hover:bg-orange-600">
                     <ShoppingBag className="w-3 h-3 mr-1" />
                     購入
@@ -121,7 +125,8 @@ export function ProductCard({
               src={featured_image}
               alt={name}
               fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+              priority={priority}
               className="object-cover"
             />
           ) : (
@@ -202,7 +207,7 @@ export function ProductCard({
             </Button>
           </Link>
           {amazon_url && (
-            <a href={amazon_url} target="_blank" rel="noopener noreferrer" className="flex-1">
+            <a href={amazon_url} target="_blank" rel={AFFILIATE_LINK_REL} className="flex-1">
               <Button size="sm" className="w-full bg-orange-500 hover:bg-orange-600">
                 <ShoppingBag className="w-4 h-4 mr-1" />
                 購入する

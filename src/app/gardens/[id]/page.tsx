@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { MapPin, Phone, Globe, Clock, Car, Star, Instagram, Twitter, Facebook, ExternalLink, Trees, Calendar, Users, ShoppingBag, ChevronRight } from 'lucide-react'
+import { MapPin, Phone, Globe, Clock, Car, Instagram, Twitter, Facebook, ExternalLink, Trees, Calendar, Users, ShoppingBag, ChevronRight } from 'lucide-react'
 import { supabaseServer } from '@/lib/supabase-server'
 import { Garden, Product, Article } from '@/types'
 import { LocalBusinessStructuredData, BreadcrumbStructuredData } from '@/components/seo/StructuredData'
@@ -125,25 +125,11 @@ function generateGardenDescription(garden: Garden): string {
   return parts.join('')
 }
 
-// 盆栽コレクションからの評価レビューを生成
-function generateReviewFromBonsaiCollection(garden: Garden): string {
-  const reviews = [
-    `${garden.name}は、品質の高い盆栽と丁寧な管理で定評があります。`,
-    `特に${garden.specialties?.[0] || '盆栽'}の品揃えが充実しており、初心者から上級者まで満足できる盆栽園です。`,
-    `${garden.experience_programs ? '体験教室も充実しており、' : ''}スタッフの知識が豊富で、適切なアドバイスをいただけます。`,
-    `盆栽愛好家にぜひ訪れていただきたい、信頼できる盆栽園のひとつです。`
-  ]
+// 初回アクセス時に生成してキャッシュし、1時間ごとに再生成（ISR）
+export const revalidate = 3600
 
-  // 園の特徴に応じてレビューをカスタマイズ
-  if (garden.established_year && garden.established_year < 1980) {
-    reviews[0] = `${garden.name}は、長年の経験と伝統に裏打ちされた確かな技術で、多くの盆栽愛好家から信頼されています。`
-  }
-
-  if (garden.rating && garden.rating >= 4.5) {
-    reviews[3] = `高い評価をいただいている通り、品質・サービスともに優れた、おすすめの盆栽園です。`
-  }
-
-  return reviews.join('')
+export function generateStaticParams() {
+  return []
 }
 
 export async function generateMetadata({ params }: GardenPageProps): Promise<Metadata> {
@@ -399,8 +385,6 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
         phone={garden.phone}
         website={garden.website_url}
         image={garden.image_url}
-        rating={garden.rating}
-        reviewCount={garden.review_count}
         latitude={garden.latitude}
         longitude={garden.longitude}
         businessHours={garden.business_hours}
@@ -468,20 +452,6 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
                     </p>
                   )}
                 </div>
-
-                {garden.rating && (
-                  <div className="flex items-center gap-2">
-                    <div className="flex items-center">
-                      <Star className="w-5 h-5 text-amber-400 fill-current" />
-                      <span className="text-xl font-bold ml-1">{garden.rating}</span>
-                    </div>
-                    {garden.review_count && (
-                      <span className="text-neutral-600 text-sm">
-                        ({garden.review_count}件)
-                      </span>
-                    )}
-                  </div>
-                )}
               </div>
 
               {/* SEO用の独自説明文 */}
@@ -586,47 +556,6 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
                 )}
               </section>
 
-              {/* 盆栽コレクションからのレビュー */}
-              <section className="bg-white rounded-xl shadow-sm p-6">
-                <h2 className="text-xl font-bold text-primary-900 mb-4 flex items-center gap-2">
-                  <Star className="w-5 h-5 text-amber-400" />
-                  盆栽コレクションからの評価
-                </h2>
-                <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg p-4 border-l-4 border-amber-400">
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0">
-                      <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center">
-                        <span className="text-white font-bold text-sm">盆</span>
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-neutral-600 mb-2">
-                        盆栽コレクション編集部より
-                      </p>
-                      <p className="text-neutral-700 leading-relaxed">
-                        {generateReviewFromBonsaiCollection(garden)}
-                      </p>
-                      {garden.rating && (
-                        <div className="flex items-center gap-1 mt-3 pt-3 border-t border-amber-200">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className={`w-4 h-4 ${
-                                i < Math.floor(garden.rating!)
-                                  ? 'text-amber-400 fill-current'
-                                  : 'text-neutral-300'
-                              }`}
-                            />
-                          ))}
-                          <span className="text-sm text-neutral-600 ml-2">
-                            総合評価 {garden.rating}/5.0
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </section>
             </div>
 
             {/* サイドバー */}

@@ -51,42 +51,26 @@ interface ProductStructuredDataProps {
   name: string
   description: string
   image: string
-  price: number
   category: string
-  availability?: 'InStock' | 'OutOfStock' | 'PreOrder'
-  brand?: string
+  baseUrl?: string
 }
 
+// 当サイトは販売者ではない（Amazon等への紹介のみ）ため、
+// 価格・在庫・販売者（offers）やブランドは記載しない
 export function ProductStructuredData({
   name,
   description,
   image,
-  price,
   category,
-  availability = 'InStock',
-  brand = '盆栽コレクション'
+  baseUrl = 'https://www.bonsai-collection.com'
 }: ProductStructuredDataProps) {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": name,
     "description": description,
-    "image": image,
-    "brand": {
-      "@type": "Brand",
-      "name": brand
-    },
-    "category": category,
-    "offers": {
-      "@type": "Offer",
-      "price": price,
-      "priceCurrency": "JPY",
-      "availability": `https://schema.org/${availability}`,
-      "seller": {
-        "@type": "Organization",
-        "name": "盆栽コレクション"
-      }
-    }
+    ...(image && { "image": image.startsWith('/') ? `${baseUrl}${image}` : image }),
+    "category": category
   }
 
   return (

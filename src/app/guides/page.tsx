@@ -4,7 +4,7 @@ import { getArticles, getCategories, getTags } from '@/lib/database/articles'
 import { ArticleList } from '@/components/features/ArticleList'
 import { ArticleFilters } from '@/components/features/ArticleFilters'
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: '盆栽ガイド記事一覧 - 盆栽コレクション',
   description: '盆栽の育て方、選び方、種類別ガイドなど、盆栽に関する詳しい情報をお届けします。初心者から上級者まで役立つコンテンツを豊富にご用意しています。',
   keywords: '盆栽, 育て方, 管理, ガイド, 初心者, もみじ, 松, 桜, コツ',
@@ -30,6 +30,18 @@ interface ArticlesPageProps {
   }
 }
 
+// 絞り込み（カテゴリ・タグ・検索）は一覧トップに正規化し、ページ送りは各ページを正規URLにする
+export function generateMetadata({ searchParams }: ArticlesPageProps): Metadata {
+  const page = searchParams.page ? parseInt(searchParams.page) : 1
+  const isFiltered = Boolean(searchParams.tags || searchParams.search || searchParams.sortBy)
+  const canonical = !isFiltered && page > 1 ? `/guides?page=${page}` : '/guides'
+  return {
+    ...baseMetadata,
+    alternates: { canonical },
+    ...(isFiltered && { robots: { index: false, follow: true } }),
+  }
+}
+
 // 動的レンダリングを強制してキャッシュ問題を回避
 export const dynamic = 'force-dynamic'
 
@@ -50,6 +62,12 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
     getCategories(),
     getTags()
   ])
+
+  // 一覧では本文を使わないため、クライアントへ渡すデータから外して HTML を軽くする
+  const listData = {
+    ...articlesData,
+    articles: articlesData.articles.map(article => ({ ...article, content: '' })),
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -94,7 +112,7 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
           <div className="lg:col-span-3">
             <Suspense fallback={<ArticleListSkeleton />}>
               <ArticleList
-                articlesData={articlesData}
+                articlesData={listData}
                 currentFilters={filters}
               />
             </Suspense>

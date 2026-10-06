@@ -50,6 +50,21 @@ const Footer = () => {
                   記事・ガイド
                 </Link>
               </li>
+              <li>
+                <Link href="/selection/beginner-mini-bonsai" className="text-sm text-gray-600 hover:text-bonsai-green-600">
+                  初心者向けミニ盆栽
+                </Link>
+              </li>
+              <li>
+                <Link href="/selection/bonsai-gift" className="text-sm text-gray-600 hover:text-bonsai-green-600">
+                  盆栽ギフトの選び方
+                </Link>
+              </li>
+              <li>
+                <Link href="/selection/new-year-bonsai" className="text-sm text-gray-600 hover:text-bonsai-green-600">
+                  正月に飾る盆栽
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -89,11 +104,11 @@ const Footer = () => {
         <div className="border-t pt-8 mt-8">
           <div className="text-center space-y-2">
             <p className="text-sm text-gray-600">
-              © 2024 盆栽カタログ. All rights reserved. 
-              商品の購入はAmazonで行われます。
+              © 2024-{new Date().getFullYear()} 盆栽コレクション. All rights reserved. 
+              商品の購入は各販売サイト（Amazon等）で行われます。
             </p>
             <p className="text-xs text-gray-500">
-              当サイトはAmazon.co.jpアソシエイトプログラムに参加しています。
+              当サイトはプロモーション（広告）を含みます。Amazonのアソシエイトとして、盆栽コレクションは適格販売により収入を得ています。
             </p>
           </div>
         </div>

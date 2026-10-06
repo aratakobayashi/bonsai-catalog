@@ -3,20 +3,18 @@ import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import '@/styles/editor.css'
-import 'leaflet/dist/leaflet.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { BottomNavigation } from '@/components/layout/BottomNavigation'
 import { WebSiteStructuredData, OrganizationStructuredData } from '@/components/seo/StructuredData'
-import { WebVitals } from '@/components/performance/WebVitals'
 import { Toaster } from 'react-hot-toast'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://bonsai-catalog.vercel.app'), // OGP画像・SEO最適化
-  title: '盆栽初心者から上級者まで - 盆栽コレクション | 育て方ガイド付き通販',
-  description: '盆栽初心者におすすめ！真柏・ケヤキ・モミジなど人気の盆栽を育て方ガイド付きで販売。室内でも楽しめるミニ盆栽セットから本格派まで豊富な品揃え。水やり・手入れ方法も詳しく解説します。',
+  metadataBase: new URL('https://www.bonsai-collection.com'), // OGP画像・canonical の基準URL
+  title: '盆栽コレクション｜初心者向け盆栽の選び方・育て方と通販ガイド',
+  description: '真柏・もみじ・桜など、通販で買える盆栽を樹種・価格・育てやすさから比較できる情報サイトです。初心者向けのミニ盆栽の選び方や、水やり・剪定など季節ごとの手入れ方法も解説します。',
   keywords: [
     // メインキーワード（高検索ボリューム）
     '盆栽', '盆栽 初心者', '盆栽 育て方', 'ミニ盆栽',
@@ -33,15 +31,16 @@ export const metadata: Metadata = {
   category: 'gardening',
   referrer: 'origin-when-cross-origin',
   openGraph: {
-    title: '盆栽初心者から上級者まで - 盆栽コレクション | 育て方ガイド付き',
-    description: '盆栽初心者におすすめ！真柏・ケヤキ・モミジなど人気の盆栽を育て方ガイド付きで販売。室内でも楽しめるミニ盆栽セットから本格派まで豊富な品揃え。',
+    title: '盆栽コレクション｜初心者向け盆栽の選び方・育て方と通販ガイド',
+    description: '通販で買える盆栽を樹種・価格・育てやすさから比較。初心者向けミニ盆栽の選び方や季節ごとの手入れ方法も解説します。',
+    siteName: '盆栽コレクション',
     type: 'website',
     locale: 'ja_JP',
   },
   twitter: {
     card: 'summary_large_image',
     title: '盆栽コレクション - 美しい盆栽を見つける',
-    description: '美しい盆栽をお探しの方のための商品カタログサイトです。',
+    description: '通販で買える盆栽の比較と、選び方・育て方のガイドサイトです。',
   },
   robots: 'index, follow',
   verification: {
@@ -60,18 +59,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <head>
+      <body className={inter.className}>
+        {/* 広告スクリプトは表示を妨げないよう、ページ読み込み後に読み込む */}
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8441554925079357"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-      </head>
-      <body className={inter.className}>
         <WebSiteStructuredData baseUrl="https://www.bonsai-collection.com" />
         <OrganizationStructuredData baseUrl="https://www.bonsai-collection.com" />
-        <WebVitals />
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-1 pb-16 md:pb-0">

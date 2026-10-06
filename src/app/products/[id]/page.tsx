@@ -21,6 +21,8 @@ import { generateProductBreadcrumbs } from '@/lib/breadcrumb-utils'
 import { BreadcrumbStructuredData, ProductStructuredData, FAQStructuredData } from '@/components/seo/StructuredData'
 import { getProductFAQs } from '@/lib/faq-data'
 import { getRelatedArticles } from '@/lib/article-helpers'
+import { PrDisclosure } from '@/components/ui/PrDisclosure'
+import { AFFILIATE_LINK_REL, PRICE_NOTE } from '@/lib/affiliate'
 import type { Product } from '@/types'
 
 interface ProductPageProps {
@@ -69,6 +71,13 @@ async function getProductWithRelated(id: string) {
   return { product, relatedProducts }
 }
 
+// 初回アクセス時に生成してキャッシュし、1時間ごとに再生成（ISR）
+export const revalidate = 3600
+
+export function generateStaticParams() {
+  return []
+}
+
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const product = await getProduct(params.id)
 
@@ -93,6 +102,9 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
       ...seo.twitter,
       description: product.description || '',
       images: product.image_url ? [product.image_url] : [],
+    },
+    alternates: {
+      canonical: `/products/${product.id}`,
     },
   }
 }
@@ -128,9 +140,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         name={product.name}
         description={product.description || ''}
         image={product.image_url || ''}
-        price={product.price}
         category={product.category}
-        availability="InStock"
       />
       {productFAQs.length > 0 && (
         <FAQStructuredData
@@ -149,6 +159,8 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             </Link>
           </Button>
         </div>
+
+        <PrDisclosure className="mb-6" />
 
         {/* メインコンテンツ */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
@@ -177,8 +189,11 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               <h1 className="text-3xl font-bold text-gray-900 mb-4">
                 {product.name}
               </h1>
-              <div className="text-4xl font-bold text-bonsai-green-600 mb-6">
-                {formatPrice(product.price)}
+              <div className="mb-6">
+                <div className="text-4xl font-bold text-bonsai-green-600">
+                  {formatPrice(product.price)}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">{PRICE_NOTE}</p>
               </div>
             </div>
 
@@ -357,6 +372,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                       <div className={`text-3xl font-bold ${priceClass} mb-2`}>
                         {formatPrice(product.price)}
                       </div>
+                      <p className="text-xs text-gray-500 mb-1">{PRICE_NOTE}</p>
                       <p className="text-sm text-gray-600">送料・返品は{shopName}の規約に従います</p>
                     </div>
                     <Button
@@ -367,7 +383,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                       <a
                         href={buyUrl}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel={AFFILIATE_LINK_REL}
                         className="flex items-center justify-center gap-3"
                       >
                         <ShoppingBag className="h-6 w-6" />

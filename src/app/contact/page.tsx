@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Metadata } from 'next'
 import { Button } from '@/components/ui/Button'
 import { Mail, MessageCircle, Clock } from 'lucide-react'
 
@@ -22,21 +21,22 @@ export default function ContactPage() {
     }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // 送信先メールアドレス（未設定ならフォームは受付停止）
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || ''
+
+  // サーバー送信の仕組みが無いため、入力内容を差し込んだメールソフトを開く
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    
-    // フォーム送信の処理（実際の実装では適切なエンドポイントに送信）
-    try {
-      // 実際のフォーム送信処理をここに実装
-      await new Promise(resolve => setTimeout(resolve, 1000)) // シミュレーション
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', subject: '', message: '' })
-    } catch (error) {
+    if (!contactEmail) {
       setSubmitStatus('error')
-    } finally {
-      setIsSubmitting(false)
+      return
     }
+    setIsSubmitting(true)
+    const body = `お名前: ${formData.name}\nメールアドレス: ${formData.email}\n\n${formData.message}`
+    window.location.href =
+      `mailto:${contactEmail}?subject=${encodeURIComponent(`[盆栽コレクション] ${formData.subject}`)}&body=${encodeURIComponent(body)}`
+    setSubmitStatus('success')
+    setIsSubmitting(false)
   }
 
   return (
@@ -46,7 +46,7 @@ export default function ContactPage() {
           お問い合わせ
         </h1>
         <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-          盆栽カタログに関するご質問、ご意見、ご要望などがございましたら、
+          盆栽コレクションに関するご質問、ご意見、ご要望などがございましたら、
           お気軽にお問い合わせください。
         </p>
       </div>
@@ -63,7 +63,7 @@ export default function ContactPage() {
             {submitStatus === 'success' && (
               <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                 <p className="text-green-800">
-                  ✅ お問い合わせありがとうございます。内容を確認次第、返信いたします。
+                  メールソフトが起動します。内容を確認のうえ送信してください。起動しない場合は {contactEmail} 宛てに直接お送りください。
                 </p>
               </div>
             )}
@@ -71,7 +71,7 @@ export default function ContactPage() {
             {submitStatus === 'error' && (
               <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
                 <p className="text-red-800">
-                  ❌ 送信エラーが発生しました。時間をおいて再度お試しください。
+                  現在、お問い合わせの受付を準備中です。恐れ入りますが、しばらくしてから再度お試しください。
                 </p>
               </div>
             )}
@@ -177,12 +177,11 @@ export default function ContactPage() {
             <div className="space-y-3 text-sm text-neutral-700">
               <p>
                 <strong>運営サイト:</strong><br />
-                盆栽カタログ
+                盆栽コレクション
               </p>
               <p>
                 <strong>メール:</strong><br />
-                contact@bonsai-catalog.com<br />
-                <span className="text-xs text-neutral-500">（準備中）</span>
+                {contactEmail || <span className="text-xs text-neutral-500">準備中</span>}
               </p>
             </div>
           </div>

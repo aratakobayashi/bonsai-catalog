@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import { supabaseServer } from '@/lib/supabase-server'
 import { Event, EventArticle, Product, Article } from '@/types'
 import EventDetailClient from './EventDetailClient'
+import { getEventBySlug } from '@/lib/events'
+import { SITE_URL } from '@/lib/site'
 
 interface EventDetailPageProps {
   params: { slug: string }
@@ -54,21 +56,21 @@ async function getRecommendedArticles(limit = 6): Promise<Article[]> {
   return articles
 }
 
+// 自サイトのAPIを外部URL経由で呼ばず、DBから直接取得する
 async function getEventDetail(slug: string) {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'https://bonsai-catalog.vercel.app'}/api/events/${slug}`, {
-      cache: 'no-store'
-    })
-
-    if (!response.ok) {
-      return null
-    }
-
-    return await response.json()
+    return await getEventBySlug(slug)
   } catch (error) {
     console.error('Failed to fetch event detail:', error)
     return null
   }
+}
+
+// 初回アクセス時に生成してキャッシュし、1時間ごとに再生成（ISR）
+export const revalidate = 3600
+
+export function generateStaticParams() {
+  return []
 }
 
 export async function generateMetadata({ params }: EventDetailPageProps): Promise<Metadata> {
@@ -172,7 +174,7 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
       "priceCurrency": "JPY",
       "availability": "https://schema.org/InStock"
     },
-    "url": `https://bonsai-catalog.vercel.app/events/${event.slug}`
+    "url": `${SITE_URL}/events/${event.slug}`
   }
 
   if (event.address) {

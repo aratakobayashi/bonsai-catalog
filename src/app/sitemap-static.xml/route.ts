@@ -1,4 +1,7 @@
+import { SELECTIONS } from '@/lib/selections'
 import { baseUrl, SITEMAP_CONFIG, createSitemapResponse, generateXmlHeader, generateXmlFooter, generateUrlElement } from '@/lib/sitemap-utils'
+
+export const revalidate = 3600
 
 export async function GET() {
   try {
@@ -23,17 +26,17 @@ export async function GET() {
         changeFreq: 'daily',
         priority: 0.9
       },
-      {
-        url: `${baseUrl}/gardens`,
+      ...SELECTIONS.map(selection => ({
+        url: `${baseUrl}/selection/${selection.slug}`,
         lastMod: new Date().toISOString().split('T')[0],
         changeFreq: 'weekly',
-        priority: 0.8
-      },
+        priority: 0.9
+      })),
       {
-        url: `${baseUrl}/events`,
-        lastMod: new Date().toISOString().split('T')[0],
-        changeFreq: 'weekly',
-        priority: 0.8
+        url: `${baseUrl}/about`,
+        lastMod: new Date('2026-06-15').toISOString().split('T')[0],
+        changeFreq: 'monthly',
+        priority: 0.5
       },
       {
         url: `${baseUrl}/contact`,

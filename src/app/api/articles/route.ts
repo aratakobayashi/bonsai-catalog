@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { getArticles, createArticle } from '@/lib/database/articles'
 
 export async function GET(request: NextRequest) {
@@ -47,6 +48,9 @@ export async function POST(request: NextRequest) {
 
     // 記事作成
     const newArticle = await createArticle(articleData)
+
+    revalidatePath('/guides')
+    revalidatePath('/')
 
     return NextResponse.json({
       message: '記事が正常に保存されました',

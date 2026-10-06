@@ -1,8 +1,9 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'プライバシーポリシー | 盆栽カタログ',
-  description: '盆栽カタログのプライバシーポリシーです。個人情報の取り扱い、Cookie利用、Amazonアソシエイトプログラムについて説明しています。',
+  alternates: { canonical: '/privacy' },
+  title: 'プライバシーポリシー | 盆栽コレクション',
+  description: '盆栽コレクションのプライバシーポリシーです。個人情報の取り扱い、Cookie利用、Amazonアソシエイトプログラムについて説明しています。',
 }
 
 export default function PrivacyPage() {
@@ -23,7 +24,7 @@ export default function PrivacyPage() {
               1. 基本方針
             </h2>
             <p className="text-neutral-700 leading-relaxed">
-              盆栽カタログ（以下「当サイト」）は、ユーザーの皆様の個人情報保護を重要な責務と考え、
+              盆栽コレクション（以下「当サイト」）は、ユーザーの皆様の個人情報保護を重要な責務と考え、
               個人情報の保護に関する法律、その他の関連法令等を遵守し、
               ユーザーの個人情報を適切に取り扱います。
             </p>
