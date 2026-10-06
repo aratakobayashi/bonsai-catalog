@@ -39,3 +39,5 @@ next-env.d.ts
 # supabase
 .branches
 .temp
+# project brief (local only)
+PROJECT_BRIEF.md
