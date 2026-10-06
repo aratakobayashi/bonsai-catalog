@@ -1,22 +1,13 @@
-import { NextResponse } from 'next/server'
-import { checkAdminAuth } from '@/lib/auth'
+import { NextRequest, NextResponse } from 'next/server'
+import { ADMIN_SESSION_COOKIE, verifySessionToken } from '@/lib/auth'
 
-export async function GET() {
-  try {
-    const isAuthenticated = checkAdminAuth()
-    
-    if (isAuthenticated) {
-      return NextResponse.json({ authenticated: true })
-    } else {
-      return NextResponse.json(
-        { authenticated: false },
-        { status: 401 }
-      )
-    }
-  } catch (error) {
-    return NextResponse.json(
-      { authenticated: false },
-      { status: 401 }
-    )
-  }
+export async function GET(request: NextRequest) {
+  const isAuthenticated = await verifySessionToken(
+    request.cookies.get(ADMIN_SESSION_COOKIE)?.value
+  )
+
+  return NextResponse.json(
+    { authenticated: isAuthenticated },
+    { status: isAuthenticated ? 200 : 401 }
+  )
 }
