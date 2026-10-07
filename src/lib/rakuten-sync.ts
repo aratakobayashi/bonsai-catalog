@@ -46,7 +46,8 @@ function toRow(item: RakutenItem, category: ShopCategory, now: string) {
     source: 'rakuten',
     external_id: item.code,
     name: item.name.slice(0, 255),
-    description: item.caption,
+    // products の説明文には btree 索引（1件あたり約2,700バイトまで）があるため、600字（日本語で約1,800バイト）に切る
+    description: item.caption.slice(0, 600),
     price: item.price,
     category: detectBonsaiCategory(item.name, productType),
     tags: detectTags(item.name),
