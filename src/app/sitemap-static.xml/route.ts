@@ -1,4 +1,5 @@
 import { SELECTIONS } from '@/lib/selections'
+import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { baseUrl, SITEMAP_CONFIG, createSitemapResponse, generateXmlHeader, generateXmlFooter, generateUrlElement } from '@/lib/sitemap-utils'
 
 export const revalidate = 3600
@@ -26,6 +27,18 @@ export async function GET() {
         changeFreq: 'daily',
         priority: 0.9
       },
+      {
+        url: `${baseUrl}/shop`,
+        lastMod: new Date().toISOString().split('T')[0],
+        changeFreq: 'daily',
+        priority: 0.9
+      },
+      ...SHOP_CATEGORIES.map(category => ({
+        url: `${baseUrl}/shop/${category.slug}`,
+        lastMod: new Date().toISOString().split('T')[0],
+        changeFreq: 'daily',
+        priority: 0.8
+      })),
       ...SELECTIONS.map(selection => ({
         url: `${baseUrl}/selection/${selection.slug}`,
         lastMod: new Date().toISOString().split('T')[0],
