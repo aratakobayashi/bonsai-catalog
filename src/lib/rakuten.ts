@@ -1,6 +1,5 @@
 // 楽天市場 商品検索API（2026年の新仕様: openapi.rakuten.co.jp ＋ accessKey 必須）
 // サーバー側でのみ使う（キーをブラウザに渡さないため、クライアントコンポーネントから import しない）。結果は Next.js のデータキャッシュに6時間保存する
-import { unstable_cache } from 'next/cache'
 import { SITE_URL } from '@/lib/site'
 
 const ITEM_SEARCH_URL = 'https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20220601'
@@ -19,6 +18,8 @@ export interface RakutenSearchParams {
   sort?: RakutenSort
   page?: number
   hits?: number
+  // キャッシュを使わずに取得する（接続確認用）
+  fresh?: boolean
 }
 
 export interface RakutenItem {
@@ -67,45 +68,56 @@ class RakutenApiError extends Error {}
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
-async function fetchItems(query: string): Promise<RakutenSearchResult> {
-  for (let attempt = 0; attempt < 2; attempt++) {
-    const response = await fetch(`${ITEM_SEARCH_URL}?${query}`, {
-      // アプリ登録の「許可されたWebサイト」と一致させる
-      headers: { Referer: `${SITE_URL}/`, Origin: SITE_URL },
-      cache: 'no-store',
-    })
-    // 1秒あたりのリクエスト上限に達したときは少し待って1回だけやり直す
-    if (response.status === 429 && attempt === 0) {
-      await sleep(1200)
-      continue
-    }
-    const body = await response.json()
-    if (!response.ok || body.errors || body.error) {
-      const code = body?.errors?.errorMessage || body?.error || `http_${response.status}`
-      throw new RakutenApiError(String(code))
-    }
-
-    const items = ((body.Items || []) as RawItem[]).map(item => ({
-      code: item.itemCode,
-      name: item.itemName,
-      price: item.itemPrice,
-      url: item.affiliateUrl || item.itemUrl,
-      imageUrl: thumbnail(item.mediumImageUrls?.[0]),
-      shopName: item.shopName,
-      reviewAverage: item.reviewAverage ?? 0,
-      reviewCount: item.reviewCount ?? 0,
-      freeShipping: item.postageFlag === 0,
-    }))
-    return { items, total: body.count ?? items.length }
+// エラーメッセージにキーが混ざらないよう伏せ字にする
+function redact(message: string): string {
+  let text = message
+  for (const secret of [process.env.RAKUTEN_ACCESS_KEY, process.env.RAKUTEN_APP_ID, process.env.RAKUTEN_AFFILIATE_ID]) {
+    if (secret) text = text.split(secret).join('***')
   }
-  throw new RakutenApiError('rate_limited')
+  return text.slice(0, 120)
 }
 
-// 成功した結果だけを6時間キャッシュする（エラーはキャッシュしない）
-const fetchItemsCached = unstable_cache(fetchItems, ['rakuten-item-search'], {
-  revalidate: CACHE_SECONDS,
-  tags: ['rakuten'],
-})
+type FetchMode = 'cached' | 'fresh'
+
+async function requestItems(query: string, mode: FetchMode): Promise<RakutenSearchResult> {
+  const response = await fetch(`${ITEM_SEARCH_URL}?${query}`, {
+    // アプリ登録の「許可されたWebサイト」と一致させる
+    headers: { Referer: `${SITE_URL}/`, Origin: SITE_URL },
+    ...(mode === 'cached'
+      ? { next: { revalidate: CACHE_SECONDS, tags: ['rakuten'] } }
+      : { cache: 'no-store' as const }),
+  })
+  const body = await response.json().catch(() => ({}))
+  if (!response.ok || body.errors || body.error) {
+    const detail = body?.errors?.errorMessage || body?.error_description || body?.error || ''
+    throw new RakutenApiError(redact(`http_${response.status}${detail ? `: ${detail}` : ''}`))
+  }
+
+  const items = ((body.Items || []) as RawItem[]).map(item => ({
+    code: item.itemCode,
+    name: item.itemName,
+    price: item.itemPrice,
+    url: item.affiliateUrl || item.itemUrl,
+    imageUrl: thumbnail(item.mediumImageUrls?.[0]),
+    shopName: item.shopName,
+    reviewAverage: item.reviewAverage ?? 0,
+    reviewCount: item.reviewCount ?? 0,
+    freeShipping: item.postageFlag === 0,
+  }))
+  return { items, total: body.count ?? items.length }
+}
+
+// 通常はキャッシュ（6時間）を使う。キャッシュにエラー応答が残っていた場合や
+// 1秒あたりの上限に当たった場合は、少し待ってキャッシュを使わずに1回だけやり直す
+async function fetchItems(query: string, mode: FetchMode): Promise<RakutenSearchResult> {
+  try {
+    return await requestItems(query, mode)
+  } catch (error) {
+    if (mode === 'fresh' || !(error instanceof RakutenApiError)) throw error
+    if (error.message.startsWith('http_429')) await sleep(1200)
+    return requestItems(query, 'fresh')
+  }
+}
 
 export async function searchRakutenItems(params: RakutenSearchParams): Promise<RakutenSearchResult> {
   const applicationId = process.env.RAKUTEN_APP_ID
@@ -132,10 +144,11 @@ export async function searchRakutenItems(params: RakutenSearchParams): Promise<R
   if (params.maxPrice) query.set('maxPrice', String(params.maxPrice))
 
   try {
-    return await fetchItemsCached(query.toString())
+    return await fetchItems(query.toString(), params.fresh ? 'fresh' : 'cached')
   } catch (error) {
-    const code = error instanceof Error ? error.message : 'unknown_error'
-    console.error('楽天API エラー:', code)
+    // 想定外の例外のメッセージにはリクエストURL（キーを含む）が入ることがあるため外に出さない
+    const code = error instanceof RakutenApiError ? error.message : 'internal_error'
+    console.error('楽天API エラー:', error instanceof RakutenApiError ? code : redact(String(error)))
     return { items: [], total: 0, error: code }
   }
 }
