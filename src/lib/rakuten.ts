@@ -2,7 +2,7 @@
 // サーバー側でのみ使う（キーをブラウザに渡さないため、クライアントコンポーネントから import しない）。結果は Next.js のデータキャッシュに6時間保存する
 import { SITE_URL } from '@/lib/site'
 
-const ITEM_SEARCH_URL = 'https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20220601'
+const ITEM_SEARCH_URL = 'https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701'
 const CACHE_SECONDS = 6 * 60 * 60
 
 // 盆栽と関係の薄い商品（造花など）を除く
