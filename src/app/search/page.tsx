@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { searchRakutenItems, type RakutenSort } from '@/lib/rakuten'
+import { BONSAI_GENRE_ID, searchRakutenItems, type RakutenSort } from '@/lib/rakuten'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { RakutenCredit, RakutenItemGrid } from '@/components/shop/RakutenItemGrid'
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 }
 
 interface SearchPageProps {
-  searchParams: { q?: string; min?: string; max?: string; sort?: string; page?: string }
+  searchParams: { q?: string; min?: string; max?: string; sort?: string; page?: string; type?: string }
 }
 
 const SORTS: { value: RakutenSort; label: string }[] = [
@@ -40,16 +40,26 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const max = toNumber(searchParams.max)
   const sort = SORTS.some(s => s.value === searchParams.sort) ? (searchParams.sort as RakutenSort) : 'standard'
   const page = Math.min(toNumber(searchParams.page) ?? 1, 10)
+  // tree: 盆栽本体（樹）のみ / all: 鉢・土・道具も含む
+  const type = searchParams.type === 'all' ? 'all' : 'tree'
 
   // 盆栽と無関係な商品が混ざらないよう、「盆栽」を含まない検索語には補う
   const keyword = q && !/盆栽|苔玉|bonsai/i.test(q) ? `${q} 盆栽` : q
   const result = keyword
-    ? await searchRakutenItems({ keyword, minPrice: min, maxPrice: max, sort, page, hits: 30 })
+    ? await searchRakutenItems({
+        keyword,
+        genreId: type === 'tree' ? BONSAI_GENRE_ID : undefined,
+        minPrice: min,
+        maxPrice: max,
+        sort,
+        page,
+        hits: 30,
+      })
     : null
 
   const buildQuery = (overrides: Record<string, string | undefined>) => {
     const params = new URLSearchParams()
-    const merged = { q, min: min ? String(min) : '', max: max ? String(max) : '', sort, ...overrides }
+    const merged = { q, min: min ? String(min) : '', max: max ? String(max) : '', sort, type: type === 'all' ? 'all' : '', ...overrides }
     Object.entries(merged).forEach(([key, value]) => {
       if (value && !(key === 'sort' && value === 'standard')) params.set(key, value)
     })
@@ -80,8 +90,18 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
               {SORTS.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
             </select>
           </label>
+          {type === 'all' && <input type="hidden" name="type" value="all" />}
           <button type="submit" className="bg-gray-900 text-white rounded-lg px-5 py-2">検索</button>
         </form>
+
+        <div className="flex gap-2 mb-3 text-sm">
+          <Link href={buildQuery({ type: '', page: undefined })} className={`rounded-full px-3 py-1 border ${type === 'tree' ? 'bg-gray-900 text-white border-gray-900' : 'bg-white'}`}>
+            盆栽（樹）
+          </Link>
+          <Link href={buildQuery({ type: 'all', page: undefined })} className={`rounded-full px-3 py-1 border ${type === 'all' ? 'bg-gray-900 text-white border-gray-900' : 'bg-white'}`}>
+            鉢・土・道具も含む
+          </Link>
+        </div>
 
         <div className="flex flex-wrap gap-2 mb-6 text-sm">
           {PRICE_PRESETS.map(preset => (

@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { searchRakutenItems } from '@/lib/rakuten'
+import { BONSAI_GENRE_ID, searchRakutenItems } from '@/lib/rakuten'
 import { SHOP_CATEGORIES, type ShopCategoryGroup } from '@/lib/shop-categories'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { RakutenCredit, RakutenItemGrid } from '@/components/shop/RakutenItemGrid'
 
-// ページは1時間ごとに再生成（商品データは src/lib/rakuten.ts で6時間キャッシュ）
-export const revalidate = 3600
+// ページは10分ごとに再生成（商品データは src/lib/rakuten.ts で6時間キャッシュ）
+export const revalidate = 600
 
 export const metadata: Metadata = {
   title: '盆栽・鉢・道具を楽天市場から探す｜樹種別・用途別の通販比較 - 盆栽コレクション',
@@ -20,7 +20,7 @@ const GROUPS: { group: ShopCategoryGroup; title: string }[] = [
 ]
 
 export default async function ShopIndexPage() {
-  const { items } = await searchRakutenItems({ keyword: '盆栽', sort: '-reviewCount', hits: 12 })
+  const { items } = await searchRakutenItems({ keyword: '盆栽', genreId: BONSAI_GENRE_ID, sort: '-reviewCount', hits: 12 })
 
   return (
     <div className="bg-gray-50 min-h-screen">

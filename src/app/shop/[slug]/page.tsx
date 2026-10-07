@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { searchRakutenItems } from '@/lib/rakuten'
+import { BONSAI_GENRE_ID, searchRakutenItems } from '@/lib/rakuten'
 import { SHOP_CATEGORIES, getShopCategory } from '@/lib/shop-categories'
 import { SITE_URL } from '@/lib/site'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
@@ -13,8 +13,8 @@ interface ShopCategoryPageProps {
 }
 
 // ビルド時にまとめて API を呼ぶと上限にかかるため、初回アクセス時に生成する。
-// 商品データ自体は6時間キャッシュ（src/lib/rakuten.ts）、ページは1時間ごとに再生成
-export const revalidate = 3600
+// 商品データ自体は6時間キャッシュ（src/lib/rakuten.ts）。一時的な取得失敗が長く残らないよう、ページは10分ごとに再生成
+export const revalidate = 600
 
 export function generateStaticParams() {
   return []
@@ -34,7 +34,11 @@ export default async function ShopCategoryPage({ params }: ShopCategoryPageProps
   const category = getShopCategory(params.slug)
   if (!category) notFound()
 
-  const { items, total } = await searchRakutenItems({ keyword: category.keyword, hits: 30 })
+  const { items, total } = await searchRakutenItems({
+    keyword: category.keyword,
+    genreId: category.group === 'tree' ? BONSAI_GENRE_ID : undefined,
+    hits: 30,
+  })
   const related = SHOP_CATEGORIES.filter(other => other.group === category.group && other.slug !== category.slug)
   const others = SHOP_CATEGORIES.filter(other => other.group !== category.group)
 

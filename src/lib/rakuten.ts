@@ -5,6 +5,9 @@ import { SITE_URL } from '@/lib/site'
 const ITEM_SEARCH_URL = 'https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701'
 const CACHE_SECONDS = 6 * 60 * 60
 
+// 楽天市場の「盆栽」ジャンル
+export const BONSAI_GENRE_ID = 215202
+
 // 盆栽と関係の薄い商品（造花など）を除く
 const DEFAULT_NG_KEYWORD = '造花 フェイク 人工 イミテーション'
 
@@ -12,6 +15,8 @@ export type RakutenSort = 'standard' | '+itemPrice' | '-itemPrice' | '-reviewCou
 
 export interface RakutenSearchParams {
   keyword: string
+  // 楽天のジャンルID（盆栽本体に絞るときは BONSAI_GENRE_ID）
+  genreId?: number
   ngKeyword?: string
   minPrice?: number
   maxPrice?: number
@@ -140,6 +145,7 @@ export async function searchRakutenItems(params: RakutenSearchParams): Promise<R
     imageFlag: '1',
   })
   if (process.env.RAKUTEN_AFFILIATE_ID) query.set('affiliateId', process.env.RAKUTEN_AFFILIATE_ID)
+  if (params.genreId) query.set('genreId', String(params.genreId))
   if (params.minPrice) query.set('minPrice', String(params.minPrice))
   if (params.maxPrice) query.set('maxPrice', String(params.maxPrice))
 
