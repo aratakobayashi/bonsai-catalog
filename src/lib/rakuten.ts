@@ -11,10 +11,12 @@ export const BONSAI_GENRE_ID = 215202
 // 盆栽と関係の薄い商品（造花など）を除く
 const DEFAULT_NG_KEYWORD = '造花 フェイク 人工 イミテーション'
 
-export type RakutenSort = 'standard' | '+itemPrice' | '-itemPrice' | '-reviewCount' | '-reviewAverage'
+export type RakutenSort = 'standard' | '+itemPrice' | '-itemPrice' | '-reviewCount' | '-reviewAverage' | '-updateTimestamp'
 
 export interface RakutenSearchParams {
-  keyword: string
+  keyword?: string
+  // 商品を1件指定して取得する（詳細ページの最新価格用）
+  itemCode?: string
   // 楽天のジャンルID（盆栽本体に絞るときは BONSAI_GENRE_ID）
   genreId?: number
   ngKeyword?: string
@@ -37,6 +39,9 @@ export interface RakutenItem {
   reviewAverage: number
   reviewCount: number
   freeShipping: boolean
+  caption: string
+  imageUrls: string[]
+  affiliateRate: number | null
 }
 
 export interface RakutenSearchResult {
@@ -67,6 +72,8 @@ interface RawItem {
   reviewCount?: number
   postageFlag?: number
   availability?: number
+  itemCaption?: string
+  affiliateRate?: number
 }
 
 class RakutenApiError extends Error {}
@@ -108,6 +115,9 @@ async function requestItems(query: string, mode: FetchMode): Promise<RakutenSear
     reviewAverage: item.reviewAverage ?? 0,
     reviewCount: item.reviewCount ?? 0,
     freeShipping: item.postageFlag === 0,
+    caption: (item.itemCaption || '').slice(0, 2000),
+    imageUrls: (item.mediumImageUrls || []).slice(0, 5).map(url => url.replace(/\?_ex=\d+x\d+$/, '') + '?_ex=500x500'),
+    affiliateRate: typeof item.affiliateRate === 'number' ? item.affiliateRate : null,
   }))
   return { items, total: body.count ?? items.length }
 }
@@ -136,12 +146,13 @@ export async function searchRakutenItems(params: RakutenSearchParams): Promise<R
     accessKey,
     format: 'json',
     formatVersion: '2',
-    keyword: params.keyword,
-    NGKeyword: params.ngKeyword ?? DEFAULT_NG_KEYWORD,
+    ...(params.itemCode
+      ? { itemCode: params.itemCode }
+      : { keyword: params.keyword ?? '盆栽', NGKeyword: params.ngKeyword ?? DEFAULT_NG_KEYWORD }),
     hits: String(params.hits ?? 30),
     page: String(params.page ?? 1),
     sort: params.sort ?? 'standard',
-    availability: '1',
+    ...(params.itemCode ? {} : { availability: '1' }),
     imageFlag: '1',
   })
   if (process.env.RAKUTEN_AFFILIATE_ID) query.set('affiliateId', process.env.RAKUTEN_AFFILIATE_ID)

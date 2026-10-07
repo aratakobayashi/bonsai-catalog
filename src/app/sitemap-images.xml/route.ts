@@ -18,10 +18,12 @@ export const revalidate = 3600
 export async function GET() {
   try {
     // 商品画像を取得
-    const { data: products } = await supabase
+    // 検索結果に出す商品（楽天の自動取得分以外）の画像のみ
+    const { data: rows } = await supabase
       .from('products')
-      .select('id, name, image_url, updated_at')
+      .select('*')
       .not('image_url', 'is', null)
+    const products = (rows || []).filter((p: any) => p.source !== 'rakuten' && p.is_active !== false)
 
     let xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"

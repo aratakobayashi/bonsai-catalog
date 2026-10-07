@@ -155,7 +155,13 @@ export function pickSelectionProducts(selection: Selection, products: Product[])
     seen.add(p.name)
     return true
   })
-  const picked = unique.filter(selection.filter)
+  // 盆栽（樹）・苔玉のみを対象にする（鉢・土・種などは除く）。販売終了の商品も除く
+  const picked = unique
+    .filter(p => {
+      const row = p as Product & { product_type?: string; is_active?: boolean }
+      return row.is_active !== false && (!row.product_type || ['tree', 'kokedama'].includes(row.product_type))
+    })
+    .filter(selection.filter)
   if (selection.sort) picked.sort(selection.sort)
   return picked.slice(0, selection.limit ?? picked.length)
 }

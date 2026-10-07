@@ -27,14 +27,8 @@ export async function GET() {
         changeFreq: 'daily',
         priority: 0.9
       },
-      {
-        url: `${baseUrl}/shop`,
-        lastMod: new Date().toISOString().split('T')[0],
-        changeFreq: 'daily',
-        priority: 0.9
-      },
       ...SHOP_CATEGORIES.map(category => ({
-        url: `${baseUrl}/shop/${category.slug}`,
+        url: `${baseUrl}/products/category/${category.slug}`,
         lastMod: new Date().toISOString().split('T')[0],
         changeFreq: 'daily',
         priority: 0.8

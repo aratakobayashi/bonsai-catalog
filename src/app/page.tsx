@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { supabaseServer } from '@/lib/supabase-server'
+import { getCatalogProducts, type CatalogProduct } from '@/lib/catalog'
+import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { getArticles } from '@/lib/database/articles'
 import { isOptimizableImage } from '@/lib/image-utils'
 import { HeroCarousel, type HeroSlide } from '@/components/home/HeroCarousel'
@@ -19,23 +20,6 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 }
 
-interface PopularProduct {
-  id: string
-  name: string
-  price: number
-  category: string
-  size_category: string
-  image_url: string
-  beginner_friendly: boolean | null
-}
-
-const SIZE_LABELS: Record<string, string> = {
-  mini: 'ミニ',
-  small: '小品',
-  medium: '中品',
-  large: '大品',
-}
-
 const heroSlides: HeroSlide[] = [
   {
     id: 1,
@@ -44,7 +28,7 @@ const heroSlides: HeroSlide[] = [
     subtitle: '時を超えた伝統美',
     description: '風雪に耐え抜いた力強さと優雅さを併せ持つ松柏類盆栽',
     cta: '松柏類を見る',
-    link: '/products?category=松柏類'
+    link: '/products?species=cat-shohaku'
   },
   {
     id: 2,
@@ -53,7 +37,7 @@ const heroSlides: HeroSlide[] = [
     subtitle: '四季の移ろいを楽しむ',
     description: '春の新緑から秋の紅葉まで、季節ごとの表情を魅せる雑木類',
     cta: '雑木類を見る',
-    link: '/products?category=雑木類'
+    link: '/products?species=cat-zouki'
   },
   {
     id: 3,
@@ -62,22 +46,17 @@ const heroSlides: HeroSlide[] = [
     subtitle: '咲き誇る美しい瞬間',
     description: '桜や梅など、開花時期の華やかな美しさを堪能する花もの盆栽',
     cta: '花ものを見る',
-    link: '/products?category=花もの'
+    link: '/products?species=cat-hana'
   }
 ]
 
-async function getPopularProducts(): Promise<PopularProduct[]> {
-  const { data, error } = await supabaseServer
-    .from('products')
-    .select('id, name, price, category, size_category, image_url, beginner_friendly')
-    .order('created_at', { ascending: false })
-    .limit(8)
-
-  if (error) {
-    console.error('Error fetching products:', error)
-    return []
-  }
-  return (data as PopularProduct[]) || []
+// 新着の盆栽（樹）。楽天の自動取得分も含め、画像のあるものから選ぶ
+async function getNewProducts(): Promise<CatalogProduct[]> {
+  const products = await getCatalogProducts()
+  return products
+    .filter(p => p.productType === 'tree' && p.imageUrl)
+    .sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''))
+    .slice(0, 8)
 }
 
 async function getPopularArticles(): Promise<Article[]> {
@@ -111,7 +90,7 @@ function SectionHeading({ title, href }: { title: string; href: string }) {
 
 export default async function HomePage() {
   const [popularProducts, popularArticles] = await Promise.all([
-    getPopularProducts(),
+    getNewProducts(),
     getPopularArticles()
   ])
 
@@ -159,12 +138,12 @@ export default async function HomePage() {
       <section className="py-12 bg-slate-50/50 border-t border-slate-100">
         <div className="container mx-auto px-4 max-w-5xl">
           <h2 className="text-2xl md:text-3xl font-light text-slate-800 mb-2 text-center tracking-wide">樹種・道具から探す</h2>
-          <p className="text-center text-slate-600 mb-6 text-sm">楽天市場の盆栽・鉢・土・道具を、価格やレビュー件数で比べられます。</p>
+          <p className="text-center text-slate-600 mb-6 text-sm">楽天市場とAmazonの盆栽・鉢・土・道具を、価格やレビュー件数で比べられます。</p>
           <div className="flex flex-wrap justify-center gap-2">
             {SHOP_CATEGORIES.map(category => (
               <Link
                 key={category.slug}
-                href={`/shop/${category.slug}`}
+                href={`/products/category/${category.slug}`}
                 className="bg-white border border-slate-200 rounded-full px-4 py-2 text-sm text-slate-700 hover:border-slate-500"
               >
                 {category.name}
@@ -182,42 +161,8 @@ export default async function HomePage() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             {popularProducts.length > 0 ? (
-              popularProducts.map(product => (
-                <Link key={product.id} href={`/products/${product.id}`} className="group">
-                  <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-slate-100 h-full">
-                    <div className="aspect-square relative overflow-hidden bg-slate-100">
-                      {isOptimizableImage(product.image_url) && (
-                        <Image
-                          src={product.image_url}
-                          alt={product.name}
-                          fill
-                          sizes="(max-width: 1024px) 50vw, 25vw"
-                          className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                      )}
-                      <div className="absolute top-3 right-3 bg-white/90 px-3 py-1 rounded-full shadow">
-                        <span className="text-xs md:text-sm font-semibold text-slate-700">
-                          ¥{product.price.toLocaleString()}
-                          <span className="text-[10px] font-normal text-slate-500 ml-1">参考</span>
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-4 md:p-6">
-                      <h3 className="font-medium text-slate-800 mb-2 line-clamp-2 text-sm md:text-lg leading-relaxed">
-                        {product.name}
-                      </h3>
-                      <p className="text-xs md:text-sm text-slate-500 mb-3">{product.category}</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs text-slate-400">{SIZE_LABELS[product.size_category] || ''}</span>
-                        {product.beginner_friendly && (
-                          <span className="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">
-                            初心者向け
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
+              popularProducts.map((product, index) => (
+                <CatalogProductCard key={product.id} product={product} priority={index < 2} />
               ))
             ) : (
               <div className="col-span-full text-center py-12">

@@ -4,11 +4,11 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 const CATEGORIES = [
-  { value: '松柏類', icon: '🌲', label: '松柏類' },
-  { value: '雑木類', icon: '🍂', label: '雑木類' },
-  { value: '花もの', icon: '🌸', label: '花もの' },
-  { value: '実もの', icon: '🍇', label: '実もの' },
-  { value: '草もの', icon: '🌿', label: '草もの' }
+  { value: 'cat-shohaku', icon: '🌲', label: '松柏類' },
+  { value: 'cat-zouki', icon: '🍂', label: '雑木類' },
+  { value: 'cat-hana', icon: '🌸', label: '花もの' },
+  { value: 'cat-mi', icon: '🍇', label: '実もの' },
+  { value: 'mini', icon: '🪴', label: 'ミニ盆栽' }
 ]
 
 const PRICE_RANGES = [
@@ -34,11 +34,11 @@ export function ProductSearchPanel() {
 
   const handleSearch = () => {
     const params = new URLSearchParams()
-    if (selectedCategory) params.set('category', selectedCategory)
+    if (selectedCategory) params.set('species', selectedCategory)
     if (selectedPriceRange) {
       const [min, max] = selectedPriceRange.split('-')
-      if (min && min !== '0') params.set('minPrice', min)
-      if (max) params.set('maxPrice', max)
+      if (min && min !== '0') params.set('min', min)
+      if (max) params.set('max', max)
     }
     const queryString = params.toString()
     router.push(queryString ? `/products?${queryString}` : '/products')

@@ -73,6 +73,14 @@ const nextConfig = {
       },
     ],
   },
+  // 旧URL（楽天専用ページ・検索ページ）を統合後の一覧へ転送する。クエリ文字列はそのまま引き継がれる
+  async redirects() {
+    return [
+      { source: '/shop', destination: '/products', permanent: true },
+      { source: '/shop/:slug', destination: '/products/category/:slug', permanent: true },
+      { source: '/search', destination: '/products', permanent: true },
+    ]
+  },
   env: {
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,

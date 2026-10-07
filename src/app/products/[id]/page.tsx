@@ -1,74 +1,23 @@
-import { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import Link from 'next/link'
-import Image from 'next/image'
+import { notFound } from 'next/navigation'
 import { supabaseServer } from '@/lib/supabase-server'
-import { Button } from '@/components/ui/Button'
-import { Card, CardContent } from '@/components/ui/Card'
-import { ImageGallery } from '@/components/features/ImageGallery'
-import { formatPrice, getSizeCategoryLabel, formatDate } from '@/lib/utils'
-import { 
-  getDifficultyDisplay, 
-  getDifficultyColor,
-  getFeatureBadges, 
-  getSeasonDisplay,
-  getDetailedSize,
-  getCareEnvironment 
-} from '@/lib/product-ui-helpers'
-import { ArrowLeft, ExternalLink, Tag, Calendar, Package, ShoppingBag, Ruler, Sun, Droplets, Heart } from 'lucide-react'
-import { generateProductSEO } from '@/lib/seo-utils'
-import { generateProductBreadcrumbs } from '@/lib/breadcrumb-utils'
-import { BreadcrumbStructuredData, ProductStructuredData, FAQStructuredData } from '@/components/seo/StructuredData'
-import { getProductFAQs } from '@/lib/faq-data'
+import { getCatalogProducts, normalizeProduct, type CatalogProduct } from '@/lib/catalog'
+import { searchRakutenItems } from '@/lib/rakuten'
+import { PRODUCT_TYPE_LABELS } from '@/lib/product-classify'
+import { getCareGuide, getPurchaseChecklist } from '@/lib/care-guides'
+import { SHOP_CATEGORIES } from '@/lib/shop-categories'
+import { AFFILIATE_LINK_REL } from '@/lib/affiliate'
+import { SITE_URL } from '@/lib/site'
+import { formatPrice } from '@/lib/utils'
 import { getRelatedArticles } from '@/lib/article-helpers'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
-import { AFFILIATE_LINK_REL, PRICE_NOTE } from '@/lib/affiliate'
-import type { Product } from '@/types'
+import { BreadcrumbStructuredData, ProductStructuredData } from '@/components/seo/StructuredData'
+import { CatalogProductCard, SOURCE_LABELS, SourceBadge } from '@/components/catalog/CatalogProductCard'
+import { ProductThumb } from '@/components/catalog/ProductThumb'
 
 interface ProductPageProps {
-  params: {
-    id: string
-  }
-}
-
-async function getProduct(id: string): Promise<Product | null> {
-  const { data, error } = await supabaseServer
-    .from('products')
-    .select('*')
-    .eq('id', id)
-    .single()
-
-  if (error || !data) {
-    return null
-  }
-
-  return data
-}
-
-async function getRelatedProducts(category: string, excludeId: string, limit = 4): Promise<Product[]> {
-  const { data } = await supabaseServer
-    .from('products')
-    .select('id, name, price, category, image_url, amazon_url') // 必要フィールドのみ取得で高速化
-    .eq('category', category)
-    .neq('id', excludeId)
-    .limit(limit)
-
-  return data || []
-}
-
-// 🚀 パフォーマンス最適化: 完全並列データ取得関数
-async function getProductWithRelated(id: string) {
-  // 1回目: 商品詳細取得
-  const product = await getProduct(id)
-
-  if (!product) {
-    return { product: null, relatedProducts: [] }
-  }
-
-  // 2回目: カテゴリが分かったので関連商品を並列取得
-  const relatedProducts = await getRelatedProducts(product.category, id)
-
-  return { product, relatedProducts }
+  params: { id: string }
 }
 
 // 初回アクセス時に生成してキャッシュし、1時間ごとに再生成（ISR）
@@ -78,412 +27,295 @@ export function generateStaticParams() {
   return []
 }
 
+const SIZE_LABELS: Record<string, string> = {
+  mini: 'ミニ（樹高15cm程度まで）',
+  small: '小品（樹高25cm程度まで）',
+  medium: '中品（樹高45cm程度まで）',
+  large: '大品',
+  unknown: '記載なし（商品ページでご確認ください）',
+}
+
+interface ProductDetail extends CatalogProduct {
+  description: string
+  externalId: string | null
+}
+
+async function getProduct(id: string): Promise<ProductDetail | null> {
+  if (!/^[0-9a-f-]{36}$/i.test(id)) return null
+  const { data, error } = await supabaseServer.from('products').select('*').eq('id', id).single()
+  if (error || !data) return null
+  const row = data as Record<string, unknown>
+  if (row.is_active === false) return null
+  return {
+    ...normalizeProduct(row),
+    description: typeof row.description === 'string' ? row.description : '',
+    externalId: typeof row.external_id === 'string' ? row.external_id : null,
+  }
+}
+
+// 楽天の商品は、表示時に最新の価格・レビューを取り直す（6時間キャッシュ）
+async function withLatestRakutenInfo(product: ProductDetail): Promise<ProductDetail & { soldOut: boolean }> {
+  if (product.source !== 'rakuten' || !product.externalId) return { ...product, soldOut: false }
+  const { items, error } = await searchRakutenItems({ itemCode: product.externalId, hits: 1 })
+  if (error) return { ...product, soldOut: false }
+  const latest = items[0]
+  if (!latest) return { ...product, soldOut: true }
+  return {
+    ...product,
+    price: latest.price,
+    reviewCount: latest.reviewCount,
+    reviewAverage: latest.reviewAverage,
+    freeShipping: latest.freeShipping,
+    buyUrl: latest.url || product.buyUrl,
+    soldOut: false,
+  }
+}
+
+// 販売店の説明文から HTML タグを除き、読みやすい長さに切る
+function plainDescription(text: string): string {
+  return text
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim()
+    .slice(0, 600)
+}
+
+function categoryLink(product: CatalogProduct) {
+  const slug = product.syncCategory || SHOP_CATEGORIES.find(c => c.group === 'tree' && product.name.includes(c.name))?.slug
+  const category = SHOP_CATEGORIES.find(c => c.slug === slug)
+  return category ? { href: `/products/category/${category.slug}`, label: category.name } : null
+}
+
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const product = await getProduct(params.id)
+  if (!product) return { title: '商品が見つかりません - 盆栽コレクション' }
 
-  if (!product) {
-    return {
-      title: '商品が見つかりません - 盆栽コレクション'
-    }
-  }
-
-  // 🚀 自動SEO最適化エンジンを使用
-  const seo = generateProductSEO(product)
-
+  const title = `${product.name.slice(0, 48)}｜価格・特徴・育て方 - 盆栽コレクション`
+  const description = `${product.name.slice(0, 60)}の価格（${formatPrice(product.price)}〜）、サイズ、送料、販売ショップ、育て方の目安をまとめています。`
   return {
-    title: seo.title,
-    description: seo.description,
-    keywords: seo.keywords,
-    openGraph: {
-      ...seo.openGraph,
-      images: product.image_url ? [{ url: product.image_url }] : [],
-    },
-    twitter: {
-      ...seo.twitter,
-      description: product.description || '',
-      images: product.image_url ? [product.image_url] : [],
-    },
-    alternates: {
-      canonical: `/products/${product.id}`,
-    },
+    title,
+    description,
+    alternates: { canonical: `/products/${product.id}` },
+    // 楽天から自動取得した商品は内容が販売ページとほぼ同じになるため、検索結果には出さない
+    ...(product.source === 'rakuten' && { robots: { index: false, follow: true } }),
+    openGraph: { title, description, images: product.imageUrl ? [{ url: product.imageUrl }] : [] },
   }
 }
 
 export default async function ProductDetailPage({ params }: ProductPageProps) {
-  // 🚀 並列データ取得で大幅高速化！
-  const { product, relatedProducts } = await getProductWithRelated(params.id)
+  const stored = await getProduct(params.id)
+  if (!stored) notFound()
+  const product = await withLatestRakutenInfo(stored)
 
-  if (!product) {
-    notFound()
-  }
+  const all = await getCatalogProducts()
+  const isPart = ['pot', 'soil', 'tool', 'wire', 'fertilizer'].includes(product.productType)
+  const related = all
+    .filter(p => p.id !== product.id && p.productType === product.productType &&
+      (product.syncCategory ? p.syncCategory === product.syncCategory || p.category === product.category : p.category === product.category))
+    .sort((a, b) => b.reviewCount - a.reviewCount)
+    .slice(0, 8)
+  // 樹を見ている人には鉢・土・道具を、部品を見ている人には樹をすすめる
+  const pairTypes = isPart ? ['tree'] : ['pot', 'soil', 'tool']
+  const pairs = pairTypes
+    .map(type => all.filter(p => p.productType === type).sort((a, b) => b.reviewCount - a.reviewCount)[0])
+    .filter((p): p is CatalogProduct => Boolean(p))
+    .concat(isPart ? all.filter(p => p.productType === 'tree' && p.id !== product.id).sort((a, b) => b.reviewCount - a.reviewCount).slice(1, 4) : [])
+    .slice(0, 4)
 
-  const breadcrumbs = generateProductBreadcrumbs(product)
+  const careGuide = getCareGuide(product.productType, product.category)
+  const checklist = getPurchaseChecklist(product.productType)
+  const description = plainDescription(product.description)
+  const relatedArticles = getRelatedArticles(product.category, product.tags, 3)
+  const catLink = categoryLink(product)
+  const shopLabel = SOURCE_LABELS[product.source]
 
-  // 商品に関連するFAQを自動生成
-  const productFAQs = getProductFAQs(
-    product.name,
-    product.category,
-    product.tags || []
-  )
+  const breadcrumbs = [
+    { name: 'ホーム', url: SITE_URL, position: 1 },
+    { name: '盆栽・鉢・道具を探す', url: `${SITE_URL}/products`, position: 2 },
+    ...(catLink ? [{ name: catLink.label, url: `${SITE_URL}${catLink.href}`, position: 3 }] : []),
+    { name: product.name, url: `${SITE_URL}/products/${product.id}`, position: catLink ? 4 : 3 },
+  ]
 
-  // 商品に関連する記事を取得
-  const relatedArticles = getRelatedArticles(
-    product.category,
-    product.tags,
-    3
-  )
+  const specs: { label: string; value: string }[] = [
+    { label: '種類', value: PRODUCT_TYPE_LABELS[product.productType] },
+    ...(!isPart ? [{ label: '分類', value: product.category }] : []),
+    ...(!isPart ? [{ label: 'サイズの目安', value: product.heightCm ? `樹高 約${product.heightCm}cm（${SIZE_LABELS[product.sizeCategory].split('（')[0]}）` : SIZE_LABELS[product.sizeCategory] }] : []),
+    { label: '販売ショップ', value: `${product.shopName}（${shopLabel}）` },
+    { label: '送料', value: product.freeShipping === true ? '送料無料' : product.freeShipping === false ? '送料別（ショップにより異なります）' : '商品ページでご確認ください' },
+    { label: 'レビュー', value: product.reviewCount > 0 ? `★${product.reviewAverage.toFixed(1)}（${product.reviewCount.toLocaleString()}件・${shopLabel}）` : 'まだありません' },
+  ]
 
   return (
     <>
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
       <ProductStructuredData
         name={product.name}
-        description={product.description || ''}
-        image={product.image_url || ''}
+        description={description.slice(0, 300)}
+        image={product.imageUrl || ''}
         category={product.category}
       />
-      {productFAQs.length > 0 && (
-        <FAQStructuredData
-          faqs={productFAQs}
-          baseUrl="https://www.bonsai-collection.com"
-        />
-      )}
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="container mx-auto px-4">
-        {/* 戻るボタン */}
-        <div className="mb-6">
-          <Button variant="ghost" asChild>
-            <Link href="/products" className="flex items-center gap-2">
-              <ArrowLeft className="h-4 w-4" />
-              商品一覧に戻る
-            </Link>
-          </Button>
-        </div>
 
-        <PrDisclosure className="mb-6" />
+      <div className="min-h-screen bg-gray-50">
+        <div className="container mx-auto px-4 py-6 max-w-6xl">
+          <nav className="text-sm text-gray-500 mb-4 truncate">
+            <Link href="/" className="hover:text-gray-700">ホーム</Link>
+            <span className="mx-2">›</span>
+            <Link href="/products" className="hover:text-gray-700">盆栽・鉢・道具を探す</Link>
+            {catLink && (
+              <>
+                <span className="mx-2">›</span>
+                <Link href={catLink.href} className="hover:text-gray-700">{catLink.label}</Link>
+              </>
+            )}
+          </nav>
 
-        {/* メインコンテンツ */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          {/* 商品画像ギャラリー */}
-          <div>
-            <ImageGallery
-              images={product.image_url ? [product.image_url] : []}
-              productName={product.name}
-            />
-          </div>
+          <div className="grid lg:grid-cols-2 gap-8 mb-10">
+            <div className="relative aspect-square bg-white rounded-xl overflow-hidden shadow-sm">
+              <ProductThumb src={product.imageUrl} alt={product.name} sizes="(max-width: 1024px) 100vw, 50vw" priority className="object-contain" />
+            </div>
 
-          {/* 商品情報 */}
-          <div className="space-y-6">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="inline-block bg-bonsai-green-100 text-bonsai-green-800 text-sm px-3 py-1 rounded">
-                  {product.category}
-                </span>
-                <span className="inline-block bg-earth-brown-100 text-earth-brown-800 text-sm px-3 py-1 rounded">
-                  {getSizeCategoryLabel(product.size_category)}
-                </span>
-                <span className={`inline-block text-sm px-3 py-1 rounded ${getDifficultyColor(product.difficulty_level)} bg-gray-100`}>
-                  {getDifficultyDisplay(product.difficulty_level)}
-                </span>
+              <div className="flex flex-wrap gap-2 mb-3">
+                <SourceBadge source={product.source} />
+                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded">{PRODUCT_TYPE_LABELS[product.productType]}</span>
+                {!isPart && product.category !== 'その他' && (
+                  <span className="text-xs bg-green-50 text-green-800 px-2 py-0.5 rounded">{product.category}</span>
+                )}
+                {product.freeShipping && <span className="text-xs bg-green-50 text-green-700 px-2 py-0.5 rounded">送料無料</span>}
               </div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                {product.name}
-              </h1>
-              <div className="mb-6">
-                <div className="text-4xl font-bold text-bonsai-green-600">
-                  {formatPrice(product.price)}
-                </div>
-                <p className="text-xs text-gray-500 mt-1">{PRICE_NOTE}</p>
+              <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 leading-snug">{product.name}</h1>
+              <p className="text-sm text-gray-600 mb-4">販売：{product.shopName}</p>
+
+              <div className="bg-white rounded-xl shadow-sm p-5 mb-4">
+                <p className="text-3xl font-bold text-gray-900">{formatPrice(product.price)}</p>
+                {product.reviewCount > 0 && (
+                  <p className="text-sm text-gray-600 mt-1">★{product.reviewAverage.toFixed(1)}（{product.reviewCount.toLocaleString()}件）</p>
+                )}
+                <p className="text-xs text-gray-500 mt-2">
+                  {product.source === 'rakuten'
+                    ? '価格・レビューは楽天市場から数時間ごとに取得しています。最新の価格・在庫・送料は商品ページでご確認ください。'
+                    : '参考価格（掲載時点）です。最新の価格・在庫・送料は商品ページでご確認ください。'}
+                </p>
+                {product.soldOut && (
+                  <p className="text-sm text-amber-700 mt-2">現在、販売されていない可能性があります。</p>
+                )}
+                {product.buyUrl && (
+                  <a
+                    href={product.buyUrl}
+                    target="_blank"
+                    rel={AFFILIATE_LINK_REL}
+                    className={`mt-4 block text-center text-lg font-semibold text-white rounded-xl py-3 ${
+                      product.source === 'rakuten' ? 'bg-red-600 hover:bg-red-700' : 'bg-orange-500 hover:bg-orange-600'
+                    }`}
+                  >
+                    {shopLabel}で詳細を見る
+                  </a>
+                )}
               </div>
-            </div>
-
-            {/* 特徴タグ */}
-            {product.tags && product.tags.length > 0 && (
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Tag className="h-4 w-4 text-gray-500" />
-                  <span className="font-medium text-gray-700">特徴</span>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {product.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="inline-block bg-gray-100 text-gray-700 text-sm px-3 py-1 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* 特徴バッジ */}
-            {getFeatureBadges(product).length > 0 && (
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Heart className="h-4 w-4 text-gray-500" />
-                  <span className="font-medium text-gray-700">特徴</span>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {getFeatureBadges(product).map((badge, index) => (
-                    <span
-                      key={index}
-                      className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${badge.color}`}
-                    >
-                      <span className="mr-1">{badge.icon}</span>
-                      {badge.text}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* 季節情報 */}
-            {getSeasonDisplay(product) && (
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Calendar className="h-4 w-4 text-gray-500" />
-                  <span className="font-medium text-gray-700">季節の楽しみ</span>
-                </div>
-                <div className="bg-gradient-to-r from-green-50 to-yellow-50 border border-green-200 rounded-lg p-4">
-                  <p className="text-gray-700 font-medium">{getSeasonDisplay(product)}</p>
-                </div>
-              </div>
-            )}
-
-            {/* 商品説明 */}
-            <div>
-              <h2 className="font-semibold text-lg text-gray-900 mb-3">商品説明</h2>
-              <p className="text-gray-600 leading-relaxed">
-                {product.description}
-              </p>
-            </div>
-
-            {/* 詳細サイズ情報 */}
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <Ruler className="h-5 w-5 text-gray-500" />
-                  <h3 className="font-semibold text-lg">サイズ詳細</h3>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-600">高さ:</span>
-                      <span className="font-medium">{getDetailedSize(product).height}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-600">幅:</span>
-                      <span className="font-medium">{getDetailedSize(product).width}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-600">鉢サイズ:</span>
-                      <span className="font-medium">{getDetailedSize(product).potSize}</span>
-                    </div>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      <span className="font-medium text-gray-800">サイズの特徴:</span><br />
-                      {getDetailedSize(product).description}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* 育成環境情報 */}
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <Sun className="h-5 w-5 text-yellow-500" />
-                  <h3 className="font-semibold text-lg">育成環境</h3>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <Sun className="h-4 w-4 text-yellow-500" />
-                      <span className="text-gray-600">日照:</span>
-                      <span className="font-medium">{getCareEnvironment(product).sunlight}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Droplets className="h-4 w-4 text-blue-500" />
-                      <span className="text-gray-600">水やり:</span>
-                      <span className="font-medium">{getCareEnvironment(product).watering}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Calendar className="h-4 w-4 text-green-500" />
-                      <span className="text-gray-600">お手入れ:</span>
-                      <span className="font-medium">{getCareEnvironment(product).frequency}</span>
-                    </div>
-                  </div>
-                  <div className="bg-blue-50 rounded-lg p-4">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Package className="h-4 w-4 text-blue-600" />
-                      <span className="font-medium text-blue-800">栽培適性</span>
-                    </div>
-                    <p className="text-sm text-blue-700">
-                      {getCareEnvironment(product).location}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* 基本情報 */}
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="font-semibold text-lg mb-4">基本情報</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
-                  <div className="flex items-center gap-2">
-                    <Package className="h-4 w-4 text-gray-400" />
-                    <span className="text-gray-600">カテゴリ:</span>
-                    <span className="font-medium">{product.category}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Ruler className="h-4 w-4 text-gray-400" />
-                    <span className="text-gray-600">サイズ分類:</span>
-                    <span className="font-medium">{getSizeCategoryLabel(product.size_category)}</span>
-                  </div>
-                  <div className="flex items-center gap-2 col-span-2">
-                    <Calendar className="h-4 w-4 text-gray-400" />
-                    <span className="text-gray-600">掲載日:</span>
-                    <span className="font-medium">{formatDate(product.created_at)}</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* 購入ボタン */}
-            {(() => {
-              const isRakuten = (product as any).source === 'rakuten'
-              const buyUrl    = isRakuten ? (product as any).rakuten_url : product.amazon_url
-              const shopName  = isRakuten ? '楽天市場' : 'Amazon'
-              const btnClass  = isRakuten
-                ? 'bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700'
-                : 'bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700'
-              const bgClass   = isRakuten
-                ? 'bg-gradient-to-r from-red-50 to-pink-50 border border-red-200'
-                : 'bg-gradient-to-r from-orange-50 to-yellow-50 border border-orange-200'
-              const priceClass = isRakuten ? 'text-red-600' : 'text-orange-600'
-              return (
-                <div className="space-y-4 pt-6">
-                  <div className={`${bgClass} rounded-xl p-6`}>
-                    <div className="text-center mb-4">
-                      <div className={`text-3xl font-bold ${priceClass} mb-2`}>
-                        {formatPrice(product.price)}
-                      </div>
-                      <p className="text-xs text-gray-500 mb-1">{PRICE_NOTE}</p>
-                      <p className="text-sm text-gray-600">送料・返品は{shopName}の規約に従います</p>
-                    </div>
-                    <Button
-                      size="lg"
-                      className={`w-full h-14 text-lg font-semibold ${btnClass} shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105`}
-                      asChild
-                    >
-                      <a
-                        href={buyUrl}
-                        target="_blank"
-                        rel={AFFILIATE_LINK_REL}
-                        className="flex items-center justify-center gap-3"
-                      >
-                        <ShoppingBag className="h-6 w-6" />
-                        🛒 今すぐ{shopName}で注文
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-              )
-            })()}
-          </div>
-        </div>
-
-        {/* 関連商品 */}
-        {relatedProducts.length > 0 && (
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              同じカテゴリの商品
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {relatedProducts.map((relatedProduct) => (
-                <Card key={relatedProduct.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                  <Link href={`/products/${relatedProduct.id}`}>
-                    <div className="aspect-square relative bg-gray-100">
-                      {relatedProduct.image_url ? (
-                        <Image
-                          src={relatedProduct.image_url}
-                          alt={relatedProduct.name}
-                          fill
-                          className="object-cover hover:scale-105 transition-transform duration-300"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <div className="text-4xl text-gray-400">🌲</div>
-                        </div>
-                      )}
-                    </div>
-                  </Link>
-                  <CardContent className="p-4">
-                    <Link href={`/products/${relatedProduct.id}`}>
-                      <h3 className="font-medium text-sm mb-2 hover:text-bonsai-green-600 transition-colors line-clamp-2">
-                        {relatedProduct.name}
-                      </h3>
-                    </Link>
-                    <div className="text-lg font-bold text-bonsai-green-600">
-                      {formatPrice(relatedProduct.price)}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+              <PrDisclosure />
             </div>
           </div>
-        )}
 
-        {/* 関連記事 */}
-        {relatedArticles.length > 0 && (
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              📝 この商品に関連する育て方ガイド
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {relatedArticles.map((article) => (
-                <Card key={article.slug} className="overflow-hidden hover:shadow-lg transition-shadow group">
-                  <CardContent className="p-0">
-                    <Link href={`/guides/${article.slug}`}>
-                      <div className="p-6">
-                        <div className="flex items-center gap-2 mb-3">
-                          <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
-                            {article.category}
-                          </span>
-                          <ExternalLink className="h-3 w-3 text-gray-400 group-hover:text-blue-500 transition-colors" />
-                        </div>
-                        <h3 className="font-medium text-gray-900 mb-3 leading-snug group-hover:text-blue-600 transition-colors line-clamp-3">
-                          {article.title}
-                        </h3>
-                        <div className="flex flex-wrap gap-1">
-                          {article.tags?.slice(0, 3).map((tag, index) => (
-                            <span key={index} className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </Link>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-            <div className="text-center mt-6">
-              <Button variant="outline" asChild>
-                <Link href="/guides" className="flex items-center gap-2">
-                  📚 すべての育て方ガイドを見る
-                  <ExternalLink className="h-4 w-4" />
+          <div className="grid lg:grid-cols-3 gap-6 mb-10">
+            <section className="lg:col-span-2 bg-white rounded-xl shadow-sm p-6">
+              <h2 className="text-lg font-bold text-gray-900 mb-4">商品の情報</h2>
+              <table className="w-full text-sm">
+                <tbody>
+                  {specs.map(spec => (
+                    <tr key={spec.label} className="border-t first:border-t-0">
+                      <th className="text-left font-medium text-gray-600 py-2 pr-4 w-32 align-top">{spec.label}</th>
+                      <td className="py-2 text-gray-900">{spec.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {description && (
+                <div className="mt-6">
+                  <h3 className="font-semibold text-gray-900 mb-2">販売店の商品説明（抜粋）</h3>
+                  <p className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">{description}{product.description.length > 600 ? '…' : ''}</p>
+                </div>
+              )}
+            </section>
+
+            <section className="bg-white rounded-xl shadow-sm p-6">
+              <h2 className="text-lg font-bold text-gray-900 mb-3">購入前にチェックしたいこと</h2>
+              <ul className="space-y-2 text-sm text-gray-700">
+                {checklist.map(item => (
+                  <li key={item} className="flex gap-2"><span className="text-green-600">✓</span><span>{item}</span></li>
+                ))}
+              </ul>
+              <p className="text-xs text-gray-500 mt-3">いずれも販売ページの説明やショップへの問い合わせで確認できます。</p>
+            </section>
+          </div>
+
+          {careGuide && (
+            <section className="bg-white rounded-xl shadow-sm p-6 mb-10">
+              <h2 className="text-lg font-bold text-gray-900 mb-4">{careGuide.title}</h2>
+              <dl className="grid md:grid-cols-2 gap-4">
+                {careGuide.items.map(item => (
+                  <div key={item.label} className="bg-gray-50 rounded-lg p-4">
+                    <dt className="font-semibold text-gray-900 mb-1">{item.label}</dt>
+                    <dd className="text-sm text-gray-700 leading-relaxed">{item.text}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="text-xs text-gray-500 mt-3">一般的な目安です。品種や地域によって異なるため、商品ごとの説明もあわせてご確認ください。</p>
+              {careGuide.guideLink && (
+                <Link href={careGuide.guideLink.href} className="inline-block mt-3 text-sm text-blue-700 hover:underline">
+                  {careGuide.guideLink.label} →
                 </Link>
-              </Button>
-            </div>
-          </div>
-        )}
+              )}
+            </section>
+          )}
+
+          {pairs.length > 0 && (
+            <section className="mb-10">
+              <h2 className="text-lg font-bold text-gray-900 mb-4">{isPart ? 'この鉢・道具と合わせたい盆栽' : 'あわせて揃えたい鉢・土・道具'}</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {pairs.map(p => <CatalogProductCard key={p.id} product={p} />)}
+              </div>
+            </section>
+          )}
+
+          {related.length > 0 && (
+            <section className="mb-10">
+              <div className="flex items-baseline justify-between mb-4">
+                <h2 className="text-lg font-bold text-gray-900">似ている商品</h2>
+                {catLink && <Link href={catLink.href} className="text-sm text-blue-700 hover:underline">{catLink.label}をもっと見る →</Link>}
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {related.map(p => <CatalogProductCard key={p.id} product={p} />)}
+              </div>
+            </section>
+          )}
+
+          {relatedArticles.length > 0 && (
+            <section className="mb-10">
+              <h2 className="text-lg font-bold text-gray-900 mb-4">関連する育て方ガイド</h2>
+              <ul className="grid md:grid-cols-3 gap-4">
+                {relatedArticles.map(article => (
+                  <li key={article.slug}>
+                    <Link href={`/guides/${article.slug}`} className="block bg-white rounded-xl shadow-sm p-4 hover:shadow-md h-full">
+                      <span className="text-xs text-blue-800 bg-blue-50 px-2 py-0.5 rounded">{article.category}</span>
+                      <p className="mt-2 text-sm font-medium text-gray-900 line-clamp-3">{article.title}</p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {product.source === 'rakuten' && (
+            <p className="text-xs text-gray-500">
+              楽天市場の商品情報は{' '}
+              <a href="https://developers.rakuten.com/" target="_blank" rel="noopener noreferrer" className="underline">Supported by Rakuten Developers</a>。
+            </p>
+          )}
+        </div>
       </div>
-    </div>
     </>
   )
 }

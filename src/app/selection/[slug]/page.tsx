@@ -1,13 +1,12 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { supabaseServer } from '@/lib/supabase-server'
 import { SELECTIONS, getSelection, pickSelectionProducts } from '@/lib/selections'
 import { formatPrice, getSizeCategoryLabel } from '@/lib/utils'
 import { getDifficultyText } from '@/lib/product-ui-helpers'
-import { isOptimizableImage } from '@/lib/image-utils'
-import { AFFILIATE_LINK_REL } from '@/lib/affiliate'
+import { normalizeProduct } from '@/lib/catalog-model'
+import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { SITE_URL } from '@/lib/site'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
@@ -132,7 +131,7 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
           <section className="mb-8">
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">{selection.listHeading}</h2>
             <p className="text-sm text-gray-600 mb-4">
-              {products.length}件を掲載。価格は掲載時点の参考価格です。最新の価格・在庫・発送時期はリンク先でご確認ください。
+              {products.length}件を掲載（楽天市場・Amazon）。価格は取得時点の情報です。最新の価格・在庫・発送時期はリンク先でご確認ください。
             </p>
 
             {priceRanges.length > 0 && (
@@ -183,41 +182,13 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
             {/* 商品カード */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {products.map((product, index) => (
-                <div key={product.id} className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col">
-                  <Link href={`/products/${product.id}`} className="block relative aspect-square bg-gray-100">
-                    {isOptimizableImage(product.image_url) && (
-                      <Image
-                        src={product.image_url}
-                        alt={product.name}
-                        fill
-                        sizes="(max-width: 768px) 50vw, 33vw"
-                        priority={index < 2}
-                        className="object-cover"
-                      />
-                    )}
-                  </Link>
-                  <div className="p-3 flex flex-col flex-1">
-                    <Link href={`/products/${product.id}`} className="text-sm font-medium text-gray-900 line-clamp-2 mb-2 hover:underline">
-                      {product.name}
-                    </Link>
-                    <p className="text-sm text-gray-700 mb-3">
-                      {formatPrice(product.price)}
-                      <span className="text-xs text-gray-500 ml-1">参考</span>
-                    </p>
-                    {product.amazon_url && (
-                      <a
-                        href={product.amazon_url}
-                        target="_blank"
-                        rel={AFFILIATE_LINK_REL}
-                        className="mt-auto text-center text-sm font-semibold bg-orange-500 hover:bg-orange-600 text-white rounded-lg py-2"
-                      >
-                        Amazonで見る
-                      </a>
-                    )}
-                  </div>
-                </div>
+                <CatalogProductCard key={product.id} product={normalizeProduct(product)} priority={index < 2} />
               ))}
             </div>
+            <p className="text-xs text-gray-500 mt-4">
+              楽天市場の商品情報は{' '}
+              <a href="https://developers.rakuten.com/" target="_blank" rel="noopener noreferrer" className="underline">Supported by Rakuten Developers</a>。
+            </p>
           </section>
 
           <section className="bg-white rounded-xl shadow-sm p-6">

@@ -15,9 +15,11 @@ export async function GET() {
 
     // 商品詳細ページ
     try {
-      const { data: products } = await supabase
+      // 楽天から自動取得した商品の詳細ページは noindex のため含めない
+      const { data: rows } = await supabase
         .from('products')
-        .select('id, created_at, updated_at')
+        .select('*')
+      const products = (rows || []).filter((p: any) => p.source !== 'rakuten' && p.is_active !== false)
 
       if (products && products.length > 0) {
         const productUrls = products.map((product: any) =>
