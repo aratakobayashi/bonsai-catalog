@@ -18,9 +18,13 @@ const SORTS: RakutenSort[] = ['standard', '-updateTimestamp']
 const REQUEST_INTERVAL_MS = 1100
 // この日数のあいだ同期で見つからなかった商品は販売終了などとみなして非表示にする
 const DEACTIVATE_AFTER_DAYS = 10
+// 1回の実行で使う時間の上限（Vercel の関数の上限60秒より短くし、残りは次回に回す）
+const TIME_BUDGET_MS = 40_000
 
 export interface SyncSummary {
   ok: boolean
+  processedCategories: string[]
+  remainingCategories: number
   fetched: number
   upserted: number
   deactivated: number
@@ -68,25 +72,48 @@ function toRow(item: RakutenItem, category: ShopCategory, now: string) {
   }
 }
 
+// 前回の同期が古いカテゴリから順に処理する
+async function categoriesByStaleness(supabase: NonNullable<ReturnType<typeof getSupabaseAdmin>>): Promise<ShopCategory[]> {
+  const { data } = await supabase
+    .from('products')
+    .select('sync_category, last_synced_at')
+    .eq('source', 'rakuten')
+    .not('sync_category', 'is', null)
+    .order('last_synced_at', { ascending: false })
+    .limit(5000)
+  const latest = new Map<string, string>()
+  ;(data || []).forEach((row: { sync_category: string; last_synced_at: string }) => {
+    if (!latest.has(row.sync_category)) latest.set(row.sync_category, row.last_synced_at)
+  })
+  return [...SHOP_CATEGORIES].sort((a, b) => (latest.get(a.slug) || '').localeCompare(latest.get(b.slug) || ''))
+}
+
 export async function syncRakutenProducts(): Promise<SyncSummary> {
-  const startedAt = new Date().toISOString()
+  const started = Date.now()
+  const startedAt = new Date(started).toISOString()
   const errors: string[] = []
   const supabase = getSupabaseAdmin()
+  const empty = { processedCategories: [], remainingCategories: SHOP_CATEGORIES.length, fetched: 0, upserted: 0, deactivated: 0, failedRequests: 0 }
   if (!supabase) {
-    return {
-      ok: false, fetched: 0, upserted: 0, deactivated: 0, failedRequests: 0,
-      errors: ['SUPABASE_SERVICE_ROLE_KEY が設定されていません'], startedAt, finishedAt: startedAt,
-    }
+    return { ok: false, ...empty, errors: ['SUPABASE_SERVICE_ROLE_KEY が設定されていません'], startedAt, finishedAt: startedAt }
   }
 
-  const rows = new Map<string, ReturnType<typeof toRow>>()
+  const categories = await categoriesByStaleness(supabase)
+  const processed: string[] = []
+  const seen = new Set<string>()
+  let fetched = 0
+  let upserted = 0
   let failedRequests = 0
-  let first = true
+  let requestCount = 0
 
-  for (const category of SHOP_CATEGORIES) {
+  for (const category of categories) {
+    // 次のカテゴリを処理しきれない可能性があれば、残りは次回に回す
+    if (Date.now() - started > TIME_BUDGET_MS) break
+
+    const rows: ReturnType<typeof toRow>[] = []
     for (const sort of SORTS) {
-      if (!first) await sleep(REQUEST_INTERVAL_MS)
-      first = false
+      if (requestCount > 0) await sleep(REQUEST_INTERVAL_MS)
+      requestCount++
       const { items, error } = await searchRakutenItems({
         keyword: category.keyword,
         genreId: category.group === 'tree' ? BONSAI_GENRE_ID : undefined,
@@ -100,26 +127,29 @@ export async function syncRakutenProducts(): Promise<SyncSummary> {
         continue
       }
       const now = new Date().toISOString()
-      // 先に取得したカテゴリを優先（同じ商品が複数カテゴリに出た場合）
       items.forEach(item => {
-        if (!rows.has(item.code)) rows.set(item.code, toRow(item, category, now))
+        // 同じ商品が複数カテゴリに出た場合は、先に処理したカテゴリを優先
+        if (!seen.has(item.code)) {
+          seen.add(item.code)
+          rows.push(toRow(item, category, now))
+        }
       })
     }
-  }
 
-  let upserted = 0
-  const allRows = Array.from(rows.values())
-  for (let i = 0; i < allRows.length; i += 100) {
-    const chunk = allRows.slice(i, i + 100)
-    const { error } = await supabase.from('products').upsert(chunk, { onConflict: 'source,external_id' })
-    if (error) {
-      errors.push(`upsert: ${error.message}`)
-    } else {
-      upserted += chunk.length
+    // カテゴリごとに保存する（途中で止まっても、そこまでの結果は残る）
+    if (rows.length > 0) {
+      fetched += rows.length
+      const { error } = await supabase.from('products').upsert(rows, { onConflict: 'source,external_id' })
+      if (error) {
+        errors.push(`upsert(${category.slug}): ${error.message}`)
+      } else {
+        upserted += rows.length
+      }
     }
+    processed.push(category.slug)
   }
 
-  // 取得自体が失敗した回は、非表示処理を行わない（誤って全商品を消さないため）
+  // 取得に失敗した回は、非表示処理を行わない（誤って商品を消さないため）
   let deactivated = 0
   if (failedRequests === 0 && upserted > 0) {
     const threshold = new Date(Date.now() - DEACTIVATE_AFTER_DAYS * 24 * 60 * 60 * 1000).toISOString()
@@ -136,7 +166,9 @@ export async function syncRakutenProducts(): Promise<SyncSummary> {
 
   return {
     ok: errors.length === 0,
-    fetched: rows.size,
+    processedCategories: processed,
+    remainingCategories: categories.length - processed.length,
+    fetched,
     upserted,
     deactivated,
     failedRequests,

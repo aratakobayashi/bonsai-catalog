@@ -4,7 +4,7 @@ import { ADMIN_SESSION_COOKIE, verifySessionToken } from '@/lib/auth'
 import { syncRakutenProducts } from '@/lib/rakuten-sync'
 import { PRODUCTS_CACHE_TAG } from '@/lib/catalog'
 
-// 楽天APIを1秒間隔で26回呼ぶため、Vercel の上限（Hobby は60秒）まで実行時間を延ばす
+// 楽天APIを1秒間隔で呼ぶため、Vercel の上限（Hobby は60秒）まで実行時間を延ばす。処理自体は40秒で区切る
 export const maxDuration = 60
 export const dynamic = 'force-dynamic'
 
