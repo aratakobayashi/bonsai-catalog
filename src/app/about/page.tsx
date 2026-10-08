@@ -1,5 +1,9 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import type { ReactNode } from 'react'
+import { CONTAINER, Card, PageHeading, SectionTitle } from '@/components/ui/design'
+import { GARDEN_VERIFIED_AT } from '@/lib/garden-verification'
+import { EVENT_VERIFIED_AT } from '@/lib/event-display'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/about' },
@@ -12,163 +16,168 @@ export const metadata: Metadata = {
   },
 }
 
-export default function AboutPage() {
+const STEPS = [
+  { title: '探す', body: '樹種・予算・サイズから、楽天市場とAmazonの商品をまとめて探せます。' },
+  { title: '比べる', body: '価格・レビュー・サイズを同じ形式で並べて比べられます。' },
+  { title: 'ショップで買う', body: '購入は各ショップのページで行います。当サイトでは販売していません。' },
+]
+
+// 確認日（YYYY-MM-DD）を「2026年10月8日」の形にする
+function formatDate(value: string | null): string | null {
+  const m = value?.match(/^(\d{4})-(\d{2})-(\d{2})/)
+  return m ? `${m[1]}年${Number(m[2])}月${Number(m[3])}日` : null
+}
+
+// 左に項目名、右に説明を置く表（SPでは縦積み）
+function InfoTable({ rows }: { rows: { label: string; body: ReactNode }[] }) {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* ヒーローセクション */}
-      <div className="bg-primary-900 text-white py-16">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <nav className="flex items-center space-x-2 text-sm text-primary-300 mb-6">
-            <Link href="/" className="hover:text-white transition-colors">ホーム</Link>
-            <span>/</span>
-            <span className="text-white">このサイトについて</span>
-          </nav>
-          <h1 className="text-4xl font-bold mb-4">このサイトについて</h1>
-          <p className="text-primary-200 text-lg leading-relaxed">
-            盆栽の世界を、もっと身近に。<br />
-            初心者から熟練者まで、すべての盆栽愛好家のための情報プラットフォームです。
-          </p>
-        </div>
-      </div>
+    <Card className="mt-3 overflow-hidden">
+      <dl className="divide-y divide-line">
+        {rows.map(row => (
+          <div key={row.label} className="px-4 py-4 lg:flex lg:gap-6 lg:px-5">
+            <dt className="text-[13px] font-bold text-ink lg:w-36 lg:shrink-0">{row.label}</dt>
+            <dd className="mt-1 text-[13.5px] leading-[1.85] text-ink-soft lg:mt-0">{row.body}</dd>
+          </div>
+        ))}
+      </dl>
+    </Card>
+  )
+}
 
-      <div className="container mx-auto px-4 py-12 max-w-4xl">
-        <div className="space-y-12">
+export default function AboutPage() {
+  const gardenVerified = formatDate(GARDEN_VERIFIED_AT)
+  const eventVerified = formatDate(EVENT_VERIFIED_AT)
 
-          {/* サイトの目的 */}
-          <section className="bg-white rounded-2xl shadow-sm p-8">
-            <h2 className="text-2xl font-bold text-primary-800 mb-6 flex items-center gap-3">
-              <span className="text-3xl">🌿</span>
-              盆栽コレクションとは
-            </h2>
-            <div className="space-y-4 text-neutral-700 leading-relaxed">
-              <p>
-                <strong>盆栽コレクション</strong>は、日本の伝統文化である盆栽をより多くの方に楽しんでいただくために
-                開設した盆栽専門の情報サイトです。
-              </p>
-              <p>
-                「盆栽は難しそう」「どこから始めればいいかわからない」——そんな声をよく聞きます。
-                このサイトでは、初めて盆栽に触れる方でも安心して始められるよう、
-                水やりの基本から剪定のコツ、樹種ごとの育て方まで、わかりやすく解説しています。
-              </p>
-              <p>
-                また、全国の盆栽園情報・展示会・イベントカレンダーも随時更新しており、
-                盆栽を「見て・買って・育てる」すべての体験をサポートしています。
-              </p>
-            </div>
-          </section>
+  return (
+    <div className={`${CONTAINER} pb-12`}>
+      <div className="mx-auto max-w-[880px]">
+        <PageHeading
+          title="このサイトについて"
+          crumbs={[{ label: 'ホーム', href: '/' }, { label: 'このサイトについて' }]}
+          lead={
+            <span className="block text-[14.5px] leading-[1.9] text-ink lg:text-[15px]">
+              盆栽コレクションは、楽天市場とAmazonで販売されている盆栽・鉢・土・道具を横断して探せる比較・検索サイトです。育て方の記事や、全国の盆栽園・イベントの情報もまとめています。
+            </span>
+          }
+        />
 
-          {/* 運営者情報 */}
-          <section className="bg-white rounded-2xl shadow-sm p-8">
-            <h2 className="text-2xl font-bold text-primary-800 mb-6 flex items-center gap-3">
-              <span className="text-3xl">👤</span>
-              運営者について
-            </h2>
-            <div className="flex flex-col md:flex-row gap-8 items-start">
-              <div className="flex-shrink-0">
-                <div className="w-24 h-24 bg-primary-100 rounded-full flex items-center justify-center text-5xl">
-                  🎋
+        {/* 使い方の3ステップ */}
+        <ol className="mt-6 grid gap-2.5 lg:mt-8 lg:grid-cols-3 lg:gap-3">
+          {STEPS.map((step, i) => (
+            <li key={step.title}>
+              <Card className="flex h-full gap-4 px-4 py-4 lg:block lg:px-5 lg:py-5">
+                <div className="font-mincho text-xl font-bold leading-none text-gold lg:text-2xl">{i + 1}</div>
+                <div className="min-w-0 lg:mt-2.5">
+                  <h2 className="text-[15px] font-bold text-navy">{step.title}</h2>
+                  <p className="mt-1 text-[13px] leading-relaxed text-ink-soft lg:mt-2">{step.body}</p>
                 </div>
-              </div>
-              <div className="space-y-4 text-neutral-700 leading-relaxed">
-                <div>
-                  <p className="font-semibold text-primary-800 text-lg">盆栽コレクション 編集部</p>
-                  <p className="text-sm text-neutral-500 mt-1">盆栽愛好家・植物コンテンツライター</p>
-                </div>
-                <p>
-                  盆栽歴10年以上。松・もみじ・梅を中心に、現在20鉢以上を管理しています。
-                  「盆栽は生き物」という実感から、毎日の観察と記録を大切にしています。
-                </p>
-                <p>
-                  盆栽を始めたきっかけは、祖父が大切にしていた黒松でした。
-                  最初は手入れの仕方もわからず枯らしてしまいそうになりましたが、
-                  地元の盆栽園の方に教えていただき、少しずつ知識を深めてきました。
-                  その経験から「わかりやすい盆栽情報を届けたい」という想いでこのサイトを始めました。
-                </p>
-                <p>
-                  全国の盆栽展・即売会にも足を運び、生産者の方々から直接学んだ知識や
-                  実際に育てて得た気づきをコンテンツに反映しています。
-                </p>
-              </div>
-            </div>
-          </section>
+              </Card>
+            </li>
+          ))}
+        </ol>
 
-          {/* コンテンツポリシー */}
-          <section className="bg-white rounded-2xl shadow-sm p-8">
-            <h2 className="text-2xl font-bold text-primary-800 mb-6 flex items-center gap-3">
-              <span className="text-3xl">📋</span>
-              コンテンツポリシー
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-primary-50 rounded-xl p-5">
-                <h3 className="font-semibold text-primary-700 mb-2">✅ 正確な情報の提供</h3>
-                <p className="text-sm text-neutral-600 leading-relaxed">
-                  樹種の特性・管理方法は、実際の栽培経験と専門書・盆栽園のアドバイスをもとに
-                  執筆しています。情報に誤りが判明した場合は速やかに修正します。
-                </p>
-              </div>
-              <div className="bg-accent-50 rounded-xl p-5">
-                <h3 className="font-semibold text-accent-700 mb-2">📅 定期的な更新</h3>
-                <p className="text-sm text-neutral-600 leading-relaxed">
-                  季節に合わせた管理情報やイベント情報を定期更新しています。
-                  古い情報が残らないよう、各記事の更新日を明記しています。
-                </p>
-              </div>
-              <div className="bg-primary-50 rounded-xl p-5">
-                <h3 className="font-semibold text-primary-700 mb-2">🔗 アフィリエイト開示</h3>
-                <p className="text-sm text-neutral-600 leading-relaxed">
-                  当サイトはAmazonアソシエイト・プログラムに参加しており、
-                  商品リンクから購入いただいた場合に紹介料を受け取ることがあります。
-                  ご紹介する商品の選定は、品質・評判を基準にしています。
-                </p>
-              </div>
-              <div className="bg-accent-50 rounded-xl p-5">
-                <h3 className="font-semibold text-accent-700 mb-2">💬 読者の声を反映</h3>
-                <p className="text-sm text-neutral-600 leading-relaxed">
-                  お問い合わせや読者の方からのご意見・ご質問を参考に、
-                  必要な情報を追加・改善しています。ご意見はお気軽にどうぞ。
-                </p>
-              </div>
-            </div>
-          </section>
+        <section className="mt-10 lg:mt-12">
+          <SectionTitle>表示について</SectionTitle>
+          <InfoTable
+            rows={[
+              {
+                label: '広告について',
+                body: '本サイトはプロモーション（広告）を含みます。商品リンクから購入された場合、当サイトに紹介料が支払われることがあります。Amazonのアソシエイトとして、盆栽コレクションは適格販売により収入を得ています。紹介料によって購入価格が変わることはありません。',
+              },
+              {
+                label: '価格について',
+                body: '掲載している価格・送料・在庫は取得時点の情報です。最新の情報は各ショップの商品ページでご確認ください。',
+              },
+              {
+                label: '商品情報の取得元',
+                body: (
+                  <>
+                    楽天市場の商品は、楽天ウェブサービスの商品検索APIから自動で取得し、価格・レビューを定期的に更新しています。しばらく見つからなくなった商品は販売終了とみなして表示を止めます。Amazonの商品は運営者が選んで掲載しているもので、価格は掲載・更新した時点の情報です。
+                  </>
+                ),
+              },
+              {
+                label: '商品情報について',
+                body: (
+                  <>
+                    楽天市場の商品情報は{' '}
+                    <a href="https://webservice.rakuten.co.jp/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-gold-dark">
+                      Supported by Rakuten Developers
+                    </a>
+                    。
+                  </>
+                ),
+              },
+            ]}
+          />
+        </section>
 
-          {/* サイト概要 */}
-          <section className="bg-white rounded-2xl shadow-sm p-8">
-            <h2 className="text-2xl font-bold text-primary-800 mb-6 flex items-center gap-3">
-              <span className="text-3xl">📊</span>
-              サイト概要
-            </h2>
-            <dl className="divide-y divide-neutral-100">
-              {[
-                { dt: 'サイト名', dd: '盆栽コレクション' },
-                { dt: 'URL', dd: 'https://bonsai-collection.com' },
-                { dt: '運営開始', dd: '2024年9月' },
-                { dt: '主なコンテンツ', dd: '盆栽育て方ガイド・樹種別解説・盆栽園情報・イベントカレンダー' },
-                { dt: '対象読者', dd: '盆栽初心者〜上級者、盆栽に興味のある方全般' },
-                { dt: 'お問い合わせ', dd: 'お問い合わせフォームよりご連絡ください' },
-              ].map(({ dt, dd }) => (
-                <div key={dt} className="py-4 flex flex-col sm:flex-row gap-2">
-                  <dt className="text-sm font-semibold text-neutral-500 sm:w-40 flex-shrink-0">{dt}</dt>
-                  <dd className="text-neutral-700">{dd}</dd>
-                </div>
-              ))}
-            </dl>
-          </section>
+        <section className="mt-10 lg:mt-12">
+          <SectionTitle>盆栽園・イベント情報について</SectionTitle>
+          <InfoTable
+            rows={[
+              {
+                label: '盆栽園',
+                body: (
+                  <>
+                    公式サイトなどの公開情報と照合し、実在を確認できない園・閉園した園・盆栽を扱っていない園は掲載していません。
+                    {gardenVerified && <>（最終確認：{gardenVerified}）</>}
+                  </>
+                ),
+              },
+              {
+                label: 'イベント',
+                body: (
+                  <>
+                    日程・料金は主催者の公式発表と照合しています。今回の日程が発表されていない恒例行事は「日程未定」として、料金が公表されていないものは「公式サイトでご確認ください」として表示します。
+                    {eventVerified && <>（最終確認：{eventVerified}）</>}
+                  </>
+                ),
+              },
+              {
+                label: '情報の修正',
+                body: (
+                  <>
+                    営業時間や日程は変わることがあります。お出かけの前に各公式サイトでご確認ください。掲載内容の誤りは
+                    <Link href="/contact" className="mx-0.5 text-navy underline underline-offset-2 hover:text-gold-dark">お問い合わせ</Link>
+                    からお知らせください。
+                  </>
+                ),
+              },
+            ]}
+          />
+        </section>
 
-          {/* CTAセクション */}
-          <section className="bg-primary-800 text-white rounded-2xl p-8 text-center">
-            <h2 className="text-xl font-bold mb-3">ご質問・ご意見はこちら</h2>
-            <p className="text-primary-200 mb-6 text-sm leading-relaxed">
-              コンテンツの誤り、掲載希望の盆栽園・イベント情報など、<br />
-              お気軽にお問い合わせください。
-            </p>
-            <Link
-              href="/contact"
-              className="inline-block bg-accent-500 hover:bg-accent-400 text-white font-semibold px-8 py-3 rounded-full transition-colors"
-            >
-              お問い合わせフォームへ →
-            </Link>
-          </section>
+        <section className="mt-10 lg:mt-12">
+          <SectionTitle>運営者情報</SectionTitle>
+          <InfoTable
+            rows={[
+              { label: 'サイト名', body: '盆栽コレクション' },
+              { label: '運営者', body: '盆栽コレクション 編集部' },
+              { label: 'URL', body: 'https://bonsai-collection.com' },
+              { label: '運営開始', body: '2024年9月' },
+              { label: '主なコンテンツ', body: '盆栽育て方ガイド・樹種別解説・盆栽園情報・イベントカレンダー' },
+              { label: '対象読者', body: '盆栽初心者〜上級者、盆栽に興味のある方全般' },
+              {
+                label: 'お問い合わせ',
+                body: (
+                  <>
+                    <Link href="/contact" className="text-navy underline underline-offset-2 hover:text-gold-dark">お問い合わせフォーム</Link>
+                    よりご連絡ください。
+                  </>
+                ),
+              },
+            ]}
+          />
+        </section>
 
+        <div className="mt-6 flex gap-2.5">
+          <Link href="/faq" className="inline-flex items-center rounded-lg bg-navy px-5 py-2.5 text-sm font-bold text-white hover:bg-navy-light">
+            よくある質問
+          </Link>
+          <Link href="/contact" className="inline-flex items-center rounded-lg border border-navy bg-white px-5 py-2.5 text-sm font-bold text-navy hover:border-gold hover:text-gold-dark">
+            お問い合わせ
+          </Link>
         </div>
       </div>
     </div>

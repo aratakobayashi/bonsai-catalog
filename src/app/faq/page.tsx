@@ -1,90 +1,64 @@
 'use client'
 
 import Link from 'next/link'
-import { Card, CardContent } from '@/components/ui/Card'
-import { Badge } from '@/components/ui/Badge'
-import { Button } from '@/components/ui/Button'
 import {
   generalFAQs,
   purchaseFAQs,
   speciesFAQs,
-  getFAQsByCategory,
-  searchFAQs,
   type FAQItem
 } from '@/lib/faq-data'
 import { FAQStructuredData } from '@/components/seo/StructuredData'
 import { generateStaticPageBreadcrumbs } from '@/lib/breadcrumb-utils'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
-import { Search, HelpCircle, BookOpen, ShoppingCart, Leaf, ChevronDown, ChevronUp } from 'lucide-react'
+import { CONTAINER, PageHeading, chipClass } from '@/components/ui/design'
 import { useState } from 'react'
 
-// SEO metadata は layout.tsx または page.tsx で設定
+// SEO metadata は layout.tsx で設定
 
 // FAQ カテゴリー情報
 const categoryInfo = {
-  general: {
-    name: '基本的な質問',
-    icon: <HelpCircle className="h-5 w-5" />,
-    color: 'bg-blue-50 text-blue-700 border-blue-200',
-    description: '盆栽全般に関する基本的な質問'
-  },
-  care: {
-    name: '育て方・管理',
-    icon: <Leaf className="h-5 w-5" />,
-    color: 'bg-green-50 text-green-700 border-green-200',
-    description: '水やり、肥料、剪定など日常管理について'
-  },
-  beginner: {
-    name: '初心者向け',
-    icon: <BookOpen className="h-5 w-5" />,
-    color: 'bg-yellow-50 text-yellow-700 border-yellow-200',
-    description: '盆栽を始める方への基本情報'
-  },
-  purchase: {
-    name: '購入・価格',
-    icon: <ShoppingCart className="h-5 w-5" />,
-    color: 'bg-purple-50 text-purple-700 border-purple-200',
-    description: '盆栽の購入方法や価格について'
-  },
-  species: {
-    name: '樹種別',
-    icon: <Leaf className="h-5 w-5" />,
-    color: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-    description: '特定の樹種に関する専門的な質問'
-  }
+  general: { name: '基本的な質問', description: '盆栽全般に関する基本的な質問' },
+  care: { name: '育て方・管理', description: '水やり、肥料、剪定など日常管理について' },
+  beginner: { name: '初心者向け', description: '盆栽を始める方への基本情報' },
+  purchase: { name: '購入・価格', description: '盆栽の購入方法や価格について' },
+  species: { name: '樹種別', description: '特定の樹種に関する専門的な質問' },
 }
 
-// FAQ アイテム コンポーネント
+type CategoryKey = keyof typeof categoryInfo
+
+// FAQ アイテム（Q／A のアコーディオン）
 function FAQAccordion({ faq, isOpen, onToggle }: {
   faq: FAQItem
   isOpen: boolean
   onToggle: () => void
 }) {
   return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+    <div className={`rounded-xl border bg-white ${isOpen ? 'border-navy' : 'border-line'}`}>
       <button
+        type="button"
         onClick={onToggle}
-        className="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 transition-colors flex items-center justify-between"
+        aria-expanded={isOpen}
+        className="flex w-full items-start gap-3 px-4 py-4 text-left lg:px-5"
       >
-        <h3 className="font-medium text-gray-900 pr-4">{faq.question}</h3>
-        {isOpen ? (
-          <ChevronUp className="h-5 w-5 text-gray-500 flex-shrink-0" />
-        ) : (
-          <ChevronDown className="h-5 w-5 text-gray-500 flex-shrink-0" />
-        )}
+        <span className="font-mincho text-[15px] font-bold leading-6 text-gold" aria-hidden>Q</span>
+        <h3 className={`min-w-0 flex-1 text-[14px] leading-6 text-ink lg:text-[14.5px] ${isOpen ? 'font-bold' : ''}`}>{faq.question}</h3>
+        <span className="text-lg leading-6 text-ink-muted" aria-hidden>{isOpen ? '−' : '＋'}</span>
       </button>
       {isOpen && (
-        <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
-          <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">{faq.answer}</p>
-          {faq.keywords && faq.keywords.length > 0 && (
-            <div className="mt-3 flex flex-wrap gap-2">
-              {faq.keywords.map((keyword, index) => (
-                <Badge key={index} variant="outline" className="text-xs">
-                  {keyword}
-                </Badge>
-              ))}
-            </div>
-          )}
+        <div className="mx-4 flex gap-3 border-t border-line pb-4 pt-3.5 lg:mx-5">
+          <span className="font-mincho text-[15px] font-bold leading-7 text-navy" aria-hidden>A</span>
+          <div className="min-w-0 flex-1">
+            <p className="whitespace-pre-wrap text-[14px] leading-[1.9] text-ink">{faq.answer}</p>
+            {faq.keywords && faq.keywords.length > 0 && (
+              <div className="mt-2.5 flex flex-wrap gap-1.5">
+                {faq.keywords.map((keyword, index) => (
+                  <span key={index} className="rounded bg-[#f1eee8] px-1.5 py-0.5 text-[11px] text-ink-soft">
+                    {keyword}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>
@@ -115,19 +89,25 @@ export default function FAQPage() {
     return matchesSearch && matchesCategory
   })
 
+  // カテゴリーごとにまとめて表示（「すべて」のときは全カテゴリー、それ以外は選んだカテゴリーのみ）
+  const groups = (Object.keys(categoryInfo) as CategoryKey[])
+    .filter(key => selectedCategory === 'all' || key === selectedCategory)
+    .map(key => ({ key, info: categoryInfo[key], faqs: filteredFAQs.filter(faq => faq.category === key) }))
+    .filter(group => group.faqs.length > 0)
+
   // パンくずリスト
   const breadcrumbs = generateStaticPageBreadcrumbs(
     'よくある質問',
     'https://www.bonsai-collection.com/faq'
   )
 
-  const toggleItem = (index: number) => {
+  // 開閉状態は質問文で管理する（カテゴリーを切り替えても崩れない）
+  const toggleItem = (key: string) => {
     const newOpenItems = new Set(openItems)
-    const itemKey = `${selectedCategory}-${index}`
-    if (newOpenItems.has(itemKey)) {
-      newOpenItems.delete(itemKey)
+    if (newOpenItems.has(key)) {
+      newOpenItems.delete(key)
     } else {
-      newOpenItems.add(itemKey)
+      newOpenItems.add(key)
     }
     setOpenItems(newOpenItems)
   }
@@ -140,169 +120,96 @@ export default function FAQPage() {
         baseUrl="https://www.bonsai-collection.com"
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-        <div className="container mx-auto px-4 py-8">
-          {/* ヘッダー */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-indigo-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-4">
-              よくある質問
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              盆栽に関するよくある質問と回答をまとめました。<br />
-              初心者の方から上級者まで、お役に立つ情報をご覧いただけます。
+      <div className={`${CONTAINER} pb-12`}>
+        <div className="mx-auto max-w-[880px]">
+          <PageHeading
+            title="よくある質問"
+            lead={<span className="hidden lg:inline">盆栽に関するよくある質問と回答をまとめました。</span>}
+            crumbs={[{ label: 'ホーム', href: '/' }, { label: '育て方', href: '/guides' }, { label: 'よくある質問' }]}
+          />
+
+          {/* 検索とカテゴリー */}
+          <div className="mt-4 lg:mt-5">
+            <input
+              type="search"
+              placeholder="質問を検索（例：水やり、室内）"
+              aria-label="質問を検索"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="h-12 w-full rounded-lg border border-navy/40 bg-white px-4 text-[14px] text-ink placeholder:text-ink-muted outline-none focus:border-navy"
+            />
+            <div className="-mx-4 mt-3 flex gap-2 overflow-x-auto px-4 pb-1 lg:mx-0 lg:flex-wrap lg:overflow-visible lg:px-0">
+              <button type="button" onClick={() => setSelectedCategory('all')} className={`shrink-0 ${chipClass(selectedCategory === 'all')}`} aria-pressed={selectedCategory === 'all'}>
+                すべて
+              </button>
+              {(Object.keys(categoryInfo) as CategoryKey[]).map(key => (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => setSelectedCategory(key)}
+                  className={`shrink-0 ${chipClass(selectedCategory === key)}`}
+                  aria-pressed={selectedCategory === key}
+                >
+                  {categoryInfo[key].name}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* もっとも多い誤解をカテゴリーに関係なく先頭に固定 */}
+          <div className="mt-5 rounded-xl bg-navy px-4 py-4 text-white lg:mt-6 lg:px-5">
+            <p className="text-[14px] font-bold">このサイトで購入できますか？</p>
+            <p className="mt-1 text-[13px] leading-[1.8] text-white/85">
+              当サイトでは販売していません。商品ページの「楽天市場で見る」「Amazonで見る」から各ショップで購入できます。注文・配送・返品は購入したショップへお問い合わせください。
             </p>
           </div>
 
-          {/* 検索とフィルター */}
-          <div className="max-w-4xl mx-auto mb-8">
-            <Card className="p-6">
-              <div className="space-y-4">
-                {/* 検索バー */}
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                  <input
-                    type="text"
-                    placeholder="質問を検索..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                </div>
-
-                {/* カテゴリーフィルター */}
-                <div className="flex flex-wrap gap-2">
-                  <Button
-                    variant={selectedCategory === 'all' ? 'primary' : 'outline'}
-                    onClick={() => setSelectedCategory('all')}
-                    className="text-sm"
-                  >
-                    すべて
-                  </Button>
-                  {Object.entries(categoryInfo).map(([key, info]) => (
-                    <Button
-                      key={key}
-                      variant={selectedCategory === key ? 'primary' : 'outline'}
-                      onClick={() => setSelectedCategory(key)}
-                      className="text-sm flex items-center gap-2"
-                    >
-                      {info.icon}
-                      {info.name}
-                    </Button>
-                  ))}
-                </div>
-              </div>
-            </Card>
-          </div>
-
           {/* FAQ カテゴリー別表示 */}
-          <div className="max-w-4xl mx-auto space-y-8">
-            {selectedCategory === 'all' ? (
-              // 全カテゴリー表示
-              Object.entries(categoryInfo).map(([categoryKey, categoryData]) => {
-                const categoryFAQs = allFAQs.filter(faq => faq.category === categoryKey)
-                if (categoryFAQs.length === 0) return null
-
-                return (
-                  <div key={categoryKey}>
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className={`p-2 rounded-lg ${categoryData.color}`}>
-                        {categoryData.icon}
-                      </div>
-                      <div>
-                        <h2 className="text-2xl font-bold text-gray-900">{categoryData.name}</h2>
-                        <p className="text-gray-600">{categoryData.description}</p>
-                      </div>
-                    </div>
-                    <div className="space-y-3">
-                      {categoryFAQs.map((faq, index) => (
-                        <FAQAccordion
-                          key={`${categoryKey}-${index}`}
-                          faq={faq}
-                          isOpen={openItems.has(`${categoryKey}-${index}`)}
-                          onToggle={() => toggleItem(index)}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                )
-              })
-            ) : (
-              // 選択されたカテゴリーのみ表示
-              <div>
-                {selectedCategory !== 'all' && categoryInfo[selectedCategory as keyof typeof categoryInfo] && (
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className={`p-2 rounded-lg ${categoryInfo[selectedCategory as keyof typeof categoryInfo].color}`}>
-                      {categoryInfo[selectedCategory as keyof typeof categoryInfo].icon}
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-bold text-gray-900">
-                        {categoryInfo[selectedCategory as keyof typeof categoryInfo].name}
-                      </h2>
-                      <p className="text-gray-600">
-                        {categoryInfo[selectedCategory as keyof typeof categoryInfo].description}
-                      </p>
-                    </div>
-                  </div>
-                )}
-                <div className="space-y-3">
-                  {filteredFAQs.map((faq, index) => (
+          <div className="mt-8 space-y-8">
+            {groups.map(group => (
+              <section key={group.key}>
+                <div className="flex items-baseline gap-2.5">
+                  <h2 className="font-mincho text-lg font-bold text-navy lg:text-xl">{group.info.name}</h2>
+                  <p className="hidden text-xs text-ink-soft lg:block">{group.info.description}</p>
+                </div>
+                <div className="mt-3 space-y-2.5">
+                  {group.faqs.map(faq => (
                     <FAQAccordion
-                      key={`${selectedCategory}-${index}`}
+                      key={faq.question}
                       faq={faq}
-                      isOpen={openItems.has(`${selectedCategory}-${index}`)}
-                      onToggle={() => toggleItem(index)}
+                      isOpen={openItems.has(faq.question)}
+                      onToggle={() => toggleItem(faq.question)}
                     />
                   ))}
                 </div>
-              </div>
-            )}
+              </section>
+            ))}
 
-            {filteredFAQs.length === 0 && (
-              <div className="text-center py-12">
-                <HelpCircle className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
-                  該当する質問が見つかりませんでした
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  検索条件を変更してお試しください。
-                </p>
-                <Button
+            {groups.length === 0 && (
+              <div className="rounded-xl border border-line bg-white px-5 py-10 text-center">
+                <p className="font-bold text-ink">該当する質問が見つかりませんでした</p>
+                <p className="mt-1 text-sm text-ink-soft">検索条件を変更してお試しください。</p>
+                <button
+                  type="button"
                   onClick={() => {
                     setSearchTerm('')
                     setSelectedCategory('all')
                   }}
+                  className="mt-4 inline-flex rounded-lg bg-navy px-5 py-2.5 text-sm font-bold text-white hover:bg-navy-light"
                 >
                   すべての質問を表示
-                </Button>
+                </button>
               </div>
             )}
           </div>
 
-          {/* お問い合わせCTA */}
-          <div className="max-w-4xl mx-auto mt-12">
-            <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
-              <CardContent className="p-8 text-center">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  お探しの質問が見つかりませんでしたか？
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  その他のご質問やお困りのことがございましたら、お気軽にお問い合わせください。
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button asChild>
-                    <Link href="/contact">
-                      お問い合わせ
-                    </Link>
-                  </Button>
-                  <Button variant="outline" asChild>
-                    <Link href="/guides">
-                      盆栽ガイドを見る
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          <p className="mt-6 text-[13px] text-ink-soft">
+            解決しない場合は
+            <Link href="/contact" className="mx-1 text-navy underline underline-offset-2 hover:text-gold-dark">お問い合わせ</Link>
+            からご連絡ください。育て方は
+            <Link href="/guides" className="mx-1 text-navy underline underline-offset-2 hover:text-gold-dark">盆栽ガイド</Link>
+            でも詳しく解説しています。
+          </p>
         </div>
       </div>
     </>

@@ -1,20 +1,70 @@
 'use client'
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/Button'
-import { Mail, MessageCircle, Clock } from 'lucide-react'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { CONTAINER, PageHeading } from '@/components/ui/design'
+
+// お問い合わせの種類。盆栽園・イベント詳細の「修正を依頼」からは ?type=correction&page=<対象ページ> で開く
+const INQUIRY_TYPES = [
+  { value: 'site', label: 'サイトについて' },
+  { value: 'correction', label: '掲載情報の修正（盆栽園・イベント）' },
+  { value: 'photo', label: '写真の提供' },
+  { value: 'ad', label: '広告・取材' },
+  { value: 'other', label: 'その他' },
+] as const
+
+type InquiryType = (typeof INQUIRY_TYPES)[number]['value']
+
+const MESSAGE_PLACEHOLDERS: Record<InquiryType, string> = {
+  site: 'お問い合わせ内容をお書きください',
+  correction: '修正が必要な箇所と、正しい情報をお書きください',
+  photo: '提供いただける写真の内容と、掲載の条件があればお書きください',
+  ad: 'ご依頼の内容をお書きください',
+  other: 'お問い合わせ内容をお書きください',
+}
+
+const inputClass =
+  'w-full rounded-lg border border-line bg-white px-3.5 py-3 text-[14px] text-ink placeholder:text-ink-muted outline-none focus:border-navy'
+
+function Label({ htmlFor, children, required = false }: { htmlFor?: string; children: React.ReactNode; required?: boolean }) {
+  const content = (
+    <>
+      {children}
+      {required && <span className="ml-1.5 text-[11px] font-bold text-rakuten">必須</span>}
+    </>
+  )
+  return htmlFor ? (
+    <label htmlFor={htmlFor} className="mb-1.5 block text-[13px] font-bold text-ink">{content}</label>
+  ) : (
+    <span className="mb-1.5 block text-[13px] font-bold text-ink">{content}</span>
+  )
+}
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
+    type: '' as InquiryType | '',
+    page: '',
     name: '',
     email: '',
-    subject: '',
-    message: ''
+    message: '',
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [agreed, setAgreed] = useState(false)
+  const [step, setStep] = useState<'input' | 'confirm'>('input')
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  // 「修正を依頼」リンクなどから、種類と対象ページを選んだ状態で開く
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const type = params.get('type')
+    const page = params.get('page')
+    setFormData(prev => ({
+      ...prev,
+      type: INQUIRY_TYPES.some(t => t.value === type) ? (type as InquiryType) : prev.type,
+      page: page ? page.slice(0, 200) : prev.page,
+    }))
+  }, [])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
@@ -23,227 +73,221 @@ export default function ContactPage() {
 
   // 送信先メールアドレス（未設定ならフォームは受付停止）
   const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || ''
+  const typeLabel = INQUIRY_TYPES.find(t => t.value === formData.type)?.label ?? ''
+
+  // 入力 → 確認画面へ
+  const handleConfirm = (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitStatus('idle')
+    setStep('confirm')
+    window.scrollTo({ top: 0 })
+  }
 
   // サーバー送信の仕組みが無いため、入力内容を差し込んだメールソフトを開く
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = () => {
     if (!contactEmail) {
       setSubmitStatus('error')
       return
     }
-    setIsSubmitting(true)
-    const body = `お名前: ${formData.name}\nメールアドレス: ${formData.email}\n\n${formData.message}`
+    const lines = [
+      `お問い合わせの種類: ${typeLabel}`,
+      formData.page ? `対象のページ: ${formData.page}` : null,
+      `お名前: ${formData.name}`,
+      `メールアドレス: ${formData.email}`,
+      '',
+      formData.message,
+    ].filter((line): line is string => line !== null)
     window.location.href =
-      `mailto:${contactEmail}?subject=${encodeURIComponent(`[盆栽コレクション] ${formData.subject}`)}&body=${encodeURIComponent(body)}`
+      `mailto:${contactEmail}?subject=${encodeURIComponent(`[盆栽コレクション] ${typeLabel}`)}&body=${encodeURIComponent(lines.join('\n'))}`
     setSubmitStatus('success')
-    setIsSubmitting(false)
   }
 
   return (
-    <div className="container mx-auto px-4 py-16 max-w-4xl">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-primary-800 mb-4">
-          お問い合わせ
-        </h1>
-        <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-          盆栽コレクションに関するご質問、ご意見、ご要望などがございましたら、
-          お気軽にお問い合わせください。
-        </p>
-      </div>
+    <div className={`${CONTAINER} pb-12`}>
+      <div className="mx-auto max-w-[720px]">
+        <PageHeading
+          title="お問い合わせ"
+          crumbs={[{ label: 'ホーム', href: '/' }, { label: 'お問い合わせ' }]}
+          lead={
+            <>
+              回答までに数日いただく場合があります。
+              <span className="hidden lg:inline">
+                先に<Link href="/faq" className="text-navy underline underline-offset-2 hover:text-gold-dark">よくある質問</Link>もご確認ください。
+              </span>
+            </>
+          }
+        />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        {/* お問い合わせフォーム */}
-        <div className="lg:col-span-2">
-          <div className="bg-white rounded-xl shadow-luxury p-8">
-            <h2 className="text-2xl font-semibold text-primary-700 mb-6 flex items-center">
-              <MessageCircle className="h-6 w-6 mr-3 text-accent-600" />
-              お問い合わせフォーム
-            </h2>
+        {/* 販売はしていないことを先に案内する */}
+        <div className="mt-5 rounded-xl border border-line bg-[#fdfaf4] px-4 py-4 lg:px-5">
+          <p className="text-[13px] font-bold text-ink">商品の注文・配送・返品について</p>
+          <p className="mt-1 text-[13px] leading-[1.8] text-ink-soft">
+            当サイトでは販売を行っていないため、購入したショップ（楽天市場の各店舗・Amazon）へ直接お問い合わせください。
+          </p>
+        </div>
+
+        {step === 'input' ? (
+          <form onSubmit={handleConfirm} className="mt-6 space-y-5">
+            <fieldset>
+              <legend className="contents"><Label required>お問い合わせの種類</Label></legend>
+              <div className="space-y-2">
+                {INQUIRY_TYPES.map(t => {
+                  const checked = formData.type === t.value
+                  return (
+                    <label
+                      key={t.value}
+                      className={`flex cursor-pointer items-center gap-3 rounded-lg border bg-white px-3.5 py-2.5 text-[14px] text-ink ${checked ? 'border-navy' : 'border-line hover:border-gold'}`}
+                    >
+                      <input
+                        type="radio"
+                        name="type"
+                        value={t.value}
+                        checked={checked}
+                        onChange={handleChange}
+                        required
+                        className="h-4 w-4 accent-navy"
+                      />
+                      {t.label}
+                    </label>
+                  )
+                })}
+              </div>
+            </fieldset>
+
+            <div>
+              <Label htmlFor="page">対象のページ</Label>
+              <input
+                type="text"
+                id="page"
+                name="page"
+                value={formData.page}
+                onChange={handleChange}
+                maxLength={200}
+                className={inputClass}
+                placeholder="例：清香園のページ"
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="name" required>お名前</Label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                autoComplete="name"
+                className={inputClass}
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="email" required>メールアドレス</Label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                autoComplete="email"
+                className={inputClass}
+                placeholder="example@mail.com"
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="message" required>内容</Label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={6}
+                className={`${inputClass} resize-y`}
+                placeholder={MESSAGE_PLACEHOLDERS[formData.type || 'site']}
+              />
+            </div>
+
+            <label className="flex items-center gap-2.5 text-[13.5px] text-ink">
+              <input
+                type="checkbox"
+                checked={agreed}
+                onChange={e => setAgreed(e.target.checked)}
+                required
+                className="h-[18px] w-[18px] accent-navy"
+              />
+              <span>
+                <Link href="/privacy" target="_blank" className="text-navy underline underline-offset-2 hover:text-gold-dark">プライバシーポリシー</Link>
+                に同意する
+              </span>
+            </label>
+
+            <button
+              type="submit"
+              className="w-full rounded-lg bg-navy py-3.5 text-[15px] font-bold text-white hover:bg-navy-light"
+            >
+              確認画面へ
+            </button>
+          </form>
+        ) : (
+          <div className="mt-6">
+            <h2 className="font-mincho text-lg font-bold text-navy">入力内容の確認</h2>
+            <dl className="mt-3 divide-y divide-line rounded-xl border border-line bg-white">
+              {[
+                { label: 'お問い合わせの種類', value: typeLabel },
+                { label: '対象のページ', value: formData.page || '—' },
+                { label: 'お名前', value: formData.name },
+                { label: 'メールアドレス', value: formData.email },
+                { label: '内容', value: formData.message },
+              ].map(row => (
+                <div key={row.label} className="px-4 py-3.5 lg:flex lg:gap-6 lg:px-5">
+                  <dt className="text-[13px] font-bold text-ink lg:w-40 lg:shrink-0">{row.label}</dt>
+                  <dd className="mt-1 whitespace-pre-wrap break-words text-[14px] leading-[1.8] text-ink-soft lg:mt-0">{row.value}</dd>
+                </div>
+              ))}
+            </dl>
 
             {submitStatus === 'success' && (
-              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-                <p className="text-green-800">
-                  メールソフトが起動します。内容を確認のうえ送信してください。起動しない場合は {contactEmail} 宛てに直接お送りください。
-                </p>
-              </div>
+              <p className="mt-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-[13px] leading-relaxed text-green-800">
+                メールソフトが起動します。内容を確認のうえ送信してください。起動しない場合は {contactEmail} 宛てに直接お送りください。
+              </p>
             )}
-
             {submitStatus === 'error' && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-red-800">
-                  現在、お問い合わせの受付を準備中です。恐れ入りますが、しばらくしてから再度お試しください。
-                </p>
-              </div>
+              <p className="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-[13px] leading-relaxed text-red-800">
+                現在、お問い合わせの受付を準備中です。恐れ入りますが、しばらくしてから再度お試しください。
+              </p>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-primary-700 mb-2">
-                    お名前 <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
-                    placeholder="山田太郎"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-primary-700 mb-2">
-                    メールアドレス <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
-                    placeholder="example@email.com"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-primary-700 mb-2">
-                  件名 <span className="text-red-500">*</span>
-                </label>
-                <select
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
-                >
-                  <option value="">お問い合わせの種類を選択してください</option>
-                  <option value="商品について">商品について</option>
-                  <option value="サイトの使い方">サイトの使い方</option>
-                  <option value="商品リクエスト">商品リクエスト</option>
-                  <option value="技術的な問題">技術的な問題</option>
-                  <option value="プライバシーポリシー">プライバシーポリシー</option>
-                  <option value="その他">その他</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-primary-700 mb-2">
-                  メッセージ <span className="text-red-500">*</span>
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors resize-vertical"
-                  placeholder="お問い合わせ内容を詳しくご記入ください..."
-                />
-              </div>
-
-              <div className="text-sm text-neutral-600">
-                <span className="text-red-500">*</span> は必須項目です
-              </div>
-
-              <Button
-                type="submit"
-                variant="luxury"
-                size="lg"
-                className="w-full"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? '送信中...' : '送信する'}
-              </Button>
-            </form>
-          </div>
-        </div>
-
-        {/* サイドバー情報 */}
-        <div className="space-y-8">
-          {/* 連絡先情報 */}
-          <div className="bg-gradient-to-br from-primary-50 to-accent-50 rounded-xl p-6">
-            <h3 className="text-lg font-semibold text-primary-700 mb-4 flex items-center">
-              <Mail className="h-5 w-5 mr-2 text-accent-600" />
-              連絡先情報
-            </h3>
-            <div className="space-y-3 text-sm text-neutral-700">
-              <p>
-                <strong>運営サイト:</strong><br />
-                盆栽コレクション
-              </p>
-              <p>
-                <strong>メール:</strong><br />
-                {contactEmail || <span className="text-xs text-neutral-500">準備中</span>}
-              </p>
-            </div>
-          </div>
-
-          {/* 回答時間の目安 */}
-          <div className="bg-white border border-neutral-200 rounded-xl p-6">
-            <h3 className="text-lg font-semibold text-primary-700 mb-4 flex items-center">
-              <Clock className="h-5 w-5 mr-2 text-accent-600" />
-              回答時間の目安
-            </h3>
-            <div className="space-y-3 text-sm text-neutral-700">
-              <div>
-                <strong className="text-primary-600">一般的なお問い合わせ</strong>
-                <p>1-3営業日以内</p>
-              </div>
-              <div>
-                <strong className="text-primary-600">技術的な問題</strong>
-                <p>24-48時間以内</p>
-              </div>
-              <div>
-                <strong className="text-primary-600">商品リクエスト</strong>
-                <p>1週間以内</p>
-              </div>
-            </div>
-            <p className="text-xs text-neutral-500 mt-4">
-              ※土日祝日を除く営業日での対応となります
+            <p className="mt-4 text-[12.5px] leading-relaxed text-ink-muted">
+              「メールソフトで送信」を押すと、入力内容が入ったメールが開きます。そのまま送信してください。
             </p>
-          </div>
-
-          {/* よくある質問 */}
-          <div className="bg-white border border-neutral-200 rounded-xl p-6">
-            <h3 className="text-lg font-semibold text-primary-700 mb-4">
-              よくある質問
-            </h3>
-            <div className="space-y-4 text-sm">
-              <div>
-                <h4 className="font-medium text-primary-600 mb-1">
-                  商品の購入はこのサイトからできますか？
-                </h4>
-                <p className="text-neutral-600">
-                  当サイトは商品紹介サイトです。実際の購入はAmazonで行われます。
-                </p>
-              </div>
-              <div>
-                <h4 className="font-medium text-primary-600 mb-1">
-                  商品リクエストは受け付けていますか？
-                </h4>
-                <p className="text-neutral-600">
-                  はい、お気軽にリクエストしてください。検討して追加いたします。
-                </p>
-              </div>
-              <div>
-                <h4 className="font-medium text-primary-600 mb-1">
-                  盆栽の育て方について相談できますか？
-                </h4>
-                <p className="text-neutral-600">
-                  基本的なご質問にはお答えできますが、専門的な相談は専門店にご相談ください。
-                </p>
-              </div>
+            <div className="mt-4 flex flex-col-reverse gap-2.5 sm:flex-row">
+              <button
+                type="button"
+                onClick={() => setStep('input')}
+                className="rounded-lg border border-navy bg-white px-6 py-3.5 text-[14px] font-bold text-navy hover:border-gold hover:text-gold-dark sm:w-40"
+              >
+                修正する
+              </button>
+              <button
+                type="button"
+                onClick={handleSubmit}
+                className="flex-1 rounded-lg bg-navy py-3.5 text-[15px] font-bold text-white hover:bg-navy-light"
+              >
+                メールソフトで送信
+              </button>
             </div>
           </div>
-        </div>
+        )}
+
+        {contactEmail && (
+          <p className="mt-6 text-[12.5px] text-ink-muted">
+            メールで直接送る場合：<a href={`mailto:${contactEmail}`} className="text-navy underline underline-offset-2">{contactEmail}</a>
+          </p>
+        )}
       </div>
     </div>
   )
