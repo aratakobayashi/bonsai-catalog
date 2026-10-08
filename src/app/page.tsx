@@ -1,16 +1,20 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getCatalogProducts, type CatalogProduct } from '@/lib/catalog'
+import { getCatalogProducts, SPECIES_OPTIONS, type CatalogProduct } from '@/lib/catalog'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
+import { ProductThumb } from '@/components/catalog/ProductThumb'
 import { getArticles } from '@/lib/database/articles'
 import { isOptimizableImage } from '@/lib/image-utils'
-import { HeroCarousel, type HeroSlide } from '@/components/home/HeroCarousel'
-import { ProductSearchPanel } from '@/components/home/ProductSearchPanel'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
+import { CONTAINER, Card, Placeholder, SectionTitle, chipClass } from '@/components/ui/design'
 import { SELECTIONS } from '@/lib/selections'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { isArticleIndexable } from '@/lib/content-policy'
+import { supabaseServer } from '@/lib/supabase-server'
+import { isGardenPublished } from '@/lib/garden-verification'
+import { getUpcomingEventsCount } from '@/lib/events'
+import { getSeasonalPick } from '@/components/home/seasonal'
 import type { Article } from '@/types'
 
 // 1時間ごとに再生成（ISR）。ページを開いた直後のHTMLに商品・記事が入る
@@ -20,43 +24,29 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 }
 
-const heroSlides: HeroSlide[] = [
-  {
-    id: 1,
-    image: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop',
-    title: '松柏類の美学',
-    subtitle: '時を超えた伝統美',
-    description: '風雪に耐え抜いた力強さと優雅さを併せ持つ松柏類盆栽',
-    cta: '松柏類を見る',
-    link: '/products?species=cat-shohaku'
-  },
-  {
-    id: 2,
-    image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop',
-    title: '雑木類の季節美',
-    subtitle: '四季の移ろいを楽しむ',
-    description: '春の新緑から秋の紅葉まで、季節ごとの表情を魅せる雑木類',
-    cta: '雑木類を見る',
-    link: '/products?species=cat-zouki'
-  },
-  {
-    id: 3,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop',
-    title: '花ものの華やかさ',
-    subtitle: '咲き誇る美しい瞬間',
-    description: '桜や梅など、開花時期の華やかな美しさを堪能する花もの盆栽',
-    cta: '花ものを見る',
-    link: '/products?species=cat-hana'
-  }
+// ヒーローの樹種チップ
+const HERO_CHIPS = ['goyomatsu', 'momiji', 'sakura', 'mini', 'kokedama', 'hachi']
+
+// 「目的から選ぶ」の表示名（特集ページ＋鉢・土・道具）
+const PURPOSE_LABELS: Record<string, { title: string; spTitle?: string; sub: string; spSub?: string }> = {
+  'beginner-mini-bonsai': { title: 'はじめての一鉢', sub: '育てやすいミニ盆栽' },
+  'bonsai-gift': { title: '贈り物に選ぶ', spTitle: '贈り物に', sub: '母の日・敬老の日・新築祝い', spSub: '母の日・敬老の日' },
+  'new-year-bonsai': { title: '正月に飾る', sub: '松竹梅・南天' },
+}
+const PURPOSE_ORDER = ['beginner-mini-bonsai', 'bonsai-gift', 'new-year-bonsai']
+
+// 「レビューが多い盆栽」の予算タブ（商品一覧の条件へリンク）
+const BUDGET_TABS = [
+  { label: '〜3,000円', max: 3000 },
+  { label: '〜5,000円', max: 5000 },
+  { label: '〜10,000円', max: 10000 },
 ]
 
-// 新着の盆栽（樹）。楽天の自動取得分も含め、画像のあるものから選ぶ
-async function getNewProducts(): Promise<CatalogProduct[]> {
-  const products = await getCatalogProducts()
-  return products
-    .filter(p => p.productType === 'tree' && p.imageUrl)
-    .sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''))
-    .slice(0, 8)
+const byReviews = (a: CatalogProduct, b: CatalogProduct) => b.reviewCount - a.reviewCount || b.reviewAverage - a.reviewAverage
+
+// 条件に合う商品のうち、レビューが多く画像のあるもの
+function pickImage(products: CatalogProduct[], match: (p: CatalogProduct) => boolean): CatalogProduct | undefined {
+  return products.filter(p => p.imageUrl && match(p)).sort(byReviews)[0]
 }
 
 async function getPopularArticles(): Promise<Article[]> {
@@ -70,160 +60,259 @@ async function getPopularArticles(): Promise<Article[]> {
   }
 }
 
-function SectionHeading({ title, href }: { title: string; href: string }) {
+async function getGardenCount(): Promise<number> {
+  const { data, error } = await supabaseServer.from('gardens').select('id')
+  if (error) {
+    console.error('盆栽園データの取得エラー:', error)
+    return 0
+  }
+  return ((data || []) as { id: string }[]).filter(garden => isGardenPublished(garden)).length
+}
+
+function PurposeImage({ product, label }: { product?: CatalogProduct; label: string }) {
+  if (!product) return <Placeholder className="h-[120px]" />
   return (
-    <div className="text-center mb-12">
-      <h2 className="text-3xl md:text-4xl font-light text-slate-800 mb-4 tracking-wide">{title}</h2>
-      <div className="h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent w-32 mx-auto mb-6"></div>
-      <Link
-        href={href}
-        className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-800 font-medium transition-colors duration-300 group"
-      >
-        すべて見る
-        <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </Link>
+    <div className="relative h-[120px] bg-[#f1eee8]">
+      <ProductThumb src={product.imageUrl} alt={label} sizes="(max-width: 1024px) 50vw, 25vw" />
     </div>
   )
 }
 
 export default async function HomePage() {
-  const [popularProducts, popularArticles] = await Promise.all([
-    getNewProducts(),
-    getPopularArticles()
+  const [products, popularArticles, gardenCount, eventCount] = await Promise.all([
+    getCatalogProducts(),
+    getPopularArticles(),
+    getGardenCount(),
+    getUpcomingEventsCount(),
   ])
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <HeroCarousel slides={heroSlides} />
+  // 商品一覧（/products）の既定の表示と同じく「その他」を除いた件数
+  const total = products.filter(p => p.productType !== 'other').length
+  const trees = products.filter(p => p.productType === 'tree')
+  const topReviewed = trees.filter(p => p.imageUrl && p.reviewCount > 0).sort(byReviews).slice(0, 4)
 
-      {/* 検索 */}
-      <section className="relative bg-white py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <h1 className="text-2xl md:text-3xl font-medium text-slate-800 text-center mb-3 tracking-wide">
-              初心者から楽しめる盆栽の選び方・育て方ガイド
+  const season = getSeasonalPick()
+  const seasonMatch = SPECIES_OPTIONS.find(o => o.value === season.slug)?.match
+  const seasonProduct = seasonMatch ? pickImage(trees.concat(products.filter(p => p.productType === 'kokedama')), seasonMatch) : undefined
+
+  const purposes = [
+    ...PURPOSE_ORDER.map(slug => SELECTIONS.find(s => s.slug === slug)).filter(Boolean).map(selection => {
+      const s = selection!
+      const match: (p: CatalogProduct) => boolean =
+        s.slug === 'beginner-mini-bonsai' ? p => p.productType === 'tree' && (p.sizeCategory === 'mini' || p.sizeCategory === 'small') && p.level === 'easy'
+          : s.slug === 'bonsai-gift' ? p => p.productType === 'tree' && (p.gift || p.wrapping)
+            : p => p.productType === 'tree' && p.newYear
+      return { href: `/selection/${s.slug}`, ...PURPOSE_LABELS[s.slug], product: pickImage(products, match) }
+    }),
+    {
+      href: '/products?type=parts',
+      title: '鉢・土・道具',
+      sub: 'あわせて揃える',
+      product: pickImage(products, p => ['pot', 'soil', 'tool', 'wire', 'fertilizer'].includes(p.productType)),
+    },
+  ]
+
+  const heroChips = HERO_CHIPS.map(slug => SHOP_CATEGORIES.find(c => c.slug === slug)).filter(Boolean)
+
+  return (
+    <div>
+      {/* ヒーロー */}
+      <section className="bg-navy text-white">
+        <div className={`${CONTAINER} grid gap-10 pb-7 pt-6 lg:grid-cols-[1fr_400px] lg:items-center lg:py-14`}>
+          <div>
+            <h1 className="font-mincho text-[26px] font-bold leading-normal tracking-[0.02em] lg:text-[42px] lg:leading-[1.45]">
+              はじめての盆栽を、<br />まとめて探す。
             </h1>
-            <p className="text-center text-slate-600 mb-8 leading-relaxed">
-              樹種や価格帯から盆栽を探せます。育て方の基本や季節ごとの手入れもまとめています。
+            <p className="mt-2 text-[12.5px] leading-relaxed text-white/80 lg:mt-3 lg:text-[15px] lg:leading-[1.8]">
+              <span className="lg:hidden">楽天市場・Amazonの{total.toLocaleString()}件を比較</span>
+              <span className="hidden lg:inline">楽天市場とAmazonの盆栽・鉢・道具 {total.toLocaleString()}件を、樹種・予算・サイズで比べられます。</span>
             </p>
-            <div className="bg-white/90 rounded-2xl shadow-2xl border border-slate-200/50 p-4 md:p-8 lg:p-12">
-              <ProductSearchPanel />
+            <form action="/products" method="get" role="search" className="mt-4 flex h-12 max-w-[560px] items-center gap-3 rounded-[10px] bg-white pl-3.5 pr-1.5 lg:mt-6 lg:h-14 lg:rounded-xl lg:pl-[18px] lg:pr-2">
+              <label htmlFor="home-search" className="sr-only">盆栽を検索</label>
+              <input
+                id="home-search"
+                type="search"
+                name="q"
+                placeholder="樹種・商品名で探す（例：五葉松 ミニ、信楽焼 鉢）"
+                className="min-w-0 flex-1 bg-transparent text-sm text-ink placeholder:text-[#8a8478] focus:outline-none lg:text-[15px]"
+              />
+              <button type="submit" className="h-9 flex-none rounded-[7px] bg-gold px-3.5 text-[13px] font-bold text-white hover:bg-gold-dark lg:h-[42px] lg:rounded-[9px] lg:px-[22px] lg:text-sm">
+                探す
+              </button>
+            </form>
+            <div className="mt-3.5 hidden flex-wrap gap-2 lg:flex">
+              {heroChips.map(category => (
+                <Link
+                  key={category!.slug}
+                  href={`/products/category/${category!.slug}`}
+                  className="rounded-full border border-white/30 px-3.5 py-1.5 text-[13px] hover:border-gold hover:text-gold-light"
+                >
+                  {category!.name}
+                </Link>
+              ))}
             </div>
           </div>
+
+          {/* 季節の一鉢（PC：ヒーロー内） */}
+          <SeasonCard season={season} product={seasonProduct} className="hidden lg:block" />
         </div>
       </section>
 
-      {/* 目的から選ぶ */}
-      <section className="py-12 bg-white border-t border-slate-100">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-2xl md:text-3xl font-light text-slate-800 mb-6 text-center tracking-wide">目的から選ぶ</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {SELECTIONS.map(selection => (
-              <Link
-                key={selection.slug}
-                href={`/selection/${selection.slug}`}
-                className="block rounded-xl border border-slate-200 p-5 hover:shadow-lg hover:border-slate-400 transition-all"
-              >
-                <h3 className="font-medium text-slate-800 mb-2">{selection.h1}</h3>
-                <p className="text-sm text-slate-600 line-clamp-3">{selection.lead}</p>
-              </Link>
-            ))}
-          </div>
-          <p className="text-center mt-6">
-            <Link href="/shindan" className="inline-block border border-slate-800 text-slate-800 rounded-full px-6 py-2 text-sm hover:bg-slate-800 hover:text-white transition-colors">
-              迷ったら「かんたん盆栽診断」（4つの質問）
-            </Link>
-          </p>
-        </div>
-      </section>
+      <div className={CONTAINER}>
+        {/* 季節の一鉢（SP：ヒーローの下） */}
+        <SeasonCard season={season} product={seasonProduct} className="mt-4 lg:hidden" />
 
-      {/* 楽天市場から探す */}
-      <section className="py-12 bg-slate-50/50 border-t border-slate-100">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-2xl md:text-3xl font-light text-slate-800 mb-2 text-center tracking-wide">樹種・道具から探す</h2>
-          <p className="text-center text-slate-600 mb-6 text-sm">楽天市場とAmazonの盆栽・鉢・土・道具を、価格やレビュー件数で比べられます。</p>
-          <div className="flex flex-wrap justify-center gap-2">
-            {SHOP_CATEGORIES.map(category => (
-              <Link
-                key={category.slug}
-                href={`/products/category/${category.slug}`}
-                className="bg-white border border-slate-200 rounded-full px-4 py-2 text-sm text-slate-700 hover:border-slate-500"
-              >
-                {category.name}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 新着の盆栽 */}
-      <section className="py-16 md:py-20 bg-slate-50/30">
-        <div className="container mx-auto px-4">
-          <SectionHeading title="新着の盆栽" href="/products" />
-          <PrDisclosure className="max-w-3xl mx-auto mb-8" />
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
-            {popularProducts.length > 0 ? (
-              popularProducts.map((product, index) => (
-                <CatalogProductCard key={product.id} product={product} priority={index < 2} />
-              ))
-            ) : (
-              <div className="col-span-full text-center py-12">
-                <p className="text-gray-500">盆栽商品を準備中です...</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* 新着記事 */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <SectionHeading title="新着の育て方ガイド" href="/guides" />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {popularArticles.length > 0 ? (
-              popularArticles.map(article => (
-                <Link key={article.id} href={`/guides/${article.slug}`} className="group">
-                  <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-slate-100 h-full">
-                    {isOptimizableImage(article.featuredImage?.url) && (
-                      <div className="h-56 relative overflow-hidden">
-                        <Image
-                          src={article.featuredImage!.url}
-                          alt={article.featuredImage!.alt || article.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                      </div>
-                    )}
-                    <div className="p-6 flex-1">
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">
-                          {article.category?.name || 'ガイド'}
-                        </span>
-                        {article.readingTime ? (
-                          <span className="text-xs text-slate-400">{article.readingTime}分で読めます</span>
-                        ) : null}
-                      </div>
-                      <h3 className="text-lg font-medium text-slate-800 mb-3 line-clamp-2 leading-relaxed">
-                        {article.title}
-                      </h3>
-                      <p className="text-slate-600 text-sm line-clamp-3 leading-relaxed">{article.excerpt}</p>
-                    </div>
+        {/* 目的から選ぶ */}
+        <section className="mt-7 lg:mt-12">
+          <SectionTitle className="[&_h2]:text-[19px] lg:[&_h2]:text-2xl">目的から選ぶ</SectionTitle>
+          <div className="mt-3 grid grid-cols-2 gap-2.5 lg:mt-4 lg:grid-cols-4 lg:gap-4">
+            {purposes.map(item => (
+              <Link key={item.href} href={item.href} className="group overflow-hidden rounded-xl border border-line bg-white hover:border-gold lg:rounded-[14px]">
+                <div className="hidden lg:block"><PurposeImage product={item.product} label={item.title} /></div>
+                <div className="p-3.5 lg:px-4">
+                  <div className="text-sm font-bold text-ink group-hover:text-navy lg:text-[15px]">
+                    <span className="lg:hidden">{item.spTitle ?? item.title}</span>
+                    <span className="hidden lg:inline">{item.title}</span>
                   </div>
-                </Link>
-              ))
-            ) : (
-              <div className="col-span-full text-center py-12">
-                <p className="text-gray-500">記事を準備中です...</p>
-              </div>
-            )}
+                  <div className="mt-0.5 text-xs text-ink-soft lg:text-[12.5px]">
+                    <span className="lg:hidden">{item.spSub ?? item.sub}</span>
+                    <span className="hidden lg:inline">{item.sub}</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
+          <p className="mt-3 text-right text-[13px] text-ink-soft">
+            迷ったら <Link href="/shindan" className="font-bold text-navy underline underline-offset-2 hover:text-gold-dark">かんたん盆栽診断（4つの質問）→</Link>
+          </p>
+        </section>
+
+        {/* レビューが多い盆栽 */}
+        <section className="mt-7 lg:mt-10">
+          <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
+            <h2 className="font-mincho text-[19px] font-bold text-navy lg:text-2xl">レビューが多い盆栽</h2>
+            <div className="order-last flex w-full flex-wrap gap-1.5 lg:order-none lg:w-auto">
+              <span className={chipClass(true)} aria-current="true">すべて</span>
+              {BUDGET_TABS.map(tab => (
+                <Link key={tab.max} href={`/products?type=tree&max=${tab.max}&sort=reviews`} className={chipClass(false)}>
+                  {tab.label}
+                </Link>
+              ))}
+            </div>
+            <Link href="/products?type=tree&sort=reviews" className="ml-auto text-[13px] font-bold text-navy underline underline-offset-2 hover:text-gold-dark lg:text-[13.5px]">
+              すべて見る →
+            </Link>
+          </div>
+          <PrDisclosure compact className="mt-2 lg:hidden" />
+          <PrDisclosure className="mt-2 hidden lg:block" />
+          {topReviewed.length > 0 ? (
+            <div className="mt-3 grid grid-cols-2 gap-2.5 lg:mt-4 lg:grid-cols-4 lg:gap-4">
+              {topReviewed.map((product, index) => (
+                <CatalogProductCard key={product.id} product={product} priority={index < 2} />
+              ))}
+            </div>
+          ) : (
+            <p className="mt-4 rounded-xl border border-line bg-white p-6 text-center text-sm text-ink-muted">盆栽商品を準備中です...</p>
+          )}
+        </section>
+
+        <div className="mt-7 grid gap-7 lg:mt-10 lg:grid-cols-[1fr_340px] lg:gap-8">
+          {/* 育て方を読む */}
+          <section>
+            <SectionTitle
+              className="[&_h2]:text-[19px] lg:[&_h2]:text-2xl"
+              action={<Link href="/guides" className="text-[13px] font-bold text-navy underline underline-offset-2 hover:text-gold-dark">すべて見る →</Link>}
+            >
+              育て方を読む
+            </SectionTitle>
+            {popularArticles.length > 0 ? (
+              <Card className="mt-3 overflow-hidden">
+                <ul className="divide-y divide-[#efeae0]">
+                  {popularArticles.map(article => (
+                    <li key={article.id}>
+                      <Link href={`/guides/${article.slug}`} className="group flex items-center gap-4 px-3.5 py-3 lg:px-[18px] lg:py-4">
+                        <div className="relative hidden h-16 w-24 flex-none overflow-hidden rounded-lg lg:block">
+                          {isOptimizableImage(article.featuredImage?.url) ? (
+                            <Image
+                              src={article.featuredImage!.url}
+                              alt={article.featuredImage!.alt || article.title}
+                              fill
+                              sizes="96px"
+                              className="object-cover"
+                            />
+                          ) : (
+                            <Placeholder className="h-full w-full" />
+                          )}
+                        </div>
+                        <div className="min-w-0">
+                          {article.category?.name && <div className="hidden text-[11.5px] text-gold-dark lg:block">{article.category.name}</div>}
+                          <div className="font-mincho text-[14.5px] font-bold leading-normal text-ink group-hover:text-navy lg:text-base">{article.title}</div>
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            ) : (
+              <p className="mt-3 rounded-xl border border-line bg-white p-6 text-center text-sm text-ink-muted">記事を準備中です...</p>
+            )}
+          </section>
+
+          {/* 出かける */}
+          <section>
+            <SectionTitle className="[&_h2]:text-[19px] lg:[&_h2]:text-2xl">出かける</SectionTitle>
+            <div className="mt-3 rounded-[14px] bg-navy px-[22px] py-5 text-white">
+              <div className="text-xs tracking-[0.1em] text-[#e9c793]">開催中・近日</div>
+              <div className="mt-1.5 font-mincho text-lg font-bold">盆栽展・即売会を探す</div>
+              <p className="mt-1.5 text-[13px] leading-[1.7] text-white/80">
+                {gardenCount > 0 || eventCount > 0
+                  ? `全国の${[gardenCount > 0 && `盆栽園${gardenCount.toLocaleString()}件`, eventCount > 0 && `開催予定のイベント${eventCount.toLocaleString()}件`].filter(Boolean).join('、')}を地域別に。`
+                  : '全国の盆栽園とイベントを地域別に。'}
+              </p>
+              <div className="mt-3.5 flex gap-2">
+                <Link href="/gardens" className="rounded-lg border border-white/35 px-3 py-[7px] text-[13px] hover:border-gold hover:text-gold-light">盆栽園</Link>
+                <Link href="/events" className="rounded-lg border border-white/35 px-3 py-[7px] text-[13px] hover:border-gold hover:text-gold-light">イベント</Link>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
+    </div>
+  )
+}
+
+function SeasonCard({
+  season,
+  product,
+  className = '',
+}: {
+  season: ReturnType<typeof getSeasonalPick>
+  product?: CatalogProduct
+  className?: string
+}) {
+  return (
+    <div className={`overflow-hidden rounded-xl border border-line bg-white text-ink lg:border-0 ${className}`}>
+      {product ? (
+        <div className="relative h-[180px] bg-[#f1eee8] lg:h-[210px]">
+          <ProductThumb src={product.imageUrl} alt={`${season.name}の盆栽`} sizes="(max-width: 1024px) 100vw, 400px" />
+        </div>
+      ) : (
+        <Placeholder label={`季節の盆栽写真（${season.name}）`} className="h-[180px] lg:h-[210px]" />
+      )}
+      <div className="px-4 pb-4 pt-3.5 lg:px-[22px] lg:pb-5 lg:pt-[18px]">
+        <div className="flex items-center gap-2 text-[11.5px] tracking-[0.14em] text-gold-dark lg:text-xs">
+          <span className="h-0.5 w-4 bg-gold lg:w-[18px]" aria-hidden="true" />
+          {season.monthLabel}の一鉢
+        </div>
+        <div className="mt-1 font-mincho text-xl font-bold lg:mt-1.5 lg:text-2xl">{season.title}</div>
+        <p className="mt-1 hidden text-[13px] leading-[1.7] text-ink-soft lg:block">{season.lead}</p>
+        <Link
+          href={`/products/category/${season.slug}`}
+          className="mt-1.5 inline-block text-[13px] font-bold text-navy underline underline-offset-2 hover:text-gold-dark lg:mt-2.5 lg:text-[13.5px]"
+        >
+          {season.name}の盆栽を見る →
+        </Link>
+      </div>
     </div>
   )
 }

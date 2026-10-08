@@ -5,10 +5,13 @@ import { supabaseServer } from '@/lib/supabase-server'
 import { SELECTIONS, getSelection, pickSelectionProducts } from '@/lib/selections'
 import { formatPrice, getSizeCategoryLabel } from '@/lib/utils'
 import { getDifficultyText } from '@/lib/product-ui-helpers'
-import { normalizeProduct } from '@/lib/catalog-model'
+import { normalizeProduct, type CatalogProduct } from '@/lib/catalog-model'
+import { SPECIES_OPTIONS } from '@/lib/catalog'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
+import { ProductThumb } from '@/components/catalog/ProductThumb'
 import { SITE_URL } from '@/lib/site'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
+import { Breadcrumbs, CONTAINER, Card, ChipLink, NavyPanel, Placeholder, SectionTitle, chipClass } from '@/components/ui/design'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import type { Product } from '@/types'
 
@@ -37,6 +40,56 @@ export function generateMetadata({ params }: SelectionPageProps): Metadata {
       url: `/selection/${selection.slug}`,
     },
   }
+}
+
+// 樹種カードから商品一覧へのリンク（特集ごと・項目名ごと）
+const POINT_LINKS: Record<string, Record<string, { species: string; href: string }>> = {
+  'new-year-bonsai': {
+    松: { species: 'goyomatsu', href: '/products/category/goyomatsu' },
+    梅: { species: 'ume', href: '/products/category/ume' },
+    南天: { species: 'nanten', href: '/products/category/nanten' },
+  },
+  'bonsai-gift': {
+    花を楽しんでほしい: { species: 'cat-hana', href: '/products?type=tree&species=cat-hana' },
+    長く緑を楽しんでほしい: { species: 'cat-shohaku', href: '/products?type=tree&species=cat-shohaku' },
+    季節の移ろいを楽しんでほしい: { species: 'cat-zouki', href: '/products?type=tree&species=cat-zouki' },
+  },
+}
+
+// 「一覧で絞り込む」先の商品一覧の条件
+const CATALOG_LINKS: Record<string, { all: string; chips: { label: string; href: string }[] }> = {
+  'new-year-bonsai': {
+    all: '/products?type=tree&use=new_year',
+    chips: [
+      { label: '松', href: '/products?type=tree&use=new_year&species=cat-shohaku' },
+      { label: '梅', href: '/products?type=tree&use=new_year&species=ume' },
+      { label: '南天', href: '/products?type=tree&use=new_year&species=nanten' },
+    ],
+  },
+  'beginner-mini-bonsai': {
+    all: '/products?type=tree&level=easy',
+    chips: [
+      { label: 'ミニ', href: '/products?type=tree&level=easy&size=mini' },
+      { label: '小品', href: '/products?type=tree&level=easy&size=small' },
+    ],
+  },
+  'bonsai-gift': {
+    all: '/products?type=tree&use=gift',
+    chips: [
+      { label: '花もの', href: '/products?type=tree&use=gift&species=cat-hana' },
+      { label: '松柏類', href: '/products?type=tree&use=gift&species=cat-shohaku' },
+      { label: '雑木類', href: '/products?type=tree&use=gift&species=cat-zouki' },
+    ],
+  },
+}
+
+// 「松（五葉松・黒松）：説明」の形の箇条書きを、名前・補足・説明に分ける
+function parsePoint(point: string) {
+  const i = point.indexOf('：')
+  const label = i >= 0 ? point.slice(0, i) : ''
+  const text = i >= 0 ? point.slice(i + 1) : point
+  const m = label.match(/^(.+?)（(.+)）$/)
+  return { name: m ? m[1] : label, sub: m ? m[2] : '', text }
 }
 
 async function getProducts(): Promise<Product[]> {
@@ -71,9 +124,21 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
   const selection = getSelection(params.slug)
   if (!selection) notFound()
 
-  const products = pickSelectionProducts(selection, await getProducts())
+  const allProducts = await getProducts()
+  const products = pickSelectionProducts(selection, allProducts)
   const priceRanges = priceRangeBySize(products)
   const pageUrl = `${SITE_URL}/selection/${selection.slug}`
+  const cards = products.map(normalizeProduct)
+
+  // 画像は掲載商品の写真を使い、なければ斜線の下地にする
+  const heroProduct = cards.find(p => p.imageUrl)
+  const pointLinks = POINT_LINKS[selection.slug] ?? {}
+  const catalogLinks = CATALOG_LINKS[selection.slug]
+  const imageFor = (species: string): CatalogProduct | undefined => {
+    const match = SPECIES_OPTIONS.find(o => o.value === species)?.match
+    if (!match) return undefined
+    return cards.find(p => p.imageUrl && match(p))
+  }
 
   const itemListJsonLd = {
     '@context': 'https://schema.org',
@@ -86,6 +151,8 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
       name: normalizeProduct(product).name,
     })),
   }
+
+  const [firstSection, ...restSections] = selection.sections
 
   return (
     <>
@@ -100,45 +167,132 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
 
-      <div className="bg-gray-50 min-h-screen">
-        <article className="container mx-auto px-4 py-10 max-w-4xl">
-          <nav className="text-sm text-gray-500 mb-4">
-            <Link href="/" className="hover:text-gray-700">ホーム</Link>
-            <span className="mx-2">›</span>
-            <span>{selection.h1}</span>
-          </nav>
+      <article>
+        {/* 見出し（SP は写真が先） */}
+        <header className="lg:mx-auto lg:w-full lg:max-w-[1280px] lg:px-10">
+          <div className="flex flex-col-reverse gap-0 lg:grid lg:grid-cols-[1fr_520px] lg:items-center lg:gap-12 lg:pt-10">
+            <div className="px-4 pt-4 lg:px-0 lg:pt-0">
+              <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: selection.h1 }]} className="hidden lg:block" />
+              <div className="mt-0 flex items-center gap-2 text-xs tracking-[0.1em] text-gold-dark lg:mt-3">
+                <span className="h-0.5 w-4 bg-gold" aria-hidden="true" />
+                {selection.eyebrow}
+              </div>
+              <h1 className="mt-1.5 font-mincho text-[24px] font-bold leading-snug text-navy lg:mt-2 lg:text-[38px]">{selection.h1}</h1>
+              <p className="mt-3 text-sm leading-[1.9] text-ink-soft lg:max-w-[560px] lg:text-[15px]">{selection.lead}</p>
+              <PrDisclosure className="mt-4 border border-line bg-white lg:max-w-[560px]" />
+            </div>
+            <div className="relative aspect-[16/10] overflow-hidden bg-[#f1eee8] lg:aspect-auto lg:h-[340px] lg:rounded-[14px]">
+              {heroProduct ? (
+                <ProductThumb src={heroProduct.imageUrl} alt={selection.h1} sizes="(max-width: 1024px) 100vw, 520px" priority />
+              ) : (
+                <Placeholder className="absolute inset-0" />
+              )}
+            </div>
+          </div>
+        </header>
 
-          <header className="mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">{selection.h1}</h1>
-            <p className="text-gray-700 leading-relaxed">{selection.lead}</p>
-            <PrDisclosure className="mt-4" />
-          </header>
+        <div className={CONTAINER}>
+          {/* 1つ目の節：樹種・選び方の要点をカードで */}
+          {firstSection && (
+            <section className="mt-8 lg:mt-12">
+              <SectionTitle>{firstSection.heading}</SectionTitle>
+              <div className="mt-2 space-y-2 lg:max-w-[820px]">
+                {firstSection.paragraphs.map(paragraph => (
+                  <p key={paragraph} className="text-sm leading-[1.9] text-ink-soft">{paragraph}</p>
+                ))}
+              </div>
+              {firstSection.points && (
+                <div className="mt-4 grid gap-3 lg:grid-cols-3 lg:gap-4">
+                  {firstSection.points.map(point => {
+                    const { name, sub, text } = parsePoint(point)
+                    const link = pointLinks[name]
+                    const image = link ? imageFor(link.species) : undefined
+                    return (
+                      <Card key={point} className="overflow-hidden">
+                        {link && (
+                          <div className="relative hidden h-[140px] bg-[#f1eee8] lg:block">
+                            {image ? (
+                              <ProductThumb src={image.imageUrl} alt={name} sizes="33vw" />
+                            ) : (
+                              <Placeholder className="absolute inset-0" />
+                            )}
+                          </div>
+                        )}
+                        <div className="flex gap-4 p-4 lg:block lg:px-[18px]">
+                          {name && (
+                            <div className="flex-none lg:flex lg:items-baseline lg:gap-2">
+                              <span className={`font-mincho font-bold text-navy ${name.length <= 3 ? 'text-xl lg:text-[22px]' : 'text-[15px] lg:text-base'}`}>{name}</span>
+                              {sub && <span className="hidden text-xs text-ink-muted lg:inline">{sub}</span>}
+                            </div>
+                          )}
+                          <div className="min-w-0 lg:mt-1.5">
+                            {sub && <div className="text-xs text-ink-muted lg:hidden">{sub}</div>}
+                            <p className="text-[13px] leading-[1.7] text-ink">{text}</p>
+                            {link && (
+                              <Link href={link.href} className="mt-1.5 inline-block text-[13px] font-bold text-navy underline underline-offset-2 hover:text-gold-dark">
+                                {name.length <= 3 ? `${name}の盆栽を見る →` : '商品を見る →'}
+                              </Link>
+                            )}
+                          </div>
+                        </div>
+                      </Card>
+                    )
+                  })}
+                </div>
+              )}
+            </section>
+          )}
 
-          {selection.sections.map(section => (
-            <section key={section.heading} className="mb-8 bg-white rounded-xl shadow-sm p-6">
-              <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">{section.heading}</h2>
-              {section.paragraphs.map(paragraph => (
-                <p key={paragraph} className="text-gray-700 leading-relaxed mb-3">{paragraph}</p>
-              ))}
-              {section.points && (
-                <ul className="list-disc ml-5 space-y-2 text-gray-700">
-                  {section.points.map(point => <li key={point} className="leading-relaxed">{point}</li>)}
-                </ul>
+          {/* 残りの節：本文＋紺の案内 */}
+          {restSections.map(section => (
+            <section key={section.heading} className="mt-8 grid gap-4 lg:mt-12 lg:grid-cols-[1fr_380px] lg:items-start lg:gap-10">
+              <div>
+                <SectionTitle>{section.heading}</SectionTitle>
+                <div className="mt-2 space-y-2">
+                  {section.paragraphs.map(paragraph => (
+                    <p key={paragraph} className="text-sm leading-[1.9] text-ink-soft lg:text-[14.5px]">{paragraph}</p>
+                  ))}
+                </div>
+                {section.points && (
+                  <ul className="ml-5 mt-3 list-disc space-y-1.5 text-sm leading-relaxed text-ink-soft">
+                    {section.points.map(point => <li key={point}>{point}</li>)}
+                  </ul>
+                )}
+              </div>
+              {section.aside && (
+                <NavyPanel eyebrow={section.aside.eyebrow} title={section.aside.title} className="lg:px-[22px] lg:py-5">
+                  <p className="mt-2 text-[13px] leading-[1.8] text-white/80">{section.aside.text}</p>
+                </NavyPanel>
               )}
             </section>
           ))}
 
-          <section className="mb-8">
-            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">{selection.listHeading}</h2>
-            <p className="text-sm text-gray-600 mb-4">
+          {/* 掲載商品 */}
+          <section className="mt-10 lg:mt-12">
+            <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
+              <h2 className="font-mincho text-lg font-bold text-navy lg:text-2xl">{selection.listHeading}</h2>
+              {catalogLinks && (
+                <>
+                  <div className="order-last flex w-full flex-wrap gap-1.5 lg:order-none lg:w-auto">
+                    <span className={chipClass(true)} aria-current="true">すべて</span>
+                    {catalogLinks.chips.map(chip => (
+                      <ChipLink key={chip.label} href={chip.href}>{chip.label}</ChipLink>
+                    ))}
+                  </div>
+                  <Link href={catalogLinks.all} className="ml-auto text-[13px] font-bold text-navy underline underline-offset-2 hover:text-gold-dark">
+                    一覧で絞り込む →
+                  </Link>
+                </>
+              )}
+            </div>
+            <p className="mt-2 text-xs leading-relaxed text-ink-soft">
               {products.length}件を掲載（楽天市場・Amazon）。価格は取得時点の情報です。最新の価格・在庫・発送時期はリンク先でご確認ください。
             </p>
-
             {priceRanges.length > 0 && (
-              <p className="text-sm text-gray-700 mb-4">
+              <p className="mt-1 text-xs leading-relaxed text-ink-soft">
                 サイズ別の参考価格：
                 {priceRanges.map(range => (
-                  <span key={range.size} className="inline-block mr-3">
+                  <span key={range.size} className="mr-3 inline-block">
                     {getSizeCategoryLabel(range.size as Product['size_category'])}
                     {' '}{formatPrice(range.min)}〜{formatPrice(range.max)}
                   </span>
@@ -146,65 +300,73 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
               </p>
             )}
 
-            {/* 比較表 */}
-            <div className="overflow-x-auto bg-white rounded-xl shadow-sm mb-8">
-              <table className="min-w-full text-sm">
-                <thead className="bg-gray-100 text-gray-700">
-                  <tr>
-                    <th className="text-left px-3 py-2">商品</th>
-                    <th className="text-left px-3 py-2 whitespace-nowrap">分類</th>
-                    <th className="text-left px-3 py-2 whitespace-nowrap">サイズ</th>
-                    <th className="text-left px-3 py-2 whitespace-nowrap">難易度</th>
-                    <th className="text-right px-3 py-2 whitespace-nowrap">参考価格</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.map(product => (
-                    <tr key={product.id} className="border-t">
-                      <td className="px-3 py-2">
-                        <Link href={`/products/${product.id}`} className="text-blue-700 hover:underline">
-                          {normalizeProduct(product).name}
-                        </Link>
-                      </td>
-                      <td className="px-3 py-2 whitespace-nowrap">{product.category}</td>
-                      <td className="px-3 py-2 whitespace-nowrap">
-                        {getSizeCategoryLabel(product.size_category)}
-                        {product.height_cm ? `（高さ約${product.height_cm}cm）` : ''}
-                      </td>
-                      <td className="px-3 py-2 whitespace-nowrap">{getDifficultyText(product.difficulty_level)}</td>
-                      <td className="px-3 py-2 text-right whitespace-nowrap">{formatPrice(product.price)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
             {/* 商品カード */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {products.map((product, index) => (
-                <CatalogProductCard key={product.id} product={normalizeProduct(product)} priority={index < 2} />
+            <div className="mt-4 grid grid-cols-2 gap-2.5 md:grid-cols-3 lg:grid-cols-4 lg:gap-4">
+              {cards.map((product, index) => (
+                <CatalogProductCard key={product.id} product={product} priority={index < 2} />
               ))}
             </div>
-            <p className="text-xs text-gray-500 mt-4">
+
+            {/* 比較表 */}
+            {products.length > 0 && (
+              <div className="mt-8">
+                <SectionTitle>比較表</SectionTitle>
+                <div className="mt-3 overflow-x-auto rounded-xl border border-line bg-white">
+                  <table className="min-w-full text-sm">
+                    <thead className="bg-[#f6f2ea] text-xs text-ink-soft">
+                      <tr>
+                        <th className="px-3 py-2.5 text-left font-bold">商品</th>
+                        <th className="whitespace-nowrap px-3 py-2.5 text-left font-bold">分類</th>
+                        <th className="whitespace-nowrap px-3 py-2.5 text-left font-bold">サイズ</th>
+                        <th className="whitespace-nowrap px-3 py-2.5 text-left font-bold">難易度</th>
+                        <th className="whitespace-nowrap px-3 py-2.5 text-right font-bold">参考価格</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {products.map(product => (
+                        <tr key={product.id} className="border-t border-line">
+                          <td className="px-3 py-2.5">
+                            <Link href={`/products/${product.id}`} className="text-navy hover:text-gold-dark hover:underline">
+                              {normalizeProduct(product).name}
+                            </Link>
+                          </td>
+                          <td className="whitespace-nowrap px-3 py-2.5 text-ink-soft">{product.category}</td>
+                          <td className="whitespace-nowrap px-3 py-2.5 text-ink-soft">
+                            {getSizeCategoryLabel(product.size_category)}
+                            {product.height_cm ? `（高さ約${product.height_cm}cm）` : ''}
+                          </td>
+                          <td className="whitespace-nowrap px-3 py-2.5 text-ink-soft">{getDifficultyText(product.difficulty_level)}</td>
+                          <td className="whitespace-nowrap px-3 py-2.5 text-right font-bold text-ink">{formatPrice(product.price)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+            <p className="mt-4 text-xs text-ink-muted">
               楽天市場の商品情報は{' '}
               <a href="https://developers.rakuten.com/" target="_blank" rel="noopener noreferrer" className="underline">Supported by Rakuten Developers</a>。
             </p>
           </section>
 
-          <section className="bg-white rounded-xl shadow-sm p-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-3">あわせて読みたい</h2>
-            <ul className="space-y-2 text-blue-700">
-              {SELECTIONS.filter(other => other.slug !== selection.slug).map(other => (
-                <li key={other.slug}>
-                  <Link href={`/selection/${other.slug}`} className="hover:underline">{other.h1}</Link>
-                </li>
-              ))}
-              <li><Link href="/guides" className="hover:underline">盆栽の育て方ガイド一覧</Link></li>
-              <li><Link href="/products" className="hover:underline">盆栽の商品カタログ</Link></li>
-            </ul>
+          {/* あわせて読みたい */}
+          <section className="mt-10 lg:mt-12">
+            <SectionTitle>あわせて読みたい</SectionTitle>
+            <Card className="mt-3 overflow-hidden">
+              <ul className="divide-y divide-[#efeae0] text-sm">
+                {SELECTIONS.filter(other => other.slug !== selection.slug).map(other => (
+                  <li key={other.slug}>
+                    <Link href={`/selection/${other.slug}`} className="block px-4 py-3 font-mincho font-bold text-ink hover:text-navy">{other.h1} →</Link>
+                  </li>
+                ))}
+                <li><Link href="/guides" className="block px-4 py-3 font-mincho font-bold text-ink hover:text-navy">盆栽の育て方ガイド一覧 →</Link></li>
+                <li><Link href="/products" className="block px-4 py-3 font-mincho font-bold text-ink hover:text-navy">盆栽の商品カタログ →</Link></li>
+              </ul>
+            </Card>
           </section>
-        </article>
-      </div>
+        </div>
+      </article>
     </>
   )
 }

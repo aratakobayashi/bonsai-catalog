@@ -7,6 +7,8 @@ export interface SelectionSection {
   heading: string
   paragraphs: string[]
   points?: string[]
+  // 横に並べる紺の案内（表示用）
+  aside?: { eyebrow: string; title: string; text: string }
 }
 
 export interface Selection {
@@ -14,6 +16,8 @@ export interface Selection {
   title: string
   description: string
   h1: string
+  // 見出しの上の小さなラベル（表示用）
+  eyebrow: string
   lead: string
   sections: SelectionSection[]
   listHeading: string
@@ -31,6 +35,7 @@ export const SELECTIONS: Selection[] = [
     title: '正月に飾る盆栽の選び方｜松・梅・南天など縁起物の盆栽を比較 - 盆栽コレクション',
     description: '正月飾りにする盆栽の選び方をまとめました。松竹梅や南天など縁起物とされる樹種、飾る場所と期間、届いてからの管理のポイントと、通販で買える盆栽の比較表を掲載しています。',
     h1: '正月に飾る盆栽の選び方',
+    eyebrow: '特集・迎春',
     lead: '松竹梅や南天は、昔から慶事の縁起物として親しまれてきた植物です。正月飾りとして盆栽を選ぶときのポイントと、通販で買える松・梅・南天などの盆栽をまとめました。',
     sections: [
       {
@@ -49,8 +54,12 @@ export const SELECTIONS: Selection[] = [
         heading: '選ぶときのポイント',
         paragraphs: [
           '飾る場所の広さに合わせてサイズを選びます。玄関の棚やテーブルに置くなら、ミニ盆栽〜小品（高さ10〜20cm程度）が扱いやすい大きさです。',
-          '年末は配送が混み合います。正月に間に合わせたい場合は、各ショップの年末年始の発送スケジュールを確認し、余裕をもって注文するのがおすすめです。',
         ],
+        aside: {
+          eyebrow: '注文の目安',
+          title: '年末は配送が混み合います',
+          text: '正月に間に合わせたい場合は、各ショップの年末年始の発送スケジュールを確認し、余裕をもって注文するのがおすすめです。',
+        },
       },
       {
         heading: '届いてからの管理',
@@ -71,6 +80,7 @@ export const SELECTIONS: Selection[] = [
     title: '初心者向けミニ盆栽の選び方｜育てやすい樹種とサイズ・価格を比較 - 盆栽コレクション',
     description: 'はじめての盆栽におすすめのミニ盆栽・小品盆栽を、樹種・サイズ・育てやすさ・参考価格で比較できます。初心者が選ぶときのポイントと、最初にそろえたい道具もまとめました。',
     h1: '初心者向けミニ盆栽の選び方',
+    eyebrow: '特集・はじめての方へ',
     lead: 'はじめて盆栽を育てるなら、手のひらに乗るミニ盆栽や小品盆栽から始めると、置き場所に困らず手入れの基本も身につけやすくなります。育てやすさの目安とあわせて比較できるようにまとめました。',
     sections: [
       {
@@ -109,6 +119,7 @@ export const SELECTIONS: Selection[] = [
     title: '盆栽ギフトの選び方｜予算・相手別に贈りやすい盆栽を比較 - 盆栽コレクション',
     description: '母の日・敬老の日・誕生日・お祝いに贈る盆栽の選び方をまとめました。予算の目安、相手に合わせた樹種の選び方、贈るときの注意点と、通販で買える盆栽の比較表を掲載しています。',
     h1: '盆栽ギフトの選び方',
+    eyebrow: '特集・贈り物',
     lead: '盆栽は、季節の花や紅葉を長く楽しめる贈り物として、母の日や敬老の日、新築・開店祝いなどに選ばれています。贈る相手や予算に合わせた選び方と、贈りやすい盆栽をまとめました。',
     sections: [
       {
