@@ -8,6 +8,7 @@ import { Footer } from '@/components/layout/Footer'
 import { BottomNavigation } from '@/components/layout/BottomNavigation'
 import { WebSiteStructuredData, OrganizationStructuredData } from '@/components/seo/StructuredData'
 import { Toaster } from 'react-hot-toast'
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -60,6 +61,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
+        <GoogleAnalytics />
         {/* 広告スクリプトは表示を妨げないよう、ページ読み込み後に読み込む */}
         <Script
           async
