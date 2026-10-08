@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { Suspense } from 'react'
 import Link from 'next/link'
 import EventsPageClient from './EventsPageClient'
+import { getEvents } from '@/lib/events'
 import EventViewTabs, { EventViewTabsView } from './EventViewTabs'
 import { Breadcrumbs, CONTAINER } from '@/components/ui/design'
 
@@ -26,7 +27,11 @@ export const metadata: Metadata = {
   },
 }
 
-export default function EventsPage() {
+// 一覧は1時間ごとに作り直す（イベントの反映時にも作り直される）
+export const revalidate = 3600
+
+export default async function EventsPage() {
+  const initial = await getEvents({ page: 1, limit: 1000 }).catch(() => null)
   return (
     <>
       {/* JSON-LD for Events */}
@@ -77,7 +82,7 @@ export default function EventsPage() {
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-navy" />
           </div>
         }>
-          <EventsPageClient />
+          <EventsPageClient initialEvents={initial?.events} />
         </Suspense>
 
         <p className="mt-10 text-center text-xs leading-relaxed text-ink-muted">

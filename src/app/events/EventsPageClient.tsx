@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useRef } from 'react'
 import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { Event, EventSearchParams, EventsResponse } from '@/types'
@@ -74,13 +74,18 @@ function EventPreview({ event }: { event: Event }) {
   )
 }
 
-export default function EventsPageClient() {
+// initialEvents：条件なしの一覧をサーバー側で取得したもの（最初の表示を速くするため、条件がないときはそのまま使う）
+export default function EventsPageClient({ initialEvents }: { initialEvents?: Event[] }) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const view = parseEventView(searchParams.get('view'))
 
-  const [events, setEvents] = useState<Event[]>([])
-  const [loading, setLoading] = useState(true)
+  const hasUrlFilters = ['prefecture', 'types', 'garden_id', 'month', 'search'].some(key => searchParams.get(key))
+  const useInitial = Boolean(initialEvents) && !hasUrlFilters
+  const [events, setEvents] = useState<Event[]>(useInitial ? initialEvents! : [])
+  const [loading, setLoading] = useState(!useInitial)
+  const [skipFirstFetch] = useState(useInitial)
+  const firstFetch = useRef(true)
   const [error, setError] = useState<string | null>(null)
   const [eventsResponse, setEventsResponse] = useState<EventsResponse | null>(null)
   const [selectedId, setSelectedId] = useState<string | null>(null)
@@ -165,7 +170,12 @@ export default function EventsPageClient() {
   const clearSearch = () => handleFiltersChange({ ...filters, search: undefined, garden_id: undefined })
 
   useEffect(() => {
+    if (firstFetch.current) {
+      firstFetch.current = false
+      if (skipFirstFetch) return
+    }
     fetchEvents(filters)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters])
 
   // 表示するイベント：既定は開催中・これから（開催日順）。終了分は新しい順
@@ -222,7 +232,7 @@ export default function EventsPageClient() {
         period={period}
         onFiltersChange={handleFiltersChange}
         onPeriodChange={handlePeriodChange}
-        prefectures={eventsResponse?.prefectures || []}
+        prefectures={eventsResponse?.prefectures || Array.from(new Set(events.map(e => e.prefecture))).sort()}
         count={view === 'month' ? events.length : displayed.length}
       />
 
