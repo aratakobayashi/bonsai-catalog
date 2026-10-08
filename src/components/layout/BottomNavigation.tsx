@@ -11,7 +11,7 @@ export function BottomNavigation() {
   return (
     <nav
       className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white pb-[env(safe-area-inset-bottom)] lg:hidden"
-      aria-label="メインメニュー"
+      aria-label="下部メニュー"
     >
       <ul className="grid h-14 grid-cols-4">
         {items.map(item => {

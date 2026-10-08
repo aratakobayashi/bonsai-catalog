@@ -14,6 +14,9 @@ import { generateArticleBreadcrumbs } from '@/lib/breadcrumb-utils'
 import { getRelatedFAQs } from '@/lib/faq-data'
 import { formatDate } from '@/lib/date-utils'
 import { processMarkdown, generateTableOfContents } from '@/lib/markdown'
+
+// ページの見出し（h1）は記事タイトルだけにするため、本文中の h1 は h2 として表示する
+const demoteH1 = (html: string) => html.replace(/<h1(\s|>)/g, '<h2$1').replace(/<\/h1>/g, '</h2>')
 import { normalizeProduct } from '@/lib/catalog-model'
 import { SITE_URL } from '@/lib/site'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
@@ -218,7 +221,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <div
               id="article-body"
               className="article-body mt-6 lg:mt-8"
-              dangerouslySetInnerHTML={{ __html: processMarkdown(article.content) }}
+              dangerouslySetInnerHTML={{ __html: demoteH1(processMarkdown(article.content)) }}
             />
 
             {/* シェア */}
