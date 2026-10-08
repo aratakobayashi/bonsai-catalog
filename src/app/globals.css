@@ -14,7 +14,7 @@
   
   body {
     @apply bg-paper text-ink antialiased;
-    font-family: var(--font-sans), 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', system-ui, sans-serif;
+    font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Noto Sans CJK JP', 'Yu Gothic UI', 'Meiryo', system-ui, sans-serif;
   }
   
   /* アクセシビリティ: フォーカス状態の強化 */

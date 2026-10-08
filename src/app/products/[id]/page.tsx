@@ -159,7 +159,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               className={`flex gap-4 border-b border-line px-5 py-4 ${p.id === product.id ? 'border-l-[3px] border-l-gold bg-[#fbf7ef] pl-[17px]' : 'hover:bg-paper'}`}
             >
               <div className="relative h-[72px] w-[72px] shrink-0 overflow-hidden rounded-lg bg-[#f1eee8]">
-                <ProductThumb src={p.imageUrl} alt="" sizes="72px" />
+                <ProductThumb src={p.imageUrl} alt="" sizes="72px" size={200} />
               </div>
               <div className="min-w-0 flex-1">
                 <p className="line-clamp-2 text-[13px] leading-snug text-ink">{p.name}</p>

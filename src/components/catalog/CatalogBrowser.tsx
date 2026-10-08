@@ -25,7 +25,7 @@ function ProductRow({ product, href, selected }: { product: CatalogProduct; href
       className={`flex gap-4 border-b border-line px-5 py-4 ${selected ? 'border-l-[3px] border-l-gold bg-[#fbf7ef] pl-[17px]' : 'hover:bg-paper'}`}
     >
       <div className="relative h-[84px] w-[84px] shrink-0 overflow-hidden rounded-lg bg-[#f1eee8]">
-        <ProductThumb src={product.imageUrl} alt="" sizes="84px" />
+        <ProductThumb src={product.imageUrl} alt="" sizes="84px" size={200} />
       </div>
       <div className="min-w-0 flex-1">
         <ProductBadges product={product} />

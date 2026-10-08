@@ -50,7 +50,7 @@ export function ProductDetailPanel({ product, headingLevel = 'h2', showDescripti
       <Breadcrumbs items={crumbs} className="hidden lg:block" />
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-8">
         <div className="relative -mx-4 aspect-square overflow-hidden bg-white lg:mx-0 lg:rounded-2xl lg:border lg:border-line">
-          <ProductThumb src={product.imageUrl} alt={product.name} sizes="(max-width: 1024px) 100vw, 40vw" priority className="object-contain" />
+          <ProductThumb src={product.imageUrl} alt={product.name} sizes="(max-width: 1024px) 100vw, 40vw" priority size={600} className="object-contain" />
         </div>
         <div className="min-w-0">
           <div className="flex flex-wrap gap-1.5">

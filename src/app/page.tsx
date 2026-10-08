@@ -298,7 +298,7 @@ function SeasonCard({
     <div className={`overflow-hidden rounded-xl border border-line bg-white text-ink lg:border-0 ${className}`}>
       {product ? (
         <div className="relative h-[180px] bg-[#f1eee8] lg:h-[210px]">
-          <ProductThumb src={product.imageUrl} alt={`${season.name}の盆栽`} sizes="(max-width: 1024px) 100vw, 400px" />
+          <ProductThumb src={product.imageUrl} alt={`${season.name}の盆栽`} sizes="(max-width: 1024px) 100vw, 400px" priority size={400} />
         </div>
       ) : (
         <Placeholder label={`季節の盆栽写真（${season.name}）`} className="h-[180px] lg:h-[210px]" />

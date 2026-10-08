@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { Noto_Sans_JP, Shippori_Mincho } from 'next/font/google'
-import Script from 'next/script'
+import { Shippori_Mincho } from 'next/font/google'
 import './globals.css'
 import '@/styles/editor.css'
 import { Header } from '@/components/layout/Header'
@@ -9,10 +8,10 @@ import { BottomNavigation } from '@/components/layout/BottomNavigation'
 import { WebSiteStructuredData, OrganizationStructuredData } from '@/components/seo/StructuredData'
 import { Toaster } from 'react-hot-toast'
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
+import { AdSenseLoader } from '@/components/analytics/AdSenseLoader'
 
-// 本文は Noto Sans JP、見出しはしっぽり明朝（日本語の字形は表示時に必要な分だけ読み込まれる）
-const notoSans = Noto_Sans_JP({ subsets: ['latin'], weight: ['400', '500', '700'], variable: '--font-sans', display: 'swap', preload: false })
-const mincho = Shippori_Mincho({ subsets: ['latin'], weight: ['500', '700'], variable: '--font-mincho', display: 'swap', preload: false })
+// 本文は端末の標準の日本語フォントを使い、見出しのしっぽり明朝（太字）だけをWebフォントで読み込む（表示速度のため）
+const mincho = Shippori_Mincho({ subsets: ['latin'], weight: ['700'], variable: '--font-mincho', display: 'swap', preload: false })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.bonsai-collection.com'), // OGP画像・canonical の基準URL
@@ -62,15 +61,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={`${notoSans.variable} ${mincho.variable}`}>
+      <body className={mincho.variable}>
         <GoogleAnalytics />
-        {/* 広告スクリプトは表示を妨げないよう、ページ読み込み後に読み込む */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8441554925079357"
-          crossOrigin="anonymous"
-          strategy="lazyOnload"
-        />
+        <AdSenseLoader />
         <WebSiteStructuredData baseUrl="https://www.bonsai-collection.com" />
         <OrganizationStructuredData baseUrl="https://www.bonsai-collection.com" />
         <div className="min-h-screen flex flex-col">
