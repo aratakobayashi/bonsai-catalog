@@ -1,11 +1,5 @@
 import { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
 import { supabaseServer } from '@/lib/supabase-server'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
-import { MapPin, Globe, Phone, ExternalLink, Users, Calendar } from 'lucide-react'
-import { REGIONS, getRegionFromPrefecture, getRegionTheme } from '@/lib/utils'
 import { isGardenPublished } from '@/lib/garden-verification'
 import type { Garden } from '@/types'
 import { GardensPageClient } from './GardensPageClient'
@@ -34,7 +28,6 @@ async function getGardens(): Promise<Garden[]> {
     image_url: garden.image_url && !/via\.placeholder\.com|example\.com/.test(garden.image_url) ? garden.image_url : undefined,
   }))
 }
-
 
 export default async function GardensPage() {
   const gardens = await getGardens()

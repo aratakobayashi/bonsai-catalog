@@ -1,317 +1,321 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useCallback } from 'react'
 import Link from 'next/link'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
-import { MapPin, Globe, Phone, ExternalLink, Users, Calendar } from 'lucide-react'
-import { REGIONS, getRegionFromPrefecture, getRegionTheme } from '@/lib/utils'
+import { REGIONS } from '@/lib/utils'
+import { CONTAINER, PageHeading, chipClass, Placeholder } from '@/components/ui/design'
+import { GardenMap, type GardenMapPoint } from '@/components/gardens/GardenMap'
+import { PrefPlate, HighlightDots, gardenArea, gardenHighlights, gardenRegion } from '@/components/gardens/GardenParts'
 import type { Garden } from '@/types'
 
-function GardenCard({ garden }: { garden: Garden }) {
-  // 地域別テーマを取得
-  const region = getRegionFromPrefecture(garden.prefecture || '')
-  const theme = getRegionTheme(region)
+const ALL = 'すべて'
 
+// 「できること」の絞り込み（データで判定できるものだけ）
+const FEATURES = [
+  { key: 'experience', label: '体験・教室あり', test: (g: Garden) => Boolean(g.experience_programs) },
+  { key: 'online', label: 'オンライン購入可', test: (g: Garden) => Boolean(g.online_sales) },
+  { key: 'website', label: '公式サイトあり', test: (g: Garden) => Boolean(g.website_url) },
+] as const
+type FeatureKey = (typeof FEATURES)[number]['key']
+
+// 2点間の距離（km）
+function distanceKm(a: { lat: number; lng: number }, b: { lat: number; lng: number }) {
+  const rad = Math.PI / 180
+  const dLat = (b.lat - a.lat) * rad
+  const dLng = (b.lng - a.lng) * rad
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin(dLng / 2) ** 2
+  return 6371 * 2 * Math.asin(Math.sqrt(h))
+}
+
+function hasCoords(g: Garden): g is Garden & { latitude: number; longitude: number } {
+  return typeof g.latitude === 'number' && typeof g.longitude === 'number'
+}
+
+function GardenCard({
+  garden,
+  selected,
+  distance,
+  onSelect,
+}: {
+  garden: Garden
+  selected: boolean
+  distance?: number
+  onSelect: () => void
+}) {
+  const specialties = (garden.specialties || []).slice(0, 3)
   return (
-    <Link href={`/gardens/${garden.id}`} className="block h-full">
-      <Card className={`h-full hover:shadow-lg transition-all duration-300 ${theme.borderColor} hover:scale-[1.02]`}>
-      {/* ビジュアルヘッダー */}
-      <div className={`bg-gradient-to-br ${theme.lightColor} p-6 relative overflow-hidden`}>
-        <div className="flex justify-between items-start">
-          <div className="flex items-center gap-3">
-            <div className="text-4xl">{theme.icon}</div>
-            <div>
-              <div className={`text-sm font-semibold ${theme.textColor}`}>
-                {garden.prefecture}
-              </div>
-              <div className="text-xs text-gray-600">
-                {garden.city}
-              </div>
-              <div className="text-xs text-gray-500 mt-1">
-                {region}地方
-              </div>
-            </div>
-          </div>
-
-          {/* 注目園バッジ */}
-          {garden.featured && (
-            <span className="bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-bold">
-              ⭐ 注目園
-            </span>
-          )}
+    <article
+      id={`garden-${garden.id}`}
+      onMouseEnter={onSelect}
+      className={`relative flex gap-3 rounded-xl border bg-white p-3.5 transition-shadow hover:shadow-md lg:gap-4 lg:p-4 ${
+        selected ? 'border-line lg:border-l-[3px] lg:border-l-gold' : 'border-line'
+      }`}
+    >
+      <PrefPlate garden={garden} />
+      <div className="min-w-0 flex-1">
+        <div className="flex items-baseline gap-2 text-[11px] text-ink-muted">
+          <span className="truncate">{gardenArea(garden)}</span>
+          {distance != null && <span className="flex-shrink-0 font-bold text-gold-dark">約{distance < 10 ? distance.toFixed(1) : Math.round(distance)}km</span>}
         </div>
-
-        {/* 装飾パターン */}
-        <div className="absolute -top-2 -right-2 text-2xl opacity-20">
-          🌿🍃
-        </div>
-      </div>
-
-      <CardHeader className="pb-2">
-        <CardTitle className="text-xl text-gray-800">
-          {garden.name}
-        </CardTitle>
-      </CardHeader>
-
-      <CardContent className="space-y-4">
-        {/* 専門分野タグ */}
-        {garden.specialties && garden.specialties.length > 0 && (
-          <div className="flex flex-wrap gap-1">
-            {garden.specialties.slice(0, 3).map((specialty, index) => (
-              <span
-                key={index}
-                className="px-2 py-1 rounded-full text-xs bg-gray-100 text-gray-700 border"
-              >
-                {specialty}
-              </span>
+        <h3 className="mt-0.5 font-mincho text-base font-bold leading-snug text-navy lg:text-[17px]">
+          {/* カード全体をリンクにする */}
+          <Link href={`/gardens/${garden.id}`} className="after:absolute after:inset-0 hover:text-gold-dark">
+            {garden.name}
+          </Link>
+        </h3>
+        {garden.description && <p className="mt-1 line-clamp-2 text-[13px] leading-relaxed text-ink-soft">{garden.description}</p>}
+        {specialties.length > 0 && (
+          <div className="mt-2 flex flex-wrap gap-1">
+            {specialties.map(s => (
+              <span key={s} className="rounded bg-[#f1eee8] px-1.5 py-0.5 text-[11px] text-ink-soft">{s}</span>
             ))}
-            {garden.specialties.length > 3 && (
-              <span className="text-xs text-gray-500">
-                +{garden.specialties.length - 3}
-              </span>
-            )}
           </div>
         )}
-
-        {/* 説明文 */}
-        <p className="text-sm text-gray-700 line-clamp-2">
-          {garden.description}
-        </p>
-
-        {/* サービス情報 */}
-        <div className="flex items-center gap-4 text-xs text-gray-500">
-          {garden.phone && (
-            <div className="flex items-center gap-1">
-              <Phone className="h-3 w-3" />
-              <span>電話対応</span>
-            </div>
-          )}
-          {garden.experience_programs && (
-            <div className="flex items-center gap-1">
-              <Users className="h-3 w-3" />
-              <span>体験可能</span>
-            </div>
-          )}
-          {garden.business_hours && (
-            <div className="flex items-center gap-1">
-              <Calendar className="h-3 w-3" />
-              <span>{garden.business_hours}</span>
-            </div>
-          )}
+        <div className="mt-2">
+          <HighlightDots items={gardenHighlights(garden)} />
         </div>
-
-        {/* アクションボタンエリア */}
-        <div className="pt-4 border-t space-y-2">
-          {/* 公式サイトボタン - 最優先 */}
-          {garden.website_url && (
-            <Button
-              className={`w-full ${theme.buttonColor} text-white`}
-              onClick={(e) => {
-                e.preventDefault()
-                e.stopPropagation()
-                window.open(garden.website_url, '_blank', 'noopener,noreferrer')
-              }}
-            >
-              <Globe className="h-4 w-4" />
-              公式サイトを見る
-              <ExternalLink className="h-3 w-3" />
-            </Button>
-          )}
-
-          {/* 電話ボタン - セカンダリー */}
-          {garden.phone && (
-            <Button
-              variant="outline"
-              className="w-full border-gray-300 text-gray-700 hover:bg-gray-50"
-              onClick={(e) => {
-                e.preventDefault()
-                e.stopPropagation()
-                window.location.href = `tel:${garden.phone}`
-              }}
-            >
-              <Phone className="h-4 w-4" />
-              {garden.phone}
-            </Button>
-          )}
-
-          {/* サイトがない場合の住所表示 */}
-          {!garden.website_url && (
-            <div className="text-xs text-gray-500 flex items-start gap-1">
-              <MapPin className="h-3 w-3 mt-0.5" />
-              <span>{garden.address}</span>
-            </div>
-          )}
-        </div>
-      </CardContent>
-    </Card>
-    </Link>
+      </div>
+    </article>
   )
 }
 
 export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
-  const [selectedRegion, setSelectedRegion] = useState<string>('全て')
+  const [region, setRegion] = useState<string>(ALL)
+  const [prefecture, setPrefecture] = useState<string | null>(null)
+  const [features, setFeatures] = useState<FeatureKey[]>([])
+  const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [position, setPosition] = useState<{ lat: number; lng: number } | null>(null)
+  const [geoStatus, setGeoStatus] = useState<'idle' | 'loading' | 'error'>('idle')
+  const [showMapSp, setShowMapSp] = useState(false)
 
-  // Filter gardens by selected region
-  const filteredGardens = useMemo(() => {
-    if (selectedRegion === '全て') return gardens
-    return gardens.filter(garden =>
-      getRegionFromPrefecture(garden.prefecture || '') === selectedRegion
-    )
-  }, [gardens, selectedRegion])
+  // 詳細ページからの「〇〇県の盆栽園一覧」リンク（?prefecture=）に対応
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const pref = params.get('prefecture')
+    if (pref && gardens.some(g => g.prefecture === pref)) {
+      setPrefecture(pref)
+      setRegion(gardenRegion({ prefecture: pref }))
+    }
+  }, [gardens])
 
-  // Count gardens by region for current data
   const regionCounts = useMemo(() => {
     const counts: Record<string, number> = {}
-    gardens.forEach(garden => {
-      const region = getRegionFromPrefecture(garden.prefecture || '')
-      counts[region] = (counts[region] || 0) + 1
+    gardens.forEach(g => {
+      const r = gardenRegion(g)
+      counts[r] = (counts[r] || 0) + 1
     })
     return counts
   }, [gardens])
 
+  // 件数の多い地方から並べる
+  const regionList = useMemo(
+    () => Object.keys(REGIONS).filter(r => regionCounts[r]).sort((a, b) => regionCounts[b] - regionCounts[a]),
+    [regionCounts]
+  )
+
+  const filtered = useMemo(() => {
+    let list = gardens
+    if (prefecture) list = list.filter(g => g.prefecture === prefecture)
+    else if (region !== ALL) list = list.filter(g => gardenRegion(g) === region)
+    for (const key of features) {
+      const f = FEATURES.find(x => x.key === key)!
+      list = list.filter(f.test)
+    }
+    if (position) {
+      list = [...list].sort((a, b) => {
+        const da = hasCoords(a) ? distanceKm(position, { lat: a.latitude, lng: a.longitude }) : Infinity
+        const db = hasCoords(b) ? distanceKm(position, { lat: b.latitude, lng: b.longitude }) : Infinity
+        return da - db
+      })
+    }
+    return list
+  }, [gardens, region, prefecture, features, position])
+
+  const points: GardenMapPoint[] = useMemo(
+    () =>
+      filtered.filter(hasCoords).map(g => ({
+        id: g.id,
+        name: g.name,
+        lat: g.latitude,
+        lng: g.longitude,
+        area: gardenArea(g),
+        href: `/gardens/${g.id}`,
+      })),
+    [filtered]
+  )
+
+  const selectRegion = (r: string) => {
+    setRegion(r)
+    setPrefecture(null)
+    setSelectedId(null)
+  }
+
+  // 地図のピンを押したら一覧の該当カードまでスクロール
+  const selectFromMap = (id: string) => {
+    setSelectedId(id)
+    document.getElementById(`garden-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+  }
+
+  const toggleFeature = (key: FeatureKey) => {
+    setFeatures(prev => (prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]))
+    setSelectedId(null)
+  }
+
+  const locate = useCallback(() => {
+    if (position) {
+      setPosition(null)
+      return
+    }
+    if (!('geolocation' in navigator)) {
+      setGeoStatus('error')
+      return
+    }
+    setGeoStatus('loading')
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        setPosition({ lat: pos.coords.latitude, lng: pos.coords.longitude })
+        setRegion(ALL)
+        setPrefecture(null)
+        setGeoStatus('idle')
+      },
+      () => setGeoStatus('error'),
+      { timeout: 10000, maximumAge: 300000 }
+    )
+  }, [position])
+
+  const scopeLabel = prefecture ?? (region === ALL ? '全国' : region)
+
+  const toggle = (
+    <div className="grid grid-cols-2 gap-2 lg:ml-auto lg:flex lg:w-auto lg:justify-end">
+      <span className="rounded-lg bg-navy px-4 py-2 text-center text-[13px] font-bold text-white" aria-current="page">盆栽園</span>
+      <Link href="/events" className="rounded-lg border border-line bg-white px-4 py-2 text-center text-[13px] text-ink hover:border-gold">
+        イベント
+      </Link>
+    </div>
+  )
+
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="container mx-auto px-4">
-        {/* ヘッダー */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            盆栽園紹介
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            信頼できる盆栽園をご紹介。歴史ある老舗から現代的な盆栽園まで、
-            質の高い盆栽を扱う園をピックアップしています。
-          </p>
-        </div>
+    <div className={`${CONTAINER} pb-12`}>
+      {/* SPは見出しの上に切り替え */}
+      <div className="pt-4 lg:hidden">{toggle}</div>
+      <PageHeading
+        crumbs={[{ label: 'ホーム', href: '/' }, { label: '出かける', href: '/gardens' }, { label: '盆栽園' }]}
+        title="盆栽園を探す"
+        lead={
+          <>
+            <span className="lg:hidden">全国{gardens.length}件</span>
+            <span className="hidden lg:inline">全国{gardens.length}件の盆栽園を、地域とできることから探せます。</span>
+          </>
+        }
+        aside={<div className="hidden lg:block">{toggle}</div>}
+      />
 
-        {/* コンパクト特徴セクション */}
-        <div className="flex justify-center mb-8">
-          <div className="flex flex-wrap gap-4 max-w-4xl">
-            <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border border-gray-200">
-              <span className="text-lg">🏆</span>
-              <span className="text-sm font-medium text-gray-700">厳選された盆栽園</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border border-gray-200">
-              <span className="text-lg">👥</span>
-              <span className="text-sm font-medium text-gray-700">専門知識</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border border-gray-200">
-              <span className="text-lg">🌱</span>
-              <span className="text-sm font-medium text-gray-700">品質保証</span>
-            </div>
-          </div>
-        </div>
-
-        {/* 地方フィルター */}
-        <div className="mb-8">
-          <div className="flex flex-wrap gap-2 justify-center">
-            {/* 全て表示ボタン */}
-            <button
-              onClick={() => setSelectedRegion('全て')}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                selectedRegion === '全て'
-                  ? 'bg-gray-800 text-white shadow-md'
-                  : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
-              }`}
-            >
-              全て ({gardens.length})
+      {/* 地方 */}
+      <div className="-mx-4 mt-4 overflow-x-auto px-4 lg:mx-0 lg:overflow-visible lg:px-0">
+        <div className="flex gap-2 whitespace-nowrap lg:flex-wrap">
+          <button type="button" onClick={() => selectRegion(ALL)} className={chipClass(region === ALL && !prefecture)}>
+            すべて（{gardens.length}）
+          </button>
+          {regionList.map(r => (
+            <button key={r} type="button" onClick={() => selectRegion(r)} className={chipClass(region === r && !prefecture)}>
+              {r}（{regionCounts[r]}）
             </button>
-
-            {/* 地方別フィルターボタン */}
-            {Object.entries(REGIONS).map(([regionName, regionData]) => {
-              const count = regionCounts[regionName] || 0
-              if (count === 0) return null
-
-              const theme = getRegionTheme(regionName)
-
-              return (
-                <button
-                  key={regionName}
-                  onClick={() => setSelectedRegion(regionName)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
-                    selectedRegion === regionName
-                      ? `${theme.color} text-white shadow-md`
-                      : `bg-white ${theme.textColor} hover:${theme.lightColor} border ${theme.borderColor}`
-                  }`}
-                >
-                  <span>{theme.icon}</span>
-                  {regionName} ({count})
-                </button>
-              )
-            })}
-          </div>
-        </div>
-
-        {/* 盆栽園一覧 */}
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">
-            提携盆栽園一覧
-          </h2>
-
-          {/* フィルター結果表示 */}
-          <p className="text-center text-gray-600 mb-8">
-            {selectedRegion === '全て'
-              ? `全国の盆栽園 ${filteredGardens.length}件を表示中`
-              : `${selectedRegion}地方の盆栽園 ${filteredGardens.length}件を表示中`
-            }
-          </p>
-
-          {filteredGardens.length > 0 ? (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                {filteredGardens.map((garden) => (
-                  <GardenCard key={garden.id} garden={garden} />
-                ))}
-              </div>
-
-              {/* お問い合わせセクション */}
-              <Card className="bg-bonsai-green-50 border-bonsai-green-200">
-                <CardContent className="p-8 text-center">
-                  <h3 className="text-2xl font-bold text-bonsai-green-800 mb-4">
-                    盆栽園の掲載をお考えの方へ
-                  </h3>
-                  <p className="text-bonsai-green-700 mb-6 max-w-2xl mx-auto">
-                    品質の高い盆栽を提供されている盆栽園様の掲載を随時受け付けております。
-                    掲載をご希望の方は、お気軽にお問い合わせください。
-                  </p>
-                  <Button variant="secondary">
-                    掲載についてお問い合わせ
-                  </Button>
-                </CardContent>
-              </Card>
-            </>
-          ) : (
-            <div className="text-center py-12">
-              <div className="text-gray-400 mb-4">
-                <span className="text-6xl">🏛️</span>
-              </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-2">
-                {selectedRegion}地方の盆栽園データを準備中です
-              </h3>
-              <p className="text-gray-600">
-                現在{selectedRegion}地方の盆栽園情報を収集中です。しばらくお待ちください。
-              </p>
-            </div>
+          ))}
+          {prefecture && (
+            <button type="button" onClick={() => selectRegion(region)} className={chipClass(true)} aria-label={`${prefecture}の絞り込みを解除`}>
+              {prefecture} ×
+            </button>
           )}
         </div>
+      </div>
 
-        {/* CTAセクション */}
-        <div className="mt-16 text-center">
-          <Card className="bg-gradient-to-r from-bonsai-green-600 to-earth-brown-600 text-white">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold mb-4">
-                お気に入りの盆栽を見つけませんか？
-              </h3>
-              <p className="text-lg mb-6 opacity-90">
-                厳選された商品を豊富に取り揃えています
-              </p>
-              <Button size="lg" variant="secondary" asChild>
-                <Link href="/products">
-                  商品一覧を見る
-                </Link>
-              </Button>
-            </CardContent>
-          </Card>
+      {/* できること */}
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        <span className="text-xs text-ink-muted">できること</span>
+        {FEATURES.map(f => {
+          const active = features.includes(f.key)
+          return (
+            <button
+              key={f.key}
+              type="button"
+              onClick={() => toggleFeature(f.key)}
+              aria-pressed={active}
+              className={`rounded-md border px-2.5 py-1 text-xs ${active ? 'border-navy bg-navy font-bold text-white' : 'border-line bg-white text-ink hover:border-gold'}`}
+            >
+              {f.label}
+            </button>
+          )
+        })}
+        <span className="ml-auto text-xs text-ink-soft">
+          {scopeLabel} {filtered.length}件{position && '（近い順）'}
+        </span>
+      </div>
+
+      {/* SP: 現在地・地図 */}
+      <div className="mt-3 grid grid-cols-2 gap-2 lg:hidden">
+        <button
+          type="button"
+          onClick={locate}
+          className={`rounded-lg border px-3 py-2 text-[13px] font-bold ${position ? 'border-navy bg-navy text-white' : 'border-navy bg-white text-navy'}`}
+        >
+          {geoStatus === 'loading' ? '現在地を取得中…' : position ? '近い順を解除' : '現在地から探す'}
+        </button>
+        <button
+          type="button"
+          onClick={() => setShowMapSp(v => !v)}
+          aria-expanded={showMapSp}
+          className="rounded-lg border border-line bg-white px-3 py-2 text-[13px] text-ink"
+        >
+          {showMapSp ? '地図を閉じる' : '地図で見る'}
+        </button>
+      </div>
+      {geoStatus === 'error' && <p className="mt-2 text-xs text-rakuten">現在地を取得できませんでした。端末の位置情報の設定をご確認ください。</p>}
+
+      <div className="mt-4 grid gap-4 lg:mt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-6">
+        {/* 地図（PCは右に固定、SPは「地図で見る」で開く） */}
+        <div className={`${showMapSp ? 'block' : 'hidden'} lg:order-2 lg:block`}>
+          <div className="isolate h-[320px] overflow-hidden rounded-xl border border-line lg:sticky lg:top-24 lg:h-[calc(100vh-8rem)] lg:max-h-[640px]">
+            {points.length > 0 ? (
+              <GardenMap points={points} selectedId={selectedId} onSelect={selectFromMap} />
+            ) : (
+              <Placeholder label="地図に表示できる盆栽園がありません" className="h-full w-full" />
+            )}
+          </div>
+          {/* PCのみ現在地ボタン */}
+          <button
+            type="button"
+            onClick={locate}
+            className="mt-2 hidden text-xs font-bold text-navy underline hover:text-gold-dark lg:inline-block"
+          >
+            {geoStatus === 'loading' ? '現在地を取得中…' : position ? '近い順を解除' : '現在地から近い順に並べる'}
+          </button>
+        </div>
+
+        {/* 一覧 */}
+        <div className="lg:order-1">
+          {filtered.length > 0 ? (
+            <div className="space-y-3">
+              {filtered.map(g => (
+                <GardenCard
+                  key={g.id}
+                  garden={g}
+                  selected={g.id === selectedId}
+                  distance={position && hasCoords(g) ? distanceKm(position, { lat: g.latitude, lng: g.longitude }) : undefined}
+                  onSelect={() => setSelectedId(g.id)}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-xl border border-line bg-white px-5 py-10 text-center">
+              <p className="font-mincho text-base font-bold text-navy">条件に合う盆栽園が見つかりませんでした</p>
+              <p className="mt-2 text-sm text-ink-soft">地域や「できること」の条件を減らしてお試しください。</p>
+            </div>
+          )}
+
+          <p className="mt-6 text-xs leading-relaxed text-ink-muted">
+            掲載情報は公式サイトなどの公開情報をもとに確認しています。営業時間などは変わることがあるため、お出かけ前に各園へご確認ください。
+            掲載内容の修正・掲載のご相談は<Link href="/contact" className="underline hover:text-gold-dark">お問い合わせ</Link>からどうぞ。
+          </p>
         </div>
       </div>
     </div>
