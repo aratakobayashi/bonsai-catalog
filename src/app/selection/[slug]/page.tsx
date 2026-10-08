@@ -1,12 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { supabaseServer } from '@/lib/supabase-server'
 import { SELECTIONS, getSelection, pickSelectionProducts } from '@/lib/selections'
 import { formatPrice, getSizeCategoryLabel } from '@/lib/utils'
-import { getDifficultyText } from '@/lib/product-ui-helpers'
-import { normalizeProduct, type CatalogProduct } from '@/lib/catalog-model'
-import { SPECIES_OPTIONS } from '@/lib/catalog'
+import type { CatalogProduct } from '@/lib/catalog-model'
+import { LEVEL_OPTIONS, SPECIES_OPTIONS, getCatalogProducts } from '@/lib/catalog'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { ProductThumb } from '@/components/catalog/ProductThumb'
 import { SITE_URL } from '@/lib/site'
@@ -14,16 +12,18 @@ import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { Breadcrumbs, CONTAINER, Card, ChipLink, NavyPanel, Placeholder, SectionTitle, chipClass } from '@/components/ui/design'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import type { Product } from '@/types'
+import { SelectionThumb } from '@/components/selection/SelectionThumb'
+import { SelectionCard } from '@/components/selection/SelectionCard'
 
 interface SelectionPageProps {
   params: { slug: string }
 }
 
+// ビルド時に全特集の商品データを同時に取得すると接続が不安定になるため、初回アクセス時に生成する（ISR）
 export const revalidate = 3600
-export const dynamicParams = false
 
 export function generateStaticParams() {
-  return SELECTIONS.map(selection => ({ slug: selection.slug }))
+  return []
 }
 
 export function generateMetadata({ params }: SelectionPageProps): Metadata {
@@ -56,33 +56,6 @@ const POINT_LINKS: Record<string, Record<string, { species: string; href: string
   },
 }
 
-// 「一覧で絞り込む」先の商品一覧の条件
-const CATALOG_LINKS: Record<string, { all: string; chips: { label: string; href: string }[] }> = {
-  'new-year-bonsai': {
-    all: '/products?type=tree&use=new_year',
-    chips: [
-      { label: '松', href: '/products?type=tree&use=new_year&species=cat-shohaku' },
-      { label: '梅', href: '/products?type=tree&use=new_year&species=ume' },
-      { label: '南天', href: '/products?type=tree&use=new_year&species=nanten' },
-    ],
-  },
-  'beginner-mini-bonsai': {
-    all: '/products?type=tree&level=easy',
-    chips: [
-      { label: 'ミニ', href: '/products?type=tree&level=easy&size=mini' },
-      { label: '小品', href: '/products?type=tree&level=easy&size=small' },
-    ],
-  },
-  'bonsai-gift': {
-    all: '/products?type=tree&use=gift',
-    chips: [
-      { label: '花もの', href: '/products?type=tree&use=gift&species=cat-hana' },
-      { label: '松柏類', href: '/products?type=tree&use=gift&species=cat-shohaku' },
-      { label: '雑木類', href: '/products?type=tree&use=gift&species=cat-zouki' },
-    ],
-  },
-}
-
 // 「松（五葉松・黒松）：説明」の形の箇条書きを、名前・補足・説明に分ける
 function parsePoint(point: string) {
   const i = point.indexOf('：')
@@ -92,25 +65,12 @@ function parsePoint(point: string) {
   return { name: m ? m[1] : label, sub: m ? m[2] : '', text }
 }
 
-async function getProducts(): Promise<Product[]> {
-  const { data, error } = await supabaseServer
-    .from('products')
-    .select('*')
-    .order('created_at', { ascending: false })
-
-  if (error) {
-    console.error('商品データの取得エラー:', error)
-    return []
-  }
-  return (data as Product[]) || []
-}
-
-function priceRangeBySize(products: Product[]) {
+function priceRangeBySize(products: CatalogProduct[]) {
   const bySize = new Map<string, number[]>()
   products.forEach(p => {
-    const prices = bySize.get(p.size_category) || []
+    const prices = bySize.get(p.sizeCategory) || []
     prices.push(p.price)
-    bySize.set(p.size_category, prices)
+    bySize.set(p.sizeCategory, prices)
   })
   return Array.from(bySize.entries()).map(([size, prices]) => ({
     size,
@@ -124,16 +84,13 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
   const selection = getSelection(params.slug)
   if (!selection) notFound()
 
-  const allProducts = await getProducts()
-  const products = pickSelectionProducts(selection, allProducts)
+  const products = pickSelectionProducts(selection, await getCatalogProducts())
   const priceRanges = priceRangeBySize(products)
   const pageUrl = `${SITE_URL}/selection/${selection.slug}`
-  const cards = products.map(normalizeProduct)
+  const cards = products
 
-  // 画像は掲載商品の写真を使い、なければ斜線の下地にする
-  const heroProduct = cards.find(p => p.imageUrl)
   const pointLinks = POINT_LINKS[selection.slug] ?? {}
-  const catalogLinks = CATALOG_LINKS[selection.slug]
+  const catalogLinks = selection.catalog
   const imageFor = (species: string): CatalogProduct | undefined => {
     const match = SPECIES_OPTIONS.find(o => o.value === species)?.match
     if (!match) return undefined
@@ -148,7 +105,7 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
       '@type': 'ListItem',
       position: index + 1,
       url: `${SITE_URL}/products/${product.id}`,
-      name: normalizeProduct(product).name,
+      name: product.name,
     })),
   }
 
@@ -172,7 +129,7 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
         <header className="lg:mx-auto lg:w-full lg:max-w-[1280px] lg:px-10">
           <div className="flex flex-col-reverse gap-0 lg:grid lg:grid-cols-[1fr_520px] lg:items-center lg:gap-12 lg:pt-10">
             <div className="px-4 pt-4 lg:px-0 lg:pt-0">
-              <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: selection.h1 }]} className="hidden lg:block" />
+              <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: '特集', href: '/selection' }, { label: selection.shortTitle }]} className="hidden lg:block" />
               <div className="mt-0 flex items-center gap-2 text-xs tracking-[0.1em] text-gold-dark lg:mt-3">
                 <span className="h-0.5 w-4 bg-gold" aria-hidden="true" />
                 {selection.eyebrow}
@@ -182,11 +139,7 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
               <PrDisclosure className="mt-4 border border-line bg-white lg:max-w-[560px]" />
             </div>
             <div className="relative aspect-[16/10] overflow-hidden bg-[#f1eee8] lg:aspect-auto lg:h-[340px] lg:rounded-[14px]">
-              {heroProduct ? (
-                <ProductThumb src={heroProduct.imageUrl} alt={selection.h1} sizes="(max-width: 1024px) 100vw, 520px" priority />
-              ) : (
-                <Placeholder className="absolute inset-0" />
-              )}
+              <SelectionThumb selection={selection} priority className="absolute inset-0 h-full w-full" />
             </div>
           </div>
         </header>
@@ -327,15 +280,15 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
                         <tr key={product.id} className="border-t border-line">
                           <td className="px-3 py-2.5">
                             <Link href={`/products/${product.id}`} className="text-navy hover:text-gold-dark hover:underline">
-                              {normalizeProduct(product).name}
+                              {product.name}
                             </Link>
                           </td>
                           <td className="whitespace-nowrap px-3 py-2.5 text-ink-soft">{product.category}</td>
                           <td className="whitespace-nowrap px-3 py-2.5 text-ink-soft">
-                            {getSizeCategoryLabel(product.size_category)}
-                            {product.height_cm ? `（高さ約${product.height_cm}cm）` : ''}
+                            {getSizeCategoryLabel(product.sizeCategory as Product['size_category'])}
+                            {product.heightCm ? `（高さ約${product.heightCm}cm）` : ''}
                           </td>
-                          <td className="whitespace-nowrap px-3 py-2.5 text-ink-soft">{getDifficultyText(product.difficulty_level)}</td>
+                          <td className="whitespace-nowrap px-3 py-2.5 text-ink-soft">{LEVEL_OPTIONS.find(o => o.value === product.level)?.label ?? '—'}</td>
                           <td className="whitespace-nowrap px-3 py-2.5 text-right font-bold text-ink">{formatPrice(product.price)}</td>
                         </tr>
                       ))}
@@ -352,14 +305,14 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
 
           {/* あわせて読みたい */}
           <section className="mt-10 lg:mt-12">
-            <SectionTitle>あわせて読みたい</SectionTitle>
-            <Card className="mt-3 overflow-hidden">
+            <SectionTitle action={<Link href="/selection" className="font-bold text-navy underline">特集をすべて見る →</Link>}>ほかの特集</SectionTitle>
+            <div className="mt-3 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
+              {SELECTIONS.filter(other => other.slug !== selection.slug).slice(0, 10).map(other => (
+                <SelectionCard key={other.slug} selection={other} compact />
+              ))}
+            </div>
+            <Card className="mt-4 overflow-hidden">
               <ul className="divide-y divide-[#efeae0] text-sm">
-                {SELECTIONS.filter(other => other.slug !== selection.slug).map(other => (
-                  <li key={other.slug}>
-                    <Link href={`/selection/${other.slug}`} className="block px-4 py-3 font-mincho font-bold text-ink hover:text-navy">{other.h1} →</Link>
-                  </li>
-                ))}
                 <li><Link href="/guides" className="block px-4 py-3 font-mincho font-bold text-ink hover:text-navy">盆栽の育て方ガイド一覧 →</Link></li>
                 <li><Link href="/products" className="block px-4 py-3 font-mincho font-bold text-ink hover:text-navy">盆栽の商品カタログ →</Link></li>
               </ul>

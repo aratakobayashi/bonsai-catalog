@@ -8,7 +8,13 @@ import { getArticles } from '@/lib/database/articles'
 import { isOptimizableImage } from '@/lib/image-utils'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { CONTAINER, Card, Placeholder, SectionTitle, chipClass } from '@/components/ui/design'
-import { SELECTIONS } from '@/lib/selections'
+import { SELECTIONS, getSelection, type Selection } from '@/lib/selections'
+import { SelectionCard } from '@/components/selection/SelectionCard'
+
+// トップに出す特集（季節の需要が高いものを先に）
+const FEATURED_SELECTIONS = ['indoor-bonsai', 'beginner-mini-bonsai', 'bonsai-gift', 'new-year-bonsai', 'autumn-leaves-bonsai', 'bonsai-under-3000', 'celebration-bonsai', 'starter-tools']
+  .map(slug => getSelection(slug))
+  .filter((s): s is Selection => Boolean(s))
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { isArticleIndexable } from '@/lib/content-policy'
 import { supabaseServer } from '@/lib/supabase-server'
@@ -170,25 +176,16 @@ export default async function HomePage() {
         <section className="mt-7 lg:mt-12">
           <SectionTitle className="[&_h2]:text-[19px] lg:[&_h2]:text-2xl">目的から選ぶ</SectionTitle>
           <div className="mt-3 grid grid-cols-2 gap-2.5 lg:mt-4 lg:grid-cols-4 lg:gap-4">
-            {purposes.map(item => (
-              <Link key={item.href} href={item.href} className="group overflow-hidden rounded-xl border border-line bg-white hover:border-gold lg:rounded-[14px]">
-                <div className="hidden lg:block"><PurposeImage product={item.product} label={item.title} /></div>
-                <div className="p-3.5 lg:px-4">
-                  <div className="text-sm font-bold text-ink group-hover:text-navy lg:text-[15px]">
-                    <span className="lg:hidden">{item.spTitle ?? item.title}</span>
-                    <span className="hidden lg:inline">{item.title}</span>
-                  </div>
-                  <div className="mt-0.5 text-xs text-ink-soft lg:text-[12.5px]">
-                    <span className="lg:hidden">{item.spSub ?? item.sub}</span>
-                    <span className="hidden lg:inline">{item.sub}</span>
-                  </div>
-                </div>
-              </Link>
+            {FEATURED_SELECTIONS.map((selection, i) => (
+              <div key={selection.slug} className={i >= 4 ? 'hidden lg:block' : ''}>
+                <SelectionCard selection={selection} compact />
+              </div>
             ))}
           </div>
-          <p className="mt-3 text-right text-[13px] text-ink-soft">
-            迷ったら <Link href="/shindan" className="font-bold text-navy underline underline-offset-2 hover:text-gold-dark">かんたん盆栽診断（4つの質問）→</Link>
-          </p>
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-[13px] text-ink-soft">
+            <Link href="/selection" className="font-bold text-navy underline underline-offset-2 hover:text-gold-dark">特集をすべて見る（{SELECTIONS.length}件）→</Link>
+            <span>迷ったら <Link href="/shindan" className="font-bold text-navy underline underline-offset-2 hover:text-gold-dark">かんたん盆栽診断（4つの質問）→</Link></span>
+          </div>
         </section>
 
         {/* レビューが多い盆栽 */}

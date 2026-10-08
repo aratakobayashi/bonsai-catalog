@@ -15,6 +15,7 @@ import { formatPrice } from '@/lib/utils'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { CatalogBrowser } from '@/components/catalog/CatalogBrowser'
 import { Breadcrumbs, ChipLink } from '@/components/ui/design'
+import { selectionsForCategory } from '@/lib/selections'
 
 interface CategoryPageProps {
   params: { slug: string }
@@ -72,6 +73,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const group = TREE_GROUP_BY_SLUG[category.slug] ?? (category.group === 'part' ? '鉢・土・道具' : null)
   const title = category.group === 'part' || category.slug === 'kokedama' || category.slug.endsWith('mono') || category.slug === 'mini' ? category.name : `${category.name}の盆栽`
   const selectedId = typeof searchParams.p === 'string' ? searchParams.p : undefined
+  const features = selectionsForCategory(category.slug)
 
   const itemListJsonLd = {
     '@context': 'https://schema.org',
@@ -99,6 +101,14 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
       <Link href={`/guides?search=${encodeURIComponent(category.name)}`} className="mt-2 inline-block text-[13px] font-bold text-navy underline">
         {category.group === 'part' ? `${category.name}の選び方を読む →` : `${category.name}の育て方を読む →`}
       </Link>
+      {features.length > 0 && (
+        <div className="mt-3 flex flex-wrap items-center gap-1.5">
+          <span className="text-[11px] text-ink-muted">特集：</span>
+          {features.map(f => (
+            <Link key={f.slug} href={`/selection/${f.slug}`} className="rounded-full border border-line bg-white px-2.5 py-1 text-xs text-navy hover:border-gold">{f.shortTitle}</Link>
+          ))}
+        </div>
+      )}
     </>
   )
 

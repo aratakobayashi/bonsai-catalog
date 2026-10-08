@@ -12,6 +12,8 @@ import { BreadcrumbStructuredData, ProductStructuredData } from '@/components/se
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { ProductBuyBar, ProductDetailPanel } from '@/components/catalog/ProductDetailPanel'
 import { SectionTitle, Tag } from '@/components/ui/design'
+import { SelectionCard } from '@/components/selection/SelectionCard'
+import { selectionsForProduct } from '@/lib/selections'
 import { categoryLink, isPartProduct } from '@/lib/product-detail'
 import { ProductThumb } from '@/components/catalog/ProductThumb'
 
@@ -116,6 +118,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     .slice(0, 4)
 
   const relatedArticles = getRelatedArticles(product.category, product.tags, 3)
+  const features = selectionsForProduct(product)
   const catLink = categoryLink(product)
   const listHref = catLink?.href ?? '/products'
   const sideList = [product, ...related.slice(0, 11)]
@@ -171,6 +174,15 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
         <div className="min-w-0 px-4 pt-0 lg:px-9 lg:py-8">
           <ProductDetailPanel product={product} headingLevel="h1" showDescription />
+
+          {features.length > 0 && (
+            <section className="mt-10">
+              <SectionTitle action={<Link href="/selection" className="font-bold text-navy underline">特集をすべて見る →</Link>}>この商品が載っている特集</SectionTitle>
+              <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3">
+                {features.map(selection => <SelectionCard key={selection.slug} selection={selection} compact />)}
+              </div>
+            </section>
+          )}
 
           {pairs.length > 0 && (
             <section className="mt-10">

@@ -1,4 +1,5 @@
-import type { Product } from '@/types'
+import type { CatalogProduct } from '@/lib/catalog-model'
+import { EXTRA_SELECTIONS } from './selections-extra'
 
 // 特集ページ（購入を検討している人向けの選び方＋比較ページ）の定義
 // 本文は一般的な知識の範囲で書き、体験談や根拠のない効果はうたわない
@@ -21,13 +22,23 @@ export interface Selection {
   lead: string
   sections: SelectionSection[]
   listHeading: string
+  // 一覧・カードに出す短い名前と一言
+  shortTitle: string
+  tagline: string
+  // サムネイルのイラスト（public/images/selections/）
+  thumbnail: string
   // 掲載する商品の条件
-  filter: (product: Product) => boolean
-  sort?: (a: Product, b: Product) => number
+  filter: (product: CatalogProduct) => boolean
+  sort?: (a: CatalogProduct, b: CatalogProduct) => number
   limit?: number
+  // 鉢・土・道具も掲載する（通常は盆栽・苔玉のみ）
+  includeParts?: boolean
+  // 「一覧で絞り込む」先の商品一覧の条件
+  catalog?: { all: string; chips: { label: string; href: string }[] }
 }
 
-const text = (p: Product) => `${p.name} ${(p.tags || []).join(' ')} ${p.description || ''}`
+const nameText = (p: CatalogProduct) => `${p.originalName} ${p.tags.join(' ')}`
+const byReviews = (a: CatalogProduct, b: CatalogProduct) => b.reviewCount - a.reviewCount || a.price - b.price
 
 export const SELECTIONS: Selection[] = [
   {
@@ -70,10 +81,21 @@ export const SELECTIONS: Selection[] = [
       },
     ],
     listHeading: '正月飾りにおすすめの盆栽（松・梅・南天など）',
+    shortTitle: '正月に飾る盆栽',
+    tagline: '松竹梅・南天など縁起物の盆栽',
+    thumbnail: '/images/selections/new-year-bonsai.svg',
     // 「松柏類」の「松」には反応させない
-    filter: p => /(?<!真)松(?!柏)|梅|南天|竹|縁起/.test(`${p.name} ${(p.tags || []).join(' ')}`),
+    filter: p => /(?<!真)松(?!柏)|梅|南天|竹|縁起/.test(nameText(p)),
     sort: (a, b) => a.price - b.price,
     limit: 15,
+    catalog: {
+      all: '/products?type=tree&use=new_year',
+      chips: [
+        { label: '松', href: '/products?type=tree&use=new_year&species=cat-shohaku' },
+        { label: '梅', href: '/products?type=tree&use=new_year&species=ume' },
+        { label: '南天', href: '/products?type=tree&use=new_year&species=nanten' },
+      ],
+    },
   },
   {
     slug: 'beginner-mini-bonsai',
@@ -109,10 +131,19 @@ export const SELECTIONS: Selection[] = [
       },
     ],
     listHeading: '初心者向けのミニ盆栽・小品盆栽',
-    filter: p => (p.size_category === 'mini' || p.size_category === 'small') &&
-      (p.difficulty_level === 1 || (p.difficulty_level === 2 && p.beginner_friendly === true)),
-    sort: (a, b) => (a.difficulty_level ?? 2) - (b.difficulty_level ?? 2) || a.price - b.price,
+    shortTitle: 'はじめての一鉢',
+    tagline: '育てやすいミニ盆栽・小品盆栽',
+    thumbnail: '/images/selections/beginner-mini-bonsai.svg',
+    filter: p => (p.sizeCategory === 'mini' || p.sizeCategory === 'small') && p.level === 'easy',
+    sort: byReviews,
     limit: 18,
+    catalog: {
+      all: '/products?type=tree&level=easy',
+      chips: [
+        { label: 'ミニ', href: '/products?type=tree&level=easy&size=mini' },
+        { label: '小品', href: '/products?type=tree&level=easy&size=small' },
+      ],
+    },
   },
   {
     slug: 'bonsai-gift',
@@ -148,31 +179,70 @@ export const SELECTIONS: Selection[] = [
       },
     ],
     listHeading: '贈り物に選ばれている盆栽',
-    filter: p => p.gift_suitable === true || /ギフト|プレゼント|贈|縁起|花もの/.test(text(p)) || p.category === '花もの',
-    sort: (a, b) => a.price - b.price,
+    shortTitle: '贈り物に選ぶ',
+    tagline: '母の日・敬老の日・お祝いに',
+    thumbnail: '/images/selections/bonsai-gift.svg',
+    filter: p => p.gift || p.wrapping || /ギフト|プレゼント|贈|縁起/.test(nameText(p)) || p.category === '花もの',
+    sort: byReviews,
     limit: 18,
+    catalog: {
+      all: '/products?type=tree&use=gift',
+      chips: [
+        { label: '花もの', href: '/products?type=tree&use=gift&species=cat-hana' },
+        { label: '松柏類', href: '/products?type=tree&use=gift&species=cat-shohaku' },
+        { label: '雑木類', href: '/products?type=tree&use=gift&species=cat-zouki' },
+      ],
+    },
   },
+  ...EXTRA_SELECTIONS,
 ]
 
 export function getSelection(slug: string): Selection | undefined {
   return SELECTIONS.find(selection => selection.slug === slug)
 }
 
-// 同じ商品名の重複登録をまとめる
-export function pickSelectionProducts(selection: Selection, products: Product[]): Product[] {
+// 同じ商品名の重複登録をまとめ、盆栽（樹）・苔玉（道具の特集では鉢・土・道具も）から条件に合うものを選ぶ
+export function pickSelectionProducts(selection: Selection, products: CatalogProduct[]): CatalogProduct[] {
   const seen = new Set<string>()
-  const unique = products.filter(p => {
-    if (seen.has(p.name)) return false
-    seen.add(p.name)
-    return true
-  })
-  // 盆栽（樹）・苔玉のみを対象にする（鉢・土・種などは除く）。販売終了の商品も除く
-  const picked = unique
+  const types = selection.includeParts ? ['pot', 'soil', 'tool', 'wire', 'fertilizer'] : ['tree', 'kokedama']
+  const picked = products
     .filter(p => {
-      const row = p as Product & { product_type?: string; is_active?: boolean }
-      return row.is_active !== false && (!row.product_type || ['tree', 'kokedama'].includes(row.product_type))
+      if (seen.has(p.originalName)) return false
+      seen.add(p.originalName)
+      return types.includes(p.productType)
     })
     .filter(selection.filter)
   if (selection.sort) picked.sort(selection.sort)
   return picked.slice(0, selection.limit ?? picked.length)
+}
+
+// 商品が掲載されている特集（商品詳細ページの導線用）
+export function selectionsForProduct(product: CatalogProduct, limit = 3): Selection[] {
+  const isPart = ['pot', 'soil', 'tool', 'wire', 'fertilizer'].includes(product.productType)
+  return SELECTIONS.filter(s => (s.includeParts ? isPart : !isPart) && s.filter(product)).slice(0, limit)
+}
+
+// カテゴリに関係する特集（カテゴリページの導線用）
+const CATEGORY_SELECTIONS: Record<string, string[]> = {
+  goyomatsu: ['evergreen-bonsai', 'new-year-bonsai', 'celebration-bonsai'],
+  kuromatsu: ['evergreen-bonsai', 'new-year-bonsai'],
+  akamatsu: ['evergreen-bonsai'],
+  shimpaku: ['evergreen-bonsai', 'beginner-mini-bonsai'],
+  momiji: ['autumn-leaves-bonsai', 'beginner-mini-bonsai'],
+  keyaki: ['autumn-leaves-bonsai'],
+  sakura: ['flowering-bonsai', 'bonsai-gift'],
+  ume: ['flowering-bonsai', 'new-year-bonsai', 'celebration-bonsai'],
+  satsuki: ['flowering-bonsai'],
+  nanten: ['fruit-bonsai', 'new-year-bonsai'],
+  himeringo: ['fruit-bonsai', 'flowering-bonsai'],
+  mimono: ['fruit-bonsai'],
+  gajumaru: ['indoor-bonsai'],
+  olive: ['indoor-bonsai'],
+  mini: ['beginner-mini-bonsai', 'bonsai-under-3000'],
+  kokedama: ['indoor-bonsai', 'bonsai-under-3000'],
+  hachi: ['starter-tools'], tsuchi: ['starter-tools'], dougu: ['starter-tools'], harigane: ['starter-tools'], hiryo: ['starter-tools'],
+}
+
+export function selectionsForCategory(slug: string): Selection[] {
+  return (CATEGORY_SELECTIONS[slug] ?? []).map(s => getSelection(s)).filter((s): s is Selection => Boolean(s))
 }

@@ -7,10 +7,12 @@ import { useEffect, useRef, useState } from 'react'
 const RECENT_KEY = 'bonsai-recent-searches'
 const POPULAR = ['五葉松', 'もみじ', '黒松', '真柏', 'ミニ盆栽', '盆栽鉢']
 const PURPOSES = [
+  { label: '室内で楽しむ', href: '/selection/indoor-bonsai' },
   { label: 'はじめての一鉢', href: '/selection/beginner-mini-bonsai' },
   { label: '贈り物に', href: '/selection/bonsai-gift' },
   { label: '正月に飾る', href: '/selection/new-year-bonsai' },
-  { label: '鉢・土・道具', href: '/products?type=parts' },
+  { label: '3,000円以下', href: '/selection/bonsai-under-3000' },
+  { label: '鉢・土・道具', href: '/selection/starter-tools' },
 ]
 const BUDGETS = [
   { label: '〜3,000円', href: '/products?max=3000' },
@@ -103,7 +105,10 @@ export function SearchOverlay({ open, onClose, variant }: { open: boolean; onClo
         </div>
       </section>
       <section>
-        <h2 className="text-xs font-bold text-ink-soft">目的から</h2>
+        <div className="flex items-baseline justify-between">
+          <h2 className="text-xs font-bold text-ink-soft">目的から</h2>
+          <Link href="/selection" onClick={onClose} className="text-xs text-navy underline">特集をすべて見る</Link>
+        </div>
         <div className="mt-2 grid grid-cols-2 gap-2">
           {PURPOSES.map(p => (
             <Link key={p.href} href={p.href} onClick={onClose} className="rounded-lg bg-paper px-3 py-3 text-sm font-bold text-ink hover:bg-gold-light">

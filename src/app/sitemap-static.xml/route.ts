@@ -52,6 +52,12 @@ export async function GET() {
         changeFreq: 'weekly',
         priority: 0.8
       },
+      {
+        url: `${baseUrl}/selection`,
+        lastMod: new Date().toISOString().split('T')[0],
+        changeFreq: 'weekly',
+        priority: 0.8
+      },
       ...SELECTIONS.map(selection => ({
         url: `${baseUrl}/selection/${selection.slug}`,
         lastMod: new Date().toISOString().split('T')[0],

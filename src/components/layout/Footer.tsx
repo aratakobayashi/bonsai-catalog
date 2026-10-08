@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 const LINKS = [
+  { href: '/selection', label: '特集一覧' },
   { href: '/about', label: 'このサイトについて' },
   { href: '/faq', label: 'よくある質問' },
   { href: '/contact', label: 'お問い合わせ' },

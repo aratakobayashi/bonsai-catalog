@@ -22,6 +22,7 @@ import {
 } from '@/lib/catalog'
 import { formatPrice } from '@/lib/utils'
 import { CatalogBrowser } from '@/components/catalog/CatalogBrowser'
+import { SELECTIONS } from '@/lib/selections'
 import { CatalogSearchTracker } from '@/components/analytics/CatalogSearchTracker'
 
 interface ProductsPageProps {
@@ -130,7 +131,21 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         selectedId={selectedId}
         emptyState={emptyState}
         activeCount={activeCount}
-        intro={filters.q ? <p className="text-sm text-ink">「<span className="font-bold">{filters.q}</span>」の検索結果</p> : undefined}
+        intro={filters.q ? (
+          <p className="text-sm text-ink">「<span className="font-bold">{filters.q}</span>」の検索結果</p>
+        ) : activeCount === 0 ? (
+          <div>
+            <div className="flex items-baseline justify-between">
+              <span className="text-xs font-bold text-ink-soft">目的から探す</span>
+              <Link href="/selection" className="text-xs text-navy underline">特集をすべて見る</Link>
+            </div>
+            <div className="mt-2 flex gap-2 overflow-x-auto pb-1">
+              {SELECTIONS.map(s => (
+                <Link key={s.slug} href={`/selection/${s.slug}`} className="shrink-0 rounded-full border border-line bg-white px-3 py-1.5 text-xs text-navy hover:border-gold">{s.shortTitle}</Link>
+              ))}
+            </div>
+          </div>
+        ) : undefined}
       />
     </>
   )
