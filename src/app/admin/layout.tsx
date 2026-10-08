@@ -55,6 +55,12 @@ export default function AdminLayout({
               >
                 商品の同期
               </a>
+              <a
+                href="/admin/gardens"
+                className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+              >
+                盆栽園データ
+              </a>
               <a 
                 href="/admin/articles/new"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium"

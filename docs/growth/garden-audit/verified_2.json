@@ -1,0 +1,693 @@
+[
+ {
+  "id": "6d77d1c5-4093-4741-90cd-2bdf5395d5e6",
+  "name": "ランド・ガーデン",
+  "status": "partially_verified",
+  "confirmed": {
+   "name": "ランド・ガーデン",
+   "website_url": "https://www.land-garden.net/",
+   "business_hours": "9:00〜17:00",
+   "closed_days": [
+    "水曜日"
+   ],
+   "established_year": 1996,
+   "owner_name": "株式会社グリーンランド",
+   "social_instagram": "@land_garden"
+  },
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.land-garden.net/",
+   "https://www.land-garden.net/company/"
+  ],
+  "notes": "公式サイトで実在と営業時間・定休日を確認したが、成田市の店舗はなく（店舗は四街道・八千代・柏の葉）住所・電話は未確認。",
+  "description_new": "千葉県で庭づくり・外構工事を手がけるガーデン・エクステリア専門店。四街道市・八千代市・柏市に店舗がある。",
+  "specialties_confirmed": [
+   "デザインガーデン",
+   "エクステリア",
+   "ウッドデッキ",
+   "外構",
+   "植栽"
+  ]
+ },
+ {
+  "id": "447f6eea-99d2-4a32-8a66-57d2af66061e",
+  "name": "丸京盆栽オークション",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で実在を確認できず、記載のウェブサイトにも接続できない。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "1463d7db-74d7-44cf-ac4c-78f8696dc8e9",
+  "name": "伊東屋園芸",
+  "status": "verified",
+  "confirmed": {
+   "name": "伊東屋",
+   "address": "千葉県船橋市本町4-41-25",
+   "phone": "047-422-2323",
+   "website_url": "https://engei-itoya.com/",
+   "business_hours": "10:00〜18:30",
+   "closed_days": [
+    "1月1日〜1月3日"
+   ],
+   "access_info": "JR船橋駅・京成船橋駅より徒歩3分",
+   "parking_info": "駐車場なし"
+  },
+  "clear_fields": [
+   "postal_code",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://engei-itoya.com/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・定休日を確認（掲載住所・電話は誤り）。",
+  "description_new": "船橋駅近くの総合園芸店で、サボテン・多肉植物、観葉植物、洋蘭、苗、生花、盆栽、園芸資材を扱う。花束・植替え・庭木剪定も受け付けている。",
+  "specialties_confirmed": [
+   "サボテン・多肉植物",
+   "観葉植物",
+   "洋蘭",
+   "生花",
+   "盆栽",
+   "園芸資材",
+   "庭木剪定"
+  ]
+ },
+ {
+  "id": "aaab7bde-68f9-4ccb-8e78-871ca5ee8fc5",
+  "name": "印旛沼盆栽園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で実在を確認できず、記載のウェブサイトにも接続できない。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "2afde46e-67aa-47d5-a8bb-737e0ab747a1",
+  "name": "房総盆栽村",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で実在を確認できなかった。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "b2974592-38df-4f4b-907b-e5fe1df60620",
+  "name": "盆栽福島園",
+  "status": "verified",
+  "confirmed": {
+   "name": "盆栽福島園",
+   "address": "千葉県印西市師戸2510",
+   "phone": "0476-99-2340",
+   "website_url": "https://bonsai-fukushimaen.net/",
+   "business_hours": "9:00〜17:00",
+   "access_info": "北総線印旛日本医大駅から車で5分、東関道四街道ICから車で20分",
+   "established_year": 1945,
+   "owner_name": "福島孝之",
+   "experience_programs": true
+  },
+  "clear_fields": [
+   "postal_code",
+   "closed_days",
+   "parking_info",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://bonsai-fukushimaen.net/"
+  ],
+  "notes": "公式サイトで住所（佐倉市ではなく印西市師戸）・電話・営業時間・創業年を確認。",
+  "description_new": "千葉県印西市の印旛沼畔にある盆栽園で、1945年に大宮で創業。盆栽の買取・預かり・リース・手入れを行い、毎月第2日曜日に盆栽教室を開いている。",
+  "specialties_confirmed": [
+   "盆栽の買取",
+   "盆栽の預かり",
+   "盆栽リース",
+   "盆栽の手入れ",
+   "盆栽教室"
+  ]
+ },
+ {
+  "id": "58e02c92-8918-4212-9560-c56e31606724",
+  "name": "緑花木市場",
+  "status": "verified",
+  "confirmed": {
+   "name": "緑花木市場",
+   "address": "千葉県東金市田間1300-3 道の駅みのりの郷東金内",
+   "phone": "0475-53-3619",
+   "website_url": "https://minorinosato-togane.com/sisetsu/ryokuka",
+   "social_instagram": "@minori_togane"
+  },
+  "clear_fields": [
+   "postal_code",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://minorinosato-togane.com/sisetsu/ryokuka",
+   "https://minorinosato-togane.com/sisetsu/guide"
+  ],
+  "notes": "道の駅公式サイトで施設・住所・直通電話を確認（市場単独の営業時間・定休日は未記載）。",
+  "description_new": "道の駅みのりの郷東金内にある緑花木の市場で、植栽・盆栽・小鉢花・見本庭園がある。造園・草刈り・消毒の依頼も受け付けている。",
+  "specialties_confirmed": [
+   "植木",
+   "盆栽",
+   "小鉢花",
+   "見本庭園",
+   "造園"
+  ]
+ },
+ {
+  "id": "f157053e-1a0c-4952-ac48-f3c2bc3fa7c5",
+  "name": "中山農園",
+  "status": "verified",
+  "confirmed": {
+   "name": "中山農園",
+   "address": "和歌山県田辺市上秋津2710-1",
+   "postal_code": "646-0001",
+   "phone": "0739-35-1139",
+   "website_url": "https://www.nakayamafarm-ff.com/",
+   "owner_name": "中山将誓",
+   "online_sales": true
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.nakayamafarm-ff.com/",
+   "https://www.nakayamafarm-ff.com/?mode=sk"
+  ],
+  "notes": "公式サイトの特定商取引法表記で住所・電話・責任者を確認（掲載番地・電話は誤り）。",
+  "description_new": "和歌山県田辺市上秋津の果樹農園で、梅干し・青梅、みかん・晩柑、ドライフルーツやジュースをオンラインショップで販売している。",
+  "specialties_confirmed": [
+   "梅",
+   "梅干し",
+   "みかん",
+   "晩柑",
+   "ドライフルーツ"
+  ]
+ },
+ {
+  "id": "0b082ac1-084a-4f81-9fce-20fb974461a9",
+  "name": "松風園",
+  "status": "verified",
+  "confirmed": {
+   "name": "株式会社 松風園",
+   "address": "和歌山県和歌山市西高松1丁目5番51号",
+   "postal_code": "641-0051",
+   "phone": "073-422-0405",
+   "website_url": "http://www.shohuen.co.jp/",
+   "business_hours": "9:00〜17:00（平日・電話受付）",
+   "closed_days": [
+    "土曜日",
+    "日曜日",
+    "祝日"
+   ],
+   "established_year": 1907,
+   "owner_name": "的塲盛州"
+  },
+  "clear_fields": [
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "http://www.shohuen.co.jp/"
+  ],
+  "notes": "公式サイトで本社住所・電話・受付時間・創業年を確認（掲載住所・電話は誤り）。",
+  "description_new": "1907年創業の和歌山市の造園会社で、和歌山市と海南市に拠点を持つ。海南市に園芸生花店がある。",
+  "specialties_confirmed": [
+   "造園工事",
+   "庭木剪定",
+   "園芸生花店"
+  ]
+ },
+ {
+  "id": "99ccb893-5976-423a-8773-220bb7efe6b6",
+  "name": "紀菜柑",
+  "status": "verified",
+  "confirmed": {
+   "name": "JA紀南ファーマーズマーケット 紀菜柑",
+   "address": "和歌山県田辺市秋津町752-1",
+   "phone": "0739-81-0831",
+   "business_hours": "9:00〜18:00（1・2月は〜17:30）",
+   "closed_days": [
+    "年中無休"
+   ],
+   "access_info": "阪和道南紀田辺ICから国道42号経由で約5分",
+   "parking_info": "駐車場あり（80台）",
+   "owner_name": "JA紀南"
+  },
+  "clear_fields": [
+   "postal_code",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://rurubu.jp/andmore/spot/80104583"
+  ],
+  "notes": "るるぶの施設情報で住所・電話・営業時間・定休日を確認（掲載電話は誤り）。",
+  "description_new": "和歌山県田辺市にあるJA紀南の農産物直売所で、柑橘類をはじめ地元の農産物を販売している。",
+  "specialties_confirmed": [
+   "柑橘",
+   "農産物直売"
+  ]
+ },
+ {
+  "id": "bc8f2e83-04cb-48a0-b213-75d1e6b09fee",
+  "name": "あゆみ野農協安行園芸センター",
+  "status": "partially_verified",
+  "confirmed": {
+   "name": "あゆみ野農協安行園芸センター"
+  },
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.city.kawaguchi.lg.jp/material/files/group/105/100angyo_aki_hanaueki.pdf"
+  ],
+  "notes": "川口市の安行植木まつり資料で川口市安行での実在を確認したが、住所・電話・営業時間等は未確認。",
+  "description_new": "川口市安行の植木産地にある農協の園芸センターで、安行花植木まつりでは植木・園芸資材の展示販売会場となっている。",
+  "specialties_confirmed": [
+   "植木",
+   "園芸資材"
+  ]
+ },
+ {
+  "id": "8f99da6b-ee77-4c5f-86a9-92b0f5c7f99d",
+  "name": "九霞園",
+  "status": "verified",
+  "confirmed": {
+   "name": "九霞園",
+   "address": "埼玉県さいたま市北区盆栽町131",
+   "phone": "048-663-0423",
+   "owner_name": "村田行雄"
+  },
+  "clear_fields": [
+   "postal_code",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://kinarino.jp/cat7/11306",
+   "https://www.city.saitama.lg.jp/006/014/010/001/012/018/p087271_d/fil/29.pdf",
+   "https://www.city.saitama.lg.jp/004/005/001/005/001/004/p120216.html"
+  ],
+  "notes": "さいたま市資料で大宮盆栽村の盆栽園として実在と園主を確認し、記事で住所・電話を確認。",
+  "description_new": "さいたま市北区盆栽町（大宮盆栽村）の盆栽園。盆栽を鑑賞・購入できる。",
+  "specialties_confirmed": []
+ },
+ {
+  "id": "7cb38263-35fd-4fdb-b0a5-9c31227d6ebc",
+  "name": "川口BONSAI村",
+  "status": "partially_verified",
+  "confirmed": {
+   "name": "川口BONSAI村",
+   "address": "埼玉県川口市木曽呂939-2",
+   "postal_code": "333-0831",
+   "phone": "048-235-4876",
+   "website_url": "https://kawaguchibonsaimura.com/",
+   "social_instagram": "@kawaguchibonsaimura"
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://kawaguchibonsaimura.com/",
+   "https://kawaguchibonsaimura.com/real-store-introduction/"
+  ],
+  "notes": "公式サイトで住所・電話を確認したが、2024年11月に店舗移転準備の告知があり現所在地は要確認（掲載電話は誤り）。",
+  "description_new": "埼玉県川口市の盆栽店で、ミニ盆栽、小鉢、盆栽道具を販売し、盆栽の買取も行っている。",
+  "specialties_confirmed": [
+   "ミニ盆栽",
+   "小鉢",
+   "盆栽道具",
+   "盆栽買取"
+  ]
+ },
+ {
+  "id": "3000a4b6-0a10-4896-9ff2-b3a9d09c14db",
+  "name": "川口緑化センター 樹里安",
+  "status": "verified",
+  "confirmed": {
+   "name": "川口緑化センター 樹里安",
+   "address": "埼玉県川口市安行領家844-2",
+   "postal_code": "334-0058",
+   "phone": "048-296-4021",
+   "website_url": "https://www.jurian.or.jp/",
+   "business_hours": "管理事務所 9:00〜18:00、園芸販売 9:00〜17:00",
+   "closed_days": [
+    "年末年始",
+    "施設点検日（2月・7月の年2回）",
+    "園芸販売は月曜定休（祝日の場合は翌平日）"
+   ],
+   "access_info": "埼玉高速鉄道線戸塚安行駅1番出口から徒歩20分",
+   "parking_info": "第一〜第三駐車場あり（第一駐車場は24時間・普通車35台）",
+   "owner_name": "公益財団法人川口緑化センター",
+   "experience_programs": true,
+   "social_instagram": "@jurian.angyo"
+  },
+  "clear_fields": [
+   "established_year",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.jurian.or.jp/",
+   "https://www.jurian.or.jp/info/access.php"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・休所日・アクセス・駐車場を確認。",
+  "description_new": "道の駅「川口・あんぎょう」を兼ねる川口市安行の緑化センター。園芸売店で植木・花鉢・園芸用品を販売し、盆栽展や園芸講習会を開催している。",
+  "specialties_confirmed": [
+   "植木",
+   "花鉢",
+   "園芸用品",
+   "盆栽展",
+   "園芸講習会"
+  ]
+ },
+ {
+  "id": "fa96de24-e49e-4dc6-a969-d7e81462a0d5",
+  "name": "彩の国盆栽センター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で実在を確認できず、記載のウェブサイトにも接続できない。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "34ba6634-3e68-4ed6-a766-07ac2d3aba33",
+  "name": "武蔵野盆栽園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で実在を確認できず（盆栽町の盆栽園一覧にもない）、記載のウェブサイトにも接続できない。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "e695fdf3-4e1c-4b6b-b20b-59e17cba279a",
+  "name": "清香園",
+  "status": "verified",
+  "confirmed": {
+   "name": "清香園",
+   "address": "埼玉県さいたま市北区盆栽町268",
+   "postal_code": "331-0805",
+   "phone": "048-663-3931",
+   "website_url": "https://www.seikouen.cc/",
+   "business_hours": "9:00〜18:00（最終入園17:00）",
+   "closed_days": [
+    "木曜日"
+   ],
+   "established_year": 1853,
+   "owner_name": "山田登美男",
+   "experience_programs": true,
+   "online_sales": true,
+   "social_instagram": "@bonsai_seikouen"
+  },
+  "clear_fields": [
+   "access_info",
+   "parking_info",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.seikouen.cc/",
+   "https://www.seikouen.cc/company.html"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・定休日・創業年を確認。",
+  "description_new": "大宮盆栽村にある1853年創業の盆栽園で、盆栽の販売・レンタル・メンテナンスを行う。彩花盆栽教室を運営し、Amazonでも盆栽を購入できる。",
+  "specialties_confirmed": [
+   "彩花盆栽",
+   "盆栽教室",
+   "盆栽レンタル",
+   "盆栽メンテナンス",
+   "庭づくり"
+  ]
+ },
+ {
+  "id": "75779219-963c-49eb-942a-c2f6caa3c7a1",
+  "name": "芙蓉園",
+  "status": "verified",
+  "confirmed": {
+   "name": "芙蓉園",
+   "address": "埼玉県さいたま市北区盆栽町96",
+   "phone": "048-666-2400"
+  },
+  "clear_fields": [
+   "postal_code",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://kinarino.jp/cat7/11306",
+   "https://www.city.saitama.lg.jp/006/014/010/001/012/018/p087271_d/fil/29.pdf"
+  ],
+  "notes": "さいたま市資料で大宮盆栽村の盆栽園として実在を確認し、記事で住所・電話を確認。",
+  "description_new": "さいたま市北区盆栽町（大宮盆栽村）の盆栽園。盆栽を鑑賞・購入できる。",
+  "specialties_confirmed": []
+ },
+ {
+  "id": "eb263d7a-701b-4b4b-9b01-776a8ea2cdf4",
+  "name": "蔓青園",
+  "status": "verified",
+  "confirmed": {
+   "name": "蔓青園",
+   "address": "埼玉県さいたま市北区盆栽町285",
+   "phone": "048-663-2636",
+   "owner_name": "加藤崇寿"
+  },
+  "clear_fields": [
+   "postal_code",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://kinarino.jp/cat7/11306",
+   "https://www.city.saitama.lg.jp/006/014/010/001/012/018/p087271_d/fil/29.pdf",
+   "https://www.city.saitama.lg.jp/004/005/001/005/001/004/p120203.html"
+  ],
+  "notes": "さいたま市資料で実在と5代目園主を確認し、記事で住所・電話を確認。",
+  "description_new": "さいたま市北区盆栽町（大宮盆栽村）の盆栽園。盆栽を鑑賞・購入できる。",
+  "specialties_confirmed": []
+ },
+ {
+  "id": "60842140-ce64-4848-a55c-5457a8703d33",
+  "name": "藤樹園",
+  "status": "verified",
+  "confirmed": {
+   "name": "藤樹園",
+   "address": "埼玉県さいたま市北区盆栽町247",
+   "phone": "048-663-3899",
+   "closed_days": [
+    "木曜日"
+   ]
+  },
+  "clear_fields": [
+   "postal_code",
+   "business_hours",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.city.saitama.lg.jp/006/014/008/003/012/001/p096970.html",
+   "https://kinarino.jp/cat7/11306",
+   "https://www.city.saitama.lg.jp/006/014/010/001/012/018/p087271_d/fil/29.pdf"
+  ],
+  "notes": "さいたま市公式ページで住所・木曜定休を確認し、記事で電話を確認。",
+  "description_new": "さいたま市北区盆栽町（大宮盆栽村）の盆栽園。盆栽を鑑賞・購入できる。",
+  "specialties_confirmed": []
+ },
+ {
+  "id": "323ae2c8-82a0-480a-a0bf-3eeab52baa3a",
+  "name": "ガーデニングサロン 風の散歩道",
+  "status": "verified",
+  "confirmed": {
+   "name": "ガーデニングサロン 風の散歩道",
+   "address": "大分県大分市生石5-8-8",
+   "postal_code": "870-0003",
+   "phone": "097-537-8182",
+   "website_url": "https://www.kazenosanpomichi.com/",
+   "business_hours": "10:00〜18:00",
+   "closed_days": [
+    "火曜日"
+   ],
+   "parking_info": "専用駐車場なし（かんたん港園駐車場60分無料・徒歩1分）",
+   "owner_name": "大本信子",
+   "experience_programs": true,
+   "social_instagram": "@kazenosanpomichi"
+  },
+  "clear_fields": [
+   "access_info",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.kazenosanpomichi.com/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・定休日を確認（郵便番号は誤り、専用駐車場なし）。",
+  "description_new": "大分市生石のかんたん港園の一角にある園芸店で、花苗・観葉植物・鉢やガーデングッズを販売する。月2〜3回のガーデニング教室や庭づくりも行っている。",
+  "specialties_confirmed": [
+   "花苗",
+   "観葉植物",
+   "ガーデングッズ",
+   "ガーデニング教室",
+   "寄せ植え",
+   "庭づくり"
+  ]
+ },
+ {
+  "id": "9a9dc214-6dd8-4d31-ba99-a2e475d302f8",
+  "name": "春日緑化株式会社",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で実在を確認できず、記載のウェブサイトにも接続できない。",
+  "description_new": null,
+  "specialties_confirmed": []
+ }
+]

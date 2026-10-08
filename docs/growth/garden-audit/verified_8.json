@@ -1,0 +1,611 @@
+[
+ {
+  "id": "a62bafaf-dd00-47b0-b4a8-1979e35fbf20",
+  "name": "みちのく造園",
+  "status": "verified",
+  "confirmed": {
+   "name": "みちのく造園",
+   "address": "青森県青森市自由ケ丘1丁目2-14",
+   "postal_code": "030-0941",
+   "phone": "017-742-2174",
+   "website_url": "https://www.michinoku-zouen.com/",
+   "business_hours": "9:00〜17:00",
+   "closed_days": [
+    "お盆",
+    "年末年始",
+    "1〜3月は日曜日"
+   ],
+   "established_year": 1982,
+   "owner_name": "玉熊訓"
+  },
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.michinoku-zouen.com/",
+   "https://www.michinoku-zouen.com/%e4%bc%9a%e7%a4%be%e6%a6%82%e8%a6%81/"
+  ],
+  "notes": "公式サイト会社概要で住所・電話・創業年・代表者を確認（住所は浜田ではなく自由ケ丘、定休日は雑貨店の案内）。",
+  "description_new": "青森市自由ケ丘の有限会社みちのく造園で、造園・外構・除排雪などを手がけ、観葉植物やガーデン雑貨の店「IRIS GARDEN」も運営しています。昭和57年創業です。",
+  "specialties_confirmed": [
+   "造園",
+   "外構・エクステリア",
+   "除排雪",
+   "観葉植物レンタル",
+   "ガーデン雑貨"
+  ]
+ },
+ {
+  "id": "a130db6c-894b-4aef-adc2-fc8967fe0dec",
+  "name": "原田種苗",
+  "status": "verified",
+  "confirmed": {
+   "name": "原田種苗",
+   "address": "青森県弘前市末広2丁目2-4",
+   "postal_code": "036-8085",
+   "phone": "0172-27-8474",
+   "website_url": "http://www.haradasyubyo.jp/",
+   "business_hours": "8:00〜17:00",
+   "closed_days": [
+    "日曜日",
+    "祝日"
+   ],
+   "established_year": 1959,
+   "owner_name": "原田寿晴",
+   "online_sales": true
+  },
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "owner_message"
+  ],
+  "sources": [
+   "http://www.haradasyubyo.jp/aboutus/",
+   "http://www.haradasyubyo.jp/contact/"
+  ],
+  "notes": "公式サイトで本店住所（弘前市）・電話・受付時間・創業年・代表者を確認、八戸市の拠点は確認できず。",
+  "description_new": "株式会社原田種苗は弘前市に本店、青森市浪岡に支店を置き、りんごを中心とした果樹苗木の生産・販売を行っています。公式サイトにオンラインショップがあります。",
+  "specialties_confirmed": [
+   "りんご苗木",
+   "果樹苗木",
+   "肥料・農業資材"
+  ]
+ },
+ {
+  "id": "3b6b5be3-3a03-424b-b9e1-3d715e331402",
+  "name": "弘前市りんご公園",
+  "status": "verified",
+  "confirmed": {
+   "name": "弘前市りんご公園",
+   "address": "青森県弘前市大字清水富田字寺沢125",
+   "phone": "0172-36-7439",
+   "website_url": "https://www.hirosaki-kanko.or.jp/edit.html?id=ringopark",
+   "business_hours": "9:00〜17:00",
+   "closed_days": [
+    "年中無休"
+   ],
+   "parking_info": "460台・無料・大型バス可（8:00〜18:00）",
+   "social_instagram": "@hirosaki_applepark"
+  },
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "business_hours",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.hirosaki-kanko.or.jp/edit.html?id=ringopark"
+  ],
+  "notes": "弘前市観光情報サイトで住所・電話・開館時間・休園日・駐車場を確認。",
+  "description_new": "弘前市大字清水富田にある公園で、約80種・2,300本のりんごが育ち、もぎ取り体験ができます。入園は無料です。",
+  "specialties_confirmed": [
+   "りんご",
+   "もぎ取り体験"
+  ]
+ },
+ {
+  "id": "15e8cadd-e558-47f6-9dc2-f9edff611b29",
+  "name": "伸松園",
+  "status": "verified",
+  "confirmed": {
+   "name": "伸松園",
+   "address": "静岡県浜松市浜名区小林329",
+   "phone": "053-586-2819",
+   "website_url": "https://shinshoen.com/",
+   "business_hours": "8:00〜18:00",
+   "closed_days": [
+    "日曜日"
+   ],
+   "established_year": 1932,
+   "owner_name": "小畑勝裕"
+  },
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://shinshoen.com/",
+   "https://shinshoen.com/companyplofile/"
+  ],
+  "notes": "公式サイト会社概要で住所・電話・営業時間・定休日・創業年を確認。",
+  "description_new": "浜松市浜名区小林の有限会社伸松園で、松や槙の仕立物を中心に庭園樹・公共緑化樹を生産・卸売しています。1932年創業で、農場見学の相談を受け付けています。",
+  "specialties_confirmed": [
+   "マツ仕立物",
+   "マキ仕立物",
+   "イヌマキ生垣",
+   "庭園樹",
+   "公共緑化樹"
+  ]
+ },
+ {
+  "id": "fc9f4072-151e-463f-8acc-e20935740398",
+  "name": "富士山麓ガーデンセンター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当する施設を確認できず。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "f3418bb6-eef6-47a7-8c54-905ed1d6d3cb",
+  "name": "浜北営農緑花木センター",
+  "status": "verified",
+  "confirmed": {
+   "name": "浜北営農緑花木センター",
+   "address": "静岡県浜松市浜名区新原6677",
+   "phone": "053-587-8728",
+   "website_url": "https://jatopia.ja-shizuoka.or.jp/agricultural/ryokkaboku",
+   "parking_info": "大型駐車場あり",
+   "experience_programs": true
+  },
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://iko-yo.net/facilities/54597",
+   "https://ja.wikipedia.org/wiki/%E6%B5%9C%E5%8C%97%E5%96%B6%E8%BE%B2%E7%B7%91%E8%8A%B1%E6%9C%A8%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC"
+  ],
+  "notes": "掲載サイトで住所・電話を確認、営業時間・休業日は情報源間で食い違うため未確定。",
+  "description_new": "JAとぴあ浜松が浜松市浜名区新原で運営する施設で、植木や花を販売し、ガーデニングの体験教室も行っています。園内にファーマーズマーケットがあり、春と秋に浜北植木まつりが開かれます。",
+  "specialties_confirmed": [
+   "植木",
+   "花",
+   "盆栽",
+   "ガーデニング体験教室"
+  ]
+ },
+ {
+  "id": "b81646b0-261b-4e3b-b6f3-8ebfb2fb0cb9",
+  "name": "さぬき盆栽の郷",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "同名施設は確認できず（サイト接続不可、近隣の「高松盆栽の郷」とは別名）。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "a23957ee-4154-4d59-9bb8-f18ee1c8ca26",
+  "name": "中西珍松園",
+  "status": "verified",
+  "confirmed": {
+   "name": "中西珍松園",
+   "address": "香川県高松市鬼無町佐藤8-2",
+   "phone": "087-882-0526",
+   "website_url": "https://chinshoen.jp/",
+   "access_info": "JR鬼無駅から徒歩5分",
+   "parking_info": "駐車台数10台",
+   "owner_name": "中西陽一",
+   "social_instagram": "@nakanishi_chinshoen"
+  },
+  "clear_fields": [
+   "postal_code",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://chinshoen.jp/",
+   "https://chinshoen.jp/about/"
+  ],
+  "notes": "公式サイトで住所・電話・アクセス・駐車場・代表者を確認（営業時間の記載なし）。",
+  "description_new": "高松市鬼無町佐藤の盆栽園で、公式サイトでは創業130年余とされています。これまで約30人の研修生を受け入れており、海外からの来訪者もあります。",
+  "specialties_confirmed": [
+   "五葉松",
+   "松盆栽"
+  ]
+ },
+ {
+  "id": "ce0c2233-da20-4f84-8540-9e37415c60ce",
+  "name": "屋島盆栽センター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当する施設を確認できず。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "b59cb7db-2804-4486-b2ac-483fea1d792d",
+  "name": "盆栽の匠",
+  "status": "verified",
+  "confirmed": {
+   "name": "盆栽の匠",
+   "address": "香川県高松市国分寺町新居2365-2",
+   "postal_code": "769-0101",
+   "phone": "087-874-0335",
+   "website_url": "https://takamatsubonsai-takumi.com/",
+   "experience_programs": true,
+   "online_sales": true
+  },
+  "clear_fields": [
+   "address",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://takamatsubonsai-takumi.com/"
+  ],
+  "notes": "公式サイトで住所・電話・研修プラン・盆栽ショップを確認。",
+  "description_new": "高松市国分寺町新居にある盆栽の技術研修施設で、初心者から上級者向けの研修プランやオンライン盆栽教室があります。宿泊施設を併設し、盆栽ショップも運営しています。",
+  "specialties_confirmed": [
+   "盆栽教室",
+   "技術研修",
+   "松柏類",
+   "オンラインレッスン"
+  ]
+ },
+ {
+  "id": "1f54a5e8-d50a-438f-aecd-67b9f2499903",
+  "name": "高松盆栽の郷",
+  "status": "verified",
+  "confirmed": {
+   "name": "高松盆栽の郷",
+   "address": "香川県高松市国分寺町国分353-1",
+   "postal_code": "769-0102",
+   "phone": "087-874-2795",
+   "website_url": "https://takamatsu-bonsai.com/",
+   "access_info": "JR予讃線「国分駅」から徒歩約14分",
+   "parking_info": "無料駐車場あり",
+   "experience_programs": true,
+   "online_sales": true,
+   "social_instagram": "@bonsai.takamatsu"
+  },
+  "clear_fields": [
+   "postal_code",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "owner_message"
+  ],
+  "sources": [
+   "https://takamatsu-bonsai.com/",
+   "https://www.art-takamatsu.com/jp/spot/entry-665.html",
+   "https://www.my-kagawa.jp/point/3664/"
+  ],
+  "notes": "市・県観光サイトで住所・電話・アクセスを確認、営業時間・定休日は情報源間で食い違うため未確定。",
+  "description_new": "JA香川県が高松市国分寺町で運営する盆栽の展示即売施設で、松盆栽などが並びます。苔玉作りのワークショップなどのイベントがあり、オンラインストアもあります。",
+  "specialties_confirmed": [
+   "黒松",
+   "五葉松",
+   "錦松",
+   "苔玉作り体験",
+   "高松盆栽学校"
+  ]
+ },
+ {
+  "id": "23771875-d4a4-48b8-a777-6cd1c52dba16",
+  "name": "鬼無植木盆栽センター",
+  "status": "verified",
+  "confirmed": {
+   "name": "香川県鬼無植木盆栽センター",
+   "address": "香川県高松市鬼無町山口333-1",
+   "phone": "087-882-4091",
+   "website_url": "https://www.kinashi-bonsai.com/"
+  },
+  "clear_fields": [
+   "name",
+   "postal_code",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.kinashi-bonsai.com/"
+  ],
+  "notes": "公式サイトで住所・事務局電話を確認（受付は毎月4・5・14・15・24・25日、営業時間の記載なし）。",
+  "description_new": "高松市鬼無町山口にある農事組合法人で、植木・盆栽の交換会（セリ市）を毎月第2・第4水曜日に開いています。",
+  "specialties_confirmed": [
+   "松盆栽",
+   "植木",
+   "セリ市"
+  ]
+ },
+ {
+  "id": "f1b5582d-56ae-4cb4-9625-d95ad486709e",
+  "name": "筒井造園",
+  "status": "verified",
+  "confirmed": {
+   "name": "筒井造園",
+   "address": "高知県高知市春野町芳原805-1",
+   "postal_code": "781-0311",
+   "phone": "088-872-7070",
+   "website_url": "https://www.tsutsui-zoen.com/",
+   "business_hours": "8:30〜17:30",
+   "closed_days": [
+    "日曜日"
+   ]
+  },
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.tsutsui-zoen.com/",
+   "https://www.tsutsui-zoen.com/about/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・定休日を確認（住所は朝倉本町ではなく春野町芳原）。",
+  "description_new": "高知市春野町芳原の造園業者で、一般住宅の庭から施設の庭園まで、庭づくりや定期管理を手がけています。",
+  "specialties_confirmed": [
+   "庭づくり",
+   "庭木の定期管理"
+  ]
+ },
+ {
+  "id": "9a1819fd-05a1-4d66-9877-bc07607ba19a",
+  "name": "見元園芸",
+  "status": "verified",
+  "confirmed": {
+   "name": "見元園芸",
+   "address": "高知県高知市春野町弘岡上2785",
+   "postal_code": "781-0301",
+   "phone": "088-850-3939",
+   "website_url": "https://www.mimoto-engei.com/",
+   "business_hours": "9:00〜17:00",
+   "online_sales": true
+  },
+  "clear_fields": [
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "owner_name",
+   "experience_programs",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.mimoto-engei.com/",
+   "https://mimoto-shop.com/?mode=sk",
+   "https://mimoto-shop.com/?mode=f1"
+  ],
+  "notes": "公式通販サイトで住所・電話・直営店の営業時間を確認。",
+  "description_new": "高知市春野町弘岡上の有限会社見元園芸で、オリジナルのビオラ・パンジー・クローバーの育種と販売を行っています。同じ所在地に直営店「ガーデンリビング トミーの庭」があり、通販サイトもあります。",
+  "specialties_confirmed": [
+   "オリジナルビオラ",
+   "パンジー",
+   "クローバー",
+   "花苗",
+   "野菜苗"
+  ]
+ },
+ {
+  "id": "a1f34b47-7190-4a7e-ae39-89bb4f8e04b7",
+  "name": "岡本緑化",
+  "status": "verified",
+  "confirmed": {
+   "name": "岡本緑化",
+   "address": "鳥取県鳥取市叶236",
+   "postal_code": "680-0874",
+   "phone": "0857-53-0910",
+   "website_url": "https://www.green-smile.jp/",
+   "established_year": 1989,
+   "owner_name": "岡本善博"
+  },
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.green-smile.jp/",
+   "https://www.green-smile.jp/company/"
+  ],
+  "notes": "公式サイト会社案内で住所・電話・創業年・代表者を確認（住所は東町ではなく叶）。",
+  "description_new": "鳥取市叶の有限会社岡本緑化で、造園・ガーデニング・エクステリア工事を手がけています。平成元年創業です。",
+  "specialties_confirmed": [
+   "造園",
+   "ガーデニング",
+   "エクステリア"
+  ]
+ },
+ {
+  "id": "49f0eef9-43e7-4881-8f7d-169467c114db",
+  "name": "株式会社三創グリーン",
+  "status": "verified",
+  "confirmed": {
+   "name": "株式会社三創グリーン",
+   "address": "鳥取県鳥取市雲山113-7",
+   "postal_code": "680-0861",
+   "phone": "0857-26-4166",
+   "website_url": "https://www.oniwa.jp/",
+   "business_hours": "9:00〜18:00",
+   "established_year": 1980,
+   "owner_name": "池本義隆"
+  },
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.oniwa.jp/",
+   "https://www.oniwa.jp/company/"
+  ],
+  "notes": "公式サイト会社案内で住所・電話・営業時間・設立年・代表者を確認、定休日はページ間で食い違い。",
+  "description_new": "鳥取市雲山の株式会社三創グリーンで、鳥取県を中心に庭づくり・ガーデニング、外構・エクステリア、リフォーム工事を行っています。昭和55年設立で、雲山に展示場があります。",
+  "specialties_confirmed": [
+   "庭づくり",
+   "ガーデニング",
+   "外構・エクステリア",
+   "バリアフリー"
+  ]
+ },
+ {
+  "id": "138b87f3-7d94-453d-a67d-083932ac6ca9",
+  "name": "滝上ガーデンセンター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "同名施設を確認できず（サイト接続不可、吉野町の「滝の神」とは名称・住所が異なる）。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "8c90b21d-54dd-4811-b5b7-1282f3fb1f25",
+  "name": "薩摩園芸センター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当する施設を確認できず。",
+  "description_new": null,
+  "specialties_confirmed": []
+ }
+]

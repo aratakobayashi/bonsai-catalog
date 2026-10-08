@@ -1,3 +1,4 @@
+import { isGardenHiddenId } from '@/lib/garden-verification'
 import { supabase } from '@/lib/supabase'
 import { baseUrl, SITEMAP_CONFIG, createSitemapResponse, generateXmlHeader, generateXmlFooter, generateUrlElement } from '@/lib/sitemap-utils'
 
@@ -13,10 +14,10 @@ export async function GET() {
     try {
       const { data: gardens } = await supabase
         .from('gardens')
-        .select('*')
+        .select('id, created_at, updated_at')
 
       if (gardens && gardens.length > 0) {
-        const gardenUrls = gardens.filter((garden: any) => garden.is_published !== false).map((garden: any) =>
+        const gardenUrls = gardens.filter((garden: any) => !isGardenHiddenId(garden.id)).map((garden: any) =>
           generateUrlElement(
             `${baseUrl}/gardens/${garden.id}`,
             new Date(garden.updated_at || garden.created_at).toISOString().split('T')[0],

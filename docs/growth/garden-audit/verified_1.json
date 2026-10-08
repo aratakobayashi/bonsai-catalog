@@ -1,0 +1,753 @@
+[
+ {
+  "id": "fa5a616c-454a-4115-835e-b00feda73bc8",
+  "name": "マエダ園芸",
+  "status": "verified",
+  "confirmed": {
+   "name": "マエダ園芸",
+   "address": "三重県松阪市嬉野新屋庄町880",
+   "postal_code": "515-2314",
+   "phone": "0598-42-1584",
+   "website_url": "https://m-engei.com/",
+   "business_hours": "8:30〜17:00",
+   "closed_days": [
+    "年中無休"
+   ],
+   "established_year": 1981,
+   "owner_name": "前田 則生",
+   "experience_programs": true,
+   "social_instagram": "@maeda.engei"
+  },
+  "clear_fields": [
+   "access_info",
+   "parking_info",
+   "online_sales",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [
+   "https://m-engei.com/",
+   "https://m-engei.com/shop.html",
+   "https://m-engei.com/company.html"
+  ],
+  "notes": "公式サイトで本店住所・電話・営業時間・設立年を確認（住所は嬉野新屋庄町880に訂正）。",
+  "description_new": "三重県松阪市嬉野に本店を置く生花園芸店で、松阪市・津市に複数店舗を展開し季節の切花・鉢花を扱う。ガーデニング講習会やフラワーアレンジメント教室も実施している。",
+  "specialties_confirmed": [
+   "切花",
+   "鉢花",
+   "フラワーギフト",
+   "フラワーアレンジメント教室",
+   "ガーデニング講習会"
+  ]
+ },
+ {
+  "id": "96aa3db9-0ea0-4f13-9768-1c81f6ad3416",
+  "name": "花ひろば",
+  "status": "verified",
+  "confirmed": {
+   "name": "花ひろば",
+   "address": "三重県桑名市多度町御衣野4100",
+   "postal_code": "511-0118",
+   "website_url": "https://www.hanahiroba-harvest.com/",
+   "business_hours": "9:00〜17:00",
+   "closed_days": [
+    "年中無休"
+   ],
+   "access_info": "東名阪自動車道 桑名東ICから車で約10分",
+   "parking_info": "駐車場約200台（大型バス駐車可）",
+   "established_year": 1995
+  },
+  "clear_fields": [
+   "phone",
+   "experience_programs",
+   "online_sales",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.hanahiroba-harvest.com/"
+  ],
+  "notes": "公式サイト（花ひろば内 石黒商店）で住所・営業時間・駐車場・創業年を確認。",
+  "description_new": "三重県桑名市多度町にある店舗面積約6000坪の大型園芸店で、1995年創業。果樹苗・柑橘苗・庭木・バラ苗などを扱う。",
+  "specialties_confirmed": [
+   "果樹苗",
+   "柑橘苗",
+   "バラ苗",
+   "庭木・植木",
+   "シンボルツリー",
+   "ドライガーデン向け植物"
+  ]
+ },
+ {
+  "id": "3d05bfc7-ece2-4ec0-8451-1423206b52eb",
+  "name": "雲出川造園土木",
+  "status": "verified",
+  "confirmed": {
+   "name": "雲出川造園土木",
+   "address": "三重県津市新家町1509-4",
+   "phone": "059-253-3213",
+   "website_url": "https://www.kumozugawa-zouendoboku.jp/",
+   "established_year": 2003,
+   "owner_name": "畑 秀樹"
+  },
+  "clear_fields": [
+   "postal_code",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.kumozugawa-zouendoboku.jp/",
+   "https://www.kumozugawa-zouendoboku.jp/company.html"
+  ],
+  "notes": "公式サイト会社案内で住所・電話・設立年・代表者を確認（住所・電話を訂正）。",
+  "description_new": "三重県津市新家町の造園業者で、2003年設立。造園土木工事、庭園外構工事、植木の剪定や庭園緑地のメンテナンスを手がける。",
+  "specialties_confirmed": [
+   "造園工事",
+   "植木の剪定",
+   "外構工事",
+   "庭園緑地メンテナンス"
+  ]
+ },
+ {
+  "id": "3c4f5845-c6f7-47e7-87d5-d68b5cafc0ae",
+  "name": "まつおえんげい",
+  "status": "verified",
+  "confirmed": {
+   "name": "まつおえんげい",
+   "address": "京都府京都市西京区大枝西長町3-70",
+   "postal_code": "610-1151",
+   "phone": "075-331-0358",
+   "website_url": "https://matsuoengei.co.jp/",
+   "business_hours": "10:00〜17:00",
+   "closed_days": [
+    "水曜日",
+    "木曜日"
+   ],
+   "experience_programs": true,
+   "online_sales": true
+  },
+  "clear_fields": [
+   "access_info",
+   "parking_info",
+   "owner_name",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [
+   "https://matsuoengei.co.jp/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・定休日を確認（郵便番号を訂正）。",
+  "description_new": "京都市西京区大枝にある総合園芸店で、バラ約700品種・クレマチス約350品種を生産販売している。バラ・クレマチスの栽培教室やオンラインショップがある。",
+  "specialties_confirmed": [
+   "バラ",
+   "クレマチス",
+   "花苗",
+   "宿根草",
+   "観葉植物",
+   "栽培教室"
+  ]
+ },
+ {
+  "id": "4f694d8a-67ba-4a0c-8144-8ffb2ed5d494",
+  "name": "京都ガーデンプラザ",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "name",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当する園芸店の存在を確認できず。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "b5305c48-7ebe-4486-8391-622f282ebfbc",
+  "name": "京都伝統庭園センター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "name",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当施設の存在を確認できず。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "f61bc0fe-53e8-4ec3-a3a8-29bfff2c0870",
+  "name": "京都盆栽会館",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "name",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当施設を確認できず、記載URLも接続不可。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "c461d493-c16b-4b45-9a26-e3e15624e3c4",
+  "name": "古樹園",
+  "status": "partially_verified",
+  "confirmed": {
+   "name": "京都 広樹園",
+   "address": "京都府京都市南区唐橋井園町19",
+   "postal_code": "601-8462",
+   "phone": "075-691-5296",
+   "website_url": "https://kojuen.webu.jp/",
+   "access_info": "JR京都駅から車で5分、名神京都南ICから車で10分（東寺の西約800m）",
+   "experience_programs": true,
+   "social_instagram": "@tomohiro.masumi"
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "parking_info",
+   "online_sales",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [
+   "https://kojuen.webu.jp/"
+  ],
+  "notes": "同住所の「広樹園」公式サイトで住所・電話を確認、名称は「古樹園」ではなく「広樹園」の可能性が高い。",
+  "description_new": "京都市南区唐橋の住宅街にある小品盆栽（ミニ盆栽を含む）の盆栽園で、盆栽鉢・道具も扱う。盆栽教室（広樹会）を開いている。",
+  "specialties_confirmed": [
+   "小品盆栽",
+   "ミニ盆栽",
+   "盆栽鉢",
+   "盆栽道具",
+   "盆栽教室"
+  ]
+ },
+ {
+  "id": "71d984be-89d6-427c-a27c-0139fbc3e889",
+  "name": "嵯峨野盆栽苑",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "name",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当する盆栽園の存在を確認できず。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "f2c3e16a-6274-48eb-9847-77ff098f6960",
+  "name": "河合香艸園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "name",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当する盆栽園の存在を確認できず。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "5b96fdd2-471b-47fd-874b-3982a1e7d5f2",
+  "name": "さにべる ガーデンセンター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "name",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [
+   "http://sunnyvale-gc.jp/"
+  ],
+  "notes": "記載URLは埼玉県吉見町のサニベルグリーンハウスのサイトで、佐賀県小城市の店舗は確認できず。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "6b9181e5-f2df-4c32-a2ad-5700ac7f866f",
+  "name": "植木屋本舗",
+  "status": "verified",
+  "confirmed": {
+   "name": "植木屋本舗",
+   "address": "佐賀県神埼市神埼町志波屋1548",
+   "phone": "0952-52-8001",
+   "website_url": "https://www.uekiyahonpo-saga.jp/",
+   "social_instagram": "@cometreegarden"
+  },
+  "clear_fields": [
+   "postal_code",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.uekiyahonpo-saga.jp/"
+  ],
+  "notes": "公式サイトで住所・電話を確認、所在地は佐賀市ではなく神埼市（市区町村の修正が必要）。",
+  "description_new": "佐賀県神埼市を拠点に佐賀県内で造園・外構工事を行う業者。人工芝施工や防草対策、庭木の消毒なども手がける。",
+  "specialties_confirmed": [
+   "造園",
+   "外構工事",
+   "人工芝施工",
+   "防草対策",
+   "庭木の消毒"
+  ]
+ },
+ {
+  "id": "21baaa4e-9d4b-4df6-9de9-cb51fe455a26",
+  "name": "明幸園",
+  "status": "verified",
+  "confirmed": {
+   "name": "明幸園",
+   "address": "兵庫県神戸市西区平野町西戸田130",
+   "postal_code": "651-2267",
+   "phone": "078-961-1192",
+   "website_url": "https://meikoen.co.jp/",
+   "business_hours": "9:30〜18:00",
+   "closed_days": [
+    "1〜2月・7〜8月は火曜日（その他の月は無休）"
+   ],
+   "access_info": "第二神明道路 玉津ICから国道175号線（三木方面）約3km、平野橋北を左折し約600m",
+   "parking_info": "駐車場70台",
+   "social_instagram": "@meikoen_hirano"
+  },
+  "clear_fields": [
+   "established_year",
+   "experience_programs",
+   "online_sales",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [
+   "https://meikoen.co.jp/"
+  ],
+  "notes": "公式サイトで平野店の住所・電話・営業時間・駐車場を確認（住所・電話を訂正）。",
+  "description_new": "神戸市西区平野町と明石市魚住町に店舗を持つ園芸店で、植物販売と庭づくりを行う。公式サイトでは創業60年としている。",
+  "specialties_confirmed": [
+   "花苗",
+   "植物販売",
+   "球根",
+   "庭づくり"
+  ]
+ },
+ {
+  "id": "75c14be8-3105-4b40-8575-2498859c6de8",
+  "name": "淡路盆栽の里",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "name",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当する盆栽園の存在を確認できず。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "929b849b-0b11-45b7-b5d8-9bf09cfd64d0",
+  "name": "神戸盆栽館",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "name",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当施設を確認できず、記載URLも接続不可。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "02730e03-63d8-4530-876b-a353e256a4d4",
+  "name": "西宮ガーデンプラザ",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "name",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当する園芸店の存在を確認できず。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "f0f86407-1a4b-4100-987c-2743b441fcee",
+  "name": "陽春園",
+  "status": "verified",
+  "confirmed": {
+   "name": "陽春園",
+   "address": "兵庫県宝塚市山本台1丁目6-33",
+   "postal_code": "665-0885",
+   "phone": "0797-88-2112",
+   "website_url": "https://yoshunen.co.jp/",
+   "business_hours": "10:00〜18:00（夏季・冬季は短縮営業）",
+   "closed_days": [
+    "なし（年末年始・夏季は不定期休業）"
+   ],
+   "access_info": "阪急宝塚線山本駅から徒歩約7分",
+   "parking_info": "無料駐車場30台以上",
+   "established_year": 1885,
+   "experience_programs": true,
+   "online_sales": true,
+   "social_instagram": "@yoshunen"
+  },
+  "clear_fields": [
+   "owner_name",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [
+   "https://yoshunen.co.jp/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・アクセス・創業年を確認（住所・電話を訂正）。",
+  "description_new": "宝塚市山本にある明治18年（1885年）創業の園芸店で、約千坪の園内にガーデニング用草花や洋蘭・観葉植物の大温室、モデル庭園がある。造園部やオンラインストアもあり、講習会・ワークショップを開催している。",
+  "specialties_confirmed": [
+   "ガーデニング用草花",
+   "洋蘭",
+   "観葉植物",
+   "ガーデニング用品",
+   "造園"
+  ]
+ },
+ {
+  "id": "261c47ac-1b26-4bb3-952a-16df4ca5bbe6",
+  "name": "高橋造園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "name",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [
+   "http://oniwa-zouen.com/"
+  ],
+  "notes": "記載URLは大阪府堺市の高橋造園のサイトで、姫路市飾磨区の同名業者は確認できず。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "142cd085-535f-4cd3-902e-89f8fc07455c",
+  "name": "gardenshop GreensBee",
+  "status": "verified",
+  "confirmed": {
+   "name": "gardenshop GreensBee",
+   "address": "北海道札幌市南区真駒内柏丘5丁目6-37 1F",
+   "postal_code": "005-0022",
+   "phone": "011-252-7145",
+   "website_url": "https://www.greensbee.com/",
+   "business_hours": "10:00〜17:00（季節により変更あり）",
+   "access_info": "地下鉄南北線真駒内駅からじょうてつバス【南84】「柏丘6丁目」下車徒歩2分",
+   "established_year": 2014,
+   "owner_name": "津田 将弘",
+   "experience_programs": true,
+   "online_sales": true,
+   "social_instagram": "@_greensbee_"
+  },
+  "clear_fields": [
+   "closed_days",
+   "parking_info",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.greensbee.com/",
+   "https://www.greensbee.com/access",
+   "https://www.greensbee.com/about"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・アクセス・開業年を確認（電話・郵便番号を訂正）。",
+  "description_new": "札幌市南区真駒内にある2014年開業のガーデンショップで、季節の花苗やクレマチス・バラ、ガーデン雑貨を扱う。観葉植物の診断・メンテナンスや寄せ植えのワークショップ、Webショップもある。",
+  "specialties_confirmed": [
+   "クレマチス",
+   "バラ",
+   "観葉植物のメンテナンス",
+   "寄せ植え",
+   "野菜苗",
+   "ハーブ"
+  ]
+ },
+ {
+  "id": "47db77f2-c1f6-44b7-bdbd-453642111eb3",
+  "name": "花のとびつか",
+  "status": "verified",
+  "confirmed": {
+   "name": "花のとびつか",
+   "address": "北海道札幌市北区新琴似町787-1",
+   "phone": "011-765-6020",
+   "website_url": "https://shop.hananotobitsuka.com/",
+   "business_hours": "9:00〜18:30（3〜6月）、9:00〜16:30（7〜2月）",
+   "closed_days": [
+    "年中無休"
+   ],
+   "online_sales": true,
+   "social_instagram": "@hananotobitsuka"
+  },
+  "clear_fields": [
+   "postal_code",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [
+   "https://shop.hananotobitsuka.com/"
+  ],
+  "notes": "公式オンラインショップで店舗住所・電話・営業時間・定休日を確認（電話を訂正）。",
+  "description_new": "札幌市北区新琴似にある園芸店で、宿根草・グラス類・樹木・果樹・一年草や用土を扱う。オンラインショップがあり、店頭は現金払いのみ。",
+  "specialties_confirmed": [
+   "宿根草",
+   "グラス類",
+   "樹木",
+   "果樹",
+   "一年草",
+   "用土"
+  ]
+ },
+ {
+  "id": "688366e5-736d-4269-b2eb-296a167d8866",
+  "name": "アンナカ造園",
+  "status": "verified",
+  "confirmed": {
+   "name": "アンナカ造園",
+   "address": "千葉県船橋市大穴町633-20",
+   "phone": "047-422-9052",
+   "website_url": "https://www.a-zouen.com/",
+   "business_hours": "10:00〜17:00",
+   "closed_days": [
+    "日曜日"
+   ],
+   "established_year": 2003,
+   "owner_name": "安中 悟史"
+  },
+  "clear_fields": [
+   "postal_code",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.a-zouen.com/",
+   "https://www.a-zouen.com/profile/"
+  ],
+  "notes": "公式サイトで本社住所・電話・営業時間・設立年・代表者を確認（住所・電話を訂正）。",
+  "description_new": "千葉県船橋市に本社を置く造園・エクステリア外構工事の会社で、仙台・福岡にも拠点がある。千葉本社では植木の展示販売を行い、石材販売もしている。",
+  "specialties_confirmed": [
+   "造園",
+   "エクステリア外構工事",
+   "植木の展示販売",
+   "石材販売",
+   "剪定"
+  ]
+ },
+ {
+  "id": "35836283-1b95-48c5-a364-c09aeeb43f28",
+  "name": "グリーンサム",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "name",
+   "description",
+   "specialties",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当する店舗の存在を確認できず。",
+  "description_new": null,
+  "specialties_confirmed": []
+ }
+]

@@ -1,0 +1,684 @@
+[
+ {
+  "id": "8ed687ca-0e7a-470a-9960-5dfa1592d088",
+  "name": "株式会社ナカツタヤ",
+  "status": "verified",
+  "confirmed": {
+   "name": "株式会社ナカツタヤ",
+   "address": "長野県松本市中条10番6号",
+   "postal_code": "390-0816",
+   "phone": "0263-33-1085",
+   "website_url": "http://www.nakatsutaya.co.jp/",
+   "access_info": "松本駅から南へ徒歩10分、松本ICより車で10分",
+   "parking_info": "共用駐車場50台",
+   "experience_programs": true
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "http://www.nakatsutaya.co.jp/"
+  ],
+  "notes": "公式サイトで所在地は山梨県甲府市ではなく長野県松本市と確認（営業時間・定休日は店舗・季節で異なる）",
+  "description_new": "長野県松本市の種苗店で、野菜の種苗店とガーデニング専門店「ガーデンストリート」の2店舗を営業。ガーデニング講座や体験教室を開催している。",
+  "specialties_confirmed": [
+   "野菜種子",
+   "野菜苗",
+   "草花苗",
+   "庭木",
+   "果樹苗木",
+   "山野草",
+   "バラ苗",
+   "観葉植物",
+   "ガーデニング講座",
+   "ハンギングバスケット講座"
+  ]
+ },
+ {
+  "id": "e4d6382a-0018-44e1-aef5-584394282700",
+  "name": "伊木山ガーデン",
+  "status": "verified",
+  "confirmed": {
+   "name": "伊木山ガーデン",
+   "address": "岐阜県各務原市鵜沼丸子町3-15",
+   "postal_code": "509-0142",
+   "phone": "058-322-8784",
+   "website_url": "https://www.igiyamagarden.com/",
+   "access_info": "国宝犬山城から車で3分（公共交通機関は不便なため車での来店推奨）",
+   "online_sales": true
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "parking_info",
+   "experience_programs",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.igiyamagarden.com/"
+  ],
+  "notes": "公式サイトで住所・電話を確認（既存住所・電話は誤り）",
+  "description_new": "岐阜県各務原市の伊木山の麓にある園芸館と食品館を併設した店舗。オンラインショップも運営している。",
+  "specialties_confirmed": [
+   "園芸",
+   "花苗",
+   "野菜苗"
+  ]
+ },
+ {
+  "id": "c5abd99b-808b-48fd-b5f2-8353385ac719",
+  "name": "協同組合日本ライン花木センター",
+  "status": "verified",
+  "confirmed": {
+   "name": "協同組合日本ライン花木センター",
+   "address": "岐阜県可児市土田4567",
+   "postal_code": "509-0206",
+   "phone": "0574-25-3126",
+   "website_url": "https://kaboku.jp/",
+   "business_hours": "3月〜9月 9:00〜18:00、10月〜2月 9:00〜17:00",
+   "closed_days": [
+    "元旦"
+   ],
+   "online_sales": true
+  },
+  "clear_fields": [
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "owner_message"
+  ],
+  "sources": [
+   "https://kaboku.jp/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・定休日を確認（既存住所・電話は誤り）",
+  "description_new": "岐阜県可児市にある総面積40,000㎡の園芸専門店で、庭木・花・盆栽・多肉植物・園芸造園資材などを販売。素人せり市や山野草せり市も開催している。",
+  "specialties_confirmed": [
+   "庭木",
+   "盆栽",
+   "多肉植物",
+   "果樹苗",
+   "花苗",
+   "野菜苗",
+   "胡蝶蘭",
+   "園芸造園資材",
+   "山野草せり市"
+  ]
+ },
+ {
+  "id": "e4ac72e0-8a4b-410e-9e99-d9f6778b7b9f",
+  "name": "岡山グリーンセンター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "name",
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当施設が見つからず、公式サイトのドメインも応答なし",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "ca267915-f5fa-4aa5-a797-bb5931d65dcc",
+  "name": "清光園芸",
+  "status": "verified",
+  "confirmed": {
+   "name": "株式会社清光園芸",
+   "address": "岡山県倉敷市早高24",
+   "phone": "086-428-1715",
+   "owner_name": "大村 秀樹"
+  },
+  "clear_fields": [
+   "postal_code",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.city.kurashiki.okayama.jp/_res/projects/default_project/_page_/001/002/544/23-1.pdf"
+  ],
+  "notes": "倉敷市の業者一覧で倉敷市早高の住所・電話を確認（既存の岡山市の住所・電話・URLは確認できず）",
+  "description_new": "岡山県倉敷市の園芸・造園会社。",
+  "specialties_confirmed": []
+ },
+ {
+  "id": "92ff30aa-bcdd-4323-b2a6-1fea440138cc",
+  "name": "ワンガーデン",
+  "status": "verified",
+  "confirmed": {
+   "name": "ワンガーデン",
+   "address": "岩手県盛岡市高松2丁目16-1 野又ビル1F",
+   "postal_code": "020-0114",
+   "phone": "019-681-0281",
+   "website_url": "https://tokai-ex.co.jp/",
+   "business_hours": "9:00〜17:00",
+   "closed_days": [
+    "水曜日",
+    "日曜日午後"
+   ]
+  },
+  "clear_fields": [
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://tokai-ex.co.jp/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間を確認（既存住所・電話は誤り）",
+  "description_new": "岩手県盛岡市のお庭と外構工事の専門店で、エクステリアやガーデンリフォームの設計・施工を行う。",
+  "specialties_confirmed": [
+   "外構工事",
+   "エクステリア",
+   "タイルテラス",
+   "カーポート",
+   "ガーデンルーム",
+   "人工芝",
+   "お庭のリフォーム"
+  ]
+ },
+ {
+  "id": "a7c48e64-0ab4-46ed-9e85-6d533364ba4f",
+  "name": "有限会社豊香園",
+  "status": "verified",
+  "confirmed": {
+   "name": "有限会社豊香園",
+   "address": "岩手県盛岡市本町通二丁目5-10",
+   "postal_code": "020-0015",
+   "phone": "019-622-3866",
+   "website_url": "https://ho-ko-en.com/"
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://ho-ko-en.com/"
+  ],
+  "notes": "公式サイトで住所・電話を確認（創業は慶応期とのみ記載で年は特定できず）",
+  "description_new": "岩手県盛岡市の造園会社で、慶応年間に「庭藤」として創業。盛岡市の石割桜の管理を任されている。",
+  "specialties_confirmed": [
+   "造園工事",
+   "剪定",
+   "石割桜管理",
+   "街路樹管理",
+   "外構"
+  ]
+ },
+ {
+  "id": "aec3cb3b-ff22-476a-9728-b52547ab3a98",
+  "name": "松江盆栽センター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "name",
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当施設が見つからない",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "70fb24ea-c239-4189-b0a8-c366bbee9a6a",
+  "name": "松浦造園株式会社",
+  "status": "verified",
+  "confirmed": {
+   "name": "松浦造園株式会社",
+   "address": "島根県松江市大庭町728-6",
+   "postal_code": "690-0033",
+   "phone": "0852-21-1489",
+   "website_url": "https://ma2urazoen.jp/",
+   "business_hours": "8:00〜17:30",
+   "closed_days": [
+    "日曜日",
+    "土曜日（不定休）"
+   ]
+  },
+  "clear_fields": [
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://ma2urazoen.jp/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・定休日を確認（既存電話は誤り）",
+  "description_new": "島根県松江市の造園土木会社で、庭の設計・施工・管理や緑化を行う。",
+  "specialties_confirmed": [
+   "造園工事",
+   "土木工事",
+   "お庭の手入れ",
+   "緑化"
+  ]
+ },
+ {
+  "id": "c37bab9a-f025-4dec-b4d6-75361eb768b8",
+  "name": "己斐ガーデンスクエア",
+  "status": "verified",
+  "confirmed": {
+   "name": "己斐ガーデンスクエア",
+   "address": "広島県広島市西区己斐本町3丁目12番15号",
+   "postal_code": "733-0812",
+   "phone": "082-507-8787",
+   "website_url": "https://koi-square.com/",
+   "parking_info": "駐車場完備（20台）"
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://koi-square.com/"
+  ],
+  "notes": "公式サイトで住所・電話・駐車場を確認（既存住所・電話は誤り）",
+  "description_new": "広島市西区己斐本町の園芸店で、明治元年創業の株式会社浜田樹苗園が母体。小さな花から大きな植木まで扱う。",
+  "specialties_confirmed": [
+   "植木",
+   "花苗",
+   "ガーデニング工事"
+  ]
+ },
+ {
+  "id": "d2c1fc74-9ea1-4c8c-9625-89ed1130a7f0",
+  "name": "松永花壇",
+  "status": "verified",
+  "confirmed": {
+   "name": "松永花壇",
+   "address": "広島県福山市今津町3丁目8-22",
+   "postal_code": "729-0111",
+   "phone": "084-933-2055",
+   "website_url": "https://matsunaga-kadan.com/",
+   "business_hours": "平日 8:30〜18:00、日・祝 9:00〜18:00",
+   "access_info": "JR松永駅から車で5分・徒歩10分圏内",
+   "parking_info": "道路沿いに駐車場あり"
+  },
+  "clear_fields": [
+   "closed_days",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://matsunaga-kadan.com/",
+   "https://matsunaga-kadan.com/shop"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間を確認（既存住所・電話は誤り）",
+  "description_new": "広島県福山市の種とガーデニングの専門店で、野菜の種・苗、フラワーギフト、観葉植物、ガーデニング用品を販売。タキイ・サカタの特約店。",
+  "specialties_confirmed": [
+   "野菜の種",
+   "野菜苗",
+   "花苗",
+   "観葉植物",
+   "寄せ植え",
+   "多肉植物",
+   "ガーデニング用品"
+  ]
+ },
+ {
+  "id": "3efc1c32-1014-4cc0-a14b-db971bffa621",
+  "name": "やまいち園芸",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "name",
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当施設が見つからない",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "5ec52f80-073d-45d0-aae2-b72f11672721",
+  "name": "ガーデニング倶楽部花みどり",
+  "status": "verified",
+  "confirmed": {
+   "name": "ガーデニング倶楽部花みどり",
+   "address": "徳島県徳島市応神町西貞方鷹の橋7番地の2",
+   "postal_code": "771-1155",
+   "phone": "088-641-6565",
+   "website_url": "https://www.hanamidori.co.jp/",
+   "business_hours": "2月〜11月 9:30〜18:00、1月・12月 9:30〜17:00"
+  },
+  "clear_fields": [
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.hanamidori.co.jp/",
+   "https://www.hanamidori.co.jp/shop"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間を確認（既存住所・電話は誤り）",
+  "description_new": "徳島市応神町の大型総合園芸店で、花苗・野菜苗・花木・バラ苗・観葉植物・多肉植物などを扱う。",
+  "specialties_confirmed": [
+   "花苗",
+   "野菜苗",
+   "花木",
+   "バラ苗",
+   "ハーブ",
+   "観葉植物",
+   "多肉植物"
+  ]
+ },
+ {
+  "id": "43bef990-75ae-431b-bcd9-3627879cf4eb",
+  "name": "阿波園",
+  "status": "partially_verified",
+  "confirmed": {
+   "name": "阿波園",
+   "address": "徳島県徳島市飯谷町手城54-1"
+  },
+  "clear_fields": [
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://mapfan.com/genres/441/36/201"
+  ],
+  "notes": "地図サイトで徳島市飯谷町の「阿波園」（花屋・園芸店）のみ確認、阿南市の所在や蘭専門は確認できず",
+  "description_new": "徳島市飯谷町にある花屋・園芸店として地図サイトに掲載されている。",
+  "specialties_confirmed": []
+ },
+ {
+  "id": "c8ddaa61-7922-40b8-8133-7b1e0ab36e9c",
+  "name": "四国ガーデン",
+  "status": "partially_verified",
+  "confirmed": {
+   "name": "四国ガーデン",
+   "phone": "089-983-3232",
+   "online_sales": true
+  },
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "owner_message"
+  ],
+  "sources": [
+   "https://item.rakuten.co.jp/auc-shikoku-garden/c/"
+  ],
+  "notes": "楽天市場店で通販と電話番号のみ確認、住所・実店舗・公式サイトは確認できず",
+  "description_new": "楽天市場で宿根草・山野草・果樹苗などの園芸植物を通信販売している。",
+  "specialties_confirmed": [
+   "宿根草",
+   "山野草",
+   "果樹苗",
+   "多肉植物"
+  ]
+ },
+ {
+  "id": "a45f1770-9d15-40c7-a9b3-332f9edc0530",
+  "name": "四国グリーンセンター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "name",
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当施設が見つからず、公式サイトのドメインも応答なし",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "8a3ce3f8-8503-4dd7-beee-bbc4d45bf5d3",
+  "name": "三河盆栽園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "name",
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当施設が見つからない",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "6897be01-8059-41b6-9749-436eebb5e678",
+  "name": "名古屋盆栽会館",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "name",
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当施設が見つからず、公式サイトのドメインも応答なし",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "29d8a441-bdd5-4fc5-8514-164ff37e3234",
+  "name": "大洋グリーン",
+  "status": "verified",
+  "confirmed": {
+   "name": "大洋グリーン",
+   "address": "福岡県久留米市善道寺町木塚214-26",
+   "postal_code": "839-0822",
+   "phone": "0942-47-3114",
+   "website_url": "https://www.taiyo-green.com/",
+   "business_hours": "9:30〜17:00",
+   "closed_days": [
+    "年末年始",
+    "お盆休み"
+   ],
+   "access_info": "道の駅くるめ奥のくるめ緑花センター内",
+   "owner_name": "馬場 誠一"
+  },
+  "clear_fields": [
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.taiyo-green.com/",
+   "https://www.taiyo-green.com/shop/"
+  ],
+  "notes": "公式サイトで所在地は愛知県春日井市ではなく福岡県久留米市と確認",
+  "description_new": "福岡県久留米市のくるめ緑花センター内にある園芸店で、バラ・モミジ・オージープランツ・クレマチスを専門的に扱う。造園部で庭造りや外構工事も行う。",
+  "specialties_confirmed": [
+   "バラ",
+   "モミジ",
+   "オージープランツ",
+   "クレマチス",
+   "多肉植物",
+   "観葉植物",
+   "造園"
+  ]
+ },
+ {
+  "id": "c39c38f7-294b-41bc-aaf5-bfd26aeb04ea",
+  "name": "春日井の森植木センター",
+  "status": "verified",
+  "confirmed": {
+   "name": "植木センター 春日井の森",
+   "address": "愛知県春日井市出川町1丁目41",
+   "postal_code": "487-0025",
+   "phone": "0568-51-0415",
+   "website_url": "http://www.aba-g.com/kasugai_mori.html",
+   "business_hours": "9:00〜18:00",
+   "closed_days": [
+    "水曜日"
+   ]
+  },
+  "clear_fields": [
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "http://www.aba-g.com/kasugai_mori.html"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・定休日を確認（既存住所・電話は誤り）",
+  "description_new": "愛知県春日井市の植木センターで、庭木・苗木・ヤシの木を販売し、ガレージやストックヤードなども展示している。",
+  "specialties_confirmed": [
+   "植木",
+   "苗木",
+   "ヤシの木",
+   "外構工事"
+  ]
+ },
+ {
+  "id": "6f7b4c0f-576b-4a45-b2e8-daab0be9a41f",
+  "name": "花王国愛知ガーデンセンター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "name",
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当施設が見つからない",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "91f0525a-be18-4bac-b162-373d4bc03d3e",
+  "name": "豊田ガーデン",
+  "status": "verified",
+  "confirmed": {
+   "name": "株式会社豊田ガーデン",
+   "address": "愛知県豊田市寿町4丁目54番地",
+   "postal_code": "471-0834",
+   "phone": "0565-28-2601",
+   "website_url": "https://www.kayutei.co.jp/",
+   "business_hours": "10:00〜17:00",
+   "closed_days": [
+    "火曜日"
+   ],
+   "access_info": "東名豊田ICより約3.0km・約8分",
+   "established_year": 1953,
+   "owner_name": "天野 勝美",
+   "experience_programs": true,
+   "social_instagram": "@toyota_garden"
+  },
+  "clear_fields": [
+   "parking_info",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.kayutei.co.jp/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間を確認（併設庭園「花遊庭」は2026年5月末に閉園、会社・ショップは営業中）",
+  "description_new": "愛知県豊田市寿町の造園・エクステリア会社で、昭和28年創業。ガーデニングプロショップを運営し、庭づくりの学校も開講している。",
+  "specialties_confirmed": [
+   "造園工事",
+   "エクステリア工事",
+   "花苗",
+   "寄せ植え",
+   "観葉植物",
+   "多肉植物",
+   "庭づくりの学校"
+  ]
+ }
+]

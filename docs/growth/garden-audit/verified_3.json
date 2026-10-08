@@ -1,0 +1,698 @@
+[
+ {
+  "id": "78e25ed5-8a97-4a3e-9f3d-77fdd5054e8b",
+  "name": "グリーンファーム東大阪",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "name",
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で東大阪市の「グリーンファーム東大阪」の実在を示す情報は見つからなかった。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "34dd9a7c-45cd-467b-9650-dd919ef51373",
+  "name": "山城愛仙園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "name",
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "「山城愛仙園」「愛仙園 豊中」等で検索したが実在を示す情報は見つからなかった。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "7e5804c7-8401-4db8-95aa-d2af1886d157",
+  "name": "植忠",
+  "status": "verified",
+  "confirmed": {
+   "name": "植忠",
+   "address": "大阪府堺市美原区平尾429-1",
+   "postal_code": "587-0022",
+   "phone": "0120-372-375",
+   "website_url": "https://www.uechuu.com/",
+   "business_hours": "9:00〜18:00",
+   "established_year": 1912,
+   "owner_name": "杉田晃一"
+  },
+  "clear_fields": [
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.uechuu.com/",
+   "https://www.uechuu.com/company.html"
+  ],
+  "notes": "公式サイトで所在地（堺市美原区、来園はアトリエ＆モデルガーデン）・電話・営業時間・創業年を確認、登録住所（南区畑）は誤り。",
+  "description_new": "大阪府堺市美原区で植木・雑木の生産販売と庭づくり・外構工事を行う会社で、1912年創業。五葉松・黒松などの盆栽のレンタル・サブスクにも対応している。",
+  "specialties_confirmed": [
+   "植木生産販売",
+   "雑木",
+   "庭づくり・外構",
+   "盆栽レンタル・サブスク"
+  ]
+ },
+ {
+  "id": "fe68bd0f-0a04-4c35-b721-ae89c2963247",
+  "name": "浪華盆栽園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "name",
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "「浪華盆栽園」で複数回検索したが実在を示す情報は見つからなかった。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "31142d3a-2209-449d-aa74-d9e3e80a6e38",
+  "name": "緑昇園",
+  "status": "verified",
+  "confirmed": {
+   "name": "緑昇園",
+   "address": "大阪府大阪市東住吉区矢田2-11-13",
+   "postal_code": "546-0023",
+   "phone": "06-6654-8893",
+   "website_url": "https://www.ryokusyouen.jp/",
+   "business_hours": "8:00〜19:00",
+   "closed_days": [
+    "年中無休"
+   ],
+   "established_year": 2012,
+   "owner_name": "土谷昇"
+  },
+  "clear_fields": [
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.ryokusyouen.jp/",
+   "https://www.ryokusyouen.jp/company/"
+  ],
+  "notes": "公式サイトで所在地（東住吉区矢田）・電話・営業時間・設立年を確認、盆栽園ではなく造園・剪定業者。",
+  "description_new": "大阪市東住吉区の造園業者で、植木の剪定や庭の手入れを行う。2012年設立。",
+  "specialties_confirmed": [
+   "造園",
+   "剪定",
+   "庭の手入れ"
+  ]
+ },
+ {
+  "id": "77a2d6e0-8b2a-455e-af37-7d4cd89257c7",
+  "name": "藤川光華園",
+  "status": "verified",
+  "confirmed": {
+   "name": "藤川光華園",
+   "address": "大阪府池田市神田3-19-13",
+   "postal_code": "563-0043",
+   "phone": "072-752-9024",
+   "access_info": "阪急宝塚線石橋駅から徒歩約20分（タクシー約10分）",
+   "owner_name": "藤川恵一",
+   "experience_programs": true
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "parking_info",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://bonsaiempire.com/inspiration/bonsai-japan/fujikawa-koukaen",
+   "https://bonsaibark.com/2013/06/07/study-bonsai-in-the-old-country/"
+  ],
+  "notes": "盆栽専門サイトで正式名「藤川光華園」・住所・電話・園主を確認、営業時間等は未確認。",
+  "description_new": "大阪府池田市の盆栽園で、園主は藤川恵一氏。海外からの弟子や研修生を受け入れ、短期の盆栽スクールも開いている。",
+  "specialties_confirmed": [
+   "盆栽",
+   "盆栽教室（短期研修）"
+  ]
+ },
+ {
+  "id": "1cdef4ba-d729-47c4-be31-86c879ea0aa2",
+  "name": "関西盆栽センター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "name",
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "登録URLのドメインが存在せず実在を確認できなかった（検索上限により追加検索は未実施・要再確認）。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "d59a502e-61cb-427e-ac93-bb4da4dfc5f6",
+  "name": "養庄園",
+  "status": "verified",
+  "confirmed": {
+   "name": "養庄園",
+   "address": "大阪府池田市木部町347-1",
+   "postal_code": "563-0014",
+   "phone": "072-751-3813",
+   "website_url": "http://www.yoshoen.com/",
+   "business_hours": "9:00〜17:00",
+   "closed_days": [
+    "年中無休"
+   ],
+   "experience_programs": true,
+   "online_sales": true,
+   "social_instagram": "@nittimosattimo"
+  },
+  "clear_fields": [
+   "access_info",
+   "parking_info",
+   "owner_message"
+  ],
+  "sources": [
+   "http://www.yoshoen.com/"
+  ],
+  "notes": "公式サイトで住所・電話（実店舗）・営業時間（盆栽エリア）・通販・盆栽教室を確認。",
+  "description_new": "大阪府池田市木部町の盆栽・総合園芸店で、盆栽エリアと多肉・観葉・庭木エリアを持つ。盆栽教室のほか、通販サイト「遊恵盆栽」や海外輸出・卸販売も行う。",
+  "specialties_confirmed": [
+   "盆栽",
+   "盆栽鉢・道具",
+   "多肉植物・サボテン",
+   "観葉植物",
+   "庭木",
+   "盆栽教室",
+   "盆栽の預かり・レンタル",
+   "海外輸出"
+  ]
+ },
+ {
+  "id": "9ae13df5-9bfc-4ca3-b137-5535f5b34f39",
+  "name": "グリーンテラスマツイ",
+  "status": "verified",
+  "confirmed": {
+   "name": "グリーンテラスマツイ",
+   "address": "奈良県天理市中町224-1",
+   "phone": "0743-64-3866",
+   "website_url": "https://www.g-t-matsui.jp/",
+   "business_hours": "9:00〜18:00（11月〜2月は9:00〜17:00）",
+   "closed_days": [
+    "夏季（7月〜8月）の水曜日"
+   ],
+   "access_info": "近鉄二階堂駅から徒歩10分、京奈和自動車道郡山南ICから車で3分",
+   "parking_info": "駐車場あり",
+   "owner_name": "松井源文",
+   "experience_programs": true,
+   "online_sales": true,
+   "social_instagram": "@greenterracematsui"
+  },
+  "clear_fields": [
+   "postal_code",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.g-t-matsui.jp/",
+   "https://www.g-t-matsui.jp/contents/category/location"
+  ],
+  "notes": "公式サイトで所在地（天理市）・電話・営業時間・アクセスを確認、登録住所（大和郡山市）は誤り。",
+  "description_new": "奈良県天理市の園芸店で、直営の松井農園で育てた野菜苗・花壇苗のほか観葉植物・多肉植物・園芸用品を扱う。リースなどのワークショップやオンラインショップもある。",
+  "specialties_confirmed": [
+   "野菜苗",
+   "花壇苗",
+   "観葉植物",
+   "多肉植物",
+   "胡蝶蘭",
+   "ワークショップ"
+  ]
+ },
+ {
+  "id": "5567c35f-b596-4023-b48d-f2246bf1f56d",
+  "name": "愛栽家族 ならやま店",
+  "status": "verified",
+  "confirmed": {
+   "name": "愛栽家族 ならやま店",
+   "address": "奈良県奈良市佐保台2丁目3576-1",
+   "postal_code": "630-8105",
+   "phone": "0742-81-8741",
+   "website_url": "https://aisaikazoku.com/narayama.html",
+   "business_hours": "9:30〜18:00（3月〜10月）, 9:30〜17:00（11月〜2月）",
+   "closed_days": [
+    "火曜日"
+   ],
+   "access_info": "JR大和路線平城山駅から徒歩約15分（車で約3分）",
+   "parking_info": "大型駐車場完備",
+   "online_sales": true,
+   "social_instagram": "@aisaikazoku.narayama"
+  },
+  "clear_fields": [
+   "experience_programs",
+   "owner_message"
+  ],
+  "sources": [
+   "https://aisaikazoku.com/",
+   "https://aisaikazoku.com/narayama.html"
+  ],
+  "notes": "公式サイトの店舗ページで住所・電話・営業時間・定休日・アクセスを確認。",
+  "description_new": "奈良市佐保台のならやま大通り沿いにある大型園芸店で、家庭菜園の苗・資材や多肉植物などを扱う。オンラインショップもある。",
+  "specialties_confirmed": [
+   "家庭菜園",
+   "自社生産苗",
+   "多肉植物",
+   "観葉植物",
+   "農業資材"
+  ]
+ },
+ {
+  "id": "0d26d45f-ad4c-43d0-bd44-18e773688cc1",
+  "name": "小田急フローリスト仙台店",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "name",
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.odakyu-dept.co.jp/"
+  ],
+  "notes": "小田急百貨店公式サイトに仙台店は存在せず、登録URLもページなし。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "9724f853-3659-4c80-bbec-bd411021b872",
+  "name": "泉パークタウンガーデンセンター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "name",
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "登録URLのドメインが存在せず実在を確認できなかった（検索上限により追加検索は未実施・要再確認）。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "094d5670-7da7-4b4a-9e6a-860b035dd994",
+  "name": "有限会社宮崎園芸",
+  "status": "verified",
+  "confirmed": {
+   "name": "有限会社宮崎園芸",
+   "address": "宮崎県宮崎市大字郡司分甲1250",
+   "postal_code": "880-0924",
+   "phone": "0985-56-1188",
+   "website_url": "http://www.miyazaki-engei.jp/",
+   "owner_name": "木場正哉"
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "http://www.miyazaki-engei.jp/"
+  ],
+  "notes": "公式サイトの会社概要で住所・電話・代表者を確認、営業時間等の記載なし。",
+  "description_new": "宮崎市郡司分の園芸店で、花苗・花鉢・観葉植物・雑貨の販売や花苗生産を行う。観葉植物のリースや胡蝶蘭ギフトの市内配達、造園も手がける。",
+  "specialties_confirmed": [
+   "花苗・花鉢",
+   "観葉植物",
+   "胡蝶蘭ギフト",
+   "観葉植物リース",
+   "花苗生産",
+   "造園"
+  ]
+ },
+ {
+  "id": "07c6d095-eb0b-494b-9678-c7b52f578182",
+  "name": "株式会社後藤造園",
+  "status": "verified",
+  "confirmed": {
+   "name": "株式会社後藤造園",
+   "address": "宮崎県宮崎市大字塩路1194-3",
+   "postal_code": "880-0122",
+   "phone": "0985-39-1400",
+   "website_url": "https://www.gotozouen.com/",
+   "established_year": 1967,
+   "owner_name": "後藤健介",
+   "online_sales": true
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.gotozouen.com/",
+   "https://www.gotozouen.com/会社概要",
+   "https://www.gotozouen.com/販売"
+  ],
+  "notes": "公式サイトで住所・電話・設立年・代表者・オンラインショップを確認、営業時間の記載なし。",
+  "description_new": "宮崎市塩路の造園会社で、庭づくり・外構・植栽のほか、「MAKE GARDEN」で植木・観葉植物・ガーデン雑貨を販売している。1967年設立。",
+  "specialties_confirmed": [
+   "造園",
+   "外構",
+   "植栽",
+   "植木・観葉植物販売"
+  ]
+ },
+ {
+  "id": "201fd0b1-e40c-41ac-83c6-a871ce540972",
+  "name": "株式会社馬原造園建設",
+  "status": "verified",
+  "confirmed": {
+   "name": "株式会社馬原造園建設",
+   "address": "宮崎県宮崎市大字瓜生野字垂門3711",
+   "postal_code": "880-0044",
+   "phone": "0985-30-3030",
+   "website_url": "https://mahara.co.jp/",
+   "established_year": 1975,
+   "owner_name": "馬原久幸"
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://mahara.co.jp/",
+   "https://mahara.co.jp/aboutus"
+  ],
+  "notes": "公式サイトで住所・電話・創業年（昭和50年）・代表者を確認、登録住所（柳丸町）は誤り。",
+  "description_new": "宮崎市瓜生野の造園会社で、公園・庭園の設計・施工・維持管理を行い、宮崎県・宮崎市立公園の指定管理者を務める。1975年創業。",
+  "specialties_confirmed": [
+   "造園",
+   "公園・庭園の維持管理",
+   "公園の指定管理"
+  ]
+ },
+ {
+  "id": "4557fb2e-7e5f-488e-8ef4-55b3a95dd60d",
+  "name": "北山ナーセリー 富山店",
+  "status": "verified",
+  "confirmed": {
+   "name": "北山ナーセリー 富山店",
+   "address": "富山県富山市有沢189",
+   "postal_code": "930-0862",
+   "phone": "076-491-3661",
+   "website_url": "https://kitayamanet.co.jp/",
+   "business_hours": "9:30〜18:30（冬季は9:30〜18:00）",
+   "closed_days": [
+    "1月1日"
+   ],
+   "experience_programs": true,
+   "online_sales": true,
+   "social_instagram": "@nursery_ktym_tymten"
+  },
+  "clear_fields": [
+   "access_info",
+   "parking_info",
+   "owner_message"
+  ],
+  "sources": [
+   "https://kitayamanet.co.jp/",
+   "https://kitayamanet.co.jp/shop-toyama/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・定休日を確認、郵便番号は930-0862が正。",
+  "description_new": "富山市有沢の園芸店で、高岡・魚津にも店舗がある。園芸教室を開催し、オンラインショップも運営している。",
+  "specialties_confirmed": [
+   "園芸教室",
+   "花苗"
+  ]
+ },
+ {
+  "id": "63515450-e9f3-40f6-852d-b726e7ea7552",
+  "name": "花の庭",
+  "status": "verified",
+  "confirmed": {
+   "name": "花の庭",
+   "address": "富山県富山市八尾町三田215",
+   "phone": "076-411-6777",
+   "website_url": "http://www.hananoniwa.noen.biz/"
+  },
+  "clear_fields": [
+   "postal_code",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "http://www.hananoniwa.noen.biz/"
+  ],
+  "notes": "公式サイトで八尾町展示場の住所と事務所電話を確認（事務所は富山市寺町433-25）、営業時間等は記載なし。",
+  "description_new": "富山市のガーデン・エクステリア業者で、造園・外構工事や剪定を行う。八尾町の展示場に併設のショップで植木や宿根草などを販売している。",
+  "specialties_confirmed": [
+   "ガーデン・エクステリア",
+   "造園・外構工事",
+   "植木販売",
+   "剪定",
+   "宿根草"
+  ]
+ },
+ {
+  "id": "d85b297c-528c-4861-8f7b-e07a6beef5d1",
+  "name": "ガーデンマルシェ 下関店",
+  "status": "verified",
+  "confirmed": {
+   "name": "ガーデンマルシェ 下関店",
+   "address": "山口県下関市王司神田6-2-7",
+   "phone": "083-248-2253",
+   "website_url": "https://g-nissin.co.jp/shimonoseki/",
+   "business_hours": "9:00〜18:00",
+   "closed_days": [
+    "12月31日",
+    "1月1日"
+   ],
+   "social_instagram": "@garden.mar"
+  },
+  "clear_fields": [
+   "postal_code",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://g-nissin.co.jp/",
+   "https://g-nissin.co.jp/shimonoseki/"
+  ],
+  "notes": "公式サイトの店舗ページで住所・電話・営業時間・休日を確認。",
+  "description_new": "下関市王司の園芸店で、花苗・野菜苗・鉢花・観葉植物・洋ラン・植木やガーデニング用品を扱う。贈答品の全国発送にも対応している。",
+  "specialties_confirmed": [
+   "花苗",
+   "野菜苗",
+   "鉢花",
+   "観葉植物",
+   "洋ラン",
+   "植木",
+   "ガーデニング用品"
+  ]
+ },
+ {
+  "id": "e0929c1b-ab29-4624-8f3c-c85371bf3484",
+  "name": "サンデン造園株式会社",
+  "status": "verified",
+  "confirmed": {
+   "name": "サンデン造園株式会社",
+   "address": "山口県下関市藤ヶ谷町10-38",
+   "postal_code": "751-0811",
+   "phone": "083-250-5028",
+   "website_url": "https://sanden-zouen.com/",
+   "business_hours": "8:00〜17:00",
+   "closed_days": [
+    "土曜日",
+    "日曜日",
+    "祝日"
+   ],
+   "established_year": 1989,
+   "owner_name": "福田寛"
+  },
+  "clear_fields": [
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://sanden-zouen.com/",
+   "https://sanden-zouen.com/about"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・定休日・創業年・代表者を確認。",
+  "description_new": "下関市藤ヶ谷町の造園会社で、造園工事の設計・施工・管理を行い、下関市の都市公園の指定管理も受けている。1989年創業。",
+  "specialties_confirmed": [
+   "造園工事・設計・施工・管理",
+   "公園の指定管理"
+  ]
+ },
+ {
+  "id": "5a3bdecf-5c77-4552-b619-2ec61541d095",
+  "name": "とがし白陽園",
+  "status": "verified",
+  "confirmed": {
+   "name": "とがし白陽園",
+   "address": "山形県酒田市両羽町3-17",
+   "postal_code": "998-0832",
+   "phone": "0234-23-2304",
+   "website_url": "https://www.sakata-togashihakuyoen.com/",
+   "business_hours": "10:00〜17:00",
+   "closed_days": [
+    "年末年始",
+    "お盆"
+   ],
+   "access_info": "JR東酒田駅（酒田米菓工場前）",
+   "parking_info": "駐車場あり"
+  },
+  "clear_fields": [
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.sakata-togashihakuyoen.com/",
+   "https://www.sakata-togashihakuyoen.com/company"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・休業日・駐車場を確認、登録住所（宮内）は誤り。",
+  "description_new": "山形県酒田市の造園業者で、植木・庭石・石灯籠や盆栽・山野草を販売している。展示場で大型から小品・中品の盆栽を見ることができ、盆栽の植替え・整枝管理も請け負う。",
+  "specialties_confirmed": [
+   "造園工事",
+   "植木販売",
+   "盆栽",
+   "小品盆栽",
+   "山野草",
+   "盆栽の植替え・整枝"
+  ]
+ },
+ {
+  "id": "89151019-0e22-4a6f-81dd-dee6f9ab0123",
+  "name": "山形園芸センター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "name",
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "実在を示す情報を確認できなかった（検索上限により検索未実施・要再確認）。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "1d28d60c-d2e5-4d13-b20a-5d4ddaf9af2e",
+  "name": "富士五湖植物園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "name",
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "登録URLのドメインが存在せず実在を確認できなかった（検索上限により追加検索は未実施・要再確認）。",
+  "description_new": null,
+  "specialties_confirmed": []
+ }
+]

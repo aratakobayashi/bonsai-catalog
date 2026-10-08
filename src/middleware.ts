@@ -10,7 +10,7 @@ const REDIRECT_HOSTS = new Set(['bonsai-collection.com', 'bonsai-catalog.vercel.
 const PROTECTED_API_PREFIXES = ['/api/articles', '/api/upload']
 
 function isProtectedApi(pathname: string, method: string): boolean {
-  if (pathname.startsWith('/api/upload')) return true
+  if (pathname.startsWith('/api/upload') || pathname.startsWith('/api/admin')) return true
   return method !== 'GET' && method !== 'HEAD' &&
     PROTECTED_API_PREFIXES.some(prefix => pathname.startsWith(prefix))
 }

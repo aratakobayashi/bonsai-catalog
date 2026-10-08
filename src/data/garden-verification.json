@@ -1,0 +1,597 @@
+{
+ "verifiedAt": "2026-10-08",
+ "hiddenIds": [
+  "02730e03-63d8-4530-876b-a353e256a4d4",
+  "03265286-c823-40dd-9650-e27aaf242cb7",
+  "07c6d095-eb0b-494b-9678-c7b52f578182",
+  "094d5670-7da7-4b4a-9e6a-860b035dd994",
+  "0a120c74-2bf1-4ca1-a16c-b34865967245",
+  "0b082ac1-084a-4f81-9fce-20fb974461a9",
+  "0d26d45f-ad4c-43d0-bd44-18e773688cc1",
+  "1191e28b-15ef-4363-b43e-8ed007154b22",
+  "138b87f3-7d94-453d-a67d-083932ac6ca9",
+  "142cd085-535f-4cd3-902e-89f8fc07455c",
+  "15e8cadd-e558-47f6-9dc2-f9edff611b29",
+  "174b8907-df0e-492c-a93a-adf2bc868081",
+  "1c839911-a0bb-40cd-9733-5945a1192270",
+  "1cdef4ba-d729-47c4-be31-86c879ea0aa2",
+  "1d28d60c-d2e5-4d13-b20a-5d4ddaf9af2e",
+  "201fd0b1-e40c-41ac-83c6-a871ce540972",
+  "21baaa4e-9d4b-4df6-9de9-cb51fe455a26",
+  "253b3027-463f-4bd9-847e-90547715cb9b",
+  "256a3959-064d-4146-a7b7-ba84069bcd5b",
+  "261c47ac-1b26-4bb3-952a-16df4ca5bbe6",
+  "264b713f-5d1a-4eba-b72b-7bac3c7aefbf",
+  "299bced1-91e7-424b-bdd3-6391ccc5c622",
+  "29a49dbc-e5e1-4201-afe9-0b4a09223095",
+  "29d8a441-bdd5-4fc5-8514-164ff37e3234",
+  "2a93e2ed-3bea-4855-b69c-9d5df4d0d1e3",
+  "2afde46e-67aa-47d5-a8bb-737e0ab747a1",
+  "2da00ed6-64c2-4ce8-8174-7426b569e1e3",
+  "31142d3a-2209-449d-aa74-d9e3e80a6e38",
+  "323ae2c8-82a0-480a-a0bf-3eeab52baa3a",
+  "32f621fa-68bd-436e-82e0-d97a483f322d",
+  "34ba6634-3e68-4ed6-a766-07ac2d3aba33",
+  "34dd9a7c-45cd-467b-9650-dd919ef51373",
+  "35836283-1b95-48c5-a364-c09aeeb43f28",
+  "3b6b5be3-3a03-424b-b9e1-3d715e331402",
+  "3c4f5845-c6f7-47e7-87d5-d68b5cafc0ae",
+  "3cc5336e-28ba-4555-b834-351436bdbca0",
+  "3d05bfc7-ece2-4ec0-8451-1423206b52eb",
+  "3efc1c32-1014-4cc0-a14b-db971bffa621",
+  "40a5e7c5-8cb6-46ef-bd83-cb830d7da0cd",
+  "41e3139a-cc9e-4002-a9d9-f196355fe597",
+  "43bef990-75ae-431b-bcd9-3627879cf4eb",
+  "443ac8d4-1bb7-4415-82a7-b9eeee19273b",
+  "447f6eea-99d2-4a32-8a66-57d2af66061e",
+  "4557fb2e-7e5f-488e-8ef4-55b3a95dd60d",
+  "47db77f2-c1f6-44b7-bdbd-453642111eb3",
+  "49f0eef9-43e7-4881-8f7d-169467c114db",
+  "4f694d8a-67ba-4a0c-8144-8ffb2ed5d494",
+  "500e6ae7-92bd-4758-8550-a50ca2baaa60",
+  "5266402a-5bda-4a5b-bfbd-eaf58e8d9f99",
+  "537542f3-cea3-424f-908a-6d8b3c0d25d8",
+  "5567c35f-b596-4023-b48d-f2246bf1f56d",
+  "5825c02c-84a3-4a56-85fe-e816103aef06",
+  "588e5f53-2541-489d-b991-6b28375df649",
+  "5b96fdd2-471b-47fd-874b-3982a1e7d5f2",
+  "5e7de278-e355-42be-943d-3e877f04bfcf",
+  "5ec52f80-073d-45d0-aae2-b72f11672721",
+  "5f2057cb-4757-428f-befc-4af8e6bef25b",
+  "5f6ef2d7-6540-4a1c-9739-1dc48254fa8e",
+  "63515450-e9f3-40f6-852d-b726e7ea7552",
+  "639402ee-a9e5-459f-8772-463ab6413598",
+  "688366e5-736d-4269-b2eb-296a167d8866",
+  "6897be01-8059-41b6-9749-436eebb5e678",
+  "6983e29b-2c1b-49f6-b758-07a7570fcec2",
+  "6b9181e5-f2df-4c32-a2ad-5700ac7f866f",
+  "6d77d1c5-4093-4741-90cd-2bdf5395d5e6",
+  "6f7b4c0f-576b-4a45-b2e8-daab0be9a41f",
+  "70fb24ea-c239-4189-b0a8-c366bbee9a6a",
+  "7163682f-97fd-4178-bf2f-f64683af32fc",
+  "71d984be-89d6-427c-a27c-0139fbc3e889",
+  "75c14be8-3105-4b40-8575-2498859c6de8",
+  "78e25ed5-8a97-4a3e-9f3d-77fdd5054e8b",
+  "7d49d321-50a2-4729-b6bd-8f100dbc7e19",
+  "8536319f-5a2c-4437-b870-76ddcc792faf",
+  "89151019-0e22-4a6f-81dd-dee6f9ab0123",
+  "8a3ce3f8-8503-4dd7-beee-bbc4d45bf5d3",
+  "8aa40340-009f-429d-a18d-dd46f83dc655",
+  "8c90b21d-54dd-4811-b5b7-1282f3fb1f25",
+  "8d33d8ac-60a3-49e7-a7b8-4507cfaf0a13",
+  "8d9f01bf-4644-4f53-8198-783ae1232529",
+  "8ed687ca-0e7a-470a-9960-5dfa1592d088",
+  "9198cb49-3338-4f96-8fd0-3e63e5bc3d5b",
+  "91f0525a-be18-4bac-b162-373d4bc03d3e",
+  "929b849b-0b11-45b7-b5d8-9bf09cfd64d0",
+  "92ff30aa-bcdd-4323-b2a6-1fea440138cc",
+  "9559ba82-635c-42b2-a03c-4c8fc98e6e50",
+  "96aa3db9-0ea0-4f13-9768-1c81f6ad3416",
+  "9724f853-3659-4c80-bbec-bd411021b872",
+  "97e7553f-109d-4631-939a-8d292eeb625b",
+  "98b9a95c-09df-4a33-a49b-776560a8d90f",
+  "99ccb893-5976-423a-8773-220bb7efe6b6",
+  "9a1819fd-05a1-4d66-9877-bc07607ba19a",
+  "9a9dc214-6dd8-4d31-ba99-a2e475d302f8",
+  "9ae13df5-9bfc-4ca3-b137-5535f5b34f39",
+  "9d395b67-bad0-44fe-87fb-7b4df3417307",
+  "9edd8075-1637-4f74-8f42-8b3f689785bc",
+  "a035baf6-e9e9-427c-8245-10e6d0c11435",
+  "a130db6c-894b-4aef-adc2-fc8967fe0dec",
+  "a1f34b47-7190-4a7e-ae39-89bb4f8e04b7",
+  "a45f1770-9d15-40c7-a9b3-332f9edc0530",
+  "a5a67276-c380-4939-9f91-de9d64a44993",
+  "a62bafaf-dd00-47b0-b4a8-1979e35fbf20",
+  "a7c48e64-0ab4-46ed-9e85-6d533364ba4f",
+  "a84680ba-4aa4-44e1-a878-94d20c805649",
+  "aa02f356-72e3-49dd-9511-fea249002fdf",
+  "aaab7bde-68f9-4ccb-8e78-871ca5ee8fc5",
+  "ab79571b-1b5d-4506-8b44-185006d97df5",
+  "ae781a4a-4c9c-46fc-bf99-f591d12a08f0",
+  "aec3cb3b-ff22-476a-9728-b52547ab3a98",
+  "af7f71f9-7691-4650-ac38-bae3fd427ed7",
+  "b306b511-bdeb-43b6-9ea7-87c714888d89",
+  "b5305c48-7ebe-4486-8391-622f282ebfbc",
+  "b81646b0-261b-4e3b-b6f3-8ebfb2fb0cb9",
+  "bc8f2e83-04cb-48a0-b213-75d1e6b09fee",
+  "bfa4fe8a-c414-4a5b-9dc9-c3de4b0dcb6b",
+  "c0447fc7-a3fb-41e5-8a2f-3412d9ca8334",
+  "c0df2a2d-4958-43dd-9995-e82172ffe470",
+  "c37bab9a-f025-4dec-b4d6-75361eb768b8",
+  "c39c38f7-294b-41bc-aaf5-bfd26aeb04ea",
+  "c62357fb-f3de-4aa4-add5-eb1bb7f95922",
+  "c8190e38-03f3-421a-800c-8c5e2c7692e6",
+  "c8ddaa61-7922-40b8-8133-7b1e0ab36e9c",
+  "ca267915-f5fa-4aa5-a797-bb5931d65dcc",
+  "ce0c2233-da20-4f84-8540-9e37415c60ce",
+  "cfd47538-d3b2-4c33-869a-68652c2d0563",
+  "d2c1fc74-9ea1-4c8c-9625-89ed1130a7f0",
+  "d85b297c-528c-4861-8f7b-e07a6beef5d1",
+  "e0929c1b-ab29-4624-8f3c-c85371bf3484",
+  "e2c19d95-5d0f-4f68-9a6e-637776703a85",
+  "e4ac72e0-8a4b-410e-9e99-d9f6778b7b9f",
+  "e4d6382a-0018-44e1-aef5-584394282700",
+  "ed0ceac0-f2fa-4f27-8970-10fbe720ff39",
+  "f0f86407-1a4b-4100-987c-2743b441fcee",
+  "f157053e-1a0c-4952-ac48-f3c2bc3fa7c5",
+  "f1b5582d-56ae-4cb4-9625-d95ad486709e",
+  "f2c3e16a-6274-48eb-9847-77ff098f6960",
+  "f61bc0fe-53e8-4ec3-a3a8-29bfff2c0870",
+  "f7d24f87-828d-40ab-a330-8c03b7879a28",
+  "f9283387-4c71-47b9-b641-45c514d27117",
+  "fa5a616c-454a-4115-835e-b00feda73bc8",
+  "fa96de24-e49e-4dc6-a969-d7e81462a0d5",
+  "fc9f4072-151e-463f-8acc-e20935740398",
+  "fe68bd0f-0a04-4c35-b721-ae89c2963247",
+  "ffc6d15a-d3a2-4fde-b556-dfed23b8919a"
+ ],
+ "sourcesById": {
+  "c461d493-c16b-4b45-9a26-e3e15624e3c4": [
+   "https://kojuen.webu.jp/"
+  ],
+  "1463d7db-74d7-44cf-ac4c-78f8696dc8e9": [
+   "https://engei-itoya.com/"
+  ],
+  "b2974592-38df-4f4b-907b-e5fe1df60620": [
+   "https://bonsai-fukushimaen.net/"
+  ],
+  "58e02c92-8918-4212-9560-c56e31606724": [
+   "https://minorinosato-togane.com/sisetsu/ryokuka",
+   "https://minorinosato-togane.com/sisetsu/guide"
+  ],
+  "8f99da6b-ee77-4c5f-86a9-92b0f5c7f99d": [
+   "https://kinarino.jp/cat7/11306",
+   "https://www.city.saitama.lg.jp/006/014/010/001/012/018/p087271_d/fil/29.pdf",
+   "https://www.city.saitama.lg.jp/004/005/001/005/001/004/p120216.html"
+  ],
+  "7cb38263-35fd-4fdb-b0a5-9c31227d6ebc": [
+   "https://kawaguchibonsaimura.com/",
+   "https://kawaguchibonsaimura.com/real-store-introduction/"
+  ],
+  "3000a4b6-0a10-4896-9ff2-b3a9d09c14db": [
+   "https://www.jurian.or.jp/",
+   "https://www.jurian.or.jp/info/access.php"
+  ],
+  "e695fdf3-4e1c-4b6b-b20b-59e17cba279a": [
+   "https://www.seikouen.cc/",
+   "https://www.seikouen.cc/company.html"
+  ],
+  "75779219-963c-49eb-942a-c2f6caa3c7a1": [
+   "https://kinarino.jp/cat7/11306",
+   "https://www.city.saitama.lg.jp/006/014/010/001/012/018/p087271_d/fil/29.pdf"
+  ],
+  "eb263d7a-701b-4b4b-9b01-776a8ea2cdf4": [
+   "https://kinarino.jp/cat7/11306",
+   "https://www.city.saitama.lg.jp/006/014/010/001/012/018/p087271_d/fil/29.pdf",
+   "https://www.city.saitama.lg.jp/004/005/001/005/001/004/p120203.html"
+  ],
+  "60842140-ce64-4848-a55c-5457a8703d33": [
+   "https://www.city.saitama.lg.jp/006/014/008/003/012/001/p096970.html",
+   "https://kinarino.jp/cat7/11306",
+   "https://www.city.saitama.lg.jp/006/014/010/001/012/018/p087271_d/fil/29.pdf"
+  ],
+  "7e5804c7-8401-4db8-95aa-d2af1886d157": [
+   "https://www.uechuu.com/",
+   "https://www.uechuu.com/company.html"
+  ],
+  "77a2d6e0-8b2a-455e-af37-7d4cd89257c7": [
+   "https://bonsaiempire.com/inspiration/bonsai-japan/fujikawa-koukaen",
+   "https://bonsaibark.com/2013/06/07/study-bonsai-in-the-old-country/"
+  ],
+  "d59a502e-61cb-427e-ac93-bb4da4dfc5f6": [
+   "http://www.yoshoen.com/"
+  ],
+  "5a3bdecf-5c77-4552-b619-2ec61541d095": [
+   "https://www.sakata-togashihakuyoen.com/",
+   "https://www.sakata-togashihakuyoen.com/company"
+  ],
+  "c5abd99b-808b-48fd-b5f2-8353385ac719": [
+   "https://kaboku.jp/"
+  ],
+  "1da87f61-d5cc-456c-827b-8a2ef675b68a": [
+   "https://greenscape.co.jp/",
+   "https://greenscape.co.jp/storage/about/"
+  ],
+  "d432d4bf-908e-4952-86c5-b8c5798a1225": [
+   "https://bonsaikumiai.jp/",
+   "https://bonsaikumiai.jp/greenclub",
+   "https://prtimes.jp/main/html/rd/p/000000004.000186662.html"
+  ],
+  "20702388-f8b8-408e-8d6e-dd158031b048": [
+   "https://kunio-kobayashi.com/",
+   "https://kunio-kobayashi.com/access.html",
+   "https://kunio-kobayashi.com/school.html",
+   "https://www.tv-tokyo.co.jp/adomachi/backnumber/20180714/137380.html"
+  ],
+  "bd12fb51-7998-4576-952d-081c242d4905": [
+   "https://itp.ne.jp/zenkoku/tokyo/setagayaku/ie-jutaku/ekusuteria/",
+   "https://local-media.heteml.net/?p=8719"
+  ],
+  "b642b59f-2c76-4084-8bc4-7a7908d52f57": [
+   "https://utunomiya-kaboku.com/",
+   "https://tochinavi.net/spot/home/?id=11256"
+  ],
+  "a38daf6e-445f-481b-a9a8-55ea631428e3": [
+   "https://www.moccasou.com/",
+   "https://www.moccasou.com/about/",
+   "https://www.moccasou.com/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9-%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B/"
+  ],
+  "d890f754-cf36-4724-bdd0-ee07b95b4a88": [
+   "https://bonsaiyamatoen.com/",
+   "https://bonsaiyamatoen.com/access.html",
+   "https://bonsaiyamatoen.com/kyoshitsu.html"
+  ],
+  "e72b0605-065d-4a70-9223-54a868d8fef3": [
+   "https://www.tokiwa-web.com/",
+   "https://www.tokiwa-web.com/company/"
+  ],
+  "f3418bb6-eef6-47a7-8c54-905ed1d6d3cb": [
+   "https://iko-yo.net/facilities/54597",
+   "https://ja.wikipedia.org/wiki/%E6%B5%9C%E5%8C%97%E5%96%B6%E8%BE%B2%E7%B7%91%E8%8A%B1%E6%9C%A8%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC"
+  ],
+  "a23957ee-4154-4d59-9bb8-f18ee1c8ca26": [
+   "https://chinshoen.jp/",
+   "https://chinshoen.jp/about/"
+  ],
+  "b59cb7db-2804-4486-b2ac-483fea1d792d": [
+   "https://takamatsubonsai-takumi.com/"
+  ],
+  "1f54a5e8-d50a-438f-aecd-67b9f2499903": [
+   "https://takamatsu-bonsai.com/",
+   "https://www.art-takamatsu.com/jp/spot/entry-665.html",
+   "https://www.my-kagawa.jp/point/3664/"
+  ],
+  "23771875-d4a4-48b8-a777-6cd1c52dba16": [
+   "https://www.kinashi-bonsai.com/"
+  ]
+ },
+ "sourcesByKey": {
+  "松雪園|埼玉県": [
+   "https://bonsaikumiai.jp/member/saitamachuo/shosetsuen/",
+   "https://www.city.saitama.lg.jp/006/014/010/001/012/022/p119576_d/fil/02-03.pdf",
+   "https://www.mlit.go.jp/tagengo-db/R1-01354.html"
+  ],
+  "盆栽大野|埼玉県": [
+   "https://bonsaikumiai.jp/member/saitamachuo/bonsaioono/",
+   "https://www.city.saitama.lg.jp/006/014/010/001/012/022/p119576_d/fil/02-03.pdf",
+   "https://www.bonsai-art-museum.jp/ja/link/"
+  ],
+  "雨竹亭 羽生本店|埼玉県": [
+   "https://www.bonsai-uchikutei.com/access.html",
+   "https://www.bonsai-uchikutei.com/school.html",
+   "https://www.bonsai-uchikutei.com/company.html",
+   "https://bonsaikumiai.jp/member/saitamachuo/esukyubu/",
+   "https://kitakanto-bonsai.com/member/kkb51/"
+  ],
+  "さいたま市大宮盆栽美術館|埼玉県": [
+   "https://www.bonsai-art-museum.jp/ja/access/",
+   "https://www.city.saitama.lg.jp/006/014/010/001/012/022/p119576_d/fil/02-03.pdf"
+  ],
+  "和光園|埼玉県": [
+   "https://bonsaikumiai.jp/member/saitamaminami/wakoen/",
+   "https://kitakanto-bonsai.com/member/kkb38/"
+  ],
+  "銀座 雨竹庵|東京都": [
+   "https://www.bonsai-uchikutei.com/access.html",
+   "https://www.bonsai-uchikutei.com/company.html"
+  ],
+  "松葉屋|東京都": [
+   "https://bonsaikumiai.jp/member/saitamaminami/%e6%9d%be%e8%91%89%e5%b1%8b/"
+  ],
+  "蒼松園|東京都": [
+   "https://bonsaikumiai.jp/member/tokyo/soshoen/"
+  ],
+  "湘風園|神奈川県": [
+   "http://www.bonsai-shofuen.com",
+   "http://www.bonsai-shofuen.com/kyoushitsu.html",
+   "https://bonsaikumiai.jp/member/kanagawa/shofuen/"
+  ],
+  "松月園|神奈川県": [
+   "https://bonsaikumiai.jp/member/kanagawa/shogetsuen/",
+   "https://kitakanto-bonsai.com/member/kkb44/"
+  ],
+  "ちはる園|神奈川県": [
+   "https://bonsaikumiai.jp/member/kanagawa/chiharuen/"
+  ],
+  "真嶋園|千葉県": [
+   "https://bonsaikumiai.jp/member/chiba/mashimaen/"
+  ],
+  "薫風苑|千葉県": [
+   "https://bonsaikumiai.jp/member/chiba/kumpuen/"
+  ],
+  "仁広園|千葉県": [
+   "https://bonsaikumiai.jp/member/chiba/jinkoen/"
+  ],
+  "Tree House Bonsai|茨城県": [
+   "https://visit.ibarakiguide.jp/en/?p=43170",
+   "https://treehousebonsai.com/",
+   "https://bonsaikumiai.jp/member/ibaraki/tree-house-bonsai/",
+   "https://kitakanto-bonsai.com/member/kkb53/"
+  ],
+  "永楽園|茨城県": [
+   "https://bonsaikumiai.jp/member/ibaraki/eirakuen/"
+  ],
+  "城北園芸|茨城県": [
+   "https://kitakanto-bonsai.com/member/kkb55/"
+  ],
+  "宇賀屋ガーデン|栃木県": [
+   "https://ugaya-garden.com/",
+   "https://kitakanto-bonsai.com/member/kkb19/"
+  ],
+  "松古園|栃木県": [
+   "https://www.kitakanto-bonsai.com/shoukoen/about/index.html",
+   "https://kitakanto-bonsai.com/member/kkb42/",
+   "https://bonsaikumiai.jp/member/tochigi/shokoen-3/"
+  ],
+  "古松園|栃木県": [
+   "https://kitakanto-bonsai.com/member/kkb45/",
+   "https://bonsaikumiai.jp/member/tochigi/koshoen/"
+  ],
+  "渋谷園|栃木県": [
+   "https://bonsaikumiai.jp/member/tochigi/shibuyaen/",
+   "https://kitakanto-bonsai.com/member/kkb52/"
+  ],
+  "小林産業|栃木県": [
+   "https://www.kobayashi-sangyou.jp/",
+   "https://www.kobayashi-sangyou.jp/shop",
+   "https://kitakanto-bonsai.com/member/kkb64/"
+  ],
+  "五蓉園|栃木県": [
+   "https://bonsaikumiai.jp/member/tochigi/goyoen/",
+   "https://bonsaikumiai.jp/member/tochigi/goyoen-2/",
+   "https://kitakanto-bonsai.com/member/kkb62/"
+  ],
+  "辻万葉園|栃木県": [
+   "https://kitakanto-bonsai.com/member/kkb31/"
+  ],
+  "福樹園|群馬県": [
+   "https://bonsaifukujyuen.simdif.com/",
+   "https://bonsaikumiai.jp/member/gumma/fukujuen/"
+  ],
+  "石井盆栽|群馬県": [
+   "http://bonsaiishii.web.fc2.com/index.html",
+   "https://bonsaikumiai.jp/member/gumma/ishiibonsai/",
+   "https://kitakanto-bonsai.com/member/kkb54/"
+  ],
+  "雄樹園|群馬県": [
+   "https://kitakanto-bonsai.com/member/kkb02/",
+   "https://bonsaikumiai.jp/member/gumma/yukien/"
+  ],
+  "松山園|長野県": [
+   "https://shouzanen.net/",
+   "https://shouzanen.net/access/",
+   "https://bonsaikumiai.jp/member/koshin/shozanen/"
+  ],
+  "松紅園|長野県": [
+   "http://www.shokouen.com/",
+   "https://bonsaikumiai.jp/member/koshin/shokoen-4/"
+  ],
+  "片桐盆栽|長野県": [
+   "https://bonsaikumiai.jp/member/koshin/katagiribonsai/"
+  ],
+  "秋山盆栽園|山梨県": [
+   "http://www.akiyama-en.com/",
+   "https://bonsaikumiai.jp/member/koshin/akiyamaen/"
+  ],
+  "泰樹園|山梨県": [
+   "https://bonsaikumiai.jp/member/koshin/taijuen/"
+  ],
+  "小品盆栽 あずま園|山梨県": [
+   "https://bonsaikumiai.jp/member/koshin/shohinbonsai-azumaen/"
+  ],
+  "梢風園|新潟県": [
+   "https://bonsaikumiai.jp/member/honbu_kojinkaiin/shofuen-2/"
+  ],
+  "清花園（金沢）|石川県": [
+   "https://bonsaikumiai.jp/member/honbu_kojinkaiin/seikaen-2/"
+  ],
+  "盆栽樹楽|石川県": [
+   "https://bonsaikumiai.jp/member/honbu_kojinkaiin/bonsaikiraku/"
+  ],
+  "福井萬松園|福井県": [
+   "https://bonsaikumiai.jp/member/honbu_kojinkaiin/fukuibanshoen/"
+  ],
+  "多賀城盆栽園|宮城県": [
+   "https://bonsaikumiai.jp/member/honbu_kojinkaiin/tagajobonsaien/"
+  ],
+  "桃阳園|岩手県": [
+   "https://bonsaikumiai.jp/member/honbu_kojinkaiin/toyoen-2/"
+  ],
+  "清花園（山形）|山形県": [
+   "https://bonsaikumiai.jp/member/honbu_kojinkaiin/seikaen/",
+   "https://kitakanto-bonsai.com/member/kkb39/"
+  ],
+  "峯松園|福島県": [
+   "https://kitakanto-bonsai.com/member/kkb07/"
+  ],
+  "萬樹園|東京都": [
+   "https://bonsaikumiai.jp/member/tokyo/%e8%90%ac%e6%a8%b9%e5%9c%92/"
+  ],
+  "精華園|東京都": [
+   "https://bonsaikumiai.jp/member/tokyo/seikaen-3/"
+  ],
+  "一楽園|東京都": [
+   "https://bonsaikumiai.jp/member/tokyo/ichirakuen/"
+  ],
+  "榎本皐月園|東京都": [
+   "https://bonsaikumiai.jp/member/tokyo/enomotosatsukien/"
+  ],
+  "BONSAI IKUMA（盆栽いくま）|静岡県": [
+   "https://bonsai-ikuma.com/"
+  ],
+  "雅祥園|静岡県": [
+   "https://www.gashouen.com/%E5%9C%92%E3%81%AE%E6%83%85%E5%A0%B1/",
+   "https://bonsaikumiai.jp/member/shizuoka/"
+  ],
+  "伊豆盆栽|静岡県": [
+   "https://izubonsai.jimdofree.com/"
+  ],
+  "苔聖園|静岡県": [
+   "https://www.bonsai.co.jp/stores/stores_category/tokai/shizuoka/",
+   "https://bonsaikumiai.jp/member/shizuoka/"
+  ],
+  "渡伸苑|静岡県": [
+   "https://bonsaikumiai.jp/member/shizuoka/",
+   "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+  ],
+  "大樹園|愛知県": [
+   "https://bonsai-daijuen.com/",
+   "https://bonsaikumiai.jp/member/nagoya/"
+  ],
+  "愛知園|愛知県": [
+   "https://bonsaiaichien.com/contact/",
+   "https://bonsaikumiai.jp/member/nagoya/"
+  ],
+  "尾張實華園|愛知県": [
+   "https://www.bonsai.co.jp/stores/stores_category/tokai/aichi/"
+  ],
+  "直井昭楽園|岐阜県": [
+   "http://naoi-shourakuen.com/",
+   "http://naoi-shourakuen.com/?page_id=34",
+   "https://www.bonsai.co.jp/stores/stores_category/tokai/gifu/"
+  ],
+  "盆栽はニわ|三重県": [
+   "https://haniwa-bonsai.com/"
+  ],
+  "玉芳園|三重県": [
+   "https://bonsaikumiai.jp/member/nagoya/",
+   "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+  ],
+  "無名庵|滋賀県": [
+   "https://www.bonsai.co.jp/stores/stores_category/kinki/shiga/"
+  ],
+  "芳春院盆栽庭園|京都府": [
+   "https://www.bonsai.co.jp/stores/stores_category/kinki/kyoto/"
+  ],
+  "梅原英光園|京都府": [
+   "https://www.bonsai.co.jp/stores/stores_category/kinki/kyoto/"
+  ],
+  "三浦培樹園|大阪府": [
+   "http://baijuen.com",
+   "https://www.bonsai.co.jp/stores/stores_category/kinki/osaka/",
+   "https://bonsaikumiai.jp/member/kansai/"
+  ],
+  "百舌鳥園|大阪府": [
+   "https://www.bonsai.co.jp/stores/stores_category/kinki/osaka/",
+   "https://bonsaikumiai.jp/member/kansai/"
+  ],
+  "盆栽翠松園|兵庫県": [
+   "https://www.bonsai-suishoen.jp/",
+   "https://bonsaikumiai.jp/member/kansai/"
+  ],
+  "BONSAI Labo|兵庫県": [
+   "https://bonsai-labo-rin.com/",
+   "https://bonsai-labo-rin.com/access/",
+   "https://www.bonsai.co.jp/stores/stores_category/kinki/hyogo/"
+  ],
+  "しらさぎ園|兵庫県": [
+   "https://www.bonsai.co.jp/stores/stores_category/kinki/hyogo/",
+   "https://bonsaikumiai.jp/member/kansai/"
+  ],
+  "大柏園|奈良県": [
+   "https://taihakuen.wixsite.com/bonsai",
+   "https://www.bonsai.co.jp/stores/stores_category/kinki/nara/",
+   "https://bonsaikumiai.jp/member/kansai/"
+  ],
+  "清雅園|岡山県": [
+   "https://r.goope.jp/sr-33-3336310037/",
+   "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+  ],
+  "春秋園|岡山県": [
+   "https://bonsaikumiai.jp/member/honbu_kojinkaiin/",
+   "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+  ],
+  "草光園|広島県": [
+   "https://www.bonsai.co.jp/stores/stores_category/chugoku/hiroshima/",
+   "https://bonsaikumiai.jp/member/honbu_kojinkaiin/"
+  ],
+  "暁霞園|山口県": [
+   "https://www.bonsai.co.jp/stores/stores_category/chugoku/yamaguchi/",
+   "https://bonsaikumiai.jp/member/kyushu/"
+  ],
+  "埴生園|徳島県": [
+   "https://www.bonsai.co.jp/stores/stores_category/shikoku/tokushima/"
+  ],
+  "神高松寿園|香川県": [
+   "https://www.kinashi-bonsai.com/shojuen/",
+   "https://www.kinashi-bonsai.com/shojuen/access/",
+   "https://www.kinashi-bonsai.com/shojuen/order/",
+   "https://www.kinashi-bonsai.com/greenguid/",
+   "https://bonsaikumiai.jp/member/kinashi/"
+  ],
+  "小西松楽園|香川県": [
+   "https://www.kinashi-bonsai.com/konishi/",
+   "https://www.kinashi-bonsai.com/konishi/access/",
+   "https://www.kinashi-bonsai.com/greenguid/",
+   "https://bonsaikumiai.jp/member/kinashi/"
+  ],
+  "花澤明春園|香川県": [
+   "http://www.hanazawa-bonsai.com/gyoumu/",
+   "http://www.hanazawa-bonsai.com/bonsai_school/",
+   "http://www.hanazawa-bonsai.com/map2/",
+   "https://www.kinashi-bonsai.com/greenguid/"
+  ],
+  "一樹園|香川県": [
+   "https://www.bonsai.co.jp/stores/stores_category/shikoku/kagawa/"
+  ],
+  "盆栽 熊谷園|愛媛県": [
+   "https://www.bonsai.co.jp/stores/stores_category/shikoku/ehime/"
+  ],
+  "お座敷盆梅 梅花園|福岡県": [
+   "https://www.crossroadfukuoka.jp/spot/12831"
+  ],
+  "塚本宗松園|福岡県": [
+   "https://www.bonsai.co.jp/stores/stores_category/kyusyu/fukuoka/",
+   "https://bonsaikumiai.jp/member/kyushu/"
+  ],
+  "鳥栖昭緑園|佐賀県": [
+   "https://www.bonsai.co.jp/stores/stores_category/kyusyu/saga/",
+   "https://bonsaikumiai.jp/member/kyushu/"
+  ],
+  "昭緑園|長崎県": [
+   "https://bonsaikumiai.jp/member/kyushu/",
+   "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+  ],
+  "雅松園|熊本県": [
+   "https://www.bonsai.co.jp/stores/stores_category/kyusyu/kumamoto/",
+   "https://bonsaikumiai.jp/member/kyushu/"
+  ],
+  "野元珍松園|宮崎県": [
+   "https://bonsaikumiai.jp/member/kyushu/",
+   "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+  ],
+  "盆栽総合専門店 岩崎農園|鹿児島県": [
+   "https://bonsaiiwasaki.crayonsite.net/"
+  ],
+  "ナスカさつき園|鹿児島県": [
+   "http://www.nazka-satsukien.com/"
+  ],
+  "屋良盆栽園|沖縄県": [
+   "https://yarabonnsaien.jimdofree.com/"
+  ],
+  "宜野湾文化苑|沖縄県": [
+   "https://ginowanbunkaen.jimdofree.com/%E4%BC%9A%E7%A4%BE%E6%83%85%E5%A0%B1/",
+   "https://navioki.com/bonsaihanbai/"
+  ]
+ }
+}

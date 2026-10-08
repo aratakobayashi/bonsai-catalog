@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
+import { GARDEN_VERIFIED_AT, getGardenSources, isGardenHiddenId, isGardenPublished } from '@/lib/garden-verification'
 import Link from 'next/link'
 import { MapPin, Phone, Globe, Clock, Car, Instagram, Twitter, Facebook, ExternalLink, Trees, Calendar, Users, ShoppingBag, ChevronRight } from 'lucide-react'
 import { supabaseServer } from '@/lib/supabase-server'
@@ -26,7 +27,7 @@ async function getGarden(id: string): Promise<Garden | null> {
     .single()
 
   // 実在が確認できない・閉園した園は表示しない
-  if (error || !data || (data as Garden).is_published === false) {
+  if (error || !data || !isGardenPublished(data as Garden)) {
     return null
   }
 
@@ -90,7 +91,7 @@ async function getNearbyGardens(currentId: string, prefecture?: string): Promise
     .neq('id', currentId)
     .limit(6)
 
-  return ((data || []) as Garden[]).filter(g => g.is_published !== false).slice(0, 3)
+  return ((data || []) as Garden[]).filter(g => isGardenPublished(g)).slice(0, 3)
 }
 
 // 園の独自説明文を生成（SEO用）
@@ -360,11 +361,14 @@ const gardenImageMap: Record<string, string> = {
 };
 
 export default async function GardenDetailPage({ params }: GardenPageProps) {
+  // 掲載をやめた園（実在を確認できない・閉園・盆栽を扱わない）のページは、盆栽園一覧へ転送する
+  if (isGardenHiddenId(params.id)) permanentRedirect('/gardens')
   const garden = await getGarden(params.id)
 
   if (!garden) {
     notFound()
   }
+  const sources = getGardenSources(garden)
 
   // 関連データを並行取得
   const [relatedProducts, recommendedProducts, relatedArticles, nearbyGardens] = await Promise.all([
@@ -705,14 +709,14 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
               <div className="bg-white rounded-xl shadow-sm p-6 text-sm text-gray-600">
                 <h2 className="text-base font-bold text-primary-900 mb-2">掲載情報について</h2>
                 <p>
-                  {garden.verified_at
-                    ? `${new Date(garden.verified_at).toLocaleDateString('ja-JP')}に、公式サイトなどの公開情報をもとに確認しました。`
+                  {GARDEN_VERIFIED_AT && sources.length > 0
+                    ? `${new Date(GARDEN_VERIFIED_AT).toLocaleDateString('ja-JP')}に、公式サイトなどの公開情報をもとに確認しました。`
                     : '公開情報をもとに掲載しています。'}
                   営業時間・定休日などは変わることがあるため、お出かけ前に各園へご確認ください。
                 </p>
-                {garden.source_urls && garden.source_urls.length > 0 && (
+                {sources.length > 0 && (
                   <ul className="mt-2 space-y-1">
-                    {garden.source_urls.slice(0, 3).map(url => (
+                    {sources.slice(0, 3).map(url => (
                       <li key={url} className="truncate">
                         出典：<a href={url} target="_blank" rel="nofollow noopener noreferrer" className="underline">{url.replace(/^https?:\/\//, '')}</a>
                       </li>

@@ -1,0 +1,86 @@
+[
+  {
+    "name": "萬樹園",
+    "prefecture": "東京都",
+    "city": "世田谷区",
+    "address": "東京都世田谷区砧6-16-17",
+    "postal_code": "157-0073",
+    "phone": "03-3417-0485",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "世田谷区砧にある盆栽園。日本盆栽協同組合東京支部の組合員。",
+    "sources": [
+      "https://bonsaikumiai.jp/member/tokyo/%e8%90%ac%e6%a8%b9%e5%9c%92/"
+    ],
+    "notes": "日本盆栽協同組合東京支部の組合員名簿による。営業時間・公式サイト・見学可否は未確認。既存レコードが別地域の同名園を指していた可能性もあるため、照合時に確認要。"
+  },
+  {
+    "name": "精華園",
+    "prefecture": "東京都",
+    "city": "杉並区",
+    "address": "東京都杉並区今川3-9-7",
+    "postal_code": "167-0035",
+    "phone": "03-3396-1738",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "杉並区今川にある盆栽園。日本盆栽協同組合東京支部の組合員。",
+    "sources": [
+      "https://bonsaikumiai.jp/member/tokyo/seikaen-3/"
+    ],
+    "notes": "日本盆栽協同組合東京支部の組合員名簿による。営業時間・公式サイト・見学可否は未確認。既存レコードが別地域の同名園を指していた可能性もあるため、照合時に確認要。"
+  },
+  {
+    "name": "一楽園",
+    "prefecture": "東京都",
+    "city": "板橋区",
+    "address": "東京都板橋区常盤台1-58-8",
+    "postal_code": "174-0071",
+    "phone": "03-3965-4187",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "板橋区常盤台にある盆栽園。日本盆栽協同組合東京支部の組合員。",
+    "sources": [
+      "https://bonsaikumiai.jp/member/tokyo/ichirakuen/"
+    ],
+    "notes": "日本盆栽協同組合東京支部の組合員名簿による。営業時間・公式サイト・見学可否は未確認。既存レコードが別地域の同名園を指していた可能性もあるため、照合時に確認要。"
+  },
+  {
+    "name": "榎本皐月園",
+    "prefecture": "東京都",
+    "city": "板橋区",
+    "address": "東京都板橋区成増4-37-10",
+    "postal_code": "175-0094",
+    "phone": "03-3938-3518",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "板橋区成増にある盆栽園。日本盆栽協同組合東京支部の組合員。",
+    "sources": [
+      "https://bonsaikumiai.jp/member/tokyo/enomotosatsukien/"
+    ],
+    "notes": "日本盆栽協同組合東京支部の組合員名簿による。営業時間・公式サイト・見学可否は未確認。既存レコードが別地域の同名園を指していた可能性もあるため、照合時に確認要。"
+  }
+]

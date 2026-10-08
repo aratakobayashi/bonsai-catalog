@@ -1,0 +1,700 @@
+[
+ {
+  "id": "2a93e2ed-3bea-4855-b69c-9d5df4d0d1e3",
+  "name": "那須高原盆栽センター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.jalan.net/kankou/080000/080500/g2_74/",
+   "https://tochinavi.net/spot/home/?id=10909"
+  ],
+  "notes": "複数の検索で該当施設が見つからず、公式サイトのドメインも応答なし",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "5e7de278-e355-42be-943d-3e877f04bfcf",
+  "name": "沖縄盆栽園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [
+   "https://ryukyushimpo.jp/news/entry-292457.html"
+  ],
+  "notes": "複数の検索で実在を示す信頼できる情報が見つからず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "97e7553f-109d-4631-939a-8d292eeb625b",
+  "name": "班樹園グリーンセンター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当施設が見つからず、公式サイトのドメインも応答なし",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "9559ba82-635c-42b2-a03c-4c8fc98e6e50",
+  "name": "カワシマ種苗",
+  "status": "verified",
+  "confirmed": {
+   "name": "カワシマ種苗",
+   "address": "滋賀県近江八幡市西庄町1246-1",
+   "postal_code": "523-0816",
+   "phone": "0748-33-2119",
+   "website_url": "https://kawashimaseed.jp/",
+   "business_hours": "9:00〜18:00（冬期は17:00まで）",
+   "closed_days": [
+    "年末年始"
+   ],
+   "access_info": "JR東海道本線（琵琶湖線）近江八幡駅からタクシーで約10分（徒歩約30分）",
+   "parking_info": "駐車場約100台",
+   "established_year": 1952,
+   "owner_name": "川嶋 一正（代表取締役）",
+   "experience_programs": true,
+   "social_instagram": "@kawashimasyubyou"
+  },
+  "clear_fields": [
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://kawashimaseed.jp/",
+   "https://kawashimaseed.jp/store/",
+   "https://kawashimaseed.jp/company/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・創業年を確認（住所と電話は既存値と異なる）",
+  "description_new": "滋賀県近江八幡市西庄町にある1952年創業の園芸専門店。花苗・野菜苗・観葉植物・種子・農業資材を扱い、寄せ植え講習会などのイベントも開催している。",
+  "specialties_confirmed": [
+   "種子",
+   "野菜苗",
+   "花苗",
+   "観葉植物",
+   "農業資材"
+  ]
+ },
+ {
+  "id": "3cc5336e-28ba-4555-b834-351436bdbca0",
+  "name": "近江園芸センター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で実在を示す信頼できる情報が見つからず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "98b9a95c-09df-4a33-a49b-776560a8d90f",
+  "name": "ナーセリーズ",
+  "status": "verified",
+  "confirmed": {
+   "name": "ナーセリーズ",
+   "address": "熊本県熊本市北区龍田弓削2丁目2-1",
+   "postal_code": "861-8007",
+   "phone": "096-338-7124",
+   "website_url": "https://nurserys.jp/",
+   "business_hours": "1〜2月 9:00〜18:00、3〜12月 9:00〜19:00",
+   "social_instagram": "@nurserys.japan"
+  },
+  "clear_fields": [
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://nurserys.jp/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間を確認（郵便番号・電話は既存値と異なる）",
+  "description_new": "熊本市北区龍田弓削にある園芸店。鉢花や生花を扱い、外構・庭づくりの施工も行っている。",
+  "specialties_confirmed": [
+   "鉢花",
+   "生花",
+   "外構・庭づくり"
+  ]
+ },
+ {
+  "id": "2da00ed6-64c2-4ce8-8174-7426b569e1e3",
+  "name": "熊本ナーセリー",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当施設が見つからず、公式サイトのドメインも応答なし",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "443ac8d4-1bb7-4415-82a7-b9eeee19273b",
+  "name": "マツシタガーデン",
+  "status": "verified",
+  "confirmed": {
+   "name": "マツシタガーデン",
+   "address": "石川県金沢市弥生1-33-20",
+   "postal_code": "921-8036",
+   "phone": "076-241-4487",
+   "website_url": "https://www.matsushitaseed.jp/matsushita-garden/",
+   "business_hours": "9:00〜18:00（1〜2月は9:00〜17:00）",
+   "closed_days": [
+    "水曜日（4月上旬〜5月中旬は無休）"
+   ],
+   "parking_info": "店舗売り場横に6台、さくら公園側に2台、店舗裏に指定区画あり",
+   "online_sales": true,
+   "social_instagram": "@matsushitagarden"
+  },
+  "clear_fields": [
+   "access_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.matsushitaseed.jp/matsushita-garden/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・定休日を確認（電話は既存値と異なる）",
+  "description_new": "金沢市弥生にある松下種苗店の直営園芸店。野菜や花の苗・種を扱い、運営会社のオンラインショップもある。",
+  "specialties_confirmed": [
+   "野菜苗",
+   "花苗",
+   "種子"
+  ]
+ },
+ {
+  "id": "7163682f-97fd-4178-bf2f-f64683af32fc",
+  "name": "総合園芸 Barns",
+  "status": "verified",
+  "confirmed": {
+   "name": "総合園芸 Barns",
+   "address": "石川県金沢市大桑3丁目56",
+   "postal_code": "921-8045",
+   "phone": "076-287-6653",
+   "website_url": "https://sogo-engei.co.jp/barns/",
+   "business_hours": "10:00〜18:00",
+   "closed_days": [
+    "木曜日（季節により異なる）"
+   ],
+   "access_info": "北陸鉄道バス 金沢駅西口4番乗り場19番線「大桑本町」行き「大桑タウン」下車",
+   "experience_programs": true,
+   "social_instagram": "@barns_green_labo"
+  },
+  "clear_fields": [
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://sogo-engei.co.jp/",
+   "https://sogo-engei.co.jp/barns/",
+   "https://sogo-engei.co.jp/access/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・定休日を確認（住所は既存値と異なる）",
+  "description_new": "金沢市大桑にある総合園芸のガラス温室ショップ。観葉植物・花苗・園芸用品を扱い、寄せ植えなどのガーデニング教室や植物レンタルも行っている。",
+  "specialties_confirmed": [
+   "観葉植物",
+   "花苗",
+   "洋ラン",
+   "ガーデニング教室",
+   "植物レンタル"
+  ]
+ },
+ {
+  "id": "253b3027-463f-4bd9-847e-90547715cb9b",
+  "name": "SOLSO FARM",
+  "status": "verified",
+  "confirmed": {
+   "name": "SOLSO FARM",
+   "address": "神奈川県川崎市宮前区西野川2-6",
+   "postal_code": "216-0044",
+   "phone": "044-740-3770",
+   "website_url": "https://solsofarm.com/",
+   "business_hours": "10:00〜18:00（土日祝のみ営業）",
+   "closed_days": [
+    "平日（土日祝のみ営業）"
+   ],
+   "access_info": "東急田園都市線梶ヶ谷駅から鷺沼駅行きバス「野川台」下車徒歩5分",
+   "parking_info": "駐車場63台",
+   "social_instagram": "@solsofarm"
+  },
+  "clear_fields": [
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://solsofarm.com/",
+   "https://solsofarm.com/access/"
+  ],
+  "notes": "公式サイトで住所・電話・営業日時・アクセスを確認（住所・電話は既存値と異なる）",
+  "description_new": "川崎市宮前区西野川にある植物ショップ兼ファームで、土日祝のみ営業。雨天時などは休園の場合がある。",
+  "specialties_confirmed": [
+   "植物販売",
+   "グリーンディスプレイ"
+  ]
+ },
+ {
+  "id": "a38daf6e-445f-481b-a9a8-55ea631428e3",
+  "name": "かまくら木花草",
+  "status": "verified",
+  "confirmed": {
+   "name": "かまくら木花草",
+   "address": "神奈川県鎌倉市大船4-21-23",
+   "postal_code": "247-0056",
+   "phone": "090-6029-3245",
+   "website_url": "https://www.moccasou.com/",
+   "access_info": "大船駅東口から江ノ電バス「常楽寺」下車徒歩約3分／北鎌倉駅から徒歩約17分",
+   "experience_programs": true
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.moccasou.com/",
+   "https://www.moccasou.com/about/",
+   "https://www.moccasou.com/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9-%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B/"
+  ],
+  "notes": "公式サイトで住所・電話・アクセスを確認（住所・電話は既存値と異なる）",
+  "description_new": "鎌倉市大船にある小さな盆栽のお店。初心者盆栽教室や盆栽体験教室、苔玉づくり体験、盆栽レンタルを行っている。",
+  "specialties_confirmed": [
+   "小品盆栽",
+   "盆栽教室",
+   "苔玉",
+   "盆栽レンタル"
+  ]
+ },
+ {
+  "id": "41e3139a-cc9e-4002-a9d9-f196355fe597",
+  "name": "サカタのタネガーデンセンター横浜",
+  "status": "closed",
+  "confirmed": {
+   "name": "サカタのタネ ガーデンセンター横浜"
+  },
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [
+   "https://edinetdb.jp/company/E00006/text"
+  ],
+  "notes": "サカタのタネの有価証券報告書の沿革に2023年12月営業終了と記載",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "7d49d321-50a2-4729-b6bd-8f100dbc7e19",
+  "name": "サカタのタネガーデンセンター相模原",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [
+   "https://edinetdb.jp/company/E00006/text"
+  ],
+  "notes": "サカタのタネの沿革に相模原のガーデンセンターの記載がなく、実在を確認できず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "500e6ae7-92bd-4758-8550-a50ca2baaa60",
+  "name": "ザ・ガーデン 本店 ヨネヤマプランテイション",
+  "status": "verified",
+  "confirmed": {
+   "name": "ザ・ガーデン 本店 ヨネヤマプランテイション",
+   "address": "神奈川県横浜市港北区新羽町2582",
+   "postal_code": "223-0057",
+   "phone": "045-541-4187",
+   "website_url": "https://www.thegarden-y.jp/shop/ypt.html",
+   "business_hours": "9:30〜19:00",
+   "closed_days": [
+    "元日"
+   ],
+   "access_info": "横浜市営地下鉄ブルーライン新羽駅から徒歩約3分",
+   "parking_info": "駐車場150台（無料）",
+   "owner_name": "有限会社ヨネヤマプランテイション",
+   "experience_programs": true,
+   "online_sales": true,
+   "social_instagram": "@thegarden_honten"
+  },
+  "clear_fields": [
+   "established_year",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.thegarden-y.jp/",
+   "https://www.thegarden-y.jp/shop/index.html",
+   "https://www.thegarden-y.jp/shop/ypt.html"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・定休日を確認（住所・電話は既存値と異なる）",
+  "description_new": "横浜市港北区新羽町にある売場面積4000㎡の園芸専門店。花壇苗・山野草・観葉植物・園芸用品を扱い、教室の開催や楽天市場でのオンライン販売もある。",
+  "specialties_confirmed": [
+   "山野草",
+   "宿根草",
+   "花壇苗",
+   "観葉植物",
+   "多肉植物",
+   "園芸用品"
+  ]
+ },
+ {
+  "id": "f9283387-4c71-47b9-b641-45c514d27117",
+  "name": "ザ・ガーデン港北ニュータウン店",
+  "status": "verified",
+  "confirmed": {
+   "name": "ザ・ガーデン 港北ニュータウン店",
+   "address": "神奈川県横浜市都筑区茅ヶ崎南2-1-1",
+   "postal_code": "224-0037",
+   "phone": "045-942-5050",
+   "website_url": "https://www.thegarden-y.jp/shop/kohoku.html",
+   "business_hours": "10:00〜19:00",
+   "closed_days": [
+    "元日"
+   ],
+   "access_info": "横浜市営地下鉄ブルーライン仲町台駅から徒歩約7分",
+   "parking_info": "駐車場46台（無料）",
+   "experience_programs": true,
+   "online_sales": true,
+   "social_instagram": "@thegarden_kouhoku.nt"
+  },
+  "clear_fields": [
+   "established_year",
+   "owner_name",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.thegarden-y.jp/shop/kohoku.html",
+   "https://www.thegarden-y.jp/shop/index.html"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・定休日を確認（ノースポートモール内ではなく住所・電話は既存値と異なる）",
+  "description_new": "横浜市都筑区茅ヶ崎南にある売場面積1500㎡の園芸専門店。園芸植物・用品を扱い、教室の開催や楽天市場でのオンライン販売もある。",
+  "specialties_confirmed": [
+   "園芸植物",
+   "園芸用品"
+  ]
+ },
+ {
+  "id": "d890f754-cf36-4724-bdd0-ee07b95b4a88",
+  "name": "小品盆栽専門店 やまと園",
+  "status": "verified",
+  "confirmed": {
+   "name": "小品盆栽専門店 やまと園",
+   "address": "神奈川県大和市柳橋2-6-11",
+   "postal_code": "242-0022",
+   "phone": "046-268-0121",
+   "website_url": "https://bonsaiyamatoen.com/",
+   "business_hours": "9:00〜17:00",
+   "closed_days": [
+    "不定休（来店前に電話推奨）"
+   ],
+   "access_info": "小田急江ノ島線桜ケ丘駅西口から徒歩8分／大和駅から徒歩20分",
+   "parking_info": "店舗裏手に3台",
+   "online_sales": true
+  },
+  "clear_fields": [
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [
+   "https://bonsaiyamatoen.com/",
+   "https://bonsaiyamatoen.com/access.html",
+   "https://bonsaiyamatoen.com/kyoshitsu.html"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・アクセスを確認（住所・電話は既存値と異なる、盆栽教室は新規受付停止中）",
+  "description_new": "神奈川県大和市柳橋にある小品盆栽の専門店。楽天市場でオンライン販売を行っており、個人指導の盆栽教室は現在新規受付を停止している。",
+  "specialties_confirmed": [
+   "小品盆栽",
+   "盆栽教室"
+  ]
+ },
+ {
+  "id": "8d33d8ac-60a3-49e7-a7b8-4507cfaf0a13",
+  "name": "横浜中華街盆栽館",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当施設が見つからず、公式サイトのドメインも応答なし",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "0a120c74-2bf1-4ca1-a16c-b34865967245",
+  "name": "横浜港北盆栽苑",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で実在を示す信頼できる情報が見つからず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "256a3959-064d-4146-a7b7-ba84069bcd5b",
+  "name": "湘南盆栽センター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当施設が見つからず、公式サイトのドメインも応答なし",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "f7d24f87-828d-40ab-a330-8c03b7879a28",
+  "name": "相模原盆栽の森",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で実在を示す信頼できる情報が見つからず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "5266402a-5bda-4a5b-bfbd-eaf58e8d9f99",
+  "name": "鎌倉盆栽苑",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で該当施設が見つからず、公式サイトのドメインも応答なし",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "1c839911-a0bb-40cd-9733-5945a1192270",
+  "name": "小林農園",
+  "status": "verified",
+  "confirmed": {
+   "name": "小林農園",
+   "address": "福井県鯖江市住吉町3丁目1番19号",
+   "postal_code": "916-0056",
+   "phone": "0778-51-0979",
+   "website_url": "https://kobayashi-nouen.co.jp/",
+   "business_hours": "12〜1月 8:30〜17:00、2・10・11月 8:30〜17:30、3〜9月 8:30〜18:00",
+   "closed_days": [
+    "水曜日（4・5月を除く）"
+   ],
+   "established_year": 1954,
+   "owner_name": "小林 伸弘（代表取締役）",
+   "social_instagram": "@kobayashi_nouen_"
+  },
+  "clear_fields": [
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://kobayashi-nouen.co.jp/",
+   "https://kobayashi-nouen.co.jp/pages/2/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・創業年を確認（所在地は福井市ではなく鯖江市）",
+  "description_new": "福井県鯖江市住吉町にある1954年創業のガーデニング専門店。花・植木・園芸資材を常時約5000点展示販売し、庭園・エクステリアの設計施工も行っている。",
+  "specialties_confirmed": [
+   "植木",
+   "花苗",
+   "園芸資材",
+   "造園・エクステリア"
+  ]
+ }
+]

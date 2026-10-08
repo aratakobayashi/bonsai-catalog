@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { MapPin, Globe, Phone, ExternalLink, Users, Calendar } from 'lucide-react'
 import { REGIONS, getRegionFromPrefecture, getRegionTheme } from '@/lib/utils'
+import { isGardenPublished } from '@/lib/garden-verification'
 import type { Garden } from '@/types'
 import { GardensPageClient } from './GardensPageClient'
 
@@ -28,7 +29,7 @@ async function getGardens(): Promise<Garden[]> {
 
   // 仮の画像サービスやダミーURLは画像なしとして扱う
   // 実在が確認できない・閉園した園は一覧に出さない
-  return ((data || []) as Garden[]).filter(garden => garden.is_published !== false).map(garden => ({
+  return ((data || []) as Garden[]).filter(garden => isGardenPublished(garden)).map(garden => ({
     ...garden,
     image_url: garden.image_url && !/via\.placeholder\.com|example\.com/.test(garden.image_url) ? garden.image_url : undefined,
   }))

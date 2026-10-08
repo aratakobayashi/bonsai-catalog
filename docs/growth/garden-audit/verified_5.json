@@ -1,0 +1,601 @@
+[
+ {
+  "id": "ed0ceac0-f2fa-4f27-8970-10fbe720ff39",
+  "name": "新津フラワーランド",
+  "status": "verified",
+  "confirmed": {
+   "name": "新津フラワーランド",
+   "address": "新潟県新潟市秋葉区古津891-1",
+   "postal_code": "956-0847",
+   "phone": "0250-24-8787",
+   "website_url": "https://nf-land.com/",
+   "business_hours": "9:30〜17:30（4月〜9月）、9:30〜17:00（10月〜3月）",
+   "closed_days": [
+    "12月30日",
+    "12月31日",
+    "1月1日"
+   ],
+   "experience_programs": true,
+   "social_instagram": "@niitsuflowerland"
+  },
+  "clear_fields": [
+   "access_info",
+   "parking_info",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://nf-land.com/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・休業日を確認（既存住所は県立植物園の所在地で誤り）",
+  "description_new": "新潟市秋葉区古津にある園芸店で、会員制の寄せ植え教室を開いています。12月30日〜1月1日以外は営業しています。",
+  "specialties_confirmed": [
+   "寄せ植え教室"
+  ]
+ },
+ {
+  "id": "8536319f-5a2c-4437-b870-76ddcc792faf",
+  "name": "新潟植物市場",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.pref.niigata.lg.jp/sec/syokuhin/orosiurisizyoukaetsu.html"
+  ],
+  "notes": "公的資料・検索で同名施設を確認できず（秋葉区の新潟植物地方卸売市場とは別名称）",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "1da87f61-d5cc-456c-827b-8a2ef675b68a",
+  "name": "GREENSCAPE",
+  "status": "verified",
+  "confirmed": {
+   "name": "GREENSCAPE",
+   "address": "東京都目黒区上目黒1-18-4 セルジエ102",
+   "postal_code": "153-0051",
+   "website_url": "https://greenscape.co.jp/",
+   "business_hours": "11:00〜19:00",
+   "closed_days": [
+    "水曜日"
+   ],
+   "access_info": "東急東横線・東京メトロ日比谷線中目黒駅正面出口より徒歩2分",
+   "parking_info": "専用駐車場なし（近隣のコインパーキング利用）",
+   "experience_programs": true,
+   "online_sales": true,
+   "social_instagram": "@greenscape2005"
+  },
+  "clear_fields": [
+   "phone",
+   "owner_message"
+  ],
+  "sources": [
+   "https://greenscape.co.jp/",
+   "https://greenscape.co.jp/storage/about/"
+  ],
+  "notes": "公式サイトで住所・営業時間・定休日・アクセスを確認（電話番号は非掲載）",
+  "description_new": "中目黒駅近くの盆栽・植物店で、盆栽教室を開いています。盆栽や苔玉をオンラインショップでも販売しています。",
+  "specialties_confirmed": [
+   "盆栽教室",
+   "苔玉",
+   "鉢植え"
+  ]
+ },
+ {
+  "id": "299bced1-91e7-424b-bdd3-6391ccc5c622",
+  "name": "オザキフラワーパーク",
+  "status": "verified",
+  "confirmed": {
+   "name": "オザキフラワーパーク",
+   "address": "東京都練馬区石神井台4-6-32",
+   "postal_code": "177-0045",
+   "phone": "03-3929-0544",
+   "website_url": "https://ozaki-flowerpark.co.jp/",
+   "business_hours": "9:00〜19:00",
+   "closed_days": [
+    "1月1日",
+    "1月2日"
+   ],
+   "access_info": "西武新宿線武蔵関駅北口より徒歩15分、上石神井駅北口より徒歩25分",
+   "parking_info": "250台（高さ2.1m・重量2tまで、大型バス不可）",
+   "online_sales": true,
+   "social_instagram": "@ozakiflowerpark"
+  },
+  "clear_fields": [
+   "experience_programs",
+   "owner_message"
+  ],
+  "sources": [
+   "https://ozaki-flowerpark.co.jp/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・駐車場を確認",
+  "description_new": "練馬区石神井台の新青梅街道沿いにある園芸店で、250台分の駐車場があります。オンラインストアでも販売しています。",
+  "specialties_confirmed": []
+ },
+ {
+  "id": "ffc6d15a-d3a2-4fde-b556-dfed23b8919a",
+  "name": "一楽園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で板橋区の同名盆栽園を確認できず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "d432d4bf-908e-4952-86c5-b8c5798a1225",
+  "name": "上野グリーンクラブ",
+  "status": "verified",
+  "confirmed": {
+   "name": "上野グリーンクラブ",
+   "address": "東京都台東区上野公園3-42",
+   "postal_code": "110-0007",
+   "phone": "03-5685-5656",
+   "website_url": "https://bonsaikumiai.jp/greenclub",
+   "business_hours": "9:00〜17:00",
+   "closed_days": [
+    "不定休"
+   ],
+   "access_info": "JR上野駅公園口から徒歩約7分",
+   "parking_info": "50台"
+  },
+  "clear_fields": [
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://bonsaikumiai.jp/",
+   "https://bonsaikumiai.jp/greenclub",
+   "https://prtimes.jp/main/html/rd/p/000000004.000186662.html"
+  ],
+  "notes": "日本盆栽協同組合のサイトで住所・電話・営業時間・駐車場を確認",
+  "description_new": "上野公園内にある盆栽展示会などの会場で、日本盆栽作風展などが開かれます。盆栽組合員による常設売店があり、盆栽や山野草、鉢、道具を販売しています。",
+  "specialties_confirmed": [
+   "山野草",
+   "小品盆栽",
+   "雑木盆栽",
+   "松柏盆栽",
+   "水石",
+   "盆栽鉢",
+   "盆栽展示会"
+  ]
+ },
+ {
+  "id": "29a49dbc-e5e1-4201-afe9-0b4a09223095",
+  "name": "大和魂盆栽",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で世田谷区の同名店を確認できず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "1191e28b-15ef-4363-b43e-8ed007154b22",
+  "name": "小品盆栽 季の風",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で三鷹市の同名店を確認できず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "5f6ef2d7-6540-4a1c-9739-1dc48254fa8e",
+  "name": "山中樹楽園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で小金井市の同名園を確認できず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "6983e29b-2c1b-49f6-b758-07a7570fcec2",
+  "name": "徳南園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で狛江市の同名園を確認できず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "20702388-f8b8-408e-8d6e-dd158031b048",
+  "name": "春花園BONSAI美術館",
+  "status": "verified",
+  "confirmed": {
+   "name": "春花園BONSAI美術館",
+   "address": "東京都江戸川区新堀1-29-16",
+   "postal_code": "132-0001",
+   "phone": "03-3670-8622",
+   "website_url": "https://kunio-kobayashi.com/",
+   "business_hours": "10:00〜17:00",
+   "closed_days": [
+    "月曜日（祝祭日の場合は開館）"
+   ],
+   "access_info": "JR総武線小岩駅南口または都営新宿線瑞江駅から京成バス76番「京葉口」下車",
+   "parking_info": "10台（大型観光バス1台可、確約不可）",
+   "owner_name": "小林國雄",
+   "experience_programs": true
+  },
+  "clear_fields": [
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://kunio-kobayashi.com/",
+   "https://kunio-kobayashi.com/access.html",
+   "https://kunio-kobayashi.com/school.html",
+   "https://www.tv-tokyo.co.jp/adomachi/backnumber/20180714/137380.html"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・アクセス・教室を確認",
+  "description_new": "江戸川区新堀にある小林國雄氏の盆栽美術館です。予約制の盆栽体験と、毎週日曜日の盆栽教室を行っています。",
+  "specialties_confirmed": [
+   "盆栽体験",
+   "盆栽教室"
+  ]
+ },
+ {
+  "id": "32f621fa-68bd-436e-82e0-d97a483f322d",
+  "name": "榎本皐月園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で板橋区の同名園を確認できず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "639402ee-a9e5-459f-8772-463ab6413598",
+  "name": "江戸川盆栽村",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.city.edogawa.tokyo.jp/e032/shigotosangyo/jigyosha_oen/nogyo_suisan/kumiai/shokai_1.html"
+  ],
+  "notes": "区の組合員一覧や検索で同名施設を確認できず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "cfd47538-d3b2-4c33-869a-68652c2d0563",
+  "name": "浅草盆栽工房",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "social_instagram",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "公式URLは名前解決できず、検索でも同名店を確認できず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "264b713f-5d1a-4eba-b72b-7bac3c7aefbf",
+  "name": "渋谷園芸練馬本店",
+  "status": "verified",
+  "confirmed": {
+   "name": "渋谷園芸 練馬本店",
+   "address": "東京都練馬区豊玉中4-11-22",
+   "postal_code": "176-0013",
+   "phone": "03-3994-8741",
+   "website_url": "https://www.shibuya-engei.co.jp/",
+   "business_hours": "9:30〜17:00（1・2月）、9:30〜18:00（3〜12月）",
+   "online_sales": true,
+   "social_instagram": "@shibuyaengei"
+  },
+  "clear_fields": [
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.shibuya-engei.co.jp/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間を確認（既存の住所・電話は誤り）",
+  "description_new": "練馬区豊玉中にある園芸店の本店です。Yahoo!ショッピングのネットショップでも販売しています。",
+  "specialties_confirmed": []
+ },
+ {
+  "id": "40a5e7c5-8cb6-46ef-bd83-cb830d7da0cd",
+  "name": "盆栽四季の杜",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "公式URLは名前解決できず、検索でも千駄木の同名店を確認できず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "8aa40340-009f-429d-a18d-dd46f83dc655",
+  "name": "精華園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で杉並区の同名園を確認できず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "9edd8075-1637-4f74-8f42-8b3f689785bc",
+  "name": "萬樹園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "萬樹園・万樹園で検索したが世田谷区の同名園を確認できず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "bd12fb51-7998-4576-952d-081c242d4905",
+  "name": "香風園",
+  "status": "partially_verified",
+  "confirmed": {
+   "name": "香風園",
+   "address": "東京都世田谷区岡本2-8-17",
+   "phone": "03-3700-0466",
+   "established_year": 1924
+  },
+  "clear_fields": [
+   "postal_code",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://itp.ne.jp/zenkoku/tokyo/setagayaku/ie-jutaku/ekusuteria/",
+   "https://local-media.heteml.net/?p=8719"
+  ],
+  "notes": "iタウンページと地域メディアで住所・電話・創業年を確認、営業時間等は未確認",
+  "description_new": "世田谷区岡本にある大正13年創業の盆栽店です。盆栽・植木の販売や、盆栽鉢・陶器の買取を行っています。",
+  "specialties_confirmed": [
+   "盆栽",
+   "植木",
+   "盆栽鉢・陶器買取"
+  ]
+ },
+ {
+  "id": "b642b59f-2c76-4084-8bc4-7a7908d52f57",
+  "name": "みのり花木センターインターパーク店",
+  "status": "verified",
+  "confirmed": {
+   "name": "みのり花木センター インターパーク店",
+   "address": "栃木県宇都宮市平塚町307-1",
+   "postal_code": "321-0918",
+   "phone": "028-656-7193",
+   "website_url": "https://utunomiya-kaboku.com/",
+   "parking_info": "大型駐車場完備",
+   "experience_programs": true,
+   "social_instagram": "@minori_kaboku_interpark"
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://utunomiya-kaboku.com/",
+   "https://tochinavi.net/spot/home/?id=11256"
+  ],
+  "notes": "公式サイトで住所・電話を確認、通常の営業時間・定休日は未確認",
+  "description_new": "宇都宮市平塚町の新4号線沿いにある花木センターで、盆栽や庭園樹木、観葉植物、ガーデニング資材を扱っています。寄せ植え教室も開いています。",
+  "specialties_confirmed": [
+   "盆栽",
+   "庭園樹木",
+   "観葉植物",
+   "ガーデニング資材",
+   "寄せ植え教室"
+  ]
+ },
+ {
+  "id": "5825c02c-84a3-4a56-85fe-e816103aef06",
+  "name": "宇都宮園芸センター",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で宇都宮市の同名施設を確認できず",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "c62357fb-f3de-4aa4-add5-eb1bb7f95922",
+  "name": "那須高原盆栽の里",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で那須町の同名施設を確認できず",
+  "description_new": null,
+  "specialties_confirmed": []
+ }
+]

@@ -83,11 +83,6 @@ export interface Garden {
   social_twitter?: string      // Twitter URL  
   social_facebook?: string     // Facebook URL
 
-  // 掲載情報の確認（020_garden_verification.sql）
-  verification_status?: 'verified' | 'partially_verified' | 'not_found' | 'closed' | null
-  verified_at?: string | null
-  source_urls?: string[] | null
-  is_published?: boolean | null
 }
 
 export interface ProductFilters {

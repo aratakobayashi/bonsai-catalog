@@ -1,0 +1,987 @@
+[
+  {
+    "name": "BONSAI IKUMA（盆栽いくま）",
+    "prefecture": "静岡県",
+    "city": "浜松市",
+    "address": "静岡県浜松市浜北区新原3781",
+    "postal_code": "434-0003",
+    "phone": "090-3483-5151",
+    "website_url": "https://bonsai-ikuma.com/",
+    "business_hours": "10:00〜18:00",
+    "closed_days": [
+      "不定休"
+    ],
+    "access_info": "展示販売所は浜北の緑花木センター内",
+    "specialties": [
+      "盆栽教室",
+      "盆栽レンタル"
+    ],
+    "experience_programs": true,
+    "online_sales": true,
+    "social_instagram": "https://www.instagram.com/bonsai_ikuma/",
+    "description": "浜松市浜北区の盆栽園で、緑花木センター内の展示販売所で盆栽を販売しています。盆栽教室、レンタル、手入れ、道具販売も行っています。",
+    "sources": [
+      "https://bonsai-ikuma.com/"
+    ],
+    "notes": "オンラインショップ（BASE）あり。住所は公式サイト記載のもの"
+  },
+  {
+    "name": "雅祥園",
+    "prefecture": "静岡県",
+    "city": "伊豆市",
+    "address": "静岡県伊豆市徳永717-19",
+    "postal_code": "410-2506",
+    "phone": "0558-79-3555",
+    "website_url": "https://www.gashouen.com/",
+    "business_hours": "9:00〜日没",
+    "closed_days": [
+      "不定休"
+    ],
+    "access_info": null,
+    "specialties": [
+      "盆栽教室"
+    ],
+    "experience_programs": true,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "伊豆市徳永の盆栽園です。盆栽の販売、買取、手入れ、預かり、リースを行い、少人数の盆栽教室も実施しています。",
+    "sources": [
+      "https://www.gashouen.com/%E5%9C%92%E3%81%AE%E6%83%85%E5%A0%B1/",
+      "https://bonsaikumiai.jp/member/shizuoka/"
+    ],
+    "notes": "日本盆栽協同組合 静岡支部の組合員"
+  },
+  {
+    "name": "伊豆盆栽",
+    "prefecture": "静岡県",
+    "city": "伊豆の国市",
+    "address": "静岡県伊豆の国市中851-2",
+    "postal_code": "410-2113",
+    "phone": "090-3155-6740",
+    "website_url": "https://izubonsai.jimdofree.com/",
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": "伊豆箱根鉄道 伊豆長岡駅から徒歩10分。伊豆縦貫道 大場・函南ICから20分。駐車場あり",
+    "specialties": [
+      "ミニ盆栽",
+      "松柏盆栽",
+      "雑木盆栽",
+      "実物盆栽",
+      "花物盆栽"
+    ],
+    "experience_programs": null,
+    "online_sales": true,
+    "social_instagram": null,
+    "description": "伊豆の国市の盆栽園で、ミニ盆栽から大品盆栽まで生産・販売しています。実店舗のほかYahoo!ショッピングやメルカリでも販売しています。",
+    "sources": [
+      "https://izubonsai.jimdofree.com/"
+    ],
+    "notes": "来店時は事前に電話連絡が必要と記載。夜間電話 055-949-1397"
+  },
+  {
+    "name": "苔聖園",
+    "prefecture": "静岡県",
+    "city": "静岡市",
+    "address": "静岡県静岡市駿河区池田1872-2",
+    "postal_code": "422-8005",
+    "phone": "054-262-6411",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "静岡市駿河区池田の盆栽園です。大物・中品・小品の盆栽を扱い、手入れや買取の相談も受け付けています。",
+    "sources": [
+      "https://www.bonsai.co.jp/stores/stores_category/tokai/shizuoka/",
+      "https://bonsaikumiai.jp/member/shizuoka/"
+    ],
+    "notes": "近代出版の盆栽店紹介および日本盆栽協同組合 静岡支部名簿に掲載。公式サイトは未確認"
+  },
+  {
+    "name": "渡伸苑",
+    "prefecture": "静岡県",
+    "city": "駿東郡長泉町",
+    "address": "静岡県駿東郡長泉町納米里139-1",
+    "postal_code": "411-0933",
+    "phone": "055-986-8682",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "駿東郡長泉町にある盆栽園で、日本盆栽協同組合静岡支部の組合員です。",
+    "sources": [
+      "https://bonsaikumiai.jp/member/shizuoka/",
+      "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+    ],
+    "notes": "電話は盆栽エンパイア掲載の組合名簿（旧表記0559-86-8682）による。旧公式サイト watashin-en.com は接続不可"
+  },
+  {
+    "name": "大樹園",
+    "prefecture": "愛知県",
+    "city": "岡崎市",
+    "address": "愛知県岡崎市大平町杉本36",
+    "postal_code": "444-0007",
+    "phone": "0564-21-5678",
+    "website_url": "https://bonsai-daijuen.com/",
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": "岡崎IC近く。国道1号の大平町杉本交差点から最初の十字路を右折",
+    "specialties": [
+      "盆栽教室",
+      "盆栽レンタル"
+    ],
+    "experience_programs": true,
+    "online_sales": true,
+    "social_instagram": "https://www.instagram.com/daijuen96/",
+    "description": "岡崎市大平町の盆栽園で、昭和9年開園と記載されています。盆栽の販売、レンタル、手入れ、盆栽教室を行い、オンラインショップもあります。",
+    "sources": [
+      "https://bonsai-daijuen.com/",
+      "https://bonsaikumiai.jp/member/nagoya/"
+    ],
+    "notes": "来園前に連絡が必要と記載"
+  },
+  {
+    "name": "愛知園",
+    "prefecture": "愛知県",
+    "city": "名古屋市",
+    "address": "愛知県名古屋市中川区丸米町2-75",
+    "postal_code": "454-0834",
+    "phone": "052-351-4064",
+    "website_url": "https://bonsaiaichien.com/",
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [
+      "盆栽レンタル"
+    ],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "名古屋市中川区の盆栽園です。盆栽の販売、買取、手入れ、レンタルを行っています。",
+    "sources": [
+      "https://bonsaiaichien.com/contact/",
+      "https://bonsaikumiai.jp/member/nagoya/"
+    ],
+    "notes": "海外からの研修生受け入れ実績を公式サイトに掲載"
+  },
+  {
+    "name": "尾張實華園",
+    "prefecture": "愛知県",
+    "city": "稲沢市",
+    "address": "愛知県稲沢市井堀中郷町150",
+    "postal_code": "492-8463",
+    "phone": "0587-36-2110",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "稲沢市井堀中郷町の盆栽園です。盆栽素材から完成樹まで扱っています。",
+    "sources": [
+      "https://www.bonsai.co.jp/stores/stores_category/tokai/aichi/"
+    ],
+    "notes": "近代出版の盆栽店紹介に掲載。公式サイトは未確認"
+  },
+  {
+    "name": "直井昭楽園",
+    "prefecture": "岐阜県",
+    "city": "高山市",
+    "address": "岐阜県高山市本母町245",
+    "postal_code": "506-0003",
+    "phone": "0577-33-6137",
+    "website_url": "http://naoi-shourakuen.com/",
+    "business_hours": "8:30〜17:00",
+    "closed_days": [],
+    "access_info": "JR高山駅から車で約8分。中部縦貫道 高山ICから約5分。駐車場あり（バス駐車可）",
+    "specialties": [
+      "ミニ盆栽",
+      "小品盆栽",
+      "山野草",
+      "水石"
+    ],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "飛騨高山の盆栽園で、ミニ・小品・中品盆栽、山野草、盆栽鉢、水石を生産・販売しています。高山市内の宮川朝市にも出店しています。",
+    "sources": [
+      "http://naoi-shourakuen.com/",
+      "http://naoi-shourakuen.com/?page_id=34",
+      "https://www.bonsai.co.jp/stores/stores_category/tokai/gifu/"
+    ],
+    "notes": "年中無休と記載。店舗案内ページでは本店住所が「本母町381番地」と記載されており、ヘッダー表記（245）と異なるため要確認"
+  },
+  {
+    "name": "盆栽はニわ",
+    "prefecture": "三重県",
+    "city": "津市",
+    "address": "三重県津市木造町1047-1",
+    "postal_code": "514-1115",
+    "phone": "059-273-5133",
+    "website_url": "https://haniwa-bonsai.com/",
+    "business_hours": "9:00〜16:00",
+    "closed_days": [
+      "平日（土日のみ営業）"
+    ],
+    "access_info": null,
+    "specialties": [
+      "水石",
+      "盆栽レンタル"
+    ],
+    "experience_programs": null,
+    "online_sales": true,
+    "social_instagram": null,
+    "description": "津市木造町の盆栽店で、盆栽・水石・鉢・道具を扱っています。オンラインショップが中心で、店舗は土日のみ営業です。",
+    "sources": [
+      "https://haniwa-bonsai.com/"
+    ],
+    "notes": "盆栽の海外発送、レンタル、買取も案内あり"
+  },
+  {
+    "name": "玉芳園",
+    "prefecture": "三重県",
+    "city": "四日市市",
+    "address": "三重県四日市市水沢町1029",
+    "postal_code": "512-1105",
+    "phone": "059-329-2069",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "四日市市水沢町にある盆栽園で、日本盆栽協同組合名古屋支部の組合員です。",
+    "sources": [
+      "https://bonsaikumiai.jp/member/nagoya/",
+      "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+    ],
+    "notes": "電話は盆栽エンパイア掲載の組合名簿による。公式サイトは未確認"
+  },
+  {
+    "name": "無名庵",
+    "prefecture": "滋賀県",
+    "city": "彦根市",
+    "address": "滋賀県彦根市西今町816-6",
+    "postal_code": "522-0054",
+    "phone": "0749-23-3003",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [
+      "小品盆栽"
+    ],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "彦根市西今町の小品盆栽を扱う盆栽店です。",
+    "sources": [
+      "https://www.bonsai.co.jp/stores/stores_category/kinki/shiga/"
+    ],
+    "notes": "近代出版の盆栽店紹介に掲載。公式サイトは未確認"
+  },
+  {
+    "name": "京都 広樹園",
+    "prefecture": "京都府",
+    "city": "京都市",
+    "address": "京都府京都市南区唐橋井園町19",
+    "postal_code": "601-8462",
+    "phone": "075-691-5296",
+    "website_url": "https://kojuen.webu.jp/",
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": "JR京都駅から車で5分、名神京都南ICから車で10分。東寺から西へ約800m",
+    "specialties": [
+      "小品盆栽",
+      "ミニ盆栽",
+      "盆栽教室"
+    ],
+    "experience_programs": true,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "京都市南区の小品盆栽を専門とする盆栽園です。毎月1回（基本的に第4日曜日）、園内で愛好会「広樹会」の盆栽教室を開いています。",
+    "sources": [
+      "https://kojuen.webu.jp/",
+      "https://kojuen.webu.jp/class.html",
+      "https://www.bonsai.co.jp/stores/stores_category/kinki/kyoto/",
+      "https://bonsaikumiai.jp/member/kansai/"
+    ],
+    "notes": "盆栽教室は月会費制（公式サイト記載）。古鉢の扱い、買取あり（近代出版掲載）"
+  },
+  {
+    "name": "芳春院盆栽庭園",
+    "prefecture": "京都府",
+    "city": "京都市",
+    "address": "京都府京都市北区紫野大徳寺町55 芳春院",
+    "postal_code": null,
+    "phone": "075-492-6010",
+    "website_url": null,
+    "business_hours": "10:00〜",
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "大徳寺の塔頭・芳春院にある盆栽庭園で、盆栽や水石を拝観できます。",
+    "sources": [
+      "https://www.bonsai.co.jp/stores/stores_category/kinki/kyoto/"
+    ],
+    "notes": "近代出版の盆栽店紹介に掲載。拝観料1名1,000円、無休と記載。販売の有無は未確認"
+  },
+  {
+    "name": "梅原英光園",
+    "prefecture": "京都府",
+    "city": "宇治市",
+    "address": "京都府宇治市志津川東詰20",
+    "postal_code": null,
+    "phone": "0774-22-4463",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [
+      "皐月",
+      "山野草"
+    ],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "宇治市志津川の盆栽園で、さつき・盆栽・山野草を扱っています。",
+    "sources": [
+      "https://www.bonsai.co.jp/stores/stores_category/kinki/kyoto/"
+    ],
+    "notes": "近代出版の盆栽店紹介に掲載。公式サイトは未確認"
+  },
+  {
+    "name": "三浦培樹園",
+    "prefecture": "大阪府",
+    "city": "豊能郡能勢町",
+    "address": "大阪府豊能郡能勢町上杉111",
+    "postal_code": "563-0365",
+    "phone": "072-734-1831",
+    "website_url": "http://baijuen.com",
+    "business_hours": "9:00〜17:00",
+    "closed_days": [
+      "不定休"
+    ],
+    "access_info": null,
+    "specialties": [
+      "小品盆栽",
+      "松柏類",
+      "雑木盆栽",
+      "水石",
+      "盆栽教室"
+    ],
+    "experience_programs": true,
+    "online_sales": true,
+    "social_instagram": null,
+    "description": "能勢町にある小品盆栽中心の盆栽園で、公式オンラインショップと楽天市場で販売しています。初心者向けの盆栽教室も案内されています。",
+    "sources": [
+      "http://baijuen.com",
+      "https://www.bonsai.co.jp/stores/stores_category/kinki/osaka/",
+      "https://bonsaikumiai.jp/member/kansai/"
+    ],
+    "notes": "旧URL miurabaijuen.com から移転。教室情報は近代出版掲載"
+  },
+  {
+    "name": "百舌鳥園",
+    "prefecture": "大阪府",
+    "city": "堺市",
+    "address": "大阪府堺市北区中百舌鳥町4-534-2",
+    "postal_code": "591-8023",
+    "phone": "072-252-0846",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": "地下鉄御堂筋線6番出口、南海高野線南出口（近代出版掲載）",
+    "specialties": [
+      "皐月"
+    ],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "堺市北区中百舌鳥町の盆栽園で、さつきと盆栽を扱っています。",
+    "sources": [
+      "https://www.bonsai.co.jp/stores/stores_category/kinki/osaka/",
+      "https://bonsaikumiai.jp/member/kansai/"
+    ],
+    "notes": "公式サイトは未確認"
+  },
+  {
+    "name": "盆栽翠松園",
+    "prefecture": "兵庫県",
+    "city": "加西市",
+    "address": "兵庫県加西市別府町甲1280",
+    "postal_code": "679-0103",
+    "phone": null,
+    "website_url": "https://www.bonsai-suishoen.jp/",
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": true,
+    "online_sales": true,
+    "social_instagram": "https://www.instagram.com/suishoen/",
+    "description": "加西市の盆栽園で、店舗での盆栽販売、手入れ、預かり、展示会出展のサポートを行っています。園主がマンツーマンで対応する予約制サービスもあります。",
+    "sources": [
+      "https://www.bonsai-suishoen.jp/",
+      "https://bonsaikumiai.jp/member/kansai/"
+    ],
+    "notes": "来園は事前予約を推奨（不在が多いと記載）。公式サイトからヤフオク出品ページへリンクあり"
+  },
+  {
+    "name": "BONSAI Labo",
+    "prefecture": "兵庫県",
+    "city": "丹波市",
+    "address": "兵庫県丹波市春日町下三井庄1045-4",
+    "postal_code": "669-4252",
+    "phone": "0795-71-4628",
+    "website_url": "https://bonsai-labo-rin.com/",
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": "舞鶴若狭自動車道・北近畿豊岡自動車道 春日ICから約10分",
+    "specialties": [
+      "ワークショップ"
+    ],
+    "experience_programs": true,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "丹波市春日町の盆栽店で、盆栽の販売やワークショップを行っています。2022年に大阪から丹波市へ移転したと記載されています。",
+    "sources": [
+      "https://bonsai-labo-rin.com/",
+      "https://bonsai-labo-rin.com/access/",
+      "https://www.bonsai.co.jp/stores/stores_category/kinki/hyogo/"
+    ],
+    "notes": "営業日は公式サイトのカレンダーで確認。8月は要予約"
+  },
+  {
+    "name": "しらさぎ園",
+    "prefecture": "兵庫県",
+    "city": "姫路市",
+    "address": "兵庫県姫路市御国野町深志野1180-3",
+    "postal_code": "671-0231",
+    "phone": "090-1593-1525",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "姫路市御国野町の盆栽園です。盆栽の販売のほか買取も行っています。",
+    "sources": [
+      "https://www.bonsai.co.jp/stores/stores_category/kinki/hyogo/",
+      "https://bonsaikumiai.jp/member/kansai/"
+    ],
+    "notes": "電話は近代出版掲載。組合名簿（盆栽エンパイア掲載）には079-252-0593の記載もあり"
+  },
+  {
+    "name": "大柏園",
+    "prefecture": "奈良県",
+    "city": "御所市",
+    "address": "奈良県御所市柿ヶ坪町627",
+    "postal_code": "639-2231",
+    "phone": "0745-62-3613",
+    "website_url": "https://taihakuen.wixsite.com/bonsai",
+    "business_hours": "8:30〜17:30",
+    "closed_days": [],
+    "access_info": "御所中学校の南100m（近代出版掲載）",
+    "specialties": [
+      "松柏類",
+      "雑木盆栽",
+      "水石"
+    ],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "御所市の盆栽園で、大正13年に奈良県で最初の盆栽園として開業したと記載されています。松柏・雑木の盆栽や盆栽鉢、水石を扱っています。",
+    "sources": [
+      "https://taihakuen.wixsite.com/bonsai",
+      "https://www.bonsai.co.jp/stores/stores_category/kinki/nara/",
+      "https://bonsaikumiai.jp/member/kansai/"
+    ],
+    "notes": "年中無休と記載。外出の場合があるため事前連絡を推奨"
+  },
+  {
+    "name": "清雅園",
+    "prefecture": "岡山県",
+    "city": "瀬戸内市",
+    "address": "岡山県瀬戸内市長船町飯井1298",
+    "postal_code": null,
+    "phone": "0869-26-3645",
+    "website_url": "https://r.goope.jp/sr-33-3336310037/",
+    "business_hours": "9:00〜18:00",
+    "closed_days": [],
+    "access_info": "ブルーライン邑久ICから5分。岡山市内から30〜40分",
+    "specialties": [
+      "山野草",
+      "盆栽教室"
+    ],
+    "experience_programs": true,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "瀬戸内市長船町の盆栽と山野草の店です。毎月盆栽教室と山野草教室を開いており、盆栽の預かり管理も行っています。",
+    "sources": [
+      "https://r.goope.jp/sr-33-3336310037/",
+      "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+    ],
+    "notes": "定休日は特に決めておらず来店前に電話連絡が必要と記載。山もみじの技術に力を入れていると記載"
+  },
+  {
+    "name": "春秋園",
+    "prefecture": "岡山県",
+    "city": "和気郡和気町",
+    "address": "岡山県和気郡和気町福富503-1",
+    "postal_code": "709-0442",
+    "phone": "0869-93-0306",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "和気町福富にある盆栽園で、日本盆栽協同組合の組合員です。",
+    "sources": [
+      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/",
+      "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+    ],
+    "notes": "電話は盆栽エンパイア掲載の組合名簿による。公式サイトは未確認"
+  },
+  {
+    "name": "草光園",
+    "prefecture": "広島県",
+    "city": "広島市",
+    "address": "広島県広島市東区温品町213-2",
+    "postal_code": "732-0034",
+    "phone": "082-289-0102",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "広島市東区温品町の盆栽園で、日本盆栽協同組合の組合員です。",
+    "sources": [
+      "https://www.bonsai.co.jp/stores/stores_category/chugoku/hiroshima/",
+      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/"
+    ],
+    "notes": "近代出版掲載のサイト（just.st）は調査時に表示不可"
+  },
+  {
+    "name": "暁霞園",
+    "prefecture": "山口県",
+    "city": "山陽小野田市",
+    "address": "山口県山陽小野田市鴨庄35-2",
+    "postal_code": "757-0005",
+    "phone": "0836-72-1094",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "山陽小野田市鴨庄の盆栽園で、日本盆栽協同組合九州支部の組合員です。",
+    "sources": [
+      "https://www.bonsai.co.jp/stores/stores_category/chugoku/yamaguchi/",
+      "https://bonsaikumiai.jp/member/kyushu/"
+    ],
+    "notes": "公式サイトは未確認"
+  },
+  {
+    "name": "埴生園",
+    "prefecture": "徳島県",
+    "city": "名西郡神山町",
+    "address": "徳島県名西郡神山町神領字西野間2-7",
+    "postal_code": "771-3311",
+    "phone": "088-676-0610",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [
+      "小品盆栽",
+      "盆栽教室"
+    ],
+    "experience_programs": true,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "神山町の小品盆栽の盆栽園で、素材の養成、小売・卸、通信販売を行っています。初心者向けの盆栽教室も案内されています。",
+    "sources": [
+      "https://www.bonsai.co.jp/stores/stores_category/shikoku/tokushima/"
+    ],
+    "notes": "近代出版掲載。教室は無料、カタログ進呈と記載。公式サイトは未確認"
+  },
+  {
+    "name": "神高松寿園",
+    "prefecture": "香川県",
+    "city": "高松市",
+    "address": "香川県高松市鬼無町山口428-1",
+    "postal_code": "761-8025",
+    "phone": "087-881-2852",
+    "website_url": "https://www.kinashi-bonsai.com/shojuen/",
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": "JR予讃線・土讃線 鬼無駅下車、盆栽通りを250m。高松駅からタクシー15分、高松空港からタクシー30分",
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "高松市鬼無町の盆栽通り沿いにある盆栽園です。公式サイトに商品カタログを掲載し、電話・FAXで注文を受けて国内に発送しています。",
+    "sources": [
+      "https://www.kinashi-bonsai.com/shojuen/",
+      "https://www.kinashi-bonsai.com/shojuen/access/",
+      "https://www.kinashi-bonsai.com/shojuen/order/",
+      "https://www.kinashi-bonsai.com/greenguid/",
+      "https://bonsaikumiai.jp/member/kinashi/"
+    ],
+    "notes": "国内販売のみと記載。代引・銀行振込などで通信販売"
+  },
+  {
+    "name": "小西松楽園",
+    "prefecture": "香川県",
+    "city": "高松市",
+    "address": "香川県高松市鬼無町佐藤217",
+    "postal_code": "761-8023",
+    "phone": "087-881-2912",
+    "website_url": "https://www.kinashi-bonsai.com/konishi/",
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": "JR予讃線 鬼無駅から徒歩7分。鬼無小学校の東100m",
+    "specialties": [
+      "黒松"
+    ],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "高松市鬼無町の松盆栽の生産者で、盆栽の生産・販売・卸を行っています。EU・英国向けの黒松盆栽の輸出も行っています。",
+    "sources": [
+      "https://www.kinashi-bonsai.com/konishi/",
+      "https://www.kinashi-bonsai.com/konishi/access/",
+      "https://www.kinashi-bonsai.com/greenguid/",
+      "https://bonsaikumiai.jp/member/kinashi/"
+    ],
+    "notes": "海外輸出は業者向けの条件あり"
+  },
+  {
+    "name": "花澤明春園",
+    "prefecture": "香川県",
+    "city": "高松市",
+    "address": "香川県高松市鬼無町鬼無748-3",
+    "postal_code": "761-8026",
+    "phone": "087-881-2847",
+    "website_url": "http://www.hanazawa-bonsai.com/",
+    "business_hours": "9:00〜16:00",
+    "closed_days": [
+      "不定休"
+    ],
+    "access_info": "JR予讃線 鬼無駅から徒歩約15分。高松西IC・高松檀紙ICが最寄り。駐車場8台",
+    "specialties": [
+      "山野草",
+      "水石",
+      "盆栽教室"
+    ],
+    "experience_programs": true,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "高松市鬼無町の盆栽園で、盆栽・山野草の生産と販売を行っています。初心者向けの盆栽・山野草教室を開いています。",
+    "sources": [
+      "http://www.hanazawa-bonsai.com/gyoumu/",
+      "http://www.hanazawa-bonsai.com/bonsai_school/",
+      "http://www.hanazawa-bonsai.com/map2/",
+      "https://www.kinashi-bonsai.com/greenguid/"
+    ],
+    "notes": "公式サイトの最終更新は2018年頃"
+  },
+  {
+    "name": "一樹園",
+    "prefecture": "香川県",
+    "city": "高松市",
+    "address": "香川県高松市鬼無町佐藤164-2",
+    "postal_code": "761-8023",
+    "phone": "090-2829-3975",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": true,
+    "social_instagram": null,
+    "description": "高松市鬼無町の盆栽園で、1851年創業と記載されています。楽天市場で盆栽を販売し、買取も行っています。",
+    "sources": [
+      "https://www.bonsai.co.jp/stores/stores_category/shikoku/kagawa/"
+    ],
+    "notes": "近代出版掲載。LINE登録で無料査定、研究生募集と記載。楽天市場店 https://item.rakuten.co.jp/ichijuen/"
+  },
+  {
+    "name": "盆栽 熊谷園",
+    "prefecture": "愛媛県",
+    "city": "四国中央市",
+    "address": "愛媛県四国中央市土居町上野3845",
+    "postal_code": "799-0721",
+    "phone": "0896-74-3535",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "四国中央市土居町にある盆栽園です。",
+    "sources": [
+      "https://www.bonsai.co.jp/stores/stores_category/shikoku/ehime/"
+    ],
+    "notes": "近代出版の盆栽店紹介に掲載。公式サイトは未確認"
+  },
+  {
+    "name": "お座敷盆梅 梅花園",
+    "prefecture": "福岡県",
+    "city": "みやま市",
+    "address": "福岡県みやま市山川町尾野1413-2",
+    "postal_code": "835-0102",
+    "phone": "0944-67-0605",
+    "website_url": null,
+    "business_hours": "9:00〜17:30",
+    "closed_days": [],
+    "access_info": "JR鹿児島本線 南瀬高駅から車で約5分。九州自動車道 みやま柳川ICから約10分。駐車場あり（無料）",
+    "specialties": [
+      "梅",
+      "五葉松"
+    ],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "みやま市の花園で、松と梅の盆栽を生産・直売しています。梅の時期には大広間に梅の盆栽を並べる「お座敷盆梅」を公開しています。",
+    "sources": [
+      "https://www.crossroadfukuoka.jp/spot/12831"
+    ],
+    "notes": "お座敷盆梅は例年2月1日〜3月中旬、入場料大人600円（福岡県観光サイト掲載）"
+  },
+  {
+    "name": "塚本宗松園",
+    "prefecture": "福岡県",
+    "city": "久留米市",
+    "address": "福岡県久留米市津福本町1243",
+    "postal_code": "830-0047",
+    "phone": "0942-35-2592",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [
+      "小品盆栽"
+    ],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "久留米市津福本町の盆栽園で、盆栽と小品盆栽を扱っています。",
+    "sources": [
+      "https://www.bonsai.co.jp/stores/stores_category/kyusyu/fukuoka/",
+      "https://bonsaikumiai.jp/member/kyushu/"
+    ],
+    "notes": "公式サイトは未確認"
+  },
+  {
+    "name": "鳥栖昭緑園",
+    "prefecture": "佐賀県",
+    "city": "鳥栖市",
+    "address": "佐賀県鳥栖市神辺町539-9",
+    "postal_code": "841-0004",
+    "phone": "0942-82-8488",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": "九州自動車道 鳥栖ICから5分",
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "鳥栖市神辺町の盆栽園で、大物・中品・小品の盆栽を扱っています。",
+    "sources": [
+      "https://www.bonsai.co.jp/stores/stores_category/kyusyu/saga/",
+      "https://bonsaikumiai.jp/member/kyushu/"
+    ],
+    "notes": "公式サイトは未確認"
+  },
+  {
+    "name": "昭緑園",
+    "prefecture": "長崎県",
+    "city": "長崎市",
+    "address": "長崎県長崎市松原町2508",
+    "postal_code": "851-0131",
+    "phone": "095-838-3232",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "長崎市松原町の盆栽園で、日本盆栽協同組合九州支部の組合員です。",
+    "sources": [
+      "https://bonsaikumiai.jp/member/kyushu/",
+      "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+    ],
+    "notes": "組合名簿では（株）昭緑園。電話は盆栽エンパイア掲載の組合名簿による。公式サイトは未確認"
+  },
+  {
+    "name": "雅松園",
+    "prefecture": "熊本県",
+    "city": "上益城郡御船町",
+    "address": "熊本県上益城郡御船町高木3242-1",
+    "postal_code": "861-3203",
+    "phone": "096-282-6043",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": "小池高山ICを降りて信号を右折、次の信号を右折し100m（近代出版掲載）",
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "御船町高木の盆栽園で、盆栽の買取の相談も受け付けています。",
+    "sources": [
+      "https://www.bonsai.co.jp/stores/stores_category/kyusyu/kumamoto/",
+      "https://bonsaikumiai.jp/member/kyushu/"
+    ],
+    "notes": "組合名簿では（有）雅松園。郵便番号は組合名簿による（近代出版の表記は誤記とみられる）"
+  },
+  {
+    "name": "野元珍松園",
+    "prefecture": "宮崎県",
+    "city": "宮崎市",
+    "address": "宮崎県宮崎市大島町原ノ前1445-100",
+    "postal_code": "880-0824",
+    "phone": "0985-23-4986",
+    "website_url": null,
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "宮崎市大島町の盆栽園で、日本盆栽協同組合九州支部の組合員です。",
+    "sources": [
+      "https://bonsaikumiai.jp/member/kyushu/",
+      "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+    ],
+    "notes": "電話は盆栽エンパイア掲載の組合名簿による。公式サイトは未確認"
+  },
+  {
+    "name": "盆栽総合専門店 岩崎農園",
+    "prefecture": "鹿児島県",
+    "city": "鹿屋市",
+    "address": "鹿児島県鹿屋市串良町細山田4958",
+    "postal_code": null,
+    "phone": "0994-62-2115",
+    "website_url": "https://bonsaiiwasaki.crayonsite.net/",
+    "business_hours": "8:00〜16:00",
+    "closed_days": [
+      "月曜日"
+    ],
+    "access_info": "細山田ICから車で3分",
+    "specialties": [],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "鹿屋市串良町の盆栽園で、松や楓などの盆栽と盆栽用土などの資材を販売しています。毎月第2日曜日に「せり市」を開いています。",
+    "sources": [
+      "https://bonsaiiwasaki.crayonsite.net/"
+    ],
+    "notes": "12:00〜13:00は休憩。営業日は公式サイトのカレンダーで確認"
+  },
+  {
+    "name": "ナスカさつき園",
+    "prefecture": "鹿児島県",
+    "city": "鹿児島市",
+    "address": "鹿児島県鹿児島市石谷町37",
+    "postal_code": "899-2701",
+    "phone": "099-278-5412",
+    "website_url": "http://www.nazka-satsukien.com/",
+    "business_hours": "9:00〜17:00",
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [
+      "皐月"
+    ],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "鹿児島市石谷町のさつき盆栽の園で、合同会社ナスカ産業が運営しています。さつき愛好会の月例会の事務局も務めています。",
+    "sources": [
+      "http://www.nazka-satsukien.com/"
+    ],
+    "notes": "年中無休、駐車場15台と記載"
+  },
+  {
+    "name": "屋良盆栽園",
+    "prefecture": "沖縄県",
+    "city": "国頭郡宜野座村",
+    "address": "沖縄県国頭郡宜野座村",
+    "postal_code": null,
+    "phone": "090-2514-6115",
+    "website_url": "https://yarabonnsaien.jimdofree.com/",
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [
+      "ガジュマル"
+    ],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "宜野座村で育てたガジュマルなどの盆栽を販売しています。注文は電話で受け付け、全国に発送しています。",
+    "sources": [
+      "https://yarabonnsaien.jimdofree.com/"
+    ],
+    "notes": "番地は公式サイトに記載なし。来園可否は未確認"
+  },
+  {
+    "name": "宜野湾文化苑",
+    "prefecture": "沖縄県",
+    "city": "宜野湾市",
+    "address": "沖縄県宜野湾市上原1-9-1",
+    "postal_code": null,
+    "phone": null,
+    "website_url": "https://ginowanbunkaen.jimdofree.com/",
+    "business_hours": null,
+    "closed_days": [],
+    "access_info": null,
+    "specialties": [
+      "琉球松",
+      "ガジュマル",
+      "盆栽レンタル"
+    ],
+    "experience_programs": null,
+    "online_sales": null,
+    "social_instagram": null,
+    "description": "宜野湾市の盆栽店で、琉球松やガジュマルなどの盆栽を展示・販売・レンタルしています。",
+    "sources": [
+      "https://ginowanbunkaen.jimdofree.com/%E4%BC%9A%E7%A4%BE%E6%83%85%E5%A0%B1/",
+      "https://navioki.com/bonsaihanbai/"
+    ],
+    "notes": "住所は地域情報サイト「なび沖」掲載のもの。公式サイトの住所・電話欄はテンプレート表記のままで未記載"
+  }
+]

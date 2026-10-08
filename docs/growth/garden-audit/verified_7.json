@@ -1,0 +1,681 @@
+[
+ {
+  "id": "a5a67276-c380-4939-9f91-de9d64a44993",
+  "name": "神山農園",
+  "status": "verified",
+  "confirmed": {
+   "name": "神山農園",
+   "address": "福井県越前市広瀬町137-8",
+   "postal_code": "915-0872",
+   "phone": "0778-23-0988",
+   "website_url": "https://kamiyamanouen.com/",
+   "business_hours": "9:00〜17:00",
+   "closed_days": [
+    "日曜日（1・2月のみ）",
+    "正月（1/5午後から営業）"
+   ],
+   "access_info": "北陸自動車道武生ICから車で約15分",
+   "parking_info": "店舗入口前に駐車場あり",
+   "owner_name": "西出富士雄（代表取締役）",
+   "social_instagram": "https://www.instagram.com/kamiyamanouen/"
+  },
+  "clear_fields": [
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://kamiyamanouen.com/",
+   "https://kamiyamanouen.com/profile/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間を確認（住所は広瀬町に訂正）。",
+  "description_new": "福井県越前市の国道365号線沿いにある園芸資材店で、約1500坪の店内で花苗・果樹苗・庭木など常時2500種類を扱う。造園・庭園管理の施工も行う。",
+  "specialties_confirmed": [
+   "花苗",
+   "野菜苗",
+   "果樹苗",
+   "庭木",
+   "造園・庭園管理"
+  ]
+ },
+ {
+  "id": "537542f3-cea3-424f-908a-6d8b3c0d25d8",
+  "name": "緑香庭敦賀店",
+  "status": "verified",
+  "confirmed": {
+   "name": "緑香庭 敦賀店",
+   "address": "福井県敦賀市三島町2丁目12-14",
+   "postal_code": "914-0058",
+   "phone": "0120-428-372",
+   "website_url": "https://www.ryokkatei.jp/",
+   "closed_days": [
+    "火曜日",
+    "水曜日"
+   ],
+   "social_instagram": "https://www.instagram.com/ryokkatei/"
+  },
+  "clear_fields": [
+   "business_hours",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.ryokkatei.jp/"
+  ],
+  "notes": "公式サイトで敦賀店の住所・定休日・電話を確認。",
+  "description_new": "株式会社しばなかが運営するエクステリア・ガーデニングの店で、敦賀市三島町に店舗がある。外構工事や造園を手がける。",
+  "specialties_confirmed": [
+   "エクステリア",
+   "ガーデニング",
+   "外構工事",
+   "造園"
+  ]
+ },
+ {
+  "id": "bfa4fe8a-c414-4a5b-9dc9-c3de4b0dcb6b",
+  "name": "くるめ緑花センター",
+  "status": "verified",
+  "confirmed": {
+   "name": "くるめ緑花センター",
+   "address": "福岡県久留米市善導寺町木塚302-1",
+   "postal_code": "839-0822",
+   "phone": "0942-47-2581",
+   "website_url": "https://kurume-ryokkacenter.com/",
+   "business_hours": "9:00〜17:00",
+   "closed_days": [
+    "年末年始"
+   ],
+   "access_info": "西鉄バス「緑花センター前」からすぐ／JR久大本線善導寺駅から徒歩約15分／九州自動車道久留米ICから車で約10分",
+   "parking_info": "250台（大型10台）",
+   "established_year": 1975,
+   "social_instagram": "https://www.instagram.com/kurume_ryokka/"
+  },
+  "clear_fields": [
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://kurume-ryokkacenter.com/",
+   "https://kurume-ryokkacenter.com/about/",
+   "https://www.crossroadfukuoka.jp/spot/10049"
+  ],
+  "notes": "公式サイトと県観光サイトで住所・電話・営業時間を確認（住所は善導寺町に訂正）。",
+  "description_new": "久留米市善導寺町にある、植木・苗木・草花などの専門店が集まる展示即売場で、昭和50年に開設された。外構工事の店舗もある。",
+  "specialties_confirmed": [
+   "植木",
+   "苗木",
+   "草花",
+   "外構工事"
+  ]
+ },
+ {
+  "id": "a84680ba-4aa4-44e1-a878-94d20c805649",
+  "name": "花伝",
+  "status": "verified",
+  "confirmed": {
+   "name": "花伝",
+   "address": "福岡県久留米市北野町金島122-7",
+   "postal_code": "830-1103",
+   "phone": "0942-78-7388",
+   "website_url": "https://hanaden.jp/",
+   "business_hours": "9:30〜17:30",
+   "closed_days": [
+    "木曜日（祝祭日の場合は営業）"
+   ],
+   "online_sales": true,
+   "social_instagram": "https://www.instagram.com/hanaden.k/"
+  },
+  "clear_fields": [
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "owner_message"
+  ],
+  "sources": [
+   "https://hanaden.jp/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・定休日を確認。",
+  "description_new": "久留米市北野町にある園芸店で、多肉植物・サボテン、オージープランツ、観葉植物などを扱う。オンラインショップもある。",
+  "specialties_confirmed": [
+   "多肉植物・サボテン",
+   "オージープランツ",
+   "観葉植物"
+  ]
+ },
+ {
+  "id": "03265286-c823-40dd-9650-e27aaf242cb7",
+  "name": "ガーデンプラザ華",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.greenlabo.jp/",
+   "https://www.greenlabo.jp/service/garden-center.html",
+   "https://www.greenlabo.jp/company/koriyama.html"
+  ],
+  "notes": "運営会社グリーンラボの公式サイトでは「ガーデンプラザ華」は福島店のみで、郡山の該当店舗は確認できず。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "588e5f53-2541-489d-b991-6b28375df649",
+  "name": "ガーデンプラザ華",
+  "status": "verified",
+  "confirmed": {
+   "name": "ガーデンプラザ華 福島店",
+   "address": "福島県福島市成川字久保前11-1",
+   "postal_code": "960-1108",
+   "phone": "024-545-4445",
+   "website_url": "https://www.greenlabo.jp/service/garden-center/gardenplaza-hana-fukushima.html",
+   "business_hours": "10:00〜17:30（3〜10月）, 10:00〜17:00（11〜2月）",
+   "closed_days": [
+    "年末年始",
+    "火曜日（1・2・7・8月）"
+   ],
+   "access_info": "福島西ICから車で2分／JR福島駅から車で10分",
+   "established_year": 1989,
+   "experience_programs": true,
+   "social_instagram": "https://www.instagram.com/gardenplazahana/"
+  },
+  "clear_fields": [
+   "parking_info",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.greenlabo.jp/company/fukushima.html",
+   "https://www.greenlabo.jp/service/garden-center/gardenplaza-hana-fukushima.html"
+  ],
+  "notes": "運営会社の公式サイトで住所・電話・営業時間・定休日を確認。",
+  "description_new": "株式会社グリーンラボが福島市成川で運営する総合園芸店で、平成元年に開店した。花苗・庭木・観葉植物・園芸資材を扱い、造園や園芸講座も行う。",
+  "specialties_confirmed": [
+   "花苗・宿根草",
+   "庭木",
+   "観葉植物",
+   "造園",
+   "園芸講座"
+  ]
+ },
+ {
+  "id": "8d9f01bf-4644-4f53-8198-783ae1232529",
+  "name": "むつみ造園土木株式会社",
+  "status": "verified",
+  "confirmed": {
+   "name": "むつみ造園土木株式会社",
+   "address": "秋田県秋田市山王5丁目13-3",
+   "postal_code": "010-0951",
+   "phone": "018-863-2011",
+   "website_url": "https://mutsumi-l.co.jp/",
+   "established_year": 1969,
+   "owner_name": "佐々木創太（代表取締役）",
+   "social_instagram": "https://www.instagram.com/mutsumizoen/"
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://mutsumi-l.co.jp/company",
+   "https://mutsumi-l.co.jp/branches"
+  ],
+  "notes": "公式サイトで本社住所・電話・設立年を確認（牛島東の住所は確認できず）。",
+  "description_new": "秋田市山王に本社を置く造園・土木会社で、1969年設立。造園・土木工事や緑地の維持管理、造園関連資材の販売を行う。",
+  "specialties_confirmed": [
+   "造園工事",
+   "土木工事",
+   "緑地維持管理"
+  ]
+ },
+ {
+  "id": "ab79571b-1b5d-4506-8b44-185006d97df5",
+  "name": "花のヤマト 広面本店",
+  "status": "verified",
+  "confirmed": {
+   "name": "花のヤマト 広面本店",
+   "address": "秋田県秋田市広面字堤敷53-1",
+   "postal_code": "010-0041",
+   "phone": "018-834-8700",
+   "website_url": "https://hananoyamato.jp/",
+   "business_hours": "8:00〜18:30（月〜土）, 8:00〜18:00（日・祝）",
+   "closed_days": [
+    "年中無休"
+   ],
+   "parking_info": "駐車場あり",
+   "owner_name": "吉川向揮（代表取締役社長）",
+   "online_sales": true,
+   "social_instagram": "https://www.instagram.com/hanano_yamato_/"
+  },
+  "clear_fields": [
+   "access_info",
+   "experience_programs",
+   "owner_message"
+  ],
+  "sources": [
+   "https://hananoyamato.jp/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間を確認。",
+  "description_new": "秋田市広面にある生花店で、装花や祝花などを扱う。オンラインショップもある。",
+  "specialties_confirmed": [
+   "生花",
+   "フラワー装飾"
+  ]
+ },
+ {
+  "id": "5f2057cb-4757-428f-befc-4af8e6bef25b",
+  "name": "上州盆栽園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で実在を示す情報が見つからなかった。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "b306b511-bdeb-43b6-9ea7-87c714888d89",
+  "name": "花木流通センター",
+  "status": "partially_verified",
+  "confirmed": {
+   "name": "花木流通センター"
+  },
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.zennoh.or.jp/gm/about/pdf/magazine/magazine_1908.pdf",
+   "https://www.zennoh.or.jp/gm/topics/2302249web.pdf"
+  ],
+  "notes": "JA全農ぐんまの広報誌で施設の存在は確認したが、住所等は確認できず、記載URLも接続不可。",
+  "description_new": "JA全農ぐんま（全農群馬県本部）園芸部の施設で、園芸セールなどを行い、施設内に直売所「新鮮ぐんまみのり館」がある。",
+  "specialties_confirmed": []
+ },
+ {
+  "id": "af7f71f9-7691-4650-ac38-bae3fd427ed7",
+  "name": "赤城グリーン",
+  "status": "verified",
+  "confirmed": {
+   "name": "赤城グリーン株式会社",
+   "address": "群馬県前橋市小神明町459",
+   "postal_code": "371-0134",
+   "phone": "027-231-0857",
+   "website_url": "http://a-green.com/"
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "http://a-green.com/"
+  ],
+  "notes": "公式サイトで住所・電話を確認（住所は小神明町に訂正）。",
+  "description_new": "前橋市小神明町にある造園・園芸・貸植木の会社。",
+  "specialties_confirmed": [
+   "造園",
+   "園芸",
+   "貸植木"
+  ]
+ },
+ {
+  "id": "9d395b67-bad0-44fe-87fb-7b4df3417307",
+  "name": "赤城山盆栽工房",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で実在を示す情報が見つからなかった。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "a035baf6-e9e9-427c-8245-10e6d0c11435",
+  "name": "中川造園",
+  "status": "verified",
+  "confirmed": {
+   "name": "中川造園",
+   "address": "茨城県常総市東野原48",
+   "postal_code": "300-2717",
+   "phone": "0297-42-5315",
+   "website_url": "https://www.nakagawazoen.com/",
+   "business_hours": "9:00〜18:00（平日）",
+   "owner_name": "中川英一"
+  },
+  "clear_fields": [
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.nakagawazoen.com/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間を確認（所在地は水戸市ではなく常総市）。",
+  "description_new": "茨城県常総市にある造園業者で、「茨城ガーデンメンテナンス」を運営する。造園工事や和風庭園工事、植木の手入れ・消毒を行う。",
+  "specialties_confirmed": [
+   "造園工事",
+   "和風庭園工事",
+   "植木の手入れ",
+   "植木の消毒"
+  ]
+ },
+ {
+  "id": "c0df2a2d-4958-43dd-9995-e82172ffe470",
+  "name": "山新グランステージつくば ガーデンセンター",
+  "status": "partially_verified",
+  "confirmed": {
+   "name": "山新グランステージ つくばホームセンター",
+   "business_hours": "9:00〜20:00（資材館・園芸農業館 7:00〜20:00）"
+  },
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://tokubai.co.jp/transit/rail_lines/station_groups/6561/home_center/leaflet"
+  ],
+  "notes": "チラシ掲載サイトで店舗と営業時間を確認したが、住所・電話は確認できず、記載URLも接続不可。",
+  "description_new": "つくば市の研究学園駅付近にあるホームセンターで、園芸農業館がある。",
+  "specialties_confirmed": []
+ },
+ {
+  "id": "aa02f356-72e3-49dd-9511-fea249002fdf",
+  "name": "盆栽の森つくば",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "検索で実在を示す情報が見つからず、記載URLのドメインも存在しない。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "e2c19d95-5d0f-4f68-9a6e-637776703a85",
+  "name": "筑波山麓盆栽園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "established_year",
+   "owner_name",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で実在を示す情報が見つからなかった。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "e72b0605-065d-4a70-9223-54a868d8fef3",
+  "name": "花木センター",
+  "status": "verified",
+  "confirmed": {
+   "name": "花木センター（トキワ園芸農業協同組合）",
+   "address": "茨城県小美玉市部室1189-4",
+   "postal_code": "319-0132",
+   "phone": "0299-48-2031",
+   "website_url": "https://www.tokiwa-web.com/",
+   "business_hours": "9:30〜17:45（3〜9月）, 9:30〜17:15（10〜2月）",
+   "closed_days": [
+    "不定休（休園日カレンダー参照）"
+   ],
+   "access_info": "岩間ICから約15分／石岡小美玉スマートICから約10分",
+   "parking_info": "1,500台",
+   "experience_programs": true,
+   "social_instagram": "https://www.instagram.com/tokiwaengei/"
+  },
+  "clear_fields": [
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://www.tokiwa-web.com/",
+   "https://www.tokiwa-web.com/company/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間を確認（住所は部室に訂正）。",
+  "description_new": "トキワ園芸農業協同組合が運営する小美玉市部室の園芸施設で、季節の花鉢、観葉植物、植木、盆栽、山野草などの販売所がある。園芸教室も開いている。",
+  "specialties_confirmed": [
+   "盆栽（松・雑木）",
+   "山野草",
+   "観葉植物",
+   "洋蘭",
+   "植木",
+   "園芸教室"
+  ]
+ },
+ {
+  "id": "174b8907-df0e-492c-a93a-adf2bc868081",
+  "name": "霞ヶ浦盆栽園",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "複数の検索で実在を示す情報が見つからなかった。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "c0447fc7-a3fb-41e5-8a2f-3412d9ca8334",
+  "name": "ながさき緑樹センター",
+  "status": "verified",
+  "confirmed": {
+   "name": "ながさき緑樹センター（有限会社長崎緑樹センター）",
+   "address": "長崎県長崎市城山台1丁目36番3号",
+   "postal_code": "852-8027",
+   "phone": "095-861-9102",
+   "website_url": "https://n-ryokuju.co.jp/",
+   "established_year": 1982,
+   "owner_name": "古賀俊之（代表取締役）"
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://n-ryokuju.co.jp/",
+   "https://n-ryokuju.co.jp/kaiyou/"
+  ],
+  "notes": "公式サイトで本社住所・電話を確認（所在地は諫早市ではなく長崎市）。",
+  "description_new": "長崎市城山台に本社を置く造園会社で、1982年創業。個人庭園や外構、公共緑化の設計・施工・管理を行う。",
+  "specialties_confirmed": [
+   "造園工事",
+   "外構・エクステリア",
+   "公共緑化"
+  ]
+ },
+ {
+  "id": "c8190e38-03f3-421a-800c-8c5e2c7692e6",
+  "name": "広輝緑化",
+  "status": "verified",
+  "confirmed": {
+   "name": "有限会社広輝緑化",
+   "address": "長崎県長崎市松原町2335",
+   "postal_code": "851-0131",
+   "phone": "095-838-2843",
+   "website_url": "https://koki-2843.com/",
+   "owner_name": "田島康幸（代表取締役）"
+  },
+  "clear_fields": [
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://koki-2843.com/",
+   "https://koki-2843.com/company.html"
+  ],
+  "notes": "公式サイトで本社住所・電話を確認（住所は松原町に訂正）。",
+  "description_new": "長崎市松原町に本社を置く造園会社。庭の新築・リフォーム、外構工事、樹木の剪定・伐採などを行う。",
+  "specialties_confirmed": [
+   "庭園工事",
+   "外構・エクステリア",
+   "剪定",
+   "伐採"
+  ]
+ },
+ {
+  "id": "ae781a4a-4c9c-46fc-bf99-f591d12a08f0",
+  "name": "信州アルプス園芸",
+  "status": "not_found",
+  "confirmed": {},
+  "clear_fields": [
+   "address",
+   "postal_code",
+   "phone",
+   "website_url",
+   "business_hours",
+   "closed_days",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [],
+  "notes": "検索で実在を示す情報が見つからず、記載URLのドメインも存在しない。",
+  "description_new": null,
+  "specialties_confirmed": []
+ },
+ {
+  "id": "9198cb49-3338-4f96-8fd0-3e63e5bc3d5b",
+  "name": "小森造園",
+  "status": "verified",
+  "confirmed": {
+   "name": "小森造園",
+   "address": "長野県長野市若穂川田3207",
+   "phone": "026-282-2139",
+   "website_url": "https://zouen-komori.jp/",
+   "business_hours": "8:00〜18:00",
+   "closed_days": [
+    "日曜日"
+   ]
+  },
+  "clear_fields": [
+   "postal_code",
+   "access_info",
+   "parking_info",
+   "experience_programs",
+   "online_sales",
+   "owner_message"
+  ],
+  "sources": [
+   "https://zouen-komori.jp/"
+  ],
+  "notes": "公式サイトで住所・電話・営業時間・定休日を確認（住所は若穂川田に訂正）。",
+  "description_new": "長野市若穂川田にある造園業者で、造園・外構工事・庭づくりを手がける。",
+  "specialties_confirmed": [
+   "造園",
+   "外構工事",
+   "庭づくり",
+   "雑木の庭"
+  ]
+ }
+]
