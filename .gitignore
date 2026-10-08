@@ -41,3 +41,4 @@ next-env.d.ts
 .temp
 # project brief (local only)
 PROJECT_BRIEF.md
+bonsai-collection-screenshots*.zip
