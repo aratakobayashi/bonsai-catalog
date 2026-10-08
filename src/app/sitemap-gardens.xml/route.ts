@@ -13,10 +13,10 @@ export async function GET() {
     try {
       const { data: gardens } = await supabase
         .from('gardens')
-        .select('id, created_at, updated_at')
+        .select('*')
 
       if (gardens && gardens.length > 0) {
-        const gardenUrls = gardens.map((garden: any) =>
+        const gardenUrls = gardens.filter((garden: any) => garden.is_published !== false).map((garden: any) =>
           generateUrlElement(
             `${baseUrl}/gardens/${garden.id}`,
             new Date(garden.updated_at || garden.created_at).toISOString().split('T')[0],

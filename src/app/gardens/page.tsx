@@ -27,7 +27,8 @@ async function getGardens(): Promise<Garden[]> {
   }
 
   // 仮の画像サービスやダミーURLは画像なしとして扱う
-  return ((data || []) as Garden[]).map(garden => ({
+  // 実在が確認できない・閉園した園は一覧に出さない
+  return ((data || []) as Garden[]).filter(garden => garden.is_published !== false).map(garden => ({
     ...garden,
     image_url: garden.image_url && !/via\.placeholder\.com|example\.com/.test(garden.image_url) ? garden.image_url : undefined,
   }))

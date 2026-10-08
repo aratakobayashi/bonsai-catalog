@@ -25,7 +25,8 @@ async function getGarden(id: string): Promise<Garden | null> {
     .eq('id', id)
     .single()
 
-  if (error || !data) {
+  // 実在が確認できない・閉園した園は表示しない
+  if (error || !data || (data as Garden).is_published === false) {
     return null
   }
 
@@ -84,12 +85,12 @@ async function getNearbyGardens(currentId: string, prefecture?: string): Promise
 
   const { data } = await supabaseServer
     .from('gardens')
-    .select('id, name, address, specialties')
+    .select('*')
     .eq('prefecture', prefecture)
     .neq('id', currentId)
-    .limit(3)
+    .limit(6)
 
-  return (data || []) as Garden[]
+  return ((data || []) as Garden[]).filter(g => g.is_published !== false).slice(0, 3)
 }
 
 // 園の独自説明文を生成（SEO用）
@@ -699,6 +700,26 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
                   </div>
                 </div>
               )}
+
+              {/* 掲載情報の確認日と出典 */}
+              <div className="bg-white rounded-xl shadow-sm p-6 text-sm text-gray-600">
+                <h2 className="text-base font-bold text-primary-900 mb-2">掲載情報について</h2>
+                <p>
+                  {garden.verified_at
+                    ? `${new Date(garden.verified_at).toLocaleDateString('ja-JP')}に、公式サイトなどの公開情報をもとに確認しました。`
+                    : '公開情報をもとに掲載しています。'}
+                  営業時間・定休日などは変わることがあるため、お出かけ前に各園へご確認ください。
+                </p>
+                {garden.source_urls && garden.source_urls.length > 0 && (
+                  <ul className="mt-2 space-y-1">
+                    {garden.source_urls.slice(0, 3).map(url => (
+                      <li key={url} className="truncate">
+                        出典：<a href={url} target="_blank" rel="nofollow noopener noreferrer" className="underline">{url.replace(/^https?:\/\//, '')}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
 
               {/* SNSリンク */}
               {(garden.social_instagram || garden.social_twitter || garden.social_facebook) && (
