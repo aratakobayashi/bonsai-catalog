@@ -13,13 +13,13 @@
   }
   
   body {
-    @apply bg-gradient-hero text-neutral-800 antialiased;
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    @apply bg-paper text-ink antialiased;
+    font-family: var(--font-sans), 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', system-ui, sans-serif;
   }
   
   /* アクセシビリティ: フォーカス状態の強化 */
-  :focus {
-    outline: 2px solid #d4a574;
+  :focus-visible {
+    outline: 2px solid #b8935a;
     outline-offset: 2px;
   }
   

@@ -15,13 +15,13 @@ import {
   type CatalogFilters,
 } from '@/lib/catalog'
 
-const selectClass = 'mt-1 w-full border border-gray-300 rounded-lg px-2 py-2 text-sm bg-white'
-const labelClass = 'text-xs font-medium text-gray-600'
+const selectClass = 'mt-1 w-full border border-line rounded-lg px-2 py-2 text-sm bg-white text-ink'
+const labelClass = 'text-xs font-bold text-ink-soft'
 
 // JavaScript なしで動く絞り込みフォーム（GET 送信で URL に条件が入る）
 export function CatalogFiltersForm({ filters, basePath = '/products' }: { filters: CatalogFilters; basePath?: string }) {
   return (
-    <form action={basePath} className="bg-white rounded-xl shadow-sm p-4 space-y-4">
+    <form action={basePath} className="bg-white rounded-xl border border-line p-4 space-y-4">
       <div>
         <label className={labelClass} htmlFor="catalog-q">キーワード</label>
         <input
@@ -30,7 +30,7 @@ export function CatalogFiltersForm({ filters, basePath = '/products' }: { filter
           name="q"
           defaultValue={filters.q}
           placeholder="例：五葉松 ミニ、信楽焼 鉢"
-          className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+          className="mt-1 w-full border border-line rounded-lg px-3 py-2 text-sm"
         />
       </div>
 
@@ -43,7 +43,7 @@ export function CatalogFiltersForm({ filters, basePath = '/products' }: { filter
           <OptionSelect label="育てやすさ" name="level" value={filters.level} options={LEVEL_OPTIONS} />
           <OptionSelect label="用途" name="use" value={filters.use} options={USE_OPTIONS} />
         </div>
-        <p className="mt-2 text-[11px] text-gray-500">
+        <p className="mt-2 text-[11px] text-ink-muted">
           置き場所・楽しみ方・見ごろ・育てやすさは、樹種ごとの一般的な目安と販売店の表記をもとに判定しています。松やもみじなど多くの盆栽は屋外向きです。
         </p>
       </fieldset>
@@ -92,13 +92,13 @@ export function CatalogFiltersForm({ filters, basePath = '/products' }: { filter
         <legend className={labelClass}>こだわり条件（販売店の表記より）</legend>
         <div className="mt-2 grid grid-cols-2 gap-2">
           {FLAG_OPTIONS.map(o => (
-            <label key={o.value} className="flex items-center gap-2 text-sm text-gray-700">
+            <label key={o.value} className="flex items-center gap-2 text-sm text-ink">
               <input type="checkbox" name="flag" value={o.value} defaultChecked={filters.flags.includes(o.value)} />
               {o.label}
             </label>
           ))}
         </div>
-        <p className="mt-2 text-[11px] text-gray-500">
+        <p className="mt-2 text-[11px] text-ink-muted">
           販売店の商品名に記載がある商品です。実際の条件は各商品ページでご確認ください。
         </p>
       </fieldset>
@@ -111,10 +111,10 @@ export function CatalogFiltersForm({ filters, basePath = '/products' }: { filter
       </label>
 
       <div className="flex gap-2">
-        <button type="submit" className="flex-1 bg-gray-900 hover:bg-gray-800 text-white rounded-lg py-2 text-sm font-medium">
+        <button type="submit" className="flex-1 bg-navy hover:bg-navy-light text-white rounded-lg py-2.5 text-sm font-bold">
           この条件で探す
         </button>
-        <Link href={basePath} className="px-3 py-2 text-sm text-gray-600 border rounded-lg hover:bg-gray-50">
+        <Link href={basePath} className="px-3 py-2.5 text-sm text-ink-soft border border-line rounded-lg hover:bg-paper">
           クリア
         </Link>
       </div>
@@ -126,7 +126,7 @@ export function CatalogFiltersForm({ filters, basePath = '/products' }: { filter
             <Link
               key={preset.label}
               href={buildCatalogUrl(filters, { min: preset.min, max: preset.max }, basePath)}
-              className="text-xs bg-gray-50 border rounded-full px-3 py-1 hover:border-gray-500"
+              className="text-xs bg-paper border border-line rounded-full px-3 py-1 hover:border-gold"
             >
               {preset.label}
             </Link>
@@ -177,7 +177,7 @@ export function CatalogPagination({
   return (
     <nav className="flex flex-wrap justify-center items-center gap-2 mt-8" aria-label="ページ送り">
       {page > 1 && (
-        <Link href={buildCatalogUrl(filters, { page: page - 1 }, basePath)} className="px-3 py-2 border rounded-lg bg-white text-sm">
+        <Link href={buildCatalogUrl(filters, { page: page - 1 }, basePath)} className="px-3 py-2 border border-line rounded-lg bg-white text-sm">
           前へ
         </Link>
       )}
@@ -187,14 +187,14 @@ export function CatalogPagination({
           <Link
             href={buildCatalogUrl(filters, { page: p }, basePath)}
             aria-current={p === page ? 'page' : undefined}
-            className={`px-3 py-2 border rounded-lg text-sm ${p === page ? 'bg-gray-900 text-white border-gray-900' : 'bg-white'}`}
+            className={`px-3 py-2 border rounded-lg text-sm ${p === page ? 'bg-navy text-white border-navy' : 'bg-white border-line'}`}
           >
             {p}
           </Link>
         </span>
       ))}
       {page < totalPages && (
-        <Link href={buildCatalogUrl(filters, { page: page + 1 }, basePath)} className="px-3 py-2 border rounded-lg bg-white text-sm">
+        <Link href={buildCatalogUrl(filters, { page: page + 1 }, basePath)} className="px-3 py-2 border border-line rounded-lg bg-white text-sm">
           次へ
         </Link>
       )}

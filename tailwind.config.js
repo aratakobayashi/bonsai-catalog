@@ -8,6 +8,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // リニューアルのデザイン基準（紺×金、生成り背景）
+        'navy': { DEFAULT: '#1a365d', light: '#2c4a75', dark: '#122848' },
+        'gold': { DEFAULT: '#b8935a', light: '#f3ebdd', dark: '#7d6238' },
+        'paper': '#f7f4ee',
+        'ink': { DEFAULT: '#2b2824', soft: '#57534e', muted: '#78716c' },
+        'line': '#e6e1d6',
+        'rakuten': '#bf0000',
+        'amazon': '#c2570c',
         // 高級感のあるプライマリーカラー（ネイビー）
         'primary': {
           50: '#f0f4f8',
@@ -79,6 +87,8 @@ module.exports = {
           'Noto Color Emoji'
         ],
         'serif': ['ui-serif', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
+        // 見出し用の明朝体（next/font で読み込んだ CSS 変数）
+        'mincho': ['var(--font-mincho)', 'Hiragino Mincho ProN', 'Yu Mincho', 'serif'],
       },
       boxShadow: {
         'luxury': '0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',

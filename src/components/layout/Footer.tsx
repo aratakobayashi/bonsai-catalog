@@ -1,120 +1,28 @@
 import Link from 'next/link'
 
-const Footer = () => {
+const LINKS = [
+  { href: '/about', label: 'このサイトについて' },
+  { href: '/faq', label: 'よくある質問' },
+  { href: '/contact', label: 'お問い合わせ' },
+  { href: '/privacy', label: 'プライバシーポリシー' },
+  { href: '/terms', label: '利用規約' },
+]
+
+export function Footer() {
   return (
-    <footer className="border-t bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* サイト情報 */}
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="h-6 w-6 rounded-full bg-bonsai-green-600 flex items-center justify-center">
-                <span className="text-white font-bold text-xs">盆</span>
-              </div>
-              <span className="font-bold text-bonsai-green-800">
-                盆栽コレクション
-              </span>
-            </div>
-            <p className="text-sm text-gray-600">
-              美しい盆栽をお探しの方のための商品カタログサイトです。
-              初心者から上級者まで、あなたにぴったりの盆栽を見つけてください。
-            </p>
-          </div>
-
-          {/* リンク */}
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-4">サイトマップ</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  ホーム
-                </Link>
-              </li>
-              <li>
-                <Link href="/products" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  商品一覧
-                </Link>
-              </li>
-              <li>
-                <Link href="/gardens" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  盆栽園紹介
-                </Link>
-              </li>
-              <li>
-                <Link href="/events" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  イベント情報
-                </Link>
-              </li>
-              <li>
-                <Link href="/guides" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  記事・ガイド
-                </Link>
-              </li>
-              <li>
-                <Link href="/selection/beginner-mini-bonsai" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  初心者向けミニ盆栽
-                </Link>
-              </li>
-              <li>
-                <Link href="/selection/bonsai-gift" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  盆栽ギフトの選び方
-                </Link>
-              </li>
-              <li>
-                <Link href="/selection/new-year-bonsai" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  正月に飾る盆栽
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* 法的情報・サポート */}
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-4">サポート・法的情報</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/about" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  このサイトについて
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  お問い合わせ
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  プライバシーポリシー
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  利用規約
-                </Link>
-              </li>
-              <li>
-                <a href="https://affiliate.amazon.co.jp" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-600 hover:text-bonsai-green-600">
-                  Amazonアソシエイト
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="border-t pt-8 mt-8">
-          <div className="text-center space-y-2">
-            <p className="text-sm text-gray-600">
-              © 2024-{new Date().getFullYear()} 盆栽コレクション. All rights reserved. 
-              商品の購入は各販売サイト（Amazon等）で行われます。
-            </p>
-            <p className="text-xs text-gray-500">
-              当サイトはプロモーション（広告）を含みます。Amazonのアソシエイトとして、盆栽コレクションは適格販売により収入を得ています。
-            </p>
-          </div>
-        </div>
+    <footer className="border-t border-line bg-paper">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-5 px-4 py-8 lg:flex-row lg:items-start lg:gap-10 lg:px-10">
+        <Link href="/" className="shrink-0 font-mincho text-[15px] font-bold tracking-[0.06em] text-navy">盆栽コレクション</Link>
+        <p className="max-w-xl text-xs leading-relaxed text-ink-muted">
+          当サイトはプロモーション（広告）を含みます。Amazonのアソシエイトとして、盆栽コレクションは適格販売により収入を得ています。
+          価格は取得時点の情報です。楽天市場の商品情報は Supported by Rakuten Developers。
+        </p>
+        <nav className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-ink-soft lg:ml-auto" aria-label="フッターメニュー">
+          {LINKS.map(link => (
+            <Link key={link.href} href={link.href} className="hover:text-gold-dark">{link.label}</Link>
+          ))}
+        </nav>
       </div>
     </footer>
   )
 }
-
-export { Footer }

@@ -1,99 +1,35 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { Home, Package, User, BookOpen, Calendar } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { usePathname } from 'next/navigation'
+import { NAV_ITEMS, isNavActive } from './SiteNav'
 
-const navItems = [
-  {
-    href: '/',
-    label: 'ホーム',
-    icon: Home,
-  },
-  {
-    href: '/guides',
-    label: 'ガイド',
-    icon: BookOpen,
-  },
-  {
-    href: '/products',
-    label: '商品',
-    icon: Package,
-  },
-  {
-    href: '/gardens',
-    label: '盆栽園',
-    icon: User,
-  },
-  {
-    href: '/events',
-    label: 'イベント',
-    icon: Calendar,
-  },
-]
-
+// スマホの下部タブ（ホーム・探す・育て方・出かける）
 export function BottomNavigation() {
-  const pathname = usePathname()
-
+  const pathname = usePathname() || '/'
+  const items = [{ href: '/', label: 'ホーム', match: ['/'] as readonly string[] }, ...NAV_ITEMS]
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
-      {/* 背景とぼかし効果 */}
-      <div className="bg-white/95 backdrop-blur-md border-t border-neutral-200 shadow-luxury">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-around h-16">
-            {navItems.map(({ href, label, icon: Icon }) => {
-              const isActive = pathname === href || (href !== '/' && pathname.startsWith(href))
-              
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  className={cn(
-                    'flex flex-col items-center justify-center space-y-1 py-2 px-3 rounded-lg',
-                    'transition-all duration-200 ease-luxury',
-                    'active:scale-95 hover:bg-neutral-50',
-                    'focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-offset-2',
-                    isActive 
-                      ? 'text-accent-600 bg-accent-50' 
-                      : 'text-neutral-600 hover:text-primary-700'
-                  )}
-                  aria-label={`${label}ページに移動`}
-                >
-                  <div className="relative">
-                    <Icon 
-                      className={cn(
-                        'h-5 w-5 transition-all duration-200',
-                        isActive ? 'scale-110' : 'group-hover:scale-105'
-                      )} 
-                    />
-                    {/* アクティブ時のパルス効果 */}
-                    {isActive && (
-                      <div className="absolute inset-0 animate-pulse-glow">
-                        <Icon className="h-5 w-5 text-accent-400 opacity-50" />
-                      </div>
-                    )}
-                  </div>
-                  <span 
-                    className={cn(
-                      'text-xs font-medium transition-all duration-200',
-                      isActive ? 'text-accent-700' : 'text-neutral-500'
-                    )}
-                  >
-                    {label}
-                  </span>
-                </Link>
-              )
-            })}
-          </div>
-        </div>
-      </div>
-      
-      {/* Safe area for iPhone home indicator */}
-      <div 
-        className="bg-white/95 backdrop-blur-md border-t border-neutral-200" 
-        style={{ height: 'env(safe-area-inset-bottom)' }}
-      />
+    <nav
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white pb-[env(safe-area-inset-bottom)] lg:hidden"
+      aria-label="メインメニュー"
+    >
+      <ul className="grid h-14 grid-cols-4">
+        {items.map(item => {
+          const active = item.href === '/' ? pathname === '/' : isNavActive(pathname, item.match)
+          return (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                aria-current={active ? 'page' : undefined}
+                className={`relative flex h-full items-center justify-center text-[12px] ${active ? 'font-bold text-navy' : 'text-ink-muted'}`}
+              >
+                {active && <span className="absolute top-0 h-[3px] w-6 rounded-b bg-gold" aria-hidden="true" />}
+                {item.label}
+              </Link>
+            </li>
+          )
+        })}
+      </ul>
     </nav>
   )
 }
