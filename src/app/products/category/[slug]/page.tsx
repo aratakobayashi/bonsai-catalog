@@ -19,11 +19,11 @@ interface CategoryPageProps {
   params: { slug: string }
 }
 
+// ビルド時に13ページ分の商品データを同時に取得すると接続が不安定になるため、初回アクセス時に生成する（ISR）
 export const revalidate = 1800
-export const dynamicParams = false
 
 export function generateStaticParams() {
-  return SHOP_CATEGORIES.map(category => ({ slug: category.slug }))
+  return []
 }
 
 const PART_TYPE_BY_SLUG: Record<string, string> = {

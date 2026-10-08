@@ -83,7 +83,7 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
       '@type': 'ListItem',
       position: index + 1,
       url: `${SITE_URL}/products/${product.id}`,
-      name: product.name,
+      name: normalizeProduct(product).name,
     })),
   }
 
@@ -163,7 +163,7 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
                     <tr key={product.id} className="border-t">
                       <td className="px-3 py-2">
                         <Link href={`/products/${product.id}`} className="text-blue-700 hover:underline">
-                          {product.name}
+                          {normalizeProduct(product).name}
                         </Link>
                       </td>
                       <td className="px-3 py-2 whitespace-nowrap">{product.category}</td>

@@ -20,7 +20,7 @@ const LIST_COLUMNS = [
 ].join(', ')
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-async function fetchAllProducts(): Promise<CatalogProduct[]> {
+async function fetchAllProductsOnce(): Promise<CatalogProduct[]> {
   const primary = await supabaseServer
     .from('products')
     .select(LIST_COLUMNS)
@@ -44,6 +44,20 @@ async function fetchAllProducts(): Promise<CatalogProduct[]> {
     .map(normalizeProduct)
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */
+
+// 通信が一時的に切れた場合に備えて2回までやり直す
+async function fetchAllProducts(): Promise<CatalogProduct[]> {
+  let lastError: unknown
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      return await fetchAllProductsOnce()
+    } catch (error) {
+      lastError = error
+      await new Promise(resolve => setTimeout(resolve, 500 * (attempt + 1)))
+    }
+  }
+  throw lastError
+}
 
 // 一覧用の商品データは30分キャッシュ（同期の直後には破棄される）
 export const getCatalogProducts = unstable_cache(fetchAllProducts, ['catalog-products-v1'], {
@@ -73,7 +87,7 @@ interface SpeciesOption {
   match: (p: CatalogProduct) => boolean
 }
 
-const nameMatches = (pattern: RegExp) => (p: CatalogProduct) => pattern.test(p.name)
+const nameMatches = (pattern: RegExp) => (p: CatalogProduct) => pattern.test(p.originalName)
 
 export const SPECIES_OPTIONS: SpeciesOption[] = [
   { value: 'goyomatsu', label: '五葉松', match: nameMatches(/五葉松|ゴヨウマツ/) },
@@ -82,7 +96,7 @@ export const SPECIES_OPTIONS: SpeciesOption[] = [
   { value: 'momiji', label: 'もみじ・楓', match: nameMatches(/もみじ|モミジ|紅葉|楓|カエデ/) },
   { value: 'sakura', label: '桜', match: nameMatches(/桜|さくら|サクラ/) },
   { value: 'ume', label: '梅・長寿梅', match: nameMatches(/梅|うめ|ウメ/) },
-  { value: 'mini', label: 'ミニ盆栽', match: p => p.sizeCategory === 'mini' || /ミニ/.test(p.name) },
+  { value: 'mini', label: 'ミニ盆栽', match: p => p.sizeCategory === 'mini' || /ミニ/.test(p.originalName) },
   { value: 'kokedama', label: '苔玉', match: nameMatches(/苔玉|こけだま|コケダマ/) },
   { value: 'cat-shohaku', label: '松柏類（すべて）', match: p => p.category === '松柏類' },
   { value: 'cat-zouki', label: '雑木類（すべて）', match: p => p.category === '雑木類' },
@@ -204,7 +218,7 @@ export function filterProducts(products: CatalogProduct[], filters: CatalogFilte
     if (filters.shop && p.source !== filters.shop) return false
     if (filters.min && p.price < filters.min) return false
     if (filters.max && p.price > filters.max) return false
-    if (terms.length && !terms.every(t => `${p.name} ${p.shopName} ${p.tags.join(' ')}`.toLowerCase().includes(t))) return false
+    if (terms.length && !terms.every(t => `${p.originalName} ${p.shopName} ${p.tags.join(' ')}`.toLowerCase().includes(t))) return false
     for (const flag of filters.flags) {
       if (flag === 'free_shipping' && p.freeShipping !== true) return false
       if (flag === 'reviewed' && p.reviewCount === 0) return false

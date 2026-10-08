@@ -1,12 +1,16 @@
 // 商品データの共通の形（Amazon・楽天）。サーバー・クライアントのどちらからでも使える
 import type { ProductType } from '@/lib/product-classify'
+import { cleanProductName } from '@/lib/product-name'
 import type { SizeCategory } from '@/types'
 
 export type ProductSource = 'amazon' | 'rakuten'
 
 export interface CatalogProduct {
   id: string
+  // 表示用の名前（楽天の商品は宣伝文句などを除いたもの）
   name: string
+  // 販売ページの元の商品名（検索・絞り込みに使う）
+  originalName: string
   price: number
   imageUrl: string | null
   source: ProductSource
@@ -36,7 +40,8 @@ export function normalizeProduct(row: any): CatalogProduct {
   const isAmazon = source === 'amazon'
   return {
     id: row.id,
-    name: row.name,
+    name: source === 'rakuten' ? cleanProductName(row.name) : row.name,
+    originalName: row.name,
     price: Number(row.price) || 0,
     imageUrl: row.image_url || null,
     source,

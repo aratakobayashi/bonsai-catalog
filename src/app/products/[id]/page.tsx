@@ -5,6 +5,7 @@ import { supabaseServer } from '@/lib/supabase-server'
 import { getCatalogProducts, normalizeProduct, type CatalogProduct } from '@/lib/catalog'
 import { searchRakutenItems } from '@/lib/rakuten'
 import { PRODUCT_TYPE_LABELS } from '@/lib/product-classify'
+import { cleanProductName } from '@/lib/product-name'
 import { getCareGuide, getPurchaseChecklist } from '@/lib/care-guides'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { AFFILIATE_LINK_REL } from '@/lib/affiliate'
@@ -46,8 +47,11 @@ async function getProduct(id: string): Promise<ProductDetail | null> {
   if (error || !data) return null
   const row = data as Record<string, unknown>
   if (row.is_active === false) return null
+  const normalized = normalizeProduct(row)
   return {
-    ...normalizeProduct(row),
+    ...normalized,
+    // 見出し用は一覧より長めに残す
+    name: normalized.source === 'rakuten' ? cleanProductName(normalized.originalName, 60) : normalized.name,
     description: typeof row.description === 'string' ? row.description : '',
     externalId: typeof row.external_id === 'string' ? row.external_id : null,
   }
@@ -84,7 +88,7 @@ function plainDescription(text: string): string {
 }
 
 function categoryLink(product: CatalogProduct) {
-  const slug = product.syncCategory || SHOP_CATEGORIES.find(c => c.group === 'tree' && product.name.includes(c.name))?.slug
+  const slug = product.syncCategory || SHOP_CATEGORIES.find(c => c.group === 'tree' && product.originalName.includes(c.name))?.slug
   const category = SHOP_CATEGORIES.find(c => c.slug === slug)
   return category ? { href: `/products/category/${category.slug}`, label: category.name } : null
 }
@@ -144,6 +148,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     ...(!isPart ? [{ label: '分類', value: product.category }] : []),
     ...(!isPart ? [{ label: 'サイズの目安', value: product.heightCm ? `樹高 約${product.heightCm}cm（${SIZE_LABELS[product.sizeCategory].split('（')[0]}）` : SIZE_LABELS[product.sizeCategory] }] : []),
     { label: '販売ショップ', value: `${product.shopName}（${shopLabel}）` },
+    ...(product.originalName !== product.name ? [{ label: '販売ページの商品名', value: product.originalName }] : []),
     { label: '送料', value: product.freeShipping === true ? '送料無料' : product.freeShipping === false ? '送料別（ショップにより異なります）' : '商品ページでご確認ください' },
     { label: 'レビュー', value: product.reviewCount > 0 ? `★${product.reviewAverage.toFixed(1)}（${product.reviewCount.toLocaleString()}件・${shopLabel}）` : 'まだありません' },
   ]
