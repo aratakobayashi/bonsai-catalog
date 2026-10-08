@@ -5,6 +5,7 @@ import { Event, EventArticle, Product, Article } from '@/types'
 import EventDetailClient from './EventDetailClient'
 import { getEventBySlug } from '@/lib/events'
 import { SITE_URL } from '@/lib/site'
+import { eventDateText, getEventMeta, isTentativeEvent } from '@/lib/event-display'
 
 interface EventDetailPageProps {
   params: { slug: string }
@@ -93,13 +94,16 @@ export async function generateMetadata({ params }: EventDetailPageProps): Promis
     ? new Date(event.end_date).toLocaleDateString('ja-JP', { month: 'long', day: 'numeric' })
     : null
 
-  const dateRange = endDate ? `${startDate} - ${endDate}` : startDate
+  const dateRange = isTentativeEvent(event) ? eventDateText(event, true) : endDate ? `${startDate} - ${endDate}` : startDate
   const title = `${event.title} | ${dateRange} | ${event.prefecture}`
   const description = `${event.title}が${dateRange}に${event.prefecture}${event.venue_name ? `の${event.venue_name}` : ''}で開催。${event.description || '詳細はこちらをご確認ください。'}`
 
   return {
     title,
     description: description.slice(0, 160),
+    alternates: { canonical: `/events/${event.slug}` },
+    // 公式情報で確認したイベントだけを検索結果に出す
+    ...(!getEventMeta(event.slug) && { robots: { index: false, follow: true } }),
     keywords: [
       event.title,
       event.prefecture,
@@ -163,7 +167,7 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
       "@type": "Organization",
       "name": event.organizer_name || "主催者"
     },
-    "offers": event.price_type === 'free' ? {
+    "offers": getEventMeta(event.slug)?.priceKnown === false ? undefined : event.price_type === 'free' ? {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "JPY",
@@ -189,12 +193,15 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(eventJsonLd)
-        }}
-      />
+      {/* 日程が未発表のイベントは、日付が正確でないため構造化データを出さない */}
+      {!isTentativeEvent(event) && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(eventJsonLd)
+          }}
+        />
+      )}
 
       <EventDetailClient
         event={event}

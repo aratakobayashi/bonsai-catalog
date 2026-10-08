@@ -6,6 +6,7 @@ import { Event, EventType } from '@/types'
 import { cn } from '@/lib/utils'
 import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react'
 import { EventCard } from './EventCard'
+import { isTentativeEvent } from '@/lib/event-display'
 
 const eventTypeConfig = {
   exhibition: { color: 'text-green-600 bg-green-50', icon: '🌳', label: '展示' },
@@ -61,9 +62,8 @@ export function EventCalendar({ events, className, viewMode = 'calendar' }: Even
   const eventsByDate = useMemo(() => {
     const dateEvents: Record<string, Event[]> = {}
 
-    console.log('🗺️ EventsByDate Mapping - Total events:', events.length)
-
-    events.forEach(event => {
+    // 日程が未発表のイベントはカレンダーに載せない
+    events.filter(event => !isTentativeEvent(event)).forEach(event => {
       const startDate = new Date(event.start_date)
       const endDate = new Date(event.end_date)
 

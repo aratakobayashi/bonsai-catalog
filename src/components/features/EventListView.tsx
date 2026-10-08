@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Event, EventType } from '@/types'
 import { cn } from '@/lib/utils'
 import { Calendar, MapPin, DollarSign, Users, Clock, ChevronRight, Star } from 'lucide-react'
+import { eventDateText, eventPriceText, isTentativeEvent } from '@/lib/event-display'
 
 const eventTypeConfig = {
   exhibition: { color: 'text-green-600 bg-green-50 border-green-200', icon: '🌳', label: '展示' },
@@ -184,12 +185,10 @@ export function EventListView({ events, className }: EventListViewProps) {
     }
   }
 
-  const getDateRange = (event: Event) => {
-    if (event.start_date === event.end_date) {
-      return formatDate(event.start_date)
-    }
-    return `${formatDate(event.start_date)} - ${formatDate(event.end_date)}`
-  }
+  const getDateRange = (event: Event) =>
+    isTentativeEvent(event) ? eventDateText(event) : event.start_date === event.end_date
+      ? formatDate(event.start_date)
+      : `${formatDate(event.start_date)} - ${formatDate(event.end_date)}`
 
   const isUpcoming = (event: Event) => {
     const today = new Date()
@@ -322,7 +321,7 @@ export function EventListView({ events, className }: EventListViewProps) {
                         "bg-gray-100 text-gray-600"
                       )}>
                         <div className="text-base leading-none">
-                          {new Date(event.start_date).toLocaleDateString('ja-JP', {
+                          {isTentativeEvent(event) ? '日程未定' : new Date(event.start_date).toLocaleDateString('ja-JP', {
                             month: 'numeric',
                             day: 'numeric'
                           })}
@@ -391,7 +390,7 @@ export function EventListView({ events, className }: EventListViewProps) {
                           "font-medium",
                           event.price_type === 'free' ? "text-green-600" : "text-gray-900"
                         )}>
-                          {event.price_type === 'free' ? '無料' : '有料'}
+                          {eventPriceText(event)}
                         </span>
                       </div>
                       {event.price_note && (
@@ -418,7 +417,7 @@ export function EventListView({ events, className }: EventListViewProps) {
                         "bg-gray-100 text-gray-600"
                       )}>
                         <div className="text-base leading-none">
-                          {new Date(event.start_date).toLocaleDateString('ja-JP', {
+                          {isTentativeEvent(event) ? '日程未定' : new Date(event.start_date).toLocaleDateString('ja-JP', {
                             month: 'numeric',
                             day: 'numeric'
                           })}
@@ -470,7 +469,7 @@ export function EventListView({ events, className }: EventListViewProps) {
                               ? "bg-green-100 text-green-700"
                               : "bg-gray-100 text-gray-700"
                           )}>
-                            {event.price_type === 'free' ? '🎫 無料' : '💴 有料'}
+                            {eventPriceText(event)}
                           </div>
                         </div>
                       </div>

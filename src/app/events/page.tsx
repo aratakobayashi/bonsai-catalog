@@ -3,6 +3,7 @@ import { Suspense } from 'react'
 import EventsPageClient from './EventsPageClient'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/events' },
   title: '盆栽イベント情報 | 展示会・即売会・ワークショップ一覧',
   description: '全国の盆栽イベント情報をカレンダー形式で掲載。展示会、即売会、ワークショップ、講習会など様々なイベントを地域・開催日・種別で検索できます。',
   keywords: [

@@ -19,6 +19,7 @@ import {
   Bookmark
 } from 'lucide-react'
 import { EventCard } from '@/components/features/EventCard'
+import { eventDateText, eventPriceText, isTentativeEvent } from '@/lib/event-display'
 
 const eventTypeConfig = {
   exhibition: { color: 'text-green-600 bg-green-50', icon: '🌳', label: '展示' },
@@ -111,7 +112,7 @@ export default function EventDetailClient({
                       ))}
                     </div>
                     <h1 className="text-2xl font-bold text-gray-900 mb-2">{event.title}</h1>
-                    <p className="text-gray-600">{getDateRange(event.start_date, event.end_date)}</p>
+                    <p className="text-gray-600">{eventDateText(event, true)}</p>
                   </div>
                   <div className="flex gap-2 ml-4">
                     <button className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
@@ -129,7 +130,7 @@ export default function EventDetailClient({
                     <Calendar className="h-5 w-5 text-gray-500" />
                     <div>
                       <p className="text-sm text-gray-500">開催期間</p>
-                      <p className="font-medium">{getDateRange(event.start_date, event.end_date)}</p>
+                      <p className="font-medium">{eventDateText(event, true)}</p>
                     </div>
                   </div>
 
@@ -149,7 +150,7 @@ export default function EventDetailClient({
                     <div>
                       <p className="text-sm text-gray-500">参加費</p>
                       <p className="font-medium">
-                        {event.price_type === 'free' ? '無料' : event.price_note || '有料'}
+                        {eventPriceText(event)}
                       </p>
                     </div>
                   </div>
@@ -406,7 +407,7 @@ export default function EventDetailClient({
                   <Calendar className="h-4 w-4 text-gray-500" />
                   <div>
                     <p className="text-sm text-gray-500">期間</p>
-                    <p className="text-sm font-medium">{getDateRange(event.start_date, event.end_date)}</p>
+                    <p className="text-sm font-medium">{eventDateText(event, true)}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -421,7 +422,7 @@ export default function EventDetailClient({
                   <div>
                     <p className="text-sm text-gray-500">参加費</p>
                     <p className="text-sm font-medium">
-                      {event.price_type === 'free' ? '無料' : event.price_note || '有料'}
+                      {eventPriceText(event)}
                     </p>
                   </div>
                 </div>

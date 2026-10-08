@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Event, EventType } from '@/types'
 import { cn } from '@/lib/utils'
 import { Calendar, MapPin, DollarSign, Users } from 'lucide-react'
+import { eventDateText, eventPriceText, isTentativeEvent } from '@/lib/event-display'
 
 const eventTypeConfig = {
   exhibition: { color: 'text-green-600 bg-green-50', icon: '🌳', label: '展示' },
@@ -27,12 +28,7 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
     })
   }
 
-  const getDateRange = () => {
-    if (event.start_date === event.end_date) {
-      return formatDate(event.start_date)
-    }
-    return `${formatDate(event.start_date)} - ${formatDate(event.end_date)}`
-  }
+  const getDateRange = () => eventDateText(event)
 
   const isUpcoming = () => {
     const today = new Date()
@@ -100,7 +96,7 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
           {/* デスクトップ：左側の日付 */}
           <div className="hidden sm:flex flex-shrink-0 text-center min-w-[60px]" role="img" aria-label={`${formatDate(event.start_date)}開催`}>
             <div className="text-sm font-semibold text-gray-900">
-              {new Date(event.start_date).getDate()}
+              {isTentativeEvent(event) ? '未定' : new Date(event.start_date).getDate()}
             </div>
             <div className="text-xs text-gray-500 uppercase">
               {new Date(event.start_date).toLocaleDateString('ja-JP', { month: 'short' })}
@@ -145,7 +141,7 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-1">
                   <DollarSign className="h-4 w-4" />
-                  <span>{event.price_type === 'free' ? '無料' : '有料'}</span>
+                  <span>{eventPriceText(event)}</span>
                 </div>
 
                 {/* モバイル：日付表示を補完 */}
@@ -245,7 +241,7 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1 text-xs text-gray-600">
                 <DollarSign className="h-3 w-3" />
-                <span>{event.price_type === 'free' ? '無料' : '有料'}</span>
+                <span>{eventPriceText(event)}</span>
               </div>
               {isUpcoming() && (
                 <span className="text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded">
@@ -316,8 +312,7 @@ export function EventCard({ event, className, layout = 'card' }: EventCardProps)
             <div className="flex items-center gap-2">
               <DollarSign className="h-4 w-4 text-gray-400" />
               <span>
-                {event.price_type === 'free' ? '無料' : '有料'}
-                {event.price_note && ` • ${event.price_note}`}
+                {eventPriceText(event)}
               </span>
             </div>
 

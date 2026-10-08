@@ -7,6 +7,7 @@ import { Event } from '@/types'
 import { cn } from '@/lib/utils'
 import { MapPin, Calendar, DollarSign } from 'lucide-react'
 import { EventCard } from './EventCard'
+import { eventDateText, eventPriceText, isTentativeEvent } from '@/lib/event-display'
 
 // Dynamically import Leaflet components to avoid SSR issues
 const MapContainer = dynamic(
@@ -151,12 +152,10 @@ export function EventMap({ events, className, selectedEvent, onEventSelect }: Ev
     })
   }
 
-  const getDateRange = (event: Event) => {
-    if (event.start_date === event.end_date) {
-      return formatDate(event.start_date)
-    }
-    return `${formatDate(event.start_date)} - ${formatDate(event.end_date)}`
-  }
+  const getDateRange = (event: Event) =>
+    isTentativeEvent(event) ? eventDateText(event) : event.start_date === event.end_date
+      ? formatDate(event.start_date)
+      : `${formatDate(event.start_date)} - ${formatDate(event.end_date)}`
 
   const isUpcoming = (event: Event) => {
     const today = new Date()
@@ -255,7 +254,7 @@ export function EventMap({ events, className, selectedEvent, onEventSelect }: Ev
                           </div>
                           <div className="flex items-center gap-1">
                             <DollarSign className="h-3 w-3" />
-                            <span>{event.price_type === 'free' ? '無料' : '有料'}</span>
+                            <span>{eventPriceText(event)}</span>
                           </div>
                         </div>
                         {event.venue_name && (

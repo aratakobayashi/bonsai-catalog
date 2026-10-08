@@ -1,3 +1,4 @@
+import eventData from '@/data/event-updates.json'
 import { SELECTIONS } from '@/lib/selections'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { baseUrl, SITEMAP_CONFIG, createSitemapResponse, generateXmlHeader, generateXmlFooter, generateUrlElement } from '@/lib/sitemap-utils'
@@ -32,6 +33,18 @@ export async function GET() {
         lastMod: new Date().toISOString().split('T')[0],
         changeFreq: 'daily',
         priority: 0.8
+      })),
+      {
+        url: `${baseUrl}/events`,
+        lastMod: new Date().toISOString().split('T')[0],
+        changeFreq: 'weekly',
+        priority: 0.7
+      },
+      ...(eventData.inserts as { slug: string }[]).map(event => ({
+        url: `${baseUrl}/events/${event.slug}`,
+        lastMod: eventData.verifiedAt || new Date().toISOString().split('T')[0],
+        changeFreq: 'weekly',
+        priority: 0.6
       })),
       {
         url: `${baseUrl}/shindan`,
