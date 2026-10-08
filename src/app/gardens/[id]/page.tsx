@@ -458,7 +458,7 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
               {sources.length > 0 && (
                 <ul className="mt-2 space-y-1">
                   {sources.slice(0, 3).map(url => (
-                    <li key={url} className="truncate">
+                    <li key={url} className="break-all">
                       出典：<a href={url} target="_blank" rel="nofollow noopener noreferrer" className="text-navy underline hover:text-gold-dark">{url.replace(/^https?:\/\//, '')}</a>
                     </li>
                   ))}

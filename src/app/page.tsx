@@ -45,8 +45,11 @@ const BUDGET_TABS = [
 const byReviews = (a: CatalogProduct, b: CatalogProduct) => b.reviewCount - a.reviewCount || b.reviewAverage - a.reviewAverage
 
 // 条件に合う商品のうち、レビューが多く画像のあるもの
-function pickImage(products: CatalogProduct[], match: (p: CatalogProduct) => boolean): CatalogProduct | undefined {
-  return products.filter(p => p.imageUrl && match(p)).sort(byReviews)[0]
+// used に入っている商品は避ける（カードごとに違う写真にするため）
+function pickImage(products: CatalogProduct[], match: (p: CatalogProduct) => boolean, used?: Set<string>): CatalogProduct | undefined {
+  const picked = products.filter(p => p.imageUrl && match(p) && !used?.has(p.id)).sort(byReviews)[0]
+  if (picked) used?.add(picked.id)
+  return picked
 }
 
 async function getPopularArticles(): Promise<Article[]> {
@@ -95,6 +98,7 @@ export default async function HomePage() {
   const seasonMatch = SPECIES_OPTIONS.find(o => o.value === season.slug)?.match
   const seasonProduct = seasonMatch ? pickImage(trees.concat(products.filter(p => p.productType === 'kokedama')), seasonMatch) : undefined
 
+  const usedImages = new Set<string>()
   const purposes = [
     ...PURPOSE_ORDER.map(slug => SELECTIONS.find(s => s.slug === slug)).filter(Boolean).map(selection => {
       const s = selection!
@@ -102,7 +106,7 @@ export default async function HomePage() {
         s.slug === 'beginner-mini-bonsai' ? p => p.productType === 'tree' && (p.sizeCategory === 'mini' || p.sizeCategory === 'small') && p.level === 'easy'
           : s.slug === 'bonsai-gift' ? p => p.productType === 'tree' && (p.gift || p.wrapping)
             : p => p.productType === 'tree' && p.newYear
-      return { href: `/selection/${s.slug}`, ...PURPOSE_LABELS[s.slug], product: pickImage(products, match) }
+      return { href: `/selection/${s.slug}`, ...PURPOSE_LABELS[s.slug], product: pickImage(products, match, usedImages) }
     }),
     {
       href: '/products?type=parts',

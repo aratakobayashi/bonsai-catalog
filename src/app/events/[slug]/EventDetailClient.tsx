@@ -226,7 +226,7 @@ export default function EventDetailClient({
             {meta && meta.sources.length > 0 && (
               <ul className="mt-2 space-y-0.5">
                 {meta.sources.map(src => (
-                  <li key={src} className="truncate">
+                  <li key={src} className="break-all">
                     出典：
                     <a href={src} target="_blank" rel="noopener noreferrer" className="text-navy underline hover:text-gold-dark">
                       {(() => { try { const u = new URL(src); return decodeURI(u.hostname + u.pathname) } catch { return src } })()}

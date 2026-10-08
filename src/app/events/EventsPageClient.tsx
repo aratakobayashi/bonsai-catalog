@@ -166,7 +166,6 @@ export default function EventsPageClient() {
 
   useEffect(() => {
     fetchEvents(filters)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters])
 
   // 表示するイベント：既定は開催中・これから（開催日順）。終了分は新しい順
