@@ -20,7 +20,7 @@ const LIST_COLUMNS = [
 ].join(', ')
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-async function fetchAllProductsOnce(): Promise<CatalogProduct[]> {
+async function fetchAllProductsOnce(): Promise<any[]> {
   const primary = await supabaseServer
     .from('products')
     .select(LIST_COLUMNS)
@@ -39,14 +39,11 @@ async function fetchAllProductsOnce(): Promise<CatalogProduct[]> {
     console.error('商品データの取得エラー:', error.message)
     return []
   }
-  return (data || [])
-    .filter((row: any) => row.is_active !== false)
-    .map(normalizeProduct)
+  return (data || []).filter((row: any) => row.is_active !== false)
 }
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
 // 通信が一時的に切れた場合に備えて2回までやり直す
-async function fetchAllProducts(): Promise<CatalogProduct[]> {
+async function fetchAllProducts(): Promise<any[]> {
   let lastError: unknown
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
@@ -59,11 +56,17 @@ async function fetchAllProducts(): Promise<CatalogProduct[]> {
   throw lastError
 }
 
-// 一覧用の商品データは30分キャッシュ（同期の直後には破棄される）
-export const getCatalogProducts = unstable_cache(fetchAllProducts, ['catalog-products-v1'], {
+// DB の行データを30分キャッシュし（同期の直後には破棄される）、表示用の形への変換は毎回行う。
+// 変換処理（商品名の整理など）を変えたときに、古いキャッシュの表示が残らないようにするため
+const getCachedProductRows = unstable_cache(fetchAllProducts, ['catalog-product-rows-v1'], {
   revalidate: 1800,
   tags: [PRODUCTS_CACHE_TAG],
 })
+
+export async function getCatalogProducts(): Promise<CatalogProduct[]> {
+  return (await getCachedProductRows()).map(normalizeProduct)
+}
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 // ---- 絞り込みの選択肢 ----
 
