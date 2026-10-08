@@ -1,0 +1,884 @@
+[
+  {
+    "title": "第105回 秋の小品盆栽展",
+    "slug": "nagoya-shohin-aki-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-10-10",
+    "end_date": "2026-10-11",
+    "usual_period": null,
+    "prefecture": "愛知県",
+    "city": "名古屋市",
+    "venue_name": "桜華会館",
+    "address": "名古屋市中区三の丸",
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "名古屋小品盆栽会",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac%ef%bc%91%ef%bc%90%ef%bc%95%e5%9b%9e%e7%a7%8b%e3%81%ae%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+    "description": "名古屋小品盆栽会による秋の定期展で、20〜24席の小品盆栽が飾られる。会場では即売も行われる。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac%ef%bc%91%ef%bc%90%ef%bc%95%e5%9b%9e%e7%a7%8b%e3%81%ae%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/tokai/"
+    ],
+    "notes": "9時〜16時。後援：愛知県・名古屋市。"
+  },
+  {
+    "title": "名古屋城盆栽展",
+    "slug": "nagoya-castle-bonsai-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-10-16",
+    "end_date": "2026-10-18",
+    "usual_period": null,
+    "prefecture": "愛知県",
+    "city": "名古屋市",
+    "venue_name": "名古屋城 屋外展示屋形・新御殿孔雀之間",
+    "address": null,
+    "types": [
+      "exhibition"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "（一社）日本盆栽協会愛知県支部連合会・名古屋支部",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e5%90%8d%e5%8f%a4%e5%b1%8b%e5%9f%8e%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+    "description": "名古屋城の屋外展示屋形と新御殿孔雀之間を会場に、日本盆栽協会の愛知県内支部が盆栽を展示する。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e5%90%8d%e5%8f%a4%e5%b1%8b%e5%9f%8e%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/tokai/"
+    ],
+    "notes": "最終日は15時まで。名古屋城の入場料については記載なし。"
+  },
+  {
+    "title": "小品盆栽銘品展",
+    "slug": "mie-shohin-meihin-ten-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-10-17",
+    "end_date": "2026-10-18",
+    "usual_period": null,
+    "prefecture": "三重県",
+    "city": "鈴鹿市",
+    "venue_name": "鈴鹿ハンター 1階サブコート",
+    "address": "鈴鹿市算所",
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "三重小品盆栽会・全小協東海支部三重",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e9%8a%98%e5%93%81%e5%b1%95%ef%bc%88%e4%b8%89%e9%87%8d%e7%9c%8c%ef%bc%89/",
+    "description": "三重小品盆栽会と全日本小品盆栽協会東海支部三重が、商業施設内で選りすぐりの小品盆栽を展示する。即売コーナーもある。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e9%8a%98%e5%93%81%e5%b1%95%ef%bc%88%e4%b8%89%e9%87%8d%e7%9c%8c%ef%bc%89/",
+      "https://shohin-bonsai.or.jp/event/2026%e5%b9%b41011%e6%9c%88%e3%81%ae%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e4%ba%88%e5%ae%9a%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/"
+    ],
+    "notes": "初日9時から、最終日18時まで。"
+  },
+  {
+    "title": "第41回 岐阜小品盆栽展",
+    "slug": "gifu-shohin-ten-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-10-17",
+    "end_date": "2026-10-18",
+    "usual_period": null,
+    "prefecture": "岐阜県",
+    "city": "岐阜市",
+    "venue_name": "岐阜公園内 華松軒",
+    "address": "岐阜市大宮町",
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "岐阜小品盆栽会",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac41%e5%9b%9e%e5%b2%90%e9%98%9c%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%e3%80%80%e7%9b%86%e6%a8%b9%e9%81%94%e3%81%8c%e5%89%b5%e3%82%8b%e8%87%aa%e7%84%b6%e7%a9%ba%e9%96%93/",
+    "description": "全小協認定団体の岐阜小品盆栽会が、岐阜公園内の華松軒で小品盆栽を飾り付けて公開する。即売もある。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac41%e5%9b%9e%e5%b2%90%e9%98%9c%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%e3%80%80%e7%9b%86%e6%a8%b9%e9%81%94%e3%81%8c%e5%89%b5%e3%82%8b%e8%87%aa%e7%84%b6%e7%a9%ba%e9%96%93/",
+      "https://shohin-bonsai.or.jp/event/2026%e5%b9%b41011%e6%9c%88%e3%81%ae%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e4%ba%88%e5%ae%9a%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/"
+    ],
+    "notes": "9時〜15時。副題「盆樹達が創る自然空間」。"
+  },
+  {
+    "title": "岡崎緑風展",
+    "slug": "okazaki-ryokufu-ten-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-10-23",
+    "end_date": "2026-10-25",
+    "usual_period": null,
+    "prefecture": "愛知県",
+    "city": "岡崎市",
+    "venue_name": "岡崎城公園 多目的広場",
+    "address": null,
+    "types": [
+      "exhibition",
+      "sale",
+      "workshop"
+    ],
+    "price_type": null,
+    "price_note": "講習会は無料（盆栽持参）",
+    "organizer_name": "（一社）日本盆栽協会岡崎支部",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e5%b2%a1%e5%b4%8e%e7%b7%91%e9%a2%a8%e5%b1%95%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+    "description": "日本盆栽協会岡崎支部が岡崎城公園で開く盆栽展。即売に加え、持参した盆栽を使う無料講習会が開かれる。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e5%b2%a1%e5%b4%8e%e7%b7%91%e9%a2%a8%e5%b1%95%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/tokai/"
+    ],
+    "notes": "講習会は23日・24日の13時〜15時。最終日は15時まで。"
+  },
+  {
+    "title": "第43回 岐阜羽島盆栽展",
+    "slug": "gifu-hashima-bonsai-ten-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-11-13",
+    "end_date": "2026-11-15",
+    "usual_period": null,
+    "prefecture": "岐阜県",
+    "city": "羽島市",
+    "venue_name": "羽島市民会館",
+    "address": "羽島市福寿町浅平",
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "岐阜羽島盆栽協会",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac43%e5%9b%9e%e5%b2%90%e9%98%9c%e7%be%bd%e5%b3%b6%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%b2%90%e9%98%9c%e7%9c%8c%ef%bc%89/",
+    "description": "松柏や老鴉柿、雑木、山野草などを並べる岐阜羽島盆栽協会の展示会。即売も実施される。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac43%e5%9b%9e%e5%b2%90%e9%98%9c%e7%be%bd%e5%b3%b6%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%b2%90%e9%98%9c%e7%9c%8c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/tokai/"
+    ],
+    "notes": "最終日は14時まで。後援：羽島市・中日新聞社・月刊近代盆栽。"
+  },
+  {
+    "title": "第125回 濃風会盆栽展・水石展",
+    "slug": "nofukai-bonsai-suiseki-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-11-14",
+    "end_date": "2026-11-15",
+    "usual_period": null,
+    "prefecture": "岐阜県",
+    "city": "関市",
+    "venue_name": "関市文化会館 1階ホワイエ",
+    "address": null,
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "濃風会",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac%ef%bc%91%ef%bc%92%ef%bc%95%e5%9b%9e%e6%bf%83%e9%a2%a8%e4%bc%9a%e7%9b%86%e6%a0%bd%e5%b1%95%e3%83%bb%e6%b0%b4%e7%9f%b3%e5%b1%95%ef%bc%88%e5%b2%90%e9%98%9c%e7%9c%8c%ef%bc%89/",
+    "description": "125回を数える濃風会の展示会で、盆栽と水石をあわせて公開する。会場では即売も行われる。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac%ef%bc%91%ef%bc%92%ef%bc%95%e5%9b%9e%e6%bf%83%e9%a2%a8%e4%bc%9a%e7%9b%86%e6%a0%bd%e5%b1%95%e3%83%bb%e6%b0%b4%e7%9f%b3%e5%b1%95%ef%bc%88%e5%b2%90%e9%98%9c%e7%9c%8c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/tokai/"
+    ],
+    "notes": "9時〜17時（最終日16時まで）。"
+  },
+  {
+    "title": "第56回 秋葉路小品盆栽連合展",
+    "slug": "akihaji-shohin-rengo-ten-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-11-20",
+    "end_date": "2026-11-22",
+    "usual_period": null,
+    "prefecture": "静岡県",
+    "city": "浜松市",
+    "venue_name": "JAとぴあ浜松 浜北営農緑花木センター",
+    "address": "浜松市浜名区新原",
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "盆栽の生熊（協力：盆栽サロン遠州秋葉）",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac56%e5%9b%9e%e7%a7%8b%e8%91%89%e8%b7%af%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e9%80%a3%e5%90%88%e5%b1%95%ef%bc%88%e9%9d%99%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+    "description": "遠州地域の小品盆栽愛好会が合同で出品する連合展。即売があり、美術展「ギャラリー秋葉路」も同時に開かれる。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac56%e5%9b%9e%e7%a7%8b%e8%91%89%e8%b7%af%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e9%80%a3%e5%90%88%e5%b1%95%ef%bc%88%e9%9d%99%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/tokai/"
+    ],
+    "notes": "9時〜16時。"
+  },
+  {
+    "title": "第15回 東海雅展",
+    "slug": "tokai-miyabi-ten-2027",
+    "date_status": "confirmed",
+    "start_date": "2027-02-27",
+    "end_date": "2027-02-28",
+    "usual_period": null,
+    "prefecture": "愛知県",
+    "city": "名古屋市",
+    "venue_name": "庄内緑地 グリーンプラザ",
+    "address": null,
+    "types": [
+      "exhibition"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "（公社）全日本小品盆栽協会",
+    "official_url": "https://shohin-bonsai.or.jp/event/the-next-shohinbonsai-miyabi-ten-exhibition-to-be-held-in-2026-2027/",
+    "description": "全日本小品盆栽協会が東海地区で開く雅展シリーズの小品盆栽展。名古屋市の庄内緑地を会場とする。",
+    "sources": [
+      "https://shohin-bonsai.or.jp/event/the-next-shohinbonsai-miyabi-ten-exhibition-to-be-held-in-2026-2027/"
+    ],
+    "notes": "詳細（時間・入場料・即売等）は協会から追って告知予定。"
+  },
+  {
+    "title": "銘風盆栽展",
+    "slug": "meifu-bonsai-ten-2027",
+    "date_status": "tentative",
+    "start_date": null,
+    "end_date": null,
+    "usual_period": "例年1月上旬",
+    "prefecture": "愛知県",
+    "city": "名古屋市",
+    "venue_name": "名古屋市中小企業振興会館（吹上ホール）",
+    "address": "名古屋市千種区吹上2-6-3",
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": "paid",
+    "price_note": "2026年1月開催時は入場料1,000円",
+    "organizer_name": "中部盆栽組合",
+    "official_url": "https://aichinow.pref.aichi.jp/events/detail/1976/",
+    "description": "中部盆栽組合が主催する歴史の長い盆栽展で、全国から選ばれた盆栽や水石が並び、即売も行われる。",
+    "sources": [
+      "https://aichinow.pref.aichi.jp/events/detail/1976/"
+    ],
+    "notes": "第89回は2026年1月9日〜11日に開催。2027年の日程は未発表。"
+  },
+  {
+    "title": "第22回 秋季皐月盆栽展示会",
+    "slug": "sakai-satsuki-aki-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-10-14",
+    "end_date": "2026-10-18",
+    "usual_period": null,
+    "prefecture": "大阪府",
+    "city": "堺市",
+    "venue_name": "堺市都市緑化センター",
+    "address": "堺市堺区東上野芝",
+    "types": [
+      "exhibition"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "堺皐月会",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac22%e5%9b%9e%e7%a7%8b%e5%ad%a3%e7%9a%90%e6%9c%88%e7%9b%86%e6%a0%bd%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e5%a4%a7%e9%98%aa%e5%ba%9c%ef%bc%89/",
+    "description": "堺皐月会が秋に開くさつき盆栽の展示会で、堺市都市緑化センターに会員の作品が並ぶ。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac22%e5%9b%9e%e7%a7%8b%e5%ad%a3%e7%9a%90%e6%9c%88%e7%9b%86%e6%a0%bd%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e5%a4%a7%e9%98%aa%e5%ba%9c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/kinki/"
+    ],
+    "notes": "9時30分〜16時30分（最終日16時まで）。"
+  },
+  {
+    "title": "第21回 広樹展 小品盆栽in法然院",
+    "slug": "koju-ten-honenin-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-10-24",
+    "end_date": "2026-10-25",
+    "usual_period": null,
+    "prefecture": "京都府",
+    "city": "京都市",
+    "venue_name": "法然院 方丈",
+    "address": "京都市左京区鹿ヶ谷御所ノ段町",
+    "types": [
+      "exhibition"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "広樹会",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac21%e5%9b%9e%e5%ba%83%e6%a8%b9%e5%b1%95%e3%80%80%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bdin%e6%b3%95%e7%84%b6%e9%99%a2%ef%bc%88%e4%ba%ac%e9%83%bd%e5%ba%9c%ef%bc%89/",
+    "description": "全小協認定団体の広樹会が、法然院の方丈で小品盆栽を座敷飾りで公開する展示会。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac21%e5%9b%9e%e5%ba%83%e6%a8%b9%e5%b1%95%e3%80%80%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bdin%e6%b3%95%e7%84%b6%e9%99%a2%ef%bc%88%e4%ba%ac%e9%83%bd%e5%ba%9c%ef%bc%89/",
+      "https://shohin-bonsai.or.jp/event/2026%e5%b9%b41011%e6%9c%88%e3%81%ae%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e4%ba%88%e5%ae%9a%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/"
+    ],
+    "notes": "10時〜16時。"
+  },
+  {
+    "title": "大阪醍醐愛石会 第53回石展",
+    "slug": "osaka-daigo-aiseki-ishiten-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-11-07",
+    "end_date": "2026-11-08",
+    "usual_period": null,
+    "prefecture": "大阪府",
+    "city": "大阪市",
+    "venue_name": "大阪府立江之子島文化芸術創造センター 2階",
+    "address": null,
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": "free",
+    "price_note": "入場無料",
+    "organizer_name": "大阪醍醐愛石会",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e5%a4%a7%e9%98%aa%e9%86%8d%e9%86%90%e6%84%9b%e7%9f%b3%e4%bc%9a%e7%ac%ac53%e5%9b%9e%e7%9f%b3%e5%b1%95%ef%bc%88%e5%a4%a7%e9%98%aa%e5%ba%9c%ef%bc%89/",
+    "description": "大阪醍醐愛石会による水石の展示会で、即売や水石に関する相談コーナーも設けられる。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e5%a4%a7%e9%98%aa%e9%86%8d%e9%86%90%e6%84%9b%e7%9f%b3%e4%bc%9a%e7%ac%ac53%e5%9b%9e%e7%9f%b3%e5%b1%95%ef%bc%88%e5%a4%a7%e9%98%aa%e5%ba%9c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/kinki/"
+    ],
+    "notes": "10時〜16時（最終日15時まで）。地下鉄阿波座駅から徒歩3分。"
+  },
+  {
+    "title": "秋のさつき・盆草合同展",
+    "slug": "mozuen-satsuki-bonkusa-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-11-06",
+    "end_date": "2026-11-08",
+    "usual_period": null,
+    "prefecture": "大阪府",
+    "city": "堺市",
+    "venue_name": "百舌鳥園 展示場",
+    "address": "堺市北区中百舌鳥町",
+    "types": [
+      "exhibition"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "関西さつき会・堺盆草会",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%a7%8b%e3%81%ae%e3%81%95%e3%81%a4%e3%81%8d%e3%83%bb%e7%9b%86%e8%8d%89%e5%90%88%e5%90%8c%e5%b1%95%ef%bc%88%e5%a4%a7%e9%98%aa%e5%ba%9c%ef%bc%89/",
+    "description": "関西さつき会と堺盆草会が合同で開く秋の展示会で、さつき盆栽と盆草を観賞できる。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%a7%8b%e3%81%ae%e3%81%95%e3%81%a4%e3%81%8d%e3%83%bb%e7%9b%86%e8%8d%89%e5%90%88%e5%90%8c%e5%b1%95%ef%bc%88%e5%a4%a7%e9%98%aa%e5%ba%9c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/kinki/"
+    ],
+    "notes": "10時〜16時。"
+  },
+  {
+    "title": "第43回 小品盆栽展（奈良明治会）",
+    "slug": "nara-meiji-shohin-ten-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-11-07",
+    "end_date": "2026-11-08",
+    "usual_period": null,
+    "prefecture": "奈良県",
+    "city": "奈良市",
+    "venue_name": "奈良県護国神社",
+    "address": "奈良市古市町",
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "奈良明治会",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac43%e5%9b%9e%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%a5%88%e8%89%af%e7%9c%8c%ef%bc%89/",
+    "description": "奈良明治会が奈良県護国神社で開く小品盆栽展で、さつきなどの盆栽展示も併せて行われる。即売あり。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac43%e5%9b%9e%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%a5%88%e8%89%af%e7%9c%8c%ef%bc%89/",
+      "https://shohin-bonsai.or.jp/event/2026%e5%b9%b41011%e6%9c%88%e3%81%ae%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e4%ba%88%e5%ae%9a%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/"
+    ],
+    "notes": "10時〜16時（最終日15時まで）。無料大駐車場あり。"
+  },
+  {
+    "title": "秋季さつき展（京都府立植物園）",
+    "slug": "kyoto-botanical-satsuki-aki-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-11-13",
+    "end_date": "2026-11-15",
+    "usual_period": null,
+    "prefecture": "京都府",
+    "city": "京都市",
+    "venue_name": "京都府立植物園",
+    "address": "京都市左京区下鴨半木町",
+    "types": [
+      "exhibition"
+    ],
+    "price_type": null,
+    "price_note": "植物園入園料が必要（展示自体の料金は記載なし）",
+    "organizer_name": "京都府立植物園",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%a7%8b%e5%ad%a3%e3%81%95%e3%81%a4%e3%81%8d%e5%b1%95%ef%bc%88%e4%ba%ac%e9%83%bd%e5%ba%9c%ef%bc%89/",
+    "description": "京都府立植物園で秋に開かれるさつきの展示会。紅葉期の植物園とあわせて観覧できる。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%a7%8b%e5%ad%a3%e3%81%95%e3%81%a4%e3%81%8d%e5%b1%95%ef%bc%88%e4%ba%ac%e9%83%bd%e5%ba%9c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/kinki/"
+    ],
+    "notes": "時間の記載なし。問合せ：京都府立植物園。"
+  },
+  {
+    "title": "第23回 神戸盆栽を楽しむ会展示会",
+    "slug": "kobe-bonsai-tanoshimu-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-11-14",
+    "end_date": "2026-11-15",
+    "usual_period": null,
+    "prefecture": "兵庫県",
+    "city": "神戸市",
+    "venue_name": "神戸市立御影公会堂",
+    "address": "神戸市東灘区御影石町",
+    "types": [
+      "exhibition"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "神戸盆栽を楽しむ会",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac23%e5%9b%9e%e7%a5%9e%e6%88%b8%e7%9b%86%e6%a0%bd%e3%82%92%e6%a5%bd%e3%81%97%e3%82%80%e4%bc%9a%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e5%85%b5%e5%ba%ab%e7%9c%8c%ef%bc%89/",
+    "description": "神戸盆栽を楽しむ会が御影公会堂で開く盆栽展で、会員が育てた作品が展示される。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac23%e5%9b%9e%e7%a5%9e%e6%88%b8%e7%9b%86%e6%a0%bd%e3%82%92%e6%a5%bd%e3%81%97%e3%82%80%e4%bc%9a%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e5%85%b5%e5%ba%ab%e7%9c%8c%ef%bc%89/",
+      "https://shohin-bonsai.or.jp/event/2026%e5%b9%b41011%e6%9c%88%e3%81%ae%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e4%ba%88%e5%ae%9a%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/"
+    ],
+    "notes": "10時〜17時（最終日16時まで）。後援：神戸新聞社ほか。"
+  },
+  {
+    "title": "第46回 日本盆栽大観展",
+    "slug": "taikan-ten-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-11-20",
+    "end_date": "2026-11-23",
+    "usual_period": null,
+    "prefecture": "京都府",
+    "city": "京都市",
+    "venue_name": "京都市勧業館 みやこめっせ",
+    "address": "京都市左京区岡崎成勝寺町9-1",
+    "types": [
+      "exhibition",
+      "sale",
+      "workshop",
+      "lecture"
+    ],
+    "price_type": "paid",
+    "price_note": "一般観覧料1,500円",
+    "organizer_name": "日本盆栽大観展組織委員会・京都市・京都新聞・KBS京都・日本盆栽協同組合",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac46%e5%9b%9e%e6%97%a5%e6%9c%ac%e7%9b%86%e6%a0%bd%e5%a4%a7%e8%a6%b3%e5%b1%95%ef%bc%88%e4%ba%ac%e9%83%bd%e5%ba%9c%ef%bc%89/",
+    "description": "西日本最大級の盆栽展で、全国の名品が京都・みやこめっせに集まる。即売のほか実演や解説ツアー、有料ワークショップも予定されている。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac46%e5%9b%9e%e6%97%a5%e6%9c%ac%e7%9b%86%e6%a0%bd%e5%a4%a7%e8%a6%b3%e5%b1%95%ef%bc%88%e4%ba%ac%e9%83%bd%e5%ba%9c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/kinki/",
+      "https://shohin-bonsai.or.jp/event/gafuten52/"
+    ],
+    "notes": "9時〜16時30分（最終日16時まで、即売は15時終了）。令和8年度日本博補助事業。"
+  },
+  {
+    "title": "京都十六夜小品盆栽会 第25回展示会",
+    "slug": "kyoto-izayoi-shohin-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-11-21",
+    "end_date": "2026-11-22",
+    "usual_period": null,
+    "prefecture": "京都府",
+    "city": "京都市",
+    "venue_name": "京都教育文化センター",
+    "address": null,
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": "free",
+    "price_note": "入場無料",
+    "organizer_name": "京都十六夜小品盆栽会",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e4%ba%ac%e9%83%bd%e5%8d%81%e5%85%ad%e5%a4%9c%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e4%bc%9a%e7%ac%ac25%e5%9b%9e%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e4%ba%ac%e9%83%bd%e5%ba%9c%ef%bc%89/",
+    "description": "京都十六夜小品盆栽会の展示会で、小品盆栽の展示のほか即売や盆栽相談も受け付ける。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e4%ba%ac%e9%83%bd%e5%8d%81%e5%85%ad%e5%a4%9c%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e4%bc%9a%e7%ac%ac25%e5%9b%9e%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e4%ba%ac%e9%83%bd%e5%ba%9c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/kinki/"
+    ],
+    "notes": "10時〜16時（最終日15時まで）。京阪神宮丸太町駅から徒歩4分。大観展と同時期。"
+  },
+  {
+    "title": "第19回 秋の小品盆栽展（南大阪芸樹会）",
+    "slug": "kishiwada-shohin-aki-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-11-28",
+    "end_date": "2026-11-29",
+    "usual_period": null,
+    "prefecture": "大阪府",
+    "city": "岸和田市",
+    "venue_name": "岸和田市立自泉会館 展示室",
+    "address": "岸和田市岸城町",
+    "types": [
+      "exhibition"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "南大阪芸樹会",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac19%e5%9b%9e%e7%a7%8b%e3%81%ae%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%a4%a7%e9%98%aa%e5%ba%9c%ef%bc%89/",
+    "description": "全小協認定団体の南大阪芸樹会が岸和田市の自泉会館で開く秋の小品盆栽展。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac19%e5%9b%9e%e7%a7%8b%e3%81%ae%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%a4%a7%e9%98%aa%e5%ba%9c%ef%bc%89/",
+      "https://shohin-bonsai.or.jp/event/2026%e5%b9%b41011%e6%9c%88%e3%81%ae%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e4%ba%88%e5%ae%9a%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/"
+    ],
+    "notes": "10時〜17時（最終日16時まで）。"
+  },
+  {
+    "title": "小品盆栽フェア 第52回 雅風展",
+    "slug": "gafu-ten-2027",
+    "date_status": "confirmed",
+    "start_date": "2027-01-08",
+    "end_date": "2027-01-10",
+    "usual_period": null,
+    "prefecture": "京都府",
+    "city": "京都市",
+    "venue_name": "京都市勧業館 みやこめっせ",
+    "address": "京都市左京区岡崎成勝寺町9-1",
+    "types": [
+      "exhibition",
+      "sale",
+      "workshop"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "（公社）全日本小品盆栽協会",
+    "official_url": "https://shohin-bonsai.or.jp/event/gafuten52/",
+    "description": "樹高20cm程度までの小品盆栽を対象とする国内最大級の小品盆栽フェア。毎年新春の京都で開かれる。",
+    "sources": [
+      "https://shohin-bonsai.or.jp/event/gafuten52/",
+      "https://shohin-bonsai.or.jp/event/the-next-shohinbonsai-miyabi-ten-exhibition-to-be-held-in-2026-2027/",
+      "https://www.city.kyoto.lg.jp/sankan/cmsfiles/contents/0000348/348029/koho.pdf"
+    ],
+    "notes": "9時30分〜16時30分（最終日15時30分まで）。入場料・催事詳細は未発表（前回第51回は1,200円、18歳以下無料、即売・初心者向けワークショップあり）。"
+  },
+  {
+    "title": "小品盆栽フェア 第35回 春雅展",
+    "slug": "shunga-ten-2027",
+    "date_status": "confirmed",
+    "start_date": "2027-03-26",
+    "end_date": "2027-03-28",
+    "usual_period": null,
+    "prefecture": "大阪府",
+    "city": "大阪市",
+    "venue_name": "ハナミズキホール（花博記念公園鶴見緑地内・水の館）",
+    "address": "大阪市鶴見区緑地公園2-163",
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "（公社）全日本小品盆栽協会",
+    "official_url": "https://shohin-bonsai.or.jp/event/the-next-shohinbonsai-miyabi-ten-exhibition-to-be-held-in-2026-2027/",
+    "description": "全日本小品盆栽協会が春に大阪・鶴見緑地で開く小品盆栽展。雅展シリーズの一つとして全国の作品が集まる。",
+    "sources": [
+      "https://shohin-bonsai.or.jp/event/the-next-shohinbonsai-miyabi-ten-exhibition-to-be-held-in-2026-2027/",
+      "https://shohin-bonsai.or.jp/event/%E7%AC%AC34%E5%9B%9E%E6%98%A5%E9%9B%85%E5%B1%95%E3%81%AE%E3%81%94%E6%A1%88%E5%86%85/"
+    ],
+    "notes": "第35回の料金等は未発表。前回第34回は入場無料・即売あり・無料駐車場あり。"
+  },
+  {
+    "title": "さつき展（京都府立植物園）",
+    "slug": "kyoto-botanical-satsuki-2027",
+    "date_status": "tentative",
+    "start_date": null,
+    "end_date": null,
+    "usual_period": "例年5月下旬",
+    "prefecture": "京都府",
+    "city": "京都市",
+    "venue_name": "京都府立植物園 植物園会館1階展示室",
+    "address": "京都市左京区下鴨半木町",
+    "types": [
+      "exhibition",
+      "sale",
+      "workshop"
+    ],
+    "price_type": null,
+    "price_note": "植物園入園料が必要（2026年は一般500円）",
+    "organizer_name": "京都府立植物園",
+    "official_url": "https://www.kyotobotanicalgardens.jp/ibentoqing-bao",
+    "description": "開花期のさつき盆栽や鉢植え約50点を展示する植物園の恒例展示。販売や講習会も行われる。",
+    "sources": [
+      "https://www.kyotobotanicalgardens.jp/ibentoqing-bao-2/%E3%80%905%2F21(%E6%9C%A8)%EF%BD%9E5%2F24(%E6%97%A5)%E3%80%91%E3%81%95%E3%81%A4%E3%81%8D%E5%B1%95"
+    ],
+    "notes": "2026年は5月21日〜24日に開催。2027年の日程は未発表。"
+  },
+  {
+    "title": "第111回 岡山烏城小品盆栽展",
+    "slug": "okayama-ujo-shohin-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-10-31",
+    "end_date": "2026-11-01",
+    "usual_period": null,
+    "prefecture": "岡山県",
+    "city": "岡山市",
+    "venue_name": "RSKバラ園",
+    "address": "岡山市北区撫川",
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "岡山烏城小品盆栽会",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac%ef%bc%91%ef%bc%91%ef%bc%91%e5%9b%9e%e5%b2%a1%e5%b1%b1%e7%83%8f%e5%9f%8e%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%b2%a1%e5%b1%b1%e7%9c%8c%ef%bc%89/",
+    "description": "100回以上続く岡山烏城小品盆栽会の展示会で、約15席の小品盆栽がRSKバラ園に飾られる。即売もある。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac%ef%bc%91%ef%bc%91%ef%bc%91%e5%9b%9e%e5%b2%a1%e5%b1%b1%e7%83%8f%e5%9f%8e%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%b2%a1%e5%b1%b1%e7%9c%8c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/chugoku/"
+    ],
+    "notes": "9時30分〜17時（最終日16時まで）。"
+  },
+  {
+    "title": "秋の盆栽展（冠山総合公園）",
+    "slug": "kanmuriyama-bonsai-aki-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-10-31",
+    "end_date": "2026-11-01",
+    "usual_period": null,
+    "prefecture": "山口県",
+    "city": "光市",
+    "venue_name": "冠山総合公園",
+    "address": "光市室積村",
+    "types": [
+      "exhibition"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "光市・冠山総合公園・盆遊会（共催）",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%a7%8b%e3%81%ae%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%b1%b1%e5%8f%a3%e7%9c%8c%ef%bc%89/",
+    "description": "光市と冠山総合公園、愛好会の盆遊会が共催する秋の盆栽展。公園の秋の催しとあわせて楽しめる。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%a7%8b%e3%81%ae%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%b1%b1%e5%8f%a3%e7%9c%8c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/chugoku/"
+    ],
+    "notes": "時間の記載なし。問合せ：冠山総合公園事務局。"
+  },
+  {
+    "title": "第38回 清芳会秋季盆栽展",
+    "slug": "hiroshima-seihokai-aki-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-11-07",
+    "end_date": "2026-11-08",
+    "usual_period": null,
+    "prefecture": "広島県",
+    "city": "広島市",
+    "venue_name": "広島県立産業会館 本館2階",
+    "address": null,
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "清芳会",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac38%e5%9b%9e%e6%b8%85%e8%8a%b3%e4%bc%9a%e7%a7%8b%e5%ad%a3%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%ba%83%e5%b3%b6%e7%9c%8c%ef%bc%89/",
+    "description": "清芳会が広島県立産業会館で開く秋季の盆栽展で、会場では即売も行われる。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac38%e5%9b%9e%e6%b8%85%e8%8a%b3%e4%bc%9a%e7%a7%8b%e5%ad%a3%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%ba%83%e5%b3%b6%e7%9c%8c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/chugoku/"
+    ],
+    "notes": "10時〜17時（最終日14時まで）。"
+  },
+  {
+    "title": "第10回 徳島県支部 秋の盆栽展",
+    "slug": "tokushima-bonsai-aki-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-10-23",
+    "end_date": "2026-10-25",
+    "usual_period": null,
+    "prefecture": "徳島県",
+    "city": "徳島市",
+    "venue_name": "徳島県文化の森総合公園 多目的活動室",
+    "address": "徳島市八万町向寺山",
+    "types": [
+      "exhibition"
+    ],
+    "price_type": "free",
+    "price_note": "入場無料",
+    "organizer_name": "（一社）日本盆栽協会徳島県支部",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac10%e5%9b%9e%e5%be%b3%e5%b3%b6%e7%9c%8c%e6%94%af%e9%83%a8%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%be%b3%e5%b3%b6%e7%9c%8c%ef%bc%89/",
+    "description": "日本盆栽協会徳島県支部の秋の展示会で、約20席を展示予定。希望者への盆栽小苗の無料配布や悩み相談もある。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac10%e5%9b%9e%e5%be%b3%e5%b3%b6%e7%9c%8c%e6%94%af%e9%83%a8%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%be%b3%e5%b3%b6%e7%9c%8c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/shikoku/"
+    ],
+    "notes": "初日13時から、最終日15時まで。後援：徳島県・徳島新聞社ほか。"
+  },
+  {
+    "title": "第2回 香川小品盆栽展",
+    "slug": "kagawa-shohin-ten-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-10-24",
+    "end_date": "2026-10-25",
+    "usual_period": null,
+    "prefecture": "香川県",
+    "city": "高松市",
+    "venue_name": "高松盆栽の郷 研修室",
+    "address": "高松市国分寺町国分353-1",
+    "types": [
+      "exhibition"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "国風香川玉藻小品盆栽会",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac%ef%bc%92%e5%9b%9e%e9%a6%99%e5%b7%9d%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e9%a6%99%e5%b7%9d%e7%9c%8c%ef%bc%89/",
+    "description": "松盆栽の産地・国分寺にある高松盆栽の郷で、国風香川玉藻小品盆栽会が小品盆栽を展示する。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac%ef%bc%92%e5%9b%9e%e9%a6%99%e5%b7%9d%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e9%a6%99%e5%b7%9d%e7%9c%8c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/shikoku/",
+      "https://bonsai.shikoku-np.co.jp/event/2026/09/16782/"
+    ],
+    "notes": "9時〜17時（最終日16時まで）。住所は同会場の別催事告知（四国新聞盆栽サイト）による。"
+  },
+  {
+    "title": "高松盆栽の郷フェスタ",
+    "slug": "takamatsu-bonsai-no-sato-festa-2026",
+    "date_status": "tentative",
+    "start_date": null,
+    "end_date": null,
+    "usual_period": "例年10月下旬の土日",
+    "prefecture": "香川県",
+    "city": "高松市",
+    "venue_name": "JA香川県 高松盆栽の郷",
+    "address": "高松市国分寺町国分353-1",
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "JA香川県 高松盆栽の郷",
+    "official_url": "https://takamatsu-bonsai.com/notice/event/",
+    "description": "松盆栽の一大産地・高松の拠点施設で毎年秋に開かれる恒例行事。生産者の盆栽の展示即売などが行われる。",
+    "sources": [
+      "https://takamatsu-bonsai.com/notice/event/entry-88.html",
+      "https://takamatsu-bonsai.com/notice/event/entry-83.html",
+      "https://takamatsu-bonsai.com/notice/event/entry-74.html"
+    ],
+    "notes": "2023年は10/28-29、2024年は10/26-27、2025年は10/25-26に開催。2026年の日程は公式サイト未掲載。"
+  },
+  {
+    "title": "鬼無盆栽植木まつり",
+    "slug": "kinashi-bonsai-ueki-matsuri-2026",
+    "date_status": "tentative",
+    "start_date": null,
+    "end_date": null,
+    "usual_period": "例年10月下旬〜11月上旬の3日間",
+    "prefecture": "香川県",
+    "city": "高松市",
+    "venue_name": "鬼無植木盆栽センター",
+    "address": "高松市鬼無町山口333-1",
+    "types": [
+      "exhibition",
+      "sale",
+      "workshop"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": null,
+    "official_url": "https://shikoku-tourism.com/spot/10083",
+    "description": "松盆栽の産地・鬼無で開かれる秋の祭りで、植木・盆栽の展示即売や名品展、オークション、針金掛け体験などがある。",
+    "sources": [
+      "https://shikoku-tourism.com/spot/10083"
+    ],
+    "notes": "四国ツーリズム公式サイトに毎年10月下旬〜11月上旬の3日間と記載。2026年の日程は未確認。"
+  },
+  {
+    "title": "宮崎小品盆栽・山野草会展示会",
+    "slug": "miyazaki-shohin-sanyaso-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-10-23",
+    "end_date": "2026-10-25",
+    "usual_period": null,
+    "prefecture": "宮崎県",
+    "city": "宮崎市",
+    "venue_name": "フローランテ宮崎 夢花館",
+    "address": null,
+    "types": [
+      "exhibition",
+      "sale",
+      "workshop"
+    ],
+    "price_type": "free",
+    "price_note": "観覧無料（施設入場料は必要）",
+    "organizer_name": "宮崎小品盆栽・山野草会",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e5%ae%ae%e5%b4%8e%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e3%83%bb%e5%b1%b1%e9%87%8e%e8%8d%89%e4%bc%9a%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e5%ae%ae%e5%b4%8e%e7%9c%8c%ef%bc%89/",
+    "description": "約20席の小品盆栽と山野草を展示する予定で、即売も行われる。24日には秋の手入れを学ぶ無料講習会がある。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e5%ae%ae%e5%b4%8e%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e3%83%bb%e5%b1%b1%e9%87%8e%e8%8d%89%e4%bc%9a%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e5%ae%ae%e5%b4%8e%e7%9c%8c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/kyusyu/"
+    ],
+    "notes": "9時〜17時（最終日16時まで）。講習会は24日13時から。"
+  },
+  {
+    "title": "第48回 秋の盆栽展（日本盆栽協会福岡支部）",
+    "slug": "fukuoka-bonsai-aki-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-11-06",
+    "end_date": "2026-11-08",
+    "usual_period": null,
+    "prefecture": "福岡県",
+    "city": "福岡市",
+    "venue_name": "福岡市植物園 ボタニカルライフスクエア",
+    "address": "福岡市中央区小笹",
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": null,
+    "price_note": null,
+    "organizer_name": "（一社）日本盆栽協会福岡支部",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac48%e5%9b%9e%e7%a7%8b%e3%81%ae%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e7%a6%8f%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+    "description": "日本盆栽協会福岡支部が福岡市植物園で開く秋の盆栽展。即売と盆栽相談が行われる。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac48%e5%9b%9e%e7%a7%8b%e3%81%ae%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e7%a6%8f%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/kyusyu/"
+    ],
+    "notes": "9時〜16時30分。"
+  },
+  {
+    "title": "第35回 日本盆栽青樹展",
+    "slug": "seiju-ten-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-12-04",
+    "end_date": "2026-12-06",
+    "usual_period": null,
+    "prefecture": "福岡県",
+    "city": "久留米市",
+    "venue_name": "久留米リサーチセンタービル展示場（百年公園内）",
+    "address": "久留米市百年公園1-1",
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": "paid",
+    "price_note": "入場料500円",
+    "organizer_name": "日本盆栽青樹展組織委員会（共催：久留米市）",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac35%e5%9b%9e%e6%97%a5%e6%9c%ac%e7%9b%86%e6%a0%bd%e9%9d%92%e6%a8%b9%e5%b1%95%ef%bc%88%e7%a6%8f%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+    "description": "九州を代表する公募盆栽展で、約65席の盆栽が並ぶ。第39回九州雅展と同じ会場・会期で開かれる。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac35%e5%9b%9e%e6%97%a5%e6%9c%ac%e7%9b%86%e6%a0%bd%e9%9d%92%e6%a8%b9%e5%b1%95%ef%bc%88%e7%a6%8f%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+      "https://www.bonsai.co.jp/event/event_category/kyusyu/",
+      "https://www.crossroadfukuoka.jp/event/12145"
+    ],
+    "notes": "9時30分〜16時30分（最終日16時まで）。住所は福岡県観光情報サイトの過去回情報による。"
+  },
+  {
+    "title": "小品盆栽フェア 第39回 九州雅展",
+    "slug": "kyushu-miyabi-ten-2026",
+    "date_status": "confirmed",
+    "start_date": "2026-12-04",
+    "end_date": "2026-12-06",
+    "usual_period": null,
+    "prefecture": "福岡県",
+    "city": "久留米市",
+    "venue_name": "久留米リサーチパーク（百年公園内）",
+    "address": null,
+    "types": [
+      "exhibition",
+      "sale"
+    ],
+    "price_type": "paid",
+    "price_note": "入場料500円",
+    "organizer_name": "（公社）全日本小品盆栽協会（主管：九州雅展実行委員会）",
+    "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e3%83%95%e3%82%a7%e3%82%a2%e3%80%80%e7%ac%ac39%e5%9b%9e%e4%b9%9d%e5%b7%9e%e9%9b%85%e5%b1%95%ef%bc%88%e7%a6%8f%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+    "description": "全日本小品盆栽協会が九州で開く小品盆栽フェア。日本盆栽青樹展と同時開催となる。",
+    "sources": [
+      "https://www.bonsai.co.jp/event/%e2%97%8f%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e3%83%95%e3%82%a7%e3%82%a2%e3%80%80%e7%ac%ac39%e5%9b%9e%e4%b9%9d%e5%b7%9e%e9%9b%85%e5%b1%95%ef%bc%88%e7%a6%8f%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+      "https://shohin-bonsai.or.jp/event/the-next-shohinbonsai-miyabi-ten-exhibition-to-be-held-in-2026-2027/",
+      "https://www.bonsai.co.jp/event/event_category/kyusyu/"
+    ],
+    "notes": "9時30分〜16時30分（最終日16時まで）。"
+  }
+]
