@@ -3,6 +3,9 @@ import { Suspense } from 'react'
 import Link from 'next/link'
 import EventsPageClient from './EventsPageClient'
 import { getEvents } from '@/lib/events'
+import { EventCard } from '@/components/features/EventCard'
+import { getEventStatus } from '@/components/features/EventShared'
+import type { Event } from '@/types'
 import EventViewTabs, { EventViewTabsView } from './EventViewTabs'
 import { Breadcrumbs, CONTAINER } from '@/components/ui/design'
 
@@ -32,6 +35,10 @@ export const revalidate = 3600
 
 export default async function EventsPage() {
   const initial = await getEvents({ page: 1, limit: 1000 }).catch(() => null)
+  const upcoming = ((initial?.events ?? []) as Event[])
+    .filter(event => getEventStatus(event) !== 'past')
+    .sort((a, b) => a.start_date.localeCompare(b.start_date))
+    .slice(0, 12)
   return (
     <>
       {/* JSON-LD for Events */}
@@ -77,9 +84,10 @@ export default async function EventsPage() {
           </div>
         </div>
 
+        {/* 一覧を組み立てるまでの間も、サーバーで作ったこれからのイベントを表示する（表示を速くするため） */}
         <Suspense fallback={
-          <div className="flex min-h-[100vh] items-start justify-center py-16">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-navy" />
+          <div className="min-h-[100vh] space-y-3 pt-2 lg:max-w-[560px]">
+            {upcoming.map(event => <EventCard key={event.id} event={event} />)}
           </div>
         }>
           <EventsPageClient initialEvents={initial?.events} />
