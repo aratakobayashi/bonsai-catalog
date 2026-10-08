@@ -1,6 +1,11 @@
 import Link from 'next/link'
 import {
+  ENJOY_OPTIONS,
   FLAG_OPTIONS,
+  LEVEL_OPTIONS,
+  PLACE_OPTIONS,
+  SEASON_OPTIONS,
+  USE_OPTIONS,
   PRICE_PRESETS,
   SIZE_OPTIONS,
   SORT_OPTIONS,
@@ -28,6 +33,20 @@ export function CatalogFiltersForm({ filters, basePath = '/products' }: { filter
           className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
         />
       </div>
+
+      <fieldset>
+        <legend className={labelClass}>目的から選ぶ</legend>
+        <div className="mt-1 grid grid-cols-2 gap-3">
+          <OptionSelect label="置き場所" name="place" value={filters.place} options={PLACE_OPTIONS} />
+          <OptionSelect label="楽しみ方" name="enjoy" value={filters.enjoy} options={ENJOY_OPTIONS} />
+          <OptionSelect label="見ごろの季節" name="season" value={filters.season} options={SEASON_OPTIONS} />
+          <OptionSelect label="育てやすさ" name="level" value={filters.level} options={LEVEL_OPTIONS} />
+          <OptionSelect label="用途" name="use" value={filters.use} options={USE_OPTIONS} />
+        </div>
+        <p className="mt-2 text-[11px] text-gray-500">
+          置き場所・楽しみ方・見ごろ・育てやすさは、樹種ごとの一般的な目安と販売店の表記をもとに判定しています。松やもみじなど多くの盆栽は屋外向きです。
+        </p>
+      </fieldset>
 
       <div className="grid grid-cols-2 gap-3">
         <label className="block">
@@ -70,7 +89,7 @@ export function CatalogFiltersForm({ filters, basePath = '/products' }: { filter
       </div>
 
       <fieldset>
-        <legend className={labelClass}>こだわり条件</legend>
+        <legend className={labelClass}>こだわり条件（販売店の表記より）</legend>
         <div className="mt-2 grid grid-cols-2 gap-2">
           {FLAG_OPTIONS.map(o => (
             <label key={o.value} className="flex items-center gap-2 text-sm text-gray-700">
@@ -80,7 +99,7 @@ export function CatalogFiltersForm({ filters, basePath = '/products' }: { filter
           ))}
         </div>
         <p className="mt-2 text-[11px] text-gray-500">
-          「表記あり」は販売店の商品名に記載がある商品です。実際の条件は各商品ページでご確認ください。
+          販売店の商品名に記載がある商品です。実際の条件は各商品ページでご確認ください。
         </p>
       </fieldset>
 
@@ -115,6 +134,28 @@ export function CatalogFiltersForm({ filters, basePath = '/products' }: { filter
         </div>
       </div>
     </form>
+  )
+}
+
+function OptionSelect({
+  label,
+  name,
+  value,
+  options,
+}: {
+  label: string
+  name: string
+  value: string | undefined
+  options: readonly { value: string; label: string }[]
+}) {
+  return (
+    <label className="block">
+      <span className={labelClass}>{label}</span>
+      <select name={name} defaultValue={value ?? ''} className={selectClass}>
+        <option value="">指定なし</option>
+        {options.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+      </select>
+    </label>
   )
 }
 

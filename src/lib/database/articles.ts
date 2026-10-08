@@ -137,7 +137,7 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
     }
 
     if (filters.search) {
-      query = query.or(`title.ilike.%${filters.search}%,excerpt.ilike.%${filters.search}%`)
+      query = query.or(`title.ilike.%${filters.search}%,excerpt.ilike.%${filters.search}%,content.ilike.%${filters.search}%`)
     }
 
     // ソート

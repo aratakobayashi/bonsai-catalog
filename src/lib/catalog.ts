@@ -5,6 +5,17 @@ import { supabaseServer } from '@/lib/supabase-server'
 import { PRODUCT_TYPE_LABELS, type ProductType } from '@/lib/product-classify'
 import { normalizeProduct, type CatalogProduct, type ProductSource } from '@/lib/catalog-model'
 import type { SizeCategory } from '@/types'
+import {
+  ENJOY_OPTIONS,
+  LEVEL_OPTIONS,
+  PLACE_OPTIONS,
+  SEASON_OPTIONS,
+  type Enjoy,
+  type Level,
+  type Place,
+  type Season,
+} from '@/lib/species-traits'
+import { matchesKeyword, parseKeyword } from '@/lib/search-normalize'
 
 export const PRODUCTS_CACHE_TAG = 'products'
 export const PAGE_SIZE = 24
@@ -169,10 +180,19 @@ export const FLAG_OPTIONS = [
   { value: 'free_shipping', label: '送料無料' },
   { value: 'reviewed', label: 'レビューあり' },
   { value: 'rating4', label: '評価★4以上' },
-  { value: 'beginner', label: '初心者向けの表記あり' },
-  { value: 'gift', label: 'ギフト対応の表記あり' },
-  { value: 'indoor', label: '室内向けの表記あり' },
+  { value: 'wrapping', label: 'ラッピング・のし対応' },
+  { value: 'saucer', label: '受け皿付き' },
+  { value: 'care_guide', label: '育て方の説明付き' },
 ] as const
+
+export { PLACE_OPTIONS, ENJOY_OPTIONS, SEASON_OPTIONS, LEVEL_OPTIONS }
+
+export const USE_OPTIONS = [
+  { value: 'gift', label: '贈り物' },
+  { value: 'new_year', label: '正月飾り' },
+  { value: 'celebration', label: 'お祝い（長寿・開店など）' },
+] as const
+export type UseValue = typeof USE_OPTIONS[number]['value']
 
 export type SortValue = typeof SORT_OPTIONS[number]['value']
 export type FlagValue = typeof FLAG_OPTIONS[number]['value']
@@ -185,10 +205,19 @@ export interface CatalogFilters {
   shop?: ProductSource
   min?: number
   max?: number
+  place?: Place
+  enjoy?: Enjoy
+  season?: Season
+  level?: Level
+  use?: UseValue
   flags: FlagValue[]
   sort: SortValue
   page: number
 }
+
+// 絞り込み条件のうち、並び順とページ以外の項目（0件のときに外す候補になる）
+export const FILTER_KEYS = ['q', 'type', 'species', 'size', 'shop', 'price', 'place', 'enjoy', 'season', 'level', 'use', 'flags'] as const
+export type FilterKey = typeof FILTER_KEYS[number]
 
 type RawParams = Record<string, string | string[] | undefined>
 
@@ -212,6 +241,14 @@ export function parseFilters(rawParams: RawParams): CatalogFilters {
     max: rawParams.max ?? rawParams.maxPrice ?? rawParams.price_max,
   }
   const flagValues = ([] as string[]).concat(params.flag ?? [])
+  // 以前の「表記あり」チェック（flag=indoor など）を新しい条件に読み替える
+  const legacy = {
+    place: flagValues.includes('indoor') ? 'indoor' : undefined,
+    level: flagValues.includes('beginner') ? 'easy' : undefined,
+    use: flagValues.includes('gift') ? 'gift' : undefined,
+  }
+  const pick = <T extends string>(options: readonly { value: T }[], value: string | undefined): T | undefined =>
+    options.find(o => o.value === value)?.value
   const sort = first(params.sort)
   const size = first(params.size)
   const shop = first(params.shop)
@@ -223,6 +260,11 @@ export function parseFilters(rawParams: RawParams): CatalogFilters {
     shop: shop === 'amazon' || shop === 'rakuten' ? shop : undefined,
     min: toPositiveInt(first(params.min)),
     max: toPositiveInt(first(params.max)),
+    place: pick(PLACE_OPTIONS, first(params.place) ?? legacy.place),
+    enjoy: pick(ENJOY_OPTIONS, first(params.enjoy)),
+    season: pick(SEASON_OPTIONS, first(params.season)),
+    level: pick(LEVEL_OPTIONS, first(params.level) ?? legacy.level),
+    use: pick(USE_OPTIONS, first(params.use) ?? legacy.use),
     flags: FLAG_OPTIONS.map(o => o.value).filter(v => flagValues.includes(v)),
     sort: SORT_OPTIONS.some(o => o.value === sort) ? (sort as SortValue) : 'recommended',
     page: Math.min(toPositiveInt(first(params.page)) ?? 1, 200),
@@ -232,7 +274,8 @@ export function parseFilters(rawParams: RawParams): CatalogFilters {
 export function hasActiveFilters(filters: CatalogFilters): boolean {
   return Boolean(
     filters.q || filters.type || filters.species || filters.size || filters.shop ||
-    filters.min || filters.max || filters.flags.length || filters.sort !== 'recommended' || filters.page > 1
+    filters.min || filters.max || filters.place || filters.enjoy || filters.season || filters.level || filters.use ||
+    filters.flags.length || filters.sort !== 'recommended' || filters.page > 1
   )
 }
 
@@ -243,7 +286,7 @@ function recommendScore(p: CatalogProduct): number {
 }
 
 export function filterProducts(products: CatalogProduct[], filters: CatalogFilters): CatalogProduct[] {
-  const terms = (filters.q || '').toLowerCase().split(/[\s　]+/).filter(Boolean)
+  const keyword = parseKeyword(filters.q)
   const species = SPECIES_OPTIONS.find(o => o.value === filters.species)
 
   let result = products.filter(p => {
@@ -256,14 +299,21 @@ export function filterProducts(products: CatalogProduct[], filters: CatalogFilte
     if (filters.shop && p.source !== filters.shop) return false
     if (filters.min && p.price < filters.min) return false
     if (filters.max && p.price > filters.max) return false
-    if (terms.length && !terms.every(t => `${p.originalName} ${p.shopName} ${p.tags.join(' ')}`.toLowerCase().includes(t))) return false
+    if (filters.place && p.place !== filters.place) return false
+    if (filters.enjoy && !p.enjoy.includes(filters.enjoy)) return false
+    if (filters.season && !p.seasons.includes(filters.season)) return false
+    if (filters.level && p.level !== filters.level) return false
+    if (filters.use === 'gift' && !(p.gift || p.wrapping)) return false
+    if (filters.use === 'new_year' && !p.newYear) return false
+    if (filters.use === 'celebration' && !p.celebration) return false
+    if (keyword.length && !matchesKeyword(keyword, `${p.originalName} ${p.shopName} ${p.tags.join(' ')} ${p.speciesLabel ?? ''} ${PRODUCT_TYPE_LABELS[p.productType] ?? ''}`)) return false
     for (const flag of filters.flags) {
       if (flag === 'free_shipping' && p.freeShipping !== true) return false
       if (flag === 'reviewed' && p.reviewCount === 0) return false
       if (flag === 'rating4' && !(p.reviewCount > 0 && p.reviewAverage >= 4)) return false
-      if (flag === 'beginner' && !p.beginner) return false
-      if (flag === 'gift' && !p.gift) return false
-      if (flag === 'indoor' && !p.indoor) return false
+      if (flag === 'wrapping' && !p.wrapping) return false
+      if (flag === 'saucer' && !p.saucer) return false
+      if (flag === 'care_guide' && !p.careGuide) return false
     }
     return true
   })
@@ -301,9 +351,40 @@ export function buildCatalogUrl(filters: CatalogFilters, overrides: Partial<Cata
   if (merged.shop) params.set('shop', merged.shop)
   if (merged.min) params.set('min', String(merged.min))
   if (merged.max) params.set('max', String(merged.max))
+  if (merged.place) params.set('place', merged.place)
+  if (merged.enjoy) params.set('enjoy', merged.enjoy)
+  if (merged.season) params.set('season', merged.season)
+  if (merged.level) params.set('level', merged.level)
+  if (merged.use) params.set('use', merged.use)
   merged.flags.forEach(flag => params.append('flag', flag))
   if (merged.sort !== 'recommended') params.set('sort', merged.sort)
   if (merged.page > 1) params.set('page', String(merged.page))
   const query = params.toString()
   return query ? `${basePath}?${query}` : basePath
+}
+
+// 条件を1つ外した場合の条件（0件のときの代わりの案に使う）
+export function withoutFilter(filters: CatalogFilters, key: FilterKey): CatalogFilters {
+  const next: CatalogFilters = { ...filters, page: 1 }
+  if (key === 'price') return { ...next, min: undefined, max: undefined }
+  if (key === 'flags') return { ...next, flags: [] }
+  return { ...next, [key]: undefined }
+}
+
+export function isFilterActive(filters: CatalogFilters, key: FilterKey): boolean {
+  if (key === 'price') return Boolean(filters.min || filters.max)
+  if (key === 'flags') return filters.flags.length > 0
+  return Boolean(filters[key])
+}
+
+// 0件のとき、条件を1つずつ外して件数が多い順に代わりの案を返す
+export function relaxSuggestions(products: CatalogProduct[], filters: CatalogFilters, limit = 3) {
+  return FILTER_KEYS.filter(key => isFilterActive(filters, key))
+    .map(key => {
+      const relaxed = withoutFilter(filters, key)
+      return { key, filters: relaxed, count: filterProducts(products, relaxed).length }
+    })
+    .filter(s => s.count > 0)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, limit)
 }

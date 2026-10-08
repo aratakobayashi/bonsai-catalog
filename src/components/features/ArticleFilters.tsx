@@ -9,6 +9,12 @@ import { Badge } from '@/components/ui/Badge'
 import { Search, X, Filter } from 'lucide-react'
 import type { ArticleCategory, ArticleTag, ArticleFilters } from '@/types'
 
+const THEME_GROUPS = [
+  { label: 'お手入れ', terms: ['水やり', '剪定', '植え替え', '肥料', '針金', '病害虫', '冬越し', '枯れ'] },
+  { label: '樹種', terms: ['松', '真柏', 'もみじ', '桜', '梅', 'さつき', '南天', 'ガジュマル'] },
+  { label: '目的・シーン', terms: ['初心者', '室内', '100均', 'ギフト', '正月', '母の日', '敬老の日'] },
+]
+
 interface ArticleFiltersProps {
   categories: ArticleCategory[]
   tags: ArticleTag[]
@@ -18,7 +24,6 @@ interface ArticleFiltersProps {
 
 export function ArticleFilters({ 
   categories, 
-  tags, 
   currentFilters, 
   totalCount 
 }: ArticleFiltersProps) {
@@ -58,16 +63,6 @@ export function ArticleFilters({
   const handleCategoryChange = (categorySlug: string) => {
     const newCategory = currentFilters.category === categorySlug ? undefined : categorySlug
     updateFilters({ category: newCategory })
-  }
-
-  // タグ選択/解除
-  const handleTagToggle = (tagSlug: string) => {
-    const currentTags = currentFilters.tags || []
-    const newTags = currentTags.includes(tagSlug)
-      ? currentTags.filter(tag => tag !== tagSlug)
-      : [...currentTags, tagSlug]
-    
-    updateFilters({ tags: newTags })
   }
 
   // 全フィルタークリア
@@ -175,101 +170,35 @@ export function ArticleFilters({
           </CardContent>
         </Card>
 
-        {/* タグフィルター */}
+        {/* よく探されるテーマ（記事のタグは種類が多く使われ方もばらばらなため、キーワード検索の入口にする） */}
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg">タグ</CardTitle>
+            <CardTitle className="text-lg">よく探されるテーマ</CardTitle>
           </CardHeader>
-          <CardContent className="pt-0">
-            <div className="space-y-3">
-              {/* レベル系タグ */}
-              <div>
-                <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                  レベル
-                </h4>
+          <CardContent className="pt-0 space-y-3">
+            {THEME_GROUPS.map(group => (
+              <div key={group.label}>
+                <h4 className="text-xs font-semibold text-gray-500 tracking-wider mb-2">{group.label}</h4>
                 <div className="flex flex-wrap gap-1">
-                  {tags.filter(tag => ['beginner', 'intermediate', 'advanced'].includes(tag.slug)).map((tag) => (
+                  {group.terms.map(term => (
                     <button
-                      key={tag.id}
-                      onClick={() => handleTagToggle(tag.slug)}
+                      key={term}
+                      onClick={() => {
+                        setSearchQuery(term)
+                        updateFilters({ search: currentFilters.search === term ? undefined : term })
+                      }}
                       className={`px-2 py-1 text-xs rounded-md transition-colors ${
-                        currentFilters.tags?.includes(tag.slug)
-                          ? tag.color || 'bg-accent-100 text-accent-800'
+                        currentFilters.search === term
+                          ? 'bg-accent-100 text-accent-800'
                           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                       }`}
                     >
-                      {tag.name}
+                      {term}
                     </button>
                   ))}
                 </div>
               </div>
-
-              {/* 種類系タグ */}
-              <div>
-                <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                  樹種
-                </h4>
-                <div className="flex flex-wrap gap-1">
-                  {tags.filter(tag => ['momiji', 'pine', 'sakura'].includes(tag.slug)).map((tag) => (
-                    <button
-                      key={tag.id}
-                      onClick={() => handleTagToggle(tag.slug)}
-                      className={`px-2 py-1 text-xs rounded-md transition-colors ${
-                        currentFilters.tags?.includes(tag.slug)
-                          ? tag.color || 'bg-accent-100 text-accent-800'
-                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                      }`}
-                    >
-                      {tag.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* 季節系タグ */}
-              <div>
-                <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                  季節
-                </h4>
-                <div className="flex flex-wrap gap-1">
-                  {tags.filter(tag => ['spring', 'summer', 'autumn', 'winter'].includes(tag.slug)).map((tag) => (
-                    <button
-                      key={tag.id}
-                      onClick={() => handleTagToggle(tag.slug)}
-                      className={`px-2 py-1 text-xs rounded-md transition-colors ${
-                        currentFilters.tags?.includes(tag.slug)
-                          ? tag.color || 'bg-accent-100 text-accent-800'
-                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                      }`}
-                    >
-                      {tag.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* その他のタグ */}
-              <div>
-                <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                  その他
-                </h4>
-                <div className="flex flex-wrap gap-1">
-                  {tags.filter(tag => !['beginner', 'intermediate', 'advanced', 'momiji', 'pine', 'sakura', 'spring', 'summer', 'autumn', 'winter'].includes(tag.slug)).map((tag) => (
-                    <button
-                      key={tag.id}
-                      onClick={() => handleTagToggle(tag.slug)}
-                      className={`px-2 py-1 text-xs rounded-md transition-colors ${
-                        currentFilters.tags?.includes(tag.slug)
-                          ? tag.color || 'bg-accent-100 text-accent-800'
-                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                      }`}
-                    >
-                      {tag.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
+            ))}
           </CardContent>
         </Card>
       </div>

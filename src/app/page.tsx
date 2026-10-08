@@ -131,6 +131,11 @@ export default async function HomePage() {
               </Link>
             ))}
           </div>
+          <p className="text-center mt-6">
+            <Link href="/shindan" className="inline-block border border-slate-800 text-slate-800 rounded-full px-6 py-2 text-sm hover:bg-slate-800 hover:text-white transition-colors">
+              迷ったら「かんたん盆栽診断」（4つの質問）
+            </Link>
+          </p>
         </div>
       </section>
 

@@ -8,6 +8,7 @@ import { PRODUCT_TYPE_LABELS } from '@/lib/product-classify'
 import { cleanProductName } from '@/lib/product-name'
 import { getCareGuide, getPurchaseChecklist } from '@/lib/care-guides'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
+import { ENJOY_OPTIONS, LEVEL_OPTIONS, PLACE_OPTIONS, SEASON_OPTIONS } from '@/lib/species-traits'
 import { AFFILIATE_LINK_REL } from '@/lib/affiliate'
 import { SITE_URL } from '@/lib/site'
 import { formatPrice } from '@/lib/utils'
@@ -143,9 +144,21 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     { name: product.name, url: `${SITE_URL}/products/${product.id}`, position: catLink ? 4 : 3 },
   ]
 
+  // 樹種ごとの一般的な性質（置き場所・楽しみ方・見ごろ・育てやすさ）
+  const traitText = product.speciesLabel
+    ? [
+        product.speciesLabel,
+        PLACE_OPTIONS.find(o => o.value === product.place)?.label,
+        product.enjoy.map(e => ENJOY_OPTIONS.find(o => o.value === e)?.label).filter(Boolean).join('・'),
+        product.seasons.length ? `見ごろ：${product.seasons.map(v => SEASON_OPTIONS.find(o => o.value === v)?.label).join('・')}` : '',
+        LEVEL_OPTIONS.find(o => o.value === product.level)?.label,
+      ].filter(Boolean).join('／') + '（一般的な目安）'
+    : null
+
   const specs: { label: string; value: string }[] = [
     { label: '種類', value: PRODUCT_TYPE_LABELS[product.productType] },
-    ...(!isPart ? [{ label: '分類', value: product.category }] : []),
+    ...(!isPart && product.category !== 'その他' ? [{ label: '分類', value: product.category }] : []),
+    ...(traitText ? [{ label: '樹種の目安', value: traitText }] : []),
     ...(!isPart ? [{ label: 'サイズの目安', value: product.heightCm ? `樹高 約${product.heightCm}cm（${SIZE_LABELS[product.sizeCategory].split('（')[0]}）` : SIZE_LABELS[product.sizeCategory] }] : []),
     { label: '販売ショップ', value: `${product.shopName}（${shopLabel}）` },
     ...(product.originalName !== product.name ? [{ label: '販売ページの商品名', value: product.originalName }] : []),
