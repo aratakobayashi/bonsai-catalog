@@ -4,7 +4,8 @@ import Script from 'next/script'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { Suspense, useEffect } from 'react'
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+// 測定IDはページに埋め込まれる公開情報。環境変数があればそちらを優先する
+const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-J9QM571RMN'
 
 type Gtag = (...args: unknown[]) => void
 const gtag: Gtag = (...args) => {
