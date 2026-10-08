@@ -12,8 +12,13 @@ import {
   detectTags,
 } from '@/lib/product-classify'
 
-// カテゴリごとに「おすすめ順」と「新着順」を取得して、人気商品と新商品の両方を拾う
-const SORTS: RakutenSort[] = ['standard', '-updateTimestamp']
+// カテゴリごとに「おすすめ順」の上位3ページ（90件）と「新着順」の1ページを取得して、人気商品と新商品の両方を拾う
+const REQUESTS_PER_CATEGORY: { sort: RakutenSort; page: number }[] = [
+  { sort: 'standard', page: 1 },
+  { sort: 'standard', page: 2 },
+  { sort: 'standard', page: 3 },
+  { sort: '-updateTimestamp', page: 1 },
+]
 // 楽天APIの上限（1秒1回程度）を超えないよう間隔をあける
 const REQUEST_INTERVAL_MS = 1100
 // この日数のあいだ同期で見つからなかった商品は販売終了などとみなして非表示にする
@@ -112,22 +117,27 @@ export async function syncRakutenProducts(): Promise<SyncSummary> {
     if (Date.now() - started > TIME_BUDGET_MS) break
 
     const rows: ReturnType<typeof toRow>[] = []
-    for (const sort of SORTS) {
+    let skipStandard = false
+    for (const { sort, page } of REQUESTS_PER_CATEGORY) {
+      if (skipStandard && sort === 'standard') continue
       if (requestCount > 0) await sleep(REQUEST_INTERVAL_MS)
       requestCount++
       const { items, error } = await searchRakutenItems({
         keyword: category.keyword,
         genreId: category.group === 'tree' ? BONSAI_GENRE_ID : undefined,
         sort,
+        page,
         hits: 30,
         fresh: true,
       })
       if (error) {
         failedRequests++
-        errors.push(`${category.slug}/${sort}: ${error}`)
+        errors.push(`${category.slug}/${sort}/p${page}: ${error}`)
         continue
       }
       const now = new Date().toISOString()
+      // おすすめ順の途中で商品が尽きたら、それ以降のページは取得しない
+      const exhausted = sort === 'standard' && items.length < 30
       items.forEach(item => {
         // 同じ商品が複数カテゴリに出た場合は、先に処理したカテゴリを優先
         if (!seen.has(item.code)) {
@@ -135,6 +145,7 @@ export async function syncRakutenProducts(): Promise<SyncSummary> {
           rows.push(toRow(item, category, now))
         }
       })
+      if (exhausted) skipStandard = true
     }
 
     // カテゴリごとに保存する（途中で止まっても、そこまでの結果は残る）

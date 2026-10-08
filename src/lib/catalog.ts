@@ -20,18 +20,27 @@ const LIST_COLUMNS = [
 ].join(', ')
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-async function fetchAllProductsOnce(): Promise<any[]> {
+// Supabase は1回に最大1,000行までしか返さず、Next.js のデータキャッシュは1件2MBまでなので、
+// 商品は800行ずつに分けて取得・キャッシュする（1行は約1KB）
+const CHUNK_SIZE = 800
+const MAX_CHUNKS = 15
+
+async function fetchChunkOnce(index: number): Promise<any[]> {
+  const from = index * CHUNK_SIZE
   const primary = await supabaseServer
     .from('products')
     .select(LIST_COLUMNS)
+    .or('is_active.is.null,is_active.eq.true')
     .order('created_at', { ascending: false })
-    .limit(3000)
+    .order('id', { ascending: true })
+    .range(from, from + CHUNK_SIZE - 1)
   let data: any[] | null = primary.data as any[] | null
   let error = primary.error
 
   // 拡張前のDB（列が足りない）では全列を取得して補う
   if (error) {
-    const fallback = await supabaseServer.from('products').select('*').order('created_at', { ascending: false })
+    if (index > 0) return []
+    const fallback = await supabaseServer.from('products').select('*').order('created_at', { ascending: false }).limit(1000)
     data = (fallback.data || []).map((row: any) => ({ ...row, description: undefined }))
     error = fallback.error
   }
@@ -39,15 +48,15 @@ async function fetchAllProductsOnce(): Promise<any[]> {
     console.error('商品データの取得エラー:', error.message)
     return []
   }
-  return (data || []).filter((row: any) => row.is_active !== false)
+  return data || []
 }
 
 // 通信が一時的に切れた場合に備えて2回までやり直す
-async function fetchAllProducts(): Promise<any[]> {
+async function fetchChunk(index: number): Promise<any[]> {
   let lastError: unknown
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
-      return await fetchAllProductsOnce()
+      return await fetchChunkOnce(index)
     } catch (error) {
       lastError = error
       await new Promise(resolve => setTimeout(resolve, 500 * (attempt + 1)))
@@ -56,12 +65,29 @@ async function fetchAllProducts(): Promise<any[]> {
   throw lastError
 }
 
-// DB の行データを30分キャッシュし（同期の直後には破棄される）、表示用の形への変換は毎回行う。
+// DB の行データを3時間キャッシュし（同期の直後には破棄される）、表示用の形への変換は毎回行う。
 // 変換処理（商品名の整理など）を変えたときに、古いキャッシュの表示が残らないようにするため
-const getCachedProductRows = unstable_cache(fetchAllProducts, ['catalog-product-rows-v1'], {
-  revalidate: 1800,
+const getCachedChunk = unstable_cache(fetchChunk, ['catalog-product-rows-v2'], {
+  revalidate: 10800,
   tags: [PRODUCTS_CACHE_TAG],
 })
+
+async function getCachedProductRows(): Promise<any[]> {
+  const rows: any[] = []
+  const seen = new Set<string>()
+  for (let index = 0; index < MAX_CHUNKS; index++) {
+    const chunk = await getCachedChunk(index)
+    // キャッシュの更新時刻がずれて同じ商品が2つの塊に入った場合に備えて重複を除く
+    chunk.forEach(row => {
+      if (!seen.has(row.id)) {
+        seen.add(row.id)
+        rows.push(row)
+      }
+    })
+    if (chunk.length < CHUNK_SIZE) break
+  }
+  return rows.filter(row => row.is_active !== false)
+}
 
 export async function getCatalogProducts(): Promise<CatalogProduct[]> {
   return (await getCachedProductRows()).map(normalizeProduct)
@@ -101,6 +127,15 @@ export const SPECIES_OPTIONS: SpeciesOption[] = [
   { value: 'ume', label: '梅・長寿梅', match: nameMatches(/梅|うめ|ウメ/) },
   { value: 'mini', label: 'ミニ盆栽', match: p => p.sizeCategory === 'mini' || /ミニ/.test(p.originalName) },
   { value: 'kokedama', label: '苔玉', match: nameMatches(/苔玉|こけだま|コケダマ/) },
+  { value: 'akamatsu', label: '赤松', match: nameMatches(/赤松|アカマツ/) },
+  { value: 'satsuki', label: 'さつき', match: nameMatches(/さつき|サツキ|皐月/) },
+  { value: 'keyaki', label: '欅（けやき）', match: nameMatches(/欅|けやき|ケヤキ/) },
+  { value: 'sansho', label: '山椒', match: nameMatches(/山椒|サンショウ/) },
+  { value: 'nanten', label: '南天', match: nameMatches(/南天|ナンテン/) },
+  { value: 'himeringo', label: '姫りんご', match: nameMatches(/姫りんご|姫リンゴ|ヒメリンゴ/) },
+  { value: 'mimono', label: '実もの盆栽', match: p => p.category === '実もの' },
+  { value: 'olive', label: 'オリーブ', match: nameMatches(/オリーブ/) },
+  { value: 'gajumaru', label: 'ガジュマル', match: nameMatches(/ガジュマル|がじゅまる/) },
   { value: 'cat-shohaku', label: '松柏類（すべて）', match: p => p.category === '松柏類' },
   { value: 'cat-zouki', label: '雑木類（すべて）', match: p => p.category === '雑木類' },
   { value: 'cat-hana', label: '花もの（すべて）', match: p => p.category === '花もの' },

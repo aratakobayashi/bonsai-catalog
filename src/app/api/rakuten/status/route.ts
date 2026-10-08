@@ -9,7 +9,7 @@ export async function GET() {
   if (!isRakutenConfigured()) {
     return NextResponse.json({ configured: false, ok: false, affiliate: Boolean(process.env.RAKUTEN_AFFILIATE_ID) })
   }
-  const { items, error } = await searchRakutenItems({ keyword: '盆栽', hits: 1, fresh: true })
+  const { items, total, error } = await searchRakutenItems({ keyword: '盆栽', hits: 1, fresh: true })
 
   // 同期の状況（DB拡張前は列がないため null）
   const { data: latest } = await supabaseServer
@@ -31,6 +31,8 @@ export async function GET() {
     cronSecretConfigured: Boolean(process.env.CRON_SECRET),
     configured: true,
     affiliate: Boolean(process.env.RAKUTEN_AFFILIATE_ID),
+    // 楽天市場で「盆栽」に当てはまる販売中の商品数（取得できる上限の目安）
+    rakutenTotal: total ?? null,
     ok: !error && items.length > 0,
     error: error ?? null,
     affiliateLink: items[0] ? /hb\.afl\.rakuten\.co\.jp/.test(items[0].url) : null,

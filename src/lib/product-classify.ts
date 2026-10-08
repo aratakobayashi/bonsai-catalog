@@ -43,7 +43,7 @@ export function detectBonsaiCategory(text: string, type: ProductType): string {
   if (/黒松|五葉松|赤松|真柏|杜松|檜|ヒノキ|ヒバ|松柏/.test(text)) return '松柏類'
   if (/りんご|リンゴ|柿|姫りんご|実もの|ザクロ|南天|ナンテン|ピラカンサ|梅もどき|ウメモドキ|紫式部/.test(text)) return '実もの'
   if (/桜|さくら|サクラ|梅|うめ|ウメ|長寿梅|藤|皐月|さつき|サツキ|椿|ツバキ|花もの/.test(text)) return '花もの'
-  if (/もみじ|モミジ|紅葉|楓|カエデ|けやき|ケヤキ|欅|ぶな|ブナ|イチョウ|雑木/.test(text)) return '雑木類'
+  if (/もみじ|モミジ|紅葉|楓|カエデ|けやき|ケヤキ|欅|ぶな|ブナ|イチョウ|山椒|サンショウ|雑木/.test(text)) return '雑木類'
   if (/苔|草もの|山野草/.test(text)) return '草もの'
   return 'その他'
 }
