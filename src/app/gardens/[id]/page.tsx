@@ -7,6 +7,11 @@ import { Garden, Product, Article } from '@/types'
 import { LocalBusinessStructuredData, BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { getArticles } from '@/lib/database/articles'
 
+// 仮の画像サービス（via.placeholder.com）やダミーURL（example.com）は写真として扱わない
+function isRealPhoto(url?: string | null): boolean {
+  return Boolean(url) && !/via\.placeholder\.com|example\.com/.test(url!)
+}
+
 interface GardenPageProps {
   params: {
     id: string
@@ -159,9 +164,10 @@ export async function generateMetadata({ params }: GardenPageProps): Promise<Met
     openGraph: {
       title: `${garden.name}${location} - 盆栽園ガイド`,
       description: description.substring(0, 200),
-      images: garden.image_url ? [garden.image_url] : undefined,
+      images: isRealPhoto(garden.image_url) ? [garden.image_url!] : undefined,
       type: 'article',
     },
+    alternates: { canonical: `/gardens/${garden.id}` },
   }
 }
 
@@ -384,7 +390,7 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
         address={garden.address}
         phone={garden.phone}
         website={garden.website_url}
-        image={garden.image_url}
+        image={isRealPhoto(garden.image_url) ? garden.image_url : undefined}
         latitude={garden.latitude}
         longitude={garden.longitude}
         businessHours={garden.business_hours}
@@ -418,14 +424,19 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
 
           {/* ヘッダーセクション */}
           <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
-            {/* 画像がある場合のみ表示 */}
-            {(garden.image_url || gardenImageMap[garden.id]) && (
+            {/* 実際の写真があればそれを、なければイメージイラストを「イメージ」と明記して表示する */}
+            {(isRealPhoto(garden.image_url) || gardenImageMap[garden.id]) && (
               <div className="relative h-48 md:h-64 w-full">
                 <img
-                  src={gardenImageMap[garden.id] || garden.image_url}
-                  alt={`${garden.name}の外観`}
+                  src={isRealPhoto(garden.image_url) ? garden.image_url! : gardenImageMap[garden.id]}
+                  alt={isRealPhoto(garden.image_url) ? `${garden.name}の外観` : `${garden.name}のイメージイラスト`}
                   className="w-full h-full object-cover"
                 />
+                {!isRealPhoto(garden.image_url) && (
+                  <span className="absolute bottom-2 left-2 bg-black/60 text-white text-[11px] px-2 py-0.5 rounded">
+                    イメージイラスト（実際の外観ではありません）
+                  </span>
+                )}
                 {garden.featured && (
                   <div className="absolute top-4 right-4 bg-accent-600 text-white px-3 py-1 rounded-full text-sm font-medium">
                     注目の盆栽園

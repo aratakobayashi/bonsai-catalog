@@ -1,8 +1,8 @@
 import { baseUrl } from '@/lib/sitemap-utils'
 
 // サイトマップインデックス（各サイトマップの目次）
-// 盆栽園・イベントは noindex のため含めない
-const SITEMAPS = ['sitemap-static.xml', 'sitemap-products.xml', 'sitemap-articles.xml', 'sitemap-images.xml']
+// イベントは noindex のため含めない
+const SITEMAPS = ['sitemap-static.xml', 'sitemap-products.xml', 'sitemap-articles.xml', 'sitemap-gardens.xml', 'sitemap-images.xml']
 
 export const revalidate = 3600
 

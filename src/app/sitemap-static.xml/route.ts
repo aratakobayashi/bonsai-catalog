@@ -40,6 +40,12 @@ export async function GET() {
         priority: 0.9
       })),
       {
+        url: `${baseUrl}/gardens`,
+        lastMod: new Date().toISOString().split('T')[0],
+        changeFreq: 'weekly',
+        priority: 0.8
+      },
+      {
         url: `${baseUrl}/about`,
         lastMod: new Date('2026-06-15').toISOString().split('T')[0],
         changeFreq: 'monthly',
