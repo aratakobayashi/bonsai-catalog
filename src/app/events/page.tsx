@@ -1,6 +1,9 @@
 import { Metadata } from 'next'
 import { Suspense } from 'react'
+import Link from 'next/link'
 import EventsPageClient from './EventsPageClient'
+import EventViewTabs, { EventViewTabsView } from './EventViewTabs'
+import { Breadcrumbs, CONTAINER } from '@/components/ui/design'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/events' },
@@ -45,68 +48,41 @@ export default function EventsPage() {
         }}
       />
 
-      <div className="min-h-screen bg-gray-50">
-        {/* ヘッダーセクション */}
-        <div className="bg-gradient-primary text-white">
-          <div className="container mx-auto px-4 py-12">
-            <div className="max-w-3xl">
-              <h1 className="text-3xl md:text-4xl font-bold mb-4">
-                盆栽イベント情報
-              </h1>
-              <p className="text-lg text-primary-100 leading-relaxed">
-                全国各地で開催される盆栽関連イベントを一覧で確認できます。展示会、即売会、ワークショップ、講習会など、あなたの興味に合わせてイベントを探してみましょう。
-              </p>
+      <div className={`${CONTAINER} pb-12`}>
+        {/* SPのみ：盆栽園／イベントの切り替え */}
+        <div className="mt-4 grid grid-cols-2 gap-1.5 lg:hidden">
+          <Link href="/gardens" className="rounded-lg border border-line bg-white py-2 text-center text-[13px] text-ink">盆栽園</Link>
+          <span className="rounded-lg bg-navy py-2 text-center text-[13px] font-bold text-white" aria-current="page">イベント</span>
+        </div>
 
-              {/* 統計情報 */}
-              <div className="flex flex-wrap gap-6 mt-8">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-accent-200">8+</div>
-                  <div className="text-sm text-primary-200">今月のイベント</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-accent-200">47</div>
-                  <div className="text-sm text-primary-200">都道府県をカバー</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-accent-200">4</div>
-                  <div className="text-sm text-primary-200">イベント種別</div>
-                </div>
-              </div>
+        <div className="pt-4 lg:pt-10">
+          <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: '出かける', href: '/gardens' }, { label: 'イベント' }]} className="hidden lg:block" />
+          <div className="flex items-center gap-4 lg:mt-2 lg:items-end lg:gap-6">
+            <div className="min-w-0">
+              <h1 className="font-mincho text-2xl font-bold leading-snug text-navy lg:text-4xl">盆栽イベント</h1>
+              <p className="mt-1.5 hidden text-[14.5px] leading-relaxed text-ink-soft lg:block">
+                全国の展示会・即売会・ワークショップ・講習会を、これから開催の順に。
+              </p>
+            </div>
+            <div className="ml-auto flex-none">
+              <Suspense fallback={<EventViewTabsView active="list" />}>
+                <EventViewTabs />
+              </Suspense>
             </div>
           </div>
         </div>
 
-        {/* メインコンテンツ */}
-        <div className="container mx-auto px-4 py-8">
-          <Suspense fallback={
-            <div className="flex items-center justify-center py-12">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
-            </div>
-          }>
-            <EventsPageClient />
-          </Suspense>
-        </div>
-
-        {/* イベント開催案内 */}
-        <div className="bg-white border-t">
-          <div className="container mx-auto px-4 py-12">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                イベント主催者の方へ
-              </h2>
-              <p className="text-gray-600 mb-6">
-                盆栽関連のイベントを当サイトに掲載をご希望の方は、お気軽にお問い合わせください。
-                展示会、即売会、ワークショップ、講習会など、盆栽愛好家の皆様に有益な情報をお待ちしています。
-              </p>
-              <a
-                href="/contact"
-                className="inline-flex items-center px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors"
-              >
-                イベント掲載のお問い合わせ
-              </a>
-            </div>
+        <Suspense fallback={
+          <div className="flex items-center justify-center py-16">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-navy" />
           </div>
-        </div>
+        }>
+          <EventsPageClient />
+        </Suspense>
+
+        <p className="mt-10 text-center text-xs leading-relaxed text-ink-muted">
+          盆栽イベントの掲載をご希望の主催者の方は、<Link href="/contact" className="text-navy underline hover:text-gold-dark">お問い合わせ</Link>からご連絡ください。
+        </p>
       </div>
     </>
   )

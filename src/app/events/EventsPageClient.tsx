@@ -1,40 +1,91 @@
 'use client'
 
 import { useState, useEffect, useMemo } from 'react'
+import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { Event, EventSearchParams, EventsResponse } from '@/types'
-import { EventCard } from '@/components/features/EventCard'
 import { EventCalendar } from '@/components/features/EventCalendar'
-import { EventFilters } from '@/components/features/EventFilters'
+import { EventFilters, EventPeriod } from '@/components/features/EventFilters'
 import { EventMap } from '@/components/features/EventMap'
 import { EventListView } from '@/components/features/EventListView'
-import { cn } from '@/lib/utils'
-import { Calendar, List, Map, ChevronLeft, ChevronRight } from 'lucide-react'
+import {
+  EventStatusTag,
+  EventTypeTag,
+  eventPlaceText,
+  getEventStatus,
+  googleCalendarUrl,
+  parseEventDate,
+  startOfToday,
+} from '@/components/features/EventShared'
+import { Placeholder } from '@/components/ui/design'
+import { eventDateText, eventPriceText, isTentativeEvent } from '@/lib/event-display'
+import { parseEventView } from './EventViewTabs'
 
-type ViewType = 'month' | 'list' | 'map'
+function parsePeriod(value: string | null): EventPeriod {
+  return value === 'past' || value === 'all' ? value : 'upcoming'
+}
+
+// 並べ替え用の日付。日程未発表のイベントは例年の月の末尾に置く
+function sortKey(event: Event) {
+  const start = parseEventDate(event.start_date)
+  return isTentativeEvent(event) ? new Date(start.getFullYear(), start.getMonth() + 1, 0, 12).getTime() : start.getTime()
+}
+
+// PCのリスト表示で右側に出す、選択中イベントの概要
+function EventPreview({ event }: { event: Event }) {
+  const calendarUrl = googleCalendarUrl(event)
+  return (
+    <div className="overflow-hidden rounded-[14px] border border-line bg-white">
+      <Placeholder label={event.venue_name || eventPlaceText(event)} className="h-[180px]" />
+      <div className="px-6 py-[22px]">
+        <div className="flex flex-wrap gap-1.5">
+          {event.types.map(type => <EventTypeTag key={type} type={type} />)}
+          <EventStatusTag event={event} />
+        </div>
+        <h2 className="mt-2 font-mincho text-2xl font-bold leading-snug text-navy">{event.title}</h2>
+        <dl className="mt-1 text-[13.5px]">
+          {[
+            ['日程', eventDateText(event, true)],
+            ['会場', [event.venue_name, eventPlaceText(event)].filter(Boolean).join('・')],
+            ['参加費', eventPriceText(event)],
+            ...(event.organizer_name ? [['主催', event.organizer_name]] : []),
+          ].map(([label, value]) => (
+            <div key={label} className="grid grid-cols-[72px_1fr] border-b border-[#f1ece2] py-2.5">
+              <dt className="text-ink-muted">{label}</dt>
+              <dd className="text-ink">{value}</dd>
+            </div>
+          ))}
+        </dl>
+        <div className="mt-4 flex gap-2.5">
+          <Link href={`/events/${event.slug}`} className="flex h-11 flex-1 items-center justify-center rounded-[10px] bg-navy text-sm font-bold text-white hover:bg-navy-light">
+            詳しく見る
+          </Link>
+          {calendarUrl && (
+            <a href={calendarUrl} target="_blank" rel="noopener noreferrer" className="flex h-11 items-center rounded-[10px] border border-navy px-4 text-[13.5px] text-navy hover:bg-gold-light">
+              カレンダーに追加
+            </a>
+          )}
+        </div>
+        <p className="mt-3 text-[11.5px] leading-relaxed text-ink-muted">
+          ※ 日程・料金は変更になることがあります。お出かけ前に公式サイトでご確認ください。
+        </p>
+      </div>
+    </div>
+  )
+}
 
 export default function EventsPageClient() {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const view = parseEventView(searchParams.get('view'))
 
-  // レスポンシブなデフォルトビュー設定
-  const getDefaultView = (): ViewType => {
-    if (typeof window !== 'undefined') {
-      // モバイル判定（768px未満）
-      if (window.innerWidth < 768) {
-        return 'list'  // SPはリストビュー
-      }
-    }
-    return 'month'  // PCはカレンダービュー
-  }
-
-  const [view, setView] = useState<ViewType>(getDefaultView())
   const [events, setEvents] = useState<Event[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [eventsResponse, setEventsResponse] = useState<EventsResponse | null>(null)
+  const [selectedId, setSelectedId] = useState<string | null>(null)
 
-  // URLパラメータから初期フィルターを設定（useMemoで最適化）
+  // URLパラメータから初期フィルターを設定
   const initialFilters = useMemo((): EventSearchParams => {
     const filters: EventSearchParams = {
       page: 1,
@@ -51,32 +102,9 @@ export default function EventsPageClient() {
   }, [searchParams])
 
   const [filters, setFilters] = useState<EventSearchParams>(initialFilters)
+  const [period, setPeriod] = useState<EventPeriod>(() => parsePeriod(searchParams.get('period')))
 
-  // URLのviewパラメータを初期化時に設定
-  useEffect(() => {
-    const viewParam = searchParams.get('view')
-    if (viewParam && (viewParam === 'month' || viewParam === 'list' || viewParam === 'map')) {
-      setView(viewParam as ViewType)
-    } else {
-      // URLパラメータがない場合はレスポンシブなデフォルトビューを設定
-      setView(getDefaultView())
-    }
-  }, [searchParams])
-
-  // ウィンドウリサイズ時の対応
-  useEffect(() => {
-    const handleResize = () => {
-      // URLにviewパラメータがない場合のみレスポンシブ切り替え
-      if (!searchParams.get('view')) {
-        setView(getDefaultView())
-      }
-    }
-
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [searchParams])
-
-  // イベントデータを取得
+  // イベントデータを取得（API のパラメータ名に合わせて search→q, garden_id→gardenId）
   const fetchEvents = async (currentFilters: EventSearchParams) => {
     try {
       setLoading(true)
@@ -84,13 +112,10 @@ export default function EventsPageClient() {
 
       const params = new URLSearchParams()
       Object.entries(currentFilters).forEach(([key, value]) => {
-        if (value !== undefined && value !== null && value !== '') {
-          if (Array.isArray(value)) {
-            params.set(key, value.join(','))
-          } else {
-            params.set(key, value.toString())
-          }
-        }
+        if (value === undefined || value === null || value === '') return
+        if (Array.isArray(value) && value.length === 0) return
+        const apiKey = key === 'search' ? 'q' : key === 'garden_id' ? 'gardenId' : key
+        params.set(apiKey, Array.isArray(value) ? value.join(',') : value.toString())
       })
 
       const response = await fetch(`/api/events?${params}`)
@@ -102,76 +127,87 @@ export default function EventsPageClient() {
       setEvents(data.events)
       setEventsResponse(data)
     } catch (err) {
-      console.error('❌ Error fetching events:', err)
+      console.error('Error fetching events:', err)
       setError(err instanceof Error ? err.message : 'エラーが発生しました')
     } finally {
       setLoading(false)
     }
   }
 
-  // フィルターまたはビューが変更されたときにURLを更新
-  const updateURL = (newFilters: EventSearchParams, newView?: ViewType) => {
+  // フィルター・期間を URL に反映（表示タブの状態は残す）
+  const updateURL = (newFilters: EventSearchParams, newPeriod: EventPeriod) => {
     const params = new URLSearchParams()
-
-    // フィルターをURLパラメータに追加
     Object.entries(newFilters).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== '') {
-        if (Array.isArray(value) && value.length > 0) {
-          params.set(key, value.join(','))
-        } else if (!Array.isArray(value)) {
-          params.set(key, value.toString())
-        }
+      if (key === 'page' || key === 'limit') return
+      if (value === undefined || value === null || value === '') return
+      if (Array.isArray(value)) {
+        if (value.length > 0) params.set(key, value.join(','))
+      } else {
+        params.set(key, value.toString())
       }
     })
-
-    // ビューを追加
-    if (newView && newView !== 'month') {
-      params.set('view', newView)
-    }
-
-    const newURL = params.toString() ? `/events?${params}` : '/events'
-    router.push(newURL, { scroll: false })
+    if (newPeriod !== 'upcoming' && !newFilters.month) params.set('period', newPeriod)
+    if (view !== 'list') params.set('view', view)
+    const qs = params.toString()
+    router.push(qs ? `/events?${qs}` : '/events', { scroll: false })
   }
 
-  // フィルター変更ハンドラー
   const handleFiltersChange = (newFilters: EventSearchParams) => {
     setFilters(newFilters)
-    updateURL(newFilters, view)
+    updateURL(newFilters, period)
   }
 
-  // ビュー変更ハンドラー
-  const handleViewChange = (newView: ViewType) => {
-    setView(newView)
-    updateURL(filters, newView)
+  const handlePeriodChange = (newPeriod: EventPeriod) => {
+    setPeriod(newPeriod)
+    updateURL({ ...filters, month: undefined }, newPeriod)
   }
 
-  // ページネーション無効化（全イベント一覧表示）
+  const clearSearch = () => handleFiltersChange({ ...filters, search: undefined, garden_id: undefined })
 
-  // 初回データ取得（initialFiltersを使用）
-  useEffect(() => {
-    fetchEvents(initialFilters)
-  }, []) // 依存配列を空にして初回のみ実行
-
-  // フィルター変更時にデータを再取得
   useEffect(() => {
     fetchEvents(filters)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters])
+
+  // 表示するイベント：既定は開催中・これから（開催日順）。終了分は新しい順
+  const displayed = useMemo(() => {
+    const today = startOfToday()
+    if (filters.month) return [...events].sort((a, b) => sortKey(a) - sortKey(b))
+    const current = events
+      .filter(e => getEventStatus(e, today) !== 'past')
+      .sort((a, b) => {
+        const sa = getEventStatus(a, today)
+        const sb = getEventStatus(b, today)
+        if (sa !== sb) return sa === 'ongoing' ? -1 : 1
+        return sa === 'ongoing'
+          ? parseEventDate(a.end_date).getTime() - parseEventDate(b.end_date).getTime()
+          : sortKey(a) - sortKey(b)
+      })
+    const past = events
+      .filter(e => getEventStatus(e, today) === 'past')
+      .sort((a, b) => sortKey(b) - sortKey(a))
+    if (period === 'past') return past
+    if (period === 'all') return [...current, ...past]
+    return current
+  }, [events, filters.month, period])
+
+  const selected = displayed.find(e => e.id === selectedId) ?? displayed[0] ?? null
 
   if (loading && events.length === 0) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+      <div className="flex items-center justify-center py-16">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-navy" />
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="text-center py-12">
-        <div className="text-red-600 mb-4">{error}</div>
+      <div className="py-16 text-center">
+        <p className="mb-4 text-sm text-rakuten">{error}</p>
         <button
           onClick={() => fetchEvents(filters)}
-          className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+          className="rounded-[10px] bg-navy px-5 py-2.5 text-sm font-bold text-white hover:bg-navy-light"
         >
           再試行
         </button>
@@ -180,78 +216,44 @@ export default function EventsPageClient() {
   }
 
   return (
-    <div className="space-y-6">
-      {/* フィルターセクション */}
+    <div className={loading ? 'opacity-60 transition-opacity' : 'transition-opacity'}>
       <EventFilters
+        className="mt-4 lg:mt-5"
         filters={filters}
+        period={period}
         onFiltersChange={handleFiltersChange}
+        onPeriodChange={handlePeriodChange}
         prefectures={eventsResponse?.prefectures || []}
-        gardens={[]} // TODO: 盆栽園データを取得
+        count={view === 'month' ? events.length : displayed.length}
       />
 
-      {/* ビュー切り替えタブ */}
-      <div className="flex items-center justify-between">
-        <div className="flex bg-gray-100 rounded-lg p-1">
-          <button
-            onClick={() => handleViewChange('month')}
-            className={cn(
-              'flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors',
-              view === 'month'
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-600 hover:text-gray-900'
-            )}
-          >
-            <Calendar className="h-4 w-4" />
-            カレンダー
-          </button>
-          <button
-            onClick={() => handleViewChange('list')}
-            className={cn(
-              'flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors',
-              view === 'list'
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-600 hover:text-gray-900'
-            )}
-          >
-            <List className="h-4 w-4" />
-            リスト
-          </button>
-          <button
-            onClick={() => handleViewChange('map')}
-            className={cn(
-              'flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors',
-              view === 'map'
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-600 hover:text-gray-900'
-            )}
-          >
-            <Map className="h-4 w-4" />
-            マップ
-          </button>
+      {(filters.search || filters.garden_id) && (
+        <div className="mt-3 flex items-center gap-2 text-[13px] text-ink-soft">
+          {filters.search ? `「${filters.search}」の検索結果` : '盆栽園で絞り込み中'}
+          <button type="button" onClick={clearSearch} className="text-navy underline hover:text-gold-dark">解除</button>
         </div>
+      )}
 
-        {/* 結果数表示 */}
-        {eventsResponse && (
-          <div className="text-sm text-gray-600">
-            {eventsResponse.total}件のイベント
-            {filters.search && ` 「${filters.search}」の検索結果`}
+      <p className="mt-3 text-xs text-ink-soft lg:hidden">{view === 'month' ? events.length : displayed.length}件</p>
+
+      <div className="mt-3 lg:mt-5">
+        {view === 'month' ? (
+          <EventCalendar events={events} />
+        ) : view === 'map' ? (
+          <EventMap events={displayed} />
+        ) : (
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)]">
+            <EventListView events={displayed} selectedId={selected?.id} onSelect={e => setSelectedId(e.id)} />
+            {selected && (
+              <div className="hidden lg:block">
+                <div className="sticky top-24">
+                  <EventPreview event={selected} />
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
-
-      {/* メインコンテンツ */}
-      {view === 'month' ? (
-        <EventCalendar events={events} />
-      ) : view === 'list' ? (
-        <div className="space-y-6">
-          {/* 新しいリストビュー */}
-          <EventListView events={events} />
-
-          {/* ページネーション無効化 */}
-        </div>
-      ) : view === 'map' ? (
-        <EventMap events={events} />
-      ) : null}
     </div>
   )
 }

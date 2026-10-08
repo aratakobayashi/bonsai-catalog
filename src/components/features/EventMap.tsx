@@ -4,10 +4,11 @@ import { useState, useMemo, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import 'leaflet/dist/leaflet.css'
 import { Event } from '@/types'
+import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import { MapPin, Calendar, DollarSign } from 'lucide-react'
 import { EventCard } from './EventCard'
-import { eventDateText, eventPriceText, isTentativeEvent } from '@/lib/event-display'
+import { eventPriceText } from '@/lib/event-display'
+import { EVENT_TYPE_LABEL, eventShortDateText, getEventStatus } from './EventShared'
 
 // Dynamically import Leaflet components to avoid SSR issues
 const MapContainer = dynamic(
@@ -92,13 +93,6 @@ const prefectureCoordinates: Record<string, [number, number]> = {
   '沖縄県': [26.2124, 127.6792]
 }
 
-const eventTypeConfig = {
-  exhibition: { color: 'text-green-600 bg-green-50', icon: '🌳', label: '展示' },
-  sale: { color: 'text-blue-600 bg-blue-50', icon: '🛒', label: '即売' },
-  workshop: { color: 'text-orange-600 bg-orange-50', icon: '✂️', label: '体験' },
-  lecture: { color: 'text-purple-600 bg-purple-50', icon: '📖', label: '講習' }
-}
-
 interface EventMapProps {
   events: Event[]
   className?: string
@@ -108,214 +102,115 @@ interface EventMapProps {
 
 export function EventMap({ events, className, selectedEvent, onEventSelect }: EventMapProps) {
   const [mapLoaded, setMapLoaded] = useState(false)
-  const [selectedMarker, setSelectedMarker] = useState<Event | null>(selectedEvent || null)
+  const [selectedPrefecture, setSelectedPrefecture] = useState<string | null>(selectedEvent?.prefecture ?? null)
 
   useEffect(() => {
     setMapLoaded(true)
   }, [])
 
-  // Group events by prefecture and add coordinates
-  const eventsWithCoordinates = useMemo(() => {
-    return events
-      .filter(event => prefectureCoordinates[event.prefecture])
-      .map(event => ({
-        ...event,
-        coordinates: prefectureCoordinates[event.prefecture] as [number, number]
-      }))
-  }, [events])
-
-  // Group events by prefecture for clustering
+  // 都道府県ごとにまとめてピンを立てる
   const eventGroups = useMemo(() => {
-    const groups = new Map<string, (Event & { coordinates: [number, number] })[]>()
-
-    eventsWithCoordinates.forEach(event => {
-      const key = event.prefecture
-      if (!groups.has(key)) {
-        groups.set(key, [])
-      }
-      groups.get(key)!.push(event)
-    })
-
+    const groups = new Map<string, Event[]>()
+    events
+      .filter(event => prefectureCoordinates[event.prefecture])
+      .forEach(event => {
+        if (!groups.has(event.prefecture)) groups.set(event.prefecture, [])
+        groups.get(event.prefecture)!.push(event)
+      })
     return Array.from(groups.entries()).map(([prefecture, eventList]) => ({
       prefecture,
       events: eventList,
-      coordinates: eventList[0].coordinates,
+      coordinates: prefectureCoordinates[prefecture],
       count: eventList.length
     }))
-  }, [eventsWithCoordinates])
+  }, [events])
 
-  const formatDate = (dateStr: string) => {
-    const date = new Date(dateStr)
-    return date.toLocaleDateString('ja-JP', {
-      month: 'short',
-      day: 'numeric'
-    })
-  }
-
-  const getDateRange = (event: Event) =>
-    isTentativeEvent(event) ? eventDateText(event) : event.start_date === event.end_date
-      ? formatDate(event.start_date)
-      : `${formatDate(event.start_date)} - ${formatDate(event.end_date)}`
-
-  const isUpcoming = (event: Event) => {
-    const today = new Date()
-    const startDate = new Date(event.start_date)
-    return startDate >= today
-  }
-
-  const isPast = (event: Event) => {
-    const today = new Date()
-    const endDate = new Date(event.end_date)
-    return endDate < today
-  }
+  const selectedGroup = eventGroups.find(g => g.prefecture === selectedPrefecture) ?? null
 
   if (!mapLoaded) {
     return (
-      <div className={cn("flex items-center justify-center h-96 bg-gray-50 rounded-lg", className)}>
-        <div className="text-center">
-          <MapPin className="h-8 w-8 text-gray-400 mx-auto mb-2" />
-          <p className="text-gray-600">マップを読み込み中...</p>
-        </div>
+      <div className={cn('flex h-96 items-center justify-center rounded-[14px] border border-line bg-white text-sm text-ink-muted', className)}>
+        地図を読み込み中…
       </div>
     )
   }
 
   return (
-    <div className={cn("space-y-4", className)}>
-      {/* Map Container */}
-      <div className="relative h-96 rounded-lg overflow-hidden border border-gray-200">
-        <MapContainer
-          center={[35.6762, 139.6503]} // Tokyo center
-          zoom={6}
-          style={{ height: '100%', width: '100%' }}
-          className="z-0"
-        >
-          <FixLeafletIcons />
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
+    <div className={cn('grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px]', className)}>
+      <div>
+        <div className="relative h-[360px] overflow-hidden rounded-[14px] border border-line lg:h-[520px]">
+          <MapContainer
+            center={[36.2, 138.25]}
+            zoom={5}
+            style={{ height: '100%', width: '100%' }}
+            className="z-0"
+          >
+            <FixLeafletIcons />
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
 
-          {eventGroups.map(({ prefecture, events: groupEvents, coordinates, count }) => (
-            <Marker
-              key={prefecture}
-              position={coordinates}
-              eventHandlers={{
-                click: () => {
-                  // If single event, select it; if multiple, show prefecture info
-                  if (groupEvents.length === 1) {
-                    setSelectedMarker(groupEvents[0])
-                    onEventSelect?.(groupEvents[0])
-                  } else {
-                    setSelectedMarker(null)
-                    onEventSelect?.(null)
+            {eventGroups.map(({ prefecture, events: groupEvents, coordinates, count }) => (
+              <Marker
+                key={prefecture}
+                position={coordinates}
+                eventHandlers={{
+                  click: () => {
+                    setSelectedPrefecture(prefecture)
+                    onEventSelect?.(groupEvents.length === 1 ? groupEvents[0] : null)
                   }
-                }
-              }}
-            >
-              <Popup>
-                <div className="p-2 min-w-64">
-                  <h3 className="font-semibold text-gray-900 mb-2">
-                    {prefecture} ({count}件のイベント)
-                  </h3>
-                  <div className="space-y-2 max-h-48 overflow-y-auto">
-                    {groupEvents.slice(0, 3).map((event) => (
-                      <div
-                        key={event.id}
-                        className={cn(
-                          "p-2 border rounded cursor-pointer hover:bg-gray-50 transition-colors",
-                          selectedMarker?.id === event.id && "border-green-300 bg-green-50"
-                        )}
-                        onClick={() => {
-                          setSelectedMarker(event)
-                          onEventSelect?.(event)
-                        }}
-                      >
-                        <div className="flex items-start justify-between mb-1">
-                          <h4 className="font-medium text-sm text-gray-900 leading-tight">
+                }}
+              >
+                <Popup>
+                  <div className="min-w-56">
+                    <p className="mb-1.5 font-bold text-navy">{prefecture}（{count}件）</p>
+                    <ul className="max-h-48 space-y-1.5 overflow-y-auto">
+                      {groupEvents.slice(0, 3).map(event => (
+                        <li key={event.id} className="border-t border-line pt-1.5">
+                          <Link href={`/events/${event.slug}`} className="block text-[13px] font-bold leading-snug text-ink hover:text-gold-dark">
                             {event.title}
-                          </h4>
-                          <div className="flex gap-1 ml-2">
-                            {event.types.slice(0, 1).map((type) => (
-                              <span
-                                key={type}
-                                className="text-xs"
-                                title={eventTypeConfig[type].label}
-                              >
-                                {eventTypeConfig[type].icon}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2 text-xs text-gray-600">
-                          <div className="flex items-center gap-1">
-                            <Calendar className="h-3 w-3" />
-                            <span>{getDateRange(event)}</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <DollarSign className="h-3 w-3" />
-                            <span>{eventPriceText(event)}</span>
-                          </div>
-                        </div>
-                        {event.venue_name && (
-                          <p className="text-xs text-gray-500 mt-1 truncate">
-                            {event.venue_name}
-                          </p>
-                        )}
-                        {isPast(event) && (
-                          <span className="inline-block text-xs bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded mt-1">
-                            終了
+                          </Link>
+                          <span className="block text-[11.5px] text-ink-soft">
+                            {event.types.map(t => EVENT_TYPE_LABEL[t]).join('・')}　{eventShortDateText(event)}・{eventPriceText(event)}
+                            {getEventStatus(event) === 'past' && '（終了）'}
                           </span>
-                        )}
-                        {isUpcoming(event) && (
-                          <span className="inline-block text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded mt-1">
-                            開催予定
-                          </span>
-                        )}
-                      </div>
-                    ))}
-                    {groupEvents.length > 3 && (
-                      <p className="text-xs text-gray-500 text-center py-1">
-                        他 {groupEvents.length - 3} 件のイベント
-                      </p>
-                    )}
+                        </li>
+                      ))}
+                    </ul>
+                    {groupEvents.length > 3 && <p className="mt-1.5 text-[11.5px] text-ink-muted">ほか{groupEvents.length - 3}件は右の一覧で確認できます</p>}
                   </div>
-                </div>
-              </Popup>
-            </Marker>
-          ))}
-        </MapContainer>
+                </Popup>
+              </Marker>
+            ))}
+          </MapContainer>
+        </div>
+        <p className="mt-2 text-[11.5px] text-ink-muted">※ ピンは都道府県ごとのおおよその位置です。ピンを押すとその地域のイベントを表示します。</p>
       </div>
 
-      {/* Selected Event Details */}
-      {selectedMarker && (
-        <div className="bg-gray-50 rounded-lg p-4">
-          <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-            <MapPin className="h-5 w-5" />
-            選択されたイベント
+      <div>
+        <div className="lg:sticky lg:top-24">
+          <h3 className="mb-2.5 flex items-baseline gap-2 text-[13px] font-bold text-ink-soft">
+            {selectedGroup ? `${selectedGroup.prefecture}のイベント（${selectedGroup.count}件）` : '地図のピンを選んでください'}
+            {selectedGroup && (
+              <button onClick={() => setSelectedPrefecture(null)} className="ml-auto text-xs font-normal text-navy underline hover:text-gold-dark">
+                選択を解除
+              </button>
+            )}
           </h3>
-          <EventCard
-            event={selectedMarker}
-            layout="compact"
-          />
-        </div>
-      )}
-
-      {/* Map Legend */}
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
-        <h4 className="font-medium text-gray-900 mb-3">凡例</h4>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {Object.entries(eventTypeConfig).map(([type, config]) => (
-            <div key={type} className="flex items-center gap-2">
-              <span className="text-lg">{config.icon}</span>
-              <span className="text-sm text-gray-700">{config.label}</span>
+          {selectedGroup ? (
+            <div className="flex flex-col gap-2.5">
+              {selectedGroup.events.map(event => <EventCard key={event.id} event={event} />)}
             </div>
-          ))}
-        </div>
-        <div className="mt-3 pt-3 border-t border-gray-200">
-          <p className="text-xs text-gray-600">
-            📍 マーカーをクリックしてイベント詳細を表示
-          </p>
+          ) : (
+            <div className="flex flex-wrap gap-1.5">
+              {eventGroups.map(g => (
+                <button key={g.prefecture} onClick={() => setSelectedPrefecture(g.prefecture)} className="rounded-full border border-line bg-white px-3 py-1 text-[13px] text-ink hover:border-gold">
+                  {g.prefecture}<span className="ml-1 text-ink-muted">{g.count}</span>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
