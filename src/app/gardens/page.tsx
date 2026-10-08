@@ -13,7 +13,8 @@ export const metadata: Metadata = {
 async function getGardens(): Promise<Garden[]> {
   const { data, error } = await supabaseServer
     .from('gardens')
-    .select('*')
+    // 一覧に必要な項目だけを取得する（ページの容量を減らして表示を速くするため）
+    .select('id, name, prefecture, city, address, description, latitude, longitude, business_hours, phone, website_url, specialties, online_sales, experience_programs, image_url, featured, created_at')
     .order('created_at', { ascending: false })
 
   if (error) {
