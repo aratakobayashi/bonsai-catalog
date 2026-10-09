@@ -89,12 +89,23 @@ async function getGardenCount(): Promise<number> {
   return ((data || []) as { id: string }[]).filter(garden => isGardenPublished(garden)).length
 }
 
+// データの取得が一時的に失敗しても、エラー画面ではなく取れた分だけで表示する
+// （エラー画面のまま ISR のキャッシュに残り、しばらく表示され続けるのを防ぐ）
+async function safely<T>(label: string, task: () => Promise<T>, fallback: T): Promise<T> {
+  try {
+    return await task()
+  } catch (error) {
+    console.error(`トップの${label}の取得に失敗しました:`, error instanceof Error ? error.message : error)
+    return fallback
+  }
+}
+
 export default async function HomePage() {
   const [products, popularArticles, gardenCount, eventCount] = await Promise.all([
-    getCatalogProducts(),
-    getPopularArticles(),
-    getGardenCount(),
-    getUpcomingEventsCount(),
+    safely('商品', getCatalogProducts, [] as Awaited<ReturnType<typeof getCatalogProducts>>),
+    safely('記事', getPopularArticles, [] as Awaited<ReturnType<typeof getPopularArticles>>),
+    safely('盆栽園の件数', getGardenCount, 0),
+    safely('イベントの件数', getUpcomingEventsCount, 0),
   ])
 
   // 商品一覧（/products）の既定の表示と同じく「その他」を除いた件数

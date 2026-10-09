@@ -50,14 +50,15 @@ async function fetchChunkOnce(index: number): Promise<any[]> {
 
   // 拡張前のDB（列が足りない）では全列を取得して補う
   if (error) {
-    if (index > 0) return []
+    // 2つ目以降の塊の失敗は「0件」として保存せず、やり直しに回す
+    if (index > 0) throw new Error(`商品データの取得エラー: ${error.message}`)
     const fallback = await supabaseServer.from('products').select('*').order('created_at', { ascending: false }).limit(1000)
     data = (fallback.data || []).map((row: any) => ({ ...row, description: undefined }))
     error = fallback.error
   }
   if (error) {
-    console.error('商品データの取得エラー:', error.message)
-    return []
+    // 空の結果をキャッシュに残さないよう、失敗は例外にしてやり直す
+    throw new Error(`商品データの取得エラー: ${error.message}`)
   }
   return data || []
 }
