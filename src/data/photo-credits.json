@@ -1,38 +1,1268 @@
 {
-  "/images/articles/photos/article-1-1.jpg": {
-    "title": "acer palmatum 'seigen'",
-    "creator": "M. Martin Vicente",
-    "license": "CC BY 2.0",
-    "source": "https://www.flickr.com/photos/32179778@N00/8732438343"
-  },
-  "/images/articles/photos/article-1-2.jpg": {
-    "title": "My Japanese Maple bonsai is going dormant. Beautiful two color leaves this year.",
-    "creator": "Ronald Douglas Frazier",
-    "license": "CC BY 2.0",
-    "source": "https://www.flickr.com/photos/56377701@N07/52530129731"
-  },
-  "/images/articles/photos/article-12-1.jpg": {
-    "title": "Bonsai nursery @ Omiya Bonsai Village",
-    "creator": "Guilhem Vellut",
-    "license": "CC BY 2.0",
-    "source": "https://www.flickr.com/photos/22539273@N00/13593836174"
-  },
-  "/images/articles/photos/article-12-2.jpg": {
-    "title": "Bonsai",
-    "creator": "Andreas D.",
-    "license": "CC BY 2.0",
-    "source": "https://www.flickr.com/photos/86791528@N00/50084314"
-  },
-  "/images/articles/photos/bonsai-watering-master-guide-2025-1.jpg": {
-    "title": "A copper bonsai watering can with a long spout",
-    "creator": "Bigul Malayi",
-    "license": "CC0 1.0",
-    "source": "https://wordpress.org/photos/photo/35868c4638/"
-  },
-  "/images/articles/photos/bonsai-watering-master-guide-2025-2.jpg": {
-    "title": "Trident Maple Bonsai",
-    "creator": "ncole458",
-    "license": "CC BY 2.0",
-    "source": "https://www.flickr.com/photos/10891659@N02/46955467255"
-  }
+ "/images/articles/photos/ai-bonsai-image-recognition-diagnosis-guide-1.jpg": {
+  "title": "Where the Magic Happens",
+  "creator": "Orin Zebest",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33917831@N00/4007514247"
+ },
+ "/images/articles/photos/american-bonsai-west-coast-style-1.jpg": {
+  "title": "California Juniper bonsai - The Japanese Garden - The Huntingdon Library, Art Collections and Botanical Gardens, San Marino,Los Angeles, California, USA",
+  "creator": "Glen Bowman",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/10978503@N00/18614173058"
+ },
+ "/images/articles/photos/american-bonsai-west-coast-style-2.jpg": {
+  "title": "California Juniper {juniperus californica} Training Date 1964",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5624347489"
+ },
+ "/images/articles/photos/article-1-1.jpg": {
+  "title": "acer palmatum 'seigen'",
+  "creator": "M. Martin Vicente",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/32179778@N00/8732438343"
+ },
+ "/images/articles/photos/article-1-2.jpg": {
+  "title": "My Japanese Maple bonsai is going dormant. Beautiful two color leaves this year.",
+  "creator": "Ronald Douglas Frazier",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/56377701@N07/52530129731"
+ },
+ "/images/articles/photos/article-10-1.jpg": {
+  "title": "Japanese black pine, United States National Bonsai & Penjing Museum",
+  "creator": "APK",
+  "license": "CC BY 4.0",
+  "source": "https://commons.wikimedia.org/w/index.php?curid=193419106"
+ },
+ "/images/articles/photos/article-10-2.jpg": {
+  "title": "Japanese Black Pine Bonsai",
+  "creator": "ncole458",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/10891659@N02/47082342644"
+ },
+ "/images/articles/photos/article-11-1.jpg": {
+  "title": "My Japanese Juniper",
+  "creator": "David Leo Veksler",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/45856998@N00/175904129"
+ },
+ "/images/articles/photos/article-11-2.jpg": {
+  "title": "A bonsai tree growing on a shelf outside a greenhouse.",
+  "creator": "Josh Pollock",
+  "license": "CC0 1.0",
+  "source": "https://wordpress.org/photos/photo/45064d1899/"
+ },
+ "/images/articles/photos/article-12-1.jpg": {
+  "title": "Bonsai nursery @ Omiya Bonsai Village",
+  "creator": "Guilhem Vellut",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/22539273@N00/13593836174"
+ },
+ "/images/articles/photos/article-12-2.jpg": {
+  "title": "Bonsai",
+  "creator": "Andreas D.",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/86791528@N00/50084314"
+ },
+ "/images/articles/photos/article-13-1.jpg": {
+  "title": "Bonsai plum trees in full blossom (53620865936)",
+  "creator": "Winniepix",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/w/index.php?curid=156676405"
+ },
+ "/images/articles/photos/article-13-2.jpg": {
+  "title": "20140202-IMG_8712",
+  "creator": "nycbone",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/43169829@N00/12282354244"
+ },
+ "/images/articles/photos/article-14-1.jpg": {
+  "title": "Bonsai Tree",
+  "creator": "Sam Howzit",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/12508217@N08/7178975202"
+ },
+ "/images/articles/photos/article-15-1.jpg": {
+  "title": "180603 306 Balboa Park - Japanese Friendship Garden, Bonsai Collection, small but exquisite and maintained by San Diego Bonsai Club volunteers",
+  "creator": "cultivar413",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/131880272@N06/42253861984"
+ },
+ "/images/articles/photos/article-15-2.jpg": {
+  "title": "180603 308 Balboa Park - Japanese Friendship Garden, Bonsai Collection, stunning specimens of Bald Cypress, Juniper and Yaupon Holly",
+  "creator": "cultivar413",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/131880272@N06/29100067548"
+ },
+ "/images/articles/photos/article-16-1.jpg": {
+  "title": "Bonsai pots",
+  "creator": "The Greenery Nursery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/70961631@N05/6854456424"
+ },
+ "/images/articles/photos/article-16-2.jpg": {
+  "title": "Root of a bonsai tree, close-up",
+  "creator": "Ivan Radic",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/26344495@N05/51341053596"
+ },
+ "/images/articles/photos/article-17-1.jpg": {
+  "title": "Bonsai Plum, Compass, Pocket Sundial",
+  "creator": "themet",
+  "license": "CC0 1.0",
+  "source": "https://www.rawpixel.com/image/9612557/image-bonsai-public-domain-1806"
+ },
+ "/images/articles/photos/article-17-2.jpg": {
+  "title": "Omiya Bonsai Art Museum, Saitama",
+  "creator": "*_*",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/22539273@N00/13593463195"
+ },
+ "/images/articles/photos/article-18-1.jpg": {
+  "title": "Bonsai 3",
+  "creator": "ryanrocketship",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/70403753@N00/2696336924"
+ },
+ "/images/articles/photos/article-19-1.jpg": {
+  "title": "Australian National Bonsai Collection, Canberra",
+  "creator": "sbittinger",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/82727312@N00/24034594632"
+ },
+ "/images/articles/photos/article-19-2.jpg": {
+  "title": "BBG April 5th, 2014",
+  "creator": "nycbone",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/43169829@N00/13939577842"
+ },
+ "/images/articles/photos/article-2-1.jpg": {
+  "title": "Malus Everest",
+  "creator": "sammycrane",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/94953347@N06/8790253120"
+ },
+ "/images/articles/photos/article-20-1.jpg": {
+  "title": "Sargent Juniper {juniperus chinensis var.sargentii} TD1984",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5631596821"
+ },
+ "/images/articles/photos/article-20-2.jpg": {
+  "title": "California Juniper {juniperus californica} Training date 1967",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5624347505"
+ },
+ "/images/articles/photos/article-21-1.jpg": {
+  "title": "Longwood Bonsai Workshop 11 2024 01",
+  "creator": "Concord",
+  "license": "CC BY 4.0",
+  "source": "https://commons.wikimedia.org/w/index.php?curid=155059236"
+ },
+ "/images/articles/photos/article-22-1.jpg": {
+  "title": "Bonsai Exhibition",
+  "creator": "martinalonso4895",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/125599027@N08/29304722495"
+ },
+ "/images/articles/photos/article-22-2.jpg": {
+  "title": "satsuki",
+  "creator": "istolethetv",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/44124401641@N01/4720069523"
+ },
+ "/images/articles/photos/article-23-1.jpg": {
+  "title": "Bonsai collection",
+  "creator": "angusf",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/35034357491@N01/2247699007"
+ },
+ "/images/articles/photos/article-24-1.jpg": {
+  "title": "Bonsai pots",
+  "creator": "The Greenery Nursery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/70961631@N05/7000569571"
+ },
+ "/images/articles/photos/article-24-2.jpg": {
+  "title": "before",
+  "creator": "yoppy",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/44124362019@N01/4299878949"
+ },
+ "/images/articles/photos/article-25-1.jpg": {
+  "title": "Weeping fig - Ficus benjamina (40 years old)",
+  "creator": "smallcurio",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/107480180@N03/51935338422"
+ },
+ "/images/articles/photos/article-25-2.jpg": {
+  "title": "Weeping Fig Bonsai",
+  "creator": "Ronald Douglas Frazier",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/56377701@N07/24343350017"
+ },
+ "/images/articles/photos/article-26-1.jpg": {
+  "title": "Rododendron 'Kinsai' bonsai, Longwood Gardens 2024",
+  "creator": "Shuvaev",
+  "license": "CC BY 4.0",
+  "source": "https://commons.wikimedia.org/w/index.php?curid=149688473"
+ },
+ "/images/articles/photos/article-26-2.jpg": {
+  "title": "Azalea Bonsai - National Arboretum",
+  "creator": "steph.clifford",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/30486689@N08/3561232324"
+ },
+ "/images/articles/photos/article-27-1.jpg": {
+  "title": "Japanese Black Pine {pinus thunbergii} Training Date 1950",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5628117570"
+ },
+ "/images/articles/photos/article-27-2.jpg": {
+  "title": "Chicago Botanic Gdn, Regenstein Center, Bonsai Collection 180721 311 Pinus ponderosa Ponderosa Pine, estimated to be 400 to 600 years old, Sedum spurium cv Caucasian Stonecrop",
+  "creator": "cultivar413",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/131880272@N06/44266373621"
+ },
+ "/images/articles/photos/article-28-1.jpg": {
+  "title": "Shohin azalea",
+  "creator": "billpfifer",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/39205895@N00/4645674071"
+ },
+ "/images/articles/photos/article-29-1.jpg": {
+  "title": "Bonsai Tree",
+  "creator": "Sam Howzit",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/12508217@N08/7178975702"
+ },
+ "/images/articles/photos/article-3-1.jpg": {
+  "title": "Bonsai / 盆栽（ぼんさい）",
+  "creator": "TANAKA Juuyoh (田中十洋)",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/13910409@N05/4402529423"
+ },
+ "/images/articles/photos/article-32-1.jpg": {
+  "title": "Bonsai",
+  "creator": "dalecruse",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/91873384@N04/26308226003"
+ },
+ "/images/articles/photos/article-32-2.jpg": {
+  "title": "Japanese White Pine 'Zui-sho' {pinus parviflora} Training Date Unk.",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5622527570"
+ },
+ "/images/articles/photos/article-33-1.jpg": {
+  "title": "Bonsai 2 - Philadelphia Flower Show 2012",
+  "creator": "Daniel Gasteiger",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/30014417@N04/6954499145"
+ },
+ "/images/articles/photos/article-33-2.jpg": {
+  "title": "Bonsai pots",
+  "creator": "The Greenery Nursery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/70961631@N05/6854453916"
+ },
+ "/images/articles/photos/article-34-1.jpg": {
+  "title": "Bonsai Garden inside Japanese Garden @ Showa Kinen Park @ Tachikawa",
+  "creator": "*_*",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/22539273@N00/10605910774"
+ },
+ "/images/articles/photos/article-35-1.jpg": {
+  "title": "My spring Dwarf Forsythia Bonsai",
+  "creator": "Ronald Douglas Frazier",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/56377701@N07/39116398290"
+ },
+ "/images/articles/photos/article-36-1.jpg": {
+  "title": "Bonsai Tree",
+  "creator": "patrick_standish",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/8568946@N06/2453581548"
+ },
+ "/images/articles/photos/article-36-2.jpg": {
+  "title": "Ginseng Ficus (Ficus retusa) Bonsai",
+  "creator": "Ronald Douglas Frazier",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/56377701@N07/29472376703"
+ },
+ "/images/articles/photos/article-37-1.jpg": {
+  "title": "un bonsai en primavera",
+  "creator": "M. Martin Vicente",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/32179778@N00/8683226513"
+ },
+ "/images/articles/photos/article-37-2.jpg": {
+  "title": "bonsai garden",
+  "creator": "SheldonPhotography",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/30709234@N02/5714642920"
+ },
+ "/images/articles/photos/article-38-1.jpg": {
+  "title": "Bonsai Garden",
+  "creator": "Anosmia",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/77846644@N00/1875191643"
+ },
+ "/images/articles/photos/article-39-1.jpg": {
+  "title": "Sakura Bonsai",
+  "creator": "rumpleteaser",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/45958245@N00/4467001238"
+ },
+ "/images/articles/photos/article-4-1.jpg": {
+  "title": "Mini bonsai display - The Japanese Garden - The Huntingdon Library, Art Collections and Botanical Gardens, San Marino,Los Angeles, California, USA",
+  "creator": "Glen Bowman",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/10978503@N00/18796955782"
+ },
+ "/images/articles/photos/article-40-1.jpg": {
+  "title": "Japanese wisteria / Wisteria floribunda / 藤(フジ)",
+  "creator": "TANAKA Juuyoh (田中十洋)",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/13910409@N05/3469888413"
+ },
+ "/images/articles/photos/article-40-2.jpg": {
+  "title": "Japanese Wisteria (Wisteria floribunda) 'Violacea Plena' (3502718027)",
+  "creator": "Cliff from Arlington, Virginia, USA",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/w/index.php?curid=29534921"
+ },
+ "/images/articles/photos/article-41-1.jpg": {
+  "title": "Nandina domestica.",
+  "creator": "sandro349",
+  "license": "CC0 1.0",
+  "source": "https://www.flickr.com/photos/186236561@N02/49906152003"
+ },
+ "/images/articles/photos/article-42-1.jpg": {
+  "title": "Japanese Black Pine {pinus thunbergii} td unk.",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5641644831"
+ },
+ "/images/articles/photos/article-42-2.jpg": {
+  "title": "starr-091003-7634-Pinus_thunbergii-100_year_old_bonsai-Maui_County_Fair_Kahului-Maui",
+  "creator": "Starr Environmental",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/97499887@N06/24983993685"
+ },
+ "/images/articles/photos/article-43-1.jpg": {
+  "title": "Bonsai plum trees in full blossom",
+  "creator": "Winniepix",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/18181501@N00/53620865936"
+ },
+ "/images/articles/photos/article-43-2.jpg": {
+  "title": "Plum bonsai at the Kameido Tenjin",
+  "creator": "Manish Prabhune",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/53903864@N00/16399083967"
+ },
+ "/images/articles/photos/article-44-1.jpg": {
+  "title": "Bonzai Chinese Juniper",
+  "creator": "Ryan Somma",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/14405058@N08/5925378500"
+ },
+ "/images/articles/photos/article-44-2.jpg": {
+  "title": "Juniperus chinensis 'Shimpaku' - Portland Japanese Garden - Portland, Oregon - DSC08162",
+  "creator": "Daderot",
+  "license": "CC0 1.0",
+  "source": "https://commons.wikimedia.org/w/index.php?curid=71795478"
+ },
+ "/images/articles/photos/article-45-1.jpg": {
+  "title": "Crape myrtle / Lagerstroemia indica Linn. / 百日紅(サルスベリ)",
+  "creator": "TANAKA Juuyoh (田中十洋)",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/13910409@N05/2802789776"
+ },
+ "/images/articles/photos/article-46-1.jpg": {
+  "title": "DSC_3579",
+  "creator": "lwtt93",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/37195641@N03/8602241603"
+ },
+ "/images/articles/photos/article-47-1.jpg": {
+  "title": "Camellia sasanqua / 寒椿(かんつばき)",
+  "creator": "TANAKA Juuyoh (田中十洋)",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/13910409@N05/3233920394"
+ },
+ "/images/articles/photos/article-48-1.jpg": {
+  "title": "Chinese elm bonsai (Ulmus parvifolia) close-up",
+  "creator": "Ivan Radic",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/26344495@N05/51346445584"
+ },
+ "/images/articles/photos/article-48-2.jpg": {
+  "title": "Chinese Elm {ulmus parvifolia} td1956",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5642232060"
+ },
+ "/images/articles/photos/article-49-1.jpg": {
+  "title": "Azalea Bonsai - National Arboretum",
+  "creator": "steph.clifford",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/30486689@N08/3561238392"
+ },
+ "/images/articles/photos/article-49-2.jpg": {
+  "title": "Azalea Bonsai - National Arboretum",
+  "creator": "steph.clifford",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/30486689@N08/3561232936"
+ },
+ "/images/articles/photos/article-5-1.jpg": {
+  "title": "2011 5-14 LSBF Corpus Christi (62) display set Shohin",
+  "creator": "jvmccoy@sbcglobal.net",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/9290304@N06/5792390340"
+ },
+ "/images/articles/photos/article-5-2.jpg": {
+  "title": "Azalea 🌺 mame bonsai in bloom",
+  "creator": "ncole458",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/10891659@N02/37761963075"
+ },
+ "/images/articles/photos/article-50-1.jpg": {
+  "title": "bonsai",
+  "creator": "Anosmia",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/77846644@N00/1876101252"
+ },
+ "/images/articles/photos/article-50-2.jpg": {
+  "title": "Australian National Bonsai Collection, Canberra",
+  "creator": "sbittinger",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/82727312@N00/23514467354"
+ },
+ "/images/articles/photos/article-51-1.jpg": {
+  "title": "Elefantenohr und Ficus-Bonsai",
+  "creator": "blumenbiene",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/47439717@N05/6778106448"
+ },
+ "/images/articles/photos/article-51-2.jpg": {
+  "title": "Ficus Retusa",
+  "creator": "sammycrane",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/94953347@N06/8790254484"
+ },
+ "/images/articles/photos/article-6-1.jpg": {
+  "title": "Le musée des arts asiatiques (Nice)",
+  "creator": "dalbera",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/72746018@N00/5937478705"
+ },
+ "/images/articles/photos/article-7-1.jpg": {
+  "title": "in the Bonsai Garden",
+  "creator": "Anosmia",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/77846644@N00/1322315084"
+ },
+ "/images/articles/photos/article-7-2.jpg": {
+  "title": "2023 (365 challenge) - Week 11 (tree or trees) - bonsai in winter",
+  "creator": "ambabheg",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/31518985@N04/52740253629"
+ },
+ "/images/articles/photos/article-8-1.jpg": {
+  "title": "bonsai",
+  "creator": "Anosmia",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/77846644@N00/1876134632"
+ },
+ "/images/articles/photos/article-9-1.jpg": {
+  "title": "Bonsai",
+  "creator": "grongar",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/70757891@N00/8518791134"
+ },
+ "/images/articles/photos/autumn-maple-bonsai-guide-1.jpg": {
+  "title": "Bonsai Garden inside Japanese Garden @ Showa Kinen Park @ Tachikawa",
+  "creator": "*_*",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/22539273@N00/10605898505"
+ },
+ "/images/articles/photos/autumn-maple-bonsai-guide-2.jpg": {
+  "title": "Petit bosc",
+  "creator": "art_es_anna",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/61219542@N00/316995714"
+ },
+ "/images/articles/photos/azalea-guide-1.jpg": {
+  "title": "Satsuki Azalea exhibition at National Bonsai & Penjing Museum, May 2011 - Stierch",
+  "creator": "Sarah Stierch",
+  "license": "CC BY 4.0",
+  "source": "https://commons.wikimedia.org/w/index.php?curid=15343066"
+ },
+ "/images/articles/photos/azalea-guide-2.jpg": {
+  "title": "Satsuki azalea, United States National Bonsai & Penjing Museum",
+  "creator": "APK",
+  "license": "CC BY 4.0",
+  "source": "https://commons.wikimedia.org/w/index.php?curid=193419119"
+ },
+ "/images/articles/photos/bamboo-bonsai-modern-guide-1.jpg": {
+  "title": "Bamboo Bonsai",
+  "creator": "Ronald Douglas Frazier",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/56377701@N07/27428631609"
+ },
+ "/images/articles/photos/beginner-bonsai-buying-guide-online-vs-store-1.jpg": {
+  "title": "Bonsai nursery @ Omiya Bonsai Village (13593836174)",
+  "creator": "Guilhem Vellut from Annecy, France",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/w/index.php?curid=150217246"
+ },
+ "/images/articles/photos/beginner-tree-species-guide-1.jpg": {
+  "title": "Japanese White Pine - National Bonsai & Penjing Museum - Washington, D.C. - Stierch",
+  "creator": "Sarah Stierch",
+  "license": "CC BY 4.0",
+  "source": "https://commons.wikimedia.org/w/index.php?curid=15342821"
+ },
+ "/images/articles/photos/beginner-tree-species-guide-2.jpg": {
+  "title": "bonsai",
+  "creator": "Anosmia",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/77846644@N00/1876080270"
+ },
+ "/images/articles/photos/biotechnology-genetic-optimization-guide-1.jpg": {
+  "title": "bonsai",
+  "creator": "evoo73",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/21761329@N03/6930638399"
+ },
+ "/images/articles/photos/blueberry-bonsai-western-style-1.jpg": {
+  "title": "blueberry bush",
+  "creator": "B0CK",
+  "license": "Public Domain Mark",
+  "source": "https://www.flickr.com/photos/12706380@N05/32415197220"
+ },
+ "/images/articles/photos/bonsai-annual-care-calendar-2025-1.jpg": {
+  "title": "Autumn Winds",
+  "creator": "sarahstierch",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/7633518@N08/51714185915"
+ },
+ "/images/articles/photos/bonsai-auction-strategy-master-guide-1.jpg": {
+  "title": "Bonsai exhibition in the Moscow Botanical Garden, Moscow; November 2015 (01)",
+  "creator": "雷太",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/w/index.php?curid=98925815"
+ },
+ "/images/articles/photos/bonsai-business-startup-complete-guide-1.jpg": {
+  "title": "Bonsai nursery @ Omiya Bonsai Village (13593494093)",
+  "creator": "Guilhem Vellut from Annecy, France",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/w/index.php?curid=150217249"
+ },
+ "/images/articles/photos/bonsai-business-startup-complete-guide-2.jpg": {
+  "title": "Longwood Bonsai Workshop 11 2024 04",
+  "creator": "Concord",
+  "license": "CC BY 4.0",
+  "source": "https://commons.wikimedia.org/w/index.php?curid=155059240"
+ },
+ "/images/articles/photos/bonsai-club-beginner-guide-1.jpg": {
+  "title": "Ann Arbor Bonsai Society",
+  "creator": "VasenkaPhotography",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/40774255@N07/4935164231"
+ },
+ "/images/articles/photos/bonsai-club-beginner-guide-2.jpg": {
+  "title": "Satsuki (4720069523)",
+  "creator": "istolethetv",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/w/index.php?curid=106215616"
+ },
+ "/images/articles/photos/bonsai-club-community-guide-1.jpg": {
+  "title": "Leicestershire Bonsai Club display 01",
+  "creator": "Wobbly Monkey",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/194065639@N07/54005115033"
+ },
+ "/images/articles/photos/bonsai-diplomacy-gift-etiquette-1.jpg": {
+  "title": "Japanese White Pine {pinus parviflora} td1625",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5641641713"
+ },
+ "/images/articles/photos/bonsai-diplomacy-gift-etiquette-2.jpg": {
+  "title": "Japanese White Pine -- Bonsai Collection National Arboretum Washington (DC) November 2015",
+  "creator": "Ron Cogswell",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/22711505@N05/24253307864"
+ },
+ "/images/articles/photos/bonsai-english-terminology-guide-1.jpg": {
+  "title": "Bonsai Garden inside Japanese Garden @ Showa Kinen Park @ Tachikawa",
+  "creator": "*_*",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/22539273@N00/10605909564"
+ },
+ "/images/articles/photos/bonsai-english-terminology-guide-2.jpg": {
+  "title": "Hollywood Juniper Forest",
+  "creator": "sheilaellen",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/66691654@N00/113416073"
+ },
+ "/images/articles/photos/bonsai-exhibition-complete-guide-1.jpg": {
+  "title": "Bonsaï - EXPO - Enghien",
+  "creator": "bDom",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/21145268@N06/8753505513"
+ },
+ "/images/articles/photos/bonsai-exhibition-complete-guide-2.jpg": {
+  "title": "2011 5-14 LSBF Corpus Christi (64) display set Shohin",
+  "creator": "jvmccoy@sbcglobal.net",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/9290304@N06/5791831909"
+ },
+ "/images/articles/photos/bonsai-exhibition-viewing-guide-1.jpg": {
+  "title": "Bonsai Garden inside Japanese Garden @ Showa Kinen Park @ Tachikawa",
+  "creator": "*_*",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/22539273@N00/10605903765"
+ },
+ "/images/articles/photos/bonsai-exhibition-viewing-guide-2.jpg": {
+  "title": "Omiya Bonsai Art Museum, Saitama",
+  "creator": "*_*",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/22539273@N00/13593834364"
+ },
+ "/images/articles/photos/bonsai-experience-programs-complete-guide-1.jpg": {
+  "title": "Longwood Bonsai Workshop 11 2024 02",
+  "creator": "Concord",
+  "license": "CC BY 4.0",
+  "source": "https://commons.wikimedia.org/w/index.php?curid=155059237"
+ },
+ "/images/articles/photos/bonsai-experience-programs-complete-guide-2.jpg": {
+  "title": "テーブルヤシと初雪かずらの寄せ植え",
+  "creator": "yoppy",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/44124362019@N01/4853761050"
+ },
+ "/images/articles/photos/bonsai-gamification-cultivation-tracking-guide-1.jpg": {
+  "title": "Three stages of Japanese maple bonsai trees in a row, each in a shallow pot on a wooden bench. The largest one has bright green leaves and sits in a blue pot. Photographed at Portland Japanese Garden.",
+  "creator": "Bigul Malayi",
+  "license": "CC0 1.0",
+  "source": "https://wordpress.org/photos/photo/56368c50b2/"
+ },
+ "/images/articles/photos/bonsai-garden-tour-guide-1.jpg": {
+  "title": "Bonsai nursery @ Omiya Bonsai Village",
+  "creator": "*_*",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/22539273@N00/13593494093"
+ },
+ "/images/articles/photos/bonsai-garden-tour-guide-2.jpg": {
+  "title": "Omiya Bonsai Village",
+  "creator": "*_*",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/22539273@N00/13593494913"
+ },
+ "/images/articles/photos/bonsai-history-culture-guide-1.jpg": {
+  "title": "Bonsai Garden inside Japanese Garden @ Showa Kinen Park @ Tachikawa",
+  "creator": "*_*",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/22539273@N00/10605903484"
+ },
+ "/images/articles/photos/bonsai-history-culture-guide-2.jpg": {
+  "title": "Japanese Red Pine {pinus densiflora} Training Date 1795",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5622527552"
+ },
+ "/images/articles/photos/bonsai-indoor-cultivation-success-guide-1.jpg": {
+  "title": "My topical bonsai trees are moving indoors for the season",
+  "creator": "Ronald Douglas Frazier",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/56377701@N07/29840763790"
+ },
+ "/images/articles/photos/bonsai-indoor-cultivation-success-guide-2.jpg": {
+  "title": "Growing a Forest",
+  "creator": "Miss Molly G. Willikers",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/28965400@N06/4304282906"
+ },
+ "/images/articles/photos/bonsai-international-import-export-guide-1.jpg": {
+  "title": "Chinese Juniper {juniperus chinensis} TD1953",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5644950332"
+ },
+ "/images/articles/photos/bonsai-international-import-export-guide-2.jpg": {
+  "title": "Ficus Microcarpa roots",
+  "creator": "Aleks J Clark",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/16856085@N07/3128959647"
+ },
+ "/images/articles/photos/bonsai-investment-asset-value-guide-1.jpg": {
+  "title": "mona lisa of bonsai",
+  "creator": "minicooper93402",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/21703936@N08/5419891872"
+ },
+ "/images/articles/photos/bonsai-investment-asset-value-guide-2.jpg": {
+  "title": "Japanese White Pine {pinus parviflora} training date unk.",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5631582617"
+ },
+ "/images/articles/photos/bonsai-low-light-shade-cultivation-1.jpg": {
+  "title": "Japanese Maple Bonsai - The Japanese Garden - The Huntingdon Library, Art Collections and Botanical Gardens, San Marino,Los Angeles, California, USA",
+  "creator": "Glen Bowman",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/10978503@N00/18775683076"
+ },
+ "/images/articles/photos/bonsai-low-light-shade-cultivation-2.jpg": {
+  "title": "Glowing green in the shade",
+  "creator": "LISgirl",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/62357671@N00/4796787875"
+ },
+ "/images/articles/photos/bonsai-master-career-guide-1.jpg": {
+  "title": "Omiya Bonsai Art Museum, Saitama",
+  "creator": "*_*",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/22539273@N00/13593827144"
+ },
+ "/images/articles/photos/bonsai-master-career-guide-2.jpg": {
+  "title": "Bonsai Forest",
+  "creator": "Kimtaro",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/51035729853@N01/213819570"
+ },
+ "/images/articles/photos/bonsai-meditation-mindfulness-guide-1.jpg": {
+  "title": "Shunkaen Bonsai Museum in Tokyo.",
+  "creator": "Ronald Douglas Frazier",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/56377701@N07/47761045501"
+ },
+ "/images/articles/photos/bonsai-meditation-mindfulness-guide-2.jpg": {
+  "title": "Japan-Kyoto-Daitoku-Ji-Zen-Buddhist-Temple-Daisen-In-Zen-Rock- Garden-Juniper-Tree-Bonsai-April-2004",
+  "creator": "tiarescott",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/80403443@N00/33507999"
+ },
+ "/images/articles/photos/bonsai-online-sales-complete-guide-1.jpg": {
+  "title": "Omiya Bonsai Art Museum, Saitama",
+  "creator": "*_*",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/22539273@N00/13593462735"
+ },
+ "/images/articles/photos/bonsai-online-sales-complete-guide-2.jpg": {
+  "title": "Kyoto",
+  "creator": "Beyond Neon",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/34707594@N00/5392993348"
+ },
+ "/images/articles/photos/bonsai-pest-control-natural-methods-1.jpg": {
+  "title": "bonsai Chinese elm, my favorite",
+  "creator": "npdoty",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/67636101@N00/48514581096"
+ },
+ "/images/articles/photos/bonsai-pest-control-natural-methods-2.jpg": {
+  "title": "slightly sick?",
+  "creator": "yoppy",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/44124362019@N01/3528767142"
+ },
+ "/images/articles/photos/bonsai-photography-guide-1.jpg": {
+  "title": "bonsai",
+  "creator": "PHOTO/arts Magazine",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/92357396@N00/416056020"
+ },
+ "/images/articles/photos/bonsai-photography-guide-2.jpg": {
+  "title": "Australian National Bonsai Collection, Canberra",
+  "creator": "sbittinger",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/82727312@N00/23847048950"
+ },
+ "/images/articles/photos/bonsai-pruning-master-guide-2025-1.jpg": {
+  "title": "bonsai",
+  "creator": "Anosmia",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/77846644@N00/1875284667"
+ },
+ "/images/articles/photos/bonsai-pruning-master-guide-2025-2.jpg": {
+  "title": "Vintage Bonsai Tools",
+  "creator": "ShebleyCL",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/25636851@N03/28196551769"
+ },
+ "/images/articles/photos/bonsai-repotting-master-guide-2025-1.jpg": {
+  "title": "Bonsai roots",
+  "creator": "tom.oeste",
+  "license": "Public Domain Mark",
+  "source": "https://www.flickr.com/photos/133941717@N06/18864745408"
+ },
+ "/images/articles/photos/bonsai-repotting-master-guide-2025-2.jpg": {
+  "title": "Mix before",
+  "creator": "Charles_Willis",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/86795918@N06/8505492097"
+ },
+ "/images/articles/photos/bonsai-revival-dying-rescue-methods-1.jpg": {
+  "title": "Bonsai Tree",
+  "creator": "Dominic's pics",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/64097751@N00/2867230577"
+ },
+ "/images/articles/photos/bonsai-root-bound-prevention-solutions-1.jpg": {
+  "title": "bonsai tree",
+  "creator": "feesta",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/45527691@N00/1339736711"
+ },
+ "/images/articles/photos/bonsai-root-bound-prevention-solutions-2.jpg": {
+  "title": "Bonsai pot by Kevin Thompson",
+  "creator": "Carl T. Bergstrom",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/43181051@N00/55867421"
+ },
+ "/images/articles/photos/bonsai-summer-heat-damage-prevention-1.jpg": {
+  "title": "My Bonsai House",
+  "creator": "Ronald Douglas Frazier",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/56377701@N07/19002338938"
+ },
+ "/images/articles/photos/bonsai-tea-ceremony-guide-1.jpg": {
+  "title": "Bonsai",
+  "creator": "dalecruse",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/91873384@N04/26308226733"
+ },
+ "/images/articles/photos/bonsai-tea-ceremony-guide-2.jpg": {
+  "title": "Bonsai Rock / “Viewing Stone” / Japanese Suiseki",
+  "creator": "Dominic's pics",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/64097751@N00/2867249117"
+ },
+ "/images/articles/photos/bonsai-therapy-brain-science-guide-1.jpg": {
+  "title": "Bonsai Tree",
+  "creator": "Sam Howzit",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/12508217@N08/7178974908"
+ },
+ "/images/articles/photos/bonsai-watering-master-guide-2025-1.jpg": {
+  "title": "A copper bonsai watering can with a long spout",
+  "creator": "Bigul Malayi",
+  "license": "CC0 1.0",
+  "source": "https://wordpress.org/photos/photo/35868c4638/"
+ },
+ "/images/articles/photos/bonsai-watering-master-guide-2025-2.jpg": {
+  "title": "Trident Maple Bonsai",
+  "creator": "ncole458",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/10891659@N02/46955467255"
+ },
+ "/images/articles/photos/bonsai-winter-care-failure-prevention-1.jpg": {
+  "title": "BONSAI - Maple",
+  "creator": "chatani",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/95773614@N00/6586029883"
+ },
+ "/images/articles/photos/bonsai-yellow-leaves-causes-solutions-1.jpg": {
+  "title": "Sweet Gum {liquidamber styraciflua) TD1975",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5644388147"
+ },
+ "/images/articles/photos/budget-guide-1.jpg": {
+  "title": "In the Nursery, March 2012",
+  "creator": "The Greenery Nursery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/70961631@N05/6851311876"
+ },
+ "/images/articles/photos/camellia-guide-1.jpg": {
+  "title": "Tsubaki (camellia)",
+  "creator": "clvs7",
+  "license": "CC0 1.0",
+  "source": "https://www.flickr.com/photos/182866455@N04/49555447531"
+ },
+ "/images/articles/photos/camellia-varieties-comprehensive-guide-1.jpg": {
+  "title": "Chinzan-so",
+  "creator": "Masao.M",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/95454590@N00/2169080354"
+ },
+ "/images/articles/photos/children-bonsai-education-brain-development-1.jpg": {
+  "title": "2 Bonsai in the bridge",
+  "creator": "rais58",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/15606654@N04/4897991584"
+ },
+ "/images/articles/photos/chinese-penjing-vs-japanese-bonsai-1.jpg": {
+  "title": "Bonsai III, Suzhou-style Bonsai Garden, Singapore.",
+  "creator": "rahuldlucca",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/8213176@N03/2216073382"
+ },
+ "/images/articles/photos/chinese-penjing-vs-japanese-bonsai-2.jpg": {
+  "title": "Mini Pagoda in Penjing",
+  "creator": "thisfeministrox",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/60088764@N00/1388548492"
+ },
+ "/images/articles/photos/crape-myrtle-summer-flowers-1.jpg": {
+  "title": "2011 5-14 LSBF Corpus Christi (71) display set Lagerstroemia indica",
+  "creator": "jvmccoy",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/9290304@N06/5792393968"
+ },
+ "/images/articles/photos/elm-guide-1.jpg": {
+  "title": "Chinese Elm Bonsai",
+  "creator": "thisfeministrox",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/60088764@N00/1388550232"
+ },
+ "/images/articles/photos/elm-guide-2.jpg": {
+  "title": "13. Chinese elm (Ulmus parvifolia)",
+  "creator": "Wobbly Monkey",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/194065639@N07/54003974472"
+ },
+ "/images/articles/photos/european-bonsai-climate-adaptation-1.jpg": {
+  "title": "Bonsaï - EXPO - Enghien",
+  "creator": "bDom",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/21145268@N06/8754630418"
+ },
+ "/images/articles/photos/european-bonsai-climate-adaptation-2.jpg": {
+  "title": "Smoothleaf Elm {ulmus minor} Training Date 1982",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5627536755"
+ },
+ "/images/articles/photos/gajumaru-bonsai-guide-1.jpg": {
+  "title": "Chinese Banyan (Ficus microcarpa 'Retusa') bonsai",
+  "creator": "sarahstierch",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/7633518@N08/51743737995"
+ },
+ "/images/articles/photos/gajumaru-bonsai-guide-2.jpg": {
+  "title": "Ginseng Ficus Bonsai pair",
+  "creator": "gergelyhideg",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/85316082@N03/13039328803"
+ },
+ "/images/articles/photos/ginkgo-bonsai-complete-guide-1.jpg": {
+  "title": "Gingko bonsai in fall color (natural light)",
+  "creator": "Ronald Douglas Frazier",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/56377701@N07/37714937184"
+ },
+ "/images/articles/photos/global-bonsai-culture-guide-1.jpg": {
+  "title": "Chicago Botanic Gdn, Regenstein Center, Bonsai Collection 180721 306, hedges of Ilex x meserveae 'Blue Prince' Blue Holly, Rhododendron yedoense var poukhanense Korean Azalea",
+  "creator": "cultivar413",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/131880272@N06/43360708145"
+ },
+ "/images/articles/photos/global-bonsai-culture-guide-2.jpg": {
+  "title": "Bonsai Collection -- National Arboretum Washington (DC) November 2015",
+  "creator": "Ron Cogswell",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/22711505@N05/24763556422"
+ },
+ "/images/articles/photos/herb-bonsai-practical-beauty-1.jpg": {
+  "title": "Clipped tree in a white planter",
+  "creator": "rawpixel.com",
+  "license": "CC0 1.0",
+  "source": "https://www.rawpixel.com/image/5944448/free-public-domain-cc0-photo"
+ },
+ "/images/articles/photos/herb-bonsai-practical-beauty-2.jpg": {
+  "title": "Balcony",
+  "creator": "chrisbulle",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/67726656@N00/3545594730"
+ },
+ "/images/articles/photos/indoor-photosynthesis-optimization-guide-1.jpg": {
+  "title": "Bonsai Buddy",
+  "creator": "joshuascottphotos",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/23226676@N08/2217442133"
+ },
+ "/images/articles/photos/indoor-photosynthesis-optimization-guide-2.jpg": {
+  "title": "My topical bonsai trees are moving indoors for the season",
+  "creator": "Ronald Douglas Frazier",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/56377701@N07/30052062211"
+ },
+ "/images/articles/photos/iot-smart-watering-automation-guide-1.jpg": {
+  "title": "Bonsai collection",
+  "creator": "angusf",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/35034357491@N01/2248494500"
+ },
+ "/images/articles/photos/issai-sakura-guide-1.jpg": {
+  "title": "Sakura Bonsai",
+  "creator": "chatani",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/95773614@N00/3430902738"
+ },
+ "/images/articles/photos/issai-sakura-guide-2.jpg": {
+  "title": "Omiya",
+  "creator": "*_*",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/22539273@N00/13593833974"
+ },
+ "/images/articles/photos/japanese-pepper-bonsai-guide-1.jpg": {
+  "title": "Sansho Japanese Pepper Plant",
+  "creator": "Goat Tree Designs",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/188326905@N04/49892914606"
+ },
+ "/images/articles/photos/keyaki-guide-1.jpg": {
+  "title": "Japanese Zelkova {zelkova serrata} TD1984",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5631582643"
+ },
+ "/images/articles/photos/keyaki-guide-2.jpg": {
+  "title": "Japanese Zelkova {zelkova serrata} Training Date 1895",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5622527604"
+ },
+ "/images/articles/photos/kumazasa-bamboo-japanese-style-1.jpg": {
+  "title": "Sasa veitchii",
+  "creator": "Carl E Lewis",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/65146221@N00/2831701361"
+ },
+ "/images/articles/photos/maple-varieties-guide-1.jpg": {
+  "title": "Japanese maple (Acer palmatum 'Ukon')",
+  "creator": "Wobbly Monkey",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/194065639@N07/52376841693"
+ },
+ "/images/articles/photos/maple-varieties-guide-2.jpg": {
+  "title": "05. Deshojo Japanese maple (Acer palmatum 'Deshojo') leaves 01",
+  "creator": "Wobbly Monkey",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/194065639@N07/54004878256"
+ },
+ "/images/articles/photos/medical-bonsai-therapy-healthcare-1.jpg": {
+  "title": "BONSAI Collection (Bernard Guyomard)-43-cliche Jean Weber-1",
+  "creator": "JEAN/Weber/",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/135897188@N04/39819974402"
+ },
+ "/images/articles/photos/mulberry-bonsai-complete-guide-1.jpg": {
+  "title": "Amora / mulberry (Morus alba) China native",
+  "creator": "mauro halpern",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/41597043@N00/3463724824"
+ },
+ "/images/articles/photos/nanten-guide-1.jpg": {
+  "title": "nandina domestica",
+  "creator": "sandro349",
+  "license": "Public Domain Mark",
+  "source": "https://www.flickr.com/photos/186236561@N02/52472253616"
+ },
+ "/images/articles/photos/office-bonsai-productivity-workplace-wellness-1.jpg": {
+  "title": "テーブルヤシと初雪かずらの寄せ植え",
+  "creator": "yoppy",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/44124362019@N01/4853143575"
+ },
+ "/images/articles/photos/olive-bonsai-mediterranean-charm-1.jpg": {
+  "title": "European Olive {olea europaea} TD1970",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5644958816"
+ },
+ "/images/articles/photos/olive-bonsai-mediterranean-charm-2.jpg": {
+  "title": "Chicago Botanic Gdn, Regenstein Center, Bonsai Collection 180721 309 Olea europea Olive Tree, 60 to 70 years old, Ophiopogon japonicus 'Gyoku-ryu', Isotoma fluviatilis Blue Star Creeper",
+  "creator": "cultivar413",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/131880272@N06/43549071314"
+ },
+ "/images/articles/photos/persimmon-bonsai-complete-guide-1.jpg": {
+  "title": "Persimmons - Carole Grogloth, Molokai Hawaii",
+  "creator": "Carole Grogloth Hawaii",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/93679851@N04/8520451122"
+ },
+ "/images/articles/photos/plant-hormone-growth-control-guide-1.jpg": {
+  "title": "this bonsai is the same age as me!",
+  "creator": "Anosmia",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/77846644@N00/1876094186"
+ },
+ "/images/articles/photos/plant-hormone-growth-control-guide-2.jpg": {
+  "title": "Bonsai Tree Detail",
+  "creator": "Dominic's pics",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/64097751@N00/2868064790"
+ },
+ "/images/articles/photos/red-pine-guide-1.jpg": {
+  "title": "Tanyosho or Umbrella Pine, Pinus densiflora 'Umbraculifera' Pinaceae",
+  "creator": "Ryan Somma",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/14405058@N08/6086926484"
+ },
+ "/images/articles/photos/root-microbiome-symbiosis-guide-1.jpg": {
+  "title": "Bonsai Root Detail",
+  "creator": "Tobyotter",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/78428166@N00/8304136835"
+ },
+ "/images/articles/photos/root-microbiome-symbiosis-guide-2.jpg": {
+  "title": "bonsai roots",
+  "creator": "Robot B",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/9777401@N06/7348766160"
+ },
+ "/images/articles/photos/sakura-general-guide-1.jpg": {
+  "title": "Sakura Bonsai",
+  "creator": "rumpleteaser",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/45958245@N00/6088644480"
+ },
+ "/images/articles/photos/seasonal-temperature-physiology-guide-1.jpg": {
+  "title": "Moving some of my bonsai out of Winter shelter",
+  "creator": "Ronald Douglas Frazier",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/56377701@N07/25766277665"
+ },
+ "/images/articles/photos/seasonal-temperature-physiology-guide-2.jpg": {
+  "title": "Winter",
+  "creator": "Carl T. Bergstrom",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/43181051@N00/61187473"
+ },
+ "/images/articles/photos/senior-friendly-bonsai-guide-1.jpg": {
+  "title": "Bonsai Garden",
+  "creator": "Anosmia",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/77846644@N00/1875187031"
+ },
+ "/images/articles/photos/senior-friendly-bonsai-guide-2.jpg": {
+  "title": "あたらしい白い棚",
+  "creator": "yoppy",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/44124362019@N01/3862488236"
+ },
+ "/images/articles/photos/shimatoneriko-bonsai-guide-1.jpg": {
+  "title": "Bonsai importado de Caruaru xD",
+  "creator": "Kenneth F Andrade",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/17286769@N02/2549554192"
+ },
+ "/images/articles/photos/soil-science-ph-nutrition-guide-1.jpg": {
+  "title": "A few trees from my bonsai collection",
+  "creator": "Ronald Douglas Frazier",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/56377701@N07/50027061092"
+ },
+ "/images/articles/photos/soil-science-ph-nutrition-guide-2.jpg": {
+  "title": "Moss 01",
+  "creator": "Wobbly Monkey",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/194065639@N07/54005109898"
+ },
+ "/images/articles/photos/southeast-asia-tropical-bonsai-1.jpg": {
+  "title": "Thiên Mụ Pagoda Bonsai garden, Hue",
+  "creator": "David McKelvey",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/94735786@N00/7073464815"
+ },
+ "/images/articles/photos/southeast-asia-tropical-bonsai-2.jpg": {
+  "title": "Colourful facia of Hue Temple",
+  "creator": "PiktourUK",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/69706441@N03/33235417962"
+ },
+ "/images/articles/photos/succulent-bonsai-modern-style-1.jpg": {
+  "title": "2011 5-14 LSBF Corpus Christi (54) display set Portulacaria afra",
+  "creator": "jvmccoy@sbcglobal.net",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/9290304@N06/5791827353"
+ },
+ "/images/articles/photos/succulent-bonsai-modern-style-2.jpg": {
+  "title": "My kokedama @möbelkunst gallery",
+  "creator": "gergelyhideg",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/85316082@N03/12930352043"
+ },
+ "/images/articles/photos/tosho-juniper-guide-1.jpg": {
+  "title": "Chinese Juniper {juniperus chinensis } td1967",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5641665505"
+ },
+ "/images/articles/photos/tosho-juniper-guide-2.jpg": {
+  "title": "Pasture Juniper {juniperus communis ssp. depressa} Training date 1980",
+  "creator": "Drew Avery",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/33590535@N06/5624347521"
+ },
+ "/images/articles/photos/umemodoki-bonsai-guide-1.jpg": {
+  "title": "Bonzai Ilex serrata",
+  "creator": "Ryan Somma",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/14405058@N08/5924799657"
+ },
+ "/images/articles/photos/water-physiology-stress-response-guide-1.jpg": {
+  "title": "Laceleaf Japanese maple (Acer palmatum var. dissectum)",
+  "creator": "Wobbly Monkey",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/194065639@N07/52375672492"
+ },
+ "/images/articles/photos/weeping-cherry-bonsai-guide-1.jpg": {
+  "title": "Rikugien - Shidarezakura",
+  "creator": "Yakinik",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/47256332@N05/4472125255"
+ },
+ "/images/articles/photos/wildflower-mountain-bonsai-guide-1.jpg": {
+  "title": "Chicago Botanic Gdn, Regenstein Center, Bonsai Collection 180721 310 Hemerocallis sp Daylily, a miniature type",
+  "creator": "cultivar413",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/131880272@N06/44217827572"
+ },
+ "/images/articles/photos/wildflower-mountain-bonsai-guide-2.jpg": {
+  "title": "Bonsai Tree 2",
+  "creator": "ryanrocketship",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/70403753@N00/2696336978"
+ },
+ "/images/articles/photos/world-bonsai-contest-participation-guide-1.jpg": {
+  "title": "Bonsai 3 - Philadelphia Flower Show 2012",
+  "creator": "Daniel Gasteiger",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/30014417@N04/6808391048"
+ },
+ "/images/articles/photos/world-bonsai-contest-participation-guide-2.jpg": {
+  "title": "2011 5-14 LSBF Corpus Christi (61) display set Shohin",
+  "creator": "jvmccoy@sbcglobal.net",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/9290304@N06/5791831175"
+ },
+ "/images/articles/photos/year-end-new-year-bonsai-events-guide-1.jpg": {
+  "title": "Omiya Bonsai Art Museum, Saitama",
+  "creator": "*_*",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/22539273@N00/13593493353"
+ },
+ "/images/articles/photos/year-end-new-year-bonsai-events-guide-2.jpg": {
+  "title": "Snowmelt",
+  "creator": "Carl T. Bergstrom",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/43181051@N00/107960841"
+ },
+ "/images/articles/photos/yuzu-bonsai-complete-guide-1.jpg": {
+  "title": "Fresh Picked Japanese Yuzu Citrus Fruit in a Bowl",
+  "creator": "Goat Tree Designs",
+  "license": "CC BY 2.0",
+  "source": "https://www.flickr.com/photos/188326905@N04/49868309128"
+ }
 }
