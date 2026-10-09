@@ -1,3 +1,4 @@
+import { applyArticleOverride } from '@/lib/article-overrides'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { Suspense } from 'react'
@@ -83,7 +84,11 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
   // 一覧では本文を使わないため外して HTML を軽くする
   const listData = {
     ...articlesData,
-    articles: articlesData.articles.map(article => ({ ...article, content: '' })),
+    articles: articlesData.articles.map(article => {
+      // 書き直した記事（src/content/articles）は、新しいタイトルと要約を出す（一覧の画像は今のまま）
+      const override = applyArticleOverride(article)
+      return { ...article, title: override.title, excerpt: override.excerpt, content: '' }
+    }),
   }
 
   // 「はじめての方へ」は絞り込みのない1ページ目だけに出す

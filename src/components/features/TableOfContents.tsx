@@ -26,22 +26,8 @@ function useReadingState(items: TOCItem[]) {
   const [progress, setProgress] = useState(0)
   // 記事本文を読み終えて、関連商品・関連記事のあたりまで進んだか
   const [pastBody, setPastBody] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) setActiveId(entry.target.id)
-        })
-      },
-      { rootMargin: '-20% 0% -35% 0%', threshold: 0 }
-    )
-    items.forEach(item => {
-      const element = document.getElementById(item.id)
-      if (element) observer.observe(element)
-    })
-    return () => observer.disconnect()
-  }, [items])
+  // 最初の見出しまで読み進めたか（それまでは画面下の目次ボタンを出さない）
+  const [started, setStarted] = useState(false)
 
   useEffect(() => {
     const update = () => {
@@ -52,6 +38,15 @@ function useReadingState(items: TOCItem[]) {
       const read = Math.min(Math.max(-rect.top + window.innerHeight * 0.5, 0), Math.max(total, 1))
       setProgress(Math.round((read / Math.max(total, 1)) * 100))
       setPastBody(rect.bottom < window.innerHeight * 0.6)
+      // 今読んでいる見出し：画面の上から3割の線より上にある、いちばん下の見出し（上に戻ったときも正しく戻る）
+      const line = window.innerHeight * 0.3
+      let current = ''
+      for (const item of items) {
+        const element = document.getElementById(item.id)
+        if (element && element.getBoundingClientRect().top <= line) current = item.id
+      }
+      setActiveId(current)
+      setStarted(current !== '')
     }
     update()
     window.addEventListener('scroll', update, { passive: true })
@@ -60,10 +55,10 @@ function useReadingState(items: TOCItem[]) {
       window.removeEventListener('scroll', update)
       window.removeEventListener('resize', update)
     }
-  }, [])
+  }, [items])
 
   const activeIndex = items.findIndex(item => item.id === activeId)
-  return { activeId, activeIndex, progress, pastBody }
+  return { activeId, activeIndex, progress, pastBody, started }
 }
 
 function TocList({ items, activeId, onSelect }: { items: TOCItem[]; activeId: string; onSelect?: () => void }) {
@@ -117,7 +112,7 @@ export function TableOfContents({ items }: TableOfContentsProps) {
 
 // SP：本文前の開閉できる目次と、画面下の「目次 2/5」ボタン
 export function MobileTableOfContents({ items }: TableOfContentsProps) {
-  const { activeId, activeIndex, pastBody } = useReadingState(items)
+  const { activeId, activeIndex, pastBody, started } = useReadingState(items)
   const [open, setOpen] = useState(false)
   const [sheetOpen, setSheetOpen] = useState(false)
   const pillRef = useRef<HTMLButtonElement>(null)
@@ -162,10 +157,10 @@ export function MobileTableOfContents({ items }: TableOfContentsProps) {
         type="button"
         onClick={() => setSheetOpen(true)}
         aria-haspopup="dialog"
-        aria-hidden={pastBody || undefined}
-        tabIndex={pastBody ? -1 : undefined}
-        className={`fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom))] right-4 z-30 flex h-11 items-center gap-2 rounded-full bg-sumi px-4 text-[12.5px] text-paper shadow-lg transition-[opacity,transform] duration-200 ${
-          pastBody ? 'pointer-events-none translate-y-3 opacity-0' : 'opacity-100'
+        aria-hidden={(pastBody || !started) || undefined}
+        tabIndex={(pastBody || !started) ? -1 : undefined}
+        className={`fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom))] left-4 z-30 flex h-11 items-center gap-2 rounded-full bg-sumi px-4 text-[12.5px] text-paper shadow-lg transition-[opacity,transform] duration-200 ${
+          (pastBody || !started) ? 'pointer-events-none translate-y-3 opacity-0' : 'opacity-100'
         }`}
       >
         目次 <span className="text-[#d9c7a3]">{Math.max(activeIndex + 1, 1)}/{items.length}</span>

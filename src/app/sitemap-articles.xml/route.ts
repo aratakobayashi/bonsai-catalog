@@ -1,5 +1,6 @@
 import { getArticles } from '@/lib/database/articles'
 import { isArticleIndexable } from '@/lib/content-policy'
+import { getArticleOverride } from '@/lib/article-overrides'
 import { baseUrl, SITEMAP_CONFIG, createSitemapResponse, generateXmlHeader, generateXmlFooter, generateUrlElement } from '@/lib/sitemap-utils'
 
 export const revalidate = 3600
@@ -20,7 +21,8 @@ export async function GET() {
         .map((article) =>
         generateUrlElement(
           `${baseUrl}/guides/${article.slug}`,
-          new Date(article.updatedAt).toISOString().split('T')[0],
+          // 書き直し版（src/content/articles/<slug>.md）があればその更新日
+          new Date(getArticleOverride(article.slug)?.updatedAt ?? article.updatedAt).toISOString().split('T')[0],
           'weekly',
           0.7
         )

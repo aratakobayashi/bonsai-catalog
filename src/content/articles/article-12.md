@@ -9,7 +9,7 @@ summary:
   - 春夏秋冬の置き場所の目安（関東の平地基準と地域差）
   - 葉焼け・徒長など置き場所が合わないときのサイン
 selection: indoor-bonsai
-image: /images/articles/article-12-img-1.png
+image: /images/selections/beginner-mini-bonsai.svg
 ---
 盆栽は部屋に飾るものという印象がありますが、松やもみじ、梅、さつきなど、盆栽でよく使われる樹のほとんどは本来屋外で育つ植物です。日光と風、夜露や季節の寒暖差を受けて、葉や芽がしっかり育ちます。
 

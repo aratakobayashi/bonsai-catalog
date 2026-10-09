@@ -158,16 +158,18 @@
   color: #1e40af;
   font-size: 1.1rem;
 }
-/* 記事本文（/guides/[slug]）。明朝の見出し・ゆったりした行間。markdown.ts が付けるクラスより優先させる */
+/* 記事本文（/guides/[slug]）。スマホで読む初心者向けに、16px（PC 17px）・行間 1.95・1行 34 字前後 */
 .article-body {
+  max-width: 34em;
   color: #2f2c27;
-  font-size: 15px;
-  line-height: 2.05;
+  font-size: 16px;
+  line-height: 1.95;
+  letter-spacing: 0.02em;
   overflow-wrap: anywhere;
 }
 @media (min-width: 1024px) {
   .article-body {
-    font-size: 16px;
+    font-size: 17px;
   }
 }
 .article-body > :first-child {
@@ -178,63 +180,59 @@
   font-family: var(--font-mincho);
   font-weight: 700;
   color: #22201c;
-  font-size: 21px;
+  font-size: 1.3em;
   letter-spacing: 0.04em;
   line-height: 1.55;
-  margin: 40px 0 24px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #ebe7df;
-}
-@media (min-width: 1024px) {
-  .article-body h1,
-  .article-body h2 {
-    font-size: 25px;
-    margin-top: 56px;
-  }
+  margin: 3.2em 0 1.1em;
+  padding-top: 1.1em;
+  border-top: 1px solid #ebe7df;
 }
 .article-body h3 {
   font-weight: 700;
   color: #22201c;
-  font-size: 16px;
+  font-size: 1.07em;
   line-height: 1.6;
-  margin: 24px 0 12px;
-}
-@media (min-width: 1024px) {
-  .article-body h3 {
-    font-size: 17px;
-  }
+  margin: 2.2em 0 0.7em;
+  padding-left: 0.7em;
+  border-left: 2px solid #b8935a;
 }
 .article-body h4 {
   font-weight: 700;
   color: #22201c;
-  font-size: 15px;
-  margin: 1.6em 0 0.4em;
+  font-size: 1em;
+  margin: 1.8em 0 0.4em;
+}
+.article-body h2 + h3 {
+  margin-top: 1.2em;
 }
 .article-body p {
   color: #2f2c27;
   line-height: inherit;
-  margin: 0 0 1.25em;
+  margin: 0 0 1.3em;
 }
 .article-body a {
   color: #22201c;
-  font-weight: 500;
   text-decoration: underline;
   text-decoration-color: #b8935a;
-  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 .article-body a:hover {
   color: #86683a;
 }
+.article-body a:focus-visible {
+  outline: 2px solid #b8935a;
+  outline-offset: 2px;
+}
 .article-body strong {
   font-weight: 700;
   color: #22201c;
-  background: linear-gradient(transparent 62%, #f3ebdd 62%);
 }
 .article-body ul,
 .article-body ol {
   list-style-position: outside;
-  margin: 0 0 1.25em;
-  padding-left: 1.4em;
+  margin: 0 0 1.5em;
+  padding-left: 1.5em;
 }
 .article-body ul {
   list-style-type: disc;
@@ -242,21 +240,36 @@
 .article-body ol {
   list-style-type: decimal;
 }
-.article-body ul > * + *,
-.article-body ol > * + * {
-  margin-top: 0.3em;
-}
 .article-body li {
   line-height: 1.85;
+  padding-left: 0.2em;
+}
+.article-body li + li {
+  margin-top: 0.55em;
+}
+.article-body li > ul,
+.article-body li > ol {
+  margin: 0.5em 0 0;
+}
+.article-body li > p {
+  margin: 0;
 }
 .article-body li::marker {
-  color: #b8935a;
+  color: #a39c8f;
+}
+.article-body ol > li::marker {
+  color: #4a463e;
+  font-weight: 700;
 }
 .article-body img {
+  display: block;
   max-width: 100%;
   height: auto;
-  border-radius: 0;
-  margin: 1.5em 0;
+  margin: 2em 0;
+  background: #f3f0ea;
+}
+.article-body p > img:only-child {
+  margin: 0.5em 0;
 }
 .article-body hr {
   border: 0;
@@ -267,7 +280,7 @@
 .article-body .table-scroll {
   max-width: 100%;
   overflow-x: auto;
-  margin: 0 0 1.5em;
+  margin: 0.5em 0 1.8em;
   -webkit-overflow-scrolling: touch;
   background:
     linear-gradient(to right, #faf9f6 30%, rgba(250, 249, 246, 0)) left center / 32px 100% no-repeat local,
@@ -280,8 +293,8 @@
   outline-offset: 2px;
 }
 .article-body .table-scroll-hint {
-  margin: 0 0 0.4em !important;
-  font-size: 11px;
+  margin: 0 0 0.3em !important;
+  font-size: 12px;
   line-height: 1.6;
   color: #757068 !important;
   text-align: right;
@@ -297,31 +310,38 @@
   border-collapse: collapse;
   font-size: 14px;
   line-height: 1.7;
+  letter-spacing: 0;
+}
+@media (min-width: 1024px) {
+  .article-body table {
+    font-size: 15px;
+  }
 }
 .article-body th,
 .article-body td {
-  border: 1px solid #ebe7df;
-  padding: 0.55em 0.8em;
+  border-bottom: 1px solid #ebe7df;
+  padding: 0.7em 0.9em;
   text-align: left;
   vertical-align: top;
 }
 .article-body th {
-  background: #f3f0ea;
+  border-bottom: 1px solid #a39c8f;
   color: #22201c;
   font-weight: 700;
   white-space: nowrap;
 }
 .article-body td {
-  /* 背景を透かして横スクロールの影を見せる */
-  background: rgba(255, 255, 255, 0.55);
   min-width: 6em;
+}
+.article-body td:first-child {
+  font-weight: 700;
+  color: #22201c;
 }
 /* コードブロック（本文では文例・チェックリストに使われているため、生成りの面に墨の文字で表示する） */
 .article-body pre {
   background: #f3f0ea;
   color: #22201c;
-  border: 1px solid #ebe7df;
-  border-radius: 0;
+  border: 0;
   padding: 1em 1.1em;
   margin: 0 0 1.5em;
   font-size: 14px;
@@ -343,38 +363,69 @@
   padding: 0.1em 0.35em;
   font-size: 0.875em;
 }
-/* 引用・:::info などの囲み（markdown.ts のグラデーション装飾を白いカードに置き換える） */
-.article-body [class*='bg-gradient-to-r'] {
+/* 囲み（markdown.ts の .callout）。色は抑え、左の線とラベルで種類を分ける */
+.article-body .callout {
+  margin: 1.8em 0;
+  padding: 1em 1.15em;
+  background: #f3f0ea;
+  font-size: 0.95em;
+  line-height: 1.9;
+}
+.article-body .callout > :last-child {
+  margin-bottom: 0;
+}
+.article-body .callout p {
+  margin-bottom: 0.7em;
+}
+.article-body .callout ul,
+.article-body .callout ol {
+  margin-bottom: 0;
+}
+.article-body .callout-label {
+  margin: 0 0 0.35em !important;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #22201c !important;
+}
+.article-body .callout-point {
   background: #fff;
   border: 1px solid #ebe7df;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 1rem 1.1rem;
-  margin: 0 0 1.5em;
+  border-left: 3px solid #22201c;
 }
-.article-body [class*='bg-gradient-to-r'] h4 {
-  margin: 0 0 0.3em;
-  font-size: 14px;
-  color: #22201c;
+.article-body .callout-caution {
+  background: #fbf6f4;
+  border-left: 3px solid #a65b4b;
 }
-.article-body [class*='bg-gradient-to-r'] blockquote,
-.article-body [class*='bg-gradient-to-r'] .flex-1 > div {
-  color: #22201c;
-  font-weight: 400;
+.article-body .callout-caution .callout-label {
+  color: #8a4436 !important;
 }
-.article-body [class*='bg-gradient-to-r'] > .flex > .flex-shrink-0 {
-  display: none;
+.article-body .callout-season {
+  background: #f8f4ea;
+  border-left: 3px solid #b8935a;
 }
-.article-body [class*='from-amber-50'] {
-  border-color: #e9d6b5;
-  background: #fdf8f0;
+.article-body .callout-season .callout-label {
+  color: #86683a !important;
 }
-.article-body [class*='from-red-50'] {
-  border-color: #f2c9c4;
-  background: #fff7f6;
+.article-body .callout-label::before {
+  content: '';
+  display: inline-block;
+  width: 0.45em;
+  height: 0.45em;
+  margin-right: 0.5em;
+  vertical-align: 0.15em;
+  background: currentColor;
 }
-.article-body [class*='from-red-50'] h4 {
-  color: #9b1c1c;
+/* 本文に直接書かれた HTML の派手な装飾（グラデーション・影）は無地にする */
+.article-body [class*='bg-gradient-to'] {
+  background: #f3f0ea !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 1em 1.15em;
+  margin: 1.8em 0;
+}
+.article-body [class*='shadow'] {
+  box-shadow: none !important;
 }
 /* 本文中の角丸はすべて外す（v2 は四角） */
 .article-body [class*='rounded'] {

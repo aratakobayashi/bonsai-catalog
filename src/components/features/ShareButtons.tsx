@@ -1,67 +1,52 @@
 'use client'
 
-import { Facebook, Twitter, Link as LinkIcon } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 
 interface ShareButtonsProps {
   url: string
   title: string
+  // 互換のため残している（見た目は同じ）
   size?: 'small' | 'large'
+  className?: string
 }
 
-export function ShareButtons({ url, title, size = 'small' }: ShareButtonsProps) {
+// 記事の共有（文字だけの控えめなリンクの並び。押しやすいよう高さは 44px）
+export function ShareButtons({ url, title, className = '' }: ShareButtonsProps) {
   const encodedUrl = encodeURIComponent(url)
   const encodedTitle = encodeURIComponent(title)
 
-  // URL をクリップボードにコピー
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(url)
       toast.success('URLをコピーしました')
-    } catch (err) {
+    } catch {
       toast.error('URLのコピーに失敗しました')
     }
   }
 
-  // Twitter シェア
-  const shareOnTwitter = () => {
-    const twitterUrl = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`
-    window.open(twitterUrl, '_blank', 'noopener,noreferrer')
-  }
+  const open = (shareUrl: string) => window.open(shareUrl, '_blank', 'noopener,noreferrer')
 
-  // Facebook シェア
-  const shareOnFacebook = () => {
-    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`
-    window.open(facebookUrl, '_blank', 'noopener,noreferrer')
-  }
-
-  // LINE シェア
-  const shareOnLine = () => {
-    const lineUrl = `https://social-plugins.line.me/lineit/share?url=${encodedUrl}&text=${encodedTitle}`
-    window.open(lineUrl, '_blank', 'noopener,noreferrer')
-  }
-
-  const btn = 'inline-flex items-center gap-1.5 border border-line bg-white px-3 py-2 text-[13px] text-ink hover:border-ink'
-  const iconSize = size === 'large' ? 'h-4 w-4' : 'h-3.5 w-3.5'
+  const items = [
+    { label: 'X', aria: 'Xでシェア', onClick: () => open(`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`) },
+    { label: 'LINE', aria: 'LINEで送る', onClick: () => open(`https://social-plugins.line.me/lineit/share?url=${encodedUrl}&text=${encodedTitle}`) },
+    { label: 'Facebook', aria: 'Facebookでシェア', onClick: () => open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`) },
+    { label: 'リンクをコピー', aria: 'URLをコピー', onClick: copyToClipboard },
+  ]
 
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      <button type="button" onClick={shareOnTwitter} className={btn} aria-label="Xでシェア">
-        <Twitter className={`${iconSize} text-ink`} />
-        <span>X</span>
-      </button>
-      <button type="button" onClick={shareOnFacebook} className={btn} aria-label="Facebookでシェア">
-        <Facebook className={`${iconSize} text-ink`} />
-        <span>Facebook</span>
-      </button>
-      <button type="button" onClick={shareOnLine} className={btn} aria-label="LINEで送る">
-        <span className={`${iconSize} flex items-center justify-center border border-ink text-[9px] font-bold text-ink`}>L</span>
-        <span>LINE</span>
-      </button>
-      <button type="button" onClick={copyToClipboard} className={btn} aria-label="URLをコピー">
-        <LinkIcon className={`${iconSize} text-ink-soft`} />
-        <span>URLをコピー</span>
-      </button>
+    <div className={`flex flex-wrap items-center gap-x-1 text-[13px] text-ink-muted ${className}`}>
+      <span className="mr-2 text-[12px] tracking-[0.08em]">共有</span>
+      {items.map(item => (
+        <button
+          key={item.label}
+          type="button"
+          onClick={item.onClick}
+          aria-label={item.aria}
+          className="inline-flex min-h-11 items-center px-2.5 text-ink-soft underline decoration-line underline-offset-4 hover:text-ink hover:decoration-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold"
+        >
+          {item.label}
+        </button>
+      ))}
     </div>
   )
 }

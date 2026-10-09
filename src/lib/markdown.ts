@@ -46,6 +46,17 @@ function convertBold(content: string): string {
     .join('')
 }
 
+// 囲みの種類（ラベルの文言 → クラス）
+const CALLOUT_KINDS: Record<string, string> = {
+  ポイント: 'point',
+  注意: 'caution',
+  季節の目安: 'season',
+}
+
+function calloutHtml(kind: string, label: string, body: string): string {
+  return `<div class="callout callout-${kind}"><p class="callout-label">${label}</p>${body}</div>`
+}
+
 export interface ProcessMarkdownOptions {
   // サイト内リンクの存在確認に使う（省略時は存在確認をしない）
   links?: ArticleLinkContext
@@ -90,13 +101,11 @@ export function processMarkdown(content: string, options: ProcessMarkdownOptions
       return `<h${level} id="${id.replace(/"/g, '')}" class="scroll-mt-24">${textStr}</h${level}>`
     })
 
-    // 段落・リスト
-    html = html.replace(/<p>/g, '<p class="mb-4">')
-    html = html.replace(/<ul>/g, '<ul class="mb-4">')
-    html = html.replace(/<ol>/g, '<ol class="mb-4">')
-
     // リンクと画像の補正（存在しないページ・仮のリンクは外す、Amazon にはアソシエイトタグを付ける（掲載を止めている間はリンクを外す）、外部リンクは新しいタブ）
     html = rewriteArticleHtml(html, options.links)
+
+    // 本文中の画像は遅延読み込み
+    html = html.replace(/<img\s(?![^>]*\bloading=)/g, '<img loading="lazy" decoding="async" ')
 
     // 表は横スクロールできる枠で囲む。列が多い表には SP で「横にスクロール」の案内を出す
     html = html.replace(/<table>([\s\S]*?)<\/table>/g, (match, inner: string) => {
@@ -106,70 +115,24 @@ export function processMarkdown(content: string, options: ProcessMarkdownOptions
       return `${hint}<div class="table-scroll" tabindex="0" role="region" aria-label="表">${match}</div>`
     })
 
-    // ブロッククォートを WordPress スタイルの情報ボックスに変換
-    html = html.replace(/<blockquote>/g, '<div class="bg-gradient-to-r from-green-50 to-emerald-50 border-l-6 border-green-500 rounded-lg p-6 mb-6 shadow-lg"><div class="flex items-start"><div class="flex-shrink-0 mr-4"><div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div></div><blockquote class="text-gray-800 font-medium leading-relaxed border-0 bg-transparent p-0 m-0">')
-
-    // コードブロック・インラインコードの見た目は editor.css（.article-body pre / code）で付ける
-
-    // ブロッククォートの終了タグも修正
-    html = html.replace(/<\/blockquote>/g, '</blockquote></div></div>')
-
-    // WordPress スタイルのハイライトボックスを追加
-    // :::info で囲まれたテキストを情報ボックスに変換
-    html = html.replace(/:::info([\s\S]*?):::/g, (match, content) => {
-      return `<div class="bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 rounded-xl p-4 md:p-6 mb-6 shadow-lg">
-        <div class="flex items-start">
-          <div class="flex-shrink-0 mr-3 md:mr-4">
-            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-            </div>
-          </div>
-          <div class="flex-1">
-            <h4 class="font-semibold text-blue-900 mb-2">この記事でわかること</h4>
-            <div class="text-blue-800">${content.trim()}</div>
-          </div>
-        </div>
-      </div>`
+    // 囲み：「> **ポイント** …」「> **注意** …」「> **季節の目安** …」はラベル付きの囲み、それ以外の引用は無地の囲み
+    html = html.replace(/<blockquote>([\s\S]*?)<\/blockquote>/g, (match, inner: string) => {
+      const labeled = inner.match(/^\s*<p>\s*<strong>\s*([^<]{1,12}?)\s*<\/strong>[\s:：]*(?:<br\s*\/?>\s*)?/)
+      const label = labeled ? labeled[1].replace(/[:：]$/, '') : ''
+      const kind = CALLOUT_KINDS[label]
+      if (!kind) return `<div class="callout">${inner.trim()}</div>`
+      const rest = inner.slice(labeled![0].length).replace(/^\s*<\/p>/, '')
+      const body = rest.trim().startsWith('<') && !/^<(?:strong|em|a|code|br)/.test(rest.trim()) ? rest.trim() : `<p>${rest.trim()}`
+      return calloutHtml(kind, label, body.replace(/<p>\s*<\/p>/g, ''))
     })
 
-    // :::tips で囲まれたテキストをコツボックスに変換
-    html = html.replace(/:::tips([\s\S]*?):::/g, (match, content) => {
-      return `<div class="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-4 md:p-6 mb-6 shadow-lg">
-        <div class="flex items-start">
-          <div class="flex-shrink-0 mr-3 md:mr-4">
-            <div class="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-              </svg>
-            </div>
-          </div>
-          <div class="flex-1">
-            <h4 class="font-semibold text-amber-900 mb-2">💡ワンポイントアドバイス</h4>
-            <div class="text-amber-800">${content.trim()}</div>
-          </div>
-        </div>
-      </div>`
-    })
-
-    // :::warning で囲まれたテキストを警告ボックスに変換
-    html = html.replace(/:::warning([\s\S]*?):::/g, (match, content) => {
-      return `<div class="bg-gradient-to-r from-red-50 to-pink-50 border border-red-200 rounded-xl p-4 md:p-6 mb-6 shadow-lg">
-        <div class="flex items-start">
-          <div class="flex-shrink-0 mr-3 md:mr-4">
-            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-              </svg>
-            </div>
-          </div>
-          <div class="flex-1">
-            <h4 class="font-semibold text-red-900 mb-2">⚠️ 注意点</h4>
-            <div class="text-red-800">${content.trim()}</div>
-          </div>
-        </div>
-      </div>`
+    // :::info / :::tips / :::warning で囲んだ部分（旧記事の書式）も同じ囲みにする
+    html = html.replace(/(?:<p>\s*)?:::(info|tips|warning)(?:\s*<br\s*\/?>)?([\s\S]*?)(?:<br\s*\/?>\s*)?:::(?:\s*<\/p>)?/g, (match, type: string, inner: string) => {
+      const [kind, label] = type === 'warning' ? ['caution', '注意'] : type === 'tips' ? ['point', 'ポイント'] : ['note', '']
+      let body = inner.trim().replace(/^<\/p>\s*/, '').replace(/\s*<p>$/, '')
+      if (!/^<(?:p|ul|ol|div|table)[\s>]/.test(body)) body = `<p>${body}`
+      if (!/<\/(?:p|ul|ol|div|table)>$/.test(body)) body = `${body}</p>`
+      return label ? calloutHtml(kind, label, body) : `<div class="callout">${body}</div>`
     })
 
     return html

@@ -10,7 +10,7 @@ summary:
   - 紅葉がきれいに出ないときに見直したいこと
 species: momiji
 selection: autumn-leaves-bonsai
-image: /images/articles/article-1-img-1.png
+image: /images/selections/autumn-leaves-bonsai.svg
 ---
 もみじは、春に赤みを帯びた新芽が開き、夏は涼しげな青葉、秋に紅葉し、冬は葉を落とした細かな枝ぶりが見どころになる樹です。雑木盆栽の代表で、小さな鉢でも季節の移り変わりがよく分かります。
 

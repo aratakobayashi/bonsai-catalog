@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { cache } from 'react'
 import { notFound, permanentRedirect } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -7,21 +8,24 @@ import { supabaseServer } from '@/lib/supabase-server'
 import { AMAZON_ENABLED } from '@/lib/affiliate'
 import { ShareButtons } from '@/components/features/ShareButtons'
 import { TableOfContents, MobileTableOfContents } from '@/components/features/TableOfContents'
-import { ArticleSidebarProducts } from '@/components/article/ArticleSidebarProducts'
-import { GuideArticleCard } from '@/components/article/GuideArticleCard'
-import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
+import { ArticleSummary } from '@/components/article/ArticleSummary'
+import { ArticleNextSteps, type NextStepLink } from '@/components/article/ArticleNextSteps'
+import { byCuratedThenReviews } from '@/components/home/curated'
+import { RelatedArticleRows } from '@/components/article/RelatedArticleRows'
 import { ArticleStructuredData, BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { generateArticleSEO } from '@/lib/seo-utils'
 import { formatDate } from '@/lib/date-utils'
 import { processMarkdown, extractTableOfContents } from '@/lib/markdown'
 import { detectArticleSpecies, fallbackSelectionSlug, normalizeForMatch, stripLeadingTitleHeading } from '@/lib/article-content'
+import { applyArticleOverride, canOptimizeImage, getArticleOverride } from '@/lib/article-overrides'
 import { getSelection, selectionsForCategory } from '@/lib/selections'
-import { normalizeProduct } from '@/lib/catalog-model'
+import { categoryFilters, filterProducts, getCatalogProducts, normalizeProduct, type CatalogProduct } from '@/lib/catalog'
+import { getShopCategory } from '@/lib/shop-categories'
 import { SITE_URL, absoluteUrl } from '@/lib/site'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
-import { CONTAINER, Breadcrumbs, SectionTitle } from '@/components/ui/design'
-import { isArticleHidden, isArticleIndexable } from '@/lib/content-policy'
-import type { Product } from '@/types'
+import { CONTAINER, Breadcrumbs } from '@/components/ui/design'
+import { isArticleHidden, isArticleIndexable, isArticleListable } from '@/lib/content-policy'
+import type { Article, Product } from '@/types'
 
 interface ArticlePageProps {
   params: {
@@ -29,8 +33,8 @@ interface ArticlePageProps {
   }
 }
 
-// 関連商品を取得
-async function getRelatedProducts(productIds?: string[], article?: any): Promise<Product[]> {
+// 関連商品を取得（樹種のわからない記事の「次にやること」で使う）
+async function getRelatedProducts(productIds?: string[], article?: Article): Promise<Product[]> {
   // 手動設定の商品IDがある場合は優先
   if (productIds && productIds.length > 0) {
     let query = supabaseServer.from('products').select('*').in('id', productIds)
@@ -43,7 +47,7 @@ async function getRelatedProducts(productIds?: string[], article?: any): Promise
     }
   }
 
-  // 智能推薦システムを使用
+  // 記事のタイトル・本文から推薦
   if (article) {
     try {
       const { getRecommendedProducts } = await import('@/lib/product-recommendation')
@@ -54,6 +58,30 @@ async function getRelatedProducts(productIds?: string[], article?: any): Promise
   }
 
   return []
+}
+
+// 樹種の商品一覧（/products/category/<slug>）と同じ条件・並びの先頭3件
+async function getSpeciesProducts(slug: string): Promise<CatalogProduct[]> {
+  try {
+    // 記事の中では、文字やバナーのない写真の商品を先に出す
+    return filterProducts(await getCatalogProducts(), categoryFilters(slug)).sort(byCuratedThenReviews).slice(0, 3)
+  } catch (error) {
+    console.error('樹種の商品取得エラー:', error)
+    return []
+  }
+}
+
+// DB の記事に、リポジトリの書き直し版（src/content/articles/<slug>.md）を重ねる。メタデータと本文で1回だけ読む
+const loadArticle = cache(async (slug: string) => {
+  const article = await getArticleBySlug(slug)
+  return article ? applyArticleOverride(article) : null
+})
+
+// 一覧・本文の説明に使える要約か（Markdown の記号や見出しが残っているものは出さない）
+function cleanLead(text?: string): string | null {
+  const t = text?.replace(/\s+/g, ' ').trim()
+  if (!t || t.length < 20 || t.length > 200 || /[#*|<>\[\]]/.test(t)) return null
+  return t
 }
 
 // 初回アクセス時に生成してキャッシュし、1時間ごとに再生成（ISR）
@@ -69,8 +97,8 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     return { title: '育て方 | 盆栽コレクション', robots: { index: false, follow: true } }
   }
 
-  const article = await getArticleBySlug(params.slug)
-  
+  const article = await loadArticle(params.slug)
+
   if (!article) {
     return {
       title: '記事が見つかりません',
@@ -102,22 +130,29 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   }
 }
 
+
 export default async function ArticlePage({ params }: ArticlePageProps) {
   // 盆栽と無関係な記事（削除扱い）は記事一覧へ恒久リダイレクト
   if (isArticleHidden(params.slug)) {
     permanentRedirect('/guides')
   }
 
-  const article = await getArticleBySlug(params.slug)
+  const article = await loadArticle(params.slug)
 
   if (!article) {
     notFound()
   }
 
-  // 並行してデータを取得
-  const [relatedProducts, relatedArticles, linkContext] = await Promise.all([
-    getRelatedProducts(article.relatedProducts, article),
-    getRelatedArticles(article, 4),
+  // 樹種（front matter の species。なければタイトルから判定）
+  const detected = detectArticleSpecies(article.title)
+  const speciesSlug = (article.speciesSlug && getShopCategory(article.speciesSlug) ? article.speciesSlug : null) ?? detected?.category ?? null
+  const speciesLabel = speciesSlug ? getShopCategory(speciesSlug)?.name ?? detected?.label ?? null : null
+
+  // 並行してデータを取得（樹種がわかる記事はその樹種の商品、わからない記事は記事に関連する商品）
+  const [speciesProducts, relatedProductRows, relatedCandidates, linkContext] = await Promise.all([
+    speciesSlug ? getSpeciesProducts(speciesSlug) : Promise.resolve([] as CatalogProduct[]),
+    speciesSlug ? Promise.resolve([] as Product[]) : getRelatedProducts(article.relatedProducts, article),
+    getRelatedArticles(article, 8),
     getArticleLinkContext().catch(() => undefined),
   ])
 
@@ -134,19 +169,46 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const h2Headings = allHeadings.filter(item => item.level === 2)
   const tableOfContents = h2Headings.length > 0 ? h2Headings : allHeadings
 
-  const catalogProducts = relatedProducts.map(normalizeProduct)
-  const hasRakuten = catalogProducts.some(product => product.source === 'rakuten')
+  const products = speciesSlug ? speciesProducts : relatedProductRows.map(normalizeProduct).slice(0, 3)
+  const hasRakuten = products.some(product => product.source === 'rakuten')
+
+  // 同じ樹種の育て方の記事（育て方・手入れの記事を先に）
+  const speciesGuides: NextStepLink[] = speciesSlug && linkContext
+    ? linkContext.articles
+        .filter(a => a.slug !== article.slug && isArticleListable(a.slug))
+        .map(a => ({ slug: a.slug, title: getArticleOverride(a.slug)?.title ?? a.title }))
+        .filter(a => detectArticleSpecies(a.title)?.category === speciesSlug)
+        .sort((a, b) => Number(/育て方|手入れ|管理/.test(b.title)) - Number(/育て方|手入れ|管理/.test(a.title)))
+        .slice(0, 3)
+        .map(a => ({ href: `/guides/${a.slug}`, title: a.title }))
+    : []
+
+  // 関連記事（「次にやること」に出した記事は除く）
+  const guideHrefs = new Set(speciesGuides.map(guide => guide.href))
+  const relatedArticles = relatedCandidates
+    .filter(related => !guideHrefs.has(`/guides/${related.slug}`))
+    .slice(0, 4)
+    .map(related => applyArticleOverride(related))
+
+  // 特集（front matter の selection → 樹種向けの特集 → 話題から）
+  const selection =
+    (article.selectionSlug && getSelection(article.selectionSlug)) ||
+    (speciesSlug && selectionsForCategory(speciesSlug)[0]) ||
+    getSelection(fallbackSelectionSlug(article.title))
+  const nextLinks: NextStepLink[] = [
+    ...(selection ? [{ href: `/selection/${selection.slug}`, title: selection.shortTitle, note: selection.tagline }] : []),
+    { href: '/shindan', title: 'かんたん盆栽診断', note: '置き場所・予算など4つの質問で、合いそうな盆栽を探す' },
+  ]
+
   const crumbs = [
     { label: '育て方', href: '/guides' },
     { label: article.category.name, href: `/guides?category=${article.category.slug}` },
   ]
   const articleUrl = `${SITE_URL}/guides/${article.slug}`
-  const featuredImageUrl = article.featuredImage
-    ? typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url
-    : null
-  const featuredImageAlt = article.featuredImage && typeof article.featuredImage !== 'string'
-    ? article.featuredImage.alt || article.title
-    : article.title
+  const featuredImageUrl = article.featuredImage?.url ?? null
+  const featuredImageAlt = article.featuredImage?.alt || article.title
+  const lead = cleanLead(article.overridden ? article.excerpt : article.excerpt || article.seoDescription)
+  const updated = article.updatedAt && formatDate(article.updatedAt) !== formatDate(article.publishedAt)
 
   // パンくずリスト構造化データ（画面のパンくずと同じ「ホーム › 育て方 › カテゴリ › 記事」）
   const breadcrumbs = [
@@ -156,10 +218,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     { name: article.title, url: articleUrl, position: 4 },
   ]
 
-  // 記事下の案内（診断・特集・樹種別の商品一覧）
-  const species = detectArticleSpecies(article.title)
-  const selection = (species && selectionsForCategory(species.category)[0]) || getSelection(fallbackSelectionSlug(article.title))
-
   return (
     <>
       <ArticleStructuredData
@@ -168,48 +226,51 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       />
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
 
-      <div className={`${CONTAINER} pb-16 pt-5 lg:pb-20 lg:pt-6`}>
+      <div className={`${CONTAINER} pb-16 pt-6 lg:pb-24 lg:pt-6`}>
         <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, ...crumbs]} className="hidden lg:block" />
-        <div className="lg:mt-10 lg:grid lg:grid-cols-[minmax(0,680px)_280px] lg:justify-center lg:gap-16 xl:gap-24">
+        <div className="lg:mt-10 lg:grid lg:grid-cols-[minmax(0,640px)_220px] lg:justify-center lg:gap-16 xl:gap-24">
           <article className="min-w-0">
-            {/* 記事ヘッダー */}
+            {/* 記事ヘッダー：カテゴリ・タイトル・一言の要約・更新日と読む時間 */}
             <header>
-              <p className="text-[11px] tracking-[0.08em] text-gold-dark lg:text-xs">
+              <p className="text-[12px] tracking-[0.1em] text-gold-dark">
                 <Link href={`/guides?category=${article.category.slug}`} className="hover:text-ink">{article.category.name}</Link>
-                {article.tags?.slice(0, 2).map(tag => (
-                  <span key={tag.id} className="hidden lg:inline">・{tag.name}</span>
-                ))}
               </p>
-              <h1 className="mt-2 font-mincho text-[22px] font-bold leading-[1.45] tracking-[0.08em] text-ink lg:mt-3 lg:text-[32px]">
+              <h1 className="mt-2.5 font-mincho text-[23px] font-bold leading-[1.5] tracking-[0.05em] text-ink lg:mt-3 lg:text-[32px] lg:leading-[1.45]">
                 {article.title}
               </h1>
-              <div className="mt-2.5 flex flex-wrap gap-x-5 gap-y-1 text-[11px] text-ink-muted lg:mt-4 lg:text-xs">
-                <span className="hidden lg:inline">公開 {formatDate(article.publishedAt)}</span>
-                {article.updatedAt !== article.publishedAt && <span>更新 {formatDate(article.updatedAt)}</span>}
-                {article.readingTime && <span>{article.readingTime}分で読めます</span>}
-                <span className="hidden lg:inline">盆栽コレクション編集部</span>
-              </div>
+              {lead && <p className="mt-4 text-[15px] leading-[1.9] text-ink-soft lg:mt-5 lg:text-base">{lead}</p>}
+              <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[12px] text-ink-muted lg:mt-5">
+                {updated ? (
+                  <span>更新 <time dateTime={article.updatedAt}>{formatDate(article.updatedAt)}</time></span>
+                ) : (
+                  <span>公開 <time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time></span>
+                )}
+                {article.readingTime ? <span>約{article.readingTime}分で読めます</span> : null}
+              </p>
             </header>
 
             {/* アイキャッチ画像（SPは画面幅いっぱい） */}
             {featuredImageUrl && (
-              <div className="relative -mx-4 mt-5 aspect-[16/9] overflow-hidden bg-paper-deep lg:mx-0 lg:mt-8 lg:aspect-[680/420]">
+              <div className="relative -mx-4 mt-6 aspect-[16/9] overflow-hidden bg-paper-deep lg:mx-0 lg:mt-8">
                 <Image
                   src={featuredImageUrl}
                   alt={featuredImageAlt}
                   fill
-                  sizes="(max-width: 1023px) 100vw, 680px"
+                  sizes="(max-width: 1023px) 100vw, 640px"
                   className="object-cover"
                   priority
+                  unoptimized={!canOptimizeImage(featuredImageUrl)}
                 />
               </div>
             )}
 
-            <PrDisclosure className="mt-4 lg:mt-5" />
+            <PrDisclosure compact className="mt-3" />
 
-            {/* SP：目次 */}
+            <ArticleSummary items={article.summary} />
+
+            {/* SP：目次（開閉できる） */}
             {tableOfContents.length > 0 && (
-              <div className="mt-4 lg:hidden">
+              <div className="mt-8 lg:hidden">
                 <MobileTableOfContents items={tableOfContents} />
               </div>
             )}
@@ -217,98 +278,33 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             {/* 記事本文 */}
             <div
               id="article-body"
-              className="article-body mt-5 lg:mt-8"
+              className="article-body mt-10 lg:mt-12"
               dangerouslySetInnerHTML={{ __html: bodyHtml }}
             />
 
-            {/* シェア */}
-            <div className="mt-12 border-t border-line pt-6">
-              <p className="mb-3 text-[11px] tracking-[0.1em] text-ink-muted">この記事をシェア</p>
-              <ShareButtons url={articleUrl} title={article.title} size="large" />
-            </div>
+            {/* 次にやること（商品・同じ樹種の記事・特集・診断） */}
+            <ArticleNextSteps
+              products={products}
+              productsHeading={speciesLabel ? `${speciesLabel}の盆栽を見てみる` : undefined}
+              productsMore={speciesSlug && speciesLabel ? { href: `/products/category/${speciesSlug}`, label: `${speciesLabel}の盆栽をすべて見る` } : undefined}
+              guides={speciesGuides}
+              guidesHeading={speciesLabel ? `${speciesLabel}の育て方をもっと読む` : undefined}
+              links={nextLinks}
+              hasRakuten={hasRakuten}
+            />
 
-            {/* 次の一歩（診断・特集・樹種別の商品一覧） */}
-            <nav aria-labelledby="article-next" className="mt-10">
-              <p id="article-next" className="text-[11px] tracking-[0.1em] text-ink-muted">盆栽を選ぶなら</p>
-              <ul className="mt-2 border-t border-line">
-                <li className="border-b border-line">
-                  <Link href="/shindan" className="group flex min-h-[56px] items-center gap-3 py-3">
-                    <span className="min-w-0 flex-1">
-                      <span className="block font-mincho text-[15px] font-bold text-ink group-hover:text-gold-dark">かんたん盆栽診断</span>
-                      <span className="mt-0.5 block text-xs text-ink-muted">置き場所・予算・楽しみ方など4つの質問で、合いそうな盆栽を探す</span>
-                    </span>
-                    <span aria-hidden="true" className="text-ink-muted">›</span>
-                  </Link>
-                </li>
-                {selection && (
-                  <li className="border-b border-line">
-                    <Link href={`/selection/${selection.slug}`} className="group flex min-h-[56px] items-center gap-3 py-3">
-                      <span className="min-w-0 flex-1">
-                        <span className="block font-mincho text-[15px] font-bold text-ink group-hover:text-gold-dark">{selection.shortTitle}</span>
-                        <span className="mt-0.5 block text-xs text-ink-muted">{selection.tagline}</span>
-                      </span>
-                      <span aria-hidden="true" className="text-ink-muted">›</span>
-                    </Link>
-                  </li>
-                )}
-                {species && (
-                  <li className="border-b border-line">
-                    <Link href={`/products/category/${species.category}`} className="group flex min-h-[56px] items-center gap-3 py-3">
-                      <span className="min-w-0 flex-1">
-                        <span className="block font-mincho text-[15px] font-bold text-ink group-hover:text-gold-dark">{species.label}の盆栽を探す</span>
-                        <span className="mt-0.5 block text-xs text-ink-muted">通販で買える{species.label}を価格・ショップで比較</span>
-                      </span>
-                      <span aria-hidden="true" className="text-ink-muted">›</span>
-                    </Link>
-                  </li>
-                )}
-              </ul>
-            </nav>
+            <RelatedArticleRows articles={relatedArticles} />
 
-            {/* 関連商品（PCはサイドバーに表示） */}
-            {catalogProducts.length > 0 && (
-              <section id="related-products" className="mt-12 lg:hidden">
-                <SectionTitle>この記事に関連する商品</SectionTitle>
-                <p className="mt-1 text-[11px] text-ink-muted">PR・価格は取得時点の情報です</p>
-                <div className="mt-4 grid grid-cols-2 gap-x-3 gap-y-6">
-                  {catalogProducts.map(product => (
-                    <CatalogProductCard key={product.id} product={product} />
-                  ))}
-                </div>
-                {hasRakuten && (
-                  <p className="mt-3 text-[11px] text-ink-muted">
-                    楽天市場の商品情報は{' '}
-                    <a href="https://developers.rakuten.com/" target="_blank" rel="noopener noreferrer" className="underline">Supported by Rakuten Developers</a>
-                  </p>
-                )}
-              </section>
-            )}
-
-            {/* 関連記事 */}
-            {relatedArticles.length > 0 && (
-              <section className="mt-12 lg:mt-16">
-                <SectionTitle>関連記事</SectionTitle>
-                <div className="mt-2 lg:mt-6 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-10">
-                  {relatedArticles.map(related => (
-                    <GuideArticleCard key={related.id} article={related} />
-                  ))}
-                </div>
-              </section>
-            )}
+            <ShareButtons url={articleUrl} title={article.title} className="mt-10 border-t border-line pt-3" />
           </article>
 
-          {/* PC：サイドバー（目次・関連商品） */}
-          <aside className="hidden pt-[120px] lg:block">
-            <div className="sticky top-24 space-y-10">
-              {tableOfContents.length > 0 && <TableOfContents items={tableOfContents} />}
-              <ArticleSidebarProducts products={catalogProducts} />
-              {hasRakuten && (
-                <p className="-mt-6 text-[11px] text-ink-muted">
-                  楽天市場の商品情報は{' '}
-                  <a href="https://developers.rakuten.com/" target="_blank" rel="noopener noreferrer" className="underline">Supported by Rakuten Developers</a>
-                </p>
-              )}
-            </div>
+          {/* PC：サイドバーの目次（スクロールしても追従） */}
+          <aside className="hidden lg:block">
+            {tableOfContents.length > 0 && (
+              <div className="sticky top-24 pt-1">
+                <TableOfContents items={tableOfContents} />
+              </div>
+            )}
           </aside>
         </div>
       </div>
