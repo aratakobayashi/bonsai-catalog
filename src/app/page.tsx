@@ -7,12 +7,20 @@ import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { CONTAINER } from '@/components/ui/design'
 import { SELECTIONS, getSelection, pickSelectionProducts, type Selection } from '@/lib/selections'
 import { formatPrice } from '@/lib/utils'
-import { getGuideLinks, isFeaturable, selectionCounts, type GuideLink } from '@/components/selection/selection-meta'
+import { isFeaturable, selectionCounts } from '@/components/selection/selection-meta'
+import { SelectionThumb } from '@/components/selection/SelectionThumb'
+import { ProductThumb } from '@/components/catalog/ProductThumb'
+import { Placeholder } from '@/components/ui/design'
+import { getArticleBySlug } from '@/lib/database/articles'
+import { isArticleIndexable } from '@/lib/content-policy'
+import type { Article } from '@/types'
 import { supabaseServer } from '@/lib/supabase-server'
 import { isGardenPublished } from '@/lib/garden-verification'
 import { getUpcomingEventsCount } from '@/lib/events'
 import { currentMonth, getSeasonalPick, getSeasonalShelf, type SeasonalShelf } from '@/components/home/seasonal'
 import { getHomeSpecies } from '@/components/home/species'
+import { HERO_PHOTOS } from '@/components/home/hero-photos'
+import { byCuratedThenReviews, byReviews, hasCuratedImage } from '@/components/home/curated'
 
 // 1時間ごとに再生成（ISR）。ページを開いた直後のHTMLに商品・記事が入る
 // 商品データの取得が一時的に失敗したときの表示が長く残らないよう、10分ごとに作り直す
@@ -56,16 +64,14 @@ const SPECIES_GUIDES: Record<string, string> = {
 }
 const CARE_FALLBACK = ['article-11', 'beginner-tree-species-guide']
 
-const byReviews = (a: CatalogProduct, b: CatalogProduct) => b.reviewCount - a.reviewCount || b.reviewAverage - a.reviewAverage
-
-// いま見頃の盆栽：季節に合う樹種から、なるべく樹種が重ならないように4件
+// いま見頃の盆栽：季節に合う樹種から、なるべく樹種が重ならないように4件（写真を選び直した商品を先に）
 function pickSeasonal(trees: CatalogProduct[], shelf: SeasonalShelf, exclude?: string): CatalogProduct[] {
   const inSeason = (p: CatalogProduct) =>
     p.enjoy.some(e => shelf.enjoy.includes(e) && (e === 'evergreen' || p.seasons.includes(shelf.season)))
   const seen = new Set<string>()
   const candidates = trees
     .filter(p => p.imageUrl && p.id !== exclude && inSeason(p))
-    .sort(byReviews)
+    .sort(byCuratedThenReviews)
     .filter(p => {
       if (seen.has(p.originalName)) return false
       seen.add(p.originalName)
@@ -83,18 +89,37 @@ function pickSeasonal(trees: CatalogProduct[], shelf: SeasonalShelf, exclude?: s
     if (!picked.includes(p)) picked.push(p)
   }
   // 季節の商品が少ないときはレビューの多い盆栽で補う
-  for (const p of trees.filter(t => t.imageUrl && t.reviewCount > 0).sort(byReviews)) {
+  for (const p of trees.filter(t => t.imageUrl && t.reviewCount > 0).sort(byCuratedThenReviews)) {
     if (picked.length >= 4) break
     if (p.id !== exclude && !picked.includes(p)) picked.push(p)
   }
   return picked
 }
 
-// 公開中・noindex でない記事だけ（getGuideLinks が確認する）を3件
-async function getCareArticles(speciesSlug: string): Promise<GuideLink[]> {
+// よく選ばれている盆栽：写真を選び直した盆栽から、樹種が重ならないようにレビューの多い順で8件（ほかの枠に出す商品は除く）
+function pickPopular(trees: CatalogProduct[], exclude: Set<string>): CatalogProduct[] {
+  const species = new Set<string>()
+  const names = new Set<string>()
+  return trees
+    .filter(p => hasCuratedImage(p) && !exclude.has(p.id) && p.reviewCount > 0)
+    .sort(byReviews)
+    .filter(p => {
+      const key = p.speciesLabel ?? p.id
+      if (species.has(key) || names.has(p.originalName)) return false
+      species.add(key)
+      names.add(p.originalName)
+      return true
+    })
+    .slice(0, 8)
+}
+
+// 公開中・noindex でない記事だけ（selection-meta の getGuideLinks と同じ条件）を3件。サムネイルも出すため記事そのものを返す
+async function getCareArticles(speciesSlug: string): Promise<Article[]> {
   try {
     const species = SPECIES_GUIDES[speciesSlug]
-    return await getGuideLinks([...CARE_BASICS, ...(species ? [species] : []), ...CARE_FALLBACK], 3)
+    const slugs = Array.from(new Set([...CARE_BASICS, ...(species ? [species] : []), ...CARE_FALLBACK])).filter(isArticleIndexable)
+    const articles = await Promise.all(slugs.map(slug => getArticleBySlug(slug).catch(() => null)))
+    return articles.filter((article): article is Article => article !== null).slice(0, 3)
   } catch (error) {
     console.error('Error fetching articles:', error)
     return []
@@ -125,7 +150,7 @@ export default async function HomePage() {
   const season = getSeasonalPick()
   const [products, careArticles, gardenCount, eventCount] = await Promise.all([
     safely('商品', getCatalogProducts, [] as CatalogProduct[]),
-    safely('記事', () => getCareArticles(season.slug), [] as GuideLink[]),
+    safely('記事', () => getCareArticles(season.slug), [] as Article[]),
     safely('盆栽園の件数', getGardenCount, 0),
     safely('イベントの件数', getUpcomingEventsCount, 0),
   ])
@@ -136,16 +161,22 @@ export default async function HomePage() {
 
   const month = currentMonth()
   const heroImage = `/images/selections/${HERO_ILLUSTRATIONS[season.slug] ?? 'beginner-mini-bonsai'}.svg`
+  // 実物の写真を登録した月は、その商品の写真をヒーローにする（見つからない・画像がないときはイラスト）
+  const heroPhotoId = HERO_PHOTOS[month]
+  const heroProduct = heroPhotoId ? products.find(p => p.id === heroPhotoId && p.imageUrl) : undefined
 
   // 樹種ごとの件数はカテゴリページ（/products/category/[slug]）と同じ条件で数える
   const baseFilters = parseFilters({})
-  const species = getHomeSpecies(month).map(s => ({
-    ...s,
-    count: filterProducts(products, { ...baseFilters, species: s.slug, type: 'tree' }).length,
-  })).filter(s => s.count > 0) // 商品のない樹種は出さない（リンク先が空になるため）
+  const species = getHomeSpecies(month).map(s => {
+    const items = filterProducts(products, { ...baseFilters, species: s.slug, type: 'tree' })
+    // 樹種の小さな写真：写真を選び直した商品を先に、その中でレビューの多いもの
+    const photo = items.filter(p => p.imageUrl).sort(byCuratedThenReviews)[0]
+    return { ...s, count: items.length, photo }
+  }).filter(s => s.count > 0) // 商品のない樹種は出さない（リンク先が空になるため）
 
   const shelf = getSeasonalShelf()
-  const seasonal = pickSeasonal(trees, shelf)
+  const seasonal = pickSeasonal(trees, shelf, heroProduct?.id)
+  const popular = pickPopular(trees, new Set([...seasonal.map(p => p.id), ...(heroProduct ? [heroProduct.id] : [])]))
   // 掲載商品が少ない特集はトップに出さない
   const counts = selectionCounts(products)
   const featuredCount = SELECTIONS.filter(s => isFeaturable(s, counts)).length
@@ -162,23 +193,41 @@ export default async function HomePage() {
       {/* ヒーロー（SP は写真が先） */}
       <section className="lg:mx-auto lg:grid lg:max-w-[1184px] lg:grid-cols-[minmax(0,1fr)_560px] lg:items-center lg:gap-16 lg:px-12 lg:pt-16">
         <figure className="lg:order-last">
-          <Link
-            href={`/products/category/${season.slug}`}
-            aria-label={`${season.monthLabel}の一鉢：${season.name}の盆栽を見る`}
-            className="relative block aspect-[16/9] overflow-hidden bg-paper-deep lg:aspect-[16/11]"
-          >
-            {/* 自前の軽い SVG イラスト（文字や広告表記のある商品画像は使わない） */}
-            <Image
-              src={heroImage}
-              alt=""
-              width={800}
-              height={500}
-              priority
-              unoptimized
-              sizes="(max-width: 1023px) 100vw, 560px"
-              className="h-full w-full object-cover"
-            />
-          </Link>
+          {heroProduct ? (
+            // 実物の写真（hero-photos.ts で月ごとに確かめて登録したもの）。LCP のため先に読み込み、楽天側で縮小した画像を使う
+            <Link
+              href={`/products/${heroProduct.id}`}
+              prefetch={false}
+              aria-label={`${season.monthLabel}の一鉢：${heroProduct.displayName || heroProduct.name}を見る`}
+              className="relative block aspect-[4/3] overflow-hidden bg-paper-deep lg:aspect-[5/4]"
+            >
+              <ProductThumb
+                src={heroProduct.imageUrl}
+                alt={heroProduct.displayName || heroProduct.name}
+                sizes="(max-width: 1023px) 100vw, 560px"
+                size={800}
+                priority
+              />
+            </Link>
+          ) : (
+            <Link
+              href={`/products/category/${season.slug}`}
+              aria-label={`${season.monthLabel}の一鉢：${season.name}の盆栽を見る`}
+              className="relative block aspect-[16/9] overflow-hidden bg-paper-deep lg:aspect-[16/11]"
+            >
+              {/* 自前の軽い SVG イラスト（文字や広告表記のある商品画像は使わない） */}
+              <Image
+                src={heroImage}
+                alt=""
+                width={800}
+                height={500}
+                priority
+                unoptimized
+                sizes="(max-width: 1023px) 100vw, 560px"
+                className="h-full w-full object-cover"
+              />
+            </Link>
+          )}
           <figcaption className="mt-2.5 hidden text-xs text-ink-muted lg:block">
             {season.monthLabel}の一鉢・{season.name}　{season.title}
           </figcaption>
@@ -240,14 +289,24 @@ export default async function HomePage() {
             <ul className="grid border-t border-line lg:grid-cols-2 lg:gap-x-12">
               {species.map((s, i) => (
                 <li key={s.slug} className={`border-b border-line ${i >= 6 ? 'hidden lg:block' : ''}`}>
-                  <Link href={`/products/category/${s.slug}`} className="group flex items-baseline gap-3 py-3.5 lg:py-[18px]">
-                    <span className={`h-1.5 w-1.5 flex-none self-center rounded-full ${s.inSeason ? 'bg-gold' : ''}`} aria-hidden="true" />
-                    <span className="w-24 flex-none font-mincho text-[17px] font-bold tracking-[0.04em] text-ink group-hover:text-gold-dark lg:w-[110px] lg:text-xl">
-                      {s.name}
-                      {s.inSeason && <span className="sr-only">（今が見頃）</span>}
+                  <Link href={`/products/category/${s.slug}`} className="group flex items-center gap-3 py-3 lg:gap-4 lg:py-4">
+                    {/* 樹種の小さな写真（その樹種の商品のうち、写真を選び直したもの・レビューの多いもの） */}
+                    <span className="relative h-14 w-14 flex-none overflow-hidden bg-paper-deep lg:h-[72px] lg:w-[72px]">
+                      {s.photo && <ProductThumb src={s.photo.imageUrl} alt="" sizes="72px" size={160} />}
                     </span>
-                    <span className="min-w-0 flex-1 text-[11.5px] leading-[1.6] text-ink-soft lg:text-[12.5px]">
-                      {s.peak}<br />{s.care}
+                    <span className="flex min-w-0 flex-1 flex-col lg:flex-row lg:items-baseline lg:gap-3">
+                      <span className="flex items-center gap-1.5 font-mincho text-[17px] font-bold tracking-[0.04em] text-ink group-hover:text-gold-dark lg:w-[104px] lg:flex-none lg:text-xl">
+                        {s.name}
+                        {s.inSeason && (
+                          <>
+                            <span className="h-1.5 w-1.5 flex-none rounded-full bg-gold" aria-hidden="true" />
+                            <span className="sr-only">（今が見頃）</span>
+                          </>
+                        )}
+                      </span>
+                      <span className="mt-0.5 min-w-0 flex-1 text-[11.5px] leading-[1.6] text-ink-soft lg:mt-0 lg:text-[12.5px]">
+                        {s.peak}<span className="lg:hidden">・</span><br className="hidden lg:inline" />{s.care}
+                      </span>
                     </span>
                     {s.count > 0 && <span className="flex-none text-[11px] text-ink-muted">{s.count.toLocaleString()}件</span>}
                   </Link>
@@ -283,53 +342,100 @@ export default async function HomePage() {
           <PrDisclosure className="mt-3.5" />
         </section>
 
-        <div className="grid gap-12 pt-12 lg:grid-cols-2 lg:gap-16 lg:pt-24">
-          {/* 目的から選ぶ */}
-          <section>
-            <h2 className="font-mincho text-xl font-bold tracking-[0.06em] text-ink lg:text-[22px]">目的から選ぶ</h2>
-            <ul className="mt-3 border-t border-line lg:mt-4">
-              {purposes.map(({ slug, label, criteria }) => (
-                <li key={slug} className="border-b border-line">
-                  <Link href={`/selection/${slug}`} className="group flex items-center gap-3 py-3.5 lg:items-baseline lg:py-4">
-                    <span className="flex min-w-0 flex-1 flex-col lg:flex-row lg:items-baseline">
-                      <span className="font-mincho text-base font-bold text-ink group-hover:text-gold-dark lg:w-[170px] lg:flex-none lg:text-[17px]">{label}</span>
-                      <span className="mt-0.5 flex-1 text-[11.5px] text-ink-soft lg:mt-0 lg:text-[12.5px]">{criteria}</span>
+        {/* よく選ばれている盆栽（写真を選び直した盆栽。SP は横にスクロール、PC は8列） */}
+        {popular.length >= 4 && (
+          <section className="pt-12 lg:pt-24">
+            <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1">
+              <h2 className="font-mincho text-xl font-bold tracking-[0.06em] text-ink lg:text-[26px]">よく選ばれている盆栽</h2>
+              <span className="order-last w-full text-xs text-ink-muted lg:order-none lg:w-auto lg:text-[12.5px]">樹種ごとにレビューの多い一鉢</span>
+              <Link href="/products?type=tree" className="-my-3 ml-auto inline-flex min-h-11 items-center text-[13px] text-ink lg:my-0 lg:min-h-0">
+                <span className="border-b border-ink pb-0.5">すべて見る</span>
+              </Link>
+            </div>
+            <ul className="-mx-4 mt-[18px] flex snap-x gap-3 overflow-x-auto px-4 pb-1 lg:mx-0 lg:mt-7 lg:grid lg:grid-cols-8 lg:gap-5 lg:overflow-visible lg:px-0">
+              {popular.map(product => {
+                const title = product.displayName || product.name
+                return (
+                  <li key={product.id} className="w-[128px] flex-none snap-start lg:w-auto">
+                    <Link href={`/products/${product.id}`} prefetch={false} className="group block text-ink hover:text-ink">
+                      <span className="relative block aspect-square overflow-hidden bg-paper-deep">
+                        <ProductThumb src={product.imageUrl} alt={title} sizes="(max-width: 1023px) 128px, 125px" size={256} />
+                      </span>
+                      {product.speciesLabel && <span className="mt-2 block text-[10.5px] text-gold-dark">{product.speciesLabel}</span>}
+                      <span className={`${product.speciesLabel ? 'mt-0.5' : 'mt-2'} line-clamp-2 block text-[12.5px] leading-[1.5] group-hover:text-gold-dark`}>{title}</span>
+                      <span className="mt-0.5 block text-[12.5px]">{formatPrice(product.price)}</span>
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </section>
+        )}
+
+        {/* 目的から選ぶ */}
+        <section className="pt-12 lg:pt-24">
+          <h2 className="font-mincho text-xl font-bold tracking-[0.06em] text-ink lg:text-[26px]">目的から選ぶ</h2>
+          <ul className="mt-3 grid border-t border-line lg:mt-5 lg:grid-cols-2 lg:gap-x-12">
+            {purposes.map(({ slug, label, criteria, selection }) => (
+              <li key={slug} className="border-b border-line">
+                <Link href={`/selection/${slug}`} className="group flex items-center gap-3 py-3 lg:gap-4 lg:py-4">
+                  <span className="h-10 w-16 flex-none overflow-hidden bg-paper-deep lg:h-[50px] lg:w-20">
+                    <SelectionThumb selection={selection} className="h-full w-full" />
+                  </span>
+                  <span className="flex min-w-0 flex-1 flex-col">
+                    <span className="font-mincho text-base font-bold text-ink group-hover:text-gold-dark lg:text-[17px]">{label}</span>
+                    <span className="mt-0.5 text-[11.5px] text-ink-soft lg:text-[12.5px]">{criteria}</span>
+                  </span>
+                  <span className="flex-none text-ink-muted" aria-hidden="true">›</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-2 flex flex-wrap gap-x-6 text-[13px]">
+            <Link href="/selection" className="inline-flex min-h-11 items-center text-ink"><span className="border-b border-ink pb-0.5">特集をすべて見る（{featuredCount}件）</span></Link>
+            <Link href="/shindan" className="inline-flex min-h-11 items-center text-ink"><span className="border-b border-ink pb-0.5">迷ったら かんたん盆栽診断</span></Link>
+          </div>
+        </section>
+
+        {/* 育て方を読む（PC は3列、SP は左に小さな画像の行。/guides の一覧と同じ見せ方） */}
+        <section className="pt-12 lg:pt-24">
+          <div className="flex items-baseline">
+            <h2 className="font-mincho text-xl font-bold tracking-[0.06em] text-ink lg:text-[26px]">育て方を読む</h2>
+            <Link href="/guides" className="-my-3 ml-auto inline-flex min-h-11 items-center text-[13px] text-ink lg:my-0 lg:min-h-0">
+              <span className="border-b border-ink pb-0.5">すべて見る</span>
+            </Link>
+          </div>
+          {careArticles.length > 0 ? (
+            <ul className="mt-3 border-t border-line lg:mt-7 lg:grid lg:grid-cols-3 lg:gap-8 lg:border-0">
+              {careArticles.map(article => (
+                <li key={article.slug}>
+                  <Link href={`/guides/${article.slug}`} className="group flex gap-3.5 border-b border-line py-4 lg:block lg:border-0 lg:py-0">
+                    <span className="relative block h-16 w-24 flex-none overflow-hidden bg-paper-deep lg:aspect-[3/2] lg:h-auto lg:w-full">
+                      {article.featuredImage ? (
+                        <Image
+                          src={article.featuredImage.url}
+                          alt={article.featuredImage.alt || article.title}
+                          fill
+                          sizes="(max-width: 1023px) 96px, 360px"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <Placeholder className="h-full w-full" />
+                      )}
                     </span>
-                    <span className="flex-none text-ink-muted" aria-hidden="true">›</span>
+                    <div className="min-w-0 flex-1">
+                      {article.category?.name && <span className="block text-[10.5px] text-gold-dark lg:mt-3.5 lg:text-[11px]">{article.category.name}</span>}
+                      <h3 className="mt-0.5 line-clamp-3 font-mincho text-sm font-bold leading-[1.55] text-ink group-hover:text-gold-dark lg:mt-1 lg:text-[17px] lg:leading-[1.6]">{article.title}</h3>
+                      {article.readingTime ? <span className="mt-1 block text-[10.5px] text-ink-muted lg:mt-2 lg:text-[11.5px]">{article.readingTime}分</span> : null}
+                    </div>
                   </Link>
                 </li>
               ))}
             </ul>
-            <div className="mt-2 flex flex-wrap gap-x-6 text-[13px]">
-              <Link href="/selection" className="inline-flex min-h-11 items-center text-ink"><span className="border-b border-ink pb-0.5">特集をすべて見る（{featuredCount}件）</span></Link>
-              <Link href="/shindan" className="inline-flex min-h-11 items-center text-ink"><span className="border-b border-ink pb-0.5">迷ったら かんたん盆栽診断</span></Link>
-            </div>
-          </section>
-
-          {/* 育て方を読む */}
-          <section>
-            <div className="flex items-baseline">
-              <h2 className="font-mincho text-xl font-bold tracking-[0.06em] text-ink lg:text-[22px]">育て方を読む</h2>
-              <Link href="/guides" className="-my-3 ml-auto inline-flex min-h-11 items-center text-[13px] text-ink lg:my-0 lg:min-h-0">
-                <span className="border-b border-ink pb-0.5">すべて見る</span>
-              </Link>
-            </div>
-            {careArticles.length > 0 ? (
-              <ul className="mt-3 border-t border-line lg:mt-4">
-                {careArticles.map(article => (
-                  <li key={article.slug} className="border-b border-line">
-                    <Link href={`/guides/${article.slug}`} className="group block py-4">
-                      {article.category && <span className="block text-[11px] text-gold-dark">{article.category}</span>}
-                      <span className="mt-[3px] block font-mincho text-[15px] font-bold leading-[1.6] text-ink group-hover:text-gold-dark lg:text-base">{article.title}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="mt-3 border-y border-line py-8 text-center text-sm text-ink-muted">記事を準備中です...</p>
-            )}
-          </section>
-        </div>
+          ) : (
+            <p className="mt-3 border-y border-line py-8 text-center text-sm text-ink-muted">記事を準備中です...</p>
+          )}
+        </section>
 
         {/* 出かける（盆栽園・イベント） */}
         <p className="mt-12 border-t border-line pt-5 text-[13px] leading-[1.9] text-ink-soft lg:mt-16">

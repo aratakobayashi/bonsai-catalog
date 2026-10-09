@@ -64,6 +64,8 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
+        {/* 商品画像（楽天）への接続を先に始めておく */}
+        <link rel="preconnect" href="https://thumbnail.image.rakuten.co.jp" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <script dangerouslySetInnerHTML={{ __html: loadMincho }} />
