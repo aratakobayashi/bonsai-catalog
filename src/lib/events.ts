@@ -15,6 +15,10 @@ export interface EventQueryParams {
  * イベント検索・取得のメインクエリ関数
  * 期間/地域/種別/園/キーワードで絞り込み可能
  */
+// キーワード検索の条件（改行や空白を含めると PostgREST が解釈できないため1行で組み立てる）
+const searchFilter = (q: string) =>
+  ['title', 'venue_name', 'organizer_name', 'description'].map(column => `${column}.ilike.%${q}%`).join(',')
+
 export async function getEvents(params: EventQueryParams = {}) {
   const {
     month,
@@ -64,12 +68,7 @@ export async function getEvents(params: EventQueryParams = {}) {
 
       // キーワード検索（タイトル、会場、主催者、説明文で検索）
       if (q) {
-        query = query.or(`
-          title.ilike.%${q}%,
-          venue_name.ilike.%${q}%,
-          organizer_name.ilike.%${q}%,
-          description.ilike.%${q}%
-        `)
+        query = query.or(searchFilter(q))
       }
 
       return query
@@ -103,12 +102,7 @@ export async function getEvents(params: EventQueryParams = {}) {
     }
 
     if (q) {
-      countQuery = countQuery.or(`
-        title.ilike.%${q}%,
-        venue_name.ilike.%${q}%,
-        organizer_name.ilike.%${q}%,
-        description.ilike.%${q}%
-      `)
+      countQuery = countQuery.or(searchFilter(q))
     }
 
     const { count } = await countQuery
