@@ -10,7 +10,7 @@ summary:
   - 室内に飾ったあとの戻し方と、正月明けの管理
 selection: new-year-bonsai
 photo: /images/articles/photos/year-end-new-year-bonsai-events-guide-1.jpg
-thumbTitle: 年末年始に盆栽を楽しむ
+thumbTitle: 年末年始の盆栽／展示と正月飾りの楽しみ方
 thumbLabel: 展示・イベント
 ---
 12月から1月にかけては、盆栽にとって静かな季節です。もみじや欅などの雑木は葉を落とし、細かな枝ぶりがいちばんよく見える時期になります。松や真柏などの常緑樹は冬でも緑を保ち、正月の飾りとして床の間や玄関に置かれます。

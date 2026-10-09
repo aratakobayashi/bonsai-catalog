@@ -10,7 +10,7 @@ summary:
   - 植え替え・株分けの時期と、地上部が枯れる草の冬越し
 selection: beginner-mini-bonsai
 photo: /images/articles/photos/wildflower-mountain-bonsai-guide-1.jpg
-thumbTitle: 山野草の盆栽の楽しみ方
+thumbTitle: 山野草の盆栽／草ものの楽しみ方
 thumbLabel: 盆栽の楽しみ方
 ---
 山野草の盆栽は、山や野に育つ草花を小さな鉢に植えて楽しむものです。樹を主役にする盆栽に対して「草もの」とも呼ばれ、樹の盆栽の脇に添えて季節を表す役割もあります。

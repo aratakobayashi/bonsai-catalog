@@ -11,7 +11,7 @@ summary:
 species: mimono
 selection: fruit-bonsai
 photo: /images/articles/photos/umemodoki-bonsai-guide-1.jpg
-thumbTitle: ウメモドキの盆栽の育て方
+thumbTitle: ウメモドキの盆栽／赤い実を楽しむ育て方
 thumbLabel: 樹種別の育て方
 ---
 ウメモドキはモチノキ科の落葉樹で、名前は葉の形が梅に似ていることに由来します。初夏に目立たない小さな花が咲き、秋には小さな赤い実が枝にびっしりとつきます。葉が落ちたあとも実が残るので、冬の初めまで楽しめる実もの盆栽です。

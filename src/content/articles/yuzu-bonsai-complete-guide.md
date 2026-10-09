@@ -11,7 +11,7 @@ summary:
 species: mimono
 selection: fruit-bonsai
 photo: /images/articles/photos/yuzu-bonsai-complete-guide-1.jpg
-thumbTitle: 柚子の盆栽の育て方
+thumbTitle: 柚子の盆栽の育て方／花と実をつけるコツ
 thumbLabel: 樹種別の育て方
 ---
 柚子はミカン科の常緑樹で、5月ごろに白い花を咲かせ、秋から冬にかけて香りのよい実をつけます。柑橘類の中では寒さに強く、関東の平地なら鉢植えでも屋外で冬を越せることが多い樹です。

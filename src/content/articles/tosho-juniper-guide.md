@@ -10,7 +10,7 @@ summary:
   - 葉が茶色くなる・芽が出ないときの原因
 selection: evergreen-bonsai
 photo: /images/articles/photos/tosho-juniper-guide-1.jpg
-thumbTitle: 杜松（トショウ）の／盆栽の育て方
+thumbTitle: 杜松（トショウ）の盆栽／育て方と芽切り
 thumbLabel: 樹種別の育て方
 ---
 杜松（トショウ）は、ヒノキ科ビャクシン属の常緑樹です。葉は細い針のようにとがり、3本ずつ輪のように並んでつきます。触ると痛いほど硬い葉と、白く枯れた部分を残した荒々しい幹が、山の厳しい環境で育った古木のような雰囲気を出します。

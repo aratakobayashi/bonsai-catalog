@@ -55,7 +55,7 @@ photo: /images/articles/photos/office-bonsai-productivity-workplace-wellness-1.j
 
 オフィスの植物は、平日は手をかけやすい一方で、週末と連休に水切れしやすくなります。一週間の流れを決めておくと、うっかり枯らすことが減ります。
 
-![オフィスの盆栽の一週間の水やり。月曜は乾き具合を確かめる、平日は乾いたら与える、金曜は帰る前にたっぷり与えて窓から少し離す、連休は持ち帰るか腰水にする](/images/articles/diagrams/office-bonsai-productivity-workplace-wellness-week.svg)
+![オフィスの盆栽の一週間の水やり。月曜は乾き具合を確かめる、平日は乾いたら与える、金曜は帰る前に水を与えて窓から少し離す、連休は持ち帰るか腰水にする](/images/articles/diagrams/office-bonsai-productivity-workplace-wellness-week.svg)
 *図：金曜の帰り際と、連休の前の備えが大切です*
 
 1. **月曜の朝**：土の表面を指で触り、乾き具合を確かめます。週末の間に乾いていれば、まずたっぷり与えます。

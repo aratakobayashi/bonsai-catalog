@@ -152,6 +152,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const detected = detectArticleSpecies(article.title)
   const speciesSlug = (article.speciesSlug && getShopCategory(article.speciesSlug) ? article.speciesSlug : null) ?? detected?.category ?? null
   const speciesLabel = speciesSlug ? getShopCategory(speciesSlug)?.name ?? detected?.label ?? null : null
+  // 樹種ではなく用品のカテゴリ（土・道具・肥料など）のときは「〜の盆栽」と書かない
+  const isSupply = speciesSlug ? getShopCategory(speciesSlug)?.group === 'part' : false
+  const productsNoun = speciesLabel ? (isSupply ? speciesLabel : `${speciesLabel}の盆栽`) : null
 
   // 並行してデータを取得（樹種がわかる記事はその樹種の商品、わからない記事は記事に関連する商品）
   const [speciesProducts, relatedProductRows, relatedCandidates, linkContext] = await Promise.all([
@@ -318,10 +321,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             {/* 次にやること（商品・同じ樹種の記事・特集・診断） */}
             <ArticleNextSteps
               products={products}
-              productsHeading={speciesLabel ? `${speciesLabel}の盆栽を見てみる` : undefined}
-              productsMore={speciesSlug && speciesLabel ? { href: `/products/category/${speciesSlug}`, label: `${speciesLabel}の盆栽をすべて見る` } : undefined}
+              productsHeading={productsNoun ? `${productsNoun}を見てみる` : undefined}
+              productsMore={speciesSlug && speciesLabel ? { href: `/products/category/${speciesSlug}`, label: `${productsNoun}をすべて見る` } : undefined}
               guides={speciesGuides}
-              guidesHeading={speciesLabel ? `${speciesLabel}の育て方をもっと読む` : undefined}
+              guidesHeading={speciesLabel && !isSupply ? `${speciesLabel}の育て方をもっと読む` : undefined}
               links={nextLinks}
               hasRakuten={hasRakuten}
             />

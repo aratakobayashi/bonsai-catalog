@@ -11,7 +11,7 @@ summary:
 species: sakura
 selection: flowering-bonsai
 photo: /images/articles/photos/weeping-cherry-bonsai-guide-1.jpg
-thumbTitle: シダレザクラの盆栽の育て方
+thumbTitle: シダレザクラの盆栽／枝垂れの形と育て方
 thumbLabel: 樹種別の育て方
 ---
 シダレザクラは、エドヒガンという桜の仲間のうち、枝が細く長く垂れ下がる性質を持つものです。春、葉が出る前に淡い紅色の花が枝いっぱいに咲き、上から花が流れ落ちるような姿になります。八重咲きで色の濃い八重紅枝垂れなどの品種もあります。
