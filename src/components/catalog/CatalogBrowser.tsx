@@ -119,7 +119,7 @@ export function CatalogBrowser({ filters, items, total, page, totalPages, select
         <section key={selected?.id ?? 'none'} className="hidden border-l border-line bg-white lg:block lg:overflow-y-auto" aria-label="選択中の商品">
           {selected ? (
             <>
-              <ProductImage product={selected} sizes="420px" className="aspect-[7/5]" />
+              <ProductImage product={selected} sizes="420px" size={500} priority={false} className="aspect-[7/5]" />
               <div className="px-8 pb-8 pt-5">
                 <ProductInfo product={selected} />
                 <Link href={`/products/${selected.id}`} className="mt-6 inline-block border-b border-ink pb-0.5 text-[13px] text-ink hover:text-ink">

@@ -37,11 +37,12 @@ interface PanelProduct extends CatalogProduct {
 }
 
 // 商品画像（画像がないときは斜線の下地）
-export function ProductImage({ product, sizes, className = 'aspect-square', size = 600 }: { product: CatalogProduct; sizes: string; className?: string; size?: number }) {
+// priority=false は、スマホでは表示しない一覧の詳細パネル用（非表示の画像を先に読み込まない）
+export function ProductImage({ product, sizes, className = 'aspect-square', size = 600, priority = true }: { product: CatalogProduct; sizes: string; className?: string; size?: number; priority?: boolean }) {
   return (
     <div className={`relative overflow-hidden bg-white ${className}`}>
       {product.imageUrl ? (
-        <ProductThumb src={product.imageUrl} alt={product.name} sizes={sizes} priority size={size} className="object-contain" />
+        <ProductThumb src={product.imageUrl} alt={product.name} sizes={sizes} priority={priority} size={size} className="object-contain" />
       ) : (
         <Placeholder label="画像なし" className="absolute inset-0" />
       )}
