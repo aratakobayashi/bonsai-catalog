@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { isOptimizableImage } from '@/lib/image-utils'
+import { Placeholder } from '@/components/ui/design'
 
 interface ProductThumbProps {
   src: string | null
@@ -18,7 +19,7 @@ function rakutenSized(src: string, size: number) {
 // 楽天の画像は楽天側でサイズ指定済みのためそのまま表示し、それ以外は Next.js の画像最適化を使う
 export function ProductThumb({ src, alt, sizes, priority = false, className = 'object-cover', size = 300 }: ProductThumbProps) {
   if (!src) {
-    return <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-xs">画像なし</div>
+    return <Placeholder label="画像なし" className="absolute inset-0" />
   }
   if (/rakuten\.co\.jp|r10s\.jp/.test(src)) {
     return (

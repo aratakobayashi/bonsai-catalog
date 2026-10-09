@@ -15,13 +15,13 @@ import {
   type CatalogFilters,
 } from '@/lib/catalog'
 
-const selectClass = 'mt-1 w-full border border-line rounded-lg px-2 py-2 text-sm bg-white text-ink'
-const labelClass = 'text-xs font-bold text-ink-soft'
+const selectClass = 'mt-1 h-11 w-full border border-line bg-white px-2 text-sm text-ink'
+const labelClass = 'text-[11.5px] tracking-[0.06em] text-ink-muted'
 
 // JavaScript なしで動く絞り込みフォーム（GET 送信で URL に条件が入る）
 export function CatalogFiltersForm({ filters, basePath = '/products' }: { filters: CatalogFilters; basePath?: string }) {
   return (
-    <form action={basePath} className="bg-white rounded-xl border border-line p-4 space-y-4">
+    <form action={basePath} className="space-y-5">
       <div>
         <label className={labelClass} htmlFor="catalog-q">キーワード</label>
         <input
@@ -30,7 +30,7 @@ export function CatalogFiltersForm({ filters, basePath = '/products' }: { filter
           name="q"
           defaultValue={filters.q}
           placeholder="例：五葉松 ミニ、信楽焼 鉢"
-          className="mt-1 w-full border border-line rounded-lg px-3 py-2 text-sm"
+          className="mt-1 h-11 w-full border border-line bg-white px-3 text-sm"
         />
       </div>
 
@@ -92,7 +92,7 @@ export function CatalogFiltersForm({ filters, basePath = '/products' }: { filter
         <legend className={labelClass}>こだわり条件（販売店の表記より）</legend>
         <div className="mt-2 grid grid-cols-2 gap-2">
           {FLAG_OPTIONS.map(o => (
-            <label key={o.value} className="flex items-center gap-2 text-sm text-ink">
+            <label key={o.value} className="flex min-h-[36px] items-center gap-2 text-sm text-ink">
               <input type="checkbox" name="flag" value={o.value} defaultChecked={filters.flags.includes(o.value)} />
               {o.label}
             </label>
@@ -111,10 +111,10 @@ export function CatalogFiltersForm({ filters, basePath = '/products' }: { filter
       </label>
 
       <div className="flex gap-2">
-        <button type="submit" className="flex-1 bg-navy hover:bg-navy-light text-white rounded-lg py-2.5 text-sm font-bold">
+        <button type="submit" className="h-12 flex-1 bg-sumi text-sm tracking-[0.06em] text-white hover:bg-sumi-light">
           この条件で探す
         </button>
-        <Link href={basePath} className="px-3 py-2.5 text-sm text-ink-soft border border-line rounded-lg hover:bg-paper">
+        <Link href={basePath} className="flex h-12 items-center border border-line px-4 text-sm text-ink-soft hover:border-ink">
           クリア
         </Link>
       </div>
@@ -126,7 +126,7 @@ export function CatalogFiltersForm({ filters, basePath = '/products' }: { filter
             <Link
               key={preset.label}
               href={buildCatalogUrl(filters, { min: preset.min, max: preset.max }, basePath)}
-              className="text-xs bg-paper border border-line rounded-full px-3 py-1 hover:border-gold"
+              className="border border-line bg-white px-3 py-1.5 text-xs text-ink hover:border-ink"
             >
               {preset.label}
             </Link>
@@ -175,26 +175,26 @@ export function CatalogPagination({
     p => p === 1 || p === totalPages || Math.abs(p - page) <= 2
   )
   return (
-    <nav className="flex flex-wrap justify-center items-center gap-2 mt-8" aria-label="ページ送り">
+    <nav className="mt-8 flex flex-wrap items-center justify-center gap-2" aria-label="ページ送り">
       {page > 1 && (
-        <Link href={buildCatalogUrl(filters, { page: page - 1 }, basePath)} className="px-3 py-2 border border-line rounded-lg bg-white text-sm">
+        <Link href={buildCatalogUrl(filters, { page: page - 1 }, basePath)} className="border border-line bg-white px-3 py-2 text-sm text-ink hover:border-ink">
           前へ
         </Link>
       )}
       {pages.map((p, i) => (
         <span key={p} className="flex items-center gap-2">
-          {i > 0 && p - pages[i - 1] > 1 && <span className="text-gray-400">…</span>}
+          {i > 0 && p - pages[i - 1] > 1 && <span className="text-ink-muted">…</span>}
           <Link
             href={buildCatalogUrl(filters, { page: p }, basePath)}
             aria-current={p === page ? 'page' : undefined}
-            className={`px-3 py-2 border rounded-lg text-sm ${p === page ? 'bg-navy text-white border-navy' : 'bg-white border-line'}`}
+            className={`min-w-[40px] border px-3 py-2 text-center text-sm ${p === page ? 'border-sumi bg-sumi text-white hover:text-white' : 'border-line bg-white text-ink hover:border-ink'}`}
           >
             {p}
           </Link>
         </span>
       ))}
       {page < totalPages && (
-        <Link href={buildCatalogUrl(filters, { page: page + 1 }, basePath)} className="px-3 py-2 border border-line rounded-lg bg-white text-sm">
+        <Link href={buildCatalogUrl(filters, { page: page + 1 }, basePath)} className="border border-line bg-white px-3 py-2 text-sm text-ink hover:border-ink">
           次へ
         </Link>
       )}

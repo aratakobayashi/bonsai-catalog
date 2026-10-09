@@ -22,6 +22,7 @@ import {
 } from '@/lib/catalog'
 import { formatPrice } from '@/lib/utils'
 import { CatalogBrowser } from '@/components/catalog/CatalogBrowser'
+import { buildSpeciesTabs } from '@/lib/catalog-menus'
 import { SELECTIONS } from '@/lib/selections'
 import { CatalogSearchTracker } from '@/components/analytics/CatalogSearchTracker'
 
@@ -89,17 +90,18 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   const suggestions = total === 0 ? relaxSuggestions(all, filters) : []
   const selectedId = typeof searchParams.p === 'string' ? searchParams.p : undefined
   const activeCount = activeFilterKeys(filters).filter(k => !k.startsWith('q')).length
+  const speciesTabs = buildSpeciesTabs(all, filters, undefined, filters.species ? undefined : total)
 
   const emptyState = (
-    <div className="rounded-xl border border-line bg-white p-5 text-ink-soft">
-      <p className="mb-3 font-bold text-ink">条件に合う商品が見つかりませんでした。</p>
+    <div className="text-ink-soft">
+      <p className="mb-4 font-mincho text-base font-bold text-ink">条件に合う盆栽はありません。「条件」から一つ外してみてください。</p>
       {suggestions.length > 0 && (
         <>
           <p className="mb-2 text-sm">条件を1つ外すと、次の商品が見つかります。</p>
-          <ul className="mb-4 space-y-2 text-sm">
+          <ul className="mb-5 space-y-2.5 text-sm">
             {suggestions.map(suggestion => (
               <li key={suggestion.key}>
-                <Link href={buildCatalogUrl(suggestion.filters)} className="font-bold text-navy underline">
+                <Link href={buildCatalogUrl(suggestion.filters)} className="border-b border-ink pb-0.5 text-ink">
                   {filterKeyLabel(filters, suggestion.key)}を外す（{suggestion.count.toLocaleString()}件）
                 </Link>
               </li>
@@ -107,9 +109,9 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           </ul>
         </>
       )}
-      <Link href="/products" className="text-sm underline">条件をすべてクリアする</Link>
-      <p className="mt-3 text-sm">
-        <Link href="/shindan" className="text-navy underline">何を選べばよいか迷ったら、かんたん盆栽診断（4つの質問）</Link>
+      <Link href="/products" className="text-sm text-ink-muted underline">条件をすべてクリアする</Link>
+      <p className="mt-4 text-sm">
+        <Link href="/shindan" className="border-b border-ink pb-0.5 text-ink">何を選べばよいか迷ったら、かんたん盆栽診断（4つの質問）</Link>
       </p>
     </div>
   )
@@ -129,19 +131,20 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         page={page}
         totalPages={totalPages}
         selectedId={selectedId}
+        speciesTabs={speciesTabs}
         emptyState={emptyState}
         activeCount={activeCount}
         intro={filters.q ? (
-          <p className="text-sm text-ink">「<span className="font-bold">{filters.q}</span>」の検索結果</p>
+          <p className="font-mincho text-lg font-bold tracking-[0.04em] text-ink lg:text-xl">「{filters.q}」の検索結果</p>
         ) : activeCount === 0 ? (
           <div>
             <div className="flex items-baseline justify-between">
-              <span className="text-xs font-bold text-ink-soft">目的から探す</span>
-              <Link href="/selection" className="text-xs text-navy underline">特集をすべて見る</Link>
+              <span className="text-[11.5px] tracking-[0.08em] text-ink-muted">目的から探す</span>
+              <Link href="/selection" className="border-b border-ink pb-0.5 text-xs text-ink">特集をすべて見る</Link>
             </div>
-            <div className="mt-2 flex gap-2 overflow-x-auto pb-1">
+            <div className="mt-3 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {SELECTIONS.map(s => (
-                <Link key={s.slug} href={`/selection/${s.slug}`} className="shrink-0 rounded-full border border-line bg-white px-3 py-1.5 text-xs text-navy hover:border-gold">{s.shortTitle}</Link>
+                <Link key={s.slug} href={`/selection/${s.slug}`} className="shrink-0 border border-line bg-white px-3 py-1.5 text-xs text-ink hover:border-ink hover:text-ink">{s.shortTitle}</Link>
               ))}
             </div>
           </div>
