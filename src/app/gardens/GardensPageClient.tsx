@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { REGIONS } from '@/lib/utils'
-import { CONTAINER, PageHeading, chipClass, Placeholder } from '@/components/ui/design'
+import { CONTAINER, PageHeading, Placeholder } from '@/components/ui/design'
 import { GardenMap, type GardenMapPoint } from '@/components/gardens/GardenMap'
 import { PrefPlate, HighlightDots, gardenArea, gardenHighlights, gardenRegion } from '@/components/gardens/GardenParts'
 import type { Garden } from '@/types'
@@ -12,8 +12,8 @@ const ALL = 'すべて'
 
 // 「できること」の絞り込み（データで判定できるものだけ）
 const FEATURES = [
-  { key: 'experience', label: '体験・教室あり', test: (g: Garden) => Boolean(g.experience_programs) },
-  { key: 'online', label: 'オンライン購入可', test: (g: Garden) => Boolean(g.online_sales) },
+  { key: 'experience', label: '体験・教室', test: (g: Garden) => Boolean(g.experience_programs) },
+  { key: 'online', label: 'オンライン購入', test: (g: Garden) => Boolean(g.online_sales) },
   { key: 'website', label: '公式サイトあり', test: (g: Garden) => Boolean(g.website_url) },
 ] as const
 type FeatureKey = (typeof FEATURES)[number]['key']
@@ -42,36 +42,26 @@ function GardenCard({
   distance?: number
   onSelect: () => void
 }) {
-  const specialties = (garden.specialties || []).slice(0, 3)
   return (
     <article
       id={`garden-${garden.id}`}
       onMouseEnter={onSelect}
-      className={`relative flex gap-3 rounded-xl border bg-white p-3.5 transition-shadow hover:shadow-md lg:gap-4 lg:p-4 ${
-        selected ? 'border-line lg:border-l-[3px] lg:border-l-gold' : 'border-line'
-      }`}
+      className="group relative flex gap-4 border-b border-line py-5 lg:gap-5 lg:py-[22px]"
     >
       <PrefPlate garden={garden} />
       <div className="min-w-0 flex-1">
-        <div className="flex items-baseline gap-2 text-[11px] text-ink-muted">
+        <div className="flex items-baseline gap-2 text-[11.5px] text-ink-muted">
           <span className="truncate">{gardenArea(garden)}</span>
-          {distance != null && <span className="flex-shrink-0 font-bold text-gold-dark">約{distance < 10 ? distance.toFixed(1) : Math.round(distance)}km</span>}
+          {distance != null && <span className="flex-shrink-0 text-gold-dark">約{distance < 10 ? distance.toFixed(1) : Math.round(distance)}km</span>}
         </div>
-        <h3 className="mt-0.5 font-mincho text-base font-bold leading-snug text-navy lg:text-[17px]">
-          {/* カード全体をリンクにする */}
-          <Link href={`/gardens/${garden.id}`} className="after:absolute after:inset-0 hover:text-gold-dark">
+        <h3 className={`mt-0.5 font-mincho text-[17px] font-bold leading-snug tracking-[0.04em] lg:text-xl ${selected ? 'text-gold-dark' : 'text-ink'}`}>
+          {/* 行全体をリンクにする */}
+          <Link href={`/gardens/${garden.id}`} className="after:absolute after:inset-0 group-hover:text-gold-dark">
             {garden.name}
           </Link>
         </h3>
-        {garden.description && <p className="mt-1 line-clamp-2 text-[13px] leading-relaxed text-ink-soft">{garden.description}</p>}
-        {specialties.length > 0 && (
-          <div className="mt-2 flex flex-wrap gap-1">
-            {specialties.map(s => (
-              <span key={s} className="rounded bg-[#f1eee8] px-1.5 py-0.5 text-[11px] text-ink-soft">{s}</span>
-            ))}
-          </div>
-        )}
-        <div className="mt-2">
+        {garden.description && <p className="mt-1.5 line-clamp-3 text-[13px] leading-[1.8] text-ink-soft lg:text-[13.5px]">{garden.description}</p>}
+        <div className="mt-1.5">
           <HighlightDots items={gardenHighlights(garden)} />
         </div>
       </div>
@@ -185,116 +175,103 @@ export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
 
   const scopeLabel = prefecture ?? (region === ALL ? '全国' : region)
 
+  // 盆栽園／イベントの切り替え（明朝の文字タブ）
   const toggle = (
-    <div className="grid grid-cols-2 gap-2 lg:ml-auto lg:flex lg:w-auto lg:justify-end">
-      <span className="rounded-lg bg-navy px-4 py-2 text-center text-[13px] font-bold text-white" aria-current="page">盆栽園</span>
-      <Link href="/events" className="rounded-lg border border-line bg-white px-4 py-2 text-center text-[13px] text-ink hover:border-gold">
-        イベント
-      </Link>
-    </div>
+    <nav aria-label="出かける" className="flex gap-5 lg:justify-end lg:gap-7">
+      <span className="pb-1.5 font-mincho text-[15px] font-bold text-ink shadow-[inset_0_-1.5px_0_#22201c] lg:text-base" aria-current="page">盆栽園</span>
+      <Link href="/events" className="pb-1.5 font-mincho text-[15px] font-bold text-ink-muted hover:text-ink lg:text-base">イベント</Link>
+    </nav>
   )
 
+  const tabClass = (active: boolean) =>
+    `flex-none py-3 font-mincho text-[14px] font-bold lg:text-[15px] ${active ? 'text-ink shadow-[inset_0_-1.5px_0_#22201c]' : 'text-ink-muted hover:text-ink'}`
+  const textButton = (active: boolean) =>
+    `text-[12.5px] ${active ? 'border-b border-ink pb-0.5 font-bold text-ink' : 'text-ink-soft hover:text-ink'}`
+
   return (
-    <div className={`${CONTAINER} pb-12`}>
+    <div className={`${CONTAINER} pb-14`}>
       {/* SPは見出しの上に切り替え */}
-      <div className="pt-4 lg:hidden">{toggle}</div>
+      <div className="pt-5 lg:hidden">{toggle}</div>
       <PageHeading
         crumbs={[{ label: 'ホーム', href: '/' }, { label: '出かける', href: '/gardens' }, { label: '盆栽園' }]}
-        title="盆栽園を探す"
+        title="盆栽園を訪ねる"
         lead={
           <>
-            <span className="lg:hidden">全国{gardens.length}件</span>
-            <span className="hidden lg:inline">全国{gardens.length}件の盆栽園を、地域とできることから探せます。</span>
+            <span className="text-xs text-ink-muted lg:hidden">全国{gardens.length}件</span>
+            <span className="hidden lg:inline">全国{gardens.length}の盆栽園を、地域とできることから探せます。</span>
           </>
         }
         aside={<div className="hidden lg:block">{toggle}</div>}
       />
 
-      {/* 地方 */}
-      <div className="-mx-4 mt-4 overflow-x-auto px-4 lg:mx-0 lg:overflow-visible lg:px-0">
-        <div className="flex gap-2 whitespace-nowrap lg:flex-wrap">
-          <button type="button" onClick={() => selectRegion(ALL)} className={chipClass(region === ALL && !prefecture)}>
-            すべて（{gardens.length}）
+      {/* 地方（下線のタブ。SPは横にスクロール） */}
+      <div className="-mx-4 mt-5 overflow-x-auto px-4 lg:mx-0 lg:mt-9 lg:overflow-visible lg:px-0">
+        <div className="flex min-w-max gap-5 border-b border-line lg:min-w-0 lg:flex-wrap lg:gap-7">
+          <button type="button" onClick={() => selectRegion(ALL)} className={tabClass(region === ALL && !prefecture)} aria-pressed={region === ALL && !prefecture}>
+            すべて {gardens.length}
           </button>
           {regionList.map(r => (
-            <button key={r} type="button" onClick={() => selectRegion(r)} className={chipClass(region === r && !prefecture)}>
-              {r}（{regionCounts[r]}）
+            <button key={r} type="button" onClick={() => selectRegion(r)} className={tabClass(region === r && !prefecture)} aria-pressed={region === r && !prefecture}>
+              {r} {regionCounts[r]}
             </button>
           ))}
           {prefecture && (
-            <button type="button" onClick={() => selectRegion(region)} className={chipClass(true)} aria-label={`${prefecture}の絞り込みを解除`}>
+            <button type="button" onClick={() => selectRegion(region)} className={tabClass(true)} aria-label={`${prefecture}の絞り込みを解除`}>
               {prefecture} ×
             </button>
           )}
         </div>
       </div>
 
-      {/* できること */}
-      <div className="mt-3 flex flex-wrap items-center gap-2">
-        <span className="text-xs text-ink-muted">できること</span>
+      {/* できること・件数 */}
+      <div className="mt-3.5 flex flex-wrap items-center gap-x-5 gap-y-2">
+        <span className="text-[12.5px] text-ink-muted">できること</span>
         {FEATURES.map(f => {
           const active = features.includes(f.key)
           return (
-            <button
-              key={f.key}
-              type="button"
-              onClick={() => toggleFeature(f.key)}
-              aria-pressed={active}
-              className={`rounded-md border px-2.5 py-1 text-xs ${active ? 'border-navy bg-navy font-bold text-white' : 'border-line bg-white text-ink hover:border-gold'}`}
-            >
+            <button key={f.key} type="button" onClick={() => toggleFeature(f.key)} aria-pressed={active} className={textButton(active)}>
               {f.label}
             </button>
           )
         })}
-        <span className="ml-auto text-xs text-ink-soft">
+        <span className="ml-auto text-[12.5px] text-ink-muted">
           {scopeLabel} {filtered.length}件{position && '（近い順）'}
         </span>
       </div>
 
       {/* SP: 現在地・地図 */}
-      <div className="mt-3 grid grid-cols-2 gap-2 lg:hidden">
-        <button
-          type="button"
-          onClick={locate}
-          className={`rounded-lg border px-3 py-2 text-[13px] font-bold ${position ? 'border-navy bg-navy text-white' : 'border-navy bg-white text-navy'}`}
-        >
+      <div className="mt-3 flex gap-5 lg:hidden">
+        <button type="button" onClick={locate} className="border-b border-ink pb-0.5 text-[13px] text-ink">
           {geoStatus === 'loading' ? '現在地を取得中…' : position ? '近い順を解除' : '現在地から探す'}
         </button>
-        <button
-          type="button"
-          onClick={() => setShowMapSp(v => !v)}
-          aria-expanded={showMapSp}
-          className="rounded-lg border border-line bg-white px-3 py-2 text-[13px] text-ink"
-        >
+        <button type="button" onClick={() => setShowMapSp(v => !v)} aria-expanded={showMapSp} className="text-[13px] text-ink hover:text-gold-dark">
           {showMapSp ? '地図を閉じる' : '地図で見る'}
         </button>
       </div>
       {geoStatus === 'error' && <p className="mt-2 text-xs text-rakuten">現在地を取得できませんでした。端末の位置情報の設定をご確認ください。</p>}
 
-      <div className="mt-4 grid gap-4 lg:mt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-6">
+      <div className="mt-2 grid gap-4 lg:mt-5 lg:grid-cols-[minmax(0,1fr)_480px] lg:gap-12">
         {/* 地図（PCは右に固定、SPは「地図で見る」で開く） */}
-        <div className={`${showMapSp ? 'block' : 'hidden'} lg:order-2 lg:block`}>
-          <div className="isolate h-[320px] overflow-hidden rounded-xl border border-line lg:sticky lg:top-24 lg:h-[calc(100vh-8rem)] lg:max-h-[640px]">
-            {points.length > 0 ? (
-              <GardenMap points={points} selectedId={selectedId} onSelect={selectFromMap} />
-            ) : (
-              <Placeholder label="地図に表示できる盆栽園がありません" className="h-full w-full" />
-            )}
+        <div className={`${showMapSp ? 'block' : 'hidden'} pt-2 lg:order-2 lg:block lg:pt-0`}>
+          <div className="lg:sticky lg:top-24">
+            <div className="isolate h-[320px] overflow-hidden border border-line lg:h-[calc(100vh-8rem)] lg:max-h-[640px]">
+              {points.length > 0 ? (
+                <GardenMap points={points} selectedId={selectedId} onSelect={selectFromMap} />
+              ) : (
+                <Placeholder label="地図に表示できる盆栽園がありません" className="h-full w-full" />
+              )}
+            </div>
+            {/* PCのみ現在地ボタン */}
+            <button type="button" onClick={locate} className="mt-3 hidden border-b border-ink pb-0.5 text-xs text-ink hover:text-gold-dark lg:inline-block">
+              {geoStatus === 'loading' ? '現在地を取得中…' : position ? '近い順を解除' : '現在地から近い順に並べる'}
+            </button>
           </div>
-          {/* PCのみ現在地ボタン */}
-          <button
-            type="button"
-            onClick={locate}
-            className="mt-2 hidden text-xs font-bold text-navy underline hover:text-gold-dark lg:inline-block"
-          >
-            {geoStatus === 'loading' ? '現在地を取得中…' : position ? '近い順を解除' : '現在地から近い順に並べる'}
-          </button>
         </div>
 
         {/* 一覧 */}
         <div className="lg:order-1">
           {filtered.length > 0 ? (
-            <div className="space-y-3">
+            <div>
               {filtered.map(g => (
                 <GardenCard
                   key={g.id}
@@ -306,15 +283,15 @@ export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
               ))}
             </div>
           ) : (
-            <div className="rounded-xl border border-line bg-white px-5 py-10 text-center">
-              <p className="font-mincho text-base font-bold text-navy">条件に合う盆栽園が見つかりませんでした</p>
+            <div className="border-b border-line py-12 text-center">
+              <p className="font-mincho text-base font-bold text-ink">条件に合う盆栽園が見つかりませんでした</p>
               <p className="mt-2 text-sm text-ink-soft">地域や「できること」の条件を減らしてお試しください。</p>
             </div>
           )}
 
           <p className="mt-6 text-xs leading-relaxed text-ink-muted">
             掲載情報は公式サイトなどの公開情報をもとに確認しています。営業時間などは変わることがあるため、お出かけ前に各園へご確認ください。
-            掲載内容の修正・掲載のご相談は<Link href="/contact" className="underline hover:text-gold-dark">お問い合わせ</Link>からどうぞ。
+            掲載内容の修正・掲載のご相談は<Link href="/contact" className="border-b border-ink-muted hover:text-gold-dark">お問い合わせ</Link>からどうぞ。
           </p>
         </div>
       </div>

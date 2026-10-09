@@ -98,39 +98,38 @@ export function eventPlaceText(event: Event): string {
   return city ? `${event.prefecture}${city}` : event.prefecture
 }
 
-// 一覧カード左の日付ブロック（日程未発表のイベントは日を出さない）
+// 一覧の左に置く日付（大きな数字＋「10月・土」）。日程未発表のイベントは日を出さない
 export function EventDateBlock({ event, muted = false }: { event: Event; muted?: boolean }) {
   const start = parseEventDate(event.start_date)
+  const box = 'w-[46px] flex-none lg:w-[66px]'
   if (isTentativeEvent(event)) {
     return (
-      <div className="w-12 flex-none border-r border-[#f1ece2] pr-3 text-center lg:w-[60px] lg:pr-4">
+      <div className={box}>
         <div className="text-[11px] text-ink-muted">例年</div>
-        <div className="font-mono text-xl font-medium leading-tight text-navy lg:text-2xl">{start.getMonth() + 1}月</div>
+        <div className={`font-mono text-[22px] leading-tight lg:text-[26px] ${muted ? 'text-ink-muted' : 'text-ink'}`}>{start.getMonth() + 1}月</div>
         <div className="text-[11px] text-ink-muted">ごろ</div>
       </div>
     )
   }
-  const day = start.getDay()
   return (
-    <div className="w-12 flex-none border-r border-[#f1ece2] pr-3 text-center lg:w-[60px] lg:pr-4">
-      <div className="text-[11px] text-ink-muted">{start.getMonth() + 1}月</div>
-      <div className={`font-mono text-2xl font-medium leading-tight lg:text-[28px] ${muted ? 'text-ink-muted' : 'text-navy'}`}>{start.getDate()}</div>
-      <div className={`text-[11px] ${day === 6 ? 'text-blue-700' : day === 0 ? 'text-red-600' : 'text-ink-muted'}`}>{WEEKDAYS[day]}</div>
+    <div className={box}>
+      <div className={`font-mono text-[26px] leading-none lg:text-[30px] ${muted ? 'text-ink-muted' : 'text-ink'}`}>{start.getDate()}</div>
+      <div className="mt-1.5 text-[11px] leading-snug text-ink-muted">{start.getMonth() + 1}月・{WEEKDAYS[start.getDay()]}</div>
     </div>
   )
 }
 
 export function EventTypeTag({ type }: { type: EventType }) {
-  return <span className="rounded bg-[#fdf8f0] px-1.5 py-px text-[11px] text-gold-dark">{EVENT_TYPE_LABEL[type] ?? type}</span>
+  return <span className="text-[11px] text-gold-dark">{EVENT_TYPE_LABEL[type] ?? type}</span>
 }
 
 export function EventPlaceTag({ children }: { children: string }) {
-  return <span className="rounded bg-[#f3efe6] px-2 py-0.5 text-[11.5px] text-ink-soft">{children}</span>
+  return <span className="text-[11px] text-ink-muted">{children}</span>
 }
 
+// 開催中・あと◯日などは小さな文字だけで示す（色付きのラベルは使わない）
 export function EventStatusTag({ event }: { event: Event }) {
   const label = eventStatusLabel(event)
   if (!label) return null
-  const tone = label.tone === 'green' ? 'bg-green-50 text-green-700' : label.tone === 'gold' ? 'bg-gold-light text-gold-dark' : 'bg-[#f1eee8] text-ink-soft'
-  return <span className={`rounded px-2 py-0.5 text-xs ${tone}`}>{label.text}</span>
+  return <span className={`text-[11px] ${label.tone === 'gray' ? 'text-ink-muted' : 'text-gold-dark'}`}>{label.text}</span>
 }

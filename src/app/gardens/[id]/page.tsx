@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { supabaseServer } from '@/lib/supabase-server'
 import { Garden, Article } from '@/types'
 import { normalizeProduct, type CatalogProduct } from '@/lib/catalog'
-import { CONTAINER, Breadcrumbs, Card, SectionTitle, Tag, Placeholder } from '@/components/ui/design'
+import { CONTAINER, Breadcrumbs, SectionTitle, Placeholder } from '@/components/ui/design'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { GardenMap } from '@/components/gardens/GardenMap'
@@ -181,10 +181,23 @@ export async function generateMetadata({ params }: GardenPageProps): Promise<Met
 // 基本情報の1行（値がない行は出さない）
 function InfoRow({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="flex gap-3 border-b border-line py-2.5 text-[13px] last:border-b-0">
-      <dt className="w-[72px] flex-shrink-0 text-ink-muted">{label}</dt>
-      <dd className="min-w-0 flex-1 break-words text-ink">{children}</dd>
+    <div className="flex gap-4 border-b border-line py-3.5 text-[13.5px] lg:py-[14px]">
+      <dt className="w-[76px] flex-shrink-0 text-ink-muted lg:w-[110px]">{label}</dt>
+      <dd className="min-w-0 flex-1 break-words leading-relaxed text-ink">{children}</dd>
     </div>
+  )
+}
+
+// PCは左に見出し、右に中身の2カラム。SPは縦に積む
+function Section({ title, note, children }: { title: string; note?: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <section className="mt-10 grid gap-3 lg:mt-14 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12">
+      <div>
+        <h2 className="font-mincho text-lg font-bold tracking-[0.06em] text-ink lg:text-xl">{title}</h2>
+        {note && <div className="mt-2 text-[11.5px] leading-relaxed text-ink-muted">{note}</div>}
+      </div>
+      <div className="min-w-0">{children}</div>
+    </section>
   )
 }
 
@@ -242,10 +255,13 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
   ].filter(Boolean) as { label: string; href: string }[]
 
   const mapBox = (className: string) => (
-    <div className={`isolate overflow-hidden ${className}`}>
+    <div className={`isolate overflow-hidden border border-line ${className}`}>
       {hasCoords ? <GardenMap points={mapPoints} showPopup={false} /> : <Placeholder label="地図" className="h-full w-full" />}
     </div>
   )
+
+  const confirmText = garden.website_url ? '公式サイトでご確認ください' : 'お出かけ前に園へご確認ください'
+  const linkClass = 'border-b border-ink pb-0.5 hover:text-gold-dark'
 
   return (
     <>
@@ -266,7 +282,7 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
 
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
 
-      <div className={`${CONTAINER} pb-24 pt-4 lg:pb-14 lg:pt-8`}>
+      <div className={`${CONTAINER} pb-28 pt-4 lg:pb-16 lg:pt-6`}>
         <Breadcrumbs
           className="hidden lg:block"
           items={[
@@ -277,220 +293,211 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
             { label: garden.name },
           ]}
         />
-        <Link href="/gardens" className="text-[13px] text-navy lg:hidden">‹ 盆栽園一覧</Link>
+        <Link href="/gardens" className="text-[13px] text-ink-soft lg:hidden">‹ 盆栽園一覧</Link>
 
-        {hasProducts && <PrDisclosure compact className="mt-3" />}
+        {hasProducts && <PrDisclosure compact className="mt-2" />}
 
-        {/* ヘッダー：名前・所在地・ボタン／地図（写真がある園は写真） */}
-        <Card className="mt-3 overflow-hidden lg:mt-4 lg:grid lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-          <div className="p-4 lg:p-8">
-            <div className="flex flex-wrap gap-1.5">
-              {region !== '未分類' && <span className="rounded bg-navy px-1.5 py-0.5 text-[11px] font-bold text-white">{region}</span>}
-              {garden.prefecture && <Tag tone="gray">{garden.prefecture}</Tag>}
-              {garden.featured && <Tag tone="gold">注目の盆栽園</Tag>}
+        {/* ヘッダー：名前・所在地・説明・ボタン／地図（写真がある園は写真） */}
+        <div className="mt-4 grid gap-5 lg:mt-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14">
+          <div className="min-w-0">
+            <div className="flex flex-wrap gap-x-3 text-[11.5px] text-ink-muted">
+              {region !== '未分類' && <span>{region}</span>}
+              {garden.prefecture && <span>{garden.prefecture}</span>}
+              {garden.featured && <span className="text-gold-dark">注目の盆栽園</span>}
             </div>
-            <h1 className="mt-2 font-mincho text-[28px] font-bold leading-tight text-navy lg:mt-3 lg:text-[40px]">{garden.name}</h1>
-            <p className="mt-1 text-sm text-ink-soft">{garden.address}</p>
+            <h1 className="mt-2 font-mincho text-[30px] font-bold leading-tight tracking-[0.06em] text-ink lg:mt-3 lg:text-[48px]">{garden.name}</h1>
+            <p className="mt-2 text-[13px] text-ink-soft lg:text-sm">{garden.address}</p>
             {specialties.length > 0 && (
-              <div className="mt-3 flex flex-wrap gap-1.5">
+              <div className="mt-2.5 flex flex-wrap gap-x-3.5 gap-y-1">
                 {specialties.map(s => (
-                  <Link
-                    key={s}
-                    href={`/products?category=${encodeURIComponent(s)}`}
-                    className="rounded bg-[#f1eee8] px-1.5 py-0.5 text-[11px] text-ink-soft hover:bg-gold-light hover:text-gold-dark"
-                  >
+                  <Link key={s} href={`/products?category=${encodeURIComponent(s)}`} className="text-[11.5px] text-gold-dark hover:underline">
                     {s}
                   </Link>
                 ))}
               </div>
             )}
-            <div className="mt-6 hidden flex-wrap gap-2 lg:flex">
+
+            {/* SPは地図（写真）を説明文の前に */}
+            <div className="mt-5 lg:hidden">
+              {photo ? (
+                <figure className="h-[200px] overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={photo} alt={`${garden.name}の外観`} className="h-full w-full object-cover" />
+                </figure>
+              ) : (
+                mapBox('h-[180px]')
+              )}
+            </div>
+
+            {garden.description && <p className="mt-5 text-sm leading-[2] text-ink-soft lg:mt-7 lg:text-[15px]">{garden.description}</p>}
+            <p className={`${garden.description ? 'mt-3' : 'mt-5 lg:mt-7'} text-sm leading-[2] text-ink-soft lg:text-[15px]`}>{description}</p>
+
+            <div className="mt-7 hidden flex-wrap gap-3 lg:flex">
               {garden.website_url && (
-                <a href={garden.website_url} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-navy px-5 py-3 text-sm font-bold text-white hover:bg-navy-light">
-                  公式サイトを見る ↗
+                <a href={garden.website_url} target="_blank" rel="noopener noreferrer" className="inline-flex h-12 items-center bg-sumi px-6 text-sm tracking-[0.04em] text-white hover:bg-sumi-light hover:text-white">
+                  公式サイトを見る　↗
                 </a>
               )}
-              <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="rounded-lg border border-navy bg-white px-5 py-3 text-sm font-bold text-navy hover:bg-gold-light">
+              <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="inline-flex h-12 items-center border border-ink bg-white px-6 text-sm text-ink hover:bg-paper-deep">
                 地図アプリで開く
               </a>
             </div>
-            {!photo && (
-              <p className="mt-4 hidden text-xs text-ink-muted lg:block">
-                写真は準備中です。<Link href="/contact" className="text-navy underline hover:text-gold-dark">園の方からの写真提供を受け付けています</Link>
-              </p>
-            )}
           </div>
-          <div className="px-4 pb-4 lg:p-0">
+          <div className="hidden lg:block">
             {photo ? (
-              <figure className="h-[200px] overflow-hidden rounded-xl lg:h-full lg:min-h-[300px] lg:rounded-none">
+              <figure className="h-full max-h-[420px] min-h-[340px] overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={photo} alt={`${garden.name}の外観`} className="h-full w-full object-cover" />
               </figure>
             ) : (
-              mapBox('h-[180px] rounded-xl lg:h-full lg:min-h-[300px] lg:rounded-none')
+              mapBox('h-[380px]')
+            )}
+          </div>
+        </div>
+
+        <Section
+          title="基本情報"
+          note={
+            <>
+              訪問前に{garden.website_url ? '公式サイトで' : ''}最新情報をご確認ください。
+              <br />
+              <Link href="/contact" className="border-b border-ink-muted hover:text-gold-dark">情報の修正を依頼する</Link>
+            </>
+          }
+        >
+          <dl className="border-t border-line">
+            <InfoRow label="住所">
+              {garden.postal_code && <span className="mr-1">〒{garden.postal_code}</span>}
+              {garden.address}
+            </InfoRow>
+            {garden.phone && (
+              <InfoRow label="電話">
+                <a href={`tel:${garden.phone}`} className={linkClass}>{garden.phone}</a>
+              </InfoRow>
+            )}
+            <InfoRow label="営業時間">
+              {garden.business_hours ? <span className="whitespace-pre-wrap">{garden.business_hours}</span> : confirmText}
+            </InfoRow>
+            <InfoRow label="定休日">{garden.closed_days && garden.closed_days.length > 0 ? garden.closed_days.join('、') : confirmText}</InfoRow>
+            {garden.experience_programs && <InfoRow label="体験・教室">あり</InfoRow>}
+            {garden.online_sales && <InfoRow label="購入">オンライン購入可</InfoRow>}
+            {garden.access_info && <InfoRow label="アクセス"><span className="whitespace-pre-wrap">{garden.access_info}</span></InfoRow>}
+            {garden.parking_info && <InfoRow label="駐車場">{garden.parking_info}</InfoRow>}
+            {garden.established_year && <InfoRow label="創業">{garden.established_year}年</InfoRow>}
+            {garden.owner_name && <InfoRow label="園主">{garden.owner_name}</InfoRow>}
+            {garden.website_url && (
+              <InfoRow label="公式サイト">
+                <a href={garden.website_url} target="_blank" rel="noopener noreferrer" className={linkClass}>公式サイトを見る ↗</a>
+              </InfoRow>
+            )}
+            {socials.length > 0 && (
+              <InfoRow label="SNS">
+                {socials.map((s, i) => (
+                  <span key={s.href}>
+                    {i > 0 && '・'}
+                    <a href={s.href} target="_blank" rel="noopener noreferrer" className={linkClass}>{s.label}</a>
+                  </span>
+                ))}
+              </InfoRow>
+            )}
+          </dl>
+          {/* 写真がある園は地図をここに */}
+          {photo && hasCoords && (
+            <div className="mt-5">
+              {mapBox('h-[240px]')}
+              <a href={mapUrl} target="_blank" rel="noopener noreferrer" className={`mt-3 hidden text-xs text-ink lg:inline-block ${linkClass}`}>
+                地図アプリで開く ↗
+              </a>
+            </div>
+          )}
+        </Section>
+
+        {canDo.length > 0 && (
+          <Section title="この園でできること">
+            <div className="grid gap-5 sm:grid-cols-3 lg:gap-7">
+              {canDo.map(item => (
+                <div key={item.label} className="border-t border-ink pt-3">
+                  <div className="text-[11px] text-gold-dark">{item.label}</div>
+                  <div className="mt-1 text-sm text-ink lg:text-[15px]">{item.value}</div>
+                </div>
+              ))}
+            </div>
+            {garden.experience_programs && (
+              <Link href="/guides?search=初心者" className={`mt-5 inline-block text-xs text-ink ${linkClass}`}>
+                初心者向けガイドを見る
+              </Link>
+            )}
+          </Section>
+        )}
+
+        {/* 同じ都道府県の盆栽園 */}
+        {nearbyGardens.length > 0 && (
+          <Section
+            title="近くの盆栽園"
+            note={garden.prefecture && <Link href={prefectureListHref} className="border-b border-ink-muted hover:text-gold-dark">{garden.prefecture}の盆栽園一覧へ</Link>}
+          >
+            <div className="grid gap-x-8 sm:grid-cols-2">
+              {nearbyGardens.map(g => (
+                <Link key={g.id} href={`/gardens/${g.id}`} className="group flex items-center gap-4 border-b border-line py-3.5 first:border-t sm:[&:nth-child(2)]:border-t">
+                  <PrefPlate garden={g} size="sm" />
+                  <div className="min-w-0">
+                    <div className="truncate text-[11px] text-ink-muted">{gardenArea(g)}</div>
+                    <div className="truncate font-mincho text-base font-bold text-ink group-hover:text-gold-dark">{g.name}</div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </Section>
+        )}
+
+        {/* 掲載情報の確認日と出典 */}
+        <Section title="掲載情報について">
+          <div className="text-xs leading-relaxed text-ink-soft">
+            <p>
+              {GARDEN_VERIFIED_AT && sources.length > 0
+                ? `${new Date(GARDEN_VERIFIED_AT).toLocaleDateString('ja-JP')}に、公式サイトなどの公開情報をもとに確認しました。`
+                : '公開情報をもとに掲載しています。'}
+              営業時間・定休日などは変わることがあるため、お出かけ前に{garden.website_url ? '公式サイトで' : '各園へ'}最新情報をご確認ください。
+            </p>
+            {sources.length > 0 && (
+              <ul className="mt-2 space-y-1">
+                {sources.slice(0, 3).map(url => (
+                  <li key={url} className="break-all">
+                    出典：<a href={url} target="_blank" rel="nofollow noopener noreferrer" className="border-b border-ink-muted hover:text-gold-dark">{url.replace(/^https?:\/\//, '')}</a>
+                  </li>
+                ))}
+              </ul>
             )}
             {!photo && (
-              <p className="mt-2 text-xs text-ink-muted lg:hidden">
-                写真は準備中です。<Link href="/contact" className="text-navy underline">写真提供を受け付けています</Link>
+              <p className="mt-3 text-ink-muted">
+                写真は準備中です。<Link href="/contact" className="border-b border-ink-muted hover:text-gold-dark">園の方からの写真提供を受け付けています</Link>
               </p>
             )}
           </div>
-        </Card>
+        </Section>
 
-        <div className="mt-4 grid gap-4 lg:mt-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-8">
-          {/* メイン */}
-          <div className="space-y-4 lg:space-y-5">
-            <Card className="p-4 lg:p-6">
-              <h2 className="font-mincho text-lg font-bold text-navy lg:text-xl">{garden.name}について</h2>
-              {garden.description && <p className="mt-3 text-sm leading-[1.9] text-ink lg:text-[15px]">{garden.description}</p>}
-              <p className="mt-3 text-sm leading-[1.9] text-ink lg:text-[15px]">{description}</p>
-              {(garden.established_year || garden.owner_name) && (
-                <p className="mt-3 text-xs text-ink-muted">
-                  {garden.established_year && <>創業 {garden.established_year}年</>}
-                  {garden.established_year && garden.owner_name && '　'}
-                  {garden.owner_name && <>園主 {garden.owner_name}</>}
-                </p>
-              )}
-            </Card>
-
-            {canDo.length > 0 && (
-              <Card className="p-4 lg:p-6">
-                <h2 className="font-mincho text-lg font-bold text-navy lg:text-xl">この園でできること</h2>
-                <div className="mt-3 grid gap-2 sm:grid-cols-3">
-                  {canDo.map(item => (
-                    <div key={item.label} className="rounded-lg bg-[#f7f4ee] px-3.5 py-3">
-                      <div className="text-[11px] text-gold-dark">{item.label}</div>
-                      <div className="mt-0.5 text-sm font-bold text-ink">{item.value}</div>
-                    </div>
-                  ))}
-                </div>
-                {garden.experience_programs && (
-                  <Link href="/guides?search=初心者" className="mt-3 inline-block text-xs font-bold text-navy underline hover:text-gold-dark">
-                    初心者向けガイドを見る
+        {relatedArticles.length > 0 && (
+          <Section title="あわせて読む" note={<Link href="/guides" className="border-b border-ink-muted hover:text-gold-dark">記事一覧を見る</Link>}>
+            <ul className="border-t border-line">
+              {relatedArticles.map(article => (
+                <li key={article.id} className="border-b border-line">
+                  <Link href={`/guides/${article.slug}`} className="flex items-center gap-3 py-3.5 text-sm leading-relaxed text-ink hover:text-gold-dark">
+                    <span className="line-clamp-2 min-w-0 flex-1">{article.title}</span>
+                    <span className="text-ink-muted" aria-hidden="true">›</span>
                   </Link>
-                )}
-              </Card>
-            )}
-
-            {/* 同じ都道府県の盆栽園 */}
-            {nearbyGardens.length > 0 && (
-              <section className="pt-2">
-                <SectionTitle
-                  action={garden.prefecture && <Link href={prefectureListHref} className="text-xs text-navy hover:text-gold-dark">{garden.prefecture}の盆栽園一覧 →</Link>}
-                >
-                  近くの盆栽園
-                </SectionTitle>
-                <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                  {nearbyGardens.map(g => (
-                    <Link key={g.id} href={`/gardens/${g.id}`} className="group flex items-center gap-3 rounded-xl border border-line bg-white p-3 hover:shadow-md">
-                      <PrefPlate garden={g} size="sm" />
-                      <div className="min-w-0">
-                        <div className="truncate text-[11px] text-ink-muted">{gardenArea(g)}</div>
-                        <div className="truncate font-mincho text-[15px] font-bold text-navy group-hover:text-gold-dark">{g.name}</div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </section>
-            )}
-          </div>
-
-          {/* サイドバー */}
-          <aside className="space-y-4">
-            <Card className="p-4 lg:p-5">
-              <h2 className="text-sm font-bold text-navy">基本情報</h2>
-              <dl className="mt-2">
-                <InfoRow label="住所">
-                  {garden.postal_code && <span className="mr-1">〒{garden.postal_code}</span>}
-                  {garden.address}
-                </InfoRow>
-                {garden.phone && (
-                  <InfoRow label="電話">
-                    <a href={`tel:${garden.phone}`} className="text-navy underline hover:text-gold-dark">{garden.phone}</a>
-                  </InfoRow>
-                )}
-                {garden.business_hours && <InfoRow label="営業時間"><span className="whitespace-pre-wrap">{garden.business_hours}</span></InfoRow>}
-                {garden.closed_days && garden.closed_days.length > 0 && <InfoRow label="定休日">{garden.closed_days.join('、')}</InfoRow>}
-                {garden.experience_programs && <InfoRow label="体験・教室">あり</InfoRow>}
-                {garden.online_sales && <InfoRow label="購入">オンライン購入可</InfoRow>}
-                {garden.access_info && <InfoRow label="アクセス"><span className="whitespace-pre-wrap">{garden.access_info}</span></InfoRow>}
-                {garden.parking_info && <InfoRow label="駐車場">{garden.parking_info}</InfoRow>}
-                {garden.website_url && (
-                  <InfoRow label="公式サイト">
-                    <a href={garden.website_url} target="_blank" rel="noopener noreferrer" className="text-navy underline hover:text-gold-dark">公式サイトを見る ↗</a>
-                  </InfoRow>
-                )}
-                {socials.length > 0 && (
-                  <InfoRow label="SNS">
-                    {socials.map((s, i) => (
-                      <span key={s.href}>
-                        {i > 0 && '・'}
-                        <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-navy underline hover:text-gold-dark">{s.label}</a>
-                      </span>
-                    ))}
-                  </InfoRow>
-                )}
-              </dl>
-              <p className="mt-3 text-[11.5px] leading-relaxed text-ink-muted">
-                営業時間・定休日などは変わることがあるため、お出かけ前に{garden.website_url ? '公式サイトで' : '各園へ'}最新情報をご確認ください。
-                <Link href="/contact" className="text-navy underline hover:text-gold-dark">情報の修正を依頼する</Link>
-              </p>
-            </Card>
-
-            {/* 写真がある園はここに地図 */}
-            {photo && hasCoords && (
-              <Card className="overflow-hidden">
-                {mapBox('h-[220px]')}
-                <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="block px-4 py-2.5 text-xs font-bold text-navy hover:text-gold-dark">
-                  地図アプリで開く ↗
-                </a>
-              </Card>
-            )}
-
-            {/* 掲載情報の確認日と出典 */}
-            <Card className="p-4 text-xs leading-relaxed text-ink-soft lg:p-5">
-              <h2 className="text-sm font-bold text-navy">掲載情報について</h2>
-              <p className="mt-2">
-                {GARDEN_VERIFIED_AT && sources.length > 0
-                  ? `${new Date(GARDEN_VERIFIED_AT).toLocaleDateString('ja-JP')}に、公式サイトなどの公開情報をもとに確認しました。`
-                  : '公開情報をもとに掲載しています。'}
-              </p>
-              {sources.length > 0 && (
-                <ul className="mt-2 space-y-1">
-                  {sources.slice(0, 3).map(url => (
-                    <li key={url} className="break-all">
-                      出典：<a href={url} target="_blank" rel="nofollow noopener noreferrer" className="text-navy underline hover:text-gold-dark">{url.replace(/^https?:\/\//, '')}</a>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </Card>
-
-            {relatedArticles.length > 0 && (
-              <div className="rounded-xl border border-[#eadfc9] bg-[#fbf7ef] p-4 lg:p-5">
-                <h2 className="font-mincho text-[15px] font-bold text-navy">あわせて読む</h2>
-                <ul className="mt-2 space-y-2">
-                  {relatedArticles.map(article => (
-                    <li key={article.id}>
-                      <Link href={`/guides/${article.slug}`} className="line-clamp-2 text-[13px] leading-relaxed text-ink hover:text-gold-dark">
-                        {article.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/guides" className="mt-3 inline-block text-xs text-navy hover:text-gold-dark">記事一覧を見る →</Link>
-              </div>
-            )}
-          </aside>
-        </div>
+                </li>
+              ))}
+            </ul>
+          </Section>
+        )}
 
         {/* 関連商品 */}
         {relatedProducts.length > 0 && (
-          <section className="mt-10">
-            <SectionTitle action={<Link href="/products" className="text-xs text-navy hover:text-gold-dark">商品一覧を見る →</Link>}>
+          <section className="mt-14 border-t border-line pt-10">
+            <SectionTitle action={<Link href="/products" className={`text-xs text-ink ${linkClass}`}>商品一覧を見る</Link>}>
               {garden.name}の専門分野に関連する商品
             </SectionTitle>
-            <div className="mt-3 grid grid-cols-2 gap-3 md:grid-cols-4">
+            <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-4">
               {relatedProducts.map(product => (
                 <CatalogProductCard key={product.id} product={product} />
               ))}
@@ -500,11 +507,11 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
 
         {/* おすすめ盆栽商品 */}
         {recommendedProducts.length > 0 && (
-          <section className="mt-10">
-            <SectionTitle action={<Link href="/products" className="text-xs text-navy hover:text-gold-dark">すべての商品を見る →</Link>}>
+          <section className="mt-14 border-t border-line pt-10">
+            <SectionTitle action={<Link href="/products" className={`text-xs text-ink ${linkClass}`}>すべての商品を見る</Link>}>
               おすすめ盆栽商品
             </SectionTitle>
-            <div className="mt-3 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
+            <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-3 lg:grid-cols-6">
               {recommendedProducts.map(product => (
                 <CatalogProductCard key={product.id} product={product} />
               ))}
@@ -514,18 +521,18 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
       </div>
 
       {/* SP：画面下の操作ボタン（下部タブの上に固定） */}
-      <div className="fixed inset-x-0 bottom-[calc(3.5rem+env(safe-area-inset-bottom))] z-30 flex gap-2 border-t border-line bg-white/95 px-4 py-2.5 backdrop-blur lg:hidden">
+      <div className="fixed inset-x-0 bottom-[calc(3.5rem+env(safe-area-inset-bottom))] z-30 flex gap-2.5 border-t border-line bg-paper/95 px-4 py-2.5 backdrop-blur lg:hidden">
         <a
           href={mapUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className={`rounded-lg border border-navy bg-white py-2.5 text-center text-sm font-bold text-navy ${garden.website_url ? 'w-[40%]' : 'flex-1'}`}
+          className={`flex h-12 items-center justify-center border border-ink bg-white text-sm text-ink ${garden.website_url ? 'w-[38%]' : 'flex-1'}`}
         >
           地図アプリ
         </a>
         {garden.website_url && (
-          <a href={garden.website_url} target="_blank" rel="noopener noreferrer" className="flex-1 rounded-lg bg-navy py-2.5 text-center text-sm font-bold text-white">
-            公式サイト ↗
+          <a href={garden.website_url} target="_blank" rel="noopener noreferrer" className="flex h-12 flex-1 items-center justify-center bg-sumi text-sm tracking-[0.04em] text-white hover:text-white">
+            公式サイト　↗
           </a>
         )}
       </div>

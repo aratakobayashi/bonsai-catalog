@@ -4,10 +4,10 @@ import { useRouter, useSearchParams } from 'next/navigation'
 
 export type EventView = 'list' | 'month' | 'map'
 
-const TABS: { view: EventView; label: string; short: string }[] = [
-  { view: 'list', label: 'リスト', short: 'リスト' },
-  { view: 'month', label: 'カレンダー', short: '暦' },
-  { view: 'map', label: '地図', short: '地図' },
+const TABS: { view: EventView; label: string }[] = [
+  { view: 'list', label: 'リスト' },
+  { view: 'month', label: 'カレンダー' },
+  { view: 'map', label: '地図' },
 ]
 
 // URL の view パラメータ（calendar は month の別名）。既定はリスト
@@ -17,27 +17,30 @@ export function parseEventView(value: string | null): EventView {
   return 'list'
 }
 
+// 「表示 リスト／カレンダー／地図」の文字の切り替え
 export function EventViewTabsView({ active, onSelect }: { active: EventView; onSelect?: (view: EventView) => void }) {
   return (
-    <div className="inline-flex rounded-[10px] bg-[#ece6da] p-[3px]" role="tablist" aria-label="表示の切り替え">
-      {TABS.map(tab => (
-        <button
-          key={tab.view}
-          type="button"
-          role="tab"
-          aria-selected={active === tab.view}
-          onClick={() => onSelect?.(tab.view)}
-          className={`rounded-lg px-3.5 py-1.5 text-[13px] lg:px-[18px] lg:py-2 ${active === tab.view ? 'bg-white font-bold text-navy' : 'text-ink-soft hover:text-navy'}`}
-        >
-          <span className="lg:hidden">{tab.short}</span>
-          <span className="hidden lg:inline">{tab.label}</span>
-        </button>
+    <div className="inline-flex flex-none items-center gap-2 text-[12.5px]" role="tablist" aria-label="表示の切り替え">
+      <span className="text-ink-muted" aria-hidden="true">表示</span>
+      {TABS.map((tab, i) => (
+        <span key={tab.view} className="inline-flex items-center">
+          {i > 0 && <span className="mx-0.5 text-ink-muted" aria-hidden="true">／</span>}
+          <button
+            type="button"
+            role="tab"
+            aria-selected={active === tab.view}
+            onClick={() => onSelect?.(tab.view)}
+            className={active === tab.view ? 'border-b border-ink font-bold text-ink' : 'text-ink-soft hover:text-ink'}
+          >
+            {tab.label}
+          </button>
+        </span>
       ))}
     </div>
   )
 }
 
-// 見出し横のタブ。表示状態は URL で EventsPageClient と共有する
+// 絞り込み行の右端に置く切り替え。表示状態は URL で EventsPageClient と共有する
 export default function EventViewTabs() {
   const router = useRouter()
   const searchParams = useSearchParams()

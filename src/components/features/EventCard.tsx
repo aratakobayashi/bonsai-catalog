@@ -20,7 +20,7 @@ interface EventCardProps {
   onHover?: (event: Event) => void
 }
 
-// イベントの横長カード（日付ブロック＋種別・場所＋タイトル＋日程・料金）
+// イベントの1行（大きな日付＋種別・場所＋明朝のタイトル＋日程・料金）。線で区切って並べる
 export function EventCard({ event, className, active = false, onHover }: EventCardProps) {
   const past = getEventStatus(event) === 'past'
 
@@ -29,22 +29,20 @@ export function EventCard({ event, className, active = false, onHover }: EventCa
       href={`/events/${event.slug}`}
       onMouseEnter={onHover ? () => onHover(event) : undefined}
       onFocus={onHover ? () => onHover(event) : undefined}
-      className={cn(
-        'flex items-center gap-3 rounded-[14px] border border-line px-4 py-3.5 transition-colors hover:border-gold lg:gap-4 lg:px-[18px] lg:py-4',
-        active ? 'bg-white lg:bg-[#fffdf9] lg:shadow-[inset_3px_0_0_#b8935a]' : 'bg-white',
-        past && 'opacity-70',
-        className
-      )}
+      aria-current={active ? 'true' : undefined}
+      className={cn('group flex gap-4 border-b border-line py-5 lg:gap-6 lg:py-[22px]', past && 'opacity-75', className)}
     >
       <EventDateBlock event={event} muted={past} />
       <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap gap-1">
+        <div className="flex flex-wrap gap-x-3 gap-y-0.5">
           {event.types.slice(0, 2).map(type => <EventTypeTag key={type} type={type} />)}
           <EventPlaceTag>{eventPlaceText(event)}</EventPlaceTag>
-          {past && <span className="rounded bg-[#f1eee8] px-1.5 py-px text-[11px] text-ink-soft">開催終了</span>}
+          {past && <span className="text-[11px] text-ink-muted">開催終了</span>}
         </div>
-        <h3 className="mt-1.5 line-clamp-2 text-[15px] font-bold leading-snug text-ink lg:text-base">{event.title}</h3>
-        <p className="mt-0.5 text-xs leading-relaxed text-ink-soft">
+        <h3 className={cn('mt-1 line-clamp-2 font-mincho text-base font-bold leading-snug tracking-[0.04em] group-hover:text-gold-dark lg:text-lg', active ? 'text-gold-dark' : 'text-ink')}>
+          {event.title}
+        </h3>
+        <p className="mt-1 text-xs leading-relaxed text-ink-soft">
           {eventShortDateText(event)}・{eventPriceText(event)}
         </p>
       </div>

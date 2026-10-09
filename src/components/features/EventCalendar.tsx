@@ -76,16 +76,16 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
 
   return (
     <div className={cn('grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px]', className)}>
-      <div className="rounded-[14px] border border-line bg-white p-3 lg:p-5">
+      <div className="border border-line bg-white p-3 lg:p-5">
         {/* 月の切り替え */}
         <div className="mb-3 flex items-center gap-2">
-          <h2 className="font-mincho text-lg font-bold text-navy lg:text-xl">{currentYear}年{currentMonth + 1}月</h2>
+          <h2 className="font-mincho text-lg font-bold tracking-[0.04em] text-ink lg:text-xl">{currentYear}年{currentMonth + 1}月</h2>
           <div className="ml-auto flex items-center gap-1">
-            <button onClick={goToToday} className="rounded-full border border-line px-3 py-1 text-xs text-ink hover:border-gold">今日</button>
-            <button onClick={() => moveMonth(-1)} className="rounded-full p-1.5 text-ink-soft hover:bg-paper" aria-label="前の月">
+            <button onClick={goToToday} className="border border-line bg-white px-3 py-1 text-xs text-ink hover:border-ink">今日</button>
+            <button onClick={() => moveMonth(-1)} className="p-1.5 text-ink-soft hover:bg-paper-deep" aria-label="前の月">
               <ChevronLeft className="h-5 w-5" />
             </button>
-            <button onClick={() => moveMonth(1)} className="rounded-full p-1.5 text-ink-soft hover:bg-paper" aria-label="次の月">
+            <button onClick={() => moveMonth(1)} className="p-1.5 text-ink-soft hover:bg-paper-deep" aria-label="次の月">
               <ChevronRight className="h-5 w-5" />
             </button>
           </div>
@@ -97,7 +97,7 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
           ))}
         </div>
 
-        <div className="grid grid-cols-7 gap-px overflow-hidden rounded-lg border border-line bg-line" role="grid" aria-label={`${currentYear}年${currentMonth + 1}月のカレンダー`}>
+        <div className="grid grid-cols-7 gap-px overflow-hidden border border-line bg-line" role="grid" aria-label={`${currentYear}年${currentMonth + 1}月のカレンダー`}>
           {calendarDays.map((date, index) => {
             const key = dateKey(date)
             const dayEvents = eventsByDate[key] || []
@@ -114,14 +114,14 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
                 className={cn(
                   'flex h-16 cursor-pointer flex-col p-1 text-left sm:h-20 lg:h-24 lg:p-1.5',
                   inMonth ? 'bg-white hover:bg-[#fffdf9]' : 'bg-paper text-ink-muted',
-                  isSelected && 'bg-gold-light hover:bg-gold-light'
+                  isSelected && 'bg-paper-deep hover:bg-paper-deep'
                 )}
               >
                 <button
                   type="button"
                   className={cn(
-                    'flex h-6 w-6 items-center justify-center rounded-full text-xs lg:text-[13px]',
-                    key === todayKey && 'bg-navy font-bold text-white',
+                    'flex h-6 w-6 items-center justify-center text-xs lg:text-[13px]',
+                    key === todayKey && 'bg-sumi font-bold text-white',
                     key !== todayKey && inMonth && (dow === 0 ? 'text-red-600' : dow === 6 ? 'text-blue-700' : 'text-ink')
                   )}
                   aria-label={`${date.getMonth() + 1}月${date.getDate()}日${dayEvents.length ? `（${dayEvents.length}件のイベント）` : ''}`}
@@ -136,7 +136,7 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
                         key={event.id}
                         href={`/events/${event.slug}`}
                         onClick={e => e.stopPropagation()}
-                        className="hidden truncate rounded bg-[#fdf8f0] px-1 py-px text-[11px] text-gold-dark hover:underline sm:block"
+                        className="hidden truncate px-1 py-px text-[11px] text-gold-dark hover:underline sm:block"
                         title={event.title}
                       >
                         {event.title}
@@ -161,17 +161,17 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
               ? `${selectedDate.getMonth() + 1}月${selectedDate.getDate()}日（${WEEKDAYS[selectedDate.getDay()]}）のイベント`
               : `${currentMonth + 1}月のイベント`}
             {selectedDate && (
-              <button onClick={() => setSelectedDate(null)} className="ml-auto text-xs font-normal text-navy underline hover:text-gold-dark">
+              <button onClick={() => setSelectedDate(null)} className="ml-auto text-xs font-normal border-b border-ink text-ink hover:text-gold-dark">
                 月の一覧に戻る
               </button>
             )}
           </h3>
           {sideEvents.length > 0 ? (
-            <div className="flex flex-col gap-2.5">
+            <div className="flex flex-col border-t border-line">
               {sideEvents.map(event => <EventCard key={event.id} event={event} />)}
             </div>
           ) : (
-            <p className="rounded-[14px] border border-line bg-white px-4 py-8 text-center text-sm text-ink-soft">
+            <p className="border border-line bg-white px-4 py-8 text-center text-sm text-ink-soft">
               {selectedDate ? 'この日のイベントはありません' : 'この月のイベントはありません'}
             </p>
           )}

@@ -129,7 +129,7 @@ export function EventMap({ events, className, selectedEvent, onEventSelect }: Ev
 
   if (!mapLoaded) {
     return (
-      <div className={cn('flex h-96 items-center justify-center rounded-[14px] border border-line bg-white text-sm text-ink-muted', className)}>
+      <div className={cn('flex h-96 items-center justify-center border border-line bg-white text-sm text-ink-muted', className)}>
         地図を読み込み中…
       </div>
     )
@@ -138,7 +138,7 @@ export function EventMap({ events, className, selectedEvent, onEventSelect }: Ev
   return (
     <div className={cn('grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px]', className)}>
       <div>
-        <div className="relative h-[360px] overflow-hidden rounded-[14px] border border-line lg:h-[520px]">
+        <div className="relative h-[360px] overflow-hidden border border-line lg:h-[520px]">
           <MapContainer
             center={[36.2, 138.25]}
             zoom={5}
@@ -164,7 +164,7 @@ export function EventMap({ events, className, selectedEvent, onEventSelect }: Ev
               >
                 <Popup>
                   <div className="min-w-56">
-                    <p className="mb-1.5 font-bold text-navy">{prefecture}（{count}件）</p>
+                    <p className="mb-1.5 font-bold text-ink">{prefecture}（{count}件）</p>
                     <ul className="max-h-48 space-y-1.5 overflow-y-auto">
                       {groupEvents.slice(0, 3).map(event => (
                         <li key={event.id} className="border-t border-line pt-1.5">
@@ -193,19 +193,19 @@ export function EventMap({ events, className, selectedEvent, onEventSelect }: Ev
           <h3 className="mb-2.5 flex items-baseline gap-2 text-[13px] font-bold text-ink-soft">
             {selectedGroup ? `${selectedGroup.prefecture}のイベント（${selectedGroup.count}件）` : '地図のピンを選んでください'}
             {selectedGroup && (
-              <button onClick={() => setSelectedPrefecture(null)} className="ml-auto text-xs font-normal text-navy underline hover:text-gold-dark">
+              <button onClick={() => setSelectedPrefecture(null)} className="ml-auto text-xs font-normal border-b border-ink text-ink hover:text-gold-dark">
                 選択を解除
               </button>
             )}
           </h3>
           {selectedGroup ? (
-            <div className="flex flex-col gap-2.5">
+            <div className="flex flex-col border-t border-line">
               {selectedGroup.events.map(event => <EventCard key={event.id} event={event} />)}
             </div>
           ) : (
             <div className="flex flex-wrap gap-1.5">
               {eventGroups.map(g => (
-                <button key={g.prefecture} onClick={() => setSelectedPrefecture(g.prefecture)} className="rounded-full border border-line bg-white px-3 py-1 text-[13px] text-ink hover:border-gold">
+                <button key={g.prefecture} onClick={() => setSelectedPrefecture(g.prefecture)} className="border border-line bg-white px-3 py-1 text-[13px] text-ink hover:border-ink">
                   {g.prefecture}<span className="ml-1 text-ink-muted">{g.count}</span>
                 </button>
               ))}

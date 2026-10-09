@@ -52,18 +52,18 @@ export function EventListView({ events, className, selectedId, onSelect }: Event
 
   if (events.length === 0) {
     return (
-      <div className={cn('rounded-[14px] border border-line bg-white px-6 py-12 text-center', className)}>
-        <p className="font-bold text-ink">条件に合うイベントが見つかりませんでした</p>
+      <div className={cn('border-b border-t border-line px-6 py-12 text-center', className)}>
+        <p className="font-mincho font-bold text-ink">条件に合うイベントが見つかりませんでした</p>
         <p className="mt-2 text-sm text-ink-soft">地域や期間の絞り込みを外してお試しください。</p>
       </div>
     )
   }
 
   return (
-    <div className={cn('flex flex-col gap-2.5', className)}>
+    <div className={cn('flex flex-col', className)}>
       {groups.map((group, i) => (
-        <section key={group.key} className={cn('flex flex-col gap-2.5', i > 0 && 'mt-2.5')}>
-          <h2 className="text-[13px] font-bold text-ink-soft">{group.title}</h2>
+        <section key={group.key} className={cn('flex flex-col', i > 0 && 'mt-8')}>
+          <h2 className="font-mincho text-[15px] font-bold tracking-[0.04em] text-ink">{group.title}</h2>
           {group.events.map(event => (
             <EventCard
               key={event.id}

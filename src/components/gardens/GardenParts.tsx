@@ -17,15 +17,16 @@ export function gardenArea(garden: Pick<Garden, 'prefecture' | 'city'>): string 
   return `${garden.prefecture || ''}${garden.city || ''}`
 }
 
-// 都道府県名を書いた紺色の札（写真の代わり）
+// 都道府県名を縦書きにした白い札（写真の代わり）
 export function PrefPlate({ garden, size = 'md' }: { garden: Pick<Garden, 'prefecture'>; size?: 'sm' | 'md' }) {
-  const region = gardenRegion(garden)
-  const box = size === 'sm' ? 'h-[46px] w-[46px] lg:h-[46px] lg:w-[46px]' : 'h-[46px] w-[46px] lg:h-[60px] lg:w-[60px]'
-  const text = size === 'sm' ? 'text-sm' : 'text-sm lg:text-[17px]'
+  const box = size === 'sm' ? 'h-11 w-11 text-sm' : 'h-[52px] w-[52px] text-[15px] lg:h-[72px] lg:w-[72px] lg:text-[19px]'
   return (
-    <div className={`flex flex-shrink-0 flex-col items-center justify-center rounded-lg bg-navy text-white ${box}`} aria-hidden="true">
-      <span className={`font-mincho font-bold leading-none ${text}`}>{shortPrefecture(garden.prefecture)}</span>
-      {region !== '未分類' && <span className="mt-1 text-[9px] leading-none text-[#e9c793]">{region}</span>}
+    <div
+      className={`flex flex-shrink-0 items-center justify-center border border-line bg-white font-mincho font-bold leading-none tracking-[0.06em] text-ink ${box}`}
+      style={{ writingMode: 'vertical-rl' }}
+      aria-hidden="true"
+    >
+      {shortPrefecture(garden.prefecture)}
     </div>
   )
 }
@@ -40,15 +41,13 @@ export function gardenHighlights(garden: Garden, max = 3): string[] {
   return items.slice(0, max)
 }
 
+// 金茶の小さな文字で並べる（色付きの丸やラベルは使わない）
 export function HighlightDots({ items }: { items: string[] }) {
   if (items.length === 0) return null
   return (
-    <ul className="flex flex-wrap gap-x-3 gap-y-1 text-[11.5px] text-green-700">
+    <ul className="flex flex-wrap gap-x-3 gap-y-0.5 text-[11.5px] text-gold-dark">
       {items.map(item => (
-        <li key={item} className="flex items-center gap-1">
-          <span className="inline-block h-2 w-2 rounded-full bg-green-600" aria-hidden="true" />
-          <span className="line-clamp-1">{item}</span>
-        </li>
+        <li key={item} className="line-clamp-1">{item}</li>
       ))}
     </ul>
   )

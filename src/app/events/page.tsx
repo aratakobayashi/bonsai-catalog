@@ -3,11 +3,12 @@ import { Suspense } from 'react'
 import Link from 'next/link'
 import EventsPageClient from './EventsPageClient'
 import { getEvents } from '@/lib/events'
-import { EventCard } from '@/components/features/EventCard'
+import { EventListView } from '@/components/features/EventListView'
+import { EventFiltersPlaceholder } from '@/components/features/EventFilters'
 import { getEventStatus } from '@/components/features/EventShared'
 import type { Event } from '@/types'
-import EventViewTabs, { EventViewTabsView } from './EventViewTabs'
-import { Breadcrumbs, CONTAINER } from '@/components/ui/design'
+import { EventViewTabsView } from './EventViewTabs'
+import { CONTAINER, PageHeading } from '@/components/ui/design'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/events' },
@@ -32,6 +33,14 @@ export const metadata: Metadata = {
 
 // 一覧は1時間ごとに作り直す（イベントの反映時にも作り直される）
 export const revalidate = 3600
+
+// 盆栽園／イベントの切り替え（明朝の文字タブ）
+const toggle = (
+  <nav aria-label="出かける" className="flex gap-5 lg:justify-end lg:gap-7">
+    <Link href="/gardens" className="pb-1.5 font-mincho text-[15px] font-bold text-ink-muted hover:text-ink lg:text-base">盆栽園</Link>
+    <span className="pb-1.5 font-mincho text-[15px] font-bold text-ink shadow-[inset_0_-1.5px_0_#22201c] lg:text-base" aria-current="page">イベント</span>
+  </nav>
+)
 
 export default async function EventsPage() {
   const initial = await getEvents({ page: 1, limit: 1000 }).catch(() => null)
@@ -60,41 +69,35 @@ export default async function EventsPage() {
         }}
       />
 
-      <div className={`${CONTAINER} pb-12`}>
-        {/* SPのみ：盆栽園／イベントの切り替え */}
-        <div className="mt-4 grid grid-cols-2 gap-1.5 lg:hidden">
-          <Link href="/gardens" className="rounded-lg border border-line bg-white py-2 text-center text-[13px] text-ink">盆栽園</Link>
-          <span className="rounded-lg bg-navy py-2 text-center text-[13px] font-bold text-white" aria-current="page">イベント</span>
-        </div>
-
-        <div className="pt-4 lg:pt-10">
-          <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: '出かける', href: '/gardens' }, { label: 'イベント' }]} className="hidden lg:block" />
-          <div className="flex items-center gap-4 lg:mt-2 lg:items-end lg:gap-6">
-            <div className="min-w-0">
-              <h1 className="font-mincho text-2xl font-bold leading-snug text-navy lg:text-4xl">盆栽イベント</h1>
-              <p className="mt-1.5 hidden text-[14.5px] leading-relaxed text-ink-soft lg:block">
-                全国の展示会・即売会・ワークショップ・講習会を、これから開催の順に。
-              </p>
-            </div>
-            <div className="ml-auto flex-none">
-              <Suspense fallback={<EventViewTabsView active="list" />}>
-                <EventViewTabs />
-              </Suspense>
-            </div>
-          </div>
-        </div>
+      <div className={`${CONTAINER} pb-14`}>
+        {/* SPは見出しの上に切り替え */}
+        <div className="pt-5 lg:hidden">{toggle}</div>
+        <PageHeading
+          crumbs={[{ label: 'ホーム', href: '/' }, { label: '出かける', href: '/gardens' }, { label: 'イベント' }]}
+          title="盆栽イベント"
+          lead={
+            <>
+              <span className="text-xs text-ink-muted lg:hidden">これから開催の順</span>
+              <span className="hidden lg:inline">全国の展示会・即売会・ワークショップ・講習会を、これから開催の順に。</span>
+            </>
+          }
+          aside={<div className="hidden lg:block">{toggle}</div>}
+        />
 
         {/* 一覧を組み立てるまでの間も、サーバーで作ったこれからのイベントを表示する（表示を速くするため） */}
         <Suspense fallback={
-          <div className="min-h-[100vh] space-y-3 pt-2 lg:max-w-[560px]">
-            {upcoming.map(event => <EventCard key={event.id} event={event} />)}
+          <div className="min-h-[100vh]">
+            <EventFiltersPlaceholder className="mt-5 lg:mt-9" trailing={<EventViewTabsView active="list" />} />
+            <div className="mt-6 grid gap-6 lg:mt-8 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-14">
+              <EventListView events={upcoming} />
+            </div>
           </div>
         }>
           <EventsPageClient initialEvents={initial?.events} />
         </Suspense>
 
-        <p className="mt-10 text-center text-xs leading-relaxed text-ink-muted">
-          盆栽イベントの掲載をご希望の主催者の方は、<Link href="/contact" className="text-navy underline hover:text-gold-dark">お問い合わせ</Link>からご連絡ください。
+        <p className="mt-12 text-xs leading-relaxed text-ink-muted">
+          盆栽イベントの掲載をご希望の主催者の方は、<Link href="/contact" className="border-b border-ink-muted hover:text-gold-dark">お問い合わせ</Link>からご連絡ください。
         </p>
       </div>
     </>

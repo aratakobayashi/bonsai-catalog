@@ -9,9 +9,9 @@ import { EventFilters, EventPeriod } from '@/components/features/EventFilters'
 import { EventMap } from '@/components/features/EventMap'
 import { EventListView } from '@/components/features/EventListView'
 import {
-  EventStatusTag,
-  EventTypeTag,
+  EVENT_TYPE_LABEL,
   eventPlaceText,
+  eventStatusLabel,
   getEventStatus,
   googleCalendarUrl,
   parseEventDate,
@@ -19,7 +19,7 @@ import {
 } from '@/components/features/EventShared'
 import { Placeholder } from '@/components/ui/design'
 import { eventDateText, eventPriceText, isTentativeEvent } from '@/lib/event-display'
-import { parseEventView } from './EventViewTabs'
+import EventViewTabs, { parseEventView } from './EventViewTabs'
 
 function parsePeriod(value: string | null): EventPeriod {
   return value === 'past' || value === 'all' ? value : 'upcoming'
@@ -34,34 +34,33 @@ function sortKey(event: Event) {
 // PCのリスト表示で右側に出す、選択中イベントの概要
 function EventPreview({ event }: { event: Event }) {
   const calendarUrl = googleCalendarUrl(event)
+  const status = eventStatusLabel(event)
+  const eyebrow = [...event.types.map(type => EVENT_TYPE_LABEL[type] ?? type), status?.text].filter(Boolean).join('・')
   return (
-    <div className="overflow-hidden rounded-[14px] border border-line bg-white">
-      <Placeholder label={event.venue_name || eventPlaceText(event)} className="h-[180px]" />
-      <div className="px-6 py-[22px]">
-        <div className="flex flex-wrap gap-1.5">
-          {event.types.map(type => <EventTypeTag key={type} type={type} />)}
-          <EventStatusTag event={event} />
-        </div>
-        <h2 className="mt-2 font-mincho text-2xl font-bold leading-snug text-navy">{event.title}</h2>
-        <dl className="mt-1 text-[13.5px]">
+    <div>
+      <Placeholder label={event.venue_name || eventPlaceText(event)} className="h-[230px]" />
+      <div className="pt-5">
+        {eyebrow && <div className="text-[11.5px] text-gold-dark">{eyebrow}</div>}
+        <h2 className="mt-1.5 font-mincho text-2xl font-bold leading-snug tracking-[0.04em] text-ink">{event.title}</h2>
+        <dl className="mt-3 border-t border-line text-[13px]">
           {[
             ['日程', eventDateText(event, true)],
             ['会場', [event.venue_name, eventPlaceText(event)].filter(Boolean).join('・')],
             ['参加費', eventPriceText(event)],
             ...(event.organizer_name ? [['主催', event.organizer_name]] : []),
           ].map(([label, value]) => (
-            <div key={label} className="grid grid-cols-[72px_1fr] border-b border-[#f1ece2] py-2.5">
+            <div key={label} className="grid grid-cols-[76px_1fr] border-b border-line py-3">
               <dt className="text-ink-muted">{label}</dt>
               <dd className="text-ink">{value}</dd>
             </div>
           ))}
         </dl>
-        <div className="mt-4 flex gap-2.5">
-          <Link href={`/events/${event.slug}`} className="flex h-11 flex-1 items-center justify-center rounded-[10px] bg-navy text-sm font-bold text-white hover:bg-navy-light">
+        <div className="mt-5 flex gap-2.5">
+          <Link href={`/events/${event.slug}`} className="flex h-12 flex-1 items-center justify-center bg-sumi text-sm tracking-[0.04em] text-white hover:bg-sumi-light hover:text-white">
             詳しく見る
           </Link>
           {calendarUrl && (
-            <a href={calendarUrl} target="_blank" rel="noopener noreferrer" className="flex h-11 items-center rounded-[10px] border border-navy px-4 text-[13.5px] text-navy hover:bg-gold-light">
+            <a href={calendarUrl} target="_blank" rel="noopener noreferrer" className="flex h-12 items-center border border-ink bg-white px-4 text-[13px] text-ink hover:bg-paper-deep">
               カレンダーに追加
             </a>
           )}
@@ -205,7 +204,7 @@ export default function EventsPageClient({ initialEvents }: { initialEvents?: Ev
   if (loading && events.length === 0) {
     return (
       <div className="flex min-h-[100vh] items-start justify-center py-16">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-navy" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-ink" />
       </div>
     )
   }
@@ -216,7 +215,7 @@ export default function EventsPageClient({ initialEvents }: { initialEvents?: Ev
         <p className="mb-4 text-sm text-rakuten">{error}</p>
         <button
           onClick={() => fetchEvents(filters)}
-          className="rounded-[10px] bg-navy px-5 py-2.5 text-sm font-bold text-white hover:bg-navy-light"
+          className="h-12 bg-sumi px-6 text-sm text-white hover:bg-sumi-light"
         >
           再試行
         </button>
@@ -227,7 +226,8 @@ export default function EventsPageClient({ initialEvents }: { initialEvents?: Ev
   return (
     <div className={loading ? 'opacity-60 transition-opacity' : 'transition-opacity'}>
       <EventFilters
-        className="mt-4 lg:mt-5"
+        className="mt-5 lg:mt-9"
+        trailing={<EventViewTabs />}
         filters={filters}
         period={period}
         onFiltersChange={handleFiltersChange}
@@ -239,19 +239,17 @@ export default function EventsPageClient({ initialEvents }: { initialEvents?: Ev
       {(filters.search || filters.garden_id) && (
         <div className="mt-3 flex items-center gap-2 text-[13px] text-ink-soft">
           {filters.search ? `「${filters.search}」の検索結果` : '盆栽園で絞り込み中'}
-          <button type="button" onClick={clearSearch} className="text-navy underline hover:text-gold-dark">解除</button>
+          <button type="button" onClick={clearSearch} className="border-b border-ink pb-0.5 text-ink hover:text-gold-dark">解除</button>
         </div>
       )}
 
-      <p className="mt-3 text-xs text-ink-soft lg:hidden">{view === 'month' ? events.length : displayed.length}件</p>
-
-      <div className="mt-3 lg:mt-5">
+      <div className="mt-6 lg:mt-8">
         {view === 'month' ? (
           <EventCalendar events={events} />
         ) : view === 'map' ? (
           <EventMap events={displayed} />
         ) : (
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)]">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-14">
             <EventListView events={displayed} selectedId={selected?.id} onSelect={e => setSelectedId(e.id)} />
             {selected && (
               <div className="hidden lg:block">
