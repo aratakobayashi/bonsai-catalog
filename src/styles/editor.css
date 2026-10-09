@@ -263,12 +263,38 @@
   border-top: 1px solid #ebe7df;
   margin: 2.5em 0;
 }
-.article-body table {
-  display: block;
-  width: 100%;
+/* 表：横にはみ出す表は枠の中で横スクロール。端に影を出して続きがあることを示す */
+.article-body .table-scroll {
+  max-width: 100%;
   overflow-x: auto;
-  border-collapse: collapse;
   margin: 0 0 1.5em;
+  -webkit-overflow-scrolling: touch;
+  background:
+    linear-gradient(to right, #faf9f6 30%, rgba(250, 249, 246, 0)) left center / 32px 100% no-repeat local,
+    linear-gradient(to left, #faf9f6 30%, rgba(250, 249, 246, 0)) right center / 32px 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, rgba(34, 32, 28, 0.2), rgba(34, 32, 28, 0)) left center / 12px 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, rgba(34, 32, 28, 0.2), rgba(34, 32, 28, 0)) right center / 12px 100% no-repeat scroll;
+}
+.article-body .table-scroll:focus-visible {
+  outline: 2px solid #b8935a;
+  outline-offset: 2px;
+}
+.article-body .table-scroll-hint {
+  margin: 0 0 0.4em !important;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #757068 !important;
+  text-align: right;
+}
+@media (min-width: 1024px) {
+  .article-body .table-scroll-hint {
+    display: none;
+  }
+}
+.article-body table {
+  width: 100%;
+  min-width: 100%;
+  border-collapse: collapse;
   font-size: 14px;
   line-height: 1.7;
 }
@@ -286,12 +312,35 @@
   white-space: nowrap;
 }
 .article-body td {
-  background: #fff;
+  /* 背景を透かして横スクロールの影を見せる */
+  background: rgba(255, 255, 255, 0.55);
+  min-width: 6em;
 }
+/* コードブロック（本文では文例・チェックリストに使われているため、生成りの面に墨の文字で表示する） */
 .article-body pre {
+  background: #f3f0ea;
+  color: #22201c;
+  border: 1px solid #ebe7df;
   border-radius: 0;
+  padding: 1em 1.1em;
+  margin: 0 0 1.5em;
+  font-size: 14px;
+  line-height: 1.85;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  overflow-x: auto;
+}
+.article-body pre code {
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
 }
 .article-body code {
+  background: #f3f0ea;
+  color: #22201c;
+  padding: 0.1em 0.35em;
   font-size: 0.875em;
 }
 /* 引用・:::info などの囲み（markdown.ts のグラデーション装飾を白いカードに置き換える） */
@@ -330,4 +379,12 @@
 /* 本文中の角丸はすべて外す（v2 は四角） */
 .article-body [class*='rounded'] {
   border-radius: 0;
+}
+
+/* 育て方一覧のカテゴリタブ（1行で横スクロール。スクロールバーは出さない） */
+.guides-tabs {
+  scrollbar-width: none;
+}
+.guides-tabs::-webkit-scrollbar {
+  display: none;
 }

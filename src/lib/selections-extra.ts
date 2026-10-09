@@ -48,8 +48,10 @@ export const EXTRA_SELECTIONS: Selection[] = [
       },
     ],
     listHeading: '室内に置きやすい盆栽（樹種の目安・販売店の表記より）',
-    // 屋外向きの樹種（松・桜など）は、販売店が「室内」と書いていても載せない（本文の説明と食い違うため）
-    filter: p => p.speciesLabel ? ['ガジュマル', 'フィカス'].includes(p.speciesLabel) : p.indoor,
+    // 置き場所（place）は樹種が分かるときは樹種の性質、分からないときだけ販売店の表記。
+    // 一覧の「室内に置きやすい」（/products?place=indoor）と同じ条件・同じ種類で選ぶ
+    filter: p => p.place === 'indoor',
+    productTypes: ['tree', 'kokedama', 'kit'],
     sort: byReviews,
     limit: 18,
     catalog: {
@@ -75,7 +77,7 @@ export const EXTRA_SELECTIONS: Selection[] = [
       {
         heading: 'この価格帯で選べるもの',
         paragraphs: [
-          '3,000円以下では、手のひらサイズのミニ盆栽や苔玉、育てながら形を作っていく若い木（素材・苗）が中心になります。',
+          '3,000円以下では、手のひらサイズのミニ盆栽や苔玉、育てながら形を作っていく若い木（素材・苗）が中心になります。下の一覧には、苗・素材を除いた盆栽と苔玉を載せています。',
         ],
         points: [
           'ミニ盆栽：場所を取らず、はじめての一鉢に向く。小さな鉢は乾きやすいので水やりはこまめに',
@@ -323,13 +325,13 @@ export const EXTRA_SELECTIONS: Selection[] = [
   {
     slug: 'starter-tools',
     title: 'はじめての盆栽鉢・土・道具の選び方｜最初にそろえたいもの - 盆栽コレクション',
-    description: '盆栽を始めるときにそろえたい鉢・土・道具の選び方をまとめました。剪定ばさみ、盆栽鉢、用土、肥料の選び方のポイントと、通販で買える商品の比較表を掲載しています。',
+    description: '盆栽を始めるときにそろえたい鉢・土・道具の選び方をまとめました。盆栽鉢・用土・道具を選ぶときのポイントと、通販で買える掲載中の商品の比較表を掲載しています。',
     h1: 'はじめての鉢・土・道具の選び方',
     eyebrow: '特集・道具',
     shortTitle: 'はじめての鉢・土・道具',
     tagline: '最初にそろえたいものを比較',
     thumbnail: '/images/selections/starter-tools.svg',
-    lead: '盆栽を始めるときに必要な道具は、実はそれほど多くありません。最初にそろえたいものと、鉢・土・道具を選ぶときのポイントをまとめました。',
+    lead: '盆栽を始めるときに必要な道具は、実はそれほど多くありません。最初にそろえたいものと、鉢・土・道具を選ぶときのポイントをまとめました。下の一覧は、このサイトに掲載中の鉢・土・道具です。',
     sections: [
       {
         heading: '最初にそろえたいもの',
@@ -338,7 +340,7 @@ export const EXTRA_SELECTIONS: Selection[] = [
         ],
         points: [
           '剪定ばさみ：伸びた枝や葉を整える。最初の1本に',
-          'ジョウロ：ハス口の細かいものが、土を流さずに水やりしやすい',
+          '水やりの道具：ハス口の細かいジョウロが、土を流さずに水やりしやすい（園芸用のもので十分です）',
           '盆栽鉢と用土：植え替えのときに。樹の大きさに合わせて選ぶ',
         ],
       },
@@ -350,10 +352,12 @@ export const EXTRA_SELECTIONS: Selection[] = [
         ],
       },
     ],
-    listHeading: 'はじめてそろえたい鉢・土・道具',
+    listHeading: '掲載中の盆栽鉢・用土・道具',
     includeParts: true,
     filter: () => true,
     sort: byReviews,
+    // 鉢・土・道具（はさみ・針金・肥料など）を交互に並べ、掲載がある種類はすべて表に出す
+    interleaveBy: p => p.productType,
     limit: 24,
     catalog: {
       all: '/products?type=parts',

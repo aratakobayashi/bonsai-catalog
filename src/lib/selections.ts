@@ -1,4 +1,5 @@
 import type { CatalogProduct } from '@/lib/catalog-model'
+import type { ProductType } from '@/lib/product-classify'
 import { EXTRA_SELECTIONS } from './selections-extra'
 
 // 特集ページ（購入を検討している人向けの選び方＋比較ページ）の定義
@@ -33,11 +34,19 @@ export interface Selection {
   limit?: number
   // 鉢・土・道具も掲載する（通常は盆栽・苔玉のみ）
   includeParts?: boolean
+  // 掲載する商品の種類（指定したときは includeParts より優先）
+  productTypes?: ProductType[]
+  // 苗・素材（「苗：…」「盆栽素材」「実生苗」など）も掲載する（通常は完成した盆栽を見せるため除く）
+  allowSeedlings?: boolean
+  // 並べ替えたあと、この値（例：商品の種類）ごとに1件ずつ交互に並べる（鉢ばかりにならないように）
+  interleaveBy?: (product: CatalogProduct) => string
   // 「一覧で絞り込む」先の商品一覧の条件
   catalog?: { all: string; chips: { label: string; href: string }[] }
 }
 
 const nameText = (p: CatalogProduct) => `${p.originalName} ${p.tags.join(' ')}`
+// 苗・素材（完成した盆栽ではないもの）
+export const isSeedlingOrMaterial = (p: CatalogProduct) => /苗|素材|実生苗/.test(p.originalName)
 const byReviews = (a: CatalogProduct, b: CatalogProduct) => b.reviewCount - a.reviewCount || a.price - b.price
 
 export const SELECTIONS: Selection[] = [
@@ -86,7 +95,7 @@ export const SELECTIONS: Selection[] = [
     thumbnail: '/images/selections/new-year-bonsai.svg',
     // 「松柏類」の「松」には反応させない
     filter: p => /(?<!真)松(?!柏)|梅|南天|竹|縁起/.test(nameText(p)),
-    sort: (a, b) => a.price - b.price,
+    sort: byReviews,
     limit: 15,
     catalog: {
       all: '/products?type=tree&use=new_year',
@@ -100,10 +109,10 @@ export const SELECTIONS: Selection[] = [
   {
     slug: 'beginner-mini-bonsai',
     title: '初心者向けミニ盆栽の選び方｜育てやすい樹種とサイズ・価格を比較 - 盆栽コレクション',
-    description: 'はじめての盆栽におすすめのミニ盆栽・小品盆栽を、樹種・サイズ・育てやすさ・参考価格で比較できます。初心者が選ぶときのポイントと、最初にそろえたい道具もまとめました。',
+    description: 'はじめての盆栽に向くミニ盆栽・小品盆栽を、樹種・サイズ・参考価格で比較できます。育てやすいとされる樹種から1万円以下の商品を選び、初心者が選ぶときのポイントと、最初にそろえたい道具もまとめました。',
     h1: '初心者向けミニ盆栽の選び方',
     eyebrow: '特集・はじめての方へ',
-    lead: 'はじめて盆栽を育てるなら、手のひらに乗るミニ盆栽や小品盆栽から始めると、置き場所に困らず手入れの基本も身につけやすくなります。育てやすさの目安とあわせて比較できるようにまとめました。',
+    lead: 'はじめて盆栽を育てるなら、手のひらに乗るミニ盆栽や小品盆栽から始めると、置き場所に困らず手入れの基本も身につけやすくなります。一般的に育てやすいとされる樹種のうち、1万円以下で買えるものを比較できるようにまとめました。',
     sections: [
       {
         heading: 'はじめての1鉢を選ぶポイント',
@@ -113,7 +122,7 @@ export const SELECTIONS: Selection[] = [
         points: [
           '樹種：五葉松などの松柏類は一年中緑を楽しめ、もみじなどの雑木類は新緑や紅葉で季節を感じられる',
           'サイズ：ミニ・小品は場所を取らない一方、鉢が小さく土が乾きやすいので水切れに注意する',
-          '育てやすさ：下の表の「難易度」を目安に、まずは「初心者OK」のものから選ぶ',
+          '育てやすさ：下の表は、樹種の一般的な目安で「はじめてでも育てやすい」とされる樹種（真柏・もみじ・長寿梅など）だけを載せています。個々の木の状態は商品ページで確認する',
         ],
       },
       {
@@ -134,14 +143,15 @@ export const SELECTIONS: Selection[] = [
     shortTitle: 'はじめての一鉢',
     tagline: '育てやすいミニ盆栽・小品盆栽',
     thumbnail: '/images/selections/beginner-mini-bonsai.svg',
-    filter: p => (p.sizeCategory === 'mini' || p.sizeCategory === 'small') && p.level === 'easy',
+    // 初心者向けの最初の一鉢として、育てやすいとされる樹種・ミニ〜小品・1万円以下
+    filter: p => (p.sizeCategory === 'mini' || p.sizeCategory === 'small') && p.level === 'easy' && p.price > 0 && p.price <= 10000,
     sort: byReviews,
     limit: 18,
     catalog: {
-      all: '/products?type=tree&level=easy',
+      all: '/products?type=tree&level=easy&max=10000',
       chips: [
-        { label: 'ミニ', href: '/products?type=tree&level=easy&size=mini' },
-        { label: '小品', href: '/products?type=tree&level=easy&size=small' },
+        { label: 'ミニ', href: '/products?type=tree&level=easy&size=mini&max=10000' },
+        { label: '小品', href: '/products?type=tree&level=easy&size=small&max=10000' },
       ],
     },
   },
@@ -201,25 +211,44 @@ export function getSelection(slug: string): Selection | undefined {
   return SELECTIONS.find(selection => selection.slug === slug)
 }
 
+const PART_TYPES: ProductType[] = ['pot', 'soil', 'tool', 'wire', 'fertilizer']
+
+function selectionTypes(selection: Selection): ProductType[] {
+  return selection.productTypes ?? (selection.includeParts ? PART_TYPES : ['tree', 'kokedama'])
+}
+
 // 同じ商品名の重複登録をまとめ、盆栽（樹）・苔玉（道具の特集では鉢・土・道具も）から条件に合うものを選ぶ
+// 苗・素材は、allowSeedlings の特集以外では載せない
 export function pickSelectionProducts(selection: Selection, products: CatalogProduct[]): CatalogProduct[] {
   const seen = new Set<string>()
-  const types = selection.includeParts ? ['pot', 'soil', 'tool', 'wire', 'fertilizer'] : ['tree', 'kokedama']
-  const picked = products
+  const types = selectionTypes(selection)
+  let picked = products
     .filter(p => {
       if (seen.has(p.originalName)) return false
       seen.add(p.originalName)
       return types.includes(p.productType)
     })
+    .filter(p => selection.allowSeedlings || !isSeedlingOrMaterial(p))
     .filter(selection.filter)
   if (selection.sort) picked.sort(selection.sort)
+  if (selection.interleaveBy) {
+    const key = selection.interleaveBy
+    const buckets = new Map<string, CatalogProduct[]>()
+    picked.forEach(p => {
+      const k = key(p)
+      buckets.set(k, [...(buckets.get(k) ?? []), p])
+    })
+    const lists = Array.from(buckets.values())
+    const mixed: CatalogProduct[] = []
+    for (let i = 0; mixed.length < picked.length; i++) lists.forEach(list => { if (list[i]) mixed.push(list[i]) })
+    picked = mixed
+  }
   return picked.slice(0, selection.limit ?? picked.length)
 }
 
 // 商品が掲載されている特集（商品詳細ページの導線用）
 export function selectionsForProduct(product: CatalogProduct, limit = 3): Selection[] {
-  const isPart = ['pot', 'soil', 'tool', 'wire', 'fertilizer'].includes(product.productType)
-  return SELECTIONS.filter(s => (s.includeParts ? isPart : !isPart) && s.filter(product)).slice(0, limit)
+  return SELECTIONS.filter(s => selectionTypes(s).includes(product.productType) && (s.allowSeedlings || !isSeedlingOrMaterial(product)) && s.filter(product)).slice(0, limit)
 }
 
 // カテゴリに関係する特集（カテゴリページの導線用）
@@ -237,9 +266,9 @@ const CATEGORY_SELECTIONS: Record<string, string[]> = {
   himeringo: ['fruit-bonsai', 'flowering-bonsai'],
   mimono: ['fruit-bonsai'],
   gajumaru: ['indoor-bonsai'],
-  olive: ['indoor-bonsai'],
+  olive: [],
   mini: ['beginner-mini-bonsai', 'bonsai-under-3000'],
-  kokedama: ['indoor-bonsai', 'bonsai-under-3000'],
+  kokedama: ['bonsai-under-3000', 'indoor-bonsai'],
   hachi: ['starter-tools'], tsuchi: ['starter-tools'], dougu: ['starter-tools'], harigane: ['starter-tools'], hiryo: ['starter-tools'],
 }
 

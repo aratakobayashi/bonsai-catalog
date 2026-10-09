@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { Suspense } from 'react'
+import { redirect } from 'next/navigation'
 import { getArticles, getCategories } from '@/lib/database/articles'
 import { ArticleList, guidesHref } from '@/components/features/ArticleList'
 import { ArticleSearchBox, ArticleSortSelect } from '@/components/features/ArticleFilters'
@@ -32,14 +33,23 @@ interface ArticlesPageProps {
   }
 }
 
-// 絞り込み（カテゴリ・タグ・検索）は一覧トップに正規化し、ページ送りは各ページを正規URLにする
+const parsePage = (value?: string) => {
+  const page = value ? parseInt(value, 10) : 1
+  return Number.isFinite(page) && page >= 1 ? page : 1
+}
+
+// カテゴリはカテゴリごとの一覧を正規URLにし、ページ送りはページ番号も含める。
+// 検索・並び替え（・旧タグ指定）は一覧に正規化して noindex にする
 export function generateMetadata({ searchParams }: ArticlesPageProps): Metadata {
-  const page = searchParams.page ? parseInt(searchParams.page) : 1
+  const page = parsePage(searchParams.page)
   const isFiltered = Boolean(searchParams.tags || searchParams.search || searchParams.sortBy)
-  const canonical = !isFiltered && page > 1 ? `/guides?page=${page}` : '/guides'
+  const params = new URLSearchParams()
+  if (searchParams.category) params.set('category', searchParams.category)
+  if (!isFiltered && page > 1) params.set('page', String(page))
+  const qs = params.toString()
   return {
     ...baseMetadata,
-    alternates: { canonical },
+    alternates: { canonical: qs ? `/guides?${qs}` : '/guides' },
     ...(isFiltered && { robots: { index: false, follow: true } }),
   }
 }
@@ -49,13 +59,14 @@ export const dynamic = 'force-dynamic'
 
 export default async function ArticlesPage({ searchParams }: ArticlesPageProps) {
   // URLパラメータからフィルター条件を構築
+  // （タグでの絞り込みは記事一覧の画面に入口がないため扱わない。?tags= は無視して noindex）
+  const sortBy = SORT_VALUES.find(value => value === searchParams.sortBy)
   const filters = {
     category: searchParams.category,
-    tags: searchParams.tags ? searchParams.tags.split(',') : undefined,
-    search: searchParams.search,
-    page: searchParams.page ? parseInt(searchParams.page) : 1,
+    search: searchParams.search?.trim() || undefined,
+    page: parsePage(searchParams.page),
     limit: 12,
-    sortBy: searchParams.sortBy as 'publishedAt' | 'updatedAt' | 'readingTime' | 'title' | undefined
+    sortBy,
   }
 
   // 並行してデータを取得
@@ -64,6 +75,11 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
     getCategories(),
   ])
 
+  // 範囲外のページ番号は最後のページへ（記事がなければ1ページ目へ）
+  if (filters.page > 1 && filters.page > articlesData.totalPages) {
+    redirect(guidesHref(filters, { page: articlesData.totalPages > 1 ? String(articlesData.totalPages) : undefined }))
+  }
+
   // 一覧では本文を使わないため外して HTML を軽くする
   const listData = {
     ...articlesData,
@@ -71,16 +87,16 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
   }
 
   // 「はじめての方へ」は絞り込みのない1ページ目だけに出す
-  const showBeginnerSteps = !filters.category && !filters.search && !filters.tags && filters.page === 1
+  const showBeginnerSteps = !filters.category && !filters.search && filters.page === 1
 
   // カテゴリのタブ（下線で現在地を示す。SPは横スクロール）
   const tabClass = (active: boolean) =>
-    `flex-none py-3 font-mincho text-sm font-bold lg:text-[15px] ${
+    `flex min-h-11 flex-none items-center whitespace-nowrap font-mincho text-sm font-bold lg:text-[15px] ${
       active ? 'text-ink shadow-[inset_0_-1.5px_0_#22201c]' : 'text-ink-muted hover:text-ink'
     }`
   const tabs = (
-    <nav aria-label="記事のカテゴリ" className="-mx-4 overflow-x-auto px-4 lg:mx-0 lg:overflow-visible lg:px-0">
-      <div className="flex gap-5 border-b border-line lg:flex-wrap lg:gap-x-7">
+    <nav aria-label="記事のカテゴリ" className="guides-tabs -mx-4 overflow-x-auto px-4 lg:mx-0 lg:px-0">
+      <div className="flex w-max min-w-full gap-5 border-b border-line lg:gap-6">
         <Link href={guidesHref(filters, { category: undefined })} className={tabClass(!filters.category)} aria-current={!filters.category ? 'page' : undefined}>
           すべて
         </Link>
@@ -155,6 +171,8 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
 }
 
 const KANJI_NUM = ['一', '二', '三']
+
+const SORT_VALUES = ['publishedAt', 'updatedAt', 'readingTime', 'title'] as const
 
 // 「はじめての方へ」で案内する記事（実在する初心者向け記事）
 const BEGINNER_STEPS = [

@@ -130,8 +130,21 @@ export default function ContactPage() {
           </p>
         </div>
 
+        {/* 送信先が未設定のあいだは、入力を始める前に受付停止を知らせ、フォームは操作できないようにする */}
+        {!contactEmail && (
+          <div role="status" className="mt-5 border border-line bg-white px-4 py-4 text-[13px] leading-[1.9] lg:mt-6 lg:text-[14px]">
+            <p className="font-bold text-ink">お問い合わせフォームは現在準備中です</p>
+            <p className="mt-1 text-ink-soft">
+              受付を開始するまでお待ちください。育て方や商品の探し方は
+              <Link href="/faq" className={`mx-1 ${linkClass}`}>よくある質問</Link>
+              もご覧ください。
+            </p>
+          </div>
+        )}
+
         {step === 'input' ? (
-          <form onSubmit={handleConfirm} className="mt-7 space-y-6 lg:mt-10 lg:space-y-7">
+          <form onSubmit={handleConfirm} aria-disabled={!contactEmail || undefined} className="mt-7 lg:mt-10">
+            <fieldset disabled={!contactEmail} className="m-0 min-w-0 space-y-6 border-0 p-0 disabled:opacity-50 lg:space-y-7">
             <fieldset>
               <legend className="contents"><Label required>お問い合わせの種類</Label></legend>
               <div className="border-t border-line">
@@ -235,6 +248,7 @@ export default function ContactPage() {
             >
               確認画面へ
             </button>
+            </fieldset>
           </form>
         ) : (
           <div className="mt-7 lg:mt-10">

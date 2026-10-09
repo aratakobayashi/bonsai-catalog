@@ -1,5 +1,28 @@
 import { supabase, type DatabaseArticle, type DatabaseArticleCategory, type DatabaseArticleTag } from '@/lib/supabase'
 import type { Article, ArticleCategory, ArticleTag, ArticleListResponse, ArticleFilters } from '@/types'
+import { UNLISTED_ARTICLE_SLUGS } from '@/lib/content-policy'
+import { rankRelatedArticles, type ArticleLinkContext } from '@/lib/article-content'
+
+export interface ArticleQuery extends ArticleFilters {
+  // 削除扱い・noindex の記事も含める（管理画面用）。公開側の一覧では使わない
+  includeUnlisted?: boolean
+}
+
+// 一覧で選べる並び順と、それぞれの既定の向き
+const SORT_FIELDS: Record<string, { column: string; ascending: boolean }> = {
+  publishedAt: { column: 'published_at', ascending: false },
+  updatedAt: { column: 'updated_at', ascending: false },
+  readingTime: { column: 'reading_time', ascending: true }, // 短く読める順
+  title: { column: 'title', ascending: true },
+}
+
+// 検索キーワードに含まれる区切り文字（, ( ) など）は検索条件の書式を壊すため取り除く
+export function sanitizeArticleSearch(raw?: string): string | undefined {
+  const q = raw?.replace(/[,()%*\\"]/g, ' ').replace(/\s+/g, ' ').trim()
+  return q ? q.slice(0, 100) : undefined
+}
+
+const unlistedFilter = () => `(${UNLISTED_ARTICLE_SLUGS.map(slug => `"${slug}"`).join(',')})`
 
 // Function to strip frontmatter from markdown content
 function stripFrontmatter(content: string): string {
@@ -95,7 +118,7 @@ async function getCategoriesWithCache() {
 }
 
 // 記事一覧取得
-export async function getArticles(filters: ArticleFilters = {}): Promise<ArticleListResponse> {
+export async function getArticles(filters: ArticleQuery = {}): Promise<ArticleListResponse> {
   try {
     // カテゴリーを直接取得（キャッシュなし）
     const { data: categories } = await supabase
@@ -131,29 +154,31 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       `, { count: 'exact' })
       .eq('status', 'published')
 
+    // 削除扱い・noindex の記事は一覧に出さない
+    if (!filters.includeUnlisted && UNLISTED_ARTICLE_SLUGS.length > 0) {
+      query = query.not('slug', 'in', unlistedFilter())
+    }
+
     // フィルター適用
     if (categoryId) {
       query = query.eq('category_id', categoryId)
     }
 
-    if (filters.search) {
-      query = query.or(`title.ilike.%${filters.search}%,excerpt.ilike.%${filters.search}%,content.ilike.%${filters.search}%`)
+    const search = sanitizeArticleSearch(filters.search)
+    if (search) {
+      query = query.or(`title.ilike.%${search}%,excerpt.ilike.%${search}%,content.ilike.%${search}%`)
     }
 
-    // ソート
-    const sortFieldMap: Record<string, string> = {
-      publishedAt: 'published_at',
-      updatedAt: 'updated_at',
-      readingTime: 'reading_time',
-      title: 'title'
+    // ソート（読む時間が未設定の記事は最後。同じ値のときは新しい順）
+    const sortField = SORT_FIELDS[filters.sortBy || 'publishedAt'] || SORT_FIELDS.publishedAt
+    const ascending = filters.sortOrder ? filters.sortOrder === 'asc' : sortField.ascending
+    query = query.order(sortField.column, { ascending, nullsFirst: false })
+    if (sortField.column !== 'published_at') {
+      query = query.order('published_at', { ascending: false })
     }
-    const frontendSortBy = filters.sortBy || 'publishedAt'
-    const dbSortBy = sortFieldMap[frontendSortBy] || 'published_at'
-    const sortOrder = filters.sortOrder || 'desc'
-    query = query.order(dbSortBy, { ascending: sortOrder === 'asc' })
 
     // ページネーション
-    const page = filters.page || 1
+    const page = Math.max(1, Math.floor(filters.page || 1))
     const limit = filters.limit || 12
     const offset = (page - 1) * limit
     query = query.range(offset, offset + limit - 1)
@@ -218,6 +243,48 @@ export async function getArticles(filters: ArticleFilters = {}): Promise<Article
       hasNext: false,
       hasPrev: false
     }
+  }
+}
+
+// 関連記事（同じ樹種・話題の記事を優先し、なければ同じカテゴリの新しい記事）
+export async function getRelatedArticles(article: Article, limit = 4): Promise<Article[]> {
+  try {
+    const { data, error } = await supabase
+      .from('articles')
+      .select(`
+        id, title, slug, excerpt, featured_image_url, featured_image_alt, category_id, tag_ids,
+        reading_time, published_at, updated_at, status,
+        category:article_categories!articles_category_id_fkey(*)
+      `)
+      .eq('status', 'published')
+      .not('slug', 'in', unlistedFilter())
+      .order('published_at', { ascending: false })
+      .limit(500)
+
+    if (error || !data) return []
+
+    const candidates = (data as any[]).map(item => {
+      const tags = (item.tag_ids || []).map((id: string) => ({ id, name: '', slug: '' }))
+      return transformDatabaseArticle({ ...item, content: '' }, item.category, tags)
+    })
+    return rankRelatedArticles(article, candidates, limit).map(related => ({ ...related, tags: [] }))
+  } catch (error) {
+    console.error('関連記事取得エラー:', error)
+    return []
+  }
+}
+
+// 本文中のサイト内リンクの存在確認に使う一覧（公開中の記事とイベント）
+export async function getArticleLinkContext(): Promise<ArticleLinkContext> {
+  const [articlesResult, eventsResult] = await Promise.all([
+    supabase.from('articles').select('slug, title').eq('status', 'published').limit(2000),
+    supabase.from('events').select('slug').limit(5000),
+  ])
+  const articles = ((articlesResult.data as { slug: string; title: string }[] | null) || [])
+  const events = eventsResult.error ? null : ((eventsResult.data as { slug: string | null }[] | null) || [])
+  return {
+    articles: articles.filter(a => a.slug),
+    eventSlugs: events ? new Set(events.map(e => e.slug).filter((slug): slug is string => Boolean(slug))) : null,
   }
 }
 

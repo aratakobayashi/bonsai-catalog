@@ -10,6 +10,7 @@ export default async function ArticlesPage() {
   const articlesData = await getArticles({
     page: 1,
     limit: 100, // 管理画面では全記事を表示
+    includeUnlisted: true,
     sortBy: 'updatedAt',
     sortOrder: 'desc'
   })

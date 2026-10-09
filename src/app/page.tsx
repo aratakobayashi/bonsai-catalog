@@ -100,6 +100,17 @@ async function getCareArticles(speciesSlug: string): Promise<GuideLink[]> {
   }
 }
 
+// データの取得が一時的に失敗しても、エラー画面ではなく取れた分だけで表示する
+// （エラー画面のまま ISR のキャッシュに残り、しばらく表示され続けるのを防ぐ）
+async function safely<T>(label: string, task: () => Promise<T>, fallback: T): Promise<T> {
+  try {
+    return await task()
+  } catch (error) {
+    console.error(`トップの${label}の取得に失敗しました:`, error instanceof Error ? error.message : error)
+    return fallback
+  }
+}
+
 async function getGardenCount(): Promise<number> {
   const { data, error } = await supabaseServer.from('gardens').select('id')
   if (error) {
@@ -112,10 +123,10 @@ async function getGardenCount(): Promise<number> {
 export default async function HomePage() {
   const season = getSeasonalPick()
   const [products, careArticles, gardenCount, eventCount] = await Promise.all([
-    getCatalogProducts(),
-    getCareArticles(season.slug),
-    getGardenCount(),
-    getUpcomingEventsCount(),
+    safely('商品', getCatalogProducts, [] as CatalogProduct[]),
+    safely('記事', () => getCareArticles(season.slug), [] as GuideLink[]),
+    safely('盆栽園の件数', getGardenCount, 0),
+    safely('イベントの件数', getUpcomingEventsCount, 0),
   ])
 
   // 商品一覧（/products）の既定の表示と同じく「その他」を除いた件数

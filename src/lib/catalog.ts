@@ -15,9 +15,12 @@ import {
   type Place,
   type Season,
 } from '@/lib/species-traits'
-import { matchesKeyword, parseKeyword } from '@/lib/search-normalize'
+import { keywordTypeIntent, matchesKeyword, parseKeyword } from '@/lib/search-normalize'
+import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 
 export const PRODUCTS_CACHE_TAG = 'products'
+// キーワードの最大文字数（一覧の検索と検索候補で共通）
+export const KEYWORD_MAX_LENGTH = 60
 export const PAGE_SIZE = 24
 
 export type { CatalogProduct, ProductSource } from '@/lib/catalog-model'
@@ -50,14 +53,15 @@ async function fetchChunkOnce(index: number): Promise<any[]> {
 
   // 拡張前のDB（列が足りない）では全列を取得して補う
   if (error) {
-    if (index > 0) return []
+    // 2つ目以降の塊の失敗は「0件」として保存せず、やり直しに回す
+    if (index > 0) throw new Error(`商品データの取得エラー: ${error.message}`)
     const fallback = await supabaseServer.from('products').select('*').order('created_at', { ascending: false }).limit(1000)
     data = (fallback.data || []).map((row: any) => ({ ...row, description: undefined }))
     error = fallback.error
   }
   if (error) {
-    console.error('商品データの取得エラー:', error.message)
-    return []
+    // 空の結果をキャッシュに残さないよう、失敗は例外にしてやり直す
+    throw new Error(`商品データの取得エラー: ${error.message}`)
   }
   return data || []
 }
@@ -135,25 +139,28 @@ interface SpeciesOption {
 }
 
 const nameMatches = (pattern: RegExp) => (p: CatalogProduct) => pattern.test(p.originalName)
+// 樹種は商品名の最初に書かれている樹種（species-traits の判定）で分ける。
+// 名前全体で探すと、キーワードを羅列した商品が多くの樹種に入ってしまうため
+const speciesIs = (...keys: string[]) => (p: CatalogProduct) => p.speciesKey !== null && keys.includes(p.speciesKey)
 
 export const SPECIES_OPTIONS: SpeciesOption[] = [
-  { value: 'goyomatsu', label: '五葉松', match: nameMatches(/五葉松|ゴヨウマツ/) },
-  { value: 'kuromatsu', label: '黒松', match: nameMatches(/黒松|クロマツ/) },
-  { value: 'shimpaku', label: '真柏', match: nameMatches(/真柏|シンパク/) },
-  { value: 'momiji', label: 'もみじ・楓', match: nameMatches(/もみじ|モミジ|紅葉|楓|カエデ/) },
-  { value: 'sakura', label: '桜', match: nameMatches(/桜|さくら|サクラ/) },
-  { value: 'ume', label: '梅・長寿梅', match: nameMatches(/梅|うめ|ウメ/) },
+  { value: 'goyomatsu', label: '五葉松', match: speciesIs('goyomatsu') },
+  { value: 'kuromatsu', label: '黒松', match: speciesIs('kuromatsu') },
+  { value: 'shimpaku', label: '真柏', match: speciesIs('shimpaku') },
+  { value: 'momiji', label: 'もみじ・楓', match: speciesIs('momiji') },
+  { value: 'sakura', label: '桜', match: speciesIs('sakura') },
+  { value: 'ume', label: '梅・長寿梅', match: speciesIs('ume', 'chojubai') },
   { value: 'mini', label: 'ミニ盆栽', match: p => p.sizeCategory === 'mini' || /ミニ/.test(p.originalName) },
   { value: 'kokedama', label: '苔玉', match: nameMatches(/苔玉|こけだま|コケダマ/) },
-  { value: 'akamatsu', label: '赤松', match: nameMatches(/赤松|アカマツ/) },
-  { value: 'satsuki', label: 'さつき', match: nameMatches(/さつき|サツキ|皐月/) },
-  { value: 'keyaki', label: '欅（けやき）', match: nameMatches(/欅|けやき|ケヤキ/) },
-  { value: 'sansho', label: '山椒', match: nameMatches(/山椒|サンショウ/) },
-  { value: 'nanten', label: '南天', match: nameMatches(/南天|ナンテン/) },
-  { value: 'himeringo', label: '姫りんご', match: nameMatches(/姫りんご|姫リンゴ|ヒメリンゴ/) },
+  { value: 'akamatsu', label: '赤松', match: speciesIs('akamatsu') },
+  { value: 'satsuki', label: 'さつき', match: speciesIs('satsuki') },
+  { value: 'keyaki', label: '欅（けやき）', match: speciesIs('keyaki') },
+  { value: 'sansho', label: '山椒', match: speciesIs('sansho') },
+  { value: 'nanten', label: '南天', match: speciesIs('nanten') },
+  { value: 'himeringo', label: '姫りんご', match: speciesIs('himeringo') },
   { value: 'mimono', label: '実もの盆栽', match: p => p.category === '実もの' },
-  { value: 'olive', label: 'オリーブ', match: nameMatches(/オリーブ/) },
-  { value: 'gajumaru', label: 'ガジュマル', match: nameMatches(/ガジュマル|がじゅまる/) },
+  { value: 'olive', label: 'オリーブ', match: speciesIs('olive') },
+  { value: 'gajumaru', label: 'ガジュマル', match: speciesIs('gajumaru') },
   { value: 'cat-shohaku', label: '松柏類（すべて）', match: p => p.category === '松柏類' },
   { value: 'cat-zouki', label: '雑木類（すべて）', match: p => p.category === '雑木類' },
   { value: 'cat-hana', label: '花もの（すべて）', match: p => p.category === '花もの' },
@@ -184,7 +191,7 @@ export const SORT_OPTIONS = [
 ] as const
 
 export const FLAG_OPTIONS = [
-  { value: 'free_shipping', label: '送料無料' },
+  { value: 'free_shipping', label: '送料込' },
   { value: 'reviewed', label: 'レビューあり' },
   { value: 'rating4', label: '評価★4以上' },
   { value: 'wrapping', label: 'ラッピング・のし対応' },
@@ -260,7 +267,7 @@ export function parseFilters(rawParams: RawParams): CatalogFilters {
   const size = first(params.size)
   const shop = first(params.shop)
   return {
-    q: first(params.q)?.trim().slice(0, 60) || undefined,
+    q: first(params.q)?.trim().slice(0, KEYWORD_MAX_LENGTH) || undefined,
     type: TYPE_OPTIONS.some(o => o.value === first(params.type)) ? first(params.type) : undefined,
     species: SPECIES_OPTIONS.some(o => o.value === first(params.species)) ? first(params.species) : undefined,
     size: SIZE_OPTIONS.some(o => o.value === size) ? (size as SizeCategory) : undefined,
@@ -325,8 +332,11 @@ export function filterProducts(products: CatalogProduct[], filters: CatalogFilte
     return true
   })
 
+  // キーワードが種類を指している（「鉢」「はさみ」など）ときは、おすすめ順でその種類を先に並べる（鉢植えの盆栽より盆栽鉢を先に）
+  const intent = filters.q && !filters.type ? keywordTypeIntent(keyword) : null
+  const intentRank = (p: CatalogProduct) => (intent && intent.includes(p.productType) ? 0 : 1)
   const sorters: Record<SortValue, (a: CatalogProduct, b: CatalogProduct) => number> = {
-    recommended: (a, b) => recommendScore(b) - recommendScore(a),
+    recommended: (a, b) => intentRank(a) - intentRank(b) || recommendScore(b) - recommendScore(a),
     price_asc: (a, b) => a.price - b.price,
     price_desc: (a, b) => b.price - a.price,
     reviews: (a, b) => b.reviewCount - a.reviewCount,
@@ -394,4 +404,53 @@ export function relaxSuggestions(products: CatalogProduct[], filters: CatalogFil
     .filter(s => s.count > 0)
     .sort((a, b) => b.count - a.count)
     .slice(0, limit)
+}
+
+// ---- カテゴリごとの件数（0件のカテゴリを出さないために使う） ----
+
+// 鉢・土・道具のカテゴリ（SHOP_CATEGORIES の slug）と商品の種類
+export const CATEGORY_PART_TYPES: Record<string, ProductType> = {
+  hachi: 'pot', tsuchi: 'soil', dougu: 'tool', harigane: 'wire', hiryo: 'fertilizer',
+}
+
+// カテゴリページ（/products/category/[slug]）で使う条件（並び順などは既定）
+export function categoryFilters(slug: string, base: CatalogFilters = parseFilters({})): CatalogFilters {
+  const partType = CATEGORY_PART_TYPES[slug]
+  return partType
+    ? { ...base, species: undefined, type: partType }
+    : { ...base, species: slug, type: slug === 'kokedama' ? 'kokedama' : 'tree' }
+}
+
+const countsCache = new WeakMap<CatalogProduct[], Record<string, number>>()
+
+// SHOP_CATEGORIES の slug ごとの件数（カテゴリページを開いたときと同じ条件で数える）。同じ配列なら結果を使い回す
+export function categoryCounts(products: CatalogProduct[]): Record<string, number> {
+  const cached = countsCache.get(products)
+  if (cached) return cached
+  const counts: Record<string, number> = {}
+  SHOP_CATEGORIES.forEach(c => { counts[c.slug] = filterProducts(products, categoryFilters(c.slug)).length })
+  countsCache.set(products, counts)
+  return counts
+}
+
+// 商品が1件以上あるカテゴリの slug
+export function nonEmptyCategorySlugs(products: CatalogProduct[]): Set<string> {
+  const counts = categoryCounts(products)
+  return new Set(Object.keys(counts).filter(slug => counts[slug] > 0))
+}
+
+const optionCountsCache = new WeakMap<CatalogProduct[], { type: Record<string, number>; species: Record<string, number> }>()
+
+// 絞り込みの選択肢（種類・樹種）ごとの件数（ほかの条件なし）。0件の選択肢を出さないために使う
+export function optionCounts(products: CatalogProduct[]): { type: Record<string, number>; species: Record<string, number> } {
+  const cached = optionCountsCache.get(products)
+  if (cached) return cached
+  const base = parseFilters({})
+  const type: Record<string, number> = {}
+  const species: Record<string, number> = {}
+  TYPE_OPTIONS.forEach(o => { type[o.value] = filterProducts(products, { ...base, type: o.value }).length })
+  SPECIES_OPTIONS.forEach(o => { species[o.value] = filterProducts(products, { ...base, species: o.value }).length })
+  const result = { type, species }
+  optionCountsCache.set(products, result)
+  return result
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Script from 'next/script'
 import {
   buildCatalogUrl,
   filterProducts,
@@ -60,6 +61,36 @@ const QUESTIONS = [
 ] as const
 
 type Answers = Partial<Record<(typeof QUESTIONS)[number]['name'], string>>
+
+// 未回答のまま送信したとき、ブラウザ標準の吹き出し（見えないラジオボタンに出る）の代わりに質問の下へ案内を出す。
+// document で受けるので、画面遷移でフォームが作り直されても動く
+const SHINDAN_VALIDATION_SCRIPT = `(function(){
+  var focused = false;
+  function toggle(fieldset, show){
+    var message = fieldset && fieldset.querySelector('[data-shindan-error]');
+    if (!message) return;
+    message.hidden = !show;
+    if (show) fieldset.setAttribute('aria-invalid', 'true'); else fieldset.removeAttribute('aria-invalid');
+  }
+  document.addEventListener('invalid', function(event){
+    var input = event.target;
+    if (!input || !input.form || input.form.id !== 'shindan-form') return;
+    event.preventDefault();
+    var fieldset = input.closest('fieldset');
+    toggle(fieldset, true);
+    if (!focused && fieldset) {
+      focused = true;
+      setTimeout(function(){ focused = false; }, 0);
+      fieldset.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      input.focus({ preventScroll: true });
+    }
+  }, true);
+  document.addEventListener('change', function(event){
+    var input = event.target;
+    if (!input || !input.form || input.form.id !== 'shindan-form') return;
+    toggle(input.closest('fieldset'), false);
+  });
+})();`
 
 const BUDGET_RANGE: Record<string, { min?: number; max?: number }> = {
   '3000': { max: 3000 },
@@ -134,11 +165,17 @@ export default async function ShindanPage({ searchParams }: ShindanPageProps) {
       />
 
       {/* 質問：左に問い、右に選択肢（線で区切った行） */}
-      <form action="/shindan" className="mt-8 border-t border-line lg:mt-12">
+      {/* 送信後は結果の位置から表示する。未回答の質問があれば、その質問の下に案内を出す（下のスクリプト） */}
+      <form id="shindan-form" action="/shindan#result" className="mt-8 border-t border-line lg:mt-12">
         {QUESTIONS.map(question => (
-          <fieldset key={question.name} className="border-b border-line py-5 lg:grid lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-16 lg:py-6">
+          <fieldset
+            key={question.name}
+            aria-describedby={`shindan-error-${question.name}`}
+            className="scroll-mt-24 border-b border-line py-5 lg:grid lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-16 lg:py-6"
+          >
             <legend className="sr-only">{question.title}</legend>
             <div aria-hidden="true" className="mb-3 font-mincho text-base font-bold tracking-[0.04em] text-ink lg:mb-0 lg:text-lg">{question.title}</div>
+            <div>
             <div className="flex flex-wrap gap-2">
               {question.options.map(option => (
                 <label key={option.value} className="cursor-pointer">
@@ -150,11 +187,15 @@ export default async function ShindanPage({ searchParams }: ShindanPageProps) {
                     required
                     className="peer sr-only"
                   />
-                  <span className="inline-flex items-center border border-line bg-white px-3.5 py-2 text-[13px] text-ink hover:border-ink peer-checked:border-sumi peer-checked:bg-sumi peer-checked:font-bold peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold">
+                  <span className="inline-flex min-h-11 items-center border border-line bg-white px-3.5 py-2 text-[13px] text-ink hover:border-ink peer-checked:border-sumi peer-checked:bg-sumi peer-checked:font-bold peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold">
                     {option.label}
                   </span>
                 </label>
               ))}
+            </div>
+            <p id={`shindan-error-${question.name}`} data-shindan-error hidden className="mt-2 text-xs font-bold text-[#9b1c1c]">
+              選択肢から1つ選んでください
+            </p>
             </div>
           </fieldset>
         ))}
@@ -165,9 +206,10 @@ export default async function ShindanPage({ searchParams }: ShindanPageProps) {
           </button>
         </div>
       </form>
+      <Script id="shindan-validation" strategy="afterInteractive">{SHINDAN_VALIDATION_SCRIPT}</Script>
 
       {result && (
-        <section className="pt-12 lg:pt-24" id="result">
+        <section className="scroll-mt-16 pt-12 lg:pt-24" id="result">
           <SectionTitle>診断結果：{result.results.length.toLocaleString()}件の盆栽が見つかりました</SectionTitle>
           {answers.place === 'indoor' && (
             <p className="mt-4 border-l-2 border-gold pl-3 text-sm leading-relaxed text-ink-soft">

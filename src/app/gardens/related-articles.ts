@@ -1,5 +1,6 @@
 // 盆栽園・イベントのページの「あわせて読む」。出かける・見学・展示に関係する記事を優先し、足りない分は新着で埋める
 import { supabaseServer } from '@/lib/supabase-server'
+import { isArticleListable } from '@/lib/content-policy'
 import type { Article } from '@/types'
 
 const SELECT = `
@@ -46,7 +47,7 @@ export async function getTopicArticles(
   const add = (rows: any[] | null) => {
     for (const item of rows || []) {
       if (articles.length >= limit) break
-      if (seen.has(item.id)) continue
+      if (seen.has(item.id) || !isArticleListable(item.slug)) continue
       seen.add(item.id)
       articles.push(toArticle(item))
     }

@@ -156,7 +156,7 @@ export default function AboutPage() {
             rows={[
               { label: 'サイト名', body: '盆栽コレクション' },
               { label: '運営者', body: '盆栽コレクション 編集部' },
-              { label: 'URL', body: 'https://bonsai-collection.com' },
+              { label: 'URL', body: 'https://www.bonsai-collection.com' },
               { label: '運営開始', body: '2024年9月' },
               { label: '主なコンテンツ', body: '盆栽育て方ガイド・樹種別解説・盆栽園情報・イベントカレンダー' },
               { label: '対象読者', body: '盆栽初心者〜上級者、盆栽に興味のある方全般' },

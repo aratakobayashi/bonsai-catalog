@@ -194,9 +194,15 @@ export const purchaseFAQs: FAQItem[] = [
   },
   {
     question: '盆栽はどこで購入できますか？',
-    answer: '盆栽は専門店、園芸店、オンラインショップで購入できます。初心者の方は、アフターケアや相談ができる専門店がおすすめです。当サイトでは、Amazonで購入可能な厳選商品をご紹介しています。',
+    answer: '盆栽は専門店、園芸店、オンラインショップで購入できます。初心者の方は、アフターケアや相談ができる専門店がおすすめです。当サイトでは、楽天市場・Amazonで購入できる盆栽を比較・紹介しています（当サイトでの販売は行っていません）。',
     category: 'purchase',
     keywords: ['購入', '買う', '通販', 'Amazon']
+  },
+  {
+    question: '送料はいくらかかりますか？',
+    answer: '当サイトでは販売を行っていないため、送料は購入するショップ（楽天市場・Amazon）の商品ページでご確認ください。送料や配送日数はショップや商品、お届け先によって異なります。',
+    category: 'purchase',
+    keywords: ['送料', '配送', '配送料', '送料無料']
   },
   {
     question: '盆栽を贈り物にする際の注意点は？',
@@ -290,6 +296,23 @@ const techniqueFAQs: FAQItem[] = [
     keywords: ['根上がり', '作り方', 'コツ', '技術', '植え替え']
   }
 ]
+
+// よくある質問ページに載せるすべての質問（同じ質問は1回だけ）
+export function getAllFAQs(): FAQItem[] {
+  const seen = new Set<string>()
+  return [
+    ...generalFAQs,
+    ...seasonalFAQs,
+    ...troubleshootingFAQs,
+    ...techniqueFAQs,
+    ...purchaseFAQs,
+    ...Object.values(speciesFAQs).flat(),
+  ].filter(faq => {
+    if (seen.has(faq.question)) return false
+    seen.add(faq.question)
+    return true
+  })
+}
 
 // カテゴリ別FAQを取得
 export function getFAQsByCategory(category: FAQItem['category']): FAQItem[] {

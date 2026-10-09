@@ -1,28 +1,25 @@
 import { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getArticleBySlug, getArticles } from '@/lib/database/articles'
+import { getArticleBySlug, getArticleLinkContext, getRelatedArticles } from '@/lib/database/articles'
 import { supabaseServer } from '@/lib/supabase-server'
 import { ShareButtons } from '@/components/features/ShareButtons'
 import { TableOfContents, MobileTableOfContents } from '@/components/features/TableOfContents'
 import { ArticleSidebarProducts } from '@/components/article/ArticleSidebarProducts'
 import { GuideArticleCard } from '@/components/article/GuideArticleCard'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
-import { ArticleStructuredData, HowToStructuredData, BreadcrumbStructuredData, FAQStructuredData } from '@/components/seo/StructuredData'
-import { generateArticleSEO, generateHowToStructuredData } from '@/lib/seo-utils'
-import { generateArticleBreadcrumbs } from '@/lib/breadcrumb-utils'
-import { getRelatedFAQs } from '@/lib/faq-data'
+import { ArticleStructuredData, BreadcrumbStructuredData } from '@/components/seo/StructuredData'
+import { generateArticleSEO } from '@/lib/seo-utils'
 import { formatDate } from '@/lib/date-utils'
-import { processMarkdown, generateTableOfContents } from '@/lib/markdown'
-
-// ページの見出し（h1）は記事タイトルだけにするため、本文中の h1 は h2 として表示する
-const demoteH1 = (html: string) => html.replace(/<h1(\s|>)/g, '<h2$1').replace(/<\/h1>/g, '</h2>')
+import { processMarkdown, extractTableOfContents } from '@/lib/markdown'
+import { detectArticleSpecies, fallbackSelectionSlug, normalizeForMatch, stripLeadingTitleHeading } from '@/lib/article-content'
+import { getSelection, selectionsForCategory } from '@/lib/selections'
 import { normalizeProduct } from '@/lib/catalog-model'
-import { SITE_URL } from '@/lib/site'
+import { SITE_URL, absoluteUrl } from '@/lib/site'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { CONTAINER, Breadcrumbs, SectionTitle } from '@/components/ui/design'
-import { isArticleIndexable } from '@/lib/content-policy'
+import { isArticleHidden, isArticleIndexable } from '@/lib/content-policy'
 import type { Product } from '@/types'
 
 interface ArticlePageProps {
@@ -67,6 +64,11 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+  // 削除扱いの記事はページ側で /guides へリダイレクトする
+  if (isArticleHidden(params.slug)) {
+    return { title: '育て方 | 盆栽コレクション', robots: { index: false, follow: true } }
+  }
+
   const article = await getArticleBySlug(params.slug)
   
   if (!article) {
@@ -84,14 +86,14 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     keywords: seo.keywords,
     openGraph: {
       ...seo.openGraph,
-      images: article.featuredImage ? [{ url: typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url }] : [],
+      images: article.featuredImage ? [{ url: absoluteUrl(typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url) }] : [],
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt,
       authors: ['盆栽コレクション'],
     },
     twitter: {
       ...seo.twitter,
-      images: article.featuredImage ? [typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url] : [],
+      images: article.featuredImage ? [absoluteUrl(typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url)] : [],
     },
     alternates: {
       canonical: `https://www.bonsai-collection.com/guides/${params.slug}`,
@@ -101,6 +103,11 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
+  // 盆栽と無関係な記事（削除扱い）は記事一覧へ恒久リダイレクト
+  if (isArticleHidden(params.slug)) {
+    permanentRedirect('/guides')
+  }
+
   const article = await getArticleBySlug(params.slug)
 
   if (!article) {
@@ -108,21 +115,22 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   }
 
   // 並行してデータを取得
-  const [relatedProducts, relatedArticlesData] = await Promise.all([
+  const [relatedProducts, relatedArticles, linkContext] = await Promise.all([
     getRelatedProducts(article.relatedProducts, article),
-    getArticles({ 
-      category: article.category.slug, 
-      limit: 3 
-    })
+    getRelatedArticles(article, 4),
+    getArticleLinkContext().catch(() => undefined),
   ])
 
-  // 現在の記事を除外
-  const relatedArticles = relatedArticlesData.articles.filter(a => a.id !== article.id)
-
-  // 日付フォーマット（hydrationエラー対策済み）
+  // 本文（先頭の「記事タイトルと同じ見出し」は h1 と重複するので外す）
+  const bodyHtml = processMarkdown(stripLeadingTitleHeading(article.content, article.title), { links: linkContext })
 
   // 目次を生成（大見出しだけを並べる。大見出しがない記事はすべての見出し）
-  const allHeadings = generateTableOfContents(article.content)
+  const titleKey = normalizeForMatch(article.title)
+  // （記事タイトルと同じ見出しと、本文中の「目次」見出しは目次に入れない）
+  const allHeadings = extractTableOfContents(bodyHtml).filter(item => {
+    const key = normalizeForMatch(item.text)
+    return key !== titleKey && key !== '目次'
+  })
   const h2Headings = allHeadings.filter(item => item.level === 2)
   const tableOfContents = h2Headings.length > 0 ? h2Headings : allHeadings
 
@@ -140,14 +148,17 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     ? article.featuredImage.alt || article.title
     : article.title
 
-  // How-to構造化データを自動生成
-  const howToData = generateHowToStructuredData(article)
+  // パンくずリスト構造化データ（画面のパンくずと同じ「ホーム › 育て方 › カテゴリ › 記事」）
+  const breadcrumbs = [
+    { name: 'ホーム', url: SITE_URL, position: 1 },
+    { name: '育て方', url: `${SITE_URL}/guides`, position: 2 },
+    { name: article.category.name, url: `${SITE_URL}/guides?category=${encodeURIComponent(article.category.slug)}`, position: 3 },
+    { name: article.title, url: articleUrl, position: 4 },
+  ]
 
-  // パンくずリスト構造化データを生成
-  const breadcrumbs = generateArticleBreadcrumbs(article)
-
-  // 記事に関連するFAQを自動生成
-  const relatedFAQs = getRelatedFAQs(article.title, article.content, 5)
+  // 記事下の案内（診断・特集・樹種別の商品一覧）
+  const species = detectArticleSpecies(article.title)
+  const selection = (species && selectionsForCategory(species.category)[0]) || getSelection(fallbackSelectionSlug(article.title))
 
   return (
     <>
@@ -155,21 +166,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         article={article}
         baseUrl="https://www.bonsai-collection.com"
       />
-      {/* How-to記事の場合は自動的にHowTo構造化データを追加 */}
-      {howToData && (
-        <HowToStructuredData
-          {...howToData}
-          baseUrl="https://www.bonsai-collection.com"
-          articleSlug={article.slug}
-        />
-      )}
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
-      {relatedFAQs.length > 0 && (
-        <FAQStructuredData
-          faqs={relatedFAQs}
-          baseUrl="https://www.bonsai-collection.com"
-        />
-      )}
 
       <div className={`${CONTAINER} pb-16 pt-5 lg:pb-20 lg:pt-6`}>
         <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, ...crumbs]} className="hidden lg:block" />
@@ -221,7 +218,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <div
               id="article-body"
               className="article-body mt-5 lg:mt-8"
-              dangerouslySetInnerHTML={{ __html: demoteH1(processMarkdown(article.content)) }}
+              dangerouslySetInnerHTML={{ __html: bodyHtml }}
             />
 
             {/* シェア */}
@@ -229,6 +226,44 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               <p className="mb-3 text-[11px] tracking-[0.1em] text-ink-muted">この記事をシェア</p>
               <ShareButtons url={articleUrl} title={article.title} size="large" />
             </div>
+
+            {/* 次の一歩（診断・特集・樹種別の商品一覧） */}
+            <nav aria-labelledby="article-next" className="mt-10">
+              <p id="article-next" className="text-[11px] tracking-[0.1em] text-ink-muted">盆栽を選ぶなら</p>
+              <ul className="mt-2 border-t border-line">
+                <li className="border-b border-line">
+                  <Link href="/shindan" className="group flex min-h-[56px] items-center gap-3 py-3">
+                    <span className="min-w-0 flex-1">
+                      <span className="block font-mincho text-[15px] font-bold text-ink group-hover:text-gold-dark">かんたん盆栽診断</span>
+                      <span className="mt-0.5 block text-xs text-ink-muted">置き場所・予算・楽しみ方など4つの質問で、合いそうな盆栽を探す</span>
+                    </span>
+                    <span aria-hidden="true" className="text-ink-muted">›</span>
+                  </Link>
+                </li>
+                {selection && (
+                  <li className="border-b border-line">
+                    <Link href={`/selection/${selection.slug}`} className="group flex min-h-[56px] items-center gap-3 py-3">
+                      <span className="min-w-0 flex-1">
+                        <span className="block font-mincho text-[15px] font-bold text-ink group-hover:text-gold-dark">{selection.shortTitle}</span>
+                        <span className="mt-0.5 block text-xs text-ink-muted">{selection.tagline}</span>
+                      </span>
+                      <span aria-hidden="true" className="text-ink-muted">›</span>
+                    </Link>
+                  </li>
+                )}
+                {species && (
+                  <li className="border-b border-line">
+                    <Link href={`/products/category/${species.category}`} className="group flex min-h-[56px] items-center gap-3 py-3">
+                      <span className="min-w-0 flex-1">
+                        <span className="block font-mincho text-[15px] font-bold text-ink group-hover:text-gold-dark">{species.label}の盆栽を探す</span>
+                        <span className="mt-0.5 block text-xs text-ink-muted">通販で買える{species.label}を価格・ショップで比較</span>
+                      </span>
+                      <span aria-hidden="true" className="text-ink-muted">›</span>
+                    </Link>
+                  </li>
+                )}
+              </ul>
+            </nav>
 
             {/* 関連商品（PCはサイドバーに表示） */}
             {catalogProducts.length > 0 && (

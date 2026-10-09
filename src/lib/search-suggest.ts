@@ -1,9 +1,10 @@
+import { isArticleListable } from '@/lib/content-policy'
 // 検索候補（ヘッダーの検索欄・スマホの検索画面）：樹種 → 商品 → 育て方 の順に返す
 // 商品・記事はキャッシュ済みのデータから探し、DB への問い合わせを増やさない
 import { unstable_cache } from 'next/cache'
-import { filterProducts, getCatalogProducts, parseFilters, type CatalogProduct } from '@/lib/catalog'
+import { KEYWORD_MAX_LENGTH, categoryCounts, filterProducts, getCatalogProducts, parseFilters, type CatalogProduct } from '@/lib/catalog'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
-import { SEASON_OPTIONS, SPECIES_TRAITS } from '@/lib/species-traits'
+import { peakLabel } from '@/lib/seasons'
 import { matchesKeyword, parseKeyword } from '@/lib/search-normalize'
 import { supabase } from '@/lib/supabase'
 
@@ -11,7 +12,7 @@ export interface SuggestSpecies {
   slug: string
   name: string
   count: number
-  // 見ごろの季節（樹種ごとの一般的な目安。ない樹種は空）
+  // 見頃の目安（「見頃 花 2〜3月」など。seasons.ts の樹種ごとの一般的な目安。常緑・ない樹種は空）
   season: string
 }
 
@@ -28,7 +29,7 @@ const READINGS: Record<string, string> = {
   goyomatsu: 'ごようまつ goyomatsu',
   kuromatsu: 'くろまつ kuromatsu',
   shimpaku: 'しんぱく 糸魚川 shimpaku',
-  momiji: 'もみじ 紅葉 楓 かえで momiji',
+  momiji: 'もみじ もみぢ 楓 かえで momiji',
   sakura: 'さくら sakura',
   ume: 'うめ ちょうじゅばい 長寿梅 ume',
   mini: 'みに 豆盆栽 小品',
@@ -38,7 +39,7 @@ const READINGS: Record<string, string> = {
   keyaki: 'けやき 欅 keyaki',
   sansho: 'さんしょう 山椒',
   nanten: 'なんてん 南天',
-  himeringo: 'ひめりんご りんご 林檎',
+  himeringo: 'ひめりんご 姫林檎 りんご 林檎',
   mimono: 'みもの 実物',
   olive: 'おりーぶ',
   gajumaru: 'がじゅまる',
@@ -49,14 +50,10 @@ const FEATURED_SPECIES = ['momiji', 'goyomatsu', 'ume', 'kuromatsu', 'sakura', '
 
 const TREE_CATEGORIES = SHOP_CATEGORIES.filter(c => c.group === 'tree')
 
-function speciesCount(products: CatalogProduct[], slug: string): number {
-  return filterProducts(products, { ...parseFilters({}), species: slug, type: slug === 'kokedama' ? 'kokedama' : 'tree' }).length
-}
-
 function seasonText(slug: string): string {
-  const trait = SPECIES_TRAITS.find(t => t.key === slug)
-  if (!trait?.seasons.length) return ''
-  return `見ごろ ${trait.seasons.map(s => SEASON_OPTIONS.find(o => o.value === s)?.label).join('・')}`
+  const label = peakLabel(slug)
+  // 常緑は「見頃」ではないので出さない
+  return label && !label.includes('常緑') ? `見頃 ${label}` : ''
 }
 
 // 商品一覧の変換結果を1分だけメモリに持つ（候補は入力ごとに呼ばれるため）
@@ -65,7 +62,9 @@ let memo: { at: number; products: CatalogProduct[]; counts: Map<string, number> 
 async function getProductsWithCounts() {
   if (memo && Date.now() - memo.at < 60_000) return memo
   const products = await getCatalogProducts()
-  const counts = new Map(TREE_CATEGORIES.map(c => [c.slug, speciesCount(products, c.slug)]))
+  // 件数はカテゴリページ（/products/category/[slug]）と同じ条件で数える
+  const all = categoryCounts(products)
+  const counts = new Map(TREE_CATEGORIES.map(c => [c.slug, all[c.slug] ?? 0]))
   memo = { at: Date.now(), products, counts }
   return memo
 }
@@ -83,9 +82,10 @@ const getArticleTitles = unstable_cache(
       console.error('記事タイトルの取得エラー:', error.message)
       return []
     }
-    return ((data as { slug: string; title: string }[] | null) ?? []).filter(a => a.slug && a.title)
+    // 非公開扱い（テーマ外・noindex）の記事は候補に出さない
+    return ((data as { slug: string; title: string }[] | null) ?? []).filter(a => a.slug && a.title && isArticleListable(a.slug))
   },
-  ['search-suggest-article-titles-v1'],
+  ['search-suggest-article-titles-v2'],
   { revalidate: 3600, tags: ['articles'] },
 )
 
@@ -100,12 +100,12 @@ export async function getFeaturedSpecies(): Promise<SuggestSpecies[]> {
 }
 
 export async function getSearchSuggestions(rawQuery: string): Promise<SuggestResponse> {
-  const q = rawQuery.trim().slice(0, 50)
+  const q = rawQuery.trim().slice(0, KEYWORD_MAX_LENGTH)
   const keyword = parseKeyword(q)
   const [{ products, counts }, articles] = await Promise.all([getProductsWithCounts(), getArticleTitles().catch(() => [])])
 
   const species = TREE_CATEGORIES.filter(c => (counts.get(c.slug) ?? 0) > 0 && matchesKeyword(keyword, `${c.name} ${READINGS[c.slug] ?? ''}`))
-    .slice(0, 2)
+    .slice(0, 3)
     .map(c => ({ slug: c.slug, name: c.name, count: counts.get(c.slug) ?? 0, season: seasonText(c.slug) }))
 
   const matched = filterProducts(products, parseFilters({ q }))
@@ -114,7 +114,7 @@ export async function getSearchSuggestions(rawQuery: string): Promise<SuggestRes
     q,
     total: matched.length,
     species,
-    products: matched.slice(0, 4).map(p => ({ id: p.id, name: p.name, price: p.price })),
+    products: matched.slice(0, 4).map(p => ({ id: p.id, name: p.displayName, price: p.price })),
     articles: articles.filter(a => matchesKeyword(keyword, a.title)).slice(0, 2),
   }
 }

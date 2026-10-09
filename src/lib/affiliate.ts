@@ -21,3 +21,35 @@ export const PRICE_NOTE = '参考価格（掲載時点）。最新の価格・�
 // ステマ規制（景品表示法）対応の広告表記
 export const PR_DISCLOSURE_TEXT =
   '本ページはプロモーション（広告）を含みます。商品リンクから購入された場合、当サイトに紹介料が支払われることがあります。'
+
+// Amazon アソシエイトのトラッキングID（src/lib/amazon.ts と同じ値）
+const AMAZON_ASSOCIATE_TAG = process.env.NEXT_PUBLIC_AMAZON_ASSOCIATE_ID || 'oshikatsucoll-22'
+
+const AMAZON_HOST_PATTERN = /(^|\.)amazon\.co\.jp$/i
+
+// 記事本文などの Amazon リンクにアソシエイトタグを付ける。
+// 既にタグがあるリンク・amzn.to の短縮リンク・Amazon 以外の URL はそのまま返す。
+// トップページだけを指すリンク（商品の特定ができないもの）は null を返す（呼び出し側で検索URLに変えるか、リンクを外す）
+export function toAmazonAffiliateUrl(url: string): string | null {
+  let parsed: URL
+  try {
+    parsed = new URL(url)
+  } catch {
+    return url
+  }
+  if (!AMAZON_HOST_PATTERN.test(parsed.hostname)) return url
+  if (parsed.pathname === '/' || parsed.pathname === '') {
+    // 検索URL（/?k=...）以外のトップページは商品を特定できない
+    if (!parsed.searchParams.get('k')) return null
+  }
+  parsed.protocol = 'https:'
+  parsed.hostname = 'www.amazon.co.jp'
+  if (!parsed.searchParams.get('tag')) parsed.searchParams.set('tag', AMAZON_ASSOCIATE_TAG)
+  return parsed.toString()
+}
+
+// 商品名で Amazon を検索する URL（アソシエイトタグ付き）
+export function amazonSearchUrl(keyword: string): string {
+  const params = new URLSearchParams({ k: keyword, tag: AMAZON_ASSOCIATE_TAG })
+  return `https://www.amazon.co.jp/s?${params.toString()}`
+}

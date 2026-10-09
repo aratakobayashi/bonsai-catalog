@@ -18,12 +18,19 @@ import {
 import type { CatalogProduct } from '@/lib/catalog-model'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { SPECIES_TRAITS, type SpeciesTrait } from '@/lib/species-traits'
-import { currentSeason } from '@/components/catalog/CatalogProductCard'
+import { isInSeasonNow } from '@/lib/seasons'
 import type { FilterMenu, FilterOption } from '@/components/catalog/FilterBar'
 
 const label = (options: readonly { value: string; label: string }[], value?: string) => options.find(o => o.value === value)?.label
 
-export function buildFilterMenus(filters: CatalogFilters, basePath = '/products'): { menus: FilterMenu[]; sort: FilterMenu } {
+// counts（catalog.ts の optionCounts の結果）を渡すと、商品が0件の種類・樹種の選択肢は出さない（選択中のものは残す）
+export function buildFilterMenus(
+  filters: CatalogFilters,
+  basePath = '/products',
+  counts?: { type: Record<string, number>; species: Record<string, number> },
+): { menus: FilterMenu[]; sort: FilterMenu } {
+  const typeOptions = counts ? TYPE_OPTIONS.filter(o => (counts.type[o.value] ?? 0) > 0 || filters.type === o.value) : TYPE_OPTIONS
+  const speciesOptions = counts ? SPECIES_OPTIONS.filter(o => (counts.species[o.value] ?? 0) > 0 || filters.species === o.value) : SPECIES_OPTIONS
   const url = (overrides: Partial<CatalogFilters>) => buildCatalogUrl(filters, overrides, basePath)
   const opt = (text: string, overrides: Partial<CatalogFilters>, active: boolean): FilterOption => ({ label: text, href: url(overrides), active })
   const priceLabel = filters.min || filters.max
@@ -37,8 +44,8 @@ export function buildFilterMenus(filters: CatalogFilters, basePath = '/products'
       label: '樹種・分類',
       current: label(SPECIES_OPTIONS, filters.species) ?? label(TYPE_OPTIONS, filters.type),
       groups: [
-        { title: '種類', options: [opt('すべて', { type: undefined }, !filters.type), ...TYPE_OPTIONS.map(o => opt(o.label, { type: o.value }, filters.type === o.value))] },
-        { title: '樹種・分類', options: [opt('指定なし', { species: undefined }, !filters.species), ...SPECIES_OPTIONS.map(o => opt(o.label, { species: o.value }, filters.species === o.value))] },
+        { title: '種類', options: [opt('すべて', { type: undefined }, !filters.type), ...typeOptions.map(o => opt(o.label, { type: o.value }, filters.type === o.value))] },
+        { title: '樹種・分類', options: [opt('指定なし', { species: undefined }, !filters.species), ...speciesOptions.map(o => opt(o.label, { species: o.value }, filters.species === o.value))] },
       ],
     },
     {
@@ -119,7 +126,7 @@ export interface SpeciesTab {
   href: string
   count: number
   active: boolean
-  // 樹種の一般的な見ごろの季節が今の季節か
+  // 樹種の一般的な見頃の月に今月が含まれるか（seasons.ts。常緑は false）
   inSeason: boolean
 }
 
@@ -139,7 +146,6 @@ export function buildSpeciesTabs(products: CatalogProduct[], filters: CatalogFil
   const linkFilters: CatalogFilters = { ...base, type: undefined }
   const treeBase = filterProducts(products, { ...base, type: 'tree' })
   const kokedamaBase = filterProducts(products, { ...base, type: 'kokedama' })
-  const season = currentSeason()
 
   const tabs = SHOP_CATEGORIES
     .filter(c => c.group === 'tree' && !TAB_EXCLUDE.includes(c.slug))
@@ -153,7 +159,7 @@ export function buildSpeciesTabs(products: CatalogProduct[], filters: CatalogFil
         href: buildCatalogUrl(linkFilters, {}, `/products/category/${c.slug}`),
         count,
         active: c.slug === activeSlug,
-        inSeason: speciesTraitOf(c.slug)?.seasons.includes(season) ?? false,
+        inSeason: isInSeasonNow(c.slug),
       }
     })
     .filter(t => t.count > 0 || t.active)

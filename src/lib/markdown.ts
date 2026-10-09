@@ -1,6 +1,6 @@
 import { marked } from 'marked'
-import { AFFILIATE_LINK_REL, isAffiliateUrl } from '@/lib/affiliate'
 import { SITE_URL } from '@/lib/site'
+import { decodeEntities, rewriteArticleHtml, type ArticleLinkContext } from '@/lib/article-content'
 
 // シンプルなmarkdown設定
 marked.setOptions({
@@ -8,15 +8,58 @@ marked.setOptions({
   gfm: true, // GitHub Flavored Markdown
 })
 
+// 見出しの ID（本文中の「#見出し」へのリンクと一致させるため、記号を除いた見出しの文字列を使う）
+function headingIdFrom(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+}
+
+const TABLE_SEPARATOR_RE = /^\s*\|?\s*:?-{2,}:?\s*(?:\|\s*:?-{2,}:?\s*)+\|?\s*$/m
+
+// コードブロック（```）で囲まれた表を、表として表示できるように囲みを外す
+function unfenceTables(content: string): string {
+  return content.replace(/^```[ \t]*(\w*)[ \t]*\r?\n([\s\S]*?)\r?\n```[ \t]*$/gm, (block, lang: string, body: string) => {
+    if (lang && !/^(?:markdown|md|table|text)$/i.test(lang)) return block
+    const lines = body.split(/\r?\n/).filter(line => line.trim())
+    const pipeLines = lines.filter(line => line.includes('|')).length
+    if (!TABLE_SEPARATOR_RE.test(body) || pipeLines < 3 || pipeLines < lines.length * 0.8) return block
+    return `\n${body.trim()}\n`
+  })
+}
+
+// **太字** を <strong> にする。
+// 日本語では「**“おしゃれ”**として」のように記号と文字が隣り合うと Markdown の規則では太字にならないため、先に変換しておく
+function convertBold(content: string): string {
+  const parts = content.split(/(^```[\s\S]*?^```[ \t]*$)/m)
+  return parts
+    .map((part, i) => {
+      if (i % 2 === 1) return part // コードブロックはそのまま
+      return part
+        .split(/(`[^`\n]*`)/)
+        .map((piece, j) => (j % 2 === 1 ? piece : piece.replace(/\*\*(?![\s*])([^\n]*?[^\s*\\])[ \u3000]*\*\*/g, '<strong>$1</strong>')))
+        .join('')
+    })
+    .join('')
+}
+
+export interface ProcessMarkdownOptions {
+  // サイト内リンクの存在確認に使う（省略時は存在確認をしない）
+  links?: ArticleLinkContext
+}
+
 // Markdownを処理する関数
-export function processMarkdown(content: string): string {
+export function processMarkdown(content: string, options: ProcessMarkdownOptions = {}): string {
   try {
     if (!content || typeof content !== 'string') {
       return ''
     }
 
     // 旧ドメイン・www なしの内部リンクを正規ドメインに統一
-    const normalized = content.replace(
+    const normalized = convertBold(unfenceTables(content)).replace(
       /https?:\/\/(?:bonsai-catalog\.vercel\.app|bonsai-collection\.com)(?=[/"')\s]|$)/g,
       SITE_URL
     )
@@ -24,56 +67,49 @@ export function processMarkdown(content: string): string {
     // markedでHTMLに変換
     let html = marked(normalized) as string
 
-    // 見出しにIDを手動で追加（markedのデフォルトIDと一致するように）
+    // ページの見出し（h1）は記事タイトルだけにするため、本文中の h1 は h2 として表示する
+    html = html.replace(/<h1(\s|>)/g, '<h2$1').replace(/<\/h1>/g, '</h2>')
+
+    // 見出しに ID を付ける（「見出し {#id}」の指定があればその ID を使う。同じ ID は連番にする）
+    const usedIds = new Map<string, number>()
     html = html.replace(/<h([1-6])([^>]*?)>(.*?)<\/h[1-6]>/g, (match, level, attrs, text) => {
-      // テキストが文字列であることを確認
-      const textStr = typeof text === 'string' ? text : String(text)
-
-      // HTMLタグを除去してIDを生成
-      const cleanText = textStr.replace(/<[^>]*>/g, '')
-      const id = cleanText
-        .toLowerCase()
-        .replace(/[^\w\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF\s-]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-')
-        .replace(/^-|-$/g, '')
-
-      // 既にIDが含まれている場合はそのまま、含まれていない場合は追加
-      if (attrs.includes('id=')) {
-        return `<h${level}${attrs} class="scroll-mt-24 group relative">${textStr}</h${level}>`
+      let textStr = typeof text === 'string' ? text : String(text)
+      let id = ''
+      const custom = textStr.match(/\s*\{#([^}\s]+)\}\s*$/)
+      if (custom) {
+        textStr = textStr.slice(0, custom.index).trim()
+        id = decodeEntities(custom[1])
       } else {
-        return `<h${level} id="${id}" class="scroll-mt-24 group relative">${textStr}</h${level}>`
+        const existing = String(attrs).match(/id="([^"]*)"/)
+        id = existing ? existing[1] : headingIdFrom(decodeEntities(textStr.replace(/<[^>]*>/g, '')))
       }
+      if (!id) id = 'section'
+      const count = usedIds.get(id) || 0
+      usedIds.set(id, count + 1)
+      if (count > 0) id = `${id}-${count + 1}`
+      return `<h${level} id="${id.replace(/"/g, '')}" class="scroll-mt-24">${textStr}</h${level}>`
     })
 
-    // 段落にクラスを追加
-    html = html.replace(/<p>/g, '<p class="mb-4 leading-relaxed text-gray-700">')
+    // 段落・リスト
+    html = html.replace(/<p>/g, '<p class="mb-4">')
+    html = html.replace(/<ul>/g, '<ul class="mb-4">')
+    html = html.replace(/<ol>/g, '<ol class="mb-4">')
 
-    // リストにクラスを追加
-    html = html.replace(/<ul>/g, '<ul class="list-disc list-inside space-y-2 mb-4 ml-4">')
-    html = html.replace(/<ol>/g, '<ol class="list-decimal list-inside space-y-2 mb-4 ml-4">')
-    html = html.replace(/<li>/g, '<li class="leading-relaxed">')
+    // リンクと画像の補正（存在しないページ・仮のリンクは外す、Amazon にはアソシエイトタグを付ける、外部リンクは新しいタブ）
+    html = rewriteArticleHtml(html, options.links)
 
-    // ダミーURL（example.com）へのリンクはテキストだけ残す
-    html = html.replace(/<a [^>]*href="https?:\/\/(?:www\.)?example\.com[^"]*"[^>]*>([\s\S]*?)<\/a>/g, '$1')
-
-    // リンクにクラスを追加（外部リンクは新しいタブで開き、広告リンクには sponsored を付ける）
-    html = html.replace(/<a href="([^"]*)"([^>]*)>/g, (match, href, attrs) => {
-      const isExternal = href.startsWith('http') && !href.includes('bonsai-collection.com')
-      const rel = isAffiliateUrl(href) ? AFFILIATE_LINK_REL : 'noopener noreferrer'
-      const cleanAttrs = String(attrs).replace(/\s(?:rel|target)="[^"]*"/g, '')
-      const target = isExternal ? ` target="_blank" rel="${rel}"` : ''
-      return `<a href="${href}"${cleanAttrs}${target} class="text-blue-600 hover:text-blue-800 underline font-medium">`
+    // 表は横スクロールできる枠で囲む。列が多い表には SP で「横にスクロール」の案内を出す
+    html = html.replace(/<table>([\s\S]*?)<\/table>/g, (match, inner: string) => {
+      const firstRow = inner.match(/<tr>([\s\S]*?)<\/tr>/)
+      const columns = firstRow ? (firstRow[1].match(/<t[hd][\s>]/g) || []).length : 0
+      const hint = columns >= 4 ? '<p class="table-scroll-hint" aria-hidden="true">表は横にスクロールできます →</p>' : ''
+      return `${hint}<div class="table-scroll" tabindex="0" role="region" aria-label="表">${match}</div>`
     })
 
     // ブロッククォートを WordPress スタイルの情報ボックスに変換
     html = html.replace(/<blockquote>/g, '<div class="bg-gradient-to-r from-green-50 to-emerald-50 border-l-6 border-green-500 rounded-lg p-6 mb-6 shadow-lg"><div class="flex items-start"><div class="flex-shrink-0 mr-4"><div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div></div><blockquote class="text-gray-800 font-medium leading-relaxed border-0 bg-transparent p-0 m-0">')
 
-    // コードブロックにクラスを追加
-    html = html.replace(/<pre><code([^>]*)>/g, '<pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-4"><code$1 class="text-sm">')
-
-    // インラインコードにクラスを追加
-    html = html.replace(/<code>/g, '<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono text-gray-800">')
+    // コードブロック・インラインコードの見た目は editor.css（.article-body pre / code）で付ける
 
     // ブロッククォートの終了タグも修正
     html = html.replace(/<\/blockquote>/g, '</blockquote></div></div>')
@@ -166,26 +202,24 @@ export function processMarkdown(content: string): string {
   }
 }
 
-// 目次を生成する関数
-export function generateTableOfContents(content: string) {
-  if (!content || typeof content !== 'string') {
-    return []
-  }
+export interface TocItem {
+  level: number
+  text: string
+  id: string
+}
 
-  const headings = content.match(/^#{1,3}\s+(.+)$/gm) || []
+// 表示用 HTML（processMarkdown の結果）から目次を作る。ID は本文の見出しと必ず一致する
+export function extractTableOfContents(html: string): TocItem[] {
+  if (!html) return []
+  return Array.from(html.matchAll(/<h([1-3]) id="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>/g), m => ({
+    level: Number(m[1]),
+    id: m[2],
+    text: decodeEntities(m[3].replace(/<[^>]*>/g, '')).trim(),
+  })).filter(item => item.text)
+}
 
-  return headings.map((heading, index) => {
-    const level = (heading.match(/^#{1,3}/)?.[0].length || 1)
-    const text = heading.replace(/^#{1,3}\s+/, '').replace(/<[^>]*>/g, '') // HTMLタグを除去
-
-    // IDを生成（markedと同じロジック）
-    const id = text
-      .toLowerCase()
-      .replace(/[^\w\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .replace(/^-|-$/g, '')
-
-    return { level, text, id }
-  })
+// 目次を生成する関数（Markdown から）
+export function generateTableOfContents(content: string, options: ProcessMarkdownOptions = {}): TocItem[] {
+  if (!content || typeof content !== 'string') return []
+  return extractTableOfContents(processMarkdown(content, options))
 }

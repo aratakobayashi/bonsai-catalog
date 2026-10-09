@@ -159,7 +159,7 @@ export function generateArticleSEO(article: Article) {
   const keywords = generateArticleKeywords(title, articleType, category, tags)
 
   // SEO最適化されたタイトル生成
-  const seoTitle = generateArticleTitle(title, articleType)
+  const seoTitle = generateArticleTitle(title, article.seoTitle)
 
   // SEO最適化された説明文生成
   const seoDescription = generateArticleDescription(article, articleType)
@@ -216,28 +216,26 @@ function generateArticleKeywords(title: string, type: string, category: string, 
   return [...baseKeywords, ...((typeKeywords as any)[type] || [])]
 }
 
-// 記事タイトル生成
-function generateArticleTitle(title: string, type: string): string {
-  // 既にSEO最適化されている場合はそのまま
-  if (title.includes('|') || title.includes('-') || title.includes('完全ガイド')) {
-    return title
-  }
+// 記事タイトル生成（SEO タイトルがあればそれを使い、末尾にサイト名を1回だけ付ける）
+const BRAND_SUFFIX = ' | 盆栽コレクション'
 
-  const suffixes = {
-    'how-to': '完全ガイド | 盆栽コレクション',
-    'beginner-guide': '初心者向け完全ガイド | 盆栽コレクション',
-    'variety-guide': '種類・選び方ガイド | 盆栽コレクション',
-    'recommendation': 'おすすめランキング | 盆栽コレクション',
-    'general': '| 盆栽コレクション'
-  }
-
-  return `${title} - ${(suffixes as any)[type] || suffixes.general}`
+export function generateArticleTitle(title: string, seoTitle?: string | null): string {
+  const base = (seoTitle?.trim() || title.trim())
+    // 既に付いているサイト名や、末尾に残った区切り記号を外す
+    .replace(/\s*[-|｜–—]\s*盆栽コレクション\s*$/, '')
+    .replace(/\s*[-|｜–—]\s*$/, '')
+    .trim()
+  return `${base}${BRAND_SUFFIX}`
 }
 
 // 記事説明文生成
 function generateArticleDescription(article: Article, type: string): string {
   const title = article.title
   const excerpt = article.excerpt
+
+  if (article.seoDescription && article.seoDescription.trim().length > 30) {
+    return article.seoDescription.trim()
+  }
 
   if (excerpt && excerpt.length > 50) {
     return excerpt

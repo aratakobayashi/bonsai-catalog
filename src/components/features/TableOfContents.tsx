@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 interface TOCItem {
   level: number
@@ -24,6 +24,8 @@ function scrollToHeading(id: string) {
 function useReadingState(items: TOCItem[]) {
   const [activeId, setActiveId] = useState('')
   const [progress, setProgress] = useState(0)
+  // 記事本文を読み終えて、関連商品・関連記事のあたりまで進んだか
+  const [pastBody, setPastBody] = useState(false)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -49,6 +51,7 @@ function useReadingState(items: TOCItem[]) {
       const total = rect.height - window.innerHeight * 0.5
       const read = Math.min(Math.max(-rect.top + window.innerHeight * 0.5, 0), Math.max(total, 1))
       setProgress(Math.round((read / Math.max(total, 1)) * 100))
+      setPastBody(rect.bottom < window.innerHeight * 0.6)
     }
     update()
     window.addEventListener('scroll', update, { passive: true })
@@ -60,7 +63,7 @@ function useReadingState(items: TOCItem[]) {
   }, [])
 
   const activeIndex = items.findIndex(item => item.id === activeId)
-  return { activeId, activeIndex, progress }
+  return { activeId, activeIndex, progress, pastBody }
 }
 
 function TocList({ items, activeId, onSelect }: { items: TOCItem[]; activeId: string; onSelect?: () => void }) {
@@ -114,15 +117,32 @@ export function TableOfContents({ items }: TableOfContentsProps) {
 
 // SP：本文前の開閉できる目次と、画面下の「目次 2/5」ボタン
 export function MobileTableOfContents({ items }: TableOfContentsProps) {
-  const { activeId, activeIndex } = useReadingState(items)
+  const { activeId, activeIndex, pastBody } = useReadingState(items)
   const [open, setOpen] = useState(false)
   const [sheetOpen, setSheetOpen] = useState(false)
+  const pillRef = useRef<HTMLButtonElement>(null)
+  const closeRef = useRef<HTMLButtonElement>(null)
+
+  // シートを開いたら「閉じる」にフォーカスし、Esc で閉じる（閉じたら目次ボタンにフォーカスを戻す）
+  useEffect(() => {
+    if (!sheetOpen) return
+    closeRef.current?.focus()
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setSheetOpen(false)
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      pillRef.current?.focus({ preventScroll: true })
+    }
+  }, [sheetOpen])
+
   if (items.length === 0) return null
 
   return (
     <>
       <nav aria-label="目次" className="border-y border-line">
-        <button type="button" onClick={() => setOpen(!open)} aria-expanded={open} className="flex w-full items-center py-3 text-left text-[13.5px] text-ink">
+        <button type="button" onClick={() => setOpen(!open)} aria-expanded={open} className="flex min-h-11 w-full items-center py-3 text-left text-[13.5px] text-ink">
           <span>目次</span>
           <span className="ml-auto text-xs text-ink-muted">
             {items.length}項目
@@ -136,11 +156,17 @@ export function MobileTableOfContents({ items }: TableOfContentsProps) {
         )}
       </nav>
 
-      {/* 画面下の目次ボタン（下部タブバーの上） */}
+      {/* 画面下の目次ボタン（下部タブバーの上）。本文を読み終えたら隠す */}
       <button
+        ref={pillRef}
         type="button"
         onClick={() => setSheetOpen(true)}
-        className="fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom))] right-4 z-30 flex h-10 items-center gap-2 rounded-full bg-sumi px-4 text-[12.5px] text-paper shadow-lg"
+        aria-haspopup="dialog"
+        aria-hidden={pastBody || undefined}
+        tabIndex={pastBody ? -1 : undefined}
+        className={`fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom))] right-4 z-30 flex h-11 items-center gap-2 rounded-full bg-sumi px-4 text-[12.5px] text-paper shadow-lg transition-[opacity,transform] duration-200 ${
+          pastBody ? 'pointer-events-none translate-y-3 opacity-0' : 'opacity-100'
+        }`}
       >
         目次 <span className="text-[#d9c7a3]">{Math.max(activeIndex + 1, 1)}/{items.length}</span>
       </button>
@@ -151,7 +177,7 @@ export function MobileTableOfContents({ items }: TableOfContentsProps) {
           <div className="absolute inset-x-0 bottom-0 max-h-[70vh] overflow-y-auto bg-paper px-5 pb-[calc(1.5rem+env(safe-area-inset-bottom))] pt-4 shadow-lg">
             <div className="mb-1 flex items-center border-b border-line pb-3">
               <span className="text-[11px] tracking-[0.1em] text-ink-muted">目次</span>
-              <button type="button" onClick={() => setSheetOpen(false)} className="ml-auto text-xs text-ink-muted">閉じる ✕</button>
+              <button ref={closeRef} type="button" onClick={() => setSheetOpen(false)} className="-mr-2 ml-auto flex min-h-11 items-center px-2 text-xs text-ink-muted">閉じる ✕</button>
             </div>
             <TocList items={items} activeId={activeId} onSelect={() => setSheetOpen(false)} />
           </div>

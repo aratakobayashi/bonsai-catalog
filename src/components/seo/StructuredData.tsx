@@ -6,13 +6,21 @@ interface ArticleStructuredDataProps {
   baseUrl: string
 }
 
+// サイトのロゴ（public/ にラスター画像がないため、app/icon.svg から配信されるサイトアイコンを使う）
+export const SITE_LOGO_PATH = '/icon.svg'
+
+const toAbsolute = (url: string, baseUrl: string) => (/^https?:\/\//.test(url) ? url : `${baseUrl}${url.startsWith('/') ? '' : '/'}${url}`)
+
 export function ArticleStructuredData({ article, baseUrl }: ArticleStructuredDataProps) {
+  const imageUrl = article.featuredImage
+    ? toAbsolute(typeof article.featuredImage === 'string' ? article.featuredImage : article.featuredImage.url, baseUrl)
+    : null
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": article.title,
     "description": article.seoDescription || article.excerpt || article.title,
-    "image": article.featuredImage ? article.featuredImage.url : `${baseUrl}/og-image.jpg`,
+    ...(imageUrl && { "image": [imageUrl] }),
     "author": {
       "@type": "Organization",
       "name": "盆栽コレクション",
@@ -23,7 +31,7 @@ export function ArticleStructuredData({ article, baseUrl }: ArticleStructuredDat
       "name": "盆栽コレクション",
       "logo": {
         "@type": "ImageObject",
-        "url": `${baseUrl}/logo.png`
+        "url": `${baseUrl}${SITE_LOGO_PATH}`
       }
     },
     "datePublished": article.publishedAt,
@@ -185,7 +193,7 @@ export function HowToStructuredData({
       "name": "盆栽コレクション",
       "logo": {
         "@type": "ImageObject",
-        "url": `${baseUrl}/logo.png`
+        "url": `${baseUrl}${SITE_LOGO_PATH}`
       }
     },
     "mainEntityOfPage": {
@@ -365,7 +373,7 @@ export function OrganizationStructuredData({ baseUrl }: OrganizationStructuredDa
     "name": "盆栽コレクション",
     "description": "盆栽初心者から上級者まで、美しい盆栽とその育て方をご案内する専門サイトです。",
     "url": baseUrl,
-    "logo": `${baseUrl}/logo.png`,
+    "logo": `${baseUrl}${SITE_LOGO_PATH}`,
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Customer Service",

@@ -70,7 +70,7 @@ export function ArticleSortSelect({ totalCount, sortBy }: { totalCount: number; 
         value={current}
         onChange={e => updateFilters({ sortBy: e.target.value })}
         aria-label="並び順"
-        className="cursor-pointer appearance-none bg-transparent pr-4 text-xs text-ink-muted"
+        className="min-h-11 cursor-pointer appearance-none bg-transparent pr-4 text-xs text-ink-muted lg:min-h-0"
       >
         {SORT_OPTIONS.map(option => (
           <option key={option.value} value={option.value}>{option.label}</option>
