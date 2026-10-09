@@ -71,4 +71,4 @@ thumbLabel: 盆栽の楽しみ方
 
 > **ポイント** 売った樹や教えた人のその後の相談に応えることが、次の仕事につながります。「買った後に枯らしてしまった」という声が多いなら、育て方の説明書を添えるなど、売り方そのものを見直すきっかけになります。
 
-通販での売り方や梱包の考え方は[盆栽のオンライン販売](/guides/bonsai-online-sales-complete-guide)、展示会や即売会の雰囲気は[盆栽展示会入門](/guides/bonsai-exhibition-complete-guide)でも紹介しています。
+通販で買う人が注文前に何を確かめるかは[盆栽を通販で買うとき](/guides/bonsai-online-sales-complete-guide)、展示会に出品するときの準備と流れは[盆栽展に出品するには](/guides/bonsai-exhibition-complete-guide)で紹介しています。

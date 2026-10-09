@@ -40,8 +40,8 @@
   <text x="501" y="141" text-anchor="middle" font-size="22" fill="#fff">屋外でもよい</text>
   <!-- 剪定 5-7 -->
   <rect x="370" y="175" width="157.5" height="28" rx="6" fill="#1a365d"/>
-  <!-- 植え替え 5-7 -->
-  <rect x="370" y="231" width="157.5" height="28" rx="6" fill="#8b6b4a"/>
+  <!-- 植え替え 5-6 -->
+  <rect x="370" y="231" width="105" height="28" rx="6" fill="#8b6b4a"/>
   <!-- 肥料 5-9 -->
   <rect x="370" y="287" width="262.5" height="28" rx="6" fill="#b8935a"/>
   <!-- 冬の保温 11-3 -->

@@ -86,4 +86,4 @@ thumbLabel: 盆栽の楽しみ方
 
 > **注意** 剪定ばさみなどの刃物は、使い終わったら刃を閉じて、子どもの手の届かない場所にしまいます。薬剤を使う場合は、ラベルの使用方法を守り、手袋をして風上から散布します。
 
-盆栽を眺める時間そのものを楽しむ方法は[盆栽メディテーション](/guides/bonsai-meditation-mindfulness-guide)でも紹介しています。体への負担が少ない始め方は[シニア向け盆栽ガイド](/guides/senior-friendly-bonsai-guide)を、最初の一鉢を探すときは[初心者向けミニ盆栽の選び方](/selection/beginner-mini-bonsai)をご覧ください。
+盆栽を眺める時間そのものを楽しむ方法は[盆栽と向き合う静かな時間](/guides/bonsai-meditation-mindfulness-guide)でも紹介しています。体への負担が少ない始め方は[シニア向け盆栽ガイド](/guides/senior-friendly-bonsai-guide)を、最初の一鉢を探すときは[初心者向けミニ盆栽の選び方](/selection/beginner-mini-bonsai)をご覧ください。

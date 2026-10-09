@@ -38,10 +38,10 @@
   <rect x="273.3" y="119" width="62.0" height="28" rx="6" fill="#8b6b4a"/>
   <text x="34" y="198" font-size="24" font-weight="700" fill="#22201c">みどり摘み</text>
   <rect x="340.5" y="175" width="67.2" height="28" rx="6" fill="#5b7f4a"/>
-  <text x="505.8" y="197" text-anchor="middle" font-size="20" fill="#22201c">五葉松・黒松</text>
+  <text x="505.8" y="197" text-anchor="middle" font-size="22" fill="#22201c">五葉松・黒松</text>
   <text x="34" y="254" font-size="24" font-weight="700" fill="#22201c">芽切り</text>
-  <rect x="459.3" y="231" width="41.3" height="28" rx="6" fill="#1a365d"/>
-  <text x="604.0" y="253" text-anchor="middle" font-size="20" fill="#22201c">黒松だけ</text>
+  <rect x="445.5" y="231" width="51.7" height="28" rx="6" fill="#1a365d"/>
+  <text x="604.0" y="253" text-anchor="middle" font-size="22" fill="#22201c">黒松だけ</text>
   <text x="34" y="310" font-size="24" font-weight="700" fill="#22201c">肥料</text>
   <rect x="325.0" y="287" width="118.8" height="28" rx="6" fill="#b8935a"/>
   <rect x="583.3" y="287" width="93.0" height="28" rx="6" fill="#b8935a"/>

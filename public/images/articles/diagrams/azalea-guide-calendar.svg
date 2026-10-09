@@ -38,7 +38,7 @@
   <rect x="330" y="119" width="70" height="28" rx="6" fill="#b4573a" fill-opacity="0.4"/>
   <rect x="405" y="119" width="52" height="28" rx="6" fill="#b4573a"/>
   <!-- 剪定：花後すぐ 6月 -->
-  <rect x="430" y="175" width="45" height="28" rx="6" fill="#1a365d"/>
+  <rect x="430" y="175" width="62.5" height="28" rx="6" fill="#1a365d"/>
   <!-- 植え替え：3月 と 花後 -->
   <rect x="270" y="231" width="40" height="28" rx="6" fill="#8b6b4a"/>
   <rect x="430" y="231" width="40" height="28" rx="6" fill="#8b6b4a" fill-opacity="0.45"/>

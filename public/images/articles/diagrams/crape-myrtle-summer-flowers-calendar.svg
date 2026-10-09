@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 430" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>サルスベリの盆栽の年間作業カレンダー</title>
-  <rect width="800" height="430" fill="#faf9f6"/>
+  <rect width="800" height="460" fill="#faf9f6"/>
   <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">サルスベリの一年の作業</text>
   <text x="780" y="44" text-anchor="end" font-size="22" fill="#6b655b">関東の平地の目安</text>
   <g font-size="22" fill="#22201c" text-anchor="middle">
@@ -32,13 +32,15 @@
     <text x="34" y="309">花</text>
     <text x="34" y="365">病気に注意</text>
   </g>
-  <rect x="160" y="119" width="157.5" height="28" rx="6" fill="#1a365d"/>
-  <rect x="737.5" y="119" width="52.5" height="28" rx="6" fill="#1a365d"/>
+  <rect x="160" y="119" width="52.5" height="28" rx="6" fill="#1a365d" fill-opacity="0.35"/>
+  <rect x="212.5" y="119" width="105" height="28" rx="6" fill="#1a365d"/>
+  <rect x="737.5" y="119" width="52.5" height="28" rx="6" fill="#1a365d" fill-opacity="0.35"/>
   <rect x="317.5" y="175" width="52.5" height="28" rx="6" fill="#8b6b4a"/>
   <rect x="370" y="231" width="122" height="28" rx="6" fill="#b8935a"/>
   <rect x="615" y="231" width="70" height="28" rx="6" fill="#b8935a"/>
   <rect x="475" y="287" width="157.5" height="28" rx="6" fill="#c2457a"/>
   <rect x="422.5" y="343" width="210" height="28" rx="6" fill="#6b655b" fill-opacity="0.45"/>
   <text x="527" y="365" text-anchor="middle" font-size="22" fill="#22201c">うどんこ病</text>
-  <text x="20" y="416" font-size="22" fill="#6b655b">芽吹きが遅いので、植え替えは暖かくなってから</text>
+  <text x="20" y="412" font-size="22" fill="#6b655b">剪定は落葉後〜3月（濃い色の2〜3月が適期）</text>
+  <text x="20" y="444" font-size="22" fill="#6b655b">芽吹きが遅いので、植え替えは暖かくなってから</text>
 </svg>

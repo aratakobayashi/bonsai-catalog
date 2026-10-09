@@ -19,10 +19,11 @@
     <text x="660" y="222">遮光の下</text>
   </g>
   <g font-size="22" fill="#22201c" text-anchor="middle">
-    <text x="140" y="270">黒松・五葉松</text>
-    <text x="140" y="304">真柏・杜松</text>
+    <text x="140" y="270">黒松・真柏</text>
+    <text x="140" y="304">杜松</text>
     <text x="400" y="270">もみじ・欅</text>
     <text x="400" y="304">梅・さつき</text>
+    <text x="400" y="338">五葉松</text>
     <text x="660" y="270">ミニ盆栽</text>
     <text x="660" y="304">植え替え直後</text>
   </g>

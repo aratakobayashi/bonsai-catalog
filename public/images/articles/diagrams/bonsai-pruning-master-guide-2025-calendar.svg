@@ -37,11 +37,12 @@
   <line x1="635.0" y1="110" x2="635.0" y2="392" stroke="#ebe7df" stroke-width="1.5" stroke-dasharray="3 4"/>
   <line x1="683.3" y1="110" x2="683.3" y2="392" stroke="#ebe7df" stroke-width="1.5" stroke-dasharray="3 4"/>
   <line x1="731.7" y1="110" x2="731.7" y2="392" stroke="#ebe7df" stroke-width="1.5" stroke-dasharray="3 4"/>
-  <rect x="470.7" y="121" width="38.7" height="28" rx="6" fill="#5b7f4a"/>
+  <rect x="457.8" y="121" width="48.3" height="28" rx="6" fill="#5b7f4a"/>
   <rect x="659.2" y="121" width="96.7" height="28" rx="6" fill="#b8935a"/>
   <rect x="200.0" y="121" width="96.7" height="28" rx="6" fill="#1a365d"/>
   <rect x="374.0" y="179" width="53.2" height="28" rx="6" fill="#5b7f4a"/>
-  <rect x="659.2" y="179" width="96.7" height="28" rx="6" fill="#b8935a"/>
+  <rect x="659.2" y="177" width="96.7" height="15" rx="4" fill="#b8935a"/>
+  <rect x="635.0" y="194" width="145.0" height="15" rx="4" fill="#1a365d"/>
   <rect x="200.0" y="179" width="96.7" height="28" rx="6" fill="#1a365d"/>
   <rect x="345.0" y="237" width="96.7" height="28" rx="6" fill="#5b7f4a"/>
   <rect x="441.7" y="237" width="48.3" height="28" rx="6" fill="#1a365d" fill-opacity="0.4"/>

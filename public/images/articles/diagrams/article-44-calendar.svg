@@ -45,9 +45,10 @@
   <rect x="363.0" y="287" width="81.3" height="28" rx="6" fill="#9a9488"/>
   <rect x="586.7" y="287" width="71.2" height="28" rx="6" fill="#9a9488"/>
   <text x="34" y="366" font-size="24" font-weight="700" fill="#22201c">針金かけ</text>
-  <rect x="688.3" y="343" width="101.7" height="28" rx="6" fill="#6b655b"/>
-  <rect x="180.0" y="343" width="122.0" height="28" rx="6" fill="#6b655b"/>
+  <rect x="637.5" y="343" width="101.7" height="28" rx="6" fill="#6b655b"/>
+  <rect x="230.8" y="343" width="101.7" height="28" rx="6" fill="#6b655b"/>
   <text x="34" y="422" font-size="24" font-weight="700" fill="#22201c">葉水</text>
   <rect x="383.3" y="399" width="228.8" height="28" rx="6" fill="#8aa0bf" fill-opacity="0.6"/>
-  <text x="20" y="484" font-size="22" fill="#6b655b">ジン・シャリの手入れは年1〜2回、晴れた日に</text>
+  <text x="20" y="470" font-size="22" fill="#6b655b">ジン・シャリの手入れは年1〜2回、晴れた日に</text>
+  <text x="20" y="494" font-size="22" fill="#6b655b">針金かけは厳寒期を避ける</text>
 </svg>

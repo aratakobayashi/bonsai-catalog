@@ -11,7 +11,7 @@ summary:
 species: olive
 selection: fruit-bonsai
 photo: /images/articles/photos/olive-bonsai-mediterranean-charm-1.jpg
-thumbTitle: オリーブの盆栽の育て方と冬越し
+thumbTitle: オリーブの盆栽／育て方と冬越し
 thumbLabel: 樹種別の育て方
 ---
 オリーブは地中海沿岸で古くから育てられてきたモクセイ科の常緑樹です。葉の表は深い緑、裏は銀白色で、風に揺れると全体が白っぽく光って見えます。
