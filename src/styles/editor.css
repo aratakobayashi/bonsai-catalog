@@ -439,3 +439,19 @@
 .guides-tabs::-webkit-scrollbar {
   display: none;
 }
+
+/* 写真・図の直後の「*写真：… / 図：…*」は、小さなキャプションとして表示する */
+.article-body p:has(> em:only-child) {
+  margin-top: -0.6em;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #757068;
+}
+.article-body p:has(> em:only-child) em {
+  font-style: normal;
+}
+.article-body img[src$='.svg'] {
+  width: 100%;
+  height: auto;
+  background: #faf9f6;
+}

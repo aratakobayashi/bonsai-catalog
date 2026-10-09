@@ -85,9 +85,9 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
   const listData = {
     ...articlesData,
     articles: articlesData.articles.map(article => {
-      // 書き直した記事（src/content/articles）は、新しいタイトルと要約を出す（一覧の画像は今のまま）
+      // 書き直した記事（src/content/articles）は、新しいタイトル・要約・サムネイルを出す
       const override = applyArticleOverride(article)
-      return { ...article, title: override.title, excerpt: override.excerpt, content: '' }
+      return { ...article, title: override.title, excerpt: override.excerpt, featuredImage: override.featuredImage?.url?.endsWith('.svg') ? article.featuredImage : override.featuredImage, content: '' }
     }),
   }
 

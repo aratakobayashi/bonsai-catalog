@@ -205,7 +205,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     { label: article.category.name, href: `/guides?category=${article.category.slug}` },
   ]
   const articleUrl = `${SITE_URL}/guides/${article.slug}`
-  const featuredImageUrl = article.featuredImage?.url ?? null
+  // 記事ページの上は文字なしの写真（書き直した記事）。なければこれまでの画像
+  const featuredImageUrl = article.heroPhoto ?? article.featuredImage?.url ?? null
   const featuredImageAlt = article.featuredImage?.alt || article.title
   const lead = cleanLead(article.overridden ? article.excerpt : article.excerpt || article.seoDescription)
   const updated = article.updatedAt && formatDate(article.updatedAt) !== formatDate(article.publishedAt)
@@ -262,6 +263,20 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                   unoptimized={!canOptimizeImage(featuredImageUrl)}
                 />
               </div>
+            )}
+            {/* 写真の出典（CC BY などは撮影者名とライセンスを表示する） */}
+            {article.heroPhoto && article.photoCredit && (
+              <p className="mt-1.5 text-right text-[11px] text-ink-muted">
+                写真：
+                {article.photoCredit.source ? (
+                  <a href={article.photoCredit.source} target="_blank" rel="noopener noreferrer" className="underline">
+                    {article.photoCredit.creator || '出典'}
+                  </a>
+                ) : (
+                  article.photoCredit.creator
+                )}
+                {article.photoCredit.license && ` / ${article.photoCredit.license}`}
+              </p>
             )}
 
             <PrDisclosure compact className="mt-3" />

@@ -4,6 +4,17 @@
 import fs from 'fs'
 import path from 'path'
 import type { Article } from '@/types'
+import photoCredits from '@/data/photo-credits.json'
+
+// 作ってあるサムネイル（public/images/articles/thumbs/<slug>.jpg）のパス。なければ undefined
+function thumbnailPath(slug: string): string | undefined {
+  const file = path.join(process.cwd(), 'public/images/articles/thumbs', `${slug}.jpg`)
+  try {
+    return fs.existsSync(file) ? `/images/articles/thumbs/${slug}.jpg` : undefined
+  } catch {
+    return undefined
+  }
+}
 
 export interface ArticleOverride {
   title?: string
@@ -13,7 +24,17 @@ export interface ArticleOverride {
   species?: string
   selection?: string
   image?: string
+  // サムネイルの元の写真（public 以下のパス）。サムネイルは public/images/articles/thumbs/<slug>.jpg（scripts/thumbs/render.mjs で作る）
+  photo?: string
   content?: string
+}
+
+// 写真の出典（src/data/photo-credits.json。CC BY などは撮影者名とライセンスを表示する）
+export interface PhotoCredit {
+  title?: string
+  creator?: string
+  license?: string
+  source?: string
 }
 
 // ページ側で使う、上書き後の記事（「この記事で分かること」・樹種・特集の指定つき）
@@ -21,6 +42,10 @@ export type ResolvedArticle = Article & {
   summary: string[]
   speciesSlug?: string
   selectionSlug?: string
+  // 記事の上の画像（サムネイル）に使った写真の出典
+  photoCredit?: PhotoCredit
+  // 記事ページの上に出す写真（文字なし）。一覧と SNS ではタイトル入りのサムネイル（featuredImage）を使う
+  heroPhoto?: string
   overridden: boolean
 }
 
@@ -112,6 +137,7 @@ function readOverrideFile(slug: string): ArticleOverride | null {
     species: str(data.species),
     selection: str(data.selection),
     image: str(data.image),
+    photo: str(data.photo),
     content: content || undefined,
   }
 }
@@ -148,7 +174,12 @@ export function applyArticleOverride<T extends Article>(article: T): T & Resolve
     seoDescription: override.description ?? article.seoDescription,
     // 公開日より前の更新日にはしない
     updatedAt: new Date(updatedAt).getTime() >= new Date(article.publishedAt).getTime() ? updatedAt : article.updatedAt,
-    featuredImage: override.image ? { url: override.image, alt: title, width: 1200, height: 630 } : article.featuredImage,
+    featuredImage: (() => {
+      const url = thumbnailPath(article.slug) ?? override.image
+      return url ? { url, alt: title, width: 1200, height: 630 } : article.featuredImage
+    })(),
+    heroPhoto: override.photo,
+    photoCredit: override.photo ? (photoCredits as Record<string, PhotoCredit>)[override.photo] : undefined,
     content: override.content ?? article.content,
     readingTime: override.content ? estimateReadingTime(override.content) : article.readingTime,
     summary: override.summary ?? [],
