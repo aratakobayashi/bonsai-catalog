@@ -159,6 +159,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <Link
               key={p.id}
               href={`/products/${p.id}`}
+              prefetch={false}
               aria-current={p.id === product.id ? 'page' : undefined}
               className={`flex gap-4 border-b border-line px-5 py-4 ${p.id === product.id ? 'border-l-[3px] border-l-gold bg-[#fbf7ef] pl-[17px]' : 'hover:bg-paper'}`}
             >

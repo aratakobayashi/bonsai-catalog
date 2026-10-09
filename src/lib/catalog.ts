@@ -101,7 +101,14 @@ async function getCachedProductRows(): Promise<any[]> {
 }
 
 export async function getCatalogProducts(): Promise<CatalogProduct[]> {
-  return (await getCachedProductRows()).map(normalizeProduct)
+  try {
+    return (await getCachedProductRows()).map(normalizeProduct)
+  } catch (error) {
+    // 通信が一時的に失敗した場合に備えて、少し待ってからもう一度だけ取得する
+    console.error('商品データの取得に失敗したため再取得します:', error instanceof Error ? error.message : error)
+    await new Promise(resolve => setTimeout(resolve, 800))
+    return (await getCachedProductRows()).map(normalizeProduct)
+  }
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */
 

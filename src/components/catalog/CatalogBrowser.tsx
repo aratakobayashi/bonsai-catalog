@@ -21,6 +21,7 @@ function ProductRow({ product, href, selected }: { product: CatalogProduct; href
     <Link
       href={href}
       scroll={false}
+      prefetch={false}
       aria-current={selected ? 'true' : undefined}
       className={`flex gap-4 border-b border-line px-5 py-4 ${selected ? 'border-l-[3px] border-l-gold bg-[#fbf7ef] pl-[17px]' : 'hover:bg-paper'}`}
     >

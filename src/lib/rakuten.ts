@@ -89,15 +89,16 @@ function redact(message: string): string {
   return text.slice(0, 120)
 }
 
-type FetchMode = 'cached' | 'fresh'
+// cached：6時間キャッシュ／retry：エラー後のやり直し（1分だけキャッシュ）／fresh：キャッシュを使わない（同期・接続確認の API 専用）
+type FetchMode = 'cached' | 'retry' | 'fresh'
 
 async function requestItems(query: string, mode: FetchMode): Promise<RakutenSearchResult> {
   const response = await fetch(`${ITEM_SEARCH_URL}?${query}`, {
     // アプリ登録の「許可されたWebサイト」と一致させる
     headers: { Referer: `${SITE_URL}/`, Origin: SITE_URL },
-    ...(mode === 'cached'
-      ? { next: { revalidate: CACHE_SECONDS, tags: ['rakuten'] } }
-      : { cache: 'no-store' as const }),
+    ...(mode === 'fresh'
+      ? { cache: 'no-store' as const }
+      : { next: { revalidate: mode === 'retry' ? 60 : CACHE_SECONDS, tags: ['rakuten'] } }),
   })
   const body = await response.json().catch(() => ({}))
   if (!response.ok || body.errors || body.error) {
@@ -122,15 +123,16 @@ async function requestItems(query: string, mode: FetchMode): Promise<RakutenSear
   return { items, total: body.count ?? items.length }
 }
 
-// 通常はキャッシュ（6時間）を使う。キャッシュにエラー応答が残っていた場合や
-// 1秒あたりの上限に当たった場合は、少し待ってキャッシュを使わずに1回だけやり直す
+// 通常はキャッシュ（6時間）を使う。エラー応答だった場合や1秒あたりの上限に当たった場合は、
+// 少し待って1回だけやり直す。ページの表示中に「キャッシュを使わない取得」をすると、
+// 静的に作るページが実行時にエラーになるため、やり直しも短いキャッシュ付きで行う
 async function fetchItems(query: string, mode: FetchMode): Promise<RakutenSearchResult> {
   try {
     return await requestItems(query, mode)
   } catch (error) {
-    if (mode === 'fresh' || !(error instanceof RakutenApiError)) throw error
+    if (mode !== 'cached' || !(error instanceof RakutenApiError)) throw error
     if (error.message.startsWith('http_429')) await sleep(1200)
-    return requestItems(query, 'fresh')
+    return requestItems(`${query}&_retry=1`, 'retry')
   }
 }
 

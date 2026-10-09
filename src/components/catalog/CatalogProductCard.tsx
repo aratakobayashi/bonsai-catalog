@@ -39,6 +39,7 @@ export function CatalogProductCard({ product, priority = false, selected = false
   return (
     <Link
       href={`/products/${product.id}`}
+      prefetch={false}
       className={`group flex flex-col overflow-hidden rounded-xl border bg-white transition-shadow hover:shadow-md ${selected ? 'border-gold ring-1 ring-gold' : 'border-line'}`}
     >
       <div className="relative aspect-square bg-[#f1eee8]">

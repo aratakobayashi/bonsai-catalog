@@ -21,12 +21,14 @@ export async function getEvents(params: EventQueryParams = {}) {
     prefecture,
     types,
     gardenId,
-    q,
+    q: rawQ,
     page = 1,
     limit = 20
   } = params
+  // キーワードに含まれる区切り文字（, ( ) など）は検索条件の書式を壊すため取り除く
+  const q = rawQ?.replace(/[,()%*\\]/g, ' ').trim() || undefined
 
-  const offset = (page - 1) * limit
+  const offset = (Math.max(1, page || 1) - 1) * limit
 
   try {
     // ベースクエリビルダー関数
