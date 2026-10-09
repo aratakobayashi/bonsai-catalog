@@ -38,7 +38,7 @@ function writeRecent(list: string[]) {
 }
 
 // 検索画面（スマホは全画面、PCはヘッダーの検索欄の下に表示）
-export function SearchOverlay({ open, onClose, variant }: { open: boolean; onClose: () => void; variant: 'sheet' | 'dropdown' }) {
+export function SearchOverlay({ open, onClose, variant }: { open: boolean; onClose: () => void; variant: 'sheet' | 'dropdown'; query?: string }) {
   const router = useRouter()
   const inputRef = useRef<HTMLInputElement>(null)
   const [query, setQuery] = useState('')

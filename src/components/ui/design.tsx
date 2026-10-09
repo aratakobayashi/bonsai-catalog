@@ -1,8 +1,8 @@
-// リニューアルのデザイン部品（紺×金・明朝見出し・生成り背景）。各画面で共通して使う
+// リニューアルのデザイン部品（v2：生成り背景・墨の文字・明朝の見出し・線で区切る）。各画面で共通して使う
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
-export const CONTAINER = 'mx-auto w-full max-w-[1280px] px-4 lg:px-10'
+export const CONTAINER = 'mx-auto w-full max-w-[1184px] px-4 lg:px-12'
 
 export interface Crumb {
   label: string
@@ -35,12 +35,12 @@ export function PageHeading({
   aside?: ReactNode
 }) {
   return (
-    <div className="pt-6 lg:pt-10">
+    <div className="pt-6 lg:pt-12">
       {crumbs && <Breadcrumbs items={crumbs} className="hidden lg:block" />}
       <div className="mt-2 flex flex-col gap-4 lg:flex-row lg:items-end lg:gap-6">
         <div className="min-w-0">
-          <h1 className="font-mincho text-[26px] font-bold leading-snug text-navy lg:text-4xl">{title}</h1>
-          {lead && <p className="mt-1.5 text-sm leading-relaxed text-ink-soft lg:text-[14.5px]">{lead}</p>}
+          <h1 className="font-mincho text-[26px] font-bold leading-snug tracking-[0.06em] text-ink lg:text-[34px]">{title}</h1>
+          {lead && <p className="mt-3 text-sm leading-[1.9] text-ink-soft lg:text-[15px]">{lead}</p>}
         </div>
         {aside && <div className="lg:ml-auto lg:w-[360px]">{aside}</div>}
       </div>
@@ -51,17 +51,17 @@ export function PageHeading({
 export function SectionTitle({ children, action, className = '' }: { children: ReactNode; action?: ReactNode; className?: string }) {
   return (
     <div className={`flex items-baseline gap-3 ${className}`}>
-      <h2 className="font-mincho text-lg font-bold text-navy lg:text-xl">{children}</h2>
+      <h2 className="font-mincho text-xl font-bold tracking-[0.06em] text-ink lg:text-[26px]">{children}</h2>
       {action && <div className="ml-auto text-sm">{action}</div>}
     </div>
   )
 }
 
-// 角丸のチップ（絞り込み・カテゴリ・タグ）
+// 四角いチップ（絞り込み・カテゴリ・タグ）
 export function chipClass(active = false) {
   return active
-    ? 'inline-flex items-center rounded-full bg-navy px-3.5 py-1.5 text-[13px] font-bold text-white'
-    : 'inline-flex items-center rounded-full border border-line bg-white px-3.5 py-1.5 text-[13px] text-ink hover:border-gold'
+    ? 'inline-flex items-center border border-sumi bg-sumi px-3.5 py-1.5 text-[13px] font-bold text-white hover:text-white'
+    : 'inline-flex items-center border border-line bg-white px-3.5 py-1.5 text-[13px] text-ink hover:border-ink'
 }
 
 export function ChipLink({ href, active = false, children }: { href: string; active?: boolean; children: ReactNode }) {
@@ -72,21 +72,21 @@ export function ChipLink({ href, active = false, children }: { href: string; act
   )
 }
 
-// 白いカード
+// 白い面（角は丸めない）
 export function Card({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <div className={`rounded-xl border border-line bg-white ${className}`}>{children}</div>
+  return <div className={`border border-line bg-white ${className}`}>{children}</div>
 }
 
 // 小さなラベル（記事カテゴリなど）
 export function Tag({ children, tone = 'gold' }: { children: ReactNode; tone?: 'gold' | 'gray' | 'red' | 'orange' | 'green' }) {
   const tones = {
-    gold: 'bg-gold-light text-gold-dark',
-    gray: 'bg-[#f1eee8] text-ink-soft',
+    gold: 'text-gold-dark',
+    gray: 'text-ink-muted',
     red: 'bg-red-50 text-rakuten',
     orange: 'bg-orange-50 text-amazon',
     green: 'bg-green-50 text-green-700',
   }
-  return <span className={`inline-block rounded px-1.5 py-0.5 text-[11px] font-bold ${tones[tone]}`}>{children}</span>
+  return <span className={`inline-block text-[11px] tracking-[0.04em] ${tones[tone]}`}>{children}</span>
 }
 
 // 画像がないときの斜線の下地
@@ -94,7 +94,7 @@ export function Placeholder({ label, className = '' }: { label?: string; classNa
   return (
     <div
       className={`flex items-center justify-center text-[11px] text-ink-muted ${className}`}
-      style={{ backgroundImage: 'repeating-linear-gradient(135deg, #efeadf 0 12px, #f6f2ea 12px 24px)' }}
+      style={{ backgroundImage: 'repeating-linear-gradient(135deg, #efebe4 0 6px, #f5f2ec 6px 12px)' }}
       aria-hidden={label ? undefined : true}
     >
       {label}
@@ -111,6 +111,6 @@ export function NavyPanel({ eyebrow, title, children, href, className = '' }: { 
       {children}
     </>
   )
-  const cls = `block rounded-[14px] bg-navy px-5 py-4 text-white ${className}`
+  const cls = `block bg-navy px-5 py-4 text-white hover:text-white ${className}`
   return href ? <Link href={href} className={`${cls} hover:bg-navy-light`}>{inner}</Link> : <div className={cls}>{inner}</div>
 }

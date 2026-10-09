@@ -160,7 +160,7 @@
 }
 /* 記事本文（/guides/[slug]）。明朝の見出し・ゆったりした行間。markdown.ts が付けるクラスより優先させる */
 .article-body {
-  color: #2b2824;
+  color: #22201c;
   font-size: 15px;
   line-height: 1.95;
   overflow-wrap: anywhere;
@@ -183,7 +183,7 @@
   line-height: 1.5;
   margin: 2.6em 0 1em;
   padding-bottom: 0.5em;
-  border-bottom: 1px solid #e6e1d6;
+  border-bottom: 1px solid #ebe7df;
 }
 @media (min-width: 1024px) {
   .article-body h1,
@@ -193,7 +193,7 @@
 }
 .article-body h3 {
   font-weight: 700;
-  color: #2b2824;
+  color: #22201c;
   font-size: 16px;
   line-height: 1.6;
   margin: 2em 0 0.6em;
@@ -205,7 +205,7 @@
   margin: 1.6em 0 0.4em;
 }
 .article-body p {
-  color: #2b2824;
+  color: #22201c;
   line-height: inherit;
   margin: 0 0 1.25em;
 }
@@ -221,7 +221,7 @@
 }
 .article-body strong {
   font-weight: 700;
-  color: #2b2824;
+  color: #22201c;
   background: linear-gradient(transparent 62%, #f3ebdd 62%);
 }
 .article-body ul,
@@ -254,7 +254,7 @@
 }
 .article-body hr {
   border: 0;
-  border-top: 1px solid #e6e1d6;
+  border-top: 1px solid #ebe7df;
   margin: 2.5em 0;
 }
 .article-body table {
@@ -268,13 +268,13 @@
 }
 .article-body th,
 .article-body td {
-  border: 1px solid #e6e1d6;
+  border: 1px solid #ebe7df;
   padding: 0.55em 0.8em;
   text-align: left;
   vertical-align: top;
 }
 .article-body th {
-  background: #f7f4ee;
+  background: #faf9f6;
   color: #1a365d;
   font-weight: 700;
   white-space: nowrap;
@@ -291,7 +291,7 @@
 /* 引用・:::info などの囲み（markdown.ts のグラデーション装飾を白いカードに置き換える） */
 .article-body [class*='bg-gradient-to-r'] {
   background: #fff;
-  border: 1px solid #e6e1d6;
+  border: 1px solid #ebe7df;
   border-radius: 12px;
   box-shadow: none;
   padding: 1rem 1.1rem;
@@ -304,7 +304,7 @@
 }
 .article-body [class*='bg-gradient-to-r'] blockquote,
 .article-body [class*='bg-gradient-to-r'] .flex-1 > div {
-  color: #2b2824;
+  color: #22201c;
   font-weight: 400;
 }
 .article-body [class*='bg-gradient-to-r'] > .flex > .flex-shrink-0 {

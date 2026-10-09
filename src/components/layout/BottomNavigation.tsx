@@ -2,18 +2,18 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { NAV_ITEMS, isNavActive } from './SiteNav'
+import { NAV_ITEMS, SHOP_NAV, isNavActive } from './SiteNav'
 
-// スマホの下部タブ（ホーム・探す・育て方・出かける）
+// スマホの下部タブ（ホーム・盆栽を探す・育て方・盆栽園・イベント）
 export function BottomNavigation() {
   const pathname = usePathname() || '/'
-  const items = [{ href: '/', label: 'ホーム', match: ['/'] as readonly string[] }, ...NAV_ITEMS]
+  const items = [{ href: '/', label: 'ホーム', match: ['/'] as readonly string[] }, SHOP_NAV, ...NAV_ITEMS]
   return (
     <nav
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white pb-[env(safe-area-inset-bottom)] lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-paper pb-[env(safe-area-inset-bottom)] lg:hidden"
       aria-label="下部メニュー"
     >
-      <ul className="grid h-14 grid-cols-4">
+      <ul className="grid h-14 grid-cols-[1fr_1.45fr_1fr_1fr_1fr]">
         {items.map(item => {
           const active = item.href === '/' ? pathname === '/' : isNavActive(pathname, item.match)
           return (
@@ -21,9 +21,10 @@ export function BottomNavigation() {
               <Link
                 href={item.href}
                 aria-current={active ? 'page' : undefined}
-                className={`relative flex h-full items-center justify-center text-[12px] ${active ? 'font-bold text-navy' : 'text-ink-muted'}`}
+                className={`flex h-full items-center justify-center text-[11.5px] ${
+                  active ? 'bg-navy font-bold text-white hover:text-white' : 'text-ink-soft'
+                }`}
               >
-                {active && <span className="absolute top-0 h-[3px] w-6 rounded-b bg-gold" aria-hidden="true" />}
                 {item.label}
               </Link>
             </li>

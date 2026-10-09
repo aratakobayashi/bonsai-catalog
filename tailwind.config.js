@@ -8,12 +8,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // リニューアルのデザイン基準（紺×金、生成り背景）
+        // リニューアルのデザイン基準（v2：紺のヘッダー、生成り背景、墨のボタン。金はごく一部だけ）
+        // gold-dark と ink-muted は小さい文字でもコントラスト比 4.5 以上になる値にしている
         'navy': { DEFAULT: '#1a365d', light: '#2c4a75', dark: '#122848' },
-        'gold': { DEFAULT: '#b8935a', light: '#f3ebdd', dark: '#7d6238' },
-        'paper': '#f7f4ee',
-        'ink': { DEFAULT: '#2b2824', soft: '#57534e', muted: '#78716c' },
-        'line': '#e6e1d6',
+        'gold': { DEFAULT: '#b8935a', light: '#f3ebdd', dark: '#86683a' },
+        'paper': { DEFAULT: '#faf9f6', deep: '#f3f0ea' },
+        'ink': { DEFAULT: '#22201c', soft: '#4a463e', muted: '#757068' },
+        'sumi': { DEFAULT: '#22201c', light: '#3a3731' },
+        'line': '#ebe7df',
         'rakuten': '#bf0000',
         'amazon': '#c2570c',
         // 高級感のあるプライマリーカラー（ネイビー）

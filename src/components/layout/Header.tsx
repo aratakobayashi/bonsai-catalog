@@ -3,14 +3,15 @@
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
-import { NAV_ITEMS, isNavActive } from './SiteNav'
+import { useFavorites } from '@/lib/favorites'
+import { NAV_ITEMS, SHOP_NAV, isNavActive } from './SiteNav'
 import { SearchOverlay } from './SearchOverlay'
 
 function Logo() {
   return (
-    <Link href="/" className="flex shrink-0 items-center gap-2.5 text-white" aria-label="盆栽コレクション トップへ">
-      <span className="flex h-[30px] w-[30px] items-center justify-center rounded-md bg-gold font-mincho text-base font-bold">盆</span>
-      <span className="font-mincho text-[17px] font-bold tracking-[0.06em] lg:text-[19px]">盆栽コレクション</span>
+    <Link href="/" className="flex shrink-0 items-center gap-2.5 text-white hover:text-white" aria-label="盆栽コレクション トップへ">
+      <span className="flex h-[22px] w-[22px] items-center justify-center bg-gold font-mincho text-xs font-bold" aria-hidden="true">盆</span>
+      <span className="font-mincho text-base font-bold tracking-[0.12em] lg:text-[17px]">盆栽コレクション</span>
     </Link>
   )
 }
@@ -18,11 +19,14 @@ function Logo() {
 export function Header() {
   const pathname = usePathname() || '/'
   const router = useRouter()
+  const { ids: favorites } = useFavorites()
   const [pcOpen, setPcOpen] = useState(false)
   const [spOpen, setSpOpen] = useState(false)
   const [query, setQuery] = useState('')
   const closePc = useCallback(() => setPcOpen(false), [])
   const closeSp = useCallback(() => setSpOpen(false), [])
+  const shopActive = isNavActive(pathname, SHOP_NAV.match)
+  const favActive = pathname === '/favorites'
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -34,24 +38,37 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-navy text-white">
-      <div className="mx-auto flex h-14 max-w-[1280px] items-center gap-7 px-4 lg:h-16 lg:px-10">
+      <div className="mx-auto flex h-14 max-w-[1280px] items-center gap-8 px-4 lg:px-12">
         <Logo />
 
-        {/* PC：ヘッダーの検索欄（押すと候補を表示） */}
-        <form onSubmit={submit} className="relative hidden max-w-[420px] flex-1 lg:block" role="search">
+        <Link
+          href={SHOP_NAV.href}
+          aria-current={shopActive ? 'page' : undefined}
+          className={`hidden h-9 items-center border px-[18px] text-[13.5px] tracking-[0.08em] lg:flex ${
+            shopActive ? 'border-white bg-white font-bold text-navy hover:text-navy' : 'border-white/60 text-white hover:bg-white/10 hover:text-white'
+          }`}
+        >
+          {SHOP_NAV.label}
+        </Link>
+
+        {/* PC：ヘッダーの検索欄（入力すると候補を表示） */}
+        <form onSubmit={submit} className="relative hidden w-[260px] focus-within:w-[360px] lg:block" role="search">
           <input
             type="search"
             value={query}
-            onChange={e => setQuery(e.target.value)}
+            onChange={e => {
+              setQuery(e.target.value)
+              setPcOpen(true)
+            }}
             onFocus={() => setPcOpen(true)}
             placeholder="樹種・商品名・記事を検索"
             aria-label="サイト内を検索"
-            className="h-[38px] w-full rounded-lg bg-white/[0.12] px-3.5 text-[13.5px] text-white placeholder:text-white/75 outline-none focus:bg-white/20"
+            className="h-[34px] w-full border-b border-white/35 bg-transparent text-[13px] text-white outline-none placeholder:text-white/60 focus:border-white"
           />
-          <SearchOverlay open={pcOpen} onClose={closePc} variant="dropdown" />
+          <SearchOverlay open={pcOpen} onClose={closePc} variant="dropdown" query={query} />
         </form>
 
-        <nav className="ml-auto hidden items-center gap-6 text-sm lg:flex" aria-label="メインメニュー">
+        <nav className="ml-auto hidden items-center gap-[26px] text-[12.5px] lg:flex" aria-label="メインメニュー">
           {NAV_ITEMS.map(item => {
             const active = isNavActive(pathname, item.match)
             return (
@@ -59,23 +76,23 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 aria-current={active ? 'page' : undefined}
-                className={active ? 'border-b-2 border-gold pb-[3px] font-bold' : 'pb-[5px] hover:text-gold-light'}
+                className={active ? 'font-bold text-white hover:text-white' : 'text-white/75 hover:text-white'}
               >
                 {item.label}
               </Link>
             )
           })}
           <Link
-            href="/about"
-            aria-current={pathname === '/about' ? 'page' : undefined}
-            className={pathname === '/about' ? 'border-b-2 border-gold pb-[3px] font-bold' : 'pb-[5px] hover:text-gold-light'}
+            href="/favorites"
+            aria-current={favActive ? 'page' : undefined}
+            className={favActive ? 'font-bold text-white hover:text-white' : 'text-white/90 hover:text-white'}
           >
-            このサイトについて
+            気になる{favorites.length > 0 && <span className="ml-1">{favorites.length}</span>}
           </Link>
         </nav>
 
         {/* スマホ：検索画面を開く */}
-        <button type="button" onClick={() => setSpOpen(true)} className="ml-auto text-[13px] text-gold-light lg:hidden">
+        <button type="button" onClick={() => setSpOpen(true)} className="ml-auto text-[13px] text-white lg:hidden">
           検索
         </button>
       </div>
