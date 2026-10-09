@@ -10,7 +10,7 @@ summary:
   - 日本の盆栽づくりに取り入れやすい考え方と、山採りの注意
 species: shimpaku
 photo: /images/articles/photos/american-bonsai-west-coast-style-1.jpg
-thumbTitle: アメリカ西海岸の盆栽
+thumbTitle: アメリカ西海岸の盆栽／乾いた気候の管理
 thumbLabel: 盆栽を知る
 ---
 アメリカで盆栽が広く知られるようになったのは、19世紀の終わりから20世紀の前半にかけて西海岸へ移り住んだ日系の人たちが、故郷の盆栽を育て始めたことがきっかけの一つです。今ではカリフォルニア州をはじめ各地に愛好家の団体があり、公開庭園や博物館で盆栽を見ることもできます。

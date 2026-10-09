@@ -10,7 +10,7 @@ summary:
   - 植物用LEDライトで光を補うときの距離・時間の考え方
 selection: indoor-bonsai
 photo: /images/articles/photos/indoor-photosynthesis-optimization-guide-1.jpg
-thumbTitle: 室内の盆栽と光の当て方
+thumbTitle: 室内の盆栽と光／窓辺の置き方と照明
 thumbLabel: 基本のお手入れ
 ---
 植物は、葉に当たった光を使って養分を作り、その養分で枝や葉、根を育てます。室内の盆栽がうまく育たないとき、原因の多くはこの「光の量」が足りないことにあります。

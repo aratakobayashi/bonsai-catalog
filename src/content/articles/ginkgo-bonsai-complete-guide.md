@@ -10,7 +10,7 @@ summary:
   - 黄葉がきれいに出ないときに見直したいこと
 selection: autumn-leaves-bonsai
 photo: /images/articles/photos/ginkgo-bonsai-complete-guide-1.jpg
-thumbTitle: イチョウの盆栽の育て方
+thumbTitle: イチョウの盆栽／黄葉を楽しむ育て方
 thumbLabel: 樹種別の育て方
 ---
 イチョウは、扇形の葉が秋に明るい黄色に染まり、落葉後はまっすぐ上に伸びる枝ぶりが見どころになる樹です。街路樹や神社の大木でおなじみですが、鉢の中でも丈夫に育ちます。

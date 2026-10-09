@@ -108,6 +108,6 @@ thumbLabel: 樹種別の育て方
 
 五葉松は、こちらにまとめています。
 
-[五葉松の盆栽の育て方｜剪定・水やり・管理のコツ【初心者〜中級者向け】](/guides/article-6)
+[五葉松の盆栽の育て方](/guides/article-6)
 
 一年中緑を楽しめるほかの樹種とも比べたいときは[常緑の盆栽の選び方](/selection/evergreen-bonsai)を、松の盆栽を探すときは[黒松の盆栽一覧](/products/category/kuromatsu)や[五葉松の盆栽一覧](/products/category/goyomatsu)をご覧ください。

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽の観察カードの例</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">観察カードの例</text>
+  <rect x="20" y="68" width="760" height="392" rx="14" fill="#fff" stroke="#22201c" stroke-width="2"/>
+
+  <!-- 日付・天気 -->
+  <text x="44" y="112" font-size="24" font-weight="700" fill="#22201c">日付</text>
+  <line x1="110" y1="116" x2="300" y2="116" stroke="#ebe7df" stroke-width="3"/>
+  <text x="330" y="112" font-size="24" font-weight="700" fill="#22201c">天気</text>
+  <g transform="translate(424 104)"><circle r="12" fill="#b8935a"/></g>
+  <g transform="translate(470 104)"><path d="M-16 6 q0 -14 14 -14 q6 -10 16 -6 q12 0 12 12 q6 2 6 8 z" fill="#8a8578"/></g>
+  <g transform="translate(520 104)"><path d="M-14 0 q0 -12 12 -12 q5 -8 14 -5 q10 0 10 10 z" fill="#8a8578"/><g stroke="#1a365d" stroke-width="3"><line x1="-6" y1="6" x2="-9" y2="14"/><line x1="4" y1="6" x2="1" y2="14"/><line x1="14" y1="6" x2="11" y2="14"/></g></g>
+
+  <!-- 水やり -->
+  <text x="44" y="170" font-size="24" font-weight="700" fill="#22201c">水やり</text>
+  <rect x="140" y="148" width="26" height="26" rx="4" fill="none" stroke="#22201c" stroke-width="2.5"/>
+  <text x="176" y="170" font-size="22" fill="#22201c">した</text>
+  <rect x="240" y="148" width="26" height="26" rx="4" fill="none" stroke="#22201c" stroke-width="2.5"/>
+  <text x="276" y="170" font-size="22" fill="#22201c">しない</text>
+  <text x="370" y="170" font-size="22" fill="#6b655b">土は（乾いていた・湿っていた）</text>
+
+  <!-- 気づいたこと -->
+  <text x="44" y="228" font-size="24" font-weight="700" fill="#22201c">気づいたこと</text>
+  <g stroke="#ebe7df" stroke-width="3">
+    <line x1="44" y1="270" x2="440" y2="270"/><line x1="44" y1="314" x2="440" y2="314"/><line x1="44" y1="358" x2="440" y2="358"/><line x1="44" y1="402" x2="440" y2="402"/>
+  </g>
+  <text x="50" y="262" font-size="22" fill="#5b7f4a">例：新しい芽が2つ出た</text>
+
+  <!-- 絵・写真 -->
+  <rect x="470" y="204" width="286" height="230" rx="10" fill="#f3f0ea" stroke="#ebe7df" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="613" y="236" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">絵・写真</text>
+  <path d="M570 400 h86 l-8 -22 h-70 z" fill="#8b6b4a"/>
+  <path d="M612 378 Q606 340 616 316" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <ellipse cx="586" cy="318" rx="34" ry="16" fill="#5b7f4a"/>
+  <ellipse cx="646" cy="304" rx="32" ry="15" fill="#5b7f4a"/>
+  <ellipse cx="616" cy="280" rx="34" ry="18" fill="#5b7f4a"/>
+</svg>

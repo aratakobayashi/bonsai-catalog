@@ -102,6 +102,6 @@ thumbLabel: 樹種別の育て方
 
 南天の基本を短く知りたいときは、こちらにまとめています。
 
-[南天の盆栽入門｜縁起の良い赤い実を楽しむ育て方【初心者向け】](/guides/nanten-guide)
+[南天の盆栽入門](/guides/nanten-guide)
 
 正月に飾る盆栽をほかの樹種と比べたいときは[お正月に飾る盆栽の選び方](/selection/new-year-bonsai)を、南天の盆栽を探すときは[南天の盆栽一覧](/products/category/nanten)をご覧ください。

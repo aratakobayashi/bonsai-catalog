@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>ブルーベリーの花芽と葉芽の見分け方</title>
+  <rect width="800" height="450" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">冬の枝で見る花芽と葉芽</text>
+  <rect x="20" y="72" width="760" height="290" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <!-- 枝 -->
+  <path d="M60 330 C 200 300, 330 250, 470 190 C 560 150, 640 120, 720 100" stroke="#8b6b4a" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <!-- 花芽（枝先・丸い） -->
+  <ellipse cx="690" cy="96" rx="18" ry="22" fill="#b4573a" transform="rotate(-20 690 96)"/>
+  <ellipse cx="640" cy="112" rx="17" ry="21" fill="#b4573a" transform="rotate(-20 640 112)"/>
+  <ellipse cx="588" cy="130" rx="16" ry="20" fill="#b4573a" transform="rotate(-20 588 130)"/>
+  <!-- 葉芽（細い） -->
+  <path d="M470 190 l-6 -30 l14 2 z" fill="#5b7f4a"/>
+  <path d="M380 228 l-6 -28 l14 2 z" fill="#5b7f4a"/>
+  <path d="M290 262 l-6 -28 l14 2 z" fill="#5b7f4a"/>
+  <!-- 切る位置 -->
+  <line x1="520" y1="132" x2="548" y2="190" stroke="#1a365d" stroke-width="4" stroke-dasharray="8 6"/>
+  <g font-size="23" fill="#22201c">
+    <text x="560" y="232">ここで切ると</text>
+    <text x="560" y="262">花芽がなくなる</text>
+    <text x="764" y="166" text-anchor="end" font-weight="700" fill="#b4573a">花芽：丸い</text>
+    <text x="250" y="320" font-weight="700" fill="#5b7f4a">葉芽：細い</text>
+  </g>
+  <rect x="20" y="380" width="760" height="56" rx="14" fill="#1a365d"/>
+  <text x="400" y="416" text-anchor="middle" font-size="25" font-weight="700" fill="#faf9f6">花芽は枝先に集まる。切る枝と残す枝を分ける</text>
+</svg>

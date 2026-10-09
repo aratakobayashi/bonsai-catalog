@@ -11,7 +11,7 @@ summary:
 species: goyomatsu
 selection: evergreen-bonsai
 photo: /images/articles/photos/article-6-1.jpg
-thumbTitle: 五葉松の盆栽の育て方
+thumbTitle: 五葉松の盆栽の育て方／みどり摘みと古葉取り
 thumbLabel: 樹種別の育て方
 ---
 五葉松は、短い葉が5本ずつ束になって付く松で、白みを帯びた緑の葉と、落ち着いた枝ぶりが持ち味です。黒松のような力強さとは違い、穏やかで品のある姿になり、古くから盆栽で親しまれてきました。

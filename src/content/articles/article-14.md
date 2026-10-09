@@ -10,7 +10,7 @@ summary:
   - 弱ったときに、やってよいこと・控えたいこと
 selection: beginner-mini-bonsai
 photo: /images/articles/photos/article-14-1.jpg
-thumbTitle: 盆栽が枯れる原因と防ぎ方
+thumbTitle: 盆栽が枯れる原因／10の失敗と防ぎ方
 thumbLabel: トラブル対策
 ---
 盆栽が枯れる原因は、珍しい病気よりも、毎日の水やりや置き場所の小さなずれが重なったものがほとんどです。鉢の中の土は限られているので、地植えの木なら気にならない程度の失敗でも、短い間に樹が弱ります。

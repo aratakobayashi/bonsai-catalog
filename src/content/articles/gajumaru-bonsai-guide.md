@@ -11,7 +11,7 @@ summary:
 species: gajumaru
 selection: indoor-bonsai
 photo: /images/articles/photos/gajumaru-bonsai-guide-1.jpg
-thumbTitle: ガジュマルの盆栽の育て方
+thumbTitle: ガジュマルの盆栽／室内での育て方
 thumbLabel: 樹種別の育て方
 ---
 ガジュマルは、沖縄や東南アジアなど暖かい地域に自生するイチジクの仲間です。ぷっくり太った根元と、幹や枝から垂れ下がる気根（空中に出る根）が見どころで、盆栽の中では室内で育てやすい数少ない樹種です。

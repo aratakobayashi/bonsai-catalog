@@ -109,6 +109,6 @@ thumbLabel: 樹種別の育て方
 
 桜の盆栽の基本だけを短く知りたいときは、こちらもどうぞ。
 
-[桜の盆栽入門｜一才桜・旭山桜の育て方と開花のコツ【初心者向け】](/guides/sakura-general-guide)
+[桜の盆栽入門](/guides/sakura-general-guide)
 
 花を楽しむほかの樹種と比べたいときは[花を楽しむ盆栽の選び方](/selection/flowering-bonsai)を、桜の盆栽を探すときは[桜の盆栽一覧](/products/category/sakura)をご覧ください。

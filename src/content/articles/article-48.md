@@ -10,7 +10,7 @@ summary:
   - 一年の作業カレンダーと黄葉の見頃
 selection: autumn-leaves-bonsai
 photo: /images/articles/photos/article-48-1.jpg
-thumbTitle: ニレケヤキの盆栽の育て方
+thumbTitle: ニレケヤキの育て方／切り戻しで小枝を増やす
 thumbLabel: 樹種別の育て方
 ---
 ニレケヤキ（楡欅）は、小さな葉と細かく分かれる枝が持ち味の雑木盆栽です。芽吹きがよく、切ってもすぐに新しい芽が出るので、はじめて枝づくりを練習する樹としても向いています。

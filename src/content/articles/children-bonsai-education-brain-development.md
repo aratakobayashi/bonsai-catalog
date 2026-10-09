@@ -10,7 +10,7 @@ summary:
   - 観察記録のつけ方と、自由研究のテーマ例
 selection: beginner-mini-bonsai
 photo: /images/articles/photos/children-bonsai-education-brain-development-1.jpg
-thumbTitle: 子どもと一緒に／盆栽を育てる
+thumbTitle: 子どもと一緒に育てる／はじめての盆栽
 thumbLabel: 盆栽の楽しみ方
 ---
 盆栽は、小さな鉢の中で一本の樹が芽吹き、葉を広げ、季節とともに姿を変えていくのを間近で見られる趣味です。毎日の水やりを子どもに任せると、「今日は土が乾いている」「新しい芽が出た」といった小さな変化に気づく機会が増えます。

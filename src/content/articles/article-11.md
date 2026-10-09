@@ -10,7 +10,7 @@ summary:
   - よくある不安（旅行・室内・枯れたかどうか）への考え方
 selection: beginner-mini-bonsai
 photo: /images/articles/photos/article-11-1.jpg
-thumbTitle: 盆栽の始め方／最初の一鉢と道具
+thumbTitle: 盆栽の始め方／最初の一鉢と道具の選び方
 thumbLabel: はじめての盆栽
 ---
 盆栽は、鉢の中で樹を育て、何年もかけて姿を整えていく趣味です。難しそうに見えますが、始めるときに必要なのは、日の当たる置き場所と、丈夫な樹が一鉢、それに毎日少しだけ様子を見る時間です。

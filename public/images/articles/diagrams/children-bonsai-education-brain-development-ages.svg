@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>年齢ごとの盆栽との関わり方</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">年齢ごとの関わり方の目安</text>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="70" width="240" height="290" rx="14"/>
+    <rect x="280" y="70" width="240" height="290" rx="14"/>
+    <rect x="540" y="70" width="240" height="290" rx="14"/>
+  </g>
+  <g fill="#5b7f4a"><rect x="20" y="70" width="240" height="54" rx="14"/><rect x="280" y="70" width="240" height="54" rx="14"/><rect x="540" y="70" width="240" height="54" rx="14"/></g>
+  <g fill="#5b7f4a"><rect x="20" y="104" width="240" height="20"/><rect x="280" y="104" width="240" height="20"/><rect x="540" y="104" width="240" height="20"/></g>
+  <g font-size="26" font-weight="700" fill="#fff" text-anchor="middle">
+    <text x="140" y="107">3〜5歳ごろ</text><text x="400" y="107">6〜8歳ごろ</text><text x="660" y="107">9〜12歳ごろ</text>
+  </g>
+
+  <!-- じょうろ -->
+  <g transform="translate(140 186)">
+    <path d="M-36 -20 h48 v44 h-48 z" fill="#1a365d"/>
+    <path d="M12 -12 L52 -34" stroke="#1a365d" stroke-width="7" stroke-linecap="round"/>
+    <path d="M-36 -12 q-20 12 0 28" stroke="#1a365d" stroke-width="5" fill="none"/>
+    <g fill="#9fb8cc"><circle cx="58" cy="-24" r="4"/><circle cx="62" cy="-12" r="4"/><circle cx="56" cy="-2" r="4"/></g>
+  </g>
+  <!-- 指で確かめる＋記録 -->
+  <g transform="translate(400 186)">
+    <rect x="-40" y="-36" width="64" height="72" rx="6" fill="#f3f0ea" stroke="#22201c" stroke-width="3"/>
+    <g stroke="#6b655b" stroke-width="3"><line x1="-30" y1="-18" x2="14" y2="-18"/><line x1="-30" y1="-2" x2="14" y2="-2"/><line x1="-30" y1="14" x2="4" y2="14"/></g>
+    <path d="M30 30 L52 -30" stroke="#b8935a" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <!-- 芽摘み・種まき -->
+  <g transform="translate(660 190)">
+    <path d="M-40 30 h80 l-8 -26 h-64 z" fill="#8b6b4a"/>
+    <path d="M0 4 L0 -30" stroke="#5b7f4a" stroke-width="5" stroke-linecap="round"/>
+    <path d="M0 -24 q-22 -14 -30 0 q14 10 30 0 z M0 -30 q22 -14 30 0 q-14 10 -30 0 z" fill="#5b7f4a"/>
+  </g>
+
+  <g font-size="22" fill="#22201c" text-anchor="middle">
+    <text x="140" y="268">じょうろで水やり</text>
+    <text x="140" y="300">葉の数や色を見る</text>
+    <text x="400" y="268">土の乾き具合を</text>
+    <text x="400" y="300">確かめて水やり</text>
+    <text x="400" y="332">絵や写真で記録</text>
+    <text x="660" y="268">芽摘みや</text>
+    <text x="660" y="300">大人と一緒の剪定</text>
+    <text x="660" y="332">種まき・挿し木</text>
+  </g>
+
+  <rect x="20" y="380" width="760" height="70" rx="14" fill="#f3f0ea" stroke="#b8935a" stroke-width="2"/>
+  <g stroke="#b4573a" stroke-width="5" stroke-linecap="round"><line x1="46" y1="402" x2="66" y2="422"/><line x1="66" y1="402" x2="46" y2="422"/></g>
+  <text x="84" y="424" font-size="23" font-weight="700" fill="#22201c">刃物・針金・肥料・薬剤は大人が扱う</text>
+</svg>

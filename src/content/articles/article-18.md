@@ -10,7 +10,7 @@ summary:
   - 水が染み込まないとき、忘れてしまったときの対処
 selection: starter-tools
 photo: /images/articles/photos/article-18-1.jpg
-thumbTitle: 盆栽の水やりQ&A
+thumbTitle: 盆栽の水やりQ&A／迷いやすい場面
 thumbLabel: 基本のお手入れ
 ---
 盆栽の水やりの基本は、土の表面が乾いたら、鉢底から流れ出るまでたっぷり与えることです。ただ、毎日続けていると「雨が降った日は？」「夜に気づいたら？」といった、基本だけでは決めにくい場面が出てきます。

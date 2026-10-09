@@ -10,7 +10,7 @@ summary:
   - うどんこ病・カイガラムシなど、気をつけたい病害虫
 selection: flowering-bonsai
 photo: /images/articles/photos/crape-myrtle-summer-flowers-1.jpg
-thumbTitle: サルスベリの盆栽の育て方
+thumbTitle: サルスベリの盆栽／夏の花と樹肌の楽しみ方
 thumbLabel: 樹種別の育て方
 ---
 サルスベリは、梅雨明けから秋の初めにかけて、枝先に縮れた花びらの花を房のように咲かせる樹です。花の時期が長いことから「百日紅」とも書かれます。花の少ない真夏に咲くので、盆栽の棚の中でもよく目立ちます。
