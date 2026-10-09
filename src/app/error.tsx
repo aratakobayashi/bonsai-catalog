@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 
 // ページの表示中にサーバー側で一時的なエラーが起きたときの画面（再読み込みで直ることが多い）
-export default function Error({ error }: { error: Error & { digest?: string }; reset: () => void }) {
+export default function ErrorPage({ error }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
     console.error('ページの表示エラー:', error.digest ?? error.message)
   }, [error])
