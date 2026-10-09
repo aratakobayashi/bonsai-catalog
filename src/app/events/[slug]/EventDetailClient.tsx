@@ -119,7 +119,7 @@ export default function EventDetailClient({
     ) : null
 
   return (
-    <div className={`${CONTAINER} pb-28 lg:pb-16`}>
+    <div className={`${CONTAINER} pb-12 lg:pb-16`}>
       <div className="pt-4 lg:pt-6">
         <Link href="/events" className="text-[13px] text-ink-soft hover:text-gold-dark lg:hidden">‹ イベント一覧</Link>
         <Breadcrumbs
@@ -335,22 +335,6 @@ export default function EventDetailClient({
         </aside>
       </div>
 
-      {/* SP：画面下の操作ボタン（下部タブの上に固定） */}
-      <div className="fixed inset-x-0 bottom-[calc(3.5rem+env(safe-area-inset-bottom))] z-30 flex gap-2.5 border-t border-line bg-paper/95 px-4 py-2.5 backdrop-blur lg:hidden">
-        <a
-          href={mapUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`flex h-12 items-center justify-center border border-ink bg-white text-sm text-ink ${event.official_url ? 'w-[38%]' : 'flex-1'}`}
-        >
-          地図アプリ
-        </a>
-        {event.official_url && (
-          <a href={event.official_url} target="_blank" rel="noopener noreferrer" className="flex h-12 flex-1 items-center justify-center bg-sumi text-sm tracking-[0.04em] text-white hover:text-white">
-            公式サイト　↗
-          </a>
-        )}
-      </div>
     </div>
   )
 }

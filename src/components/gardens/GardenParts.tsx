@@ -1,4 +1,4 @@
-// 盆栽園の一覧・詳細で共通して使う小さな部品
+// 盆栽園の一覧・詳細で共通して使う小さな部品と関数
 import { getRegionFromPrefecture } from '@/lib/utils'
 import type { Garden } from '@/types'
 
@@ -23,13 +23,17 @@ export const PREFECTURE_ORDER = [
   '福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県',
 ]
 
+export function prefectureRank(prefecture?: string | null): number {
+  const i = prefecture ? PREFECTURE_ORDER.indexOf(prefecture) : -1
+  return i === -1 ? PREFECTURE_ORDER.length : i
+}
+
+// 地方の並び（北から南。都道府県の並びから作る）
+export const REGION_ORDER: string[] = PREFECTURE_ORDER.map(p => getRegionFromPrefecture(p)).filter((r, i, all) => r !== '未分類' && all.indexOf(r) === i)
+
 // 都道府県（北から南）→ 市区町村 → 園名の順に並べる
 export function compareGardens(a: Pick<Garden, 'prefecture' | 'city' | 'name'>, b: Pick<Garden, 'prefecture' | 'city' | 'name'>): number {
-  const rank = (p?: string | null) => {
-    const i = p ? PREFECTURE_ORDER.indexOf(p) : -1
-    return i === -1 ? PREFECTURE_ORDER.length : i
-  }
-  return rank(a.prefecture) - rank(b.prefecture)
+  return prefectureRank(a.prefecture) - prefectureRank(b.prefecture)
     || (a.city || '').localeCompare(b.city || '', 'ja')
     || a.name.localeCompare(b.name, 'ja')
 }
@@ -39,40 +43,65 @@ export function gardenArea(garden: Pick<Garden, 'prefecture' | 'city'>): string 
   return `${garden.prefecture || ''}${garden.city || ''}`
 }
 
-// 都道府県名を縦書きにした白い札（写真の代わり）
-export function PrefPlate({ garden, size = 'md' }: { garden: Pick<Garden, 'prefecture'>; size?: 'sm' | 'md' }) {
-  const box = size === 'sm' ? 'h-11 w-11 text-sm' : 'h-[52px] w-[52px] text-[15px] lg:h-[72px] lg:w-[72px] lg:text-[19px]'
-  return (
-    <div
-      className={`flex flex-shrink-0 items-center justify-center border border-line bg-white font-mincho font-bold leading-none tracking-[0.06em] text-ink ${box}`}
-      style={{ writingMode: 'vertical-rl' }}
-      aria-hidden="true"
-    >
-      {shortPrefecture(garden.prefecture)}
-    </div>
+// 所在地と組合員であることだけを書いた、どの園にも共通する定型文か
+// （例：「北上市成田にある盆栽園。日本盆栽協同組合の個人会員。」「さいたま市北区盆栽町（大宮盆栽村）の盆栽園。盆栽を鑑賞・購入できる。」）
+// 一覧ではこの定型文を出さない（詳細ページでは事実として出す）
+export function isGenericGardenDescription(description?: string | null): boolean {
+  const text = (description || '').replace(/\s+/g, '').replace(/で、/g, '。')
+  if (!text) return true
+  const sentences = text.split('。').filter(Boolean)
+  return sentences.every(s =>
+    /^[^。、]*(にある|の)[^。、]{0,8}盆栽(園|店)(（[^）]*）)?(です)?$/.test(s) ||
+    /(組合|協会)[^。]*の(組合員|個人会員|会員)(です)?$/.test(s) ||
+    /^盆栽を鑑賞・購入できる$/.test(s)
   )
 }
 
-// カードに出す「できること」などの短い情報（データがあるものだけ）
-export function gardenHighlights(garden: Garden, max = 3): string[] {
-  const items: string[] = []
-  if (garden.experience_programs) items.push('体験・教室あり')
-  if (garden.online_sales) items.push('オンライン購入可')
-  if (garden.business_hours) items.push(garden.business_hours.split(/\r?\n/)[0])
-  if (garden.phone && items.length < max) items.push('電話対応')
-  return items.slice(0, max)
+// 一覧に出す説明（定型文は出さない）
+export function gardenSummary(garden: Pick<Garden, 'description'>): string | null {
+  return isGenericGardenDescription(garden.description) ? null : garden.description.replace(/\s*\n\s*/g, '')
 }
 
-// 金茶の小さな文字で並べる（色付きの丸やラベルは使わない）
-export function HighlightDots({ items }: { items: string[] }) {
+// データがある「できること・連絡手段」だけを短いラベルで返す
+export function gardenFacts(garden: Pick<Garden, 'experience_programs' | 'online_sales' | 'website_url' | 'phone'>): string[] {
+  const items: string[] = []
+  if (garden.experience_programs) items.push('体験・教室')
+  if (garden.online_sales) items.push('オンライン購入')
+  if (garden.website_url) items.push('公式サイト')
+  if (garden.phone) items.push('電話')
+  return items
+}
+
+// 小さな四角いラベルで並べる（データがあるものだけ）
+export function FactChips({ items, className = '' }: { items: string[]; className?: string }) {
   if (items.length === 0) return null
   return (
-    <ul className="flex flex-wrap gap-x-3 gap-y-0.5 text-[11.5px] text-gold-dark">
+    <ul className={`flex flex-wrap gap-1.5 ${className}`} aria-label="できること・連絡手段">
       {items.map(item => (
-        <li key={item} className="line-clamp-1">{item}</li>
+        <li key={item} className="border border-line bg-white px-1.5 py-px text-[11px] leading-[18px] text-ink-soft">
+          {item}
+        </li>
       ))}
     </ul>
   )
+}
+
+export function hasCoords<T extends Pick<Garden, 'latitude' | 'longitude'>>(g: T): g is T & { latitude: number; longitude: number } {
+  return typeof g.latitude === 'number' && typeof g.longitude === 'number'
+}
+
+// 2点間の距離（km）
+export function distanceKm(a: { lat: number; lng: number }, b: { lat: number; lng: number }): number {
+  const rad = Math.PI / 180
+  const dLat = (b.lat - a.lat) * rad
+  const dLng = (b.lng - a.lng) * rad
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin(dLng / 2) ** 2
+  return 6371 * 2 * Math.asin(Math.sqrt(h))
+}
+
+// 「約3.2km」「約45km」
+export function formatKm(km: number): string {
+  return `約${km < 10 ? km.toFixed(1) : Math.round(km)}km`
 }
 
 // Googleマップで開くリンク（座標があれば座標、なければ名称＋住所で検索）
@@ -81,4 +110,9 @@ export function mapAppUrl(garden: Pick<Garden, 'name' | 'address' | 'latitude' |
     ? `${garden.latitude},${garden.longitude}`
     : `${garden.name} ${garden.address}`
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
+}
+
+// 電話番号のリンク（数字と + だけにする）
+export function telHref(phone: string): string {
+  return `tel:${phone.replace(/[^\d+]/g, '')}`
 }

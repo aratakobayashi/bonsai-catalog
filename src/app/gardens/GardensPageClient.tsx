@@ -1,82 +1,124 @@
 'use client'
 
-import { useState, useMemo, useEffect, useCallback } from 'react'
+import { useState, useMemo, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
-import { REGIONS } from '@/lib/utils'
 import { CONTAINER, PageHeading, Placeholder } from '@/components/ui/design'
 import { GardenMap, type GardenMapPoint } from '@/components/gardens/GardenMap'
-import { PrefPlate, HighlightDots, gardenArea, gardenHighlights, gardenRegion } from '@/components/gardens/GardenParts'
+import {
+  FactChips,
+  REGION_ORDER,
+  distanceKm,
+  formatKm,
+  gardenArea,
+  gardenFacts,
+  gardenRegion,
+  hasCoords,
+  mapAppUrl,
+  telHref,
+} from '@/components/gardens/GardenParts'
 import type { Garden } from '@/types'
 
+// 一覧で使う項目だけ（page.tsx で作る）。summary は定型文でない説明だけ
+export type GardenListItem = Pick<
+  Garden,
+  'id' | 'name' | 'prefecture' | 'city' | 'address' | 'latitude' | 'longitude' | 'phone' | 'website_url' | 'online_sales' | 'experience_programs'
+> & { summary: string | null }
+
 const ALL = 'すべて'
+// 全国・地方の表示では、1つの都道府県に出す園の数（残りは「すべて見る」）
+const GROUP_LIMIT = 3
+// 近い順の表示で、最初に出す件数
+const NEAR_PAGE = 20
 
 // 「できること」の絞り込み（データで判定できるものだけ）
 const FEATURES = [
-  { key: 'experience', label: '体験・教室', test: (g: Garden) => Boolean(g.experience_programs) },
-  { key: 'online', label: 'オンライン購入', test: (g: Garden) => Boolean(g.online_sales) },
-  { key: 'website', label: '公式サイトあり', test: (g: Garden) => Boolean(g.website_url) },
+  { key: 'experience', label: '体験・教室', test: (g: GardenListItem) => Boolean(g.experience_programs) },
+  { key: 'online', label: 'オンライン購入', test: (g: GardenListItem) => Boolean(g.online_sales) },
+  { key: 'website', label: '公式サイトあり', test: (g: GardenListItem) => Boolean(g.website_url) },
 ] as const
 type FeatureKey = (typeof FEATURES)[number]['key']
 
-// 2点間の距離（km）
-function distanceKm(a: { lat: number; lng: number }, b: { lat: number; lng: number }) {
-  const rad = Math.PI / 180
-  const dLat = (b.lat - a.lat) * rad
-  const dLng = (b.lng - a.lng) * rad
-  const h = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin(dLng / 2) ** 2
-  return 6371 * 2 * Math.asin(Math.sqrt(h))
+type LatLng = { lat: number; lng: number }
+
+function distanceTo(position: LatLng | null, g: GardenListItem): number | undefined {
+  return position && hasCoords(g) ? distanceKm(position, { lat: g.latitude, lng: g.longitude }) : undefined
 }
 
-function hasCoords(g: Garden): g is Garden & { latitude: number; longitude: number } {
-  return typeof g.latitude === 'number' && typeof g.longitude === 'number'
+function prefectureHref(prefecture: string) {
+  return `/gardens?prefecture=${encodeURIComponent(prefecture)}`
 }
 
-function GardenCard({
+// 一覧の1行：名前・市区町村・説明（定型文以外）・できること／右に公式サイト・地図
+function GardenRow({
   garden,
   selected,
   distance,
-  onSelect,
+  showPrefecture,
+  onHover,
 }: {
-  garden: Garden
+  garden: GardenListItem
   selected: boolean
   distance?: number
-  onSelect: () => void
+  showPrefecture: boolean
+  onHover: (id: string | null) => void
 }) {
+  const area = showPrefecture ? gardenArea(garden) : garden.city
+  const actionClass =
+    'relative z-10 inline-flex min-h-11 w-full items-center justify-center whitespace-nowrap border border-line bg-white px-2 text-[12px] text-ink hover:border-ink lg:min-h-9 lg:w-auto lg:px-3'
   return (
     <article
       id={`garden-${garden.id}`}
-      onMouseEnter={onSelect}
-      className="cv-row group relative flex gap-4 border-b border-line py-5 lg:gap-5 lg:py-[22px]"
+      onMouseEnter={() => onHover(garden.id)}
+      onMouseLeave={() => onHover(null)}
+      onFocus={() => onHover(garden.id)}
+      className={`cv-row group relative flex gap-3 border-b border-line py-3.5 lg:items-center lg:gap-5 lg:py-3 ${selected ? 'bg-gold-light/40' : ''}`}
     >
-      <PrefPlate garden={garden} />
       <div className="min-w-0 flex-1">
-        <div className="flex items-baseline gap-2 text-[11.5px] text-ink-muted">
-          <span className="truncate">{gardenArea(garden)}</span>
-          {distance != null && <span className="flex-shrink-0 text-gold-dark">約{distance < 10 ? distance.toFixed(1) : Math.round(distance)}km</span>}
-        </div>
-        <h3 className={`mt-0.5 font-mincho text-[17px] font-bold leading-snug tracking-[0.04em] lg:text-xl ${selected ? 'text-gold-dark' : 'text-ink'}`}>
-          {/* 行全体をリンクにする */}
+        <h3 className="font-mincho text-[16px] font-bold leading-snug tracking-[0.04em] text-ink lg:text-[17px]">
+          {/* 行全体を詳細ページへのリンクにする */}
           <Link href={`/gardens/${garden.id}`} className="after:absolute after:inset-0 group-hover:text-gold-dark">
             {garden.name}
           </Link>
         </h3>
-        {garden.description && <p className="mt-1.5 line-clamp-3 text-[13px] leading-[1.8] text-ink-soft lg:text-[13.5px]">{garden.description}</p>}
-        <div className="mt-1.5">
-          <HighlightDots items={gardenHighlights(garden)} />
-        </div>
+        <p className="mt-0.5 flex flex-wrap gap-x-2 text-[12px] text-ink-muted">
+          {area && <span>{area}</span>}
+          {distance != null && <span className="font-bold text-gold-dark">{formatKm(distance)}</span>}
+        </p>
+        {garden.summary && <p className="mt-1 line-clamp-2 text-[12.5px] leading-[1.7] text-ink-soft lg:line-clamp-1">{garden.summary}</p>}
+        <FactChips items={gardenFacts(garden)} className="mt-1.5 lg:mt-1" />
+      </div>
+      <div className="flex w-[92px] flex-shrink-0 flex-col justify-center gap-1.5 lg:w-auto lg:flex-row lg:gap-2">
+        {garden.website_url ? (
+          <a href={garden.website_url} target="_blank" rel="noopener noreferrer" className={actionClass} aria-label={`${garden.name}の公式サイト（新しいタブ）`}>
+            公式サイト ↗
+          </a>
+        ) : garden.phone ? (
+          <a href={telHref(garden.phone)} className={actionClass} aria-label={`${garden.name}に電話する（${garden.phone}）`}>
+            電話する
+          </a>
+        ) : null}
+        <a href={mapAppUrl(garden)} target="_blank" rel="noopener noreferrer" className={actionClass} aria-label={`${garden.name}の場所を地図アプリで開く（新しいタブ）`}>
+          地図 ↗
+        </a>
       </div>
     </article>
   )
 }
 
-export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
+export function GardensPageClient({ gardens }: { gardens: GardenListItem[] }) {
   const [region, setRegion] = useState<string>(ALL)
   const [prefecture, setPrefecture] = useState<string | null>(null)
   const [features, setFeatures] = useState<FeatureKey[]>([])
   const [selectedId, setSelectedId] = useState<string | null>(null)
-  const [position, setPosition] = useState<{ lat: number; lng: number } | null>(null)
+  const [position, setPosition] = useState<LatLng | null>(null)
   const [geoStatus, setGeoStatus] = useState<'idle' | 'loading' | 'error'>('idle')
+  const [nearLimit, setNearLimit] = useState(NEAR_PAGE)
+  // 地図のピンから開いた都道府県（折りたたみを解除する）
+  const [expanded, setExpanded] = useState<string[]>([])
+  const [pendingScrollId, setPendingScrollId] = useState<string | null>(null)
   const [showMapSp, setShowMapSp] = useState(false)
+  const listTopRef = useRef<HTMLDivElement>(null)
+
   // PCでは常に地図を出す。SPは「地図で見る」を押したときだけ地図（Leaflet）を読み込む
   const [isDesktop, setIsDesktop] = useState(false)
   useEffect(() => {
@@ -87,14 +129,28 @@ export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
     return () => mq.removeEventListener('change', update)
   }, [])
 
-  // 詳細ページからの「〇〇県の盆栽園一覧」リンク（?prefecture=）に対応
+  // ?prefecture= に対応（詳細ページの「〇〇県の盆栽園一覧」リンク・ブラウザの戻る）
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const pref = params.get('prefecture')
-    if (pref && gardens.some(g => g.prefecture === pref)) {
-      setPrefecture(pref)
-      setRegion(gardenRegion({ prefecture: pref }))
+    const read = () => {
+      const pref = new URLSearchParams(window.location.search).get('prefecture')
+      if (pref && gardens.some(g => g.prefecture === pref)) {
+        setPrefecture(pref)
+        setRegion(gardenRegion({ prefecture: pref }))
+      } else {
+        setPrefecture(null)
+      }
     }
+    read()
+    window.addEventListener('popstate', read)
+    return () => window.removeEventListener('popstate', read)
+  }, [gardens])
+
+  const prefectureCounts = useMemo(() => {
+    const counts: Record<string, number> = {}
+    gardens.forEach(g => {
+      if (g.prefecture) counts[g.prefecture] = (counts[g.prefecture] || 0) + 1
+    })
+    return counts
   }, [gardens])
 
   const regionCounts = useMemo(() => {
@@ -106,29 +162,49 @@ export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
     return counts
   }, [gardens])
 
-  // 件数の多い地方から並べる
-  const regionList = useMemo(
-    () => Object.keys(REGIONS).filter(r => regionCounts[r]).sort((a, b) => regionCounts[b] - regionCounts[a]),
-    [regionCounts]
-  )
+  const regionList = useMemo(() => REGION_ORDER.filter(r => regionCounts[r]), [regionCounts])
+  // 都道府県のチップ（一覧と同じく北から南。gardens は並べ替え済み）
+  const prefectureList = useMemo(() => {
+    const list: string[] = []
+    gardens.forEach(g => {
+      if (g.prefecture && !list.includes(g.prefecture)) list.push(g.prefecture)
+    })
+    return region === ALL ? list : list.filter(p => gardenRegion({ prefecture: p }) === region)
+  }, [gardens, region])
+
+  // 地域で絞った一覧（「できること」の件数を出すため、できることの絞り込み前）
+  const scoped = useMemo(() => {
+    if (prefecture) return gardens.filter(g => g.prefecture === prefecture)
+    if (region !== ALL) return gardens.filter(g => gardenRegion(g) === region)
+    return gardens
+  }, [gardens, region, prefecture])
 
   const filtered = useMemo(() => {
-    let list = gardens
-    if (prefecture) list = list.filter(g => g.prefecture === prefecture)
-    else if (region !== ALL) list = list.filter(g => gardenRegion(g) === region)
+    let list = scoped
     for (const key of features) {
       const f = FEATURES.find(x => x.key === key)!
       list = list.filter(f.test)
     }
     if (position) {
-      list = [...list].sort((a, b) => {
-        const da = hasCoords(a) ? distanceKm(position, { lat: a.latitude, lng: a.longitude }) : Infinity
-        const db = hasCoords(b) ? distanceKm(position, { lat: b.latitude, lng: b.longitude }) : Infinity
-        return da - db
-      })
+      list = [...list].sort((a, b) => (distanceTo(position, a) ?? Infinity) - (distanceTo(position, b) ?? Infinity))
     }
     return list
-  }, [gardens, region, prefecture, features, position])
+  }, [scoped, features, position])
+
+  // 都道府県ごとのまとまり（近い順のときは使わない）
+  const groups = useMemo(() => {
+    const map = new Map<string, GardenListItem[]>()
+    filtered.forEach(g => {
+      const key = g.prefecture || 'その他'
+      map.set(key, [...(map.get(key) || []), g])
+    })
+    return Array.from(map, ([name, items]) => ({ name, items }))
+  }, [filtered])
+
+  const isCollapsed = useCallback(
+    (pref: string) => !prefecture && !expanded.includes(pref),
+    [prefecture, expanded]
+  )
 
   const points: GardenMapPoint[] = useMemo(
     () =>
@@ -143,23 +219,52 @@ export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
     [filtered]
   )
 
-  const selectRegion = (r: string) => {
-    setRegion(r)
-    setPrefecture(null)
-    setSelectedId(null)
+  const scrollToListTop = () => {
+    const el = listTopRef.current
+    if (el && el.getBoundingClientRect().top < 0) el.scrollIntoView({ block: 'start' })
   }
 
-  // 地図のピンを押したら一覧の該当カードまでスクロール
-  const selectFromMap = (id: string) => {
-    setSelectedId(id)
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    document.getElementById(`garden-${id}`)?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' })
+  // 都道府県を選ぶ（URLも ?prefecture= にする）
+  const selectPrefecture = (pref: string | null, scroll = false) => {
+    setPrefecture(pref)
+    if (pref) setRegion(gardenRegion({ prefecture: pref }))
+    setSelectedId(null)
+    setExpanded([])
+    window.history.pushState(null, '', pref ? prefectureHref(pref) : '/gardens')
+    if (scroll) requestAnimationFrame(scrollToListTop)
+  }
+
+  const selectRegion = (r: string) => {
+    setRegion(r)
+    if (prefecture) selectPrefecture(null)
+    setSelectedId(null)
   }
 
   const toggleFeature = (key: FeatureKey) => {
     setFeatures(prev => (prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]))
     setSelectedId(null)
   }
+
+  // 地図のピンを押したら一覧の該当の行までスクロール（折りたたまれていれば開く）
+  const selectFromMap = (id: string) => {
+    setSelectedId(id)
+    const garden = filtered.find(g => g.id === id)
+    if (!garden) return
+    if (position) {
+      const index = filtered.indexOf(garden)
+      if (index >= nearLimit) setNearLimit(index + 1)
+    } else if (garden.prefecture && isCollapsed(garden.prefecture)) {
+      const items = groups.find(gr => gr.name === garden.prefecture)?.items || []
+      if (items.indexOf(garden) >= GROUP_LIMIT) setExpanded(prev => [...prev, garden.prefecture!])
+    }
+    setPendingScrollId(id)
+  }
+  useEffect(() => {
+    if (!pendingScrollId) return
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    document.getElementById(`garden-${pendingScrollId}`)?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' })
+    setPendingScrollId(null)
+  }, [pendingScrollId])
 
   const locate = useCallback(() => {
     if (position) {
@@ -174,9 +279,12 @@ export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
     navigator.geolocation.getCurrentPosition(
       pos => {
         setPosition({ lat: pos.coords.latitude, lng: pos.coords.longitude })
+        setNearLimit(NEAR_PAGE)
         setRegion(ALL)
         setPrefecture(null)
+        window.history.replaceState(null, '', '/gardens')
         setGeoStatus('idle')
+        requestAnimationFrame(scrollToListTop)
       },
       () => setGeoStatus('error'),
       { timeout: 10000, maximumAge: 300000 }
@@ -194,11 +302,21 @@ export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
   )
 
   const tabClass = (active: boolean) =>
-    `flex-none py-3 font-mincho text-[14px] font-bold lg:text-[15px] ${active ? 'text-ink shadow-[inset_0_-1.5px_0_#22201c]' : 'text-ink-muted hover:text-ink'}`
-  const textButton = (active: boolean) =>
-    `text-[12.5px] ${active ? 'border-b border-ink pb-0.5 font-bold text-ink' : 'text-ink-soft group-hover:text-ink'}`
-  // SPでも押しやすいよう、文字のボタンの押せる範囲を高さ44px以上にする
-  const tapButton = 'group inline-flex min-h-11 items-center lg:min-h-0'
+    `inline-flex min-h-11 flex-none items-center font-mincho text-[14px] font-bold lg:text-[15px] ${active ? 'text-ink shadow-[inset_0_-2px_0_#22201c]' : 'text-ink-muted hover:text-ink'}`
+  const chip = (active: boolean) =>
+    `inline-flex min-h-11 flex-none items-center gap-1 border px-3 text-[13px] lg:min-h-9 ${active ? 'border-sumi bg-sumi font-bold text-white hover:text-white' : 'border-line bg-white text-ink hover:border-ink'}`
+  const geoLabel = geoStatus === 'loading' ? '現在地を取得中…' : position ? '近い順を解除する' : '現在地から近い盆栽園'
+
+  const renderRow = (g: GardenListItem, showPrefecture: boolean) => (
+    <GardenRow
+      key={g.id}
+      garden={g}
+      selected={g.id === selectedId}
+      distance={distanceTo(position, g)}
+      showPrefecture={showPrefecture}
+      onHover={setSelectedId}
+    />
+  )
 
   return (
     <div className={`${CONTAINER} pb-14`}>
@@ -207,81 +325,177 @@ export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
       <PageHeading
         crumbs={[{ label: 'ホーム', href: '/' }, { label: '出かける', href: '/gardens' }, { label: '盆栽園' }]}
         title="盆栽園を訪ねる"
-        lead={
-          <>
-            <span className="text-xs text-ink-muted lg:hidden">全国{gardens.length}件</span>
-            <span className="hidden lg:inline">全国{gardens.length}の盆栽園を、地域とできることから探せます。</span>
-          </>
-        }
+        lead={`全国${gardens.length}の盆栽園を、現在地や都道府県から探せます。`}
         aside={<div className="hidden lg:block">{toggle}</div>}
       />
 
-      {/* 地方（下線のタブ。SPは横にスクロール） */}
-      <div className="-mx-4 mt-5 overflow-x-auto px-4 lg:mx-0 lg:mt-9 lg:overflow-visible lg:px-0">
-        <div className="flex min-w-max gap-5 border-b border-line lg:min-w-0 lg:flex-wrap lg:gap-7">
-          <button type="button" onClick={() => selectRegion(ALL)} className={tabClass(region === ALL && !prefecture)} aria-pressed={region === ALL && !prefecture}>
-            すべて {gardens.length}
-          </button>
-          {regionList.map(r => (
-            <button key={r} type="button" onClick={() => selectRegion(r)} className={tabClass(region === r && !prefecture)} aria-pressed={region === r && !prefecture}>
-              {r} {regionCounts[r]}
+      {/* 現在地・地図 */}
+      <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 lg:mt-7">
+        <button
+          type="button"
+          onClick={locate}
+          aria-pressed={Boolean(position)}
+          className="inline-flex h-12 flex-1 items-center justify-center gap-2 bg-sumi px-5 text-sm tracking-[0.04em] text-white hover:bg-sumi-light sm:flex-none"
+        >
+          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="12" cy="12" r="3.5" />
+            <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+            <circle cx="12" cy="12" r="7.5" />
+          </svg>
+          {geoLabel}
+        </button>
+        <button
+          type="button"
+          onClick={() => setShowMapSp(v => !v)}
+          aria-expanded={showMapSp}
+          aria-controls="gardens-map"
+          className="inline-flex h-12 items-center justify-center border border-ink bg-white px-5 text-sm text-ink lg:hidden"
+        >
+          {showMapSp ? '地図を閉じる' : '地図で見る'}
+        </button>
+        <p className="w-full text-[11.5px] text-ink-muted sm:w-auto">位置情報はこの端末の中で距離の計算にだけ使い、送信しません。</p>
+      </div>
+      {geoStatus === 'error' && (
+        <p className="mt-2 text-xs text-rakuten" role="alert">現在地を取得できませんでした。端末の位置情報の設定をご確認いただくか、下の都道府県からお探しください。</p>
+      )}
+
+      {/* 都道府県から探す：地方のタブ＋都道府県のチップ（件数つき） */}
+      <div className="mt-6 lg:mt-8">
+        <h2 className="text-[12.5px] text-ink-muted">都道府県から探す</h2>
+        <div className="-mx-4 mt-1 overflow-x-auto px-4 lg:mx-0 lg:overflow-visible lg:px-0">
+          <div className="flex min-w-max gap-5 border-b border-line lg:min-w-0 lg:flex-wrap lg:gap-7">
+            <button type="button" onClick={() => selectRegion(ALL)} className={tabClass(region === ALL)} aria-pressed={region === ALL}>
+              すべて<span className="ml-1 text-[12px] font-normal">{gardens.length}</span>
             </button>
-          ))}
-          {prefecture && (
-            <button type="button" onClick={() => selectRegion(region)} className={tabClass(true)} aria-label={`${prefecture}の絞り込みを解除`}>
-              {prefecture} ×
-            </button>
-          )}
+            {regionList.map(r => (
+              <button key={r} type="button" onClick={() => selectRegion(r)} className={tabClass(region === r)} aria-pressed={region === r}>
+                {r}<span className="ml-1 text-[12px] font-normal">{regionCounts[r]}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="-mx-4 mt-3 overflow-x-auto px-4 pb-1 lg:mx-0 lg:overflow-visible lg:px-0">
+          <ul className="flex min-w-max gap-2 lg:min-w-0 lg:flex-wrap">
+            {prefectureList.map(p => {
+              const active = prefecture === p
+              return (
+                <li key={p}>
+                  <a
+                    href={active ? '/gardens' : prefectureHref(p)}
+                    onClick={e => {
+                      e.preventDefault()
+                      selectPrefecture(active ? null : p)
+                    }}
+                    aria-current={active ? 'page' : undefined}
+                    className={chip(active)}
+                  >
+                    {p}
+                    <span className={`text-[11.5px] ${active ? 'text-white/80' : 'text-ink-muted'}`}>{prefectureCounts[p]}</span>
+                    {active && (
+                      <>
+                        <span aria-hidden="true">×</span>
+                        <span className="sr-only">（選択を解除）</span>
+                      </>
+                    )}
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
         </div>
       </div>
 
       {/* できること・件数 */}
-      <div className="mt-2 flex flex-wrap items-center gap-x-5 lg:mt-3.5 lg:gap-y-2">
+      <div className="mt-3 flex flex-wrap items-center gap-x-4 lg:mt-4">
         <span className="text-[12.5px] text-ink-muted">できること</span>
         {FEATURES.map(f => {
           const active = features.includes(f.key)
+          const count = scoped.filter(f.test).length
           return (
-            <button key={f.key} type="button" onClick={() => toggleFeature(f.key)} aria-pressed={active} className={tapButton}>
-              <span className={textButton(active)}>{f.label}</span>
+            <button key={f.key} type="button" onClick={() => toggleFeature(f.key)} aria-pressed={active} className="group inline-flex min-h-11 items-center gap-1.5 text-[12.5px] lg:min-h-9">
+              <span aria-hidden="true" className={`inline-block h-3.5 w-3.5 border ${active ? 'border-sumi bg-sumi' : 'border-ink-muted bg-white'}`} />
+              <span className={active ? 'font-bold text-ink' : 'text-ink-soft group-hover:text-ink'}>{f.label}</span>
+              <span className="text-ink-muted">{count}</span>
             </button>
           )
         })}
-        <span className="ml-auto text-[12.5px] text-ink-muted">
-          {scopeLabel} {filtered.length}件{position && '（近い順）'}
-        </span>
       </div>
 
-      {/* SP: 現在地・地図 */}
-      <div className="mt-1 flex gap-5 lg:hidden">
-        <button type="button" onClick={locate} className="inline-flex min-h-11 items-center text-[13px] text-ink">
-          <span className="border-b border-ink pb-0.5">{geoStatus === 'loading' ? '現在地を取得中…' : position ? '近い順を解除' : '現在地から探す'}</span>
-        </button>
-        <button type="button" onClick={() => setShowMapSp(v => !v)} aria-expanded={showMapSp} aria-controls="gardens-map" className="inline-flex min-h-11 items-center text-[13px] text-ink hover:text-gold-dark">
-          {showMapSp ? '地図を閉じる' : '地図で見る'}
-        </button>
-      </div>
-      {geoStatus === 'error' && <p className="mt-2 text-xs text-rakuten">現在地を取得できませんでした。端末の位置情報の設定をご確認ください。</p>}
-
-      <div className="mt-2 grid gap-4 lg:mt-5 lg:grid-cols-[minmax(0,1fr)_480px] lg:gap-12">
+      <div ref={listTopRef} className="mt-3 scroll-mt-16 grid gap-4 lg:mt-4 lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-10">
         {/* 一覧 */}
         <div className="lg:order-1">
-          {filtered.length > 0 ? (
-            <div>
-              {filtered.map(g => (
-                <GardenCard
-                  key={g.id}
-                  garden={g}
-                  selected={g.id === selectedId}
-                  distance={position && hasCoords(g) ? distanceKm(position, { lat: g.latitude, lng: g.longitude }) : undefined}
-                  onSelect={() => setSelectedId(g.id)}
-                />
-              ))}
-            </div>
-          ) : (
+          <div className="flex items-baseline gap-3 border-b border-ink pb-2">
+            <h2 className="font-mincho text-[17px] font-bold tracking-[0.04em] text-ink lg:text-lg">
+              {position ? '現在地から近い順' : `${scopeLabel}の盆栽園`}
+            </h2>
+            <span className="text-[12.5px] text-ink-muted" aria-live="polite">{filtered.length}件</span>
+            {prefecture && (
+              <a
+                href="/gardens"
+                onClick={e => {
+                  e.preventDefault()
+                  selectPrefecture(null)
+                }}
+                className="ml-auto inline-flex min-h-11 items-center text-[12.5px] text-ink lg:min-h-0"
+              >
+                <span className="border-b border-ink pb-0.5">全国の一覧へ</span>
+              </a>
+            )}
+          </div>
+
+          {filtered.length === 0 ? (
             <div className="border-b border-line py-12 text-center">
               <p className="font-mincho text-base font-bold text-ink">条件に合う盆栽園が見つかりませんでした</p>
               <p className="mt-2 text-sm text-ink-soft">地域や「できること」の条件を減らしてお試しください。</p>
             </div>
+          ) : position ? (
+            <div>
+              {filtered.slice(0, nearLimit).map(g => renderRow(g, true))}
+              {filtered.length > nearLimit && (
+                <button
+                  type="button"
+                  onClick={() => setNearLimit(n => n + NEAR_PAGE)}
+                  className="mt-4 inline-flex min-h-11 w-full items-center justify-center border border-ink bg-white text-sm text-ink hover:bg-paper-deep"
+                >
+                  さらに表示する（残り{filtered.length - nearLimit}件）
+                </button>
+              )}
+            </div>
+          ) : (
+            groups.map(group => {
+              const collapsed = isCollapsed(group.name) && group.items.length > GROUP_LIMIT
+              const items = collapsed ? group.items.slice(0, GROUP_LIMIT) : group.items
+              return (
+                <section key={group.name} aria-labelledby={`pref-${group.name}`}>
+                  {/* 都道府県の見出し（スクロール中も上に残す） */}
+                  {!prefecture && (
+                    <div className="sticky top-14 z-20 -mx-4 flex items-baseline gap-2 border-b border-line bg-paper/95 px-4 pb-2 pt-4 backdrop-blur lg:mx-0 lg:px-0 lg:pt-3 lg:pb-1.5">
+                      <h3 id={`pref-${group.name}`} className="font-mincho text-[15px] font-bold tracking-[0.06em] text-ink">
+                        {group.name}
+                      </h3>
+                      <span className="text-[12px] text-ink-muted">{group.items.length}件</span>
+                    </div>
+                  )}
+                  {prefecture && <h3 id={`pref-${group.name}`} className="sr-only">{group.name}</h3>}
+                  {items.map(g => renderRow(g, false))}
+                  {collapsed && (
+                    <a
+                      href={prefectureHref(group.name)}
+                      onClick={e => {
+                        e.preventDefault()
+                        selectPrefecture(group.name, true)
+                      }}
+                      className="flex min-h-11 items-center justify-between border-b border-line text-[13px] text-ink hover:text-gold-dark"
+                    >
+                      <span>
+                        {group.name}の盆栽園をすべて見る（{group.items.length}）
+                      </span>
+                      <span aria-hidden="true">›</span>
+                    </a>
+                  )}
+                </section>
+              )
+            })
           )}
 
           <p className="mt-6 text-xs leading-relaxed text-ink-muted">
@@ -289,23 +503,19 @@ export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
             掲載内容の修正・掲載のご相談は<Link href="/contact" className="border-b border-ink-muted hover:text-gold-dark">お問い合わせ</Link>からどうぞ。
           </p>
         </div>
-        {/* 地図（PCは右に固定、SPは「地図で見る」で開く）。キーボードで一覧を先に操作できるよう、DOMでは一覧の後に置く */}
-        <div id="gardens-map" className={`${showMapSp ? 'block' : 'hidden'} order-first pt-2 lg:order-2 lg:block lg:pt-0`}>
-          <div className="lg:sticky lg:top-24">
-            <div className="isolate h-[320px] overflow-hidden border border-line lg:h-[calc(100vh-8rem)] lg:max-h-[640px]">
+
+        {/* 地図（PCは右に固定して画面の高さに合わせる、SPは「地図で見る」で開く）。キーボードで一覧を先に操作できるよう、DOMでは一覧の後に置く */}
+        <div id="gardens-map" className={`${showMapSp ? 'block' : 'hidden'} order-first lg:order-2 lg:block`}>
+          <div className="lg:sticky lg:top-[72px]">
+            <div className="isolate h-[55vh] min-h-[300px] overflow-hidden border border-line lg:h-[calc(100vh-88px)] lg:min-h-[420px]">
               {!(isDesktop || showMapSp) ? null : points.length > 0 ? (
                 <GardenMap points={points} selectedId={selectedId} onSelect={selectFromMap} />
               ) : (
                 <Placeholder label="地図に表示できる盆栽園がありません" className="h-full w-full" />
               )}
             </div>
-            {/* PCのみ現在地ボタン */}
-            <button type="button" onClick={locate} className="mt-3 hidden border-b border-ink pb-0.5 text-xs text-ink hover:text-gold-dark lg:inline-block">
-              {geoStatus === 'loading' ? '現在地を取得中…' : position ? '近い順を解除' : '現在地から近い順に並べる'}
-            </button>
           </div>
         </div>
-
       </div>
     </div>
   )
