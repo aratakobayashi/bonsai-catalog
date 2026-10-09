@@ -21,8 +21,9 @@
   }
   
   /* アクセシビリティ: フォーカス状態の強化 */
+  /* 生成りの背景でも見えるよう、濃い金（コントラスト比 4.9）でフォーカスを示す */
   :focus-visible {
-    outline: 2px solid #b8935a;
+    outline: 2px solid #86683a;
     outline-offset: 2px;
   }
   

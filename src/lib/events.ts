@@ -19,6 +19,12 @@ export interface EventQueryParams {
 const searchFilter = (q: string) =>
   ['title', 'venue_name', 'organizer_name', 'description'].map(column => `${column}.ilike.%${q}%`).join(',')
 
+// 種別の条件（types 列は jsonb のため、配列演算子ではなく「含む」を OR でつなぐ）
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+const EVENT_TYPES = new Set(['exhibition', 'sale', 'workshop', 'lecture'])
+const typesFilter = (types: string[]) =>
+  types.filter(t => EVENT_TYPES.has(t)).map(t => `types.cs.["${t}"]`).join(',')
+
 export async function getEvents(params: EventQueryParams = {}) {
   const {
     month,
@@ -46,9 +52,10 @@ export async function getEvents(params: EventQueryParams = {}) {
         const endOfMonth = new Date(parseInt(year), parseInt(monthNum), 0)
           .toISOString().split('T')[0]
 
+        // 月をまたいで開催するイベントも含める（開始が月末まで、かつ終了が月初以降）
         query = query
-          .gte('start_date', startOfMonth)
           .lte('start_date', endOfMonth)
+          .gte('end_date', startOfMonth)
       }
 
       // 地域フィルター
@@ -58,11 +65,12 @@ export async function getEvents(params: EventQueryParams = {}) {
 
       // イベント種別フィルター
       if (types && types.length > 0) {
-        query = query.overlaps('types', types)
+        const filter = typesFilter(types)
+        if (filter) query = query.or(filter)
       }
 
       // 盆栽園フィルター
-      if (gardenId) {
+      if (gardenId && UUID_RE.test(gardenId)) {
         query = query.eq('garden_id', gardenId)
       }
 
@@ -85,8 +93,8 @@ export async function getEvents(params: EventQueryParams = {}) {
         .toISOString().split('T')[0]
 
       countQuery = countQuery
-        .gte('start_date', startOfMonth)
         .lte('start_date', endOfMonth)
+        .gte('end_date', startOfMonth)
     }
 
     if (prefecture) {
@@ -94,10 +102,11 @@ export async function getEvents(params: EventQueryParams = {}) {
     }
 
     if (types && types.length > 0) {
-      countQuery = countQuery.overlaps('types', types)
+      const filter = typesFilter(types)
+      if (filter) countQuery = countQuery.or(filter)
     }
 
-    if (gardenId) {
+    if (gardenId && UUID_RE.test(gardenId)) {
       countQuery = countQuery.eq('garden_id', gardenId)
     }
 

@@ -76,8 +76,11 @@ export default function RootLayout({
         <WebSiteStructuredData baseUrl="https://www.bonsai-collection.com" />
         <OrganizationStructuredData baseUrl="https://www.bonsai-collection.com" />
         <div className="min-h-screen flex flex-col">
+          <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[70] focus:bg-sumi focus:px-4 focus:py-3 focus:text-sm focus:text-white">
+            本文へスキップ
+          </a>
           <Header />
-          <main className="flex-1 pb-16 lg:pb-0">
+          <main id="main" className="flex-1 pb-16 lg:pb-0">
             {children}
           </main>
           <Footer />
