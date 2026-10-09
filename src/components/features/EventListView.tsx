@@ -62,7 +62,7 @@ export function EventListView({ events, className, selectedId, onSelect }: Event
   return (
     <div className={cn('flex flex-col', className)}>
       {groups.map((group, i) => (
-        <section key={group.key} className={cn('flex flex-col', i > 0 && 'mt-8')}>
+        <section key={group.key} className={cn('flex flex-col', i > 0 && 'cv-section mt-8')}>
           <h2 className="font-mincho text-[15px] font-bold tracking-[0.04em] text-ink">{group.title}</h2>
           {group.events.map(event => (
             <EventCard

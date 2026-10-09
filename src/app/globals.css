@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* しっぽり明朝が届くまでは端末の明朝体（iPhone・Mac：ヒラギノ明朝、Windows：游明朝、Android：Noto Serif） */
+    --font-mincho: 'Shippori Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', 'YuMincho', 'Noto Serif JP', 'Noto Serif CJK JP', serif;
+  }
+
   * {
     @apply border-neutral-200;
   }
@@ -98,4 +103,14 @@
 input[type='search']::-webkit-search-cancel-button {
   -webkit-appearance: none;
   appearance: none;
+}
+
+/* 長い一覧の画面外の部分は、スクロールで近づくまで描画を省く（初回表示の負荷を下げる） */
+.cv-row {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 150px;
+}
+.cv-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
 }

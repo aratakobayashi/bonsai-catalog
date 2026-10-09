@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Shippori_Mincho } from 'next/font/google'
 import './globals.css'
 import '@/styles/editor.css'
 import { Header } from '@/components/layout/Header'
@@ -10,8 +9,10 @@ import { Toaster } from 'react-hot-toast'
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 import { AdSenseLoader } from '@/components/analytics/AdSenseLoader'
 
-// 本文は端末の標準の日本語フォントを使い、見出しのしっぽり明朝（太字）だけをWebフォントで読み込む（表示速度のため）
-const mincho = Shippori_Mincho({ subsets: ['latin'], weight: ['700'], variable: '--font-mincho', display: 'swap', preload: false })
+// 本文は端末の標準の日本語フォント。見出しのしっぽり明朝（太字）は、表示を止めないよう描画のあとで読み込む
+// （読み込むまでは端末の明朝体で表示）。next/font だと 95KB の @font-face の CSS が描画を止めるため使わない
+const MINCHO_CSS = 'https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700&display=swap'
+const loadMincho = `(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='${MINCHO_CSS}';l.media='print';l.onload=function(){l.media='all'};document.head.appendChild(l)})()`
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.bonsai-collection.com'), // OGP画像・canonical の基準URL
@@ -61,7 +62,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={mincho.variable}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <script dangerouslySetInnerHTML={{ __html: loadMincho }} />
+        <noscript>
+          <link rel="stylesheet" href={MINCHO_CSS} />
+        </noscript>
+      </head>
+      <body>
         <GoogleAnalytics />
         <AdSenseLoader />
         <WebSiteStructuredData baseUrl="https://www.bonsai-collection.com" />

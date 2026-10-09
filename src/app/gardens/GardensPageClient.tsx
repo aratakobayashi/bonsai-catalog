@@ -46,7 +46,7 @@ function GardenCard({
     <article
       id={`garden-${garden.id}`}
       onMouseEnter={onSelect}
-      className="group relative flex gap-4 border-b border-line py-5 lg:gap-5 lg:py-[22px]"
+      className="cv-row group relative flex gap-4 border-b border-line py-5 lg:gap-5 lg:py-[22px]"
     >
       <PrefPlate garden={garden} />
       <div className="min-w-0 flex-1">

@@ -175,7 +175,7 @@
 }
 .article-body h1,
 .article-body h2 {
-  font-family: var(--font-mincho), 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  font-family: var(--font-mincho);
   font-weight: 700;
   color: #22201c;
   font-size: 21px;
