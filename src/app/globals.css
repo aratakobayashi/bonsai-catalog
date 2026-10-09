@@ -94,3 +94,8 @@
     @apply transition-all duration-300 ease-luxury hover:shadow-hover hover:-translate-y-2;
   }
 }
+/* 検索欄の「×」（ブラウザ標準の青いボタン）を出さない */
+input[type='search']::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}

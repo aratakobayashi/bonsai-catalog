@@ -37,7 +37,7 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-40 bg-navy text-white">
+    <header className="sticky top-0 z-50 bg-navy text-white">
       <div className="mx-auto flex h-14 max-w-[1280px] items-center gap-8 px-4 lg:px-12">
         <Logo />
 

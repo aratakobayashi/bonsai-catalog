@@ -76,7 +76,13 @@ export function ProductInfo({
         <span>{SHOP_LABELS[product.source]}</span>
         <FavoriteButton productId={product.id} productName={product.name} variant="text" className="ml-auto" />
       </div>
-      <Title className="mt-2 font-mincho text-[21px] font-bold leading-[1.45] tracking-[0.08em] text-ink lg:text-[28px]">{product.name}</Title>
+      <Title
+        className={`mt-2 font-mincho font-bold leading-[1.5] text-ink ${
+          headingLevel === 'h1' ? 'text-[21px] tracking-[0.06em] lg:text-[26px]' : 'text-[19px] tracking-[0.04em] lg:text-xl'
+        }`}
+      >
+        {product.name}
+      </Title>
       {showOriginalName && product.originalName !== product.name && (
         <p className="mt-2 text-[11.5px] leading-[1.7] text-ink-muted">ショップでの商品名：{product.originalName}</p>
       )}

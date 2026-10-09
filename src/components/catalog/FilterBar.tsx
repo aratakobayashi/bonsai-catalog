@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { createPortal } from 'react-dom'
 import type { SpeciesTab } from '@/lib/catalog-menus'
 
 export interface FilterOption {
@@ -163,7 +164,7 @@ export function FilterBar({ allTab, tabs, menus, sort, conditions, activeCount, 
         <nav
           ref={tabsRef}
           aria-label="樹種"
-          className="flex h-full min-w-0 flex-1 items-stretch gap-5 overflow-x-auto px-4 [scrollbar-width:none] lg:gap-[26px] lg:px-0 [&::-webkit-scrollbar]:hidden"
+          className="relative flex h-full min-w-0 flex-1 items-stretch gap-5 overflow-x-auto px-4 [scrollbar-width:none] lg:gap-[26px] lg:px-0 [&::-webkit-scrollbar]:hidden"
         >
           <TabLink tab={allTab} />
           {tabs.map(tab => <TabLink key={tab.key} tab={tab} />)}
@@ -221,7 +222,8 @@ export function FilterBar({ allTab, tabs, menus, sort, conditions, activeCount, 
         )}
       </div>
 
-      {sheetOpen && (
+      {/* 固定の見出し行の中だと下部タブより下に重なるため、body 直下に出す */}
+      {sheetOpen && createPortal(
         <div className="fixed inset-0 z-[60] bg-paper lg:flex lg:items-center lg:justify-center lg:bg-black/40" onClick={() => setSheetOpen(false)}>
           <div
             role="dialog"
@@ -248,7 +250,8 @@ export function FilterBar({ allTab, tabs, menus, sort, conditions, activeCount, 
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   )
