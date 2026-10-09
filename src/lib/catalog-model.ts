@@ -2,6 +2,15 @@
 import type { ProductType } from '@/lib/product-classify'
 import { findSpeciesTrait, speciesCandidates, type Enjoy, type Level, type Place, type Season } from '@/lib/species-traits'
 import { cleanProductName, shortProductName, stripPromoText } from '@/lib/product-name'
+import productImages from '@/data/product-images.json'
+
+// 楽天の1枚目は文字やバナー入りの宣伝画像が多いため、ショップが登録した候補（最大3枚）から
+// 盆栽が一番よく見える1枚を選んだもの（src/data/product-images.json）があれば、そちらを使う。画像そのものは加工しない
+const CHOSEN_IMAGES = productImages as Record<string, string>
+function chosenImage(id: unknown, stored: unknown): string | null {
+  const chosen = typeof id === 'string' ? CHOSEN_IMAGES[id] : undefined
+  return chosen || (typeof stored === 'string' && stored ? stored : null)
+}
 import type { SizeCategory } from '@/types'
 
 export type ProductSource = 'amazon' | 'rakuten'
@@ -106,7 +115,7 @@ export function normalizeProduct(row: any): CatalogProduct {
     displayName: shortProductName(name, trait?.label),
     originalDisplayName: stripPromoText(name),
     price: Number(row.price) || 0,
-    imageUrl: row.image_url || null,
+    imageUrl: chosenImage(row.id, row.image_url),
     source,
     buyUrl: (isAmazon ? row.amazon_url : row.rakuten_url) || null,
     shopName: row.shop_name || (isAmazon ? 'Amazon' : '楽天市場'),
