@@ -145,9 +145,10 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         <Link href={listHref}>‹ {catLink ? `${catLink.label}の一覧` : '一覧'}（{(related.length + 1).toLocaleString()}件）</Link>
       </div>
 
-      <div className="mx-auto max-w-[1280px] pb-36 lg:grid lg:grid-cols-[440px_minmax(0,1fr)] lg:border-x lg:border-line lg:pb-0">
+      {/* PC：左の一覧と右の詳細を、それぞれ独立してスクロールできるようにする */}
+      <div className="mx-auto max-w-[1280px] pb-36 lg:grid lg:h-[calc(100vh-64px)] lg:grid-cols-[440px_minmax(0,1fr)] lg:border-x lg:border-line lg:pb-0">
         {/* PC：同じカテゴリの商品の一覧 */}
-        <aside className="hidden border-r border-line bg-white lg:block">
+        <aside className="hidden border-r border-line bg-white lg:block lg:overflow-y-auto" aria-label="同じカテゴリの商品">
           <div className="px-5 pb-3 pt-5">
             <div className="flex items-baseline gap-2">
               <span className="text-lg font-bold text-navy">{catLink ? catLink.label : '似ている商品'}</span>
@@ -172,7 +173,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           ))}
         </aside>
 
-        <div className="min-w-0 px-4 pt-0 lg:px-9 lg:py-8">
+        <div className="min-w-0 px-4 pt-0 lg:overflow-y-auto lg:px-9 lg:py-8">
           <ProductDetailPanel product={product} headingLevel="h1" showDescription />
 
           {features.length > 0 && (
