@@ -1,1 +1,38 @@
-{}
+{
+  "/images/articles/photos/article-1-1.jpg": {
+    "title": "acer palmatum 'seigen'",
+    "creator": "M. Martin Vicente",
+    "license": "CC BY 2.0",
+    "source": "https://www.flickr.com/photos/32179778@N00/8732438343"
+  },
+  "/images/articles/photos/article-1-2.jpg": {
+    "title": "My Japanese Maple bonsai is going dormant. Beautiful two color leaves this year.",
+    "creator": "Ronald Douglas Frazier",
+    "license": "CC BY 2.0",
+    "source": "https://www.flickr.com/photos/56377701@N07/52530129731"
+  },
+  "/images/articles/photos/article-12-1.jpg": {
+    "title": "Bonsai nursery @ Omiya Bonsai Village",
+    "creator": "Guilhem Vellut",
+    "license": "CC BY 2.0",
+    "source": "https://www.flickr.com/photos/22539273@N00/13593836174"
+  },
+  "/images/articles/photos/article-12-2.jpg": {
+    "title": "Bonsai",
+    "creator": "Andreas D.",
+    "license": "CC BY 2.0",
+    "source": "https://www.flickr.com/photos/86791528@N00/50084314"
+  },
+  "/images/articles/photos/bonsai-watering-master-guide-2025-1.jpg": {
+    "title": "A copper bonsai watering can with a long spout",
+    "creator": "Bigul Malayi",
+    "license": "CC0 1.0",
+    "source": "https://wordpress.org/photos/photo/35868c4638/"
+  },
+  "/images/articles/photos/bonsai-watering-master-guide-2025-2.jpg": {
+    "title": "Trident Maple Bonsai",
+    "creator": "ncole458",
+    "license": "CC BY 2.0",
+    "source": "https://www.flickr.com/photos/10891659@N02/46955467255"
+  }
+}

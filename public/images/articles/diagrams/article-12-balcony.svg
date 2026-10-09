@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>ベランダでの盆栽の置き方（よい置き方と避けたい置き方）</title>
+  <rect width="800" height="520" fill="#faf9f6"/>
+  <text x="110" y="48" font-size="30" font-weight="700" fill="#1a365d">ベランダの置き方</text>
+
+  <!-- 建物の壁と窓 -->
+  <rect x="20" y="70" width="70" height="370" fill="#ebe7df"/>
+  <rect x="34" y="130" width="42" height="190" fill="#f3f0ea" stroke="#d8d2c6" stroke-width="2"/>
+  <!-- 床 -->
+  <rect x="20" y="440" width="720" height="20" fill="#c9c2b5"/>
+
+  <!-- 日差し -->
+  <circle cx="470" cy="90" r="30" fill="#b8935a"/>
+  <g stroke="#b8935a" stroke-width="4" stroke-linecap="round">
+    <line x1="470" y1="44" x2="470" y2="32"/><line x1="516" y1="90" x2="528" y2="90"/>
+    <line x1="424" y1="90" x2="412" y2="90"/><line x1="503" y1="57" x2="512" y2="48"/>
+    <line x1="437" y1="57" x2="428" y2="48"/><line x1="437" y1="123" x2="428" y2="132"/>
+  </g>
+  <text x="535" y="100" font-size="24" fill="#22201c">日当たり</text>
+
+  <!-- 風 -->
+  <g stroke="#1a365d" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M780 168 h-130"/><path d="M664 158 l-14 10 l14 10"/>
+    <path d="M780 196 h-110"/><path d="M684 186 l-14 10 l14 10"/>
+  </g>
+  <text x="716" y="148" text-anchor="middle" font-size="24" fill="#1a365d">風通し</text>
+
+  <!-- 遮光ネット -->
+  <line x1="310" y1="246" x2="530" y2="246" stroke="#1a365d" stroke-width="3" stroke-dasharray="10 7"/>
+  <text x="310" y="234" font-size="22" fill="#1a365d">夏は遮光ネット</text>
+
+  <!-- 室外機 -->
+  <rect x="105" y="350" width="112" height="90" rx="6" fill="#f3f0ea" stroke="#6b655b" stroke-width="2.5"/>
+  <circle cx="150" cy="395" r="28" fill="none" stroke="#6b655b" stroke-width="2.5"/>
+  <line x1="150" y1="371" x2="150" y2="419" stroke="#6b655b" stroke-width="2"/>
+  <line x1="126" y1="395" x2="174" y2="395" stroke="#6b655b" stroke-width="2"/>
+  <g stroke="#8b6b4a" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M224 372 q10 -8 20 0 t20 0 t20 0"/>
+    <path d="M224 395 q10 -8 20 0 t20 0 t20 0"/>
+    <path d="M224 418 q10 -8 20 0 t20 0 t20 0"/>
+  </g>
+
+  <!-- 棚 -->
+  <rect x="330" y="362" width="10" height="78" fill="#6f5439"/>
+  <rect x="490" y="362" width="10" height="78" fill="#6f5439"/>
+  <rect x="320" y="350" width="190" height="12" fill="#8b6b4a"/>
+  <rect x="330" y="402" width="170" height="8" fill="#8b6b4a"/>
+  <!-- 棚の上の鉢 -->
+  <path d="M345 326 h56 l-6 24 h-44 z" fill="#1a365d"/>
+  <rect x="370" y="300" width="6" height="28" fill="#6f5439"/>
+  <ellipse cx="373" cy="292" rx="34" ry="20" fill="#5b7f4a"/>
+  <path d="M428 330 h62 l-6 20 h-50 z" fill="#8b6b4a"/>
+  <rect x="455" y="298" width="6" height="34" fill="#6f5439"/>
+  <ellipse cx="458" cy="290" rx="30" ry="22" fill="#5b7f4a"/>
+
+  <!-- 床に直置き -->
+  <path d="M545 418 h52 l-6 22 h-40 z" fill="#8b6b4a"/>
+  <rect x="568" y="398" width="6" height="22" fill="#6f5439"/>
+  <ellipse cx="571" cy="392" rx="24" ry="14" fill="#5b7f4a"/>
+  <g stroke="#b8935a" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M618 436 q-6 -9 0 -18 t0 -18"/>
+    <path d="M640 436 q-6 -9 0 -18 t0 -18"/>
+  </g>
+  <text x="630" y="384" text-anchor="middle" font-size="22" fill="#8b6b4a">照り返し</text>
+
+  <!-- 手すり -->
+  <rect x="700" y="300" width="12" height="140" fill="#6b655b"/>
+  <rect x="688" y="292" width="48" height="10" fill="#6b655b"/>
+  <path d="M694 270 h36 l-4 22 h-28 z" fill="#8b6b4a"/>
+  <rect x="709" y="250" width="5" height="20" fill="#6f5439"/>
+  <ellipse cx="712" cy="246" rx="20" ry="12" fill="#5b7f4a"/>
+  <g stroke="#8b6b4a" stroke-width="4" stroke-linecap="round">
+    <line x1="630" y1="212" x2="650" y2="232"/><line x1="650" y1="212" x2="630" y2="232"/>
+  </g>
+  <text x="658" y="231" font-size="24" fill="#22201c">手すりの上</text>
+
+  <!-- 下のラベル -->
+  <g stroke="#8b6b4a" stroke-width="4" stroke-linecap="round">
+    <line x1="88" y1="485" x2="106" y2="503"/><line x1="106" y1="485" x2="88" y2="503"/>
+  </g>
+  <text x="114" y="503" font-size="24" fill="#22201c">室外機の前</text>
+  <circle cx="358" cy="494" r="10" fill="none" stroke="#5b7f4a" stroke-width="4"/>
+  <text x="376" y="503" font-size="24" font-weight="700" fill="#22201c">棚の上</text>
+  <g stroke="#8b6b4a" stroke-width="4" stroke-linecap="round">
+    <line x1="520" y1="485" x2="538" y2="503"/><line x1="538" y1="485" x2="520" y2="503"/>
+  </g>
+  <text x="546" y="503" font-size="24" fill="#22201c">床に直置き</text>
+</svg>

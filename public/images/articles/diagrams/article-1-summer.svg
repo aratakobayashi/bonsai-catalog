@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>もみじの夏の置き場所：午前は日なた、午後は日陰</title>
+  <defs>
+    <path id="mp" d="M0 0 L-4 -10 L-20 -12 L-10 -18 L-18 -32 L-6 -26 L0 -42 L6 -26 L18 -32 L10 -18 L20 -12 L4 -10 Z"/>
+    <g id="tree">
+      <path d="M-46 0 h92 l-10 34 h-72 z" fill="#8b6b4a"/>
+      <path d="M0 0 q-6 -40 4 -80" stroke="#6f5439" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <g fill="#5b7f4a">
+        <use href="#mp" transform="translate(4 -84) scale(1.1)"/>
+        <use href="#mp" transform="translate(-28 -72) rotate(-35)"/>
+        <use href="#mp" transform="translate(34 -70) rotate(35)"/>
+        <use href="#mp" transform="translate(-40 -46) rotate(-70)"/>
+        <use href="#mp" transform="translate(44 -44) rotate(70)"/>
+        <use href="#mp" transform="translate(-12 -100) rotate(-15) scale(0.8)"/>
+        <use href="#mp" transform="translate(20 -102) rotate(15) scale(0.8)"/>
+      </g>
+    </g>
+    <g id="sun"><circle r="24" fill="#b8935a"/><g stroke="#b8935a" stroke-width="4" stroke-linecap="round"><line y1="-32" y2="-42"/><line y1="32" y2="42"/><line x1="-32" x2="-42"/><line x1="32" x2="42"/><line x1="23" y1="-23" x2="30" y2="-30"/><line x1="-23" y1="-23" x2="-30" y2="-30"/><line x1="23" y1="23" x2="30" y2="30"/><line x1="-23" y1="23" x2="-30" y2="30"/></g></g>
+  </defs>
+  <rect width="800" height="470" fill="#faf9f6"/>
+
+  <!-- 午前 -->
+  <rect x="20" y="20" width="370" height="340" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="44" y="64" font-size="28" font-weight="700" fill="#22201c">午前</text>
+  <use href="#sun" x="110" y="130"/>
+  <g stroke="#b8935a" stroke-width="3" stroke-dasharray="8 8"><line x1="140" y1="160" x2="200" y2="215"/></g>
+  <use href="#tree" x="250" y="280"/>
+  <rect x="40" y="314" width="330" height="6" fill="#ebe7df"/>
+  <text x="205" y="350" text-anchor="middle" font-size="24" fill="#5b7f4a" font-weight="700">日に当てる</text>
+
+  <!-- 午後 -->
+  <rect x="410" y="20" width="370" height="340" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="434" y="64" font-size="28" font-weight="700" fill="#22201c">午後</text>
+  <use href="#sun" x="720" y="120"/>
+  <!-- すだれ -->
+  <rect x="586" y="110" width="64" height="190" fill="#e3d2b4" stroke="#b8935a" stroke-width="2"/>
+  <g stroke="#b8935a" stroke-width="2">
+    <line x1="586" y1="130" x2="650" y2="130"/><line x1="586" y1="150" x2="650" y2="150"/>
+    <line x1="586" y1="170" x2="650" y2="170"/><line x1="586" y1="190" x2="650" y2="190"/>
+    <line x1="586" y1="210" x2="650" y2="210"/><line x1="586" y1="230" x2="650" y2="230"/>
+    <line x1="586" y1="250" x2="650" y2="250"/><line x1="586" y1="270" x2="650" y2="270"/>
+    <line x1="586" y1="290" x2="650" y2="290"/>
+  </g>
+  <rect x="440" y="296" width="146" height="18" fill="#ebe7df"/>
+  <use href="#tree" x="510" y="280"/>
+  <rect x="430" y="314" width="330" height="6" fill="#ebe7df"/>
+  <text x="595" y="350" text-anchor="middle" font-size="24" fill="#1a365d" font-weight="700">日陰にする</text>
+
+  <!-- 注意 -->
+  <rect x="20" y="378" width="760" height="72" rx="14" fill="#f3f0ea" stroke="#8b6b4a" stroke-width="2"/>
+  <g stroke="#8b6b4a" stroke-width="5" stroke-linecap="round">
+    <line x1="46" y1="400" x2="72" y2="426"/><line x1="72" y1="400" x2="46" y2="426"/>
+  </g>
+  <text x="90" y="423" font-size="25" fill="#22201c">西日・照り返し → 葉の縁から焼ける</text>
+</svg>

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>置き場所が合っていないときに葉や枝に出るサイン</title>
+  <defs>
+    <path id="lf" d="M0 0 q22 -15 46 0 q-24 15 -46 0 z"/>
+  </defs>
+  <rect width="800" height="440" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">葉と枝に出るサイン</text>
+
+  <!-- ちょうどよい -->
+  <rect x="20" y="68" width="178" height="352" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <line x1="109" y1="270" x2="109" y2="110" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+  <g fill="#3f6a33">
+    <use href="#lf" x="109" y="250"/><use href="#lf" x="109" y="250" transform="matrix(-1 0 0 1 218 0)"/>
+    <use href="#lf" x="109" y="210"/><use href="#lf" x="109" y="210" transform="matrix(-1 0 0 1 218 0)"/>
+    <use href="#lf" x="109" y="170"/><use href="#lf" x="109" y="170" transform="matrix(-1 0 0 1 218 0)"/>
+    <use href="#lf" x="109" y="130"/><use href="#lf" x="109" y="130" transform="matrix(-1 0 0 1 218 0)"/>
+  </g>
+  <circle cx="54" cy="318" r="11" fill="none" stroke="#5b7f4a" stroke-width="4"/>
+  <text x="74" y="327" font-size="25" font-weight="700" fill="#22201c">よい状態</text>
+  <text x="109" y="366" text-anchor="middle" font-size="22" fill="#5b7f4a">葉が締まる</text>
+  <text x="109" y="398" text-anchor="middle" font-size="22" fill="#5b7f4a">節が詰まる</text>
+
+  <!-- 葉焼け -->
+  <rect x="214" y="68" width="178" height="352" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <line x1="303" y1="270" x2="303" y2="110" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+  <g fill="#5b7f4a" stroke="#8b6b4a" stroke-width="3.5" stroke-linejoin="round">
+    <use href="#lf" x="303" y="250"/><use href="#lf" x="303" y="250" transform="matrix(-1 0 0 1 606 0)"/>
+    <use href="#lf" x="303" y="210"/><use href="#lf" x="303" y="210" transform="matrix(-1 0 0 1 606 0)"/>
+    <use href="#lf" x="303" y="170"/><use href="#lf" x="303" y="170" transform="matrix(-1 0 0 1 606 0)"/>
+    <use href="#lf" x="303" y="130"/><use href="#lf" x="303" y="130" transform="matrix(-1 0 0 1 606 0)"/>
+  </g>
+  <g fill="#8b6b4a"><path d="M333 250 q8 -4 16 0 q-8 4 -16 0 z"/><path d="M273 250 q-8 -4 -16 0 q8 4 16 0 z"/><path d="M333 210 q8 -4 16 0 q-8 4 -16 0 z"/><path d="M273 210 q-8 -4 -16 0 q8 4 16 0 z"/><path d="M333 170 q8 -4 16 0 q-8 4 -16 0 z"/><path d="M273 170 q-8 -4 -16 0 q8 4 16 0 z"/><path d="M333 130 q8 -4 16 0 q-8 4 -16 0 z"/><path d="M273 130 q-8 -4 -16 0 q8 4 16 0 z"/></g>
+  <text x="303" y="327" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">葉焼け</text>
+  <text x="303" y="366" text-anchor="middle" font-size="22" fill="#8b6b4a">縁が茶色に</text>
+  <text x="303" y="398" text-anchor="middle" font-size="22" fill="#8b6b4a">日差しが強すぎ</text>
+
+  <!-- 徒長 -->
+  <rect x="408" y="68" width="178" height="352" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <line x1="497" y1="280" x2="497" y2="92" stroke="#6f5439" stroke-width="3" stroke-linecap="round"/>
+  <g fill="#8fae78">
+    <use href="#lf" x="497" y="258" transform="translate(497 258) scale(0.75) translate(-497 -258)"/>
+    <use href="#lf" x="497" y="258" transform="translate(497 258) scale(-0.75 0.75) translate(-497 -258)"/>
+    <use href="#lf" x="497" y="180" transform="translate(497 180) scale(0.75) translate(-497 -180)"/>
+    <use href="#lf" x="497" y="180" transform="translate(497 180) scale(-0.75 0.75) translate(-497 -180)"/>
+    <use href="#lf" x="497" y="102" transform="translate(497 102) scale(0.75) translate(-497 -102)"/>
+    <use href="#lf" x="497" y="102" transform="translate(497 102) scale(-0.75 0.75) translate(-497 -102)"/>
+  </g>
+  <text x="497" y="327" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">徒長</text>
+  <text x="497" y="366" text-anchor="middle" font-size="22" fill="#8b6b4a">節の間が長い</text>
+  <text x="497" y="398" text-anchor="middle" font-size="22" fill="#8b6b4a">光が足りない</text>
+
+  <!-- 色が薄い -->
+  <rect x="602" y="68" width="178" height="352" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <line x1="691" y1="270" x2="691" y2="110" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+  <g fill="#cfc27e">
+    <use href="#lf" x="691" y="250"/><use href="#lf" x="691" y="250" transform="matrix(-1 0 0 1 1382 0)"/>
+    <use href="#lf" x="691" y="210"/><use href="#lf" x="691" y="210" transform="matrix(-1 0 0 1 1382 0)"/>
+    <use href="#lf" x="691" y="170"/><use href="#lf" x="691" y="170" transform="matrix(-1 0 0 1 1382 0)"/>
+    <use href="#lf" x="691" y="130"/><use href="#lf" x="691" y="130" transform="matrix(-1 0 0 1 1382 0)"/>
+  </g>
+  <text x="691" y="327" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">色が薄い</text>
+  <text x="691" y="366" text-anchor="middle" font-size="22" fill="#8b6b4a">日照不足</text>
+  <text x="691" y="398" text-anchor="middle" font-size="22" fill="#8b6b4a">水のやりすぎ</text>
+</svg>

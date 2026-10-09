@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>季節ごとの盆栽の置き場所の目安</title>
+  <defs>
+    <g id="sun"><circle r="15" fill="#b8935a"/><g stroke="#b8935a" stroke-width="3.5" stroke-linecap="round"><line y1="-21" y2="-27"/><line y1="21" y2="27"/><line x1="-21" x2="-27"/><line x1="21" x2="27"/><line x1="15" y1="-15" x2="19" y2="-19"/><line x1="-15" y1="-15" x2="-19" y2="-19"/><line x1="15" y1="15" x2="19" y2="19"/><line x1="-15" y1="15" x2="-19" y2="19"/></g></g>
+    <g id="roof"><path d="M-28 0 L0 -18 L28 0 Z" fill="#8b6b4a"/><rect x="-22" y="0" width="5" height="22" fill="#8b6b4a"/><rect x="17" y="0" width="5" height="22" fill="#8b6b4a"/></g>
+  </defs>
+  <rect width="800" height="540" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">季節ごとの置き場所</text>
+  <text x="780" y="44" text-anchor="end" font-size="22" fill="#6b655b">関東の平地の目安</text>
+
+  <!-- 春 -->
+  <rect x="20" y="70" width="760" height="82" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="70" width="142" height="82" rx="12" fill="#5b7f4a"/>
+  <text x="91" y="106" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">春</text>
+  <text x="91" y="138" text-anchor="middle" font-size="22" fill="#fff">3〜5月</text>
+  <use href="#sun" x="214" y="111"/>
+  <text x="264" y="104" font-size="25" fill="#22201c">日当たり・風通しのよい棚</text>
+  <text x="264" y="136" font-size="22" fill="#6b655b">遅霜の夜は軒下へ</text>
+
+  <!-- 梅雨 -->
+  <rect x="20" y="162" width="760" height="82" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="162" width="142" height="82" rx="12" fill="#1a365d" fill-opacity="0.7"/>
+  <text x="91" y="198" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">梅雨</text>
+  <text x="91" y="230" text-anchor="middle" font-size="22" fill="#fff">6〜7月上</text>
+  <use href="#roof" x="214" y="200"/>
+  <g fill="#1a365d"><circle cx="196" cy="232" r="3"/><circle cx="214" cy="236" r="3"/><circle cx="232" cy="232" r="3"/></g>
+  <text x="264" y="196" font-size="25" fill="#22201c">風通しのよい場所</text>
+  <text x="264" y="228" font-size="22" fill="#6b655b">長雨が続くときは軒下</text>
+
+  <!-- 夏 -->
+  <rect x="20" y="254" width="760" height="82" rx="12" fill="#f3f0ea" stroke="#b8935a" stroke-width="3"/>
+  <rect x="20" y="254" width="142" height="82" rx="12" fill="#b8935a"/>
+  <text x="91" y="290" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">夏</text>
+  <text x="91" y="322" text-anchor="middle" font-size="22" fill="#fff">7〜9月上</text>
+  <use href="#sun" x="214" y="295"/>
+  <path d="M214 268 a27 27 0 0 1 0 54 z" fill="#f3f0ea"/>
+  <path d="M214 280 a15 15 0 0 1 0 30 z" fill="#6b655b"/>
+  <text x="264" y="288" font-size="25" fill="#22201c">午前は日なた・午後は日陰</text>
+  <text x="264" y="320" font-size="22" fill="#6b655b">または遮光ネットの下</text>
+
+  <!-- 秋 -->
+  <rect x="20" y="346" width="760" height="82" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="346" width="142" height="82" rx="12" fill="#8b6b4a"/>
+  <text x="91" y="382" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">秋</text>
+  <text x="91" y="414" text-anchor="middle" font-size="22" fill="#fff">9月中〜11月</text>
+  <use href="#sun" x="214" y="387"/>
+  <text x="264" y="380" font-size="25" fill="#22201c">再び日当たりのよい場所</text>
+  <text x="264" y="412" font-size="22" fill="#6b655b">枝を充実させ、紅葉を色づかせる</text>
+
+  <!-- 冬 -->
+  <rect x="20" y="438" width="760" height="82" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="438" width="142" height="82" rx="12" fill="#1a365d"/>
+  <text x="91" y="474" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">冬</text>
+  <text x="91" y="506" text-anchor="middle" font-size="22" fill="#fff">12〜2月</text>
+  <use href="#roof" x="214" y="476"/>
+  <text x="264" y="472" font-size="25" fill="#22201c">寒風と霜の当たらない軒下</text>
+  <text x="264" y="504" font-size="22" fill="#6b655b">冷え込む地域は無暖房の室内など</text>
+</svg>
