@@ -5,7 +5,8 @@ import EventsPageClient from './EventsPageClient'
 import { getEvents } from '@/lib/events'
 import { EventListView } from '@/components/features/EventListView'
 import { EventFiltersPlaceholder } from '@/components/features/EventFilters'
-import { getEventStatus } from '@/components/features/EventShared'
+import { currentEventsInOrder, pickFeaturedEvents, whenCounts } from '@/components/events/event-when'
+import { EventFeatured } from '@/components/events/EventFeatured'
 import type { Event } from '@/types'
 import { EventViewTabsView } from './EventViewTabs'
 import { CONTAINER, PageHeading } from '@/components/ui/design'
@@ -44,10 +45,11 @@ const toggle = (
 
 export default async function EventsPage() {
   const initial = await getEvents({ page: 1, limit: 1000 }).catch(() => null)
-  const upcoming = ((initial?.events ?? []) as Event[])
-    .filter(event => getEventStatus(event) !== 'past')
-    .sort((a, b) => a.start_date.localeCompare(b.start_date))
-    .slice(0, 12)
+  // 一覧を組み立てるまでの表示も、組み立て後と同じ並び・同じ部品で出す（レイアウトのずれを防ぐ）
+  const all = (initial?.events ?? []) as Event[]
+  const upcoming = currentEventsInOrder(all)
+  const featured = pickFeaturedEvents(all)
+  const counts = whenCounts(all)
   return (
     <>
       {/* JSON-LD for Events */}
@@ -77,8 +79,8 @@ export default async function EventsPage() {
           title="盆栽イベント"
           lead={
             <>
-              <span className="text-xs text-ink-muted lg:hidden">これから開催の順</span>
-              <span className="hidden lg:inline">全国の展示会・即売会・ワークショップ・講習会を、これから開催の順に。</span>
+              <span className="text-xs text-ink-muted lg:hidden">全国の展示会・即売会を開催日順に</span>
+              <span className="hidden lg:inline">全国の展示会・即売会・ワークショップ・講習会を、開催日の順に。開催中・今週末・今月などですぐに絞り込めます。</span>
             </>
           }
           aside={<div className="hidden lg:block">{toggle}</div>}
@@ -87,7 +89,8 @@ export default async function EventsPage() {
         {/* 一覧を組み立てるまでの間も、サーバーで作ったこれからのイベントを表示する（表示を速くするため） */}
         <Suspense fallback={
           <div className="min-h-[100vh]">
-            <EventFiltersPlaceholder className="mt-5 lg:mt-9" trailing={<EventViewTabsView active="list" />} />
+            <EventFiltersPlaceholder className="mt-5 lg:mt-9" trailing={<EventViewTabsView active="list" />} whenCounts={counts} count={upcoming.length} />
+            {featured.length > 0 && <EventFeatured events={featured} className="mt-7 lg:mt-10" />}
             <div className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-6 lg:mt-8 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-14">
               <EventListView events={upcoming} />
             </div>

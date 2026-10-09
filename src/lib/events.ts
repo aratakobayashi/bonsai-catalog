@@ -178,7 +178,7 @@ export async function getEventBySlug(slug: string) {
     // 関連イベント取得（同じ地域の近日中のイベント）
     const { data: relatedEvents } = await supabaseServer
       .from('events')
-      .select('id, title, slug, start_date, end_date, venue_name, types, price_type')
+      .select('id, title, slug, start_date, end_date, venue_name, prefecture, address, types, price_type, price_note')
       .eq('prefecture', typedEvent.prefecture)
       .neq('id', typedEvent.id)
       .gte('start_date', new Date().toISOString().split('T')[0])

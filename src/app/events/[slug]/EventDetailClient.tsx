@@ -8,8 +8,9 @@ import { cn } from '@/lib/utils'
 import { EventCard } from '@/components/features/EventCard'
 import {
   EVENT_TYPE_LABEL,
-  EventStatusTag,
-  EventTypeTag,
+  EventBadge,
+  EventTypeChip,
+  eventRangeParts,
   getEventStatus,
   googleCalendarUrl,
   eventPlaceText,
@@ -89,6 +90,7 @@ export default function EventDetailClient({
     [event, hasCoords]
   )
   const firstType = event.types[0]
+  const range = eventRangeParts(event)
 
   const articlesGrouped = {
     announcement: eventArticles.filter(ea => ea.relation_type === 'announcement'),
@@ -134,29 +136,54 @@ export default function EventDetailClient({
       <div className="mt-4 grid gap-10 lg:mt-10 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-20">
         {/* メインカラム */}
         <div className="min-w-0">
-          <div className="flex flex-wrap gap-x-3">
-            {event.types.map(type => <EventTypeTag key={type} type={type} />)}
-            <EventStatusTag event={event} />
+          {/* ひと目でわかる概要：状態・タイトル・日程（大きく）・会場・料金・主な操作 */}
+          <div className="flex flex-wrap items-center gap-1.5">
+            <EventBadge event={event} />
+            {event.types.map(type => <EventTypeChip key={type} type={type} />)}
           </div>
-          <h1 className="mt-2 font-mincho text-[28px] font-bold leading-snug tracking-[0.06em] text-ink lg:mt-3 lg:text-[48px] lg:leading-tight">{event.title}</h1>
-          <p className="mt-2 text-[13px] text-ink-soft lg:mt-3 lg:text-[15px]">
-            {eventPeriodText(event, true)}
-            {event.venue_name && <span className="hidden lg:inline">・{event.venue_name}</span>}
-          </p>
+          <h1 className="mt-2.5 font-mincho text-[24px] font-bold leading-snug tracking-[0.05em] text-ink lg:mt-3 lg:text-[44px] lg:leading-tight">{event.title}</h1>
 
-          {notice && (
-            <p className="mt-5 border-b border-t border-b-line border-t-ink py-4 text-[13.5px] leading-relaxed text-ink-soft lg:mt-7">{notice}</p>
-          )}
+          <div className="mt-4 border-t border-ink pt-3 lg:mt-6 lg:pt-4">
+            {(range.year || (range.days && range.days > 1)) && (
+              <p className="text-[12px] text-ink-muted">
+                {range.year}
+                {range.days && range.days > 1 ? `・${range.days}日間` : ''}
+              </p>
+            )}
+            <p className="font-mincho text-[21px] font-bold leading-snug tracking-[0.02em] text-ink lg:text-[28px]">{range.main}</p>
+            {tentative && <p className="mt-0.5 text-[12px] text-ink-muted">今回の日程は未発表です</p>}
+            <dl className="mt-3 grid grid-cols-[52px_1fr] gap-x-2 gap-y-1.5 text-[13.5px] leading-snug lg:text-[14px]">
+              <dt className="text-ink-muted">会場</dt>
+              <dd className="text-ink">
+                {event.venue_name || event.prefecture}
+                <span className="ml-1.5 text-[12.5px] text-ink-soft">{eventPlaceText(event)}</span>
+              </dd>
+              <dt className="text-ink-muted">参加費</dt>
+              <dd className="text-ink">{eventPriceText(event)}</dd>
+            </dl>
+          </div>
 
-          {/* SP：開催情報 */}
-          <div className="mt-5 lg:hidden">
-            <InfoRows event={event} />
+          {/* SP：主な操作（公式サイト・カレンダー・地図アプリ） */}
+          <div className="mt-4 grid grid-cols-2 gap-2 lg:hidden">
+            {event.official_url && <OfficialButton url={event.official_url} className="col-span-2" />}
             {calendarUrl && (
-              <a href={calendarUrl} target="_blank" rel="noopener noreferrer" className={`mt-4 inline-block text-[13px] text-ink ${linkClass}`}>
+              <a href={calendarUrl} target="_blank" rel="noopener noreferrer" className="flex h-12 items-center justify-center border border-ink bg-white text-[13px] text-ink">
                 カレンダーに追加
               </a>
             )}
+            <a
+              href={mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex h-12 items-center justify-center border border-ink bg-white text-[13px] text-ink ${calendarUrl ? '' : 'col-span-2'}`}
+            >
+              地図アプリで開く
+            </a>
           </div>
+
+          {notice && (
+            <p className="mt-5 border-b border-t border-line py-3.5 text-[13px] leading-relaxed text-ink-soft lg:mt-7 lg:text-[13.5px]">{notice}</p>
+          )}
 
           {event.description && (
             <p className="mt-6 whitespace-pre-line text-[14.5px] leading-[2] text-ink-soft lg:mt-8 lg:text-[15px]">{event.description}</p>
@@ -180,6 +207,12 @@ export default function EventDetailClient({
                 地図アプリで開く
               </a>
             </div>
+          </section>
+
+          {/* SP：開催情報の表 */}
+          <section className="mt-8 lg:hidden" aria-labelledby="event-info-sp">
+            <h2 id="event-info-sp" className="mb-3 font-mincho text-lg font-bold tracking-[0.06em] text-ink">開催情報</h2>
+            <InfoRows event={event} />
           </section>
 
           {/* 関連記事（開催案内・レポート・まとめ） */}
@@ -249,7 +282,7 @@ export default function EventDetailClient({
             <section className="mt-12">
               <h2 className="font-mincho text-lg font-bold tracking-[0.06em] text-ink lg:text-xl">{event.prefecture}のほかのイベント</h2>
               <div className="mt-3 flex flex-col border-t border-line">
-                {otherEvents.map(e => <EventCard key={e.id} event={e} />)}
+                {otherEvents.map(e => <EventCard key={e.id} event={e} layout="compact" />)}
               </div>
             </section>
           )}

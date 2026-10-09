@@ -108,25 +108,105 @@ export function eventPlaceText(event: Event): string {
   return city ? `${event.prefecture}${city}` : event.prefecture
 }
 
-// 一覧の左に置く日付（大きな数字＋「10月・土」）。日程未発表のイベントは日を出さない
-export function EventDateBlock({ event, muted = false }: { event: Event; muted?: boolean }) {
+// 一覧の左に置く日付（大きな日＋曜日。複数日は「〜12 月」を下に添える）。日程未発表のイベントは「例年◯月ごろ」
+// showMonth：月の見出しの下にないとき（開催中の欄・注目・関連イベントなど）は月も出す
+export function EventDateBlock({ event, muted = false, showMonth = true, compact = false }: { event: Event; muted?: boolean; showMonth?: boolean; compact?: boolean }) {
   const start = parseEventDate(event.start_date)
-  const box = 'w-[46px] flex-none lg:w-[66px]'
+  const box = compact ? 'w-[52px] flex-none' : 'w-[58px] flex-none lg:w-[72px]'
   if (isTentativeEvent(event)) {
     return (
       <div className={box}>
-        <div className="text-[11px] text-ink-muted">例年</div>
-        <div className={`font-mono text-[22px] leading-tight lg:text-[26px] ${muted ? 'text-ink-muted' : 'text-ink'}`}>{start.getMonth() + 1}月</div>
-        <div className="text-[11px] text-ink-muted">ごろ</div>
+        <div className="text-[11px] leading-tight text-ink-muted">例年</div>
+        <div className={`font-mono text-[20px] leading-tight lg:text-[22px] ${muted ? 'text-ink-muted' : 'text-ink'}`}>{start.getMonth() + 1}月</div>
+        <div className="text-[11px] leading-tight text-ink-muted">ごろ</div>
       </div>
     )
   }
+  const end = parseEventDate(event.end_date)
+  const multi = event.start_date.slice(0, 10) !== event.end_date.slice(0, 10)
+  const sameMonth = start.getFullYear() === end.getFullYear() && start.getMonth() === end.getMonth()
   return (
     <div className={box}>
-      <div className={`font-mono text-[26px] leading-none lg:text-[30px] ${muted ? 'text-ink-muted' : 'text-ink'}`}>{start.getDate()}</div>
-      <div className="mt-1.5 text-[11px] leading-snug text-ink-muted">{start.getMonth() + 1}月・{WEEKDAYS[start.getDay()]}</div>
+      {showMonth && <div className="text-[11px] leading-tight text-ink-muted">{start.getMonth() + 1}月</div>}
+      <div className="flex items-baseline gap-1">
+        <span className={`font-mono leading-none ${compact ? 'text-[22px]' : 'text-[28px] lg:text-[32px]'} ${muted ? 'text-ink-muted' : 'text-ink'}`}>{start.getDate()}</span>
+        <Weekday date={start} muted={muted} />
+      </div>
+      {multi && (
+        <div className="mt-1 whitespace-nowrap text-[12px] leading-tight text-ink-soft">
+          〜{sameMonth ? end.getDate() : `${end.getMonth() + 1}/${end.getDate()}`}
+          <Weekday date={end} muted={muted} className="ml-0.5 text-[11px]" />
+        </div>
+      )}
     </div>
   )
+}
+
+// 曜日（土は紺、日は赤で見分けやすく）
+export function Weekday({ date, muted = false, className = 'text-[12px]' }: { date: Date; muted?: boolean; className?: string }) {
+  const day = date.getDay()
+  const tone = muted ? 'text-ink-muted' : day === 6 ? 'text-navy' : day === 0 ? 'text-rakuten' : 'text-ink-soft'
+  return <span className={`${className} ${tone}`}>{WEEKDAYS[day]}</span>
+}
+
+export type EventBadgeKind = 'live' | 'soon' | 'past' | 'tentative'
+
+// 状態のバッジ（開催中・本日最終日・明日から・あと◯日・開催終了・日程未発表）
+export function eventBadge(event: Event, today: Date = startOfToday()): { text: string; kind: EventBadgeKind } | null {
+  const status = getEventStatus(event, today)
+  if (status === 'past') return { text: '開催終了', kind: 'past' }
+  if (isTentativeEvent(event)) return { text: '日程未発表', kind: 'tentative' }
+  if (status === 'ongoing') {
+    const last = parseEventDate(event.end_date).getTime() === today.getTime() && event.start_date.slice(0, 10) !== event.end_date.slice(0, 10)
+    return { text: last ? '開催中・本日まで' : '開催中', kind: 'live' }
+  }
+  const days = Math.round((parseEventDate(event.start_date).getTime() - today.getTime()) / 86400000)
+  if (days === 1) return { text: '明日から', kind: 'soon' }
+  return days <= 30 ? { text: `あと${days}日`, kind: 'soon' } : null
+}
+
+const BADGE_CLASS: Record<EventBadgeKind, string> = {
+  live: 'bg-sumi text-white',
+  soon: 'border border-ink text-ink',
+  past: 'bg-paper-deep text-ink-soft border border-line',
+  tentative: 'border border-line text-ink-muted',
+}
+
+export function EventBadge({ event, className = '' }: { event: Event; className?: string }) {
+  const badge = eventBadge(event)
+  if (!badge) return null
+  return (
+    <span className={`inline-flex items-center px-1.5 text-[11px] font-bold leading-[1.7] tracking-[0.02em] ${BADGE_CLASS[badge.kind]} ${className}`}>
+      {badge.text}
+    </span>
+  )
+}
+
+// 種別の小さなチップ（展示・即売会など）
+export function EventTypeChip({ type }: { type: EventType }) {
+  return <span className="inline-flex items-center border border-line bg-white px-1.5 text-[11px] leading-[1.7] text-ink-soft">{EVENT_TYPE_LABEL[type] ?? type}</span>
+}
+
+// 一覧用の短い料金（無料／有料／公式で確認）。短い料金表記があればそれを出す
+export function eventPriceShort(event: Pick<Event, 'slug' | 'price_type' | 'price_note'>): string {
+  const meta = getEventMeta(event.slug)
+  if (meta && !meta.priceKnown) return '料金は公式で確認'
+  if (event.price_type === 'free') return '無料'
+  return event.price_note && event.price_note.length <= 12 ? event.price_note : '有料'
+}
+
+// 詳細ページの大きな日程（2026年／10月10日（土）〜12日（月）／3日間）
+export function eventRangeParts(event: Event): { year: string; main: string; days: number | null } {
+  if (isTentativeEvent(event)) return { year: '', main: eventPeriodText(event), days: null }
+  const start = parseEventDate(event.start_date)
+  const end = parseEventDate(event.end_date)
+  const md = (d: Date) => `${d.getMonth() + 1}月${d.getDate()}日（${WEEKDAYS[d.getDay()]}）`
+  const days = Math.round((end.getTime() - start.getTime()) / 86400000) + 1
+  if (days <= 1) return { year: `${start.getFullYear()}年`, main: md(start), days: 1 }
+  const endText = start.getFullYear() !== end.getFullYear()
+    ? `${end.getFullYear()}年${md(end)}`
+    : start.getMonth() === end.getMonth() ? `${end.getDate()}日（${WEEKDAYS[end.getDay()]}）` : md(end)
+  return { year: `${start.getFullYear()}年`, main: `${md(start)}〜${endText}`, days }
 }
 
 export function EventTypeTag({ type }: { type: EventType }) {

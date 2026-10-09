@@ -1,28 +1,34 @@
 import Link from 'next/link'
 import { Event } from '@/types'
 import { cn } from '@/lib/utils'
-import { eventPriceText } from '@/lib/event-display'
+import { isTentativeEvent } from '@/lib/event-display'
 import {
+  EventBadge,
   EventDateBlock,
-  EventPlaceTag,
-  EventTypeTag,
+  EventTypeChip,
+  eventPeriodText,
   eventPlaceText,
-  eventShortDateText,
+  eventPriceShort,
   getEventStatus,
 } from './EventShared'
 
 interface EventCardProps {
   event: Event
   className?: string
-  // 互換のため残している（見た目は共通）
+  // compact：関連イベントなどの短い一覧（種別を省き、タイトルは1行）
   layout?: 'card' | 'list' | 'compact'
   active?: boolean
   onHover?: (event: Event) => void
+  // 月の見出しの下に並べるときは false（日付の上の「◯月」を省く）
+  showMonth?: boolean
 }
 
-// イベントの1行（大きな日付＋種別・場所＋明朝のタイトル＋日程・料金）。線で区切って並べる
-export function EventCard({ event, className, active = false, onHover }: EventCardProps) {
+// イベントの1行：左に大きな日付、右に状態・種別、明朝のタイトル、会場・地域と料金
+export function EventCard({ event, className, layout = 'list', active = false, onHover, showMonth = true }: EventCardProps) {
   const past = getEventStatus(event) === 'past'
+  const tentative = isTentativeEvent(event)
+  const compact = layout === 'compact'
+  const place = [event.venue_name, eventPlaceText(event)].filter(Boolean).join('・')
 
   return (
     <Link
@@ -30,20 +36,34 @@ export function EventCard({ event, className, active = false, onHover }: EventCa
       onMouseEnter={onHover ? () => onHover(event) : undefined}
       onFocus={onHover ? () => onHover(event) : undefined}
       aria-current={active ? 'true' : undefined}
-      className={cn('group flex gap-4 border-b border-line py-5 lg:gap-6 lg:py-[22px]', className)}
+      className={cn(
+        'group relative flex gap-3.5 border-b border-line lg:gap-5',
+        compact ? 'py-3.5' : 'py-4 lg:py-[18px]',
+        active && 'lg:before:absolute lg:before:inset-y-3 lg:before:-left-3 lg:before:w-0.5 lg:before:bg-ink',
+        className
+      )}
     >
-      <EventDateBlock event={event} muted={past} />
+      <EventDateBlock event={event} muted={past} showMonth={showMonth} compact={compact} />
       <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap gap-x-3 gap-y-0.5">
-          {event.types.slice(0, 2).map(type => <EventTypeTag key={type} type={type} />)}
-          <EventPlaceTag>{eventPlaceText(event)}</EventPlaceTag>
-          {past && <span className="border border-line bg-paper-deep px-1.5 text-[11px] leading-[1.6] text-ink-soft">開催終了</span>}
-        </div>
-        <h3 className={cn('mt-1 line-clamp-2 font-mincho text-base font-bold leading-snug tracking-[0.04em] group-hover:text-gold-dark lg:text-lg', active ? 'text-gold-dark' : 'text-ink')}>
+        {!compact && (
+          <div className="flex flex-wrap items-center gap-1.5">
+            <EventBadge event={event} />
+            {event.types.slice(0, 3).map(type => <EventTypeChip key={type} type={type} />)}
+          </div>
+        )}
+        <h3
+          className={cn(
+            'font-mincho font-bold leading-snug tracking-[0.03em] group-hover:text-gold-dark',
+            compact ? 'line-clamp-1 text-[14.5px]' : 'mt-1.5 line-clamp-2 text-[15.5px] lg:text-[17px]',
+            active ? 'text-gold-dark' : past ? 'text-ink-soft' : 'text-ink'
+          )}
+        >
           {event.title}
         </h3>
-        <p className="mt-1 text-xs leading-relaxed text-ink-soft">
-          {eventShortDateText(event)}・{eventPriceText(event)}
+        {tentative && <p className="mt-1 text-[12.5px] leading-snug text-ink-soft">{eventPeriodText(event)}</p>}
+        <p className="mt-1 flex items-baseline gap-3 text-[12.5px] leading-snug">
+          <span className="min-w-0 truncate text-ink-soft">{place || event.prefecture}</span>
+          <span className="ml-auto flex-none text-ink">{eventPriceShort(event)}</span>
         </p>
       </div>
     </Link>

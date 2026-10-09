@@ -9,16 +9,27 @@ import { EventFilters, EventPeriod } from '@/components/features/EventFilters'
 import { EventListView } from '@/components/features/EventListView'
 import {
   EVENT_TYPE_LABEL,
+  EventBadge,
   eventPeriodText,
   eventPlaceText,
-  eventStatusLabel,
   getEventStatus,
   googleCalendarUrl,
-  parseEventDate,
   startOfToday,
 } from '@/components/features/EventShared'
-import { eventPriceText, isTentativeEvent } from '@/lib/event-display'
+import { eventPriceText } from '@/lib/event-display'
 import EventViewTabs, { parseEventView } from './EventViewTabs'
+import { EventFeatured } from '@/components/events/EventFeatured'
+import {
+  WHEN_OPTIONS,
+  currentEventsInOrder,
+  eventSortKey,
+  matchesWhen,
+  parseEventWhen,
+  pickFeaturedEvents,
+  whenCounts,
+  whenRangeText,
+  type EventWhen,
+} from '@/components/events/event-when'
 
 // カレンダー・地図はその表示に切り替えたときだけ読み込む（一覧の初回表示を軽くする）
 const ViewLoading = () => <div className="min-h-[420px] animate-pulse bg-paper-deep" aria-hidden="true" />
@@ -29,21 +40,18 @@ function parsePeriod(value: string | null): EventPeriod {
   return value === 'past' || value === 'all' ? value : 'upcoming'
 }
 
-// 並べ替え用の日付。日程未発表のイベントは例年の月の末尾に置く
-function sortKey(event: Event) {
-  const start = parseEventDate(event.start_date)
-  return isTentativeEvent(event) ? new Date(start.getFullYear(), start.getMonth() + 1, 0, 12).getTime() : start.getTime()
-}
 
 // PCのリスト表示で右側に出す、選択中イベントの概要
 function EventPreview({ event }: { event: Event }) {
   const calendarUrl = googleCalendarUrl(event)
-  const status = eventStatusLabel(event)
-  const eyebrow = [...event.types.map(type => EVENT_TYPE_LABEL[type] ?? type), status?.text].filter(Boolean).join('・')
+  const eyebrow = event.types.map(type => EVENT_TYPE_LABEL[type] ?? type).join('・')
   return (
     <div>
       <div className="border-t border-ink pt-5">
-        {eyebrow && <div className="text-[11.5px] text-gold-dark">{eyebrow}</div>}
+        <div className="flex flex-wrap items-center gap-2">
+          <EventBadge event={event} />
+          {eyebrow && <span className="text-[11.5px] text-gold-dark">{eyebrow}</span>}
+        </div>
         <h2 className="mt-1.5 font-mincho text-2xl font-bold leading-snug tracking-[0.04em] text-ink">{event.title}</h2>
         <dl className="mt-3 border-t border-line text-[13px]">
           {[
@@ -109,6 +117,9 @@ export default function EventsPageClient({ initialEvents }: { initialEvents?: Ev
   // 絞り込みは URL から毎回組み立てる（ブラウザの戻る・進むでも条件が URL と一致する）
   const filters = initialFilters
   const period = parsePeriod(searchParams.get('period'))
+  // 開催中・今週末・今月・来月（月・終了分を選んでいるときは使わない）
+  const usesWhen = !filters.month && period === 'upcoming'
+  const when: EventWhen = usesWhen ? parseEventWhen(searchParams.get('when')) : 'all'
 
   // API に渡すパラメータ（API のパラメータ名に合わせて search→q, garden_id→gardenId）
   const apiQuery = useMemo(() => {
@@ -153,7 +164,7 @@ export default function EventsPageClient({ initialEvents }: { initialEvents?: Ev
   }
 
   // フィルター・期間を URL に反映（表示タブの状態は残す）
-  const updateURL = (newFilters: EventSearchParams, newPeriod: EventPeriod) => {
+  const updateURL = (newFilters: EventSearchParams, newPeriod: EventPeriod, newWhen: EventWhen = when) => {
     const params = new URLSearchParams()
     Object.entries(newFilters).forEach(([key, value]) => {
       if (key === 'page' || key === 'limit') return
@@ -165,6 +176,7 @@ export default function EventsPageClient({ initialEvents }: { initialEvents?: Ev
       }
     })
     if (newPeriod !== 'upcoming' && !newFilters.month) params.set('period', newPeriod)
+    if (newPeriod === 'upcoming' && !newFilters.month && newWhen !== 'all') params.set('when', newWhen)
     if (view !== 'list') params.set('view', view)
     const qs = params.toString()
     router.push(qs ? `/events?${qs}` : '/events', { scroll: false })
@@ -172,12 +184,15 @@ export default function EventsPageClient({ initialEvents }: { initialEvents?: Ev
 
   const handleFiltersChange = (newFilters: EventSearchParams) => updateURL(newFilters, period)
 
-  const handlePeriodChange = (newPeriod: EventPeriod) => updateURL({ ...filters, month: undefined }, newPeriod)
+  const handlePeriodChange = (newPeriod: EventPeriod) => updateURL({ ...filters, month: undefined }, newPeriod, 'all')
+
+  // チップを選ぶと月・終了分の指定は外す
+  const handleWhenChange = (newWhen: EventWhen) => updateURL({ ...filters, month: undefined }, 'upcoming', newWhen)
 
   const clearSearch = () => handleFiltersChange({ ...filters, search: undefined, garden_id: undefined })
 
   // すべての条件を外す（表示の切り替えは残す）
-  const clearAll = () => updateURL({ page: 1, limit: filters.limit }, 'upcoming')
+  const clearAll = () => updateURL({ page: 1, limit: filters.limit }, 'upcoming', 'all')
 
   // URL の条件が変わったら取り直す（条件なしの最初の表示はサーバーの一覧を使う）
   useEffect(() => {
@@ -189,31 +204,35 @@ export default function EventsPageClient({ initialEvents }: { initialEvents?: Ev
   // 表示するイベント：既定は開催中・これから（開催日順）。終了分は新しい順
   const displayed = useMemo(() => {
     const today = startOfToday()
-    if (filters.month) return [...events].sort((a, b) => sortKey(a) - sortKey(b))
-    const current = events
-      .filter(e => getEventStatus(e, today) !== 'past')
-      .sort((a, b) => {
-        const sa = getEventStatus(a, today)
-        const sb = getEventStatus(b, today)
-        if (sa !== sb) return sa === 'ongoing' ? -1 : 1
-        return sa === 'ongoing'
-          ? parseEventDate(a.end_date).getTime() - parseEventDate(b.end_date).getTime()
-          : sortKey(a) - sortKey(b)
-      })
+    if (filters.month) return [...events].sort((a, b) => eventSortKey(a) - eventSortKey(b))
+    const current = currentEventsInOrder(events, today)
     const past = events
       .filter(e => getEventStatus(e, today) === 'past')
-      .sort((a, b) => sortKey(b) - sortKey(a))
+      .sort((a, b) => eventSortKey(b) - eventSortKey(a))
     if (period === 'past') return past
     if (period === 'all') return [...current, ...past]
-    return current
-  }, [events, filters.month, period])
+    return when === 'all' ? current : current.filter(e => matchesWhen(e, when, today))
+  }, [events, filters.month, period, when])
+
+  // チップの件数（地域・種類・キーワードで絞った中での件数。月を選んでいるときは出さない）
+  const counts = useMemo(() => (filters.month ? undefined : whenCounts(events)), [events, filters.month])
+
+  // 注目のイベントは条件のない最初の一覧でだけ出す
+  const showFeatured = view === 'list' && !hasUrlFilters && period === 'upcoming' && when === 'all'
+  const featured = useMemo(() => (showFeatured ? pickFeaturedEvents(events) : []), [events, showFeatured])
+
+  const whenLabel = WHEN_OPTIONS.find(o => o.value === when)?.label
+  const whenRange = whenRangeText(when)
+  const emptyText = when !== 'all'
+    ? `${whenLabel}${whenRange ? `（${whenRange}）` : ''}に開催のイベントは見つかりませんでした。「すべて」から近い日程をご覧ください。`
+    : undefined
 
   const selected = displayed.find(e => e.id === selectedId) ?? displayed[0] ?? null
   const hasPast = useMemo(() => {
     const today = startOfToday()
     return events.some(e => getEventStatus(e, today) === 'past')
   }, [events])
-  const hasAnyFilter = hasUrlFilters || period !== 'upcoming'
+  const hasAnyFilter = hasUrlFilters || period !== 'upcoming' || when !== 'all'
 
   if (loading && events.length === 0) {
     return (
@@ -230,8 +249,11 @@ export default function EventsPageClient({ initialEvents }: { initialEvents?: Ev
         trailing={<EventViewTabs />}
         filters={filters}
         period={period}
+        when={usesWhen ? when : null}
+        whenCounts={counts}
         onFiltersChange={handleFiltersChange}
         onPeriodChange={handlePeriodChange}
+        onWhenChange={handleWhenChange}
         prefectures={eventsResponse?.prefectures || Array.from(new Set(events.map(e => e.prefecture))).sort()}
         count={error ? undefined : view === 'month' ? events.length : displayed.length}
         hasPast={hasPast}
@@ -245,6 +267,14 @@ export default function EventsPageClient({ initialEvents }: { initialEvents?: Ev
           </button>
         </div>
       )}
+
+      {whenRange && !error && view !== 'month' && (
+        <p className="mt-4 text-[13px] text-ink-soft">
+          <span className="font-bold text-ink">{whenLabel}</span>（{whenRange}）に開催のイベント
+        </p>
+      )}
+
+      {featured.length > 0 && !error && <EventFeatured events={featured} className="mt-7 lg:mt-10" />}
 
       <div className="mt-6 lg:mt-8">
         {error ? (
@@ -275,7 +305,13 @@ export default function EventsPageClient({ initialEvents }: { initialEvents?: Ev
           <EventMap events={displayed} />
         ) : (
           <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-14">
-            <EventListView events={displayed} selectedId={selected?.id} onSelect={e => setSelectedId(e.id)} />
+            <EventListView
+              key={`${apiQuery}|${period}|${when}`}
+              events={displayed}
+              selectedId={selected?.id}
+              onSelect={e => setSelectedId(e.id)}
+              emptyText={emptyText}
+            />
             {selected && (
               <div className="hidden lg:block">
                 <div className="sticky top-24">
