@@ -34,13 +34,6 @@ export const metadata: Metadata = {
 const HERO_CHIPS = ['goyomatsu', 'momiji', 'sakura', 'mini', 'kokedama', 'hachi']
 
 // 「目的から選ぶ」の表示名（特集ページ＋鉢・土・道具）
-const PURPOSE_LABELS: Record<string, { title: string; spTitle?: string; sub: string; spSub?: string }> = {
-  'beginner-mini-bonsai': { title: 'はじめての一鉢', sub: '育てやすいミニ盆栽' },
-  'bonsai-gift': { title: '贈り物に選ぶ', spTitle: '贈り物に', sub: '母の日・敬老の日・新築祝い', spSub: '母の日・敬老の日' },
-  'new-year-bonsai': { title: '正月に飾る', sub: '松竹梅・南天' },
-}
-const PURPOSE_ORDER = ['beginner-mini-bonsai', 'bonsai-gift', 'new-year-bonsai']
-
 // 「レビューが多い盆栽」の予算タブ（商品一覧の条件へリンク）
 const BUDGET_TABS = [
   { label: '〜3,000円', max: 3000 },
@@ -78,15 +71,6 @@ async function getGardenCount(): Promise<number> {
   return ((data || []) as { id: string }[]).filter(garden => isGardenPublished(garden)).length
 }
 
-function PurposeImage({ product, label }: { product?: CatalogProduct; label: string }) {
-  if (!product) return <Placeholder className="h-[120px]" />
-  return (
-    <div className="relative h-[120px] bg-[#f1eee8]">
-      <ProductThumb src={product.imageUrl} alt={label} sizes="(max-width: 1024px) 50vw, 25vw" />
-    </div>
-  )
-}
-
 export default async function HomePage() {
   const [products, popularArticles, gardenCount, eventCount] = await Promise.all([
     getCatalogProducts(),
@@ -104,23 +88,6 @@ export default async function HomePage() {
   const seasonMatch = SPECIES_OPTIONS.find(o => o.value === season.slug)?.match
   const seasonProduct = seasonMatch ? pickImage(trees.concat(products.filter(p => p.productType === 'kokedama')), seasonMatch) : undefined
 
-  const usedImages = new Set<string>()
-  const purposes = [
-    ...PURPOSE_ORDER.map(slug => SELECTIONS.find(s => s.slug === slug)).filter(Boolean).map(selection => {
-      const s = selection!
-      const match: (p: CatalogProduct) => boolean =
-        s.slug === 'beginner-mini-bonsai' ? p => p.productType === 'tree' && (p.sizeCategory === 'mini' || p.sizeCategory === 'small') && p.level === 'easy'
-          : s.slug === 'bonsai-gift' ? p => p.productType === 'tree' && (p.gift || p.wrapping)
-            : p => p.productType === 'tree' && p.newYear
-      return { href: `/selection/${s.slug}`, ...PURPOSE_LABELS[s.slug], product: pickImage(products, match, usedImages) }
-    }),
-    {
-      href: '/products?type=parts',
-      title: '鉢・土・道具',
-      sub: 'あわせて揃える',
-      product: pickImage(products, p => ['pot', 'soil', 'tool', 'wire', 'fertilizer'].includes(p.productType)),
-    },
-  ]
 
   const heroChips = HERO_CHIPS.map(slug => SHOP_CATEGORIES.find(c => c.slug === slug)).filter(Boolean)
 
