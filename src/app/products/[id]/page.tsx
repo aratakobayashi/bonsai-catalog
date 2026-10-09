@@ -36,8 +36,14 @@ interface ProductDetail extends CatalogProduct {
 
 async function getProduct(id: string): Promise<ProductDetail | null> {
   if (!/^[0-9a-f-]{36}$/i.test(id)) return null
-  const { data, error } = await supabaseServer.from('products').select('*').eq('id', id).single()
-  if (error || !data) return null
+  // 見つからない（PGRST116）ときだけ 404 にする。通信の失敗で 404 がキャッシュされないよう、それ以外はやり直してから例外にする
+  let { data, error } = await supabaseServer.from('products').select('*').eq('id', id).maybeSingle()
+  if (error) {
+    await new Promise(resolve => setTimeout(resolve, 600))
+    ;({ data, error } = await supabaseServer.from('products').select('*').eq('id', id).maybeSingle())
+    if (error) throw new Error(`商品の取得エラー: ${error.message}`)
+  }
+  if (!data) return null
   const row = data as Record<string, unknown>
   if (row.is_active === false) return null
   const normalized = normalizeProduct(row)
@@ -103,7 +109,8 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const description = plainDescription(stored.description)
   const product = { ...latest, description: description ? `${description}${stored.description.length > 600 ? '…' : ''}` : '' }
 
-  const all = await getCatalogProducts()
+  // 関連商品の一覧は取れなくても、商品そのものは表示する
+  const all = await getCatalogProducts().catch(() => [] as CatalogProduct[])
   const isPart = isPartProduct(product)
   const catLink = categoryLink(product)
   const sameGroup = (p: CatalogProduct) =>

@@ -9,7 +9,8 @@ import { getCatalogProducts } from '@/lib/catalog'
 import { isFeaturable, selectionCounts } from '@/components/selection/selection-meta'
 
 // 掲載件数は商品データから数えるため、1時間ごとに再生成（ISR）
-export const revalidate = 3600
+// 商品データの取得が一時的に失敗したときの表示が長く残らないよう、10分ごとに作り直す
+export const revalidate = 600
 
 export const metadata: Metadata = {
   title: '盆栽の特集一覧｜室内・予算・季節・贈り物など目的から選ぶ - 盆栽コレクション',
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
 }
 
 export default async function SelectionIndexPage() {
-  const counts = selectionCounts(await getCatalogProducts())
+  const counts = selectionCounts(await getCatalogProducts().catch(() => []))
   // 掲載商品が少ない特集は一覧の下に小さく並べる
   const featured = SELECTIONS.filter(s => isFeaturable(s, counts))
   const minor = SELECTIONS.filter(s => !isFeaturable(s, counts) && (counts.get(s.slug) ?? 0) > 0)

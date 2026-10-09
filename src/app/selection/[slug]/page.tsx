@@ -22,7 +22,8 @@ interface SelectionPageProps {
 }
 
 // ビルド時に全特集の商品データを同時に取得すると接続が不安定になるため、初回アクセス時に生成する（ISR）
-export const revalidate = 3600
+// 商品データの取得が一時的に失敗したときの表示が長く残らないよう、10分ごとに作り直す
+export const revalidate = 600
 
 export function generateStaticParams() {
   return []
@@ -87,7 +88,10 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
   const selection = getSelection(params.slug)
   if (!selection) notFound()
 
-  const [allProducts, guideLinks] = await Promise.all([getCatalogProducts(), getSelectionGuideLinks(selection.slug)])
+  const [allProducts, guideLinks] = await Promise.all([
+    getCatalogProducts().catch(() => [] as CatalogProduct[]),
+    getSelectionGuideLinks(selection.slug),
+  ])
   const products = pickSelectionProducts(selection, allProducts)
   const counts = selectionCounts(allProducts)
   const otherSelections = SELECTIONS.filter(other => other.slug !== selection.slug && isFeaturable(other, counts)).slice(0, 10)

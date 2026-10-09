@@ -15,7 +15,8 @@ import { currentMonth, getSeasonalPick, getSeasonalShelf, type SeasonalShelf } f
 import { getHomeSpecies } from '@/components/home/species'
 
 // 1時間ごとに再生成（ISR）。ページを開いた直後のHTMLに商品・記事が入る
-export const revalidate = 3600
+// 商品データの取得が一時的に失敗したときの表示が長く残らないよう、10分ごとに作り直す
+export const revalidate = 600
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
@@ -189,7 +190,7 @@ export default async function HomePage() {
             はじめての一鉢を、<br />ゆっくり選ぶ。
           </h1>
           <p className="mt-3 text-[13px] leading-[1.9] text-ink-soft lg:mt-[18px] lg:text-[15px] lg:leading-[2]">
-            {total.toLocaleString()}件の盆栽・鉢・道具を、樹種・サイズ・価格で比べられます。
+            {total > 0 ? `${total.toLocaleString()}件の` : ''}盆栽・鉢・道具を、樹種・サイズ・価格で比べられます。
           </p>
           <form action="/products" method="get" role="search" className="mt-5 flex h-[46px] max-w-[440px] items-center gap-3 border-b border-ink lg:mt-7 lg:h-[50px]">
             <label htmlFor="home-search" className="sr-only">盆栽を検索</label>
