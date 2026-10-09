@@ -24,7 +24,7 @@
   <text x="420" y="196" text-anchor="middle" font-size="22" font-weight="700" fill="#b8935a">ここで切る</text>
   <text x="400" y="352" text-anchor="middle" font-size="22" fill="#22201c">花の咲いた枝を</text>
   <text x="400" y="386" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">2〜3芽残して切る</text>
-  <text x="400" y="430" text-anchor="middle" font-size="22" fill="#6b655b">切り口は斜めに</text>
+  <text x="400" y="430" text-anchor="middle" font-size="22" fill="#6b655b">芽の少し上で切る</text>
   <rect x="536" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
   <text x="658" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">③ 夏に花芽</text>
   <path d="M560 300 L640 262" stroke="#6f5439" stroke-width="7" stroke-linecap="round"/>

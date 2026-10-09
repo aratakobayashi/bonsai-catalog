@@ -5,8 +5,8 @@
   <rect x="20" y="68" width="178" height="290" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
   <circle cx="109" cy="120" r="15" fill="none" stroke="#5b7f4a" stroke-width="4"/>
   <text x="109" y="186" text-anchor="middle" font-size="23" font-weight="700" fill="#22201c">明るい窓辺</text>
-  <text x="109" y="240" text-anchor="middle" font-size="21" fill="#6b655b">レースのカーテン</text>
-  <text x="109" y="274" text-anchor="middle" font-size="21" fill="#6b655b">越しの光</text>
+  <text x="109" y="240" text-anchor="middle" font-size="21" fill="#6b655b">カーテン越しの</text>
+  <text x="109" y="274" text-anchor="middle" font-size="21" fill="#6b655b">やわらかい光</text>
   <rect x="214" y="68" width="178" height="290" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
   <path d="M289 106 L317 134 M317 106 L289 134" stroke="#b4573a" stroke-width="4" stroke-linecap="round"/>
   <text x="303" y="186" text-anchor="middle" font-size="23" font-weight="700" fill="#22201c">暖房の風</text>

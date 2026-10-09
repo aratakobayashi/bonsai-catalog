@@ -22,6 +22,6 @@
   <rect x="608" y="40" width="172" height="350" rx="16" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
   <circle cx="694" cy="100" r="28" fill="#1a365d"/><text x="694" y="110" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">4</text>
   <text x="694" y="180" text-anchor="middle" font-size="25" font-weight="700" fill="#1a365d">前日</text>
-  <text x="694" y="250" text-anchor="middle" font-size="22" fill="#22201c">電池・タンク・</text>
+  <text x="694" y="250" text-anchor="middle" font-size="22" fill="#22201c">電池とタンク、</text>
   <text x="694" y="284" text-anchor="middle" font-size="22" fill="#22201c">チューブを確認</text>
 </svg>

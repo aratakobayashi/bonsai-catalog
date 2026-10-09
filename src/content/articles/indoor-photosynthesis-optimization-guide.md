@@ -59,9 +59,6 @@ thumbLabel: 基本のお手入れ
 
 屋外で育てる樹を室内に置き続けると、光が足りないうえに、冬の寒さや昼夜の温度差、夜露を受けられず、芽吹きや花つきが乱れます。部屋で楽しみたいときは、屋外の樹を「数日飾っては外に戻す」をくり返すのが基本です。
 
-![室内のテーブルに飾られた松柏類の小さな盆栽](/images/articles/photos/indoor-photosynthesis-optimization-guide-1.jpg)
-*写真：joshuascottphotos / CC BY 2.0*
-
 置き場所全般の考え方は、こちらで説明しています。
 
 [盆栽の置き場所の決め方](/guides/article-12)
