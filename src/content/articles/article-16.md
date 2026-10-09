@@ -9,6 +9,7 @@ summary:
   - 鉢から抜いて植え直すまでの6つの手順
   - 植え替え後2週間の置き場所と、水やり・肥料の注意
 selection: starter-tools
+species: tsuchi
 photo: /images/articles/photos/article-16-1.jpg
 thumbTitle: 盆栽の植え替え／時期の見分け方と手順
 thumbLabel: 基本のお手入れ

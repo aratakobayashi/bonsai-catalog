@@ -9,6 +9,7 @@ summary:
   - 根をどこまで切るかの考え方
   - 植え替え後2〜3週間の置き場所と水やり
 selection: starter-tools
+species: tsuchi
 photo: /images/articles/photos/bonsai-repotting-master-guide-2025-1.jpg
 thumbTitle: 盆栽の植え替え／時期と手順
 thumbLabel: 基本のお手入れ

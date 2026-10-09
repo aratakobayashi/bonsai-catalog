@@ -9,6 +9,7 @@ summary:
   - 松柏・雑木・花もの・さつきの配合の目安
   - 微塵抜きと、大粒・小粒の入れ方
 selection: starter-tools
+species: tsuchi
 photo: /images/articles/photos/soil-science-ph-nutrition-guide-1.jpg
 thumbTitle: 盆栽の用土の選び方と／配合の目安
 thumbLabel: 土と根の管理

@@ -9,6 +9,7 @@ summary:
   - 松柏・雑木・花ものの剪定と芽の作業の時期
   - 切った後の手当てと、よくある失敗
 selection: starter-tools
+species: dougu
 photo: /images/articles/photos/bonsai-pruning-master-guide-2025-1.jpg
 thumbTitle: 盆栽の剪定／時期と切る位置
 thumbLabel: 基本のお手入れ

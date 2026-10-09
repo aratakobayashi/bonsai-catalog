@@ -8,6 +8,7 @@ summary:
   - 底穴のない容器や観葉植物の土を避けたい理由
   - 身近な道具で行う、最初の植え付けの手順
 selection: starter-tools
+species: dougu
 photo: /images/articles/photos/article-24-1.jpg
 thumbTitle: 100円ショップの道具で／盆栽を始める
 thumbLabel: 道具・用土

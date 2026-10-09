@@ -9,6 +9,7 @@ summary:
   - 植え替えた後2〜3週間の置き場所と水やり
   - 鉢の大きさ・樹種ごとの植え替え周期の目安
 selection: starter-tools
+species: tsuchi
 photo: /images/articles/photos/bonsai-root-bound-prevention-solutions-1.jpg
 thumbTitle: 盆栽の根詰まり／見分け方と植え替え
 thumbLabel: トラブル対処

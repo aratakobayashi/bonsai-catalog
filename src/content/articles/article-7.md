@@ -9,6 +9,7 @@ summary:
   - 針金の太さの選び方、巻き方、外すタイミング
   - はじめての作業で失敗しやすいことと防ぎ方
 selection: starter-tools
+species: dougu
 photo: /images/articles/photos/article-7-1.jpg
 thumbTitle: 剪定・芽摘み・針金かけ／3つの作業の基本
 thumbLabel: 基本のお手入れ
