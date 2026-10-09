@@ -9,7 +9,7 @@ import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { ProductThumb } from '@/components/catalog/ProductThumb'
 import { SITE_URL } from '@/lib/site'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
-import { Breadcrumbs, CONTAINER, Card, ChipLink, NavyPanel, Placeholder, SectionTitle, chipClass } from '@/components/ui/design'
+import { Breadcrumbs, CONTAINER, ChipLink, Placeholder, SectionTitle, chipClass } from '@/components/ui/design'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import type { Product } from '@/types'
 import { SelectionThumb } from '@/components/selection/SelectionThumb'
@@ -124,121 +124,129 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
 
-      <article>
+      <article className="pb-12 lg:pb-20">
         {/* 見出し（SP は写真が先） */}
-        <header className="lg:mx-auto lg:w-full lg:max-w-[1280px] lg:px-10">
-          <div className="flex flex-col-reverse gap-0 lg:grid lg:grid-cols-[1fr_520px] lg:items-center lg:gap-12 lg:pt-10">
-            <div className="px-4 pt-4 lg:px-0 lg:pt-0">
-              <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: '特集', href: '/selection' }, { label: selection.shortTitle }]} className="hidden lg:block" />
-              <div className="mt-0 flex items-center gap-2 text-xs tracking-[0.1em] text-gold-dark lg:mt-3">
-                <span className="h-0.5 w-4 bg-gold" aria-hidden="true" />
-                {selection.eyebrow}
-              </div>
-              <h1 className="mt-1.5 font-mincho text-[24px] font-bold leading-snug text-navy lg:mt-2 lg:text-[38px]">{selection.h1}</h1>
-              <p className="mt-3 text-sm leading-[1.9] text-ink-soft lg:max-w-[560px] lg:text-[15px]">{selection.lead}</p>
-              <PrDisclosure className="mt-4 border border-line bg-white lg:max-w-[560px]" />
+        <header className="lg:mx-auto lg:max-w-[1184px] lg:px-12">
+          <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: '特集', href: '/selection' }, { label: selection.shortTitle }]} className="hidden pt-6 lg:block" />
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-[minmax(0,1fr)_560px] lg:items-end lg:gap-16 lg:pt-8">
+            <div className="px-4 pt-6 lg:px-0 lg:pt-0">
+              <p className="text-[11px] tracking-[0.18em] text-gold-dark lg:text-xs lg:tracking-[0.2em]">{selection.eyebrow.replace(/^特集・/, '特集　')}</p>
+              <h1 className="mt-2 font-mincho text-[25px] font-bold leading-[1.45] tracking-[0.08em] text-ink lg:mt-3 lg:text-[40px]">{selection.h1}</h1>
+              <p className="mt-3 text-[13.5px] leading-[2] text-ink-soft lg:mt-[18px] lg:text-[15px]">{selection.lead}</p>
+              <PrDisclosure className="mt-3 lg:mt-5" />
             </div>
-            <div className="relative aspect-[16/10] overflow-hidden bg-[#f1eee8] lg:aspect-auto lg:h-[340px] lg:rounded-[14px]">
+            <div className="relative aspect-[16/10] overflow-hidden bg-paper-deep">
               <SelectionThumb selection={selection} priority className="absolute inset-0 h-full w-full" />
             </div>
           </div>
         </header>
 
         <div className={CONTAINER}>
-          {/* 1つ目の節：樹種・選び方の要点をカードで */}
+          {/* 1つ目の節：樹種・選び方の要点（PC は写真つきの3列、SP は線で区切った行） */}
           {firstSection && (
-            <section className="mt-8 lg:mt-12">
+            <section className="pt-12 lg:pt-24">
               <SectionTitle>{firstSection.heading}</SectionTitle>
-              <div className="mt-2 space-y-2 lg:max-w-[820px]">
+              <div className="mt-3 space-y-2 lg:max-w-[820px]">
                 {firstSection.paragraphs.map(paragraph => (
-                  <p key={paragraph} className="text-sm leading-[1.9] text-ink-soft">{paragraph}</p>
+                  <p key={paragraph} className="text-[13.5px] leading-[1.9] text-ink-soft lg:text-sm">{paragraph}</p>
                 ))}
               </div>
               {firstSection.points && (
-                <div className="mt-4 grid gap-3 lg:grid-cols-3 lg:gap-4">
+                <ul className="mt-4 border-t border-line lg:mt-8 lg:grid lg:grid-cols-3 lg:gap-10 lg:border-0">
                   {firstSection.points.map(point => {
                     const { name, sub, text } = parsePoint(point)
                     const link = pointLinks[name]
                     const image = link ? imageFor(link.species) : undefined
+                    const short = name.length <= 3
                     return (
-                      <Card key={point} className="overflow-hidden">
+                      <li key={point} className="grid grid-cols-[52px_minmax(0,1fr)] gap-3 border-b border-line py-4 lg:block lg:border-0 lg:py-0">
                         {link && (
-                          <div className="relative hidden h-[140px] bg-[#f1eee8] lg:block">
+                          <div className="relative hidden aspect-[4/3] overflow-hidden bg-paper-deep lg:mb-[18px] lg:block">
                             {image ? (
-                              <ProductThumb src={image.imageUrl} alt={name} sizes="33vw" />
+                              <ProductThumb src={image.imageUrl} alt={name} sizes="(max-width: 1023px) 100vw, 360px" size={400} />
                             ) : (
                               <Placeholder className="absolute inset-0" />
                             )}
                           </div>
                         )}
-                        <div className="flex gap-4 p-4 lg:block lg:px-[18px]">
-                          {name && (
-                            <div className="flex-none lg:flex lg:items-baseline lg:gap-2">
-                              <span className={`font-mincho font-bold text-navy ${name.length <= 3 ? 'text-xl lg:text-[22px]' : 'text-[15px] lg:text-base'}`}>{name}</span>
-                              {sub && <span className="hidden text-xs text-ink-muted lg:inline">{sub}</span>}
-                            </div>
-                          )}
-                          <div className="min-w-0 lg:mt-1.5">
-                            {sub && <div className="text-xs text-ink-muted lg:hidden">{sub}</div>}
-                            <p className="text-[13px] leading-[1.7] text-ink">{text}</p>
-                            {link && (
-                              <Link href={link.href} className="mt-1.5 inline-block text-[13px] font-bold text-navy underline underline-offset-2 hover:text-gold-dark">
-                                {name.length <= 3 ? `${name}の盆栽を見る →` : '商品を見る →'}
-                              </Link>
-                            )}
+                        {name ? (
+                          <div className={`lg:flex lg:items-baseline lg:gap-3 ${short ? '' : 'col-span-2'}`}>
+                            <span className={`font-mincho font-bold text-ink ${short ? 'text-2xl lg:text-[28px]' : 'text-base lg:text-lg'}`}>{name}</span>
+                            {sub && <span className="hidden text-xs text-ink-muted lg:inline">{sub}</span>}
                           </div>
+                        ) : null}
+                        <div className={`min-w-0 ${!name || !short ? 'col-span-2' : ''}`}>
+                          {sub && <div className="text-[11px] text-ink-muted lg:hidden">{sub}</div>}
+                          <p className="mt-0.5 text-[13px] leading-[1.8] text-ink lg:mt-2 lg:text-sm lg:leading-[1.9] lg:text-ink-soft">{text}</p>
+                          {link && (
+                            <Link href={link.href} className="mt-2 inline-block border-b border-ink pb-0.5 text-[13px] text-ink lg:mt-3">
+                              {short ? `${name}の盆栽を見る` : '商品を見る'}
+                            </Link>
+                          )}
                         </div>
-                      </Card>
+                      </li>
                     )
                   })}
-                </div>
+                </ul>
               )}
             </section>
           )}
 
-          {/* 残りの節：本文＋紺の案内 */}
+          {/* 残りの節：左に見出し、右に本文（案内は線で区切った行に） */}
           {restSections.map(section => (
-            <section key={section.heading} className="mt-8 grid gap-4 lg:mt-12 lg:grid-cols-[1fr_380px] lg:items-start lg:gap-10">
-              <div>
-                <SectionTitle>{section.heading}</SectionTitle>
-                <div className="mt-2 space-y-2">
+            <section key={section.heading} className="pt-12 lg:grid lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-16 lg:pt-24">
+              <h2 className="font-mincho text-[19px] font-bold tracking-[0.06em] text-ink lg:text-[22px]">{section.heading}</h2>
+              <div className="mt-3 lg:mt-0">
+                <div className="space-y-2">
                   {section.paragraphs.map(paragraph => (
-                    <p key={paragraph} className="text-sm leading-[1.9] text-ink-soft lg:text-[14.5px]">{paragraph}</p>
+                    <p key={paragraph} className="text-[13.5px] leading-[1.9] text-ink-soft lg:text-sm">{paragraph}</p>
                   ))}
                 </div>
-                {section.points && (
-                  <ul className="ml-5 mt-3 list-disc space-y-1.5 text-sm leading-relaxed text-ink-soft">
-                    {section.points.map(point => <li key={point}>{point}</li>)}
-                  </ul>
+                {(section.points || section.aside) && (
+                  <dl className="mt-4 border-t border-line">
+                    {section.points?.map(point => {
+                      const { name, text } = parsePoint(point)
+                      return (
+                        <div key={point} className="border-b border-paper-deep py-3 text-sm leading-[1.7] lg:grid lg:grid-cols-[120px_minmax(0,1fr)] lg:gap-3.5">
+                          {name && <dt className="text-[12.5px] text-ink-muted lg:text-sm">{name}</dt>}
+                          <dd className={name ? '' : 'lg:col-span-2'}>{text}</dd>
+                        </div>
+                      )
+                    })}
+                    {section.aside && (
+                      <div className="border-b border-paper-deep py-3 text-sm leading-[1.7] lg:grid lg:grid-cols-[120px_minmax(0,1fr)] lg:gap-3.5">
+                        <dt className="text-[12.5px] text-ink-muted lg:text-sm">{section.aside.eyebrow}</dt>
+                        <dd>
+                          <span className="font-bold">{section.aside.title}</span>
+                          <span className="mt-0.5 block text-ink-soft">{section.aside.text}</span>
+                        </dd>
+                      </div>
+                    )}
+                  </dl>
                 )}
               </div>
-              {section.aside && (
-                <NavyPanel eyebrow={section.aside.eyebrow} title={section.aside.title} className="lg:px-[22px] lg:py-5">
-                  <p className="mt-2 text-[13px] leading-[1.8] text-white/80">{section.aside.text}</p>
-                </NavyPanel>
-              )}
             </section>
           ))}
 
           {/* 掲載商品 */}
-          <section className="mt-10 lg:mt-12">
+          <section className="pt-12 lg:pt-24">
             <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
-              <h2 className="font-mincho text-lg font-bold text-navy lg:text-2xl">{selection.listHeading}</h2>
+              <h2 className="font-mincho text-[19px] font-bold tracking-[0.06em] text-ink lg:text-[26px]">{selection.listHeading}</h2>
               {catalogLinks && (
-                <>
-                  <div className="order-last flex w-full flex-wrap gap-1.5 lg:order-none lg:w-auto">
-                    <span className={chipClass(true)} aria-current="true">すべて</span>
-                    {catalogLinks.chips.map(chip => (
-                      <ChipLink key={chip.label} href={chip.href}>{chip.label}</ChipLink>
-                    ))}
-                  </div>
-                  <Link href={catalogLinks.all} className="ml-auto text-[13px] font-bold text-navy underline underline-offset-2 hover:text-gold-dark">
-                    一覧で絞り込む →
-                  </Link>
-                </>
+                <Link href={catalogLinks.all} className="ml-auto border-b border-ink pb-0.5 text-[13px] text-ink">
+                  一覧で絞り込む
+                </Link>
               )}
             </div>
-            <p className="mt-2 text-xs leading-relaxed text-ink-soft">
+            {catalogLinks && catalogLinks.chips.length > 0 && (
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                <span className={chipClass(true)} aria-current="true">すべて</span>
+                {catalogLinks.chips.map(chip => (
+                  <ChipLink key={chip.label} href={chip.href}>{chip.label}</ChipLink>
+                ))}
+              </div>
+            )}
+            <p className="mt-3 text-xs leading-relaxed text-ink-soft">
               {products.length}件を掲載（楽天市場・Amazon）。価格は取得時点の情報です。最新の価格・在庫・発送時期はリンク先でご確認ください。
             </p>
             {priceRanges.length > 0 && (
@@ -254,32 +262,32 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
             )}
 
             {/* 商品カード */}
-            <div className="mt-4 grid grid-cols-2 gap-2.5 md:grid-cols-3 lg:grid-cols-4 lg:gap-4">
-              {cards.map((product, index) => (
-                <CatalogProductCard key={product.id} product={product} priority={index < 2} />
+            <div className="mt-4 grid grid-cols-2 gap-x-3.5 gap-y-6 md:grid-cols-3 lg:mt-7 lg:grid-cols-4 lg:gap-6">
+              {cards.map(product => (
+                <CatalogProductCard key={product.id} product={product} />
               ))}
             </div>
 
             {/* 比較表 */}
             {products.length > 0 && (
-              <div className="mt-8">
-                <SectionTitle>比較表</SectionTitle>
-                <div className="mt-3 overflow-x-auto rounded-xl border border-line bg-white">
+              <div className="pt-12 lg:pt-16">
+                <h2 className="font-mincho text-[19px] font-bold tracking-[0.06em] text-ink lg:text-[22px]">比較表</h2>
+                <div className="mt-3 overflow-x-auto border-t border-ink">
                   <table className="min-w-full text-sm">
-                    <thead className="bg-[#f6f2ea] text-xs text-ink-soft">
-                      <tr>
-                        <th className="px-3 py-2.5 text-left font-bold">商品</th>
-                        <th className="whitespace-nowrap px-3 py-2.5 text-left font-bold">分類</th>
-                        <th className="whitespace-nowrap px-3 py-2.5 text-left font-bold">サイズ</th>
-                        <th className="whitespace-nowrap px-3 py-2.5 text-left font-bold">難易度</th>
-                        <th className="whitespace-nowrap px-3 py-2.5 text-right font-bold">参考価格</th>
+                    <thead className="text-xs text-ink-muted">
+                      <tr className="border-b border-line">
+                        <th className="py-2.5 pr-3 text-left font-normal">商品</th>
+                        <th className="whitespace-nowrap px-3 py-2.5 text-left font-normal">分類</th>
+                        <th className="whitespace-nowrap px-3 py-2.5 text-left font-normal">サイズ</th>
+                        <th className="whitespace-nowrap px-3 py-2.5 text-left font-normal">難易度</th>
+                        <th className="whitespace-nowrap py-2.5 pl-3 text-right font-normal">参考価格</th>
                       </tr>
                     </thead>
                     <tbody>
                       {products.map(product => (
-                        <tr key={product.id} className="border-t border-line">
-                          <td className="px-3 py-2.5">
-                            <Link href={`/products/${product.id}`} className="text-navy hover:text-gold-dark hover:underline">
+                        <tr key={product.id} className="border-b border-line">
+                          <td className="py-2.5 pr-3">
+                            <Link href={`/products/${product.id}`} className="text-ink hover:text-gold-dark hover:underline">
                               {product.name}
                             </Link>
                           </td>
@@ -289,7 +297,7 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
                             {product.heightCm ? `（高さ約${product.heightCm}cm）` : ''}
                           </td>
                           <td className="whitespace-nowrap px-3 py-2.5 text-ink-soft">{LEVEL_OPTIONS.find(o => o.value === product.level)?.label ?? '—'}</td>
-                          <td className="whitespace-nowrap px-3 py-2.5 text-right font-bold text-ink">{formatPrice(product.price)}</td>
+                          <td className="whitespace-nowrap py-2.5 pl-3 text-right text-ink">{formatPrice(product.price)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -303,20 +311,21 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
             </p>
           </section>
 
-          {/* あわせて読みたい */}
-          <section className="mt-10 lg:mt-12">
-            <SectionTitle action={<Link href="/selection" className="font-bold text-navy underline">特集をすべて見る →</Link>}>ほかの特集</SectionTitle>
-            <div className="mt-3 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
+          {/* ほかの特集 */}
+          <section className="pt-12 lg:pt-24">
+            <div className="flex items-baseline">
+              <h2 className="font-mincho text-[19px] font-bold tracking-[0.06em] text-ink lg:text-[22px]">ほかの特集</h2>
+              <Link href="/selection" className="ml-auto border-b border-ink pb-0.5 text-[13px] text-ink">特集をすべて見る</Link>
+            </div>
+            <div className="mt-4 grid grid-cols-2 gap-x-3.5 gap-y-6 md:grid-cols-3 lg:mt-6 lg:grid-cols-5 lg:gap-6">
               {SELECTIONS.filter(other => other.slug !== selection.slug).slice(0, 10).map(other => (
                 <SelectionCard key={other.slug} selection={other} compact />
               ))}
             </div>
-            <Card className="mt-4 overflow-hidden">
-              <ul className="divide-y divide-[#efeae0] text-sm">
-                <li><Link href="/guides" className="block px-4 py-3 font-mincho font-bold text-ink hover:text-navy">盆栽の育て方ガイド一覧 →</Link></li>
-                <li><Link href="/products" className="block px-4 py-3 font-mincho font-bold text-ink hover:text-navy">盆栽の商品カタログ →</Link></li>
-              </ul>
-            </Card>
+            <ul className="mt-8 border-t border-line text-sm">
+              <li className="border-b border-line"><Link href="/guides" className="flex items-baseline py-3.5 font-mincho font-bold text-ink hover:text-gold-dark">盆栽の育て方ガイド一覧<span className="ml-auto font-sans font-normal text-ink-muted" aria-hidden="true">›</span></Link></li>
+              <li className="border-b border-line"><Link href="/products" className="flex items-baseline py-3.5 font-mincho font-bold text-ink hover:text-gold-dark">盆栽の商品カタログ<span className="ml-auto font-sans font-normal text-ink-muted" aria-hidden="true">›</span></Link></li>
+            </ul>
           </section>
         </div>
       </article>

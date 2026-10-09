@@ -126,17 +126,19 @@ export default async function ShindanPage({ searchParams }: ShindanPageProps) {
   const result = complete ? findResults(await getCatalogProducts(), answersToFilters(answers)) : null
 
   return (
-    <div className={CONTAINER}>
+    <div className={`${CONTAINER} pb-12 lg:pb-20`}>
       <PageHeading
         title="かんたん盆栽診断"
         lead="4つの質問に答えると、楽天市場とAmazonの盆栽から合いそうな商品を探します。"
         crumbs={[{ label: 'ホーム', href: '/' }, { label: 'かんたん盆栽診断' }]}
       />
 
-      <form action="/shindan" className="mt-5 space-y-5 rounded-xl border border-line bg-white p-4 lg:mt-6 lg:space-y-6 lg:p-6">
+      {/* 質問：左に問い、右に選択肢（線で区切った行） */}
+      <form action="/shindan" className="mt-8 border-t border-line lg:mt-12">
         {QUESTIONS.map(question => (
-          <fieldset key={question.name}>
-            <legend className="mb-2.5 font-mincho text-base font-bold text-navy lg:text-[17px]">{question.title}</legend>
+          <fieldset key={question.name} className="border-b border-line py-5 lg:grid lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-16 lg:py-6">
+            <legend className="sr-only">{question.title}</legend>
+            <div aria-hidden="true" className="mb-3 font-mincho text-base font-bold tracking-[0.04em] text-ink lg:mb-0 lg:text-lg">{question.title}</div>
             <div className="flex flex-wrap gap-2">
               {question.options.map(option => (
                 <label key={option.value} className="cursor-pointer">
@@ -148,7 +150,7 @@ export default async function ShindanPage({ searchParams }: ShindanPageProps) {
                     required
                     className="peer sr-only"
                   />
-                  <span className="inline-flex items-center rounded-full border border-line bg-white px-3.5 py-1.5 text-[13px] text-ink hover:border-gold peer-checked:border-navy peer-checked:bg-navy peer-checked:font-bold peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold">
+                  <span className="inline-flex items-center border border-line bg-white px-3.5 py-2 text-[13px] text-ink hover:border-ink peer-checked:border-sumi peer-checked:bg-sumi peer-checked:font-bold peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold">
                     {option.label}
                   </span>
                 </label>
@@ -156,16 +158,19 @@ export default async function ShindanPage({ searchParams }: ShindanPageProps) {
             </div>
           </fieldset>
         ))}
-        <button type="submit" className="w-full rounded-lg bg-gold px-8 py-3 text-sm font-bold text-white hover:bg-gold-dark lg:w-auto">
-          {complete ? 'この回答でもう一度探す' : '診断する'}
-        </button>
+        <div className="pt-6 lg:grid lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-16">
+          <div className="hidden lg:block" />
+          <button type="submit" className="h-12 w-full bg-sumi px-10 text-sm font-bold tracking-[0.06em] text-white hover:bg-sumi-light lg:w-auto lg:justify-self-start">
+            {complete ? 'この回答でもう一度探す' : '診断する'}
+          </button>
+        </div>
       </form>
 
       {result && (
-        <section className="mt-8 lg:mt-10" id="result">
+        <section className="pt-12 lg:pt-24" id="result">
           <SectionTitle>診断結果：{result.results.length.toLocaleString()}件の盆栽が見つかりました</SectionTitle>
           {answers.place === 'indoor' && (
-            <p className="mt-3 rounded-lg border border-gold/40 bg-gold-light p-3 text-sm leading-relaxed text-ink">
+            <p className="mt-4 border-l-2 border-gold pl-3 text-sm leading-relaxed text-ink-soft">
               室内で育てやすいのは、ガジュマルなど寒さに弱い一部の樹種です。松やもみじなど多くの盆栽は屋外向きなので、室内に飾るのは数日程度を目安にしましょう。
             </p>
           )}
@@ -177,21 +182,21 @@ export default async function ShindanPage({ searchParams }: ShindanPageProps) {
           <PrDisclosure className="mt-3" />
           {result.results.length > 0 ? (
             <>
-              <div className="mt-4 grid grid-cols-2 gap-2.5 md:grid-cols-3 lg:grid-cols-4 lg:gap-4">
+              <div className="mt-4 grid grid-cols-2 gap-x-3.5 gap-y-6 md:grid-cols-3 lg:mt-7 lg:grid-cols-4 lg:gap-6">
                 {result.results.slice(0, 12).map((product, index) => (
                   <CatalogProductCard key={product.id} product={product} priority={index < 2} />
                 ))}
               </div>
               {result.results.length > 12 && (
-                <div className="mt-6 text-center">
-                  <Link href={buildCatalogUrl(result.filters)} className="inline-block rounded-lg bg-navy px-6 py-3 text-sm font-bold text-white hover:bg-navy-light">
+                <div className="mt-8 text-center">
+                  <Link href={buildCatalogUrl(result.filters)} className="inline-flex h-12 items-center bg-sumi px-8 text-sm font-bold text-white hover:bg-sumi-light hover:text-white">
                     この条件ですべて見る（{result.results.length.toLocaleString()}件）
                   </Link>
                 </div>
               )}
             </>
           ) : (
-            <p className="mt-4 rounded-xl border border-line bg-white p-6 text-sm text-ink-soft">
+            <p className="mt-4 border-y border-line py-8 text-center text-sm text-ink-soft">
               条件に合う商品が見つかりませんでした。予算や置き場所を変えてお試しください。
             </p>
           )}

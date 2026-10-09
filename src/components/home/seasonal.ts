@@ -1,4 +1,5 @@
-// トップの「季節の一鉢」：月ごとに見頃の樹種カテゴリを選ぶ（文言は一般的な見どころの範囲で書く）
+// トップの「季節の一鉢」と「いま見頃の盆栽」：月ごとに見頃の樹種・楽しみ方を選ぶ（文言は一般的な見どころの範囲で書く）
+import type { Enjoy, Season } from '@/lib/species-traits'
 
 export interface SeasonalPick {
   slug: string // SHOP_CATEGORIES / SPECIES_OPTIONS の slug
@@ -23,8 +24,40 @@ const PICKS: Record<string, SeasonalPick> = {
 // 1月〜12月
 const BY_MONTH = ['goyomatsu', 'ume', 'sakura', 'sakura', 'satsuki', 'satsuki', 'kokedama', 'kokedama', 'mimono', 'momiji', 'momiji', 'nanten']
 
+// 日本時間の月（1〜12）
+export function currentMonth(date = new Date()): number {
+  return Number(new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Tokyo', month: 'numeric' }).format(date))
+}
+
 export function getSeasonalPick(date = new Date()): SeasonalPick & { monthLabel: string } {
-  // 日本時間の月で判定する
-  const month = Number(new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Tokyo', month: 'numeric' }).format(date)) - 1
+  const month = currentMonth(date) - 1
   return { ...PICKS[BY_MONTH[month]], monthLabel: MONTH_LABELS[month] }
+}
+
+// 「いま見頃の盆栽」の条件（樹種の一般的な性質 seasons / enjoy で判定。常緑は季節を問わない）
+export interface SeasonalShelf {
+  subtitle: string
+  season: Season
+  enjoy: Enjoy[]
+}
+
+const SHELVES: { label: string; season: Season; enjoy: Enjoy[] }[] = [
+  { label: '梅と実もの', season: 'winter', enjoy: ['flower', 'fruit'] },
+  { label: '梅の花', season: 'winter', enjoy: ['flower'] },
+  { label: '春の花', season: 'spring', enjoy: ['flower'] },
+  { label: '桜と新緑', season: 'spring', enjoy: ['flower', 'leaf_color'] },
+  { label: '花と新緑', season: 'spring', enjoy: ['flower', 'leaf_color'] },
+  { label: '初夏の花', season: 'summer', enjoy: ['flower'] },
+  { label: '夏の花と常緑', season: 'summer', enjoy: ['flower', 'evergreen'] },
+  { label: '夏の花と常緑', season: 'summer', enjoy: ['flower', 'evergreen'] },
+  { label: '実もの', season: 'autumn', enjoy: ['fruit'] },
+  { label: '紅葉と実もの', season: 'autumn', enjoy: ['leaf_color', 'fruit'] },
+  { label: '紅葉と実もの', season: 'autumn', enjoy: ['leaf_color', 'fruit'] },
+  { label: '実ものと松柏', season: 'winter', enjoy: ['fruit', 'evergreen'] },
+]
+
+export function getSeasonalShelf(date = new Date()): SeasonalShelf {
+  const month = currentMonth(date)
+  const { label, season, enjoy } = SHELVES[month - 1]
+  return { subtitle: `${month}月は${label}`, season, enjoy }
 }
