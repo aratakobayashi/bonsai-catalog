@@ -10,7 +10,7 @@ summary:
   - 収穫の目安と、鳥・夏の水切れへの備え
 selection: fruit-bonsai
 photo: /images/articles/photos/blueberry-bonsai-western-style-1.jpg
-thumbTitle: ブルーベリーの盆栽の育て方
+thumbTitle: ブルーベリーの盆栽／育て方と実のつけ方
 thumbLabel: 樹種別の育て方
 ---
 ブルーベリーは、春に白い壺の形をした小さな花を下向きに咲かせ、初夏から夏に青紫の実をつけ、秋には葉が赤く色づく落葉の低木です。花・実・紅葉と見どころが多く、洋風の鉢に植えると、和の盆栽とは違った雰囲気を楽しめます。

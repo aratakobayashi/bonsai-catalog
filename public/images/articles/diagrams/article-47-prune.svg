@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>寒椿の剪定の時期。花が終わった3月ごろが切ってよい時期。7月ごろから花芽ができ始め11月に咲くので、夏以降に枝先を切ると花芽を落とす</title>
+  <rect width="800" height="380" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">剪定は花が終わった直後に</text>
+  <line x1="60" y1="170" x2="740" y2="170" stroke="#ebe7df" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="60.0" cy="170" r="14" fill="#1a365d"/>
+  <text x="60.0" y="130" font-size="24" font-weight="700" fill="#22201c">3月</text>
+  <text x="60.0" y="220" font-size="22" fill="#6b655b">花が終わる</text>
+  <circle cx="304.79999999999995" cy="170" r="14" fill="#5b7f4a"/>
+  <text x="304.79999999999995" y="130" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">7月</text>
+  <text x="304.79999999999995" y="220" text-anchor="middle" font-size="22" fill="#6b655b">花芽ができ始める</text>
+  <circle cx="556.4" cy="170" r="14" fill="#c23b4e"/>
+  <text x="556.4" y="130" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">11月</text>
+  <text x="556.4" y="220" text-anchor="middle" font-size="22" fill="#6b655b">咲き始める</text>
+  <rect x="60" y="250" width="217.6" height="54" rx="10" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <circle cx="86" cy="277" r="11" fill="none" stroke="#5b7f4a" stroke-width="4"/>
+  <text x="108" y="285" font-size="22" font-weight="700" fill="#5b7f4a">花後すぐ切る</text>
+  <rect x="304.79999999999995" y="250" width="435.2" height="54" rx="10" fill="#fff" stroke="#b4573a" stroke-width="3"/>
+  <path d="M322.79999999999995 267 L342.79999999999995 287 M342.79999999999995 267 L322.79999999999995 287" stroke="#b4573a" stroke-width="4" stroke-linecap="round"/>
+  <text x="356.79999999999995" y="285" font-size="22" font-weight="700" fill="#b4573a">枝先を切ると花芽を落とす</text>
+  <text x="400" y="350" text-anchor="middle" font-size="22" fill="#22201c">6月までなら、伸びすぎた枝を軽く整えてよい</text>
+</svg>

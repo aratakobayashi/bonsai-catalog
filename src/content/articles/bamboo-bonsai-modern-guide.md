@@ -9,7 +9,7 @@ summary:
   - 地下茎が鉢に回る前に行う植え替えと株分け
   - 葉が巻く・黄ばむときに考えられること
 photo: /images/articles/photos/bamboo-bonsai-modern-guide-1.jpg
-thumbTitle: 竹の盆栽の育て方
+thumbTitle: 竹の盆栽の育て方／水やりと植え替え
 thumbLabel: 樹種別の育て方
 ---
 竹の盆栽は、まっすぐな稈（かん。竹の茎のこと）と細い葉が、浅い鉢の上に林のように立つ姿が見どころです。洋室にも和室にも合わせやすく、夏は見た目にも涼しげです。

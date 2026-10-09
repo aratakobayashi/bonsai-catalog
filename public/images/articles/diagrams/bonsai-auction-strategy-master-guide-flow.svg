@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 430" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽の競り・入札に参加する流れ</title>
+  <rect width="800" height="430" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">参加の流れ</text>
+  <g>
+    <rect x="20" y="76" width="170" height="250" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <circle cx="105" cy="124" r="26" fill="#1a365d"/><text x="105" y="133" text-anchor="middle" font-size="26" font-weight="700" fill="#faf9f6">1</text>
+    <text x="105" y="196" text-anchor="middle" font-size="26" font-weight="700" fill="#22201c">規約を読む</text>
+    <text x="105" y="240" text-anchor="middle" font-size="22" fill="#22201c">参加条件</text>
+    <text x="105" y="272" text-anchor="middle" font-size="22" fill="#22201c">手数料</text>
+    <text x="105" y="304" text-anchor="middle" font-size="22" fill="#22201c">引き取り方法</text>
+  </g>
+  <g>
+    <rect x="210" y="76" width="170" height="250" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <circle cx="295" cy="124" r="26" fill="#1a365d"/><text x="295" y="133" text-anchor="middle" font-size="26" font-weight="700" fill="#faf9f6">2</text>
+    <text x="295" y="196" text-anchor="middle" font-size="26" font-weight="700" fill="#22201c">下見</text>
+    <text x="295" y="240" text-anchor="middle" font-size="22" fill="#22201c">樹の状態</text>
+    <text x="295" y="272" text-anchor="middle" font-size="22" fill="#22201c">鉢と根元</text>
+    <text x="295" y="304" text-anchor="middle" font-size="22" fill="#22201c">写真と説明</text>
+  </g>
+  <g>
+    <rect x="400" y="76" width="170" height="250" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <circle cx="485" cy="124" r="26" fill="#1a365d"/><text x="485" y="133" text-anchor="middle" font-size="26" font-weight="700" fill="#faf9f6">3</text>
+    <text x="485" y="196" text-anchor="middle" font-size="26" font-weight="700" fill="#22201c">上限を決める</text>
+    <text x="485" y="240" text-anchor="middle" font-size="22" fill="#22201c">手数料・送料</text>
+    <text x="485" y="272" text-anchor="middle" font-size="22" fill="#22201c">を含めた総額</text>
+  </g>
+  <g>
+    <rect x="590" y="76" width="190" height="250" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <circle cx="685" cy="124" r="26" fill="#1a365d"/><text x="685" y="133" text-anchor="middle" font-size="26" font-weight="700" fill="#faf9f6">4</text>
+    <text x="685" y="196" text-anchor="middle" font-size="26" font-weight="700" fill="#22201c">落札後</text>
+    <text x="685" y="240" text-anchor="middle" font-size="22" fill="#22201c">支払い</text>
+    <text x="685" y="272" text-anchor="middle" font-size="22" fill="#22201c">引き取り・配送</text>
+    <text x="685" y="304" text-anchor="middle" font-size="22" fill="#22201c">しばらく養生</text>
+  </g>
+  <g fill="#b8935a">
+    <path d="M192 196 l14 10 l-14 10 z"/><path d="M382 196 l14 10 l-14 10 z"/><path d="M572 196 l14 10 l-14 10 z"/>
+  </g>
+  <rect x="20" y="346" width="760" height="64" rx="14" fill="#1a365d"/>
+  <text x="400" y="388" text-anchor="middle" font-size="26" font-weight="700" fill="#faf9f6">下見と上限額が、競りの前の準備のすべて</text>
+</svg>

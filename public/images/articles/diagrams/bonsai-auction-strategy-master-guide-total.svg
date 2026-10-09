@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>落札額のほかにかかる費用</title>
+  <rect width="800" height="400" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">支払う総額で考える</text>
+  <rect x="20" y="90" width="230" height="90" rx="12" fill="#1a365d"/>
+  <text x="135" y="145" text-anchor="middle" font-size="26" font-weight="700" fill="#faf9f6">落札額</text>
+  <text x="257" y="148" font-size="30" font-weight="700" fill="#6b655b">＋</text>
+  <rect x="292" y="90" width="140" height="90" rx="12" fill="#b8935a"/>
+  <text x="362" y="145" text-anchor="middle" font-size="25" font-weight="700" fill="#faf9f6">手数料</text>
+  <text x="439" y="148" font-size="30" font-weight="700" fill="#6b655b">＋</text>
+  <rect x="474" y="90" width="120" height="90" rx="12" fill="#8b6b4a"/>
+  <text x="534" y="145" text-anchor="middle" font-size="25" font-weight="700" fill="#faf9f6">送料</text>
+  <text x="601" y="148" font-size="30" font-weight="700" fill="#6b655b">＋</text>
+  <rect x="636" y="90" width="144" height="90" rx="12" fill="#5b7f4a"/>
+  <text x="708" y="145" text-anchor="middle" font-size="25" font-weight="700" fill="#faf9f6">手入れ</text>
+  <g font-size="22" fill="#22201c">
+    <text x="292" y="226">会場や運営への手数料</text>
+    <text x="292" y="260">梱包・配送、車での引き取り</text>
+    <text x="292" y="294">植え替えの土・鉢、棚の場所</text>
+  </g>
+  <rect x="20" y="320" width="760" height="62" rx="14" fill="#fff" stroke="#1a365d" stroke-width="2.5"/>
+  <text x="400" y="360" text-anchor="middle" font-size="25" font-weight="700" fill="#1a365d">上限額は「全部込み」で先に決めておく</text>
+</svg>

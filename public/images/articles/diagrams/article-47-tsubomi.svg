@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 468" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>寒椿のつぼみが1か所に多くついているときは、大きいつぼみを1つ残して摘み取る。多いままだと栄養が分かれ、花が小さくなったりつぼみが落ちたりする</title>
+  <rect width="800" height="468" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">つぼみが多いときは数を減らす</text>
+  <rect x="20" y="68" width="370" height="380" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="205" y="108" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">多いまま</text>
+  <path d="M95 300 L205 240 L225 200" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <ellipse cx="165" cy="250" rx="30" ry="12" fill="#3f6a33" transform="rotate(-30 165 250)"/>
+  <ellipse cx="245" cy="236" rx="30" ry="12" fill="#3f6a33" transform="rotate(20 245 236)"/>
+  <ellipse cx="135" cy="280" rx="30" ry="12" fill="#3f6a33" transform="rotate(30 135 280)"/>
+  <ellipse cx="211" cy="182" rx="11" ry="15" fill="#c23b4e"/>
+  <ellipse cx="239" cy="184" rx="11" ry="15" fill="#c23b4e"/>
+  <ellipse cx="225" cy="164" rx="9" ry="13" fill="#c23b4e"/>
+  <text x="205" y="370" text-anchor="middle" font-size="22" fill="#22201c">栄養が分かれ</text>
+  <text x="205" y="404" text-anchor="middle" font-size="22" font-weight="700" fill="#b4573a">小さい花・つぼみ落ち</text>
+  <rect x="410" y="68" width="370" height="380" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <text x="595" y="108" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">1か所に1つ</text>
+  <path d="M485 300 L595 240 L615 200" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <ellipse cx="555" cy="250" rx="30" ry="12" fill="#3f6a33" transform="rotate(-30 555 250)"/>
+  <ellipse cx="635" cy="236" rx="30" ry="12" fill="#3f6a33" transform="rotate(20 635 236)"/>
+  <ellipse cx="525" cy="280" rx="30" ry="12" fill="#3f6a33" transform="rotate(30 525 280)"/>
+  <ellipse cx="615" cy="176" rx="13" ry="17" fill="#c23b4e"/>
+  <circle cx="615" cy="176" r="28" fill="none" stroke="#5b7f4a" stroke-width="3"/>
+  <text x="595" y="370" text-anchor="middle" font-size="22" fill="#22201c">大きいつぼみを</text>
+  <text x="595" y="404" text-anchor="middle" font-size="22" font-weight="700" fill="#5b7f4a">残して摘み取る</text>
+</svg>

@@ -21,7 +21,7 @@
   <g font-size="24" font-weight="700" fill="#22201c">
     <text x="34" y="141">植え替え</text>
     <text x="34" y="197">実が熟す</text>
-    <text x="34" y="253">収穫後</text>
+    <text x="34" y="253">夏の剪定</text>
     <text x="34" y="309">冬の剪定</text>
     <text x="34" y="365">肥料</text>
     <text x="34" y="421">虫の見回り</text>
@@ -30,7 +30,7 @@
   <rect x="249.2" y="119" width="68.2" height="28" rx="6" fill="#8b6b4a"/>
   <!-- 実が熟す -->
   <rect x="370.0" y="175" width="105.0" height="28" rx="6" fill="#b4573a"/>
-  <!-- 収穫後 -->
+  <!-- 夏の剪定 -->
   <rect x="438.2" y="231" width="89.3" height="28" rx="6" fill="#1a365d" fill-opacity="0.45"/>
   <!-- 冬の剪定 -->
   <rect x="721.8" y="287" width="68.3" height="28" rx="6" fill="#1a365d"/>

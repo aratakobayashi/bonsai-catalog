@@ -9,7 +9,7 @@ summary:
   - 組織培養や遺伝子技術が盆栽とどう関わるか
   - 登録品種を増やして売るときの決まり
 photo: /images/articles/photos/biotechnology-genetic-optimization-guide-1.jpg
-thumbTitle: 盆栽の品種と増やし方
+thumbTitle: 盆栽の品種と増やし方／挿し木・接ぎ木
 thumbLabel: 盆栽の知識
 ---
 「この樹と同じ性質の盆栽を増やしたい」「もっと葉の小さい樹がほしい」という願いは、盆栽の世界では昔から、挿し木・接ぎ木・取り木といった方法でかなえられてきました。どれも親の樹の一部から新しい樹を作るので、葉の形や色、花の咲き方がそのまま受け継がれます。

@@ -10,7 +10,7 @@ summary:
   - 1鉢目を長く育てるためのコツ
 selection: beginner-mini-bonsai
 photo: /images/articles/photos/beginner-tree-species-guide-1.jpg
-thumbTitle: 初心者に向く樹種の選び方
+thumbTitle: 初心者に向く樹種の／選び方と5つの候補
 thumbLabel: 盆栽の選び方
 ---
 盆栽を始めるとき、最初の樹種は「どれがいちばん美しいか」よりも、「自分の家の置き場所と生活に合うか」で選ぶと失敗しにくくなります。盆栽の多くは屋外で育てる樹で、夏は毎日の水やりが欠かせないからです。
