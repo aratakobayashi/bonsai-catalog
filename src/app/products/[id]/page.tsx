@@ -10,6 +10,7 @@ import { cleanProductName } from '@/lib/product-name'
 import { SITE_URL } from '@/lib/site'
 import { formatPrice } from '@/lib/utils'
 import { getRelatedArticles } from '@/lib/article-helpers'
+import { getArticleOverride } from '@/lib/article-overrides'
 import { getCareGuide, getPurchaseChecklist } from '@/lib/care-guides'
 import { BreadcrumbStructuredData, ProductStructuredData } from '@/components/seo/StructuredData'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
@@ -141,7 +142,11 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     .concat(isPart ? all.filter(p => p.productType === 'tree' && p.id !== product.id).sort((a, b) => b.reviewCount - a.reviewCount).slice(1, 4) : [])
     .slice(0, 4)
 
-  const relatedArticles = getRelatedArticles(product.category, product.tags, 3)
+  // 書き直した記事（src/content/articles）は新しいタイトルで出す
+  const relatedArticles = getRelatedArticles(product.category, product.tags, 3).map(article => ({
+    ...article,
+    title: getArticleOverride(article.slug)?.title ?? article.title,
+  }))
   const features = selectionsForProduct(product)
   const careGuide = getCareGuide(product.productType, product.category)
   const checklist = getPurchaseChecklist(product.productType)

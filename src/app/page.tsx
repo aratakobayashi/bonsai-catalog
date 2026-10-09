@@ -1,3 +1,4 @@
+import { applyArticleOverride } from '@/lib/article-overrides'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -119,7 +120,8 @@ async function getCareArticles(speciesSlug: string): Promise<Article[]> {
     const species = SPECIES_GUIDES[speciesSlug]
     const slugs = Array.from(new Set([...CARE_BASICS, ...(species ? [species] : []), ...CARE_FALLBACK])).filter(isArticleIndexable)
     const articles = await Promise.all(slugs.map(slug => getArticleBySlug(slug).catch(() => null)))
-    return articles.filter((article): article is Article => article !== null).slice(0, 3)
+    // 書き直した記事（src/content/articles）は、新しいタイトル・サムネイル・読む時間を出す
+    return articles.filter((article): article is Article => article !== null).slice(0, 3).map(article => applyArticleOverride(article))
   } catch (error) {
     console.error('Error fetching articles:', error)
     return []
@@ -410,13 +412,13 @@ export default async function HomePage() {
               {careArticles.map(article => (
                 <li key={article.slug}>
                   <Link href={`/guides/${article.slug}`} className="group flex gap-3.5 border-b border-line py-4 lg:block lg:border-0 lg:py-0">
-                    <span className="relative block h-16 w-24 flex-none overflow-hidden bg-paper-deep lg:aspect-[3/2] lg:h-auto lg:w-full">
+                    <span className="relative block aspect-[40/21] w-32 flex-none self-start overflow-hidden bg-paper-deep lg:w-full">
                       {article.featuredImage ? (
                         <Image
                           src={article.featuredImage.url}
                           alt={article.featuredImage.alt || article.title}
                           fill
-                          sizes="(max-width: 1023px) 96px, 360px"
+                          sizes="(max-width: 1023px) 128px, 360px"
                           className="object-cover"
                         />
                       ) : (

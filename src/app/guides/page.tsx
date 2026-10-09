@@ -87,7 +87,7 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
     articles: articlesData.articles.map(article => {
       // 書き直した記事（src/content/articles）は、新しいタイトル・要約・サムネイルを出す
       const override = applyArticleOverride(article)
-      return { ...article, title: override.title, excerpt: override.excerpt, featuredImage: override.featuredImage?.url?.endsWith('.svg') ? article.featuredImage : override.featuredImage, content: '' }
+      return { ...article, title: override.title, excerpt: override.excerpt, featuredImage: override.featuredImage?.url?.endsWith('.svg') ? article.featuredImage : override.featuredImage, readingTime: override.readingTime, content: '' }
     }),
   }
 
@@ -181,7 +181,7 @@ const SORT_VALUES = ['publishedAt', 'updatedAt', 'readingTime', 'title'] as cons
 
 // 「はじめての方へ」で案内する記事（実在する初心者向け記事）
 const BEGINNER_STEPS = [
-  { slug: 'beginner-tree-species-guide', label: '盆栽の選び方｜最初に選ぶ樹種5選' },
-  { slug: 'bonsai-watering-master-guide-2025', label: '盆栽の水やりの基本｜失敗しないコツ' },
-  { slug: 'article-12', label: '置き場所と日当たり｜屋外・室内' },
+  { slug: 'beginner-tree-species-guide', label: '初心者に向く樹種の選び方｜置き場所と楽しみ方で選ぶ' },
+  { slug: 'bonsai-watering-master-guide-2025', label: '盆栽の水やり｜乾いたかの見分け方と季節ごとの回数' },
+  { slug: 'article-12', label: '盆栽の置き場所の決め方｜日当たり・風通しと季節の移し方' },
 ]

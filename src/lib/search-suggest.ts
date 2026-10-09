@@ -7,6 +7,7 @@ import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { peakLabel } from '@/lib/seasons'
 import { matchesKeyword, parseKeyword } from '@/lib/search-normalize'
 import { supabase } from '@/lib/supabase'
+import { getArticleOverride } from '@/lib/article-overrides'
 
 export interface SuggestSpecies {
   slug: string
@@ -83,9 +84,12 @@ const getArticleTitles = unstable_cache(
       return []
     }
     // 非公開扱い（テーマ外・noindex）の記事は候補に出さない
-    return ((data as { slug: string; title: string }[] | null) ?? []).filter(a => a.slug && a.title && isArticleListable(a.slug))
+    // 書き直した記事（src/content/articles）は新しいタイトルで探せるようにする
+    return ((data as { slug: string; title: string }[] | null) ?? [])
+      .filter(a => a.slug && a.title && isArticleListable(a.slug))
+      .map(a => ({ slug: a.slug, title: getArticleOverride(a.slug)?.title ?? a.title }))
   },
-  ['search-suggest-article-titles-v2'],
+  ['search-suggest-article-titles-v3'],
   { revalidate: 3600, tags: ['articles'] },
 )
 

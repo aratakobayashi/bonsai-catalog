@@ -1,6 +1,7 @@
 // 盆栽園・イベントのページの「あわせて読む」。出かける・見学・展示に関係する記事を優先し、足りない分は新着で埋める
 import { supabaseServer } from '@/lib/supabase-server'
 import { isArticleListable } from '@/lib/content-policy'
+import { applyArticleOverride } from '@/lib/article-overrides'
 import type { Article } from '@/types'
 
 const SELECT = `
@@ -13,8 +14,9 @@ const SELECT = `
   category:article_categories!articles_category_id_fkey(*)
 `
 
+// 書き直した記事（src/content/articles）は、新しいタイトル・サムネイルを出す
 function toArticle(item: any): Article {
-  return {
+  return applyArticleOverride({
     id: item.id,
     title: item.title,
     slug: item.slug,
@@ -24,7 +26,7 @@ function toArticle(item: any): Article {
     category: item.category,
     content: '', // 一覧では本文を使わない
     updatedAt: item.published_at,
-  }
+  })
 }
 
 export const GARDEN_ARTICLE_TOPICS = {

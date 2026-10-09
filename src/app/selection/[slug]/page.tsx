@@ -1,3 +1,4 @@
+import { getArticleOverride } from '@/lib/article-overrides'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -88,10 +89,12 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
   const selection = getSelection(params.slug)
   if (!selection) notFound()
 
-  const [allProducts, guideLinks] = await Promise.all([
+  const [allProducts, guideRows] = await Promise.all([
     getCatalogProducts().catch(() => [] as CatalogProduct[]),
     getSelectionGuideLinks(selection.slug),
   ])
+  // 書き直した記事（src/content/articles）は新しいタイトルで出す
+  const guideLinks = guideRows.map(guide => ({ ...guide, title: getArticleOverride(guide.slug)?.title ?? guide.title }))
   const products = pickSelectionProducts(selection, allProducts)
   const counts = selectionCounts(allProducts)
   const otherSelections = SELECTIONS.filter(other => other.slug !== selection.slug && isFeaturable(other, counts)).slice(0, 10)

@@ -19,14 +19,15 @@ export function GuideArticleCard({
       href={`/guides/${article.slug}`}
       className="group flex gap-3.5 border-b border-line py-4 lg:block lg:border-0 lg:py-0"
     >
-      <div className="relative h-[72px] w-24 flex-none overflow-hidden lg:aspect-[3/2] lg:h-auto lg:w-full">
+      {/* サムネイル（1200×630）の文字が切れないよう、同じ縦横比で表示する */}
+      <div className="relative aspect-[40/21] w-32 flex-none self-start overflow-hidden lg:w-full">
         {article.featuredImage ? (
           <Image
             src={article.featuredImage.url}
             alt={article.featuredImage.alt || article.title}
             fill
             priority={priority}
-            sizes="(max-width: 1023px) 96px, 360px"
+            sizes="(max-width: 1023px) 128px, 360px"
             className="object-cover"
           />
         ) : (
