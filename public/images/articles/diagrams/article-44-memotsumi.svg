@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 488" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>真柏の芽摘み。飛び出た新芽は指でつまんで引くように摘み取る。はさみで葉の途中を切ると切り口が茶色くなる</title>
+  <rect width="800" height="488" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">真柏の芽摘みは指先で</text>
+  <rect x="20" y="68" width="370" height="400" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <text x="205" y="108" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">○ 指でつまんで摘む</text>
+  <path d="M70 300 L230 240" stroke="#4f7a46" stroke-width="16" stroke-linecap="round"/>
+  <path d="M230 240 L300 200" stroke="#4f7a46" stroke-width="12" stroke-linecap="round"/>
+  <path d="M300 200 L340 176" stroke="#9cc28a" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="318" cy="190" r="26" fill="none" stroke="#1a365d" stroke-width="3"/>
+  <text x="318" y="152" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">伸びた新芽</text>
+  <text x="205" y="380" text-anchor="middle" font-size="22" fill="#22201c">飛び出た新芽を指でつまみ</text>
+  <text x="205" y="414" text-anchor="middle" font-size="22" font-weight="700" fill="#5b7f4a">引くように摘み取る</text>
+  <rect x="410" y="68" width="370" height="400" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="595" y="108" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">× はさみで葉を切る</text>
+  <path d="M460 300 L620 240" stroke="#4f7a46" stroke-width="16" stroke-linecap="round"/>
+  <path d="M620 240 L680 206" stroke="#4f7a46" stroke-width="12" stroke-linecap="round"/>
+  <path d="M680 206 L690 200" stroke="#a5784f" stroke-width="12" stroke-linecap="round"/>
+  <line x1="700" y1="170" x2="680" y2="232" stroke="#b4573a" stroke-width="4" stroke-dasharray="8 5"/>
+  <text x="700" y="160" text-anchor="middle" font-size="22" font-weight="700" fill="#b4573a">切り口</text>
+  <text x="595" y="380" text-anchor="middle" font-size="22" fill="#22201c">葉の途中で切ると</text>
+  <text x="595" y="414" text-anchor="middle" font-size="22" font-weight="700" fill="#b4573a">切り口が茶色くなる</text>
+</svg>

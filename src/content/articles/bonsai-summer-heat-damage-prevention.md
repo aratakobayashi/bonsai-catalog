@@ -9,7 +9,7 @@ summary:
   - 夏に弱ったときに出るサインと、すぐにできる対処
   - 暑さに強い樹種・弱い樹種の違い
 photo: /images/articles/photos/bonsai-summer-heat-damage-prevention-1.jpg
-thumbTitle: 盆栽の夏枯れを防ぐ
+thumbTitle: 盆栽の夏枯れを防ぐ／置き場所と水やり
 thumbLabel: 季節の管理
 ---
 夏に盆栽が弱ったり枯れたりするのは、気温が高いからというより、小さな鉢の中が熱くなること、水がすぐに切れること、地面からの照り返しで葉が焼けることが重なるためです。

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>挿し木の手順</title>
+  <rect width="800" height="450" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">挿し木の手順</text>
+  <!-- 1 -->
+  <rect x="20" y="72" width="245" height="290" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="54" cy="104" r="20" fill="#1a365d"/><text x="54" y="112" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">1</text>
+  <line x1="142" y1="250" x2="142" y2="120" stroke="#8b6b4a" stroke-width="7"/>
+  <ellipse cx="124" cy="134" rx="18" ry="9" fill="#5b7f4a"/><ellipse cx="160" cy="124" rx="18" ry="9" fill="#5b7f4a"/>
+  <path d="M130 254 l24 -12" stroke="#1a365d" stroke-width="4"/>
+  <text x="142" y="300" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">斜めに切る</text>
+  <text x="142" y="336" text-anchor="middle" font-size="22" fill="#22201c">よく切れる刃物で</text>
+  <!-- 2 -->
+  <rect x="277" y="72" width="245" height="290" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="311" cy="104" r="20" fill="#1a365d"/><text x="311" y="112" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">2</text>
+  <path d="M340 190 h120 l-12 60 h-96 z" fill="#1a365d" fill-opacity="0.25" stroke="#1a365d" stroke-width="2"/>
+  <line x1="400" y1="236" x2="400" y2="130" stroke="#8b6b4a" stroke-width="7"/>
+  <ellipse cx="384" cy="142" rx="16" ry="8" fill="#5b7f4a"/><ellipse cx="416" cy="134" rx="16" ry="8" fill="#5b7f4a"/>
+  <text x="400" y="300" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">水を吸わせる</text>
+  <text x="400" y="336" text-anchor="middle" font-size="22" fill="#22201c">30分〜1時間ほど</text>
+  <!-- 3 -->
+  <rect x="534" y="72" width="246" height="290" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="568" cy="104" r="20" fill="#1a365d"/><text x="568" y="112" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">3</text>
+  <path d="M580 180 h154 l-14 74 h-126 z" fill="#8b6b4a"/>
+  <rect x="588" y="180" width="138" height="14" fill="#e3d2b4"/>
+  <line x1="630" y1="210" x2="630" y2="130" stroke="#8b6b4a" stroke-width="6"/>
+  <line x1="684" y1="210" x2="684" y2="130" stroke="#8b6b4a" stroke-width="6"/>
+  <ellipse cx="630" cy="132" rx="14" ry="7" fill="#5b7f4a"/><ellipse cx="684" cy="132" rx="14" ry="7" fill="#5b7f4a"/>
+  <text x="657" y="300" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">新しい土に挿す</text>
+  <text x="657" y="336" text-anchor="middle" font-size="22" fill="#22201c">明るい日陰で管理</text>
+  <rect x="20" y="380" width="760" height="56" rx="14" fill="#1a365d"/>
+  <text x="400" y="416" text-anchor="middle" font-size="25" font-weight="700" fill="#faf9f6">根が出るまで土を乾かさない</text>
+</svg>

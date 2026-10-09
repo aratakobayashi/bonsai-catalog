@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>地域ごとの気候と盆栽によく使われる樹</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">地域ごとの気候と樹</text>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="70" width="370" height="185" rx="14"/>
+    <rect x="410" y="70" width="370" height="185" rx="14"/>
+    <rect x="20" y="275" width="370" height="185" rx="14"/>
+    <rect x="410" y="275" width="370" height="185" rx="14"/>
+  </g>
+  <g font-size="26" font-weight="700" fill="#1a365d">
+    <text x="44" y="114">北米</text>
+    <text x="434" y="114">ヨーロッパ</text>
+    <text x="44" y="319">アジアの暖かい地域</text>
+    <text x="434" y="319">南半球</text>
+  </g>
+  <g font-size="22" fill="#6b655b">
+    <text x="44" y="156">寒冷・乾燥・温暖など幅広い</text>
+    <text x="434" y="156">北は寒冷、南は夏に乾く</text>
+    <text x="44" y="361">高温多湿、冬がない地域も</text>
+    <text x="434" y="361">季節が日本と逆</text>
+  </g>
+  <g font-size="22" fill="#22201c">
+    <text x="44" y="200">乾燥地のビャクシン・松の</text>
+    <text x="44" y="230">古木を山から採る</text>
+    <text x="434" y="200">ヨーロッパアカマツ・</text>
+    <text x="434" y="230">オリーブなど在来の樹</text>
+    <text x="44" y="405">ニレやイチジクの仲間</text>
+    <text x="44" y="435">景色を表す盆景の伝統</text>
+    <text x="434" y="405">作業の時期を</text>
+    <text x="434" y="435">その土地の季節に置き換える</text>
+  </g>
+</svg>

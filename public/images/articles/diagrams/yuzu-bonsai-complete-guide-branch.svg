@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>柚子の花がつく枝：前の年に伸びた枝の先から出る春の枝に咲く</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="28" font-weight="700" fill="#1a365d">花は「去年伸びた枝」の先のほうから咲く</text>
+
+  <!-- 古い枝 -->
+  <path d="M80 400 C 200 380, 300 340, 380 300" stroke="#6f5439" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <!-- 去年の枝 -->
+  <path d="M380 300 C 450 262, 520 220, 600 170" stroke="#7a9a5e" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <!-- 葉（去年の枝） -->
+  <g fill="#3f5a33">
+    <ellipse cx="430" cy="252" rx="30" ry="12" transform="rotate(-50 430 252)"/>
+    <ellipse cx="500" cy="244" rx="30" ry="12" transform="rotate(20 500 244)"/>
+    <ellipse cx="540" cy="186" rx="30" ry="12" transform="rotate(-60 540 186)"/>
+  </g>
+  <!-- 春の新しい枝と花 -->
+  <g stroke="#9cbc7a" stroke-width="5" fill="none" stroke-linecap="round">
+    <path d="M600 170 C 620 140, 640 120, 650 96"/><path d="M570 190 C 600 180, 630 182, 660 196"/>
+  </g>
+  <g fill="#fff" stroke="#c9b48f" stroke-width="2">
+    <circle cx="652" cy="92" r="11"/><circle cx="636" cy="120" r="10"/><circle cx="662" cy="198" r="11"/><circle cx="636" cy="184" r="10"/>
+  </g>
+  <g fill="#b8935a"><circle cx="652" cy="92" r="3"/><circle cx="636" cy="120" r="3"/><circle cx="662" cy="198" r="3"/><circle cx="636" cy="184" r="3"/></g>
+
+  <!-- 切る位置の例 -->
+  <line x1="350" y1="282" x2="398" y2="330" stroke="#b4573a" stroke-width="4" stroke-dasharray="9 6"/>
+
+  <!-- ラベル -->
+  <g font-size="22">
+    <text x="120" y="356" font-weight="700" fill="#22201c" font-size="24">古い枝</text>
+    <text x="420" y="330" font-weight="700" fill="#5b7f4a" font-size="24">去年伸びた枝</text>
+    <text x="680" y="150" font-weight="700" fill="#22201c" font-size="24">春の枝</text>
+    <text x="680" y="178" fill="#6b655b">5月に花</text>
+    <text x="40" y="436" fill="#b4573a">点線のように去年の枝を元から切ると、その枝の花はなくなります</text>
+  </g>
+</svg>

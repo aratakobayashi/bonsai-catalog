@@ -16,8 +16,8 @@
 <circle cx="148" cy="220" r="22" fill="#d9b43c"/>
 <circle cx="108" cy="205" r="22" fill="#d9b43c"/>
 <text x="108" y="370" text-anchor="middle" font-size="23" font-weight="700" fill="#22201c">古い葉から</text>
-<text x="108" y="404" text-anchor="middle" font-size="20" fill="#8b6b4a">水のやりすぎ</text>
-<text x="108" y="434" text-anchor="middle" font-size="20" fill="#8b6b4a">日照不足</text>
+<text x="108" y="404" text-anchor="middle" font-size="22" fill="#8b6b4a">水のやりすぎ</text>
+<text x="108" y="434" text-anchor="middle" font-size="22" fill="#8b6b4a">日照不足</text>
 <rect x="212" y="72" width="176" height="378" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
 <path d="M256 0 h88 l-8 24 h-72 z" fill="#8b6b4a" transform="translate(0 300)"/>
 <path d="M300 300 v-110" stroke="#6f5439" stroke-width="9" stroke-linecap="round"/>
@@ -35,8 +35,8 @@
 <circle cx="340" cy="220" r="22" fill="#5b7f4a"/>
 <circle cx="300" cy="205" r="22" fill="#5b7f4a"/>
 <text x="300" y="370" text-anchor="middle" font-size="23" font-weight="700" fill="#22201c">新しい葉が</text>
-<text x="300" y="404" text-anchor="middle" font-size="20" fill="#8b6b4a">肥料</text>
-<text x="300" y="434" text-anchor="middle" font-size="20" fill="#8b6b4a">用土の傷み</text>
+<text x="300" y="404" text-anchor="middle" font-size="22" fill="#8b6b4a">肥料</text>
+<text x="300" y="434" text-anchor="middle" font-size="22" fill="#8b6b4a">用土の傷み</text>
 <rect x="404" y="72" width="176" height="378" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
 <path d="M448 0 h88 l-8 24 h-72 z" fill="#8b6b4a" transform="translate(0 300)"/>
 <path d="M492 300 v-110" stroke="#6f5439" stroke-width="9" stroke-linecap="round"/>
@@ -51,8 +51,8 @@
 <circle cx="532" cy="220" r="22" fill="#d9b43c"/>
 <circle cx="492" cy="205" r="22" fill="#d9b43c"/>
 <text x="492" y="370" text-anchor="middle" font-size="23" font-weight="700" fill="#22201c">全体が急に</text>
-<text x="492" y="404" text-anchor="middle" font-size="20" fill="#8b6b4a">水切れ</text>
-<text x="492" y="434" text-anchor="middle" font-size="20" fill="#8b6b4a">根腐れ</text>
+<text x="492" y="404" text-anchor="middle" font-size="22" fill="#8b6b4a">水切れ</text>
+<text x="492" y="434" text-anchor="middle" font-size="22" fill="#8b6b4a">根腐れ</text>
 <rect x="596" y="72" width="176" height="378" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
 <path d="M640 0 h88 l-8 24 h-72 z" fill="#8b6b4a" transform="translate(0 300)"/>
 <path d="M684 300 v-110" stroke="#6f5439" stroke-width="9" stroke-linecap="round"/>
@@ -68,5 +68,5 @@
 <circle cx="684" cy="205" r="22" fill="#5b7f4a"/>
 <circle cx="746" cy="104" r="14" fill="#b8935a"/>
 <text x="684" y="370" text-anchor="middle" font-size="23" font-weight="700" fill="#22201c">日の当たる面</text>
-<text x="684" y="404" text-anchor="middle" font-size="20" fill="#8b6b4a">葉焼け</text>
+<text x="684" y="404" text-anchor="middle" font-size="22" fill="#8b6b4a">葉焼け</text>
 </svg>

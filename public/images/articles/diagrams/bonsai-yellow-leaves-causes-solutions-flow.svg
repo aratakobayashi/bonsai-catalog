@@ -7,26 +7,26 @@
   <path d="M640 52 h40 v40" stroke="#b8935a" stroke-width="4" fill="none"/>
   <rect x="580" y="96" width="200" height="56" rx="12" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
   <text x="680" y="132" text-anchor="middle" font-size="22" fill="#5b7f4a" font-weight="700">自然な黄葉</text>
-  <text x="664" y="80" font-size="20" fill="#5b7f4a">はい</text>
+  <text x="664" y="80" font-size="22" fill="#5b7f4a">はい</text>
   <line x1="400" y1="84" x2="400" y2="170" stroke="#b8935a" stroke-width="4"/>
-  <text x="412" y="136" font-size="20" fill="#8b6b4a">いいえ</text>
+  <text x="412" y="136" font-size="22" fill="#8b6b4a">いいえ</text>
   <!-- Q2 -->
   <rect x="160" y="170" width="480" height="64" rx="14" fill="#1a365d"/>
   <text x="400" y="212" text-anchor="middle" font-size="25" font-weight="700" fill="#faf9f6">土を触ると？</text>
   <g stroke="#b8935a" stroke-width="4" fill="none"><path d="M260 234 v50 h-130 v26"/><path d="M400 234 v76"/><path d="M540 234 v50 h130 v26"/></g>
-  <text x="132" y="276" font-size="20" fill="#8b6b4a">いつも湿っている</text>
-  <text x="408" y="276" font-size="20" fill="#8b6b4a">乾いて軽い</text>
-  <text x="560" y="276" font-size="20" fill="#8b6b4a">普段どおり</text>
+  <text x="132" y="276" font-size="22" fill="#8b6b4a">いつも湿っている</text>
+  <text x="408" y="276" font-size="22" fill="#8b6b4a">乾いて軽い</text>
+  <text x="560" y="276" font-size="22" fill="#8b6b4a">普段どおり</text>
   <!-- results -->
   <rect x="20" y="310" width="240" height="170" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
   <text x="140" y="356" text-anchor="middle" font-size="23" font-weight="700" fill="#22201c">水のやりすぎ</text>
   <text x="140" y="392" text-anchor="middle" font-size="23" font-weight="700" fill="#22201c">根腐れ・日照不足</text>
-  <text x="140" y="446" text-anchor="middle" font-size="20" fill="#5b7f4a">乾いてから与える</text>
+  <text x="140" y="446" text-anchor="middle" font-size="22" fill="#5b7f4a">乾いてから与える</text>
   <rect x="280" y="310" width="240" height="170" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
   <text x="400" y="374" text-anchor="middle" font-size="23" font-weight="700" fill="#22201c">水切れ</text>
-  <text x="400" y="446" text-anchor="middle" font-size="20" fill="#5b7f4a">鉢ごと水に沈める</text>
+  <text x="400" y="446" text-anchor="middle" font-size="22" fill="#5b7f4a">鉢ごと水に沈める</text>
   <rect x="540" y="310" width="240" height="170" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
   <text x="660" y="356" text-anchor="middle" font-size="23" font-weight="700" fill="#22201c">肥料・根詰まり</text>
   <text x="660" y="392" text-anchor="middle" font-size="23" font-weight="700" fill="#22201c">葉の裏の虫</text>
-  <text x="660" y="446" text-anchor="middle" font-size="20" fill="#5b7f4a">一つずつ確かめる</text>
+  <text x="660" y="446" text-anchor="middle" font-size="22" fill="#5b7f4a">一つずつ確かめる</text>
 </svg>

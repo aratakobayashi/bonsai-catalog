@@ -10,7 +10,7 @@ summary:
   - 世話を負担にしないための考え方
 selection: beginner-mini-bonsai
 photo: /images/articles/photos/bonsai-therapy-brain-science-guide-1.jpg
-thumbTitle: 盆栽の世話を／気分転換に
+thumbTitle: 盆栽の世話を気分転換に／毎日数分の手入れ
 thumbLabel: 盆栽の楽しみ方
 ---
 盆栽の世話は、一日のうちのほんの数分を、目の前の植物だけに向ける時間です。土が乾いたかを確かめ、水を与え、昨日はなかった芽に気づく。その繰り返しが、慌ただしい日の中でひと息つくきっかけになる、と感じる人は多くいます。

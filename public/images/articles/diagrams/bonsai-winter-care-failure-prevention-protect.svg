@@ -11,8 +11,8 @@
   <g stroke="#1a365d" stroke-width="3" fill="none" stroke-linecap="round"><path d="M236 180 q-20 -6 -40 0"/><path d="M236 200 q-20 -6 -40 0"/></g>
   <rect x="36" y="268" width="212" height="6" fill="#ebe7df"/>
   <text x="142" y="324" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">軒下へ</text>
-  <text x="142" y="362" text-anchor="middle" font-size="21" fill="#22201c">霜と北風を避ける</text>
-  <text x="142" y="394" text-anchor="middle" font-size="21" fill="#22201c">昼に日が当たる場所</text>
+  <text x="142" y="362" text-anchor="middle" font-size="22" fill="#22201c">霜と北風を避ける</text>
+  <text x="142" y="394" text-anchor="middle" font-size="22" fill="#22201c">昼に日が当たる場所</text>
   <!-- 2 発泡スチロール -->
   <rect x="278" y="74" width="244" height="356" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
   <rect x="320" y="176" width="160" height="92" fill="#f3f0ea" stroke="#b8b0a2" stroke-width="3"/>
@@ -21,8 +21,8 @@
   <path d="M410 200 h40 l-5 14 h-30 z" fill="#8b6b4a"/><ellipse cx="430" cy="190" rx="18" ry="10" fill="#5b7f4a"/>
   <rect x="294" y="268" width="212" height="6" fill="#ebe7df"/>
   <text x="400" y="324" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">箱に入れる</text>
-  <text x="400" y="362" text-anchor="middle" font-size="21" fill="#22201c">夜はふたを閉める</text>
-  <text x="400" y="394" text-anchor="middle" font-size="21" fill="#22201c">昼はふたを開ける</text>
+  <text x="400" y="362" text-anchor="middle" font-size="22" fill="#22201c">夜はふたを閉める</text>
+  <text x="400" y="394" text-anchor="middle" font-size="22" fill="#22201c">昼はふたを開ける</text>
   <!-- 3 地面 -->
   <rect x="536" y="74" width="244" height="356" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
   <rect x="552" y="226" width="212" height="48" fill="#c9a77c"/>
@@ -31,6 +31,6 @@
   <g stroke="#6f5439" stroke-width="3" fill="none" stroke-linecap="round"><path d="M658 196 l-18 -16"/><path d="M658 192 l16 -18"/></g>
   <g fill="#e3d2b4"><circle cx="580" cy="236" r="5"/><circle cx="604" cy="246" r="5"/><circle cx="712" cy="238" r="5"/><circle cx="736" cy="250" r="5"/></g>
   <text x="658" y="324" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">地面で囲む</text>
-  <text x="658" y="362" text-anchor="middle" font-size="21" fill="#22201c">鉢の周りを土や</text>
-  <text x="658" y="394" text-anchor="middle" font-size="21" fill="#22201c">もみ殻で囲む</text>
+  <text x="658" y="362" text-anchor="middle" font-size="22" fill="#22201c">鉢の周りを土や</text>
+  <text x="658" y="394" text-anchor="middle" font-size="22" fill="#22201c">もみ殻で囲む</text>
 </svg>

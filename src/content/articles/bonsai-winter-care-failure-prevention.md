@@ -9,7 +9,7 @@ summary:
   - 冬の水やりの回数と、晴れた日の午前中に与える理由
   - 春に防寒をやめる時期と、遅霜への注意
 photo: /images/articles/photos/bonsai-winter-care-failure-prevention-1.jpg
-thumbTitle: 盆栽の冬越しの／置き場所と管理
+thumbTitle: 盆栽の冬越し／置き場所と防寒・水やり
 thumbLabel: 季節の管理
 ---
 冬の盆栽は、葉を落としたり生長を止めたりして休んでいます。多くの樹種は寒さに強く、氷点下になる日があっても屋外で冬を越せます。

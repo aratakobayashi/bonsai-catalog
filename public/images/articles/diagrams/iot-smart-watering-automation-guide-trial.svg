@@ -1,25 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 430" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>留守の前の試運転の流れ</title>
-  <rect width="800" height="430" fill="#faf9f6"/>
-  <rect x="20" y="40" width="172" height="350" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect width="800" height="370" fill="#faf9f6"/>
+  <rect x="20" y="40" width="172" height="290" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
   <circle cx="106" cy="100" r="28" fill="#1a365d"/><text x="106" y="110" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">1</text>
   <text x="106" y="180" text-anchor="middle" font-size="25" font-weight="700" fill="#1a365d">2週間前</text>
   <text x="106" y="250" text-anchor="middle" font-size="22" fill="#22201c">設置して</text>
   <text x="106" y="284" text-anchor="middle" font-size="22" fill="#22201c">水の出方を見る</text>
   <path d="M196 215 l14 0" stroke="#b8935a" stroke-width="4"/><path d="M206 207 l8 8 l-8 8 z" fill="#b8935a"/>
-  <rect x="216" y="40" width="172" height="350" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="216" y="40" width="172" height="290" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
   <circle cx="302" cy="100" r="28" fill="#1a365d"/><text x="302" y="110" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">2</text>
   <text x="302" y="180" text-anchor="middle" font-size="25" font-weight="700" fill="#1a365d">続く数日</text>
   <text x="302" y="250" text-anchor="middle" font-size="22" fill="#22201c">朝夕に手で</text>
   <text x="302" y="284" text-anchor="middle" font-size="22" fill="#22201c">乾き具合を確認</text>
   <path d="M392 215 l14 0" stroke="#b8935a" stroke-width="4"/><path d="M402 207 l8 8 l-8 8 z" fill="#b8935a"/>
-  <rect x="412" y="40" width="172" height="350" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="412" y="40" width="172" height="290" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
   <circle cx="498" cy="100" r="28" fill="#1a365d"/><text x="498" y="110" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">3</text>
   <text x="498" y="180" text-anchor="middle" font-size="25" font-weight="700" fill="#1a365d">1週間前まで</text>
   <text x="498" y="250" text-anchor="middle" font-size="22" fill="#22201c">1泊の外出で</text>
   <text x="498" y="284" text-anchor="middle" font-size="22" fill="#22201c">試す</text>
   <path d="M588 215 l14 0" stroke="#b8935a" stroke-width="4"/><path d="M598 207 l8 8 l-8 8 z" fill="#b8935a"/>
-  <rect x="608" y="40" width="172" height="350" rx="16" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <rect x="608" y="40" width="172" height="290" rx="16" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
   <circle cx="694" cy="100" r="28" fill="#1a365d"/><text x="694" y="110" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">4</text>
   <text x="694" y="180" text-anchor="middle" font-size="25" font-weight="700" fill="#1a365d">前日</text>
   <text x="694" y="250" text-anchor="middle" font-size="22" fill="#22201c">電池とタンク、</text>

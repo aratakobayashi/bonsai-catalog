@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>正月に盆栽を室内に飾るときの流れ：屋外から室内へ2〜3日、そのあと屋外へ戻す</title>
+  <rect width="800" height="420" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="28" font-weight="700" fill="#1a365d">室内に飾るのは2〜3日を目安に</text>
+
+  <!-- 1 -->
+  <rect x="20" y="76" width="236" height="250" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="138" y="118" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">ふだんは屋外</text>
+  <circle cx="200" cy="160" r="16" fill="#b8935a"/>
+  <path d="M100 250 h76 l-6 22 h-64 z" fill="#8b6b4a"/>
+  <path d="M138 250 C 134 230, 146 214, 138 194" stroke="#6f5439" stroke-width="6" fill="none"/>
+  <ellipse cx="138" cy="190" rx="40" ry="16" fill="#3f5a33"/>
+  <text x="138" y="306" text-anchor="middle" font-size="22" fill="#6b655b">日なたの棚</text>
+
+  <path d="M262 200 h36" stroke="#b8935a" stroke-width="5"/><path d="M296 190 l14 10 l-14 10 z" fill="#b8935a"/>
+
+  <!-- 2 -->
+  <rect x="282" y="76" width="236" height="250" rx="14" fill="#fff" stroke="#b8935a" stroke-width="3" transform="translate(30 0)"/>
+  <text x="430" y="118" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">室内に2〜3日</text>
+  <path d="M392 250 h76 l-6 22 h-64 z" fill="#8b6b4a"/>
+  <path d="M430 250 C 426 230, 438 214, 430 194" stroke="#6f5439" stroke-width="6" fill="none"/>
+  <ellipse cx="430" cy="190" rx="40" ry="16" fill="#3f5a33"/>
+  <rect x="380" y="272" width="100" height="12" fill="#22201c"/>
+  <!-- 暖房の風 × -->
+  <g stroke="#b4573a" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M500 160 c -10 6, -20 -6, -30 0"/><path d="M500 176 c -10 6, -20 -6, -30 0"/>
+  </g>
+  <g stroke="#b4573a" stroke-width="4" stroke-linecap="round"><line x1="472" y1="150" x2="500" y2="184"/><line x1="500" y1="150" x2="472" y2="184"/></g>
+  <text x="430" y="306" text-anchor="middle" font-size="22" fill="#b4573a">暖房の風を避ける</text>
+
+  <path d="M554 200 h36" stroke="#b8935a" stroke-width="5"/><path d="M588 190 l14 10 l-14 10 z" fill="#b8935a"/>
+
+  <!-- 3 -->
+  <rect x="604" y="76" width="176" height="250" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="692" y="118" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">屋外へ</text>
+  <path d="M654 250 h76 l-6 22 h-64 z" fill="#8b6b4a"/>
+  <path d="M692 250 C 688 230, 700 214, 692 194" stroke="#6f5439" stroke-width="6" fill="none"/>
+  <ellipse cx="692" cy="190" rx="40" ry="16" fill="#3f5a33"/>
+  <text x="692" y="306" text-anchor="middle" font-size="22" fill="#6b655b">寒風は避ける</text>
+
+  <text x="20" y="384" font-size="22" fill="#22201c">長く飾りたいときは、室内と屋外を数日おきに入れ替えます</text>
+</svg>

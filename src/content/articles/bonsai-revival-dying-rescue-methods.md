@@ -9,7 +9,7 @@ summary:
   - 回復を待つ間にやってはいけないこと
   - 持ち直したあとの1〜2か月の管理
 photo: /images/articles/photos/bonsai-revival-dying-rescue-methods-1.jpg
-thumbTitle: 枯れそうな盆栽の／応急処置
+thumbTitle: 枯れそうな盆栽の／確かめ方と応急処置
 thumbLabel: トラブル対処
 ---
 葉がしおれたり茶色くなったりすると、もう枯れてしまったように見えます。けれども葉が傷んでいても、枝や幹、根が生きていれば、新しい芽が出て持ち直すことは珍しくありません。

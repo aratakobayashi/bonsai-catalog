@@ -10,7 +10,7 @@ summary:
   - 花形・咲く時期による管理の違いと、挿し木での増やし方
 selection: flowering-bonsai
 photo: /images/articles/photos/camellia-varieties-comprehensive-guide-1.jpg
-thumbTitle: 椿の品種と選び方
+thumbTitle: 椿の品種と選び方／花の形と咲く時期
 thumbLabel: 樹種別の育て方
 ---
 椿は古くから日本で親しまれてきた花木で、園芸品種がとても多くあります。花の色や形、大きさ、咲く時期が品種によって違うので、盆栽にするときも、どの品種を選ぶかで楽しみ方が変わります。

@@ -10,7 +10,7 @@ summary:
   - 贈り物にするときの予算の考え方
 selection: bonsai-under-3000
 photo: /images/articles/photos/budget-guide-1.jpg
-thumbTitle: 盆栽の予算の考え方
+thumbTitle: 盆栽の予算の考え方／価格で変わるもの
 thumbLabel: 選び方・買い方
 ---
 盆栽の値段は、数千円で買える小さな鉢から、何十年も手をかけた高価な樹まで、幅がとても広くあります。最初は「どのくらい出せばよいのか」が分かりにくいものです。

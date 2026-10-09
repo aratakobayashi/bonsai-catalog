@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<title>椿の花形</title>
+<rect width="800" height="400" fill="#faf9f6"/>
+<text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">椿の花の形</text>
+<rect x="20" y="72" width="176" height="306" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+<circle cx="142.0" cy="180.0" r="30" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="118.5" cy="212.3" r="30" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="80.5" cy="200.0" r="30" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="80.5" cy="160.0" r="30" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="118.5" cy="147.7" r="30" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="108" cy="180" r="18" fill="#e3c25a"/>
+<text x="108" y="300" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">一重咲き</text>
+<text x="108" y="340" text-anchor="middle" font-size="22" fill="#5b7f4a">雄しべが見える</text>
+<rect x="212" y="72" width="176" height="306" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+<circle cx="340.0" cy="180.0" r="26" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="328.3" cy="208.3" r="26" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="300.0" cy="220.0" r="26" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="271.7" cy="208.3" r="26" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="260.0" cy="180.0" r="26" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="271.7" cy="151.7" r="26" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="300.0" cy="140.0" r="26" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="328.3" cy="151.7" r="26" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="320.3" cy="188.6" r="18" fill="#c9606f" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="302.7" cy="201.8" r="18" fill="#c9606f" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="282.4" cy="193.3" r="18" fill="#c9606f" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="279.7" cy="171.4" r="18" fill="#c9606f" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="297.3" cy="158.2" r="18" fill="#c9606f" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="317.6" cy="166.7" r="18" fill="#c9606f" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="300" cy="180" r="12" fill="#e3c25a"/>
+<text x="300" y="300" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">八重咲き</text>
+<text x="300" y="340" text-anchor="middle" font-size="22" fill="#5b7f4a">重なる＋雄しべ</text>
+<rect x="404" y="72" width="176" height="306" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+<circle cx="534.0" cy="180.0" r="22" fill="#e3a7b0" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="526.0" cy="204.7" r="22" fill="#e3a7b0" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="505.0" cy="219.9" r="22" fill="#e3a7b0" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="479.0" cy="219.9" r="22" fill="#e3a7b0" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="458.0" cy="204.7" r="22" fill="#e3a7b0" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="450.0" cy="180.0" r="22" fill="#e3a7b0" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="458.0" cy="155.3" r="22" fill="#e3a7b0" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="479.0" cy="140.1" r="22" fill="#e3a7b0" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="505.0" cy="140.1" r="22" fill="#e3a7b0" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="526.0" cy="155.3" r="22" fill="#e3a7b0" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="516.8" cy="187.7" r="17" fill="#eab6be" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="504.1" cy="203.0" r="17" fill="#eab6be" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="484.3" cy="204.8" r="17" fill="#eab6be" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="469.0" cy="192.1" r="17" fill="#eab6be" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="467.2" cy="172.3" r="17" fill="#eab6be" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="479.9" cy="157.0" r="17" fill="#eab6be" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="499.7" cy="155.2" r="17" fill="#eab6be" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="515.0" cy="167.9" r="17" fill="#eab6be" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="500.3" cy="185.6" r="11" fill="#f0c6cc" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="489.2" cy="189.6" r="11" fill="#f0c6cc" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="482.0" cy="180.3" r="11" fill="#f0c6cc" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="488.6" cy="170.6" r="11" fill="#f0c6cc" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="499.9" cy="173.9" r="11" fill="#f0c6cc" stroke="#faf9f6" stroke-width="2"/>
+<text x="492" y="300" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">千重咲き</text>
+<text x="492" y="340" text-anchor="middle" font-size="22" fill="#5b7f4a">雄しべなし</text>
+<rect x="596" y="72" width="176" height="306" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+<circle cx="722.0" cy="180.0" r="30" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="703.0" cy="212.9" r="30" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="665.0" cy="212.9" r="30" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="646.0" cy="180.0" r="30" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="665.0" cy="147.1" r="30" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="703.0" cy="147.1" r="30" fill="#b5485a" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="695.8" cy="182.4" r="9" fill="#f0d0d4" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="690.6" cy="190.0" r="9" fill="#f0d0d4" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="681.6" cy="191.8" r="9" fill="#f0d0d4" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="674.0" cy="186.6" r="9" fill="#f0d0d4" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="672.2" cy="177.6" r="9" fill="#f0d0d4" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="677.4" cy="170.0" r="9" fill="#f0d0d4" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="686.4" cy="168.2" r="9" fill="#f0d0d4" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="694.0" cy="173.4" r="9" fill="#f0d0d4" stroke="#faf9f6" stroke-width="2"/>
+<circle cx="684" cy="180" r="7" fill="#f6e3e5"/>
+<text x="684" y="300" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">唐子咲き</text>
+<text x="684" y="340" text-anchor="middle" font-size="22" fill="#5b7f4a">中心が花びら状</text>
+</svg>

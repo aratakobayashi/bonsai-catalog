@@ -9,26 +9,26 @@
   <ellipse cx="72" cy="150" rx="12" ry="7" transform="rotate(-30 72 150)" fill="#9cc27f"/><ellipse cx="96" cy="146" rx="12" ry="7" transform="rotate(30 96 146)" fill="#9cc27f"/>
   <text x="144" y="138" font-size="28" font-weight="700" fill="#b8935a">春</text>
   <text x="144" y="182" font-size="23" fill="#22201c">芽吹き・花</text>
-  <text x="144" y="218" font-size="21" fill="#5b7f4a">同じ角度で写真を撮る</text>
+  <text x="144" y="218" font-size="22" fill="#5b7f4a">同じ角度で写真を撮る</text>
   <!-- summer -->
   <rect x="406" y="74" width="374" height="176" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
   <circle cx="470" cy="162" r="40" fill="#f3f0ea"/>
   <ellipse cx="470" cy="156" rx="26" ry="18" fill="#5b7f4a"/><path d="M470 172 v16" stroke="#6f5439" stroke-width="5"/>
   <text x="530" y="138" font-size="28" font-weight="700" fill="#5b7f4a">夏</text>
   <text x="530" y="182" font-size="23" fill="#22201c">青葉・朝の水やり</text>
-  <text x="530" y="218" font-size="21" fill="#5b7f4a">夕方に葉水で涼しく</text>
+  <text x="530" y="218" font-size="22" fill="#5b7f4a">夕方に葉水で涼しく</text>
   <!-- autumn -->
   <rect x="20" y="264" width="374" height="176" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
   <circle cx="84" cy="352" r="40" fill="#f3f0ea"/>
   <path d="M84 326 l8 18 l18 -4 l-10 16 l14 12 l-20 0 l-10 18 l-10 -18 l-20 0 l14 -12 l-10 -16 l18 4 z" fill="#b8935a"/>
   <text x="144" y="328" font-size="28" font-weight="700" fill="#8b6b4a">秋</text>
   <text x="144" y="372" font-size="23" fill="#22201c">紅葉・実</text>
-  <text x="144" y="408" font-size="21" fill="#5b7f4a">色づきの変化を記録</text>
+  <text x="144" y="408" font-size="22" fill="#5b7f4a">色づきの変化を記録</text>
   <!-- winter -->
   <rect x="406" y="264" width="374" height="176" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
   <circle cx="470" cy="352" r="40" fill="#f3f0ea"/>
   <g stroke="#6f5439" stroke-width="4" fill="none" stroke-linecap="round"><path d="M470 384 v-44"/><path d="M470 356 l-18 -14"/><path d="M470 348 l16 -16"/><path d="M452 342 l-6 -10"/></g>
   <text x="530" y="328" font-size="28" font-weight="700" fill="#1a365d">冬</text>
   <text x="530" y="372" font-size="23" fill="#22201c">枝ぶり・静かな時間</text>
-  <text x="530" y="408" font-size="21" fill="#5b7f4a">剪定の計画を立てる</text>
+  <text x="530" y="408" font-size="22" fill="#5b7f4a">剪定の計画を立てる</text>
 </svg>

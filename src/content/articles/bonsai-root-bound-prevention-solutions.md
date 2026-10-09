@@ -10,7 +10,7 @@ summary:
   - 鉢の大きさ・樹種ごとの植え替え周期の目安
 selection: starter-tools
 photo: /images/articles/photos/bonsai-root-bound-prevention-solutions-1.jpg
-thumbTitle: 盆栽の根詰まりと／植え替え
+thumbTitle: 盆栽の根詰まり／見分け方と植え替え
 thumbLabel: トラブル対処
 ---
 盆栽は小さな鉢で育てるので、何年かすると鉢の中が根でいっぱいになります。これが根詰まりです。根が詰まると土のすき間がなくなり、水も空気も通りにくくなって、樹が少しずつ弱っていきます。
