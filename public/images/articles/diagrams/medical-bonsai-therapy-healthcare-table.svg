@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>車いすでも使える盆栽の作業台の考え方</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <rect x="20" y="420" width="760" height="8" fill="#ebe7df"/>
+  <!-- table -->
+  <rect x="400" y="230" width="340" height="18" rx="4" fill="#8b6b4a"/>
+  <rect x="712" y="248" width="16" height="172" fill="#8b6b4a"/>
+  <rect x="412" y="248" width="16" height="172" fill="#8b6b4a" fill-opacity="0.35"/>
+  <!-- pot on near side -->
+  <path d="M440 230 l8 -34 h84 l8 34 z" fill="#6f5439"/>
+  <path d="M490 196 q-6 -40 4 -70" stroke="#6f5439" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <ellipse cx="496" cy="122" rx="56" ry="30" fill="#5b7f4a"/>
+  <!-- wheelchair + person -->
+  <circle cx="300" cy="360" r="58" fill="none" stroke="#1a365d" stroke-width="8"/>
+  <circle cx="300" cy="360" r="8" fill="#1a365d"/>
+  <path d="M250 280 h110 v-8" stroke="#1a365d" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M250 170 v110" stroke="#1a365d" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="290" cy="120" r="26" fill="#b8935a"/>
+  <path d="M282 150 q-20 40 -12 120 h100 q12 0 14 14 l6 100" stroke="#b8935a" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M290 170 q40 30 140 40" stroke="#b8935a" stroke-width="16" fill="none" stroke-linecap="round"/>
+  <!-- knee space arrow -->
+  <path d="M430 300 h270" stroke="#22201c" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="560" y="336" text-anchor="middle" font-size="23" fill="#22201c">膝が入る</text>
+  <!-- labels -->
+  <text x="560" y="70" font-size="24" font-weight="700" fill="#1a365d">鉢は手前側に</text>
+  <text x="560" y="102" font-size="22" fill="#1a365d">滑り止めを敷く</text>
+  <text x="40" y="60" font-size="26" font-weight="700" fill="#22201c">座ったまま手が届く</text>
+</svg>

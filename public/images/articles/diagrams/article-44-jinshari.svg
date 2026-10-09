@@ -10,7 +10,9 @@
   <ellipse cx="350" cy="150" rx="70" ry="30" fill="#4f7a46"/>
   <ellipse cx="390" cy="225" rx="60" ry="24" fill="#4f7a46"/>
   <ellipse cx="310" cy="195" rx="40" ry="18" fill="#4f7a46"/>
+  <path d="M250 240 C210 220 190 190 170 160 M185 182 L160 186" stroke="#b9ae9c" stroke-width="13" fill="none" stroke-linecap="round"/>
   <path d="M250 240 C210 220 190 190 170 160 M185 182 L160 186" stroke="#e9e4da" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <path d="M300 140 L320 100" stroke="#b9ae9c" stroke-width="12" stroke-linecap="round"/>
   <path d="M300 140 L320 100" stroke="#e9e4da" stroke-width="8" stroke-linecap="round"/>
   <circle cx="170" cy="160" r="7" fill="#1a365d"/>
   <path d="M170 160 L468 122" stroke="#1a365d" stroke-width="2.5"/>
