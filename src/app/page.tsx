@@ -1,19 +1,18 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { filterProducts, getCatalogProducts, parseFilters, SPECIES_OPTIONS, type CatalogProduct } from '@/lib/catalog'
+import Image from 'next/image'
+import { filterProducts, getCatalogProducts, parseFilters, type CatalogProduct } from '@/lib/catalog'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
-import { ProductThumb } from '@/components/catalog/ProductThumb'
-import { getArticles } from '@/lib/database/articles'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
-import { CONTAINER, Placeholder } from '@/components/ui/design'
-import { SELECTIONS, getSelection, type Selection } from '@/lib/selections'
-import { isArticleIndexable } from '@/lib/content-policy'
+import { CONTAINER } from '@/components/ui/design'
+import { SELECTIONS, getSelection, pickSelectionProducts, type Selection } from '@/lib/selections'
+import { formatPrice } from '@/lib/utils'
+import { getGuideLinks, isFeaturable, selectionCounts, type GuideLink } from '@/components/selection/selection-meta'
 import { supabaseServer } from '@/lib/supabase-server'
 import { isGardenPublished } from '@/lib/garden-verification'
 import { getUpcomingEventsCount } from '@/lib/events'
 import { currentMonth, getSeasonalPick, getSeasonalShelf, type SeasonalShelf } from '@/components/home/seasonal'
 import { getHomeSpecies } from '@/components/home/species'
-import type { Article } from '@/types'
 
 // 1時間ごとに再生成（ISR）。ページを開いた直後のHTMLに商品・記事が入る
 export const revalidate = 3600
@@ -22,20 +21,41 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 }
 
-// 「目的から選ぶ」の行（表示名は短く、一言は特集の tagline）
-const PURPOSES: { slug: string; label: string }[] = [
-  { slug: 'beginner-mini-bonsai', label: 'はじめての一鉢' },
-  { slug: 'bonsai-gift', label: '贈り物に' },
-  { slug: 'new-year-bonsai', label: '正月に飾る' },
-  { slug: 'starter-tools', label: '鉢・土・道具' },
+// 「目的から選ぶ」の行（表示名は短く、条件は各特集の掲載条件 filter をそのまま言葉にしたもの。価格は実際の掲載商品の最安値）
+const PURPOSES: { slug: string; label: string; criteria: string }[] = [
+  { slug: 'beginner-mini-bonsai', label: 'はじめての一鉢', criteria: '育てやすい樹種・ミニ／小品サイズ' },
+  { slug: 'bonsai-gift', label: '贈り物に', criteria: 'ギフト対応・花もの・縁起物' },
+  { slug: 'new-year-bonsai', label: '正月に飾る', criteria: '松・梅・南天・竹' },
+  { slug: 'starter-tools', label: '鉢・土・道具', criteria: '盆栽鉢・用土・道具・針金・肥料' },
 ]
 
-const byReviews = (a: CatalogProduct, b: CatalogProduct) => b.reviewCount - a.reviewCount || b.reviewAverage - a.reviewAverage
-
-// 条件に合う商品のうち、レビューが多く画像のあるもの
-function pickImage(products: CatalogProduct[], match: (p: CatalogProduct) => boolean): CatalogProduct | undefined {
-  return products.filter(p => p.imageUrl && match(p)).sort(byReviews)[0]
+// ヒーローのイラスト（public/images/selections の自前の SVG。季節の一鉢の樹種に合わせる）
+const HERO_ILLUSTRATIONS: Record<string, string> = {
+  goyomatsu: 'evergreen-bonsai',
+  ume: 'flowering-bonsai',
+  sakura: 'flowering-bonsai',
+  satsuki: 'flowering-bonsai',
+  kokedama: 'indoor-bonsai',
+  mimono: 'fruit-bonsai',
+  momiji: 'autumn-leaves-bonsai',
+  nanten: 'new-year-bonsai',
 }
+
+// 「育て方を読む」：初心者向けの基本（水やり・置き場所）と、季節の一鉢の樹種のガイド（docs/growth/content-audit.csv の記事 slug）
+const CARE_BASICS = ['bonsai-watering-master-guide-2025', 'article-12']
+const SPECIES_GUIDES: Record<string, string> = {
+  goyomatsu: 'article-6',
+  ume: 'article-3',
+  sakura: 'sakura-general-guide',
+  satsuki: 'azalea-guide',
+  kokedama: 'article-51',
+  mimono: 'article-2',
+  momiji: 'article-1',
+  nanten: 'nanten-guide',
+}
+const CARE_FALLBACK = ['article-11', 'beginner-tree-species-guide']
+
+const byReviews = (a: CatalogProduct, b: CatalogProduct) => b.reviewCount - a.reviewCount || b.reviewAverage - a.reviewAverage
 
 // いま見頃の盆栽：季節に合う樹種から、なるべく樹種が重ならないように4件
 function pickSeasonal(trees: CatalogProduct[], shelf: SeasonalShelf, exclude?: string): CatalogProduct[] {
@@ -69,11 +89,11 @@ function pickSeasonal(trees: CatalogProduct[], shelf: SeasonalShelf, exclude?: s
   return picked
 }
 
-async function getPopularArticles(): Promise<Article[]> {
+// 公開中・noindex でない記事だけ（getGuideLinks が確認する）を3件
+async function getCareArticles(speciesSlug: string): Promise<GuideLink[]> {
   try {
-    // noindex 指定の記事はトップに出さない
-    const { articles } = await getArticles({ limit: 24, sortBy: 'publishedAt', sortOrder: 'desc' })
-    return (articles || []).filter(article => isArticleIndexable(article.slug)).slice(0, 3)
+    const species = SPECIES_GUIDES[speciesSlug]
+    return await getGuideLinks([...CARE_BASICS, ...(species ? [species] : []), ...CARE_FALLBACK], 3)
   } catch (error) {
     console.error('Error fetching articles:', error)
     return []
@@ -90,9 +110,10 @@ async function getGardenCount(): Promise<number> {
 }
 
 export default async function HomePage() {
-  const [products, popularArticles, gardenCount, eventCount] = await Promise.all([
+  const season = getSeasonalPick()
+  const [products, careArticles, gardenCount, eventCount] = await Promise.all([
     getCatalogProducts(),
-    getPopularArticles(),
+    getCareArticles(season.slug),
     getGardenCount(),
     getUpcomingEventsCount(),
   ])
@@ -102,20 +123,27 @@ export default async function HomePage() {
   const trees = products.filter(p => p.productType === 'tree')
 
   const month = currentMonth()
-  const season = getSeasonalPick()
-  const seasonMatch = SPECIES_OPTIONS.find(o => o.value === season.slug)?.match
-  const seasonProduct = seasonMatch ? pickImage(trees.concat(products.filter(p => p.productType === 'kokedama')), seasonMatch) : undefined
+  const heroImage = `/images/selections/${HERO_ILLUSTRATIONS[season.slug] ?? 'beginner-mini-bonsai'}.svg`
 
   // 樹種ごとの件数はカテゴリページ（/products/category/[slug]）と同じ条件で数える
   const baseFilters = parseFilters({})
   const species = getHomeSpecies(month).map(s => ({
     ...s,
     count: filterProducts(products, { ...baseFilters, species: s.slug, type: 'tree' }).length,
-  }))
+  })).filter(s => s.count > 0) // 商品のない樹種は出さない（リンク先が空になるため）
 
   const shelf = getSeasonalShelf()
-  const seasonal = pickSeasonal(trees, shelf, seasonProduct?.id)
-  const purposes = PURPOSES.map(p => ({ ...p, selection: getSelection(p.slug) })).filter((p): p is typeof p & { selection: Selection } => Boolean(p.selection))
+  const seasonal = pickSeasonal(trees, shelf)
+  // 掲載商品が少ない特集はトップに出さない
+  const counts = selectionCounts(products)
+  const featuredCount = SELECTIONS.filter(s => isFeaturable(s, counts)).length
+  const purposes = PURPOSES.flatMap(p => {
+    const selection = getSelection(p.slug)
+    if (!selection || !isFeaturable(selection, counts)) return []
+    const prices = pickSelectionProducts(selection, products).map(item => item.price).filter(price => price > 0)
+    const from = prices.length > 0 ? `・${formatPrice(Math.min(...prices))}〜` : ''
+    return [{ ...p, selection: selection as Selection, criteria: `${p.criteria}${from}` }]
+  })
 
   return (
     <div className="pb-12 lg:pb-20">
@@ -125,13 +153,19 @@ export default async function HomePage() {
           <Link
             href={`/products/category/${season.slug}`}
             aria-label={`${season.monthLabel}の一鉢：${season.name}の盆栽を見る`}
-            className="relative block h-[300px] overflow-hidden bg-paper-deep lg:h-[600px]"
+            className="relative block aspect-[16/9] overflow-hidden bg-paper-deep lg:aspect-[16/11]"
           >
-            {seasonProduct ? (
-              <ProductThumb src={seasonProduct.imageUrl} alt={`${season.name}の盆栽`} sizes="(max-width: 1023px) 100vw, 560px" priority size={600} />
-            ) : (
-              <Placeholder label={`季節の一鉢（${season.name}）`} className="absolute inset-0" />
-            )}
+            {/* 自前の軽い SVG イラスト（文字や広告表記のある商品画像は使わない） */}
+            <Image
+              src={heroImage}
+              alt=""
+              width={800}
+              height={500}
+              priority
+              unoptimized
+              sizes="(max-width: 1023px) 100vw, 560px"
+              className="h-full w-full object-cover"
+            />
           </Link>
           <figcaption className="mt-2.5 hidden text-xs text-ink-muted lg:block">
             {season.monthLabel}の一鉢・{season.name}　{season.title}
@@ -155,8 +189,25 @@ export default async function HomePage() {
               placeholder="樹種・商品名で探す（例：もみじ、五葉松）"
               className="min-w-0 flex-1 bg-transparent text-sm text-ink placeholder:text-ink-muted focus:outline-none"
             />
-            <button type="submit" className="flex-none text-[13px] text-ink-soft hover:text-ink">探す</button>
+            <button type="submit" className="-mr-2 flex h-11 min-w-11 flex-none items-center justify-center px-2 text-[13px] text-ink-soft hover:text-ink">探す</button>
           </form>
+
+          {/* SP：検索のすぐ下に目的からの入口（下の「目的から選ぶ」と同じ特集） */}
+          {purposes.length > 0 && (
+            <nav aria-label="目的から選ぶ" className="mt-6 lg:hidden">
+              <p className="text-[11px] tracking-[0.12em] text-ink-muted">目的から選ぶ</p>
+              <ul className="mt-1.5 grid grid-cols-2 border-t border-line">
+                {purposes.map(({ slug, label }, i) => (
+                  <li key={slug} className={`border-b border-line ${i % 2 === 0 ? 'border-r pr-3' : 'pl-3'}`}>
+                    <Link href={`/selection/${slug}`} className="flex min-h-11 items-center py-2 font-mincho text-[14px] font-bold text-ink">
+                      {label}
+                      <span className="ml-auto font-sans font-normal text-ink-muted" aria-hidden="true">›</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
         </div>
       </section>
 
@@ -191,8 +242,10 @@ export default async function HomePage() {
                 </li>
               ))}
             </ul>
-            <div className="mt-3.5 lg:hidden">
-              <Link href="/products?type=tree" className="border-b border-ink pb-0.5 text-[13px] text-ink">すべての樹種</Link>
+            <div className="mt-1 lg:hidden">
+              <Link href="/products?type=tree" className="inline-flex min-h-11 items-center text-[13px] text-ink">
+                <span className="border-b border-ink pb-0.5">すべての樹種</span>
+              </Link>
             </div>
           </div>
         </section>
@@ -202,8 +255,8 @@ export default async function HomePage() {
           <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1">
             <h2 className="font-mincho text-xl font-bold tracking-[0.06em] text-ink lg:text-[26px]">いま見頃の盆栽</h2>
             <span className="order-last w-full text-xs text-ink-muted lg:order-none lg:w-auto lg:text-[12.5px]">{shelf.subtitle}</span>
-            <Link href={`/products?type=tree&season=${shelf.season}`} className="ml-auto border-b border-ink pb-0.5 text-[13px] text-ink">
-              すべて見る
+            <Link href={`/products?type=tree&season=${shelf.season}`} className="-my-3 ml-auto inline-flex min-h-11 items-center text-[13px] text-ink lg:my-0 lg:min-h-0">
+              <span className="border-b border-ink pb-0.5">すべて見る</span>
             </Link>
           </div>
           {seasonal.length > 0 ? (
@@ -223,19 +276,21 @@ export default async function HomePage() {
           <section>
             <h2 className="font-mincho text-xl font-bold tracking-[0.06em] text-ink lg:text-[22px]">目的から選ぶ</h2>
             <ul className="mt-3 border-t border-line lg:mt-4">
-              {purposes.map(({ slug, label, selection }) => (
+              {purposes.map(({ slug, label, criteria }) => (
                 <li key={slug} className="border-b border-line">
-                  <Link href={`/selection/${slug}`} className="group flex flex-col py-3.5 lg:flex-row lg:items-baseline lg:py-4">
-                    <span className="font-mincho text-base font-bold text-ink group-hover:text-gold-dark lg:w-[170px] lg:flex-none lg:text-[17px]">{label}</span>
-                    <span className="mt-0.5 flex-1 text-[11.5px] text-ink-soft lg:mt-0 lg:text-[12.5px]">{selection.tagline}</span>
-                    <span className="hidden text-ink-muted lg:inline" aria-hidden="true">›</span>
+                  <Link href={`/selection/${slug}`} className="group flex items-center gap-3 py-3.5 lg:items-baseline lg:py-4">
+                    <span className="flex min-w-0 flex-1 flex-col lg:flex-row lg:items-baseline">
+                      <span className="font-mincho text-base font-bold text-ink group-hover:text-gold-dark lg:w-[170px] lg:flex-none lg:text-[17px]">{label}</span>
+                      <span className="mt-0.5 flex-1 text-[11.5px] text-ink-soft lg:mt-0 lg:text-[12.5px]">{criteria}</span>
+                    </span>
+                    <span className="flex-none text-ink-muted" aria-hidden="true">›</span>
                   </Link>
                 </li>
               ))}
             </ul>
-            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[13px]">
-              <Link href="/selection" className="border-b border-ink pb-0.5 text-ink">特集をすべて見る（{SELECTIONS.length}件）</Link>
-              <Link href="/shindan" className="border-b border-ink pb-0.5 text-ink">迷ったら かんたん盆栽診断</Link>
+            <div className="mt-2 flex flex-wrap gap-x-6 text-[13px]">
+              <Link href="/selection" className="inline-flex min-h-11 items-center text-ink"><span className="border-b border-ink pb-0.5">特集をすべて見る（{featuredCount}件）</span></Link>
+              <Link href="/shindan" className="inline-flex min-h-11 items-center text-ink"><span className="border-b border-ink pb-0.5">迷ったら かんたん盆栽診断</span></Link>
             </div>
           </section>
 
@@ -243,14 +298,16 @@ export default async function HomePage() {
           <section>
             <div className="flex items-baseline">
               <h2 className="font-mincho text-xl font-bold tracking-[0.06em] text-ink lg:text-[22px]">育て方を読む</h2>
-              <Link href="/guides" className="ml-auto border-b border-ink pb-0.5 text-[13px] text-ink">すべて見る</Link>
+              <Link href="/guides" className="-my-3 ml-auto inline-flex min-h-11 items-center text-[13px] text-ink lg:my-0 lg:min-h-0">
+                <span className="border-b border-ink pb-0.5">すべて見る</span>
+              </Link>
             </div>
-            {popularArticles.length > 0 ? (
+            {careArticles.length > 0 ? (
               <ul className="mt-3 border-t border-line lg:mt-4">
-                {popularArticles.map(article => (
-                  <li key={article.id} className="border-b border-line">
+                {careArticles.map(article => (
+                  <li key={article.slug} className="border-b border-line">
                     <Link href={`/guides/${article.slug}`} className="group block py-4">
-                      {article.category?.name && <span className="block text-[11px] text-gold-dark">{article.category.name}</span>}
+                      {article.category && <span className="block text-[11px] text-gold-dark">{article.category}</span>}
                       <span className="mt-[3px] block font-mincho text-[15px] font-bold leading-[1.6] text-ink group-hover:text-gold-dark lg:text-base">{article.title}</span>
                     </Link>
                   </li>
