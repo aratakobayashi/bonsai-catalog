@@ -26,7 +26,7 @@ thumbLabel: 盆栽ギフト
 
 国をまたいで盆栽を動かすときの決まりは、こちらで詳しく説明しています。
 
-[盆栽の国際輸出入ガイド](/guides/bonsai-international-import-export-guide)
+[盆栽を海外へ送る・持ち込むとき｜植物検疫の流れと準備の基本](/guides/bonsai-international-import-export-guide)
 
 ## 相手がいる場所で考える
 
@@ -88,7 +88,7 @@ thumbLabel: 盆栽ギフト
 
 盆栽の用語を英語でどう言うかは、こちらにまとめています。
 
-[盆栽の英語表現ガイド](/guides/bonsai-english-terminology-guide)
+[盆栽の英語｜樹形・部位・作業の言い方と、そのまま通じる日本語](/guides/bonsai-english-terminology-guide)
 
 ## 贈るときの心づかい
 

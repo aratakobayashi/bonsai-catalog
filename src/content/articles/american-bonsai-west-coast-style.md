@@ -90,6 +90,6 @@ thumbLabel: 盆栽を知る
 
 海外の盆栽事情を広く知りたいときは、こちらもご覧ください。
 
-[海外の盆栽事情](/guides/global-bonsai-culture-guide)
+[海外の盆栽事情｜世界に広がった経緯と、北米・ヨーロッパ・アジアでの楽しまれ方](/guides/global-bonsai-culture-guide)
 
 ヨーロッパの気候に合わせた育て方は[ヨーロッパ盆栽事情](/guides/european-bonsai-climate-adaptation)で、真柏の盆栽を探すときは[真柏の盆栽一覧](/products/category/shimpaku)をご覧ください。

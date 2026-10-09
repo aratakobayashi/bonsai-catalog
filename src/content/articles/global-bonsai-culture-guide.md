@@ -58,7 +58,7 @@ thumbLabel: 盆栽の歴史と文化
 
 寒さの厳しい北部から、夏に乾く地中海沿岸まで気候の幅が広く、地域ごとに管理の工夫が見られます。在来の樹を盆栽にすることにも熱心です。地域ごとの気候と樹の使い方は、こちらで詳しく紹介しています。
 
-[ヨーロッパの盆栽](/guides/european-bonsai-climate-adaptation)
+[ヨーロッパの盆栽事情｜地域ごとの気候の違いと、在来の樹を生かした楽しみ方](/guides/european-bonsai-climate-adaptation)
 
 ### アジア
 
@@ -94,4 +94,4 @@ thumbLabel: 盆栽の歴史と文化
 
 世界の盆栽愛好家が作品を競うコンテストについては、こちらで紹介しています。
 
-[世界の盆栽コンテスト](/guides/world-bonsai-contest-participation-guide)
+[盆栽のコンテスト・展示会に出品するには｜国内外の大会の種類と審査で見られる点](/guides/world-bonsai-contest-participation-guide)

@@ -27,7 +27,7 @@ thumbLabel: 盆栽ギフト
 
 国外への持ち出しや輸送の手続きは、こちらで詳しく説明しています。
 
-[盆栽の国際輸出入ガイド](/guides/bonsai-international-import-export-guide)
+[盆栽を海外へ送る・持ち込むとき｜植物検疫の流れと準備の基本](/guides/bonsai-international-import-export-guide)
 
 ## 3つの贈り方を比べる
 
@@ -106,4 +106,4 @@ thumbLabel: 盆栽ギフト
 
 海外へ向けた贈り物の選び方は、こちらでも紹介しています。
 
-[海外向けギフトに最適な盆栽](/guides/article-33)
+[外国の方への盆栽ギフト｜日本にいる相手・海外にいる相手で変わる贈り方](/guides/article-33)

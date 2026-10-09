@@ -77,7 +77,7 @@ thumbLabel: 置き場所と飾り方
 
 ベランダでの日当たりや風通しの考え方は、こちらで詳しく説明しています。
 
-[盆栽の置き場所の決め方](/guides/article-12)
+[盆栽の置き場所｜日当たり・風通しの考え方と、季節ごとの移し方の目安](/guides/article-12)
 
 ![室内の台に飾られたフィカスの盆栽](/images/articles/photos/article-51-2.jpg)
 *写真：sammycrane / CC BY 2.0*
@@ -96,6 +96,6 @@ thumbLabel: 置き場所と飾り方
 
 室内に置きやすい樹種の特徴は[室内に置きやすい盆栽の選び方](/selection/indoor-bonsai)にまとめています。ガジュマルの管理については、こちらで説明しています。
 
-[ガジュマル盆栽の育て方](/guides/gajumaru-bonsai-guide)
+[ガジュマルの盆栽の育て方｜室内の置き場所・水やり・冬越しと根の見せ方](/guides/gajumaru-bonsai-guide)
 
 置き場所や暮らし方から合いそうな盆栽を探すなら、[かんたん盆栽診断](/shindan)も使えます。

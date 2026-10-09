@@ -62,7 +62,7 @@ thumbLabel: 樹種別の育て方
 
 乾き具合の見分け方と季節ごとの回数は、こちらで説明しています。
 
-[盆栽の水やり](/guides/bonsai-watering-master-guide-2025)
+[盆栽の水やり｜乾いたかの見分け方と、季節ごとの回数・時間帯の目安](/guides/bonsai-watering-master-guide-2025)
 
 ## 肥料と植え替え
 

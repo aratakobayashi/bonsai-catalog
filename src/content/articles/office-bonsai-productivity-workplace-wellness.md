@@ -41,7 +41,7 @@ photo: /images/articles/photos/office-bonsai-productivity-workplace-wellness-1.j
 
 屋外の樹をどうしてもデスクに置きたいときは、「月曜に持ってきて金曜に持ち帰る」のように飾る日数を区切り、それ以外の日はベランダなどの屋外で育てます。ガジュマルの育て方は、こちらで詳しく紹介しています。
 
-[ガジュマル盆栽の育て方](/guides/gajumaru-bonsai-guide)
+[ガジュマルの盆栽の育て方｜室内の置き場所・水やり・冬越しと根の見せ方](/guides/gajumaru-bonsai-guide)
 
 ## デスク周りの置き場所
 
@@ -58,7 +58,7 @@ photo: /images/articles/photos/office-bonsai-productivity-workplace-wellness-1.j
 
 窓から遠く、どうしても光が足りない席では、植物用のLEDライトをタイマーで点けるのも一つの方法です。日当たりの悪い場所での工夫は、こちらでもまとめています。
 
-[日当たりの悪い場所での盆栽の育て方](/guides/bonsai-low-light-shade-cultivation)
+[日当たりの悪い場所で盆栽を育てる｜半日陰に向く樹種と置き方の工夫](/guides/bonsai-low-light-shade-cultivation)
 
 ## 平日と週末の水やり
 
@@ -76,7 +76,7 @@ photo: /images/articles/photos/office-bonsai-productivity-workplace-wellness-1.j
 
 水やりの基本は、こちらで詳しく説明しています。
 
-[盆栽の水やり](/guides/bonsai-watering-master-guide-2025)
+[盆栽の水やり｜乾いたかの見分け方と、季節ごとの回数・時間帯の目安](/guides/bonsai-watering-master-guide-2025)
 
 ## 肥料と手入れ
 

@@ -101,10 +101,10 @@ thumbLabel: 樹種別の育て方
 
 ここで紹介した違いを踏まえて、それぞれの樹の水やりや剪定の細かな点は、個別のページで説明しています。黒松は、こちらです。
 
-[黒松の盆栽の育て方](/guides/article-10)
+[黒松の盆栽の育て方｜日当たり・水やりと、芽切り・古葉取りをする時期](/guides/article-10)
 
 五葉松は、こちらにまとめています。
 
-[五葉松の盆栽の育て方](/guides/article-6)
+[五葉松の盆栽の育て方｜水やり・みどり摘み・古葉取りと一年の管理](/guides/article-6)
 
 一年中緑を楽しめるほかの樹種とも比べたいときは[常緑の盆栽の選び方](/selection/evergreen-bonsai)を、松の盆栽を探すときは[黒松の盆栽一覧](/products/category/kuromatsu)や[五葉松の盆栽一覧](/products/category/goyomatsu)をご覧ください。

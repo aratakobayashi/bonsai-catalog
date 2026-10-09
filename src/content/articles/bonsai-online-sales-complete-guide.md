@@ -24,7 +24,7 @@ thumbLabel: 選び方・買い方
 
 初めての一鉢で、樹の良し悪しを見る自信がない場合は、一度は盆栽園や店で実物を見ておくと、通販の写真を見るときの目安になります。選び方の比べ方は、こちらで説明しています。
 
-[盆栽の選び方：ネットと実店舗の比較](/guides/beginner-bonsai-buying-guide-online-vs-store)
+[盆栽はネットと店のどちらで買う？｜向き不向きと、買う前・届いた日の確認点](/guides/beginner-bonsai-buying-guide-online-vs-store)
 
 ## 注文前に確かめること
 

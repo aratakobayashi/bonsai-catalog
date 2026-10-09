@@ -114,4 +114,4 @@ thumbLabel: 盆栽の楽しみ方
 
 園で見た樹の見方が分かってくると、展示会での鑑賞も楽しくなります。作品のどこを見るかは、こちらで説明しています。
 
-[盆栽展の見方](/guides/bonsai-exhibition-viewing-guide)
+[盆栽展の見方｜作品のどこを見るか、名札の読み方と会場でのマナー](/guides/bonsai-exhibition-viewing-guide)

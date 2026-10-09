@@ -79,7 +79,7 @@ thumbLabel: トラブル対処
 
 詳しい道具の使い方や用土の配合は、こちらで説明しています。
 
-[盆栽の植え替えガイド](/guides/bonsai-repotting-master-guide-2025)
+[盆栽の植え替え｜樹種別の時期・用土の配合と、根の切り方の手順](/guides/bonsai-repotting-master-guide-2025)
 
 ## 植え替えた後の管理
 
@@ -99,6 +99,6 @@ thumbLabel: トラブル対処
 
 根詰まりを放っておいて樹が弱ってしまったときは、こちらも参考にしてください。
 
-[盆栽が枯れそうなときの対処](/guides/bonsai-revival-dying-rescue-methods)
+[盆栽が枯れそうなときの対処｜生きているかの確かめ方と、原因別の応急処置](/guides/bonsai-revival-dying-rescue-methods)
 
 水が染み込みにくいときの水やりのコツは[盆栽の水やり](/guides/bonsai-watering-master-guide-2025)で、鉢や用土を選ぶときは[はじめての盆栽鉢・土・道具の選び方](/selection/starter-tools)でまとめています。

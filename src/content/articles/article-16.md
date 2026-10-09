@@ -109,6 +109,6 @@ thumbLabel: 基本のお手入れ
 
 鉢を大きくする植え替えや、樹種ごとの根の扱い方など、さらに詳しい手順は、こちらで説明しています。
 
-[盆栽植え替えのガイド](/guides/bonsai-repotting-master-guide-2025)
+[盆栽の植え替え｜樹種別の時期・用土の配合と、根の切り方の手順](/guides/bonsai-repotting-master-guide-2025)
 
 根詰まりのサインや対策を詳しく知りたいときは[盆栽の根詰まりの症状と対策](/guides/bonsai-root-bound-prevention-solutions)もご覧ください。

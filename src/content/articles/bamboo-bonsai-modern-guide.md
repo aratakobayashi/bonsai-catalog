@@ -29,7 +29,7 @@ thumbLabel: 樹種別の育て方
 
 竹と笹は見分けにくいものですが、育て方の基本は同じです。笹を中心に楽しみたいときは、こちらも参考になります。
 
-[クマザサの盆栽](/guides/kumazasa-bamboo-japanese-style)
+[クマザサの鉢植え・盆栽の育て方｜冬の葉の隈取りを楽しむ置き場所と株分け](/guides/kumazasa-bamboo-japanese-style)
 
 ## 置き場所
 

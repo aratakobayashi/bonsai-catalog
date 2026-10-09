@@ -45,7 +45,7 @@ thumbLabel: 土と根の管理
 
 植え替えの手順全体は、こちらで詳しく説明しています。
 
-[盆栽の植え替えガイド](/guides/bonsai-repotting-master-guide-2025)
+[盆栽の植え替え｜樹種別の時期・用土の配合と、根の切り方の手順](/guides/bonsai-repotting-master-guide-2025)
 
 ## 微生物にとって住みやすい鉢にするには
 
@@ -108,4 +108,4 @@ thumbLabel: 土と根の管理
 
 微生物が暮らす土台になるのは、水はけと水持ちのバランスがとれた用土です。赤玉土や鹿沼土などの性質と、樹種ごとの配合の目安は、こちらで説明しています。
 
-[盆栽の用土の選び方](/guides/soil-science-ph-nutrition-guide)
+[盆栽の用土の選び方｜赤玉土・鹿沼土などの性質と、樹種ごとの配合の目安](/guides/soil-science-ph-nutrition-guide)

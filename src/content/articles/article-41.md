@@ -47,7 +47,7 @@ thumbLabel: 樹種別の育て方
 
 肥料は、芽が動く4月ごろから5月と、9月に、ゆっくり効く固形の肥料を置きます。花の時期と真夏、冬は与えません。乾き具合の見分け方は、こちらで説明しています。
 
-[盆栽の水やり](/guides/bonsai-watering-master-guide-2025)
+[盆栽の水やり｜乾いたかの見分け方と、季節ごとの回数・時間帯の目安](/guides/bonsai-watering-master-guide-2025)
 
 ## 背が伸びたら古い幹を更新する
 
@@ -99,6 +99,6 @@ thumbLabel: 樹種別の育て方
 
 南天の基本を短く知りたいときは、こちらにまとめています。
 
-[南天の盆栽入門](/guides/nanten-guide)
+[南天の盆栽 はじめの一年｜赤い実をつけるための置き場所と、梅雨の花の守り方](/guides/nanten-guide)
 
 正月に飾る盆栽をほかの樹種と比べたいときは[お正月に飾る盆栽の選び方](/selection/new-year-bonsai)を、南天の盆栽を探すときは[南天の盆栽一覧](/products/category/nanten)をご覧ください。

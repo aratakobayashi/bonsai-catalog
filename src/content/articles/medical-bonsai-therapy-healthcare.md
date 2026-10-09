@@ -69,7 +69,7 @@ photo: /images/articles/photos/medical-bonsai-therapy-healthcare-1.jpg
 
 水やりの見分け方は、こちらで詳しく説明しています。
 
-[盆栽の水やり](/guides/bonsai-watering-master-guide-2025)
+[盆栽の水やり｜乾いたかの見分け方と、季節ごとの回数・時間帯の目安](/guides/bonsai-watering-master-guide-2025)
 
 ## 活動の進め方の例
 
@@ -103,8 +103,8 @@ photo: /images/articles/photos/medical-bonsai-therapy-healthcare-1.jpg
 
 入院している人へのお見舞いに鉢植えを贈るのは、「根付く」が「寝付く（病気が長引く）」に通じるとして、避けるのが一般的なマナーです。病院の決まりで持ち込めないこともあります。退院のお祝いや、自宅で療養している人に贈るなら、本人や家族に、置き場所と世話ができるかを確かめてからにします。お見舞いの贈り物の考え方は、こちらでまとめています。
 
-[お見舞いに贈る盆栽の考え方](/guides/article-28)
+[お見舞いに盆栽はよいか｜入院中は避ける理由と、退院祝い・自宅療養での選び方](/guides/article-28)
 
 年齢を重ねた人が自宅で盆栽を始めるときの樹種や道具の選び方は、こちらで紹介しています。
 
-[シニア向けの盆栽の始め方](/guides/senior-friendly-bonsai-guide)
+[年齢を重ねてから始める盆栽｜体に負担の少ない樹種・置き場所・道具の選び方](/guides/senior-friendly-bonsai-guide)

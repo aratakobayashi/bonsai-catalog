@@ -36,7 +36,7 @@ photo: /images/articles/photos/kumazasa-bamboo-japanese-style-1.jpg
 
 冬は、寒さで葉の縁が白くなっても、株そのものは元気です。枯れたと思って刈り取らず、春の刈り込みまで残しておきます。乾いた冬の風に当たり続けると葉が巻いて傷むので、風の強い日は棚の内側や軒下に寄せます。置き場所の考え方全般は、こちらにまとめています。
 
-[盆栽の置き場所の決め方](/guides/article-12)
+[盆栽の置き場所｜日当たり・風通しの考え方と、季節ごとの移し方の目安](/guides/article-12)
 
 ## 水やり
 
@@ -94,7 +94,7 @@ photo: /images/articles/photos/kumazasa-bamboo-japanese-style-1.jpg
 
 山野草の鉢と合わせて楽しみたいときは、こちらも参考になります。
 
-[山野草盆栽のガイド](/guides/wildflower-mountain-bonsai-guide)
+[山野草の盆栽（草もの）の楽しみ方｜向いている草と鉢・用土、季節ごとの管理](/guides/wildflower-mountain-bonsai-guide)
 
 ## よくあるトラブル
 

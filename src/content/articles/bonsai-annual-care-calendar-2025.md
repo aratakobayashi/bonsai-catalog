@@ -55,7 +55,7 @@ thumbLabel: 基本のお手入れ
 
 夏の水やりの考え方と、土が乾いたかの見分け方は、こちらで詳しく説明しています。
 
-[盆栽の水やり](/guides/bonsai-watering-master-guide-2025)
+[盆栽の水やり｜乾いたかの見分け方と、季節ごとの回数・時間帯の目安](/guides/bonsai-watering-master-guide-2025)
 
 ## 秋（9〜11月）：養分を蓄える
 

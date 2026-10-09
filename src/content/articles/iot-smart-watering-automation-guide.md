@@ -79,7 +79,7 @@ photo: /images/articles/photos/iot-smart-watering-automation-guide-1.jpg
 
 夏の留守のあいだは、自動水やりと合わせて、鉢を半日陰に移しておくと乾きがゆるやかになります。夏の管理については、こちらで詳しく説明しています。
 
-[盆栽の夏の管理](/guides/article-15)
+[盆栽の夏の管理｜水切れ・葉焼け・蒸れを防ぐ置き場所と、一日の世話の流れ](/guides/article-15)
 
 ## 故障に備える工夫
 
@@ -96,6 +96,6 @@ photo: /images/articles/photos/iot-smart-watering-automation-guide-1.jpg
 
 市販の自動水やりの道具の選び方と、水やりの基本は、こちらで紹介しています。
 
-[盆栽の水やり自動化の道具の選び方](/guides/article-23)
+[留守中の盆栽の水やり｜腰水・給水器・タイマーの使い分けと試し方](/guides/article-23)
 
-[盆栽の水やり](/guides/bonsai-watering-master-guide-2025)
+[盆栽の水やり｜乾いたかの見分け方と、季節ごとの回数・時間帯の目安](/guides/bonsai-watering-master-guide-2025)

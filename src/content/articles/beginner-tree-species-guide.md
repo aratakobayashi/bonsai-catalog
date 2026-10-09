@@ -100,6 +100,6 @@ thumbLabel: 盆栽の選び方
 
 どこで買うかで迷っている場合は、こちらの記事が参考になります。
 
-[盆栽はネットと店のどちらで買う？](/guides/beginner-bonsai-buying-guide-online-vs-store)
+[盆栽はネットと店のどちらで買う？｜向き不向きと、買う前・届いた日の確認点](/guides/beginner-bonsai-buying-guide-online-vs-store)
 
 自分の環境に合う樹を質問に答えて探したいときは[盆栽診断](/shindan)を、小さな盆栽から始めたいときは[初心者向けミニ盆栽の選び方](/selection/beginner-mini-bonsai)をご覧ください。

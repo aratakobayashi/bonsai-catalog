@@ -36,7 +36,7 @@ thumbLabel: 展示・イベント
 
 各地の展示会は[イベント情報](/events)で、盆栽園は[盆栽園を探す](/gardens)で探せます。盆栽園を巡るときの回り方は、こちらで紹介しています。
 
-[盆栽園めぐりのガイド](/guides/bonsai-garden-tour-guide)
+[盆栽園の訪ね方｜出かける前の確認、園でのマナーと季節ごとの見どころ](/guides/bonsai-garden-tour-guide)
 
 ### 冬に出かけるときの準備
 
@@ -91,4 +91,4 @@ thumbLabel: 展示・イベント
 
 冬の管理で失敗しやすい点は、こちらにまとめています。
 
-[盆栽の冬越しの失敗対策](/guides/bonsai-winter-care-failure-prevention)
+[盆栽の冬越し｜樹種ごとの置き場所と、凍結・寒風・水切れを防ぐ管理](/guides/bonsai-winter-care-failure-prevention)

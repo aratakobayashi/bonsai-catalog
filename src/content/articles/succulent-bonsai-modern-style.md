@@ -68,7 +68,7 @@ thumbLabel: 盆栽の楽しみ方
 
 普通の盆栽の水やりの考え方と比べたいときは、こちらを参考にしてください。
 
-[盆栽の水やり](/guides/bonsai-watering-master-guide-2025)
+[盆栽の水やり｜乾いたかの見分け方と、季節ごとの回数・時間帯の目安](/guides/bonsai-watering-master-guide-2025)
 
 ## よくある不調と直し方
 

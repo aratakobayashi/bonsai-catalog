@@ -40,7 +40,7 @@ thumbLabel: トラブル対策
 
 「毎日決まった時間に」ではなく、「乾いたら与える」に切り替えます。判断の仕方は、こちらで詳しく説明しています。
 
-[盆栽の水やり](/guides/bonsai-watering-master-guide-2025)
+[盆栽の水やり｜乾いたかの見分け方と、季節ごとの回数・時間帯の目安](/guides/bonsai-watering-master-guide-2025)
 
 ### 3. 室内に置きっぱなし
 
@@ -117,6 +117,6 @@ thumbLabel: トラブル対策
 
 弱った樹を回復させる手順は、こちらでさらに詳しく説明しています。
 
-[盆栽が枯れそうなときの復活方法](/guides/bonsai-revival-dying-rescue-methods)
+[盆栽が枯れそうなときの対処｜生きているかの確かめ方と、原因別の応急処置](/guides/bonsai-revival-dying-rescue-methods)
 
 葉が黄色くなる原因を詳しく知りたいときは[葉が黄色くなる原因と対策](/guides/bonsai-yellow-leaves-causes-solutions)を、置き場所を見直したいときは[盆栽の置き場所の決め方](/guides/article-12)をご覧ください。

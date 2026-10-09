@@ -74,7 +74,7 @@ thumbLabel: 季節の管理
 
 水やりの全体の考え方は、こちらで詳しく説明しています。
 
-[盆栽の水やり](/guides/bonsai-watering-master-guide-2025)
+[盆栽の水やり｜乾いたかの見分け方と、季節ごとの回数・時間帯の目安](/guides/bonsai-watering-master-guide-2025)
 
 ## 冬の間にできる作業
 
@@ -90,6 +90,6 @@ thumbLabel: 季節の管理
 
 冬越しの考え方は、置き場所の決め方とも深く関わっています。季節ごとの置き場所の全体像は、こちらにまとめています。
 
-[盆栽の置き場所の決め方](/guides/article-12)
+[盆栽の置き場所｜日当たり・風通しの考え方と、季節ごとの移し方の目安](/guides/article-12)
 
 夏の暑さ対策は[盆栽の夏枯れを防ぐ](/guides/bonsai-summer-heat-damage-prevention)で、冬の間に弱ってしまったときの対処は[盆栽が枯れそうなときの対処](/guides/bonsai-revival-dying-rescue-methods)で紹介しています。

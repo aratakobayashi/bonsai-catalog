@@ -94,4 +94,4 @@ thumbLabel: 樹種別の育て方
 
 一才桜や旭山桜など、小さな鉢でも花が咲きやすい桜の育て方は、こちらで説明しています。
 
-[桜の盆栽入門](/guides/sakura-general-guide)
+[桜の盆栽の選び方と育て方｜品種の違い、花芽の見分け方、花後の剪定](/guides/sakura-general-guide)

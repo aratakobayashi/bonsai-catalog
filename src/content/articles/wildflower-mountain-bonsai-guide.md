@@ -63,7 +63,7 @@ thumbLabel: 盆栽の楽しみ方
 
 置き場所全般の考え方は、こちらにまとめています。
 
-[盆栽の置き場所の決め方](/guides/article-12)
+[盆栽の置き場所｜日当たり・風通しの考え方と、季節ごとの移し方の目安](/guides/article-12)
 
 ## 水やり
 
@@ -88,4 +88,4 @@ thumbLabel: 盆栽の楽しみ方
 
 和の趣のある草ものとしては笹の仲間もよく使われます。笹の盆栽の育て方は、こちらで紹介しています。
 
-[クマザサの盆栽の育て方](/guides/kumazasa-bamboo-japanese-style)
+[クマザサの鉢植え・盆栽の育て方｜冬の葉の隈取りを楽しむ置き場所と株分け](/guides/kumazasa-bamboo-japanese-style)

@@ -32,7 +32,7 @@ thumbLabel: 盆栽を知る
 
 盆景と盆栽の違いは、こちらでさらに詳しく紹介しています。
 
-[中国盆景と日本の盆栽の違い](/guides/chinese-penjing-vs-japanese-bonsai)
+[中国の盆景と日本の盆栽の違い｜成り立ち・見どころ・仕立て方を比べる](/guides/chinese-penjing-vs-japanese-bonsai)
 
 ## 鎌倉・室町時代：絵巻と能に残る「鉢の木」
 
@@ -86,6 +86,6 @@ thumbLabel: 盆栽を知る
 
 盆栽と日本の美意識や、茶の湯との関わりなど、文化の面から深く知りたいときは、こちらも参考にしてください。
 
-[盆栽の歴史と文化](/guides/bonsai-history-culture-guide)
+[盆栽の文化｜床の間の飾り方と見立ての考え方、歴史の大まかな流れ](/guides/bonsai-history-culture-guide)
 
 海外での広がりは[海外の盆栽事情](/guides/global-bonsai-culture-guide)で紹介しています。

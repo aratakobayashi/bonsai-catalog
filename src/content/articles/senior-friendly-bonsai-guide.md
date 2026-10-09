@@ -30,7 +30,7 @@ thumbLabel: 盆栽の始め方
 
 どれも盆栽店で手に入りやすく、育て方の情報も多い樹です。最初の樹選びについては、こちらで詳しく説明しています。
 
-[盆栽初心者が最初に選ぶ樹種](/guides/beginner-tree-species-guide)
+[盆栽初心者に向く樹種の選び方｜置き場所・夏の水やり・楽しみ方で選ぶ5つの候補](/guides/beginner-tree-species-guide)
 
 ## 置き場所は腰の高さに
 
@@ -110,7 +110,7 @@ thumbLabel: 盆栽の始め方
 
 盆栽の愛好会や盆栽園の教室では、同じ趣味の人と樹を見せ合いながら、植え替えや針金かけのこつを直接教わることができます。参加するときの心構えは、こちらで紹介しています。
 
-[盆栽愛好会への参加ガイド](/guides/bonsai-club-beginner-guide)
+[盆栽愛好会にはじめて参加する人へ｜初日の過ごし方とマナー、最初の1年の楽しみ方](/guides/bonsai-club-beginner-guide)
 
 ![白い木製の棚に並べられた小さな鉢植え。段のある棚を使うと鉢の様子を見やすい](/images/articles/photos/senior-friendly-bonsai-guide-2.jpg)
 *写真：yoppy / CC BY 2.0*

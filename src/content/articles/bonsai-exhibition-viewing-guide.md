@@ -112,4 +112,4 @@ thumbLabel: 盆栽の楽しみ方
 
 近くで開かれる展示会は、[イベント一覧](/events)で探せます。自分の樹を展示会に出してみたくなったら、出品の準備と当日の流れは、こちらで説明しています。
 
-[盆栽展に出品するには](/guides/bonsai-exhibition-complete-guide)
+[盆栽展に出品するには｜申し込みから飾り付け、搬出までの準備と流れ](/guides/bonsai-exhibition-complete-guide)

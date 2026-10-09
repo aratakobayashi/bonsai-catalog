@@ -46,7 +46,7 @@ thumbLabel: 基本のお手入れ
 
 冷たい北風の当たらない軒下や、建物の南側に移し、寒冷地では無加温の室などに入れて凍結を防ぎます。冬の管理は、こちらで詳しく説明しています。
 
-[盆栽の冬越し失敗対策](/guides/bonsai-winter-care-failure-prevention)
+[盆栽の冬越し｜樹種ごとの置き場所と、凍結・寒風・水切れを防ぐ管理](/guides/bonsai-winter-care-failure-prevention)
 
 ## 春：芽吹きと遅霜
 
@@ -70,7 +70,7 @@ thumbLabel: 基本のお手入れ
 
 夏の管理の詳しい方法は、こちらにまとめています。
 
-[盆栽の夏の管理](/guides/article-15)
+[盆栽の夏の管理｜水切れ・葉焼け・蒸れを防ぐ置き場所と、一日の世話の流れ](/guides/article-15)
 
 ## 秋：再び生長し、紅葉する
 

@@ -46,7 +46,7 @@ thumbLabel: 樹種別の育て方
 
 窓からの距離や方角ごとの明るさの違いは、こちらで説明しています。
 
-[室内の盆栽と光](/guides/indoor-photosynthesis-optimization-guide)
+[室内の盆栽と光｜窓からの距離・方角の目安と、照明で補うときの考え方](/guides/indoor-photosynthesis-optimization-guide)
 
 ## 水やり
 
@@ -63,7 +63,7 @@ thumbLabel: 樹種別の育て方
 
 エアコンで乾燥する室内では、霧吹きで葉に水をかけると葉の乾燥を防げ、ハダニの予防にもなります。乾き具合の見分け方は、こちらで詳しく説明しています。
 
-[盆栽の水やり](/guides/bonsai-watering-master-guide-2025)
+[盆栽の水やり｜乾いたかの見分け方と、季節ごとの回数・時間帯の目安](/guides/bonsai-watering-master-guide-2025)
 
 ## 肥料
 
@@ -95,7 +95,7 @@ thumbLabel: 樹種別の育て方
 
 用土は、赤玉土の小粒を主体にした水はけのよい土が向いています。観葉植物用の培養土でも育ちますが、盆栽鉢のような浅い鉢では、粒の残る土のほうが根腐れしにくくなります。手順は、こちらで詳しく説明しています。
 
-[盆栽の植え替え](/guides/bonsai-repotting-master-guide-2025)
+[盆栽の植え替え｜樹種別の時期・用土の配合と、根の切り方の手順](/guides/bonsai-repotting-master-guide-2025)
 
 ## 一年の作業
 

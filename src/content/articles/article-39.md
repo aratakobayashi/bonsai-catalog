@@ -62,7 +62,7 @@ thumbLabel: 樹種別の育て方
 
 冬は落葉して休眠しますが、鉢の土は乾きます。土が乾いていたら、晴れた日の午前中に与えます。季節ごとの乾き方の見分け方は、こちらで説明しています。
 
-[盆栽の水やり](/guides/bonsai-watering-master-guide-2025)
+[盆栽の水やり｜乾いたかの見分け方と、季節ごとの回数・時間帯の目安](/guides/bonsai-watering-master-guide-2025)
 
 ## 肥料と植え替え
 
@@ -106,6 +106,6 @@ thumbLabel: 樹種別の育て方
 
 桜の盆栽の基本だけを短く知りたいときは、こちらもどうぞ。
 
-[桜の盆栽入門](/guides/sakura-general-guide)
+[桜の盆栽の選び方と育て方｜品種の違い、花芽の見分け方、花後の剪定](/guides/sakura-general-guide)
 
 花を楽しむほかの樹種と比べたいときは[花を楽しむ盆栽の選び方](/selection/flowering-bonsai)を、桜の盆栽を探すときは[桜の盆栽一覧](/products/category/sakura)をご覧ください。

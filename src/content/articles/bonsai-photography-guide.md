@@ -112,4 +112,4 @@ thumbLabel: 盆栽の楽しみ方
 
 展示会で作品を見るときのポイントは、こちらで説明しています。
 
-[盆栽展示会での正しい鑑賞方法｜作品の見方とポイント](/guides/bonsai-exhibition-viewing-guide)
+[盆栽展の見方｜作品のどこを見るか、名札の読み方と会場でのマナー](/guides/bonsai-exhibition-viewing-guide)

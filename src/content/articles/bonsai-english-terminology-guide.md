@@ -124,4 +124,4 @@ thumbLabel: 盆栽の文化
 
 英語で検索するときは、「樹種の英語名 + bonsai」の形にすると情報が見つかりやすくなります。海外での盆栽の広がりや、各地の楽しまれ方は、こちらで紹介しています。
 
-[海外の盆栽事情](/guides/global-bonsai-culture-guide)
+[海外の盆栽事情｜世界に広がった経緯と、北米・ヨーロッパ・アジアでの楽しまれ方](/guides/global-bonsai-culture-guide)

@@ -39,7 +39,7 @@ thumbLabel: 樹種別の育て方
 
 手順そのものは、こちらで説明しています。
 
-[盆栽の植え替え](/guides/bonsai-repotting-master-guide-2025)
+[盆栽の植え替え｜樹種別の時期・用土の配合と、根の切り方の手順](/guides/bonsai-repotting-master-guide-2025)
 
 ## 置き場所と水やり
 
@@ -112,7 +112,7 @@ thumbLabel: 樹種別の育て方
 
 サツキの品種や、皐月盆栽ならではの楽しみ方は、こちらの記事で紹介しています。
 
-[皐月盆栽の育て方](/guides/article-49)
+[皐月（さつき）の盆栽の育て方｜花後の剪定と、鹿沼土・水やりの基本](/guides/article-49)
 
 ![花をたくさんつけたサツキの盆栽](/images/articles/photos/azalea-guide-2.jpg)
 *写真：APK / CC BY 4.0*

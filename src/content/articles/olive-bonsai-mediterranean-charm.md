@@ -38,7 +38,7 @@ thumbLabel: 樹種別の育て方
 
 置き場所の考え方全般は、こちらで説明しています。
 
-[盆栽の置き場所の決め方](/guides/article-12)
+[盆栽の置き場所｜日当たり・風通しの考え方と、季節ごとの移し方の目安](/guides/article-12)
 
 ## 水やり
 
@@ -119,6 +119,6 @@ thumbLabel: 樹種別の育て方
 
 水やりの判断に迷うときは、土の乾き具合の見分け方から確かめておくと安心です。乾いたかの見分け方は、こちらで詳しく説明しています。
 
-[盆栽の水やり](/guides/bonsai-watering-master-guide-2025)
+[盆栽の水やり｜乾いたかの見分け方と、季節ごとの回数・時間帯の目安](/guides/bonsai-watering-master-guide-2025)
 
 オリーブの盆栽を探すときは[オリーブの盆栽一覧](/products/category/olive)を、ほかの実ものもあわせて見たいときは[実を楽しむ盆栽の選び方](/selection/fruit-bonsai)をご覧ください。

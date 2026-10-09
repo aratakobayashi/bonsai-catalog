@@ -101,6 +101,6 @@ thumbLabel: 樹種別の育て方
 
 柿のように実を楽しむ盆栽には、姫りんごやウメモドキなど、季節や樹の大きさの違うものがいろいろあります。赤い実をつけるウメモドキの育て方は、こちらで説明しています。
 
-[ウメモドキ盆栽の育て方](/guides/umemodoki-bonsai-guide)
+[ウメモドキの盆栽の育て方｜赤い実をつけるための雌木・雄木と、水やり・剪定の時期](/guides/umemodoki-bonsai-guide)
 
 柿の盆栽は[実ものの盆栽一覧](/products/category/mimono)で、実ものの選び方は[実を楽しむ盆栽の選び方](/selection/fruit-bonsai)で探せます。

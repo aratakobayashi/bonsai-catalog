@@ -110,6 +110,6 @@ thumbLabel: 盆栽の楽しみ方
 
 出品の経験を重ねると、ほかの人の作品の見方も変わってきます。会場での作品の見方は、こちらで説明しています。
 
-[盆栽展の見方](/guides/bonsai-exhibition-viewing-guide)
+[盆栽展の見方｜作品のどこを見るか、名札の読み方と会場でのマナー](/guides/bonsai-exhibition-viewing-guide)
 
 いずれ海外の展示会やコンテストにも挑戦してみたい人は、[世界の盆栽コンテスト](/guides/world-bonsai-contest-participation-guide)も参考になります。

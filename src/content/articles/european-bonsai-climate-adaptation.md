@@ -73,7 +73,7 @@ thumbLabel: 盆栽の歴史と文化
 
 オリーブの盆栽の育て方は、こちらで説明しています。
 
-[オリーブの盆栽](/guides/olive-bonsai-mediterranean-charm)
+[オリーブの盆栽の育て方｜日当たり・水やり・冬越しと、実をつけるための品種選び](/guides/olive-bonsai-mediterranean-charm)
 
 ## 愛好会と展示の楽しみ方
 
@@ -89,7 +89,7 @@ thumbLabel: 盆栽の歴史と文化
 
 > **注意** 日本からヨーロッパへ、またヨーロッパから日本へ植物を持ち込むときは、植物検疫の規制があります。樹の種類によっては、持ち込みに厳しい条件がついていたり、輸入できなかったりします。手続きの考え方は、こちらで説明しています。
 
-[盆栽の国際輸出入ガイド](/guides/bonsai-international-import-export-guide)
+[盆栽を海外へ送る・持ち込むとき｜植物検疫の流れと準備の基本](/guides/bonsai-international-import-export-guide)
 
 ## 日本で育てるときに役立つ考え方
 
@@ -101,4 +101,4 @@ thumbLabel: 盆栽の歴史と文化
 
 寒い地域での冬越しの方法は、[盆栽の冬越し失敗対策](/guides/bonsai-winter-care-failure-prevention)で詳しく説明しています。世界各地の盆栽の広がりは、こちらで紹介しています。
 
-[海外の盆栽事情](/guides/global-bonsai-culture-guide)
+[海外の盆栽事情｜世界に広がった経緯と、北米・ヨーロッパ・アジアでの楽しまれ方](/guides/global-bonsai-culture-guide)

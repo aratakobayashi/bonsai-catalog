@@ -36,7 +36,7 @@ thumbLabel: 季節の管理
 
 遮光ネットは、真っ暗にするほど濃いものではなく、明るさが残る程度のものを選びます。暗すぎると枝が間延びし、秋の花芽のつきにも影響します。置き場所の基本は、こちらで説明しています。
 
-[盆栽の置き場所の決め方](/guides/article-12)
+[盆栽の置き場所｜日当たり・風通しの考え方と、季節ごとの移し方の目安](/guides/article-12)
 
 ## 鉢を熱くしない工夫
 
@@ -60,7 +60,7 @@ thumbLabel: 季節の管理
 
 季節ごとの水やりの回数や、乾いたかどうかの見分け方は、こちらで詳しく説明しています。
 
-[盆栽の水やり](/guides/bonsai-watering-master-guide-2025)
+[盆栽の水やり｜乾いたかの見分け方と、季節ごとの回数・時間帯の目安](/guides/bonsai-watering-master-guide-2025)
 
 ## 樹種による違い
 
@@ -90,4 +90,4 @@ thumbLabel: 季節の管理
 
 夏の管理全体をもう少し広く知りたいときは[盆栽の夏の管理](/guides/article-15)を、夏に弱ってしまった樹は[盆栽が枯れそうなときの対処](/guides/bonsai-revival-dying-rescue-methods)も参考にしてください。冬の管理は、こちらにまとめています。
 
-[盆栽の冬越し](/guides/bonsai-winter-care-failure-prevention)
+[盆栽の冬越し｜樹種ごとの置き場所と、凍結・寒風・水切れを防ぐ管理](/guides/bonsai-winter-care-failure-prevention)
