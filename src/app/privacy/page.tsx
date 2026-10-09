@@ -11,18 +11,18 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <div className={`${CONTAINER} pb-12`}>
-      <div className="mx-auto max-w-[880px]">
+      <div className="mx-auto max-w-[664px]">
       <PageHeading
         title="プライバシーポリシー"
         lead="最終更新日: 2024年9月21日"
         crumbs={[{ label: 'ホーム', href: '/' }, { label: 'プライバシーポリシー' }]}
       />
-      {/* 読みやすい幅の白いカードに本文を置く */}
-      <div className="mt-6 rounded-xl border border-line bg-white px-5 py-7 lg:mt-8 lg:px-10 lg:py-10">
+      {/* 読みやすい幅で、墨の線の下に本文を置く */}
+      <div className="mt-7 border-t border-sumi pt-7 lg:mt-12 lg:pt-10">
 
-        <div className="space-y-8 text-[14.5px] leading-[1.9]">
+        <div className="space-y-9 text-[14px] leading-[1.95] lg:space-y-10 lg:text-[14.5px]">
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               1. 基本方針
             </h2>
             <p className="text-ink">
@@ -33,13 +33,13 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               2. 個人情報の収集について
             </h2>
             <p className="text-ink mb-4">
               当サイトでは、以下の場合に個人情報を収集することがあります：
             </p>
-            <ul className="list-disc pl-6 space-y-1.5 text-ink marker:text-gold">
+            <ul className="list-disc pl-6 space-y-1.5 text-ink marker:text-gold-dark">
               <li>お問い合わせフォームの送信時</li>
               <li>ニュースレターの購読申し込み時</li>
               <li>アンケートやキャンペーンへの参加時</li>
@@ -50,13 +50,13 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               3. 個人情報の利用目的
             </h2>
             <p className="text-ink mb-4">
               収集した個人情報は、以下の目的で利用いたします：
             </p>
-            <ul className="list-disc pl-6 space-y-1.5 text-ink marker:text-gold">
+            <ul className="list-disc pl-6 space-y-1.5 text-ink marker:text-gold-dark">
               <li>お問い合わせへの回答・対応</li>
               <li>サービス向上のための統計・分析</li>
               <li>重要なお知らせの送付</li>
@@ -65,13 +65,13 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               4. Cookieの利用について
             </h2>
             <p className="text-ink mb-4">
               当サイトでは、ユーザーの利便性向上のためCookieを利用しています：
             </p>
-            <ul className="list-disc pl-6 space-y-1.5 text-ink marker:text-gold">
+            <ul className="list-disc pl-6 space-y-1.5 text-ink marker:text-gold-dark">
               <li><strong>セッション管理</strong>: ユーザーセッションの維持</li>
               <li><strong>設定保存</strong>: ユーザーの設定・選択の保存</li>
               <li><strong>アクセス解析</strong>: Google Analyticsによるサイト利用状況の分析</li>
@@ -83,14 +83,14 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               5. Google Analyticsの利用について
             </h2>
             <p className="text-ink">
               当サイトでは、サイトの利用状況を把握するためGoogle Analyticsを利用しています。
               Google Analyticsは、Cookieを使用してユーザーの行動に関する情報を収集しますが、
               個人を特定する情報は収集していません。詳細は
-              <a href="https://policies.google.com/privacy" className="text-navy underline underline-offset-2 hover:text-gold-dark" target="_blank" rel="noopener noreferrer">
+              <a href="https://policies.google.com/privacy" className="border-b border-ink text-ink hover:border-gold-dark hover:text-gold-dark" target="_blank" rel="noopener noreferrer">
                 Googleプライバシーポリシー
               </a>
               をご確認ください。
@@ -98,10 +98,10 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               6. Amazonアソシエイト・プログラムについて
             </h2>
-            <div className="rounded-lg border border-line bg-gold-light/50 p-5">
+            <div className="border-y border-line py-5">
               <p className="text-ink">
                 当サイトは、Amazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を
                 提供することを目的に設定されたアフィリエイトプログラムである、
@@ -116,13 +116,13 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               7. 個人情報の第三者への提供
             </h2>
             <p className="text-ink mb-4">
               当サイトは、以下の場合を除き、個人情報を第三者に提供することはありません：
             </p>
-            <ul className="list-disc pl-6 space-y-1.5 text-ink marker:text-gold">
+            <ul className="list-disc pl-6 space-y-1.5 text-ink marker:text-gold-dark">
               <li>ユーザーご本人の同意がある場合</li>
               <li>法令に基づく場合</li>
               <li>人の生命、身体又は財産の保護のために必要がある場合</li>
@@ -130,7 +130,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               8. 個人情報の安全管理
             </h2>
             <p className="text-ink">
@@ -140,7 +140,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               9. プライバシーポリシーの変更
             </h2>
             <p className="text-ink">
@@ -150,12 +150,12 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               10. お問い合わせ
             </h2>
             <p className="text-ink">
               プライバシーポリシーに関するご質問やご意見については、
-              <Link href="/contact" className="text-navy underline underline-offset-2 hover:text-gold-dark">
+              <Link href="/contact" className="border-b border-ink text-ink hover:border-gold-dark hover:text-gold-dark">
                 お問い合わせページ
               </Link>
               からご連絡ください。

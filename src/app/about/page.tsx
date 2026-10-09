@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import { CONTAINER, Card, PageHeading, SectionTitle } from '@/components/ui/design'
+import { CONTAINER, PageHeading } from '@/components/ui/design'
 import { GARDEN_VERIFIED_AT } from '@/lib/garden-verification'
 import { EVENT_VERIFIED_AT } from '@/lib/event-display'
 
@@ -17,10 +17,12 @@ export const metadata: Metadata = {
 }
 
 const STEPS = [
-  { title: '探す', body: '樹種・予算・サイズから、楽天市場とAmazonの商品をまとめて探せます。' },
-  { title: '比べる', body: '価格・レビュー・サイズを同じ形式で並べて比べられます。' },
-  { title: 'ショップで買う', body: '購入は各ショップのページで行います。当サイトでは販売していません。' },
+  { num: '一', title: '探す', body: '樹種・予算・サイズから、楽天市場とAmazonの商品をまとめて探せます。' },
+  { num: '二', title: '比べる', body: '価格・レビュー・サイズを同じ形式で並べて比べられます。' },
+  { num: '三', title: 'ショップで買う', body: '購入は各ショップのページで行います。当サイトでは販売していません。' },
 ]
+
+const linkClass = 'border-b border-ink text-ink hover:border-gold-dark hover:text-gold-dark'
 
 // 確認日（YYYY-MM-DD）を「2026年10月8日」の形にする
 function formatDate(value: string | null): string | null {
@@ -28,19 +30,17 @@ function formatDate(value: string | null): string | null {
   return m ? `${m[1]}年${Number(m[2])}月${Number(m[3])}日` : null
 }
 
-// 左に項目名、右に説明を置く表（SPでは縦積み）
+// 左に項目名、右に説明を置く表（SPでは縦積み）。線だけで区切る
 function InfoTable({ rows }: { rows: { label: string; body: ReactNode }[] }) {
   return (
-    <Card className="mt-3 overflow-hidden">
-      <dl className="divide-y divide-line">
-        {rows.map(row => (
-          <div key={row.label} className="px-4 py-4 lg:flex lg:gap-6 lg:px-5">
-            <dt className="text-[13px] font-bold text-ink lg:w-36 lg:shrink-0">{row.label}</dt>
-            <dd className="mt-1 text-[13.5px] leading-[1.85] text-ink-soft lg:mt-0">{row.body}</dd>
-          </div>
-        ))}
-      </dl>
-    </Card>
+    <dl className="mt-3 border-t border-line lg:mt-4">
+      {rows.map(row => (
+        <div key={row.label} className="border-b border-paper-deep py-3.5 lg:grid lg:grid-cols-[140px_1fr] lg:gap-3.5 lg:py-3">
+          <dt className="text-[13px] font-bold text-ink lg:text-[14px] lg:font-normal lg:leading-[1.7] lg:text-ink-muted">{row.label}</dt>
+          <dd className="mt-1 text-[12.5px] leading-[1.85] text-ink-soft lg:mt-0 lg:text-[14px] lg:leading-[1.7] lg:text-ink">{row.body}</dd>
+        </div>
+      ))}
+    </dl>
   )
 }
 
@@ -50,34 +50,32 @@ export default function AboutPage() {
 
   return (
     <div className={`${CONTAINER} pb-12`}>
-      <div className="mx-auto max-w-[880px]">
+      <div className="mx-auto max-w-[664px]">
         <PageHeading
           title="このサイトについて"
           crumbs={[{ label: 'ホーム', href: '/' }, { label: 'このサイトについて' }]}
           lead={
-            <span className="block text-[14.5px] leading-[1.9] text-ink lg:text-[15px]">
+            <span className="block text-[14px] leading-[2] text-ink-soft lg:text-[16px]">
               盆栽コレクションは、楽天市場とAmazonで販売されている盆栽・鉢・土・道具を横断して探せる比較・検索サイトです。育て方の記事や、全国の盆栽園・イベントの情報もまとめています。
             </span>
           }
         />
 
-        {/* 使い方の3ステップ */}
-        <ol className="mt-6 grid gap-2.5 lg:mt-8 lg:grid-cols-3 lg:gap-3">
-          {STEPS.map((step, i) => (
-            <li key={step.title}>
-              <Card className="flex h-full gap-4 px-4 py-4 lg:block lg:px-5 lg:py-5">
-                <div className="font-mincho text-xl font-bold leading-none text-gold lg:text-2xl">{i + 1}</div>
-                <div className="min-w-0 lg:mt-2.5">
-                  <h2 className="text-[15px] font-bold text-navy">{step.title}</h2>
-                  <p className="mt-1 text-[13px] leading-relaxed text-ink-soft lg:mt-2">{step.body}</p>
-                </div>
-              </Card>
+        {/* 使い方の3ステップ（PCは横並び、SPは線で区切った縦並び） */}
+        <ol className="mt-7 lg:mt-14 lg:grid lg:grid-cols-3 lg:gap-8">
+          {STEPS.map(step => (
+            <li key={step.title} className="grid grid-cols-[32px_1fr] gap-2.5 border-t border-line py-3.5 lg:block lg:border-sumi lg:pb-0 lg:pt-4">
+              <span className="font-mincho text-lg font-bold text-gold-dark lg:block lg:text-[22px]" aria-hidden="true">{step.num}</span>
+              <div className="min-w-0">
+                <h2 className="font-mincho text-[15.5px] font-bold tracking-[0.04em] text-ink lg:mt-1.5 lg:text-[17px]">{step.title}</h2>
+                <p className="mt-0.5 text-[12.5px] leading-[1.8] text-ink-soft lg:mt-1.5 lg:text-[13px] lg:leading-[1.85]">{step.body}</p>
+              </div>
             </li>
           ))}
         </ol>
 
-        <section className="mt-10 lg:mt-12">
-          <SectionTitle>表示について</SectionTitle>
+        <section className="mt-9 lg:mt-[72px]">
+          <h2 className="font-mincho text-lg font-bold tracking-[0.06em] text-ink lg:text-[22px]">表示について</h2>
           <InfoTable
             rows={[
               {
@@ -87,6 +85,10 @@ export default function AboutPage() {
               {
                 label: '価格について',
                 body: '掲載している価格・送料・在庫は取得時点の情報です。最新の情報は各ショップの商品ページでご確認ください。',
+              },
+              {
+                label: '表示の「—」',
+                body: '商品名や説明文から読み取れなかった項目（樹高・サイズなど）は「—」と表示しています。',
               },
               {
                 label: '商品情報の取得元',
@@ -101,7 +103,7 @@ export default function AboutPage() {
                 body: (
                   <>
                     楽天市場の商品情報は{' '}
-                    <a href="https://webservice.rakuten.co.jp/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-gold-dark">
+                    <a href="https://webservice.rakuten.co.jp/" target="_blank" rel="noopener noreferrer" className={linkClass}>
                       Supported by Rakuten Developers
                     </a>
                     。
@@ -112,8 +114,8 @@ export default function AboutPage() {
           />
         </section>
 
-        <section className="mt-10 lg:mt-12">
-          <SectionTitle>盆栽園・イベント情報について</SectionTitle>
+        <section className="mt-9 lg:mt-[72px]">
+          <h2 className="font-mincho text-lg font-bold tracking-[0.06em] text-ink lg:text-[22px]">盆栽園・イベント情報について</h2>
           <InfoTable
             rows={[
               {
@@ -139,7 +141,7 @@ export default function AboutPage() {
                 body: (
                   <>
                     営業時間や日程は変わることがあります。お出かけの前に各公式サイトでご確認ください。掲載内容の誤りは
-                    <Link href="/contact" className="mx-0.5 text-navy underline underline-offset-2 hover:text-gold-dark">お問い合わせ</Link>
+                    <Link href="/contact" className={`mx-0.5 ${linkClass}`}>お問い合わせ</Link>
                     からお知らせください。
                   </>
                 ),
@@ -148,8 +150,8 @@ export default function AboutPage() {
           />
         </section>
 
-        <section className="mt-10 lg:mt-12">
-          <SectionTitle>運営者情報</SectionTitle>
+        <section className="mt-9 lg:mt-[72px]">
+          <h2 className="font-mincho text-lg font-bold tracking-[0.06em] text-ink lg:text-[22px]">運営者情報</h2>
           <InfoTable
             rows={[
               { label: 'サイト名', body: '盆栽コレクション' },
@@ -162,7 +164,7 @@ export default function AboutPage() {
                 label: 'お問い合わせ',
                 body: (
                   <>
-                    <Link href="/contact" className="text-navy underline underline-offset-2 hover:text-gold-dark">お問い合わせフォーム</Link>
+                    <Link href="/contact" className={linkClass}>お問い合わせフォーム</Link>
                     よりご連絡ください。
                   </>
                 ),
@@ -171,11 +173,11 @@ export default function AboutPage() {
           />
         </section>
 
-        <div className="mt-6 flex gap-2.5">
-          <Link href="/faq" className="inline-flex items-center rounded-lg bg-navy px-5 py-2.5 text-sm font-bold text-white hover:bg-navy-light">
+        <div className="mt-10 flex flex-wrap gap-3 lg:mt-12">
+          <Link href="/faq" className="inline-flex h-[50px] items-center justify-center bg-sumi px-7 text-sm tracking-[0.08em] text-paper hover:bg-sumi-light hover:text-paper">
             よくある質問
           </Link>
-          <Link href="/contact" className="inline-flex items-center rounded-lg border border-navy bg-white px-5 py-2.5 text-sm font-bold text-navy hover:border-gold hover:text-gold-dark">
+          <Link href="/contact" className="inline-flex h-[50px] items-center justify-center border border-sumi px-6 text-sm tracking-[0.06em] text-ink hover:border-gold-dark hover:text-gold-dark">
             お問い合わせ
           </Link>
         </div>

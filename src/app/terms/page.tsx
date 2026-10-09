@@ -11,18 +11,18 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <div className={`${CONTAINER} pb-12`}>
-      <div className="mx-auto max-w-[880px]">
+      <div className="mx-auto max-w-[664px]">
       <PageHeading
         title="利用規約"
         lead="最終更新日: 2024年9月21日"
         crumbs={[{ label: 'ホーム', href: '/' }, { label: '利用規約' }]}
       />
-      {/* 読みやすい幅の白いカードに本文を置く */}
-      <div className="mt-6 rounded-xl border border-line bg-white px-5 py-7 lg:mt-8 lg:px-10 lg:py-10">
+      {/* 読みやすい幅で、墨の線の下に本文を置く */}
+      <div className="mt-7 border-t border-sumi pt-7 lg:mt-12 lg:pt-10">
 
-        <div className="space-y-8 text-[14.5px] leading-[1.9]">
+        <div className="space-y-9 text-[14px] leading-[1.95] lg:space-y-10 lg:text-[14.5px]">
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               第1条（適用）
             </h2>
             <p className="text-ink">
@@ -33,7 +33,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               第2条（利用登録）
             </h2>
             <ol className="list-decimal pl-6 space-y-2 text-ink marker:text-gold-dark">
@@ -44,13 +44,13 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               第3条（サービス内容）
             </h2>
             <p className="text-ink mb-4">
               当サイトは、以下のサービスを提供します：
             </p>
-            <ul className="list-disc pl-6 space-y-1.5 text-ink marker:text-gold">
+            <ul className="list-disc pl-6 space-y-1.5 text-ink marker:text-gold-dark">
               <li>盆栽関連商品の情報提供・紹介</li>
               <li>盆栽園・販売店の情報提供</li>
               <li>盆栽に関する知識・ノウハウの提供</li>
@@ -60,7 +60,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               第4条（利用料金）
             </h2>
             <p className="text-ink">
@@ -70,13 +70,13 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               第5条（禁止事項）
             </h2>
             <p className="text-ink mb-4">
               ユーザーは、本サービスの利用にあたり、以下の行為をしてはなりません：
             </p>
-            <ul className="list-disc pl-6 space-y-1.5 text-ink marker:text-gold">
+            <ul className="list-disc pl-6 space-y-1.5 text-ink marker:text-gold-dark">
               <li>法令または公序良俗に違反する行為</li>
               <li>犯罪行為に関連する行為</li>
               <li>当サイトのサーバーまたはネットワークの機能を破壊したり、妨害したりする行為</li>
@@ -89,12 +89,12 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               第6条（本サービスの提供の停止等）
             </h2>
             <ol className="list-decimal pl-6 space-y-2 text-ink marker:text-gold-dark">
               <li>当サイトは、以下のいずれかの事由があると判断した場合、ユーザーに事前に通知することなく本サービスの全部または一部の提供を停止または中断することができるものとします。
-                <ul className="list-disc pl-6 mt-2 space-y-1 marker:text-gold">
+                <ul className="list-disc pl-6 mt-2 space-y-1 marker:text-gold-dark">
                   <li>本サービスにかかるコンピュータシステムの保守点検または更新を行う場合</li>
                   <li>地震、落雷、火災、停電または天災などの不可抗力により、本サービスの提供が困難となった場合</li>
                   <li>コンピュータまたは通信回線等が事故により停止した場合</li>
@@ -106,7 +106,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               第7条（著作権）
             </h2>
             <ol className="list-decimal pl-6 space-y-2 text-ink marker:text-gold-dark">
@@ -117,7 +117,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               第8条（免責事項）
             </h2>
             <ol className="list-decimal pl-6 space-y-2 text-ink marker:text-gold-dark">
@@ -129,7 +129,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               第9条（サービス内容の変更等）
             </h2>
             <p className="text-ink">
@@ -139,7 +139,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               第10条（利用規約の変更）
             </h2>
             <p className="text-ink">
@@ -149,12 +149,12 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               第11条（個人情報の取扱い）
             </h2>
             <p className="text-ink">
               当サイトは、本サービスの利用によって取得する個人情報については、
-              <a href="/privacy" className="text-navy underline underline-offset-2 hover:text-gold-dark">
+              <a href="/privacy" className="border-b border-ink text-ink hover:border-gold-dark hover:text-gold-dark">
                 プライバシーポリシー
               </a>
               に従い適切に取り扱うものとします。
@@ -162,7 +162,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               第12条（準拠法・裁判管轄）
             </h2>
             <ol className="list-decimal pl-6 space-y-2 text-ink marker:text-gold-dark">
@@ -172,12 +172,12 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 font-mincho text-lg font-bold text-navy lg:text-xl">
+            <h2 className="mb-3 font-mincho text-[17px] font-bold tracking-[0.06em] text-ink lg:text-xl">
               第13条（お問い合わせ）
             </h2>
             <p className="text-ink">
               本規約に関するお問い合わせは、
-              <Link href="/contact" className="text-navy underline underline-offset-2 hover:text-gold-dark">
+              <Link href="/contact" className="border-b border-ink text-ink hover:border-gold-dark hover:text-gold-dark">
                 お問い合わせページ
               </Link>
               からご連絡ください。
