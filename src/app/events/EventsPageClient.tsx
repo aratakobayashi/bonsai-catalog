@@ -2,11 +2,10 @@
 
 import { useState, useEffect, useMemo, useRef } from 'react'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { Event, EventSearchParams, EventsResponse } from '@/types'
-import { EventCalendar } from '@/components/features/EventCalendar'
 import { EventFilters, EventPeriod } from '@/components/features/EventFilters'
-import { EventMap } from '@/components/features/EventMap'
 import { EventListView } from '@/components/features/EventListView'
 import {
   EVENT_TYPE_LABEL,
@@ -20,6 +19,11 @@ import {
 } from '@/components/features/EventShared'
 import { eventPriceText, isTentativeEvent } from '@/lib/event-display'
 import EventViewTabs, { parseEventView } from './EventViewTabs'
+
+// カレンダー・地図はその表示に切り替えたときだけ読み込む（一覧の初回表示を軽くする）
+const ViewLoading = () => <div className="min-h-[420px] animate-pulse bg-paper-deep" aria-hidden="true" />
+const EventCalendar = dynamic(() => import('@/components/features/EventCalendar').then(m => m.EventCalendar), { loading: ViewLoading })
+const EventMap = dynamic(() => import('@/components/features/EventMap').then(m => m.EventMap), { ssr: false, loading: ViewLoading })
 
 function parsePeriod(value: string | null): EventPeriod {
   return value === 'past' || value === 'all' ? value : 'upcoming'
