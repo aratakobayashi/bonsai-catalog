@@ -1,28 +1,18 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
-  ENJOY_OPTIONS,
-  FLAG_OPTIONS,
-  LEVEL_OPTIONS,
-  PLACE_OPTIONS,
-  SEASON_OPTIONS,
-  USE_OPTIONS,
-  relaxSuggestions,
-  type FilterKey,
-  SIZE_OPTIONS,
-  SPECIES_OPTIONS,
-  TYPE_OPTIONS,
-  buildCatalogUrl,
   filterProducts,
   getCatalogProducts,
   hasActiveFilters,
+  optionCounts,
   paginate,
   parseFilters,
   type CatalogFilters,
+  type CatalogProduct,
 } from '@/lib/catalog'
-import { formatPrice } from '@/lib/utils'
-import { CatalogBrowser } from '@/components/catalog/CatalogBrowser'
-import { buildSpeciesTabs } from '@/lib/catalog-menus'
+import { CatalogBrowser, buildCatalogTabs } from '@/components/catalog/CatalogBrowser'
+import { CatalogEmptyState } from '@/components/catalog/CatalogFilters'
+import { CatalogLoadError } from '@/components/catalog/CatalogLoadError'
 import { SELECTIONS } from '@/lib/selections'
 import { CatalogSearchTracker } from '@/components/analytics/CatalogSearchTracker'
 
@@ -31,7 +21,7 @@ interface ProductsPageProps {
 }
 
 const TITLE = '盆栽・鉢・道具を探す｜楽天市場とAmazonの盆栽を価格・樹種・サイズで比較 - 盆栽コレクション'
-const DESCRIPTION = '楽天市場とAmazonの盆栽・苔玉・盆栽鉢・土・道具を、樹種・価格・サイズ・送料無料・レビュー件数でまとめて絞り込み、比較できます。'
+const DESCRIPTION = '楽天市場とAmazonの盆栽・苔玉・盆栽鉢・土・道具を、樹種・価格・サイズ・送料込・レビュー件数でまとめて絞り込み、比較できます。'
 
 // 絞り込み・ページ送りのURLは検索結果に出さず、一覧トップに正規化する
 export function generateMetadata({ searchParams }: ProductsPageProps): Metadata {
@@ -41,27 +31,6 @@ export function generateMetadata({ searchParams }: ProductsPageProps): Metadata 
     description: DESCRIPTION,
     alternates: { canonical: '/products' },
     ...(filtered && { robots: { index: false, follow: true } }),
-  }
-}
-
-const labelOf = (options: readonly { value: string; label: string }[], value: string | undefined) =>
-  options.find(o => o.value === value)?.label ?? ''
-
-// 0件のときの案内文（「○○」を外すと N件）に使う、条件の名前
-function filterKeyLabel(filters: CatalogFilters, key: FilterKey): string {
-  switch (key) {
-    case 'q': return `キーワード「${filters.q}」`
-    case 'type': return `種類「${labelOf(TYPE_OPTIONS, filters.type)}」`
-    case 'species': return `樹種「${labelOf(SPECIES_OPTIONS, filters.species)}」`
-    case 'size': return `サイズ「${labelOf(SIZE_OPTIONS, filters.size)}」`
-    case 'shop': return 'ショップの指定'
-    case 'price': return '価格の指定'
-    case 'place': return `「${labelOf(PLACE_OPTIONS, filters.place)}」`
-    case 'enjoy': return `「${labelOf(ENJOY_OPTIONS, filters.enjoy)}」`
-    case 'season': return `見ごろ「${labelOf(SEASON_OPTIONS, filters.season)}」`
-    case 'level': return `「${labelOf(LEVEL_OPTIONS, filters.level)}」`
-    case 'use': return `用途「${labelOf(USE_OPTIONS, filters.use)}」`
-    case 'flags': return 'こだわり条件'
   }
 }
 
@@ -84,37 +53,21 @@ function activeFilterKeys(filters: CatalogFilters): string[] {
 
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
   const filters = parseFilters(searchParams)
-  const all = await getCatalogProducts()
+  // 一時的な取得の失敗で例外を投げると、エラーのページが ISR に残るため、案内のページを出す
+  let all: CatalogProduct[]
+  try {
+    all = await getCatalogProducts()
+  } catch (error) {
+    console.error('一覧の商品データの取得に失敗しました:', error instanceof Error ? error.message : error)
+    return <CatalogLoadError />
+  }
   const filtered = filterProducts(all, filters)
   const { items, page, totalPages, total } = paginate(filtered, filters.page)
-  const suggestions = total === 0 ? relaxSuggestions(all, filters) : []
   const selectedId = typeof searchParams.p === 'string' ? searchParams.p : undefined
   const activeCount = activeFilterKeys(filters).filter(k => !k.startsWith('q')).length
-  const speciesTabs = buildSpeciesTabs(all, filters, undefined, filters.species ? undefined : total)
+  const speciesTabs = buildCatalogTabs(all, filters, undefined, filters.species ? undefined : total)
 
-  const emptyState = (
-    <div className="text-ink-soft">
-      <p className="mb-4 font-mincho text-base font-bold text-ink">条件に合う盆栽はありません。「条件」から一つ外してみてください。</p>
-      {suggestions.length > 0 && (
-        <>
-          <p className="mb-2 text-sm">条件を1つ外すと、次の商品が見つかります。</p>
-          <ul className="mb-5 space-y-2.5 text-sm">
-            {suggestions.map(suggestion => (
-              <li key={suggestion.key}>
-                <Link href={buildCatalogUrl(suggestion.filters)} className="border-b border-ink pb-0.5 text-ink">
-                  {filterKeyLabel(filters, suggestion.key)}を外す（{suggestion.count.toLocaleString()}件）
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-      <Link href="/products" className="text-sm text-ink-muted underline">条件をすべてクリアする</Link>
-      <p className="mt-4 text-sm">
-        <Link href="/shindan" className="border-b border-ink pb-0.5 text-ink">何を選べばよいか迷ったら、かんたん盆栽診断（4つの質問）</Link>
-      </p>
-    </div>
-  )
+  const emptyState = total === 0 ? <CatalogEmptyState products={all} filters={filters} /> : null
 
   return (
     <>
@@ -132,6 +85,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         totalPages={totalPages}
         selectedId={selectedId}
         speciesTabs={speciesTabs}
+        counts={optionCounts(all)}
         emptyState={emptyState}
         activeCount={activeCount}
         intro={filters.q ? (

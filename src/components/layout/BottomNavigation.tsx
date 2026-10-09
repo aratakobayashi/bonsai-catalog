@@ -4,9 +4,17 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { NAV_ITEMS, SHOP_NAV, isNavActive } from './SiteNav'
 
+// 商品ページ（/products/[id]）は、ページ側の購入ボタンの帯を下部に固定するため、下部タブを出さない
+const PRODUCT_PAGE = /^\/products\/(?!category(?:\/|$))[^/]+\/?$/
+
+export function isBottomNavHidden(pathname: string): boolean {
+  return PRODUCT_PAGE.test(pathname)
+}
+
 // スマホの下部タブ（ホーム・盆栽を探す・育て方・盆栽園・イベント）
 export function BottomNavigation() {
   const pathname = usePathname() || '/'
+  if (isBottomNavHidden(pathname)) return null
   const items = [{ href: '/', label: 'ホーム', match: ['/'] as readonly string[] }, SHOP_NAV, ...NAV_ITEMS]
   return (
     <nav

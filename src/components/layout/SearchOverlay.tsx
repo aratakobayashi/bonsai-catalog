@@ -2,9 +2,10 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode, type RefObject } from 'react'
 import { normalizeText } from '@/lib/search-normalize'
 import { formatPrice } from '@/lib/utils'
+import { useFocusTrap, useHistoryDismiss } from './dialog-utils'
 
 const RECENT_KEY = 'bonsai-recent-searches'
 const PURPOSES = [
@@ -137,29 +138,78 @@ function GroupLabel({ children }: { children: ReactNode }) {
 
 const rowClass = 'flex items-baseline gap-3 border-b border-paper-deep py-[9px] outline-none hover:text-gold-dark focus-visible:bg-paper-deep max-lg:py-[11px]'
 
+// ↑↓ で候補（data-option の付いたリンク・ボタン）を順に移動する。先頭で ↑ を押すと入力欄に戻る
+function moveFocus(e: KeyboardEvent | React.KeyboardEvent, container: HTMLElement | null, input: HTMLInputElement | null) {
+  if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return
+  if (!container) return
+  const options = Array.from(container.querySelectorAll<HTMLElement>('[data-option]'))
+  if (options.length === 0) return
+  e.preventDefault()
+  const current = options.indexOf(document.activeElement as HTMLElement)
+  if (e.key === 'ArrowDown') {
+    options[current < 0 ? 0 : Math.min(current + 1, options.length - 1)].focus()
+  } else if (current <= 0) {
+    input?.focus()
+  } else {
+    options[current - 1].focus()
+  }
+}
+
 // 検索画面（スマホは全画面、PCはヘッダーの検索欄の下に表示）
-export function SearchOverlay({ open, onClose, variant, query: externalQuery }: { open: boolean; onClose: () => void; variant: 'sheet' | 'dropdown'; query?: string }) {
+// triggerRef：スマホで閉じたときにフォーカスを戻す「検索」ボタン
+export function SearchOverlay({ open, onClose, variant, query: externalQuery, triggerRef }: { open: boolean; onClose: () => void; variant: 'sheet' | 'dropdown'; query?: string; triggerRef?: RefObject<HTMLElement> }) {
   const router = useRouter()
   const pathname = usePathname()
   const inputRef = useRef<HTMLInputElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
+  const dialogRef = useRef<HTMLDivElement>(null)
   const [ownQuery, setOwnQuery] = useState('')
   const [recent, setRecent] = useState<string[]>([])
   const query = variant === 'dropdown' ? externalQuery ?? '' : ownQuery
   const q = query.trim()
   const { suggestions, fresh } = useSuggestions(query, open)
   const featured = useFeaturedSpecies(open && !q)
+  const isSheet = variant === 'sheet'
+  // スマホ：ブラウザの「戻る」で検索画面だけを閉じる
+  const { dismiss } = useHistoryDismiss(open && isSheet, onClose, '__bonsaiSearchSheet')
+  useFocusTrap(dialogRef, open && isSheet)
+
+  // PCの検索欄（Header のフォームの中の入力欄）
+  const pcInput = () => (panelRef.current?.closest('form')?.querySelector('input[type="search"]') as HTMLInputElement | null) ?? null
+
+  // スマホ：閉じるボタン・Escape で閉じたら「検索」ボタンにフォーカスを戻す
+  const closeSheet = () => {
+    dismiss()
+    triggerRef?.current?.focus()
+  }
 
   useEffect(() => {
     if (!open) return
     setRecent(readRecent())
-    if (variant === 'sheet') inputRef.current?.focus()
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
+    if (isSheet) {
+      // 開くたびに入力を空にして、最近の検索を出す
+      setOwnQuery('')
+      inputRef.current?.focus()
+    }
+  }, [open, isSheet])
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      if (isSheet) {
+        closeSheet()
+      } else {
+        // 先に入力欄へ戻してから閉じる（入力欄のフォーカスで開き直さないよう、同じ処理の中で閉じる）
+        pcInput()?.focus()
+        onClose()
+      }
+    }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [open, onClose, variant])
+  })
 
-  // PC：検索欄（親のフォーム）の外を押したら閉じる。フォームの送信（Enter）も履歴に残す
+  // PC：検索欄（親のフォーム）の外を押したら閉じる。フォームの送信（Enter）も履歴に残す。↑↓で候補を移動
   useEffect(() => {
     if (!open || variant !== 'dropdown') return
     const form = panelRef.current?.closest('form')
@@ -167,23 +217,26 @@ export function SearchOverlay({ open, onClose, variant, query: externalQuery }: 
       if (form && !form.contains(e.target as Node)) onClose()
     }
     const onSubmit = () => saveRecent((form?.querySelector('input[type="search"]') as HTMLInputElement | null)?.value ?? '')
+    const onKeyDown = (e: KeyboardEvent) => moveFocus(e, panelRef.current, (form?.querySelector('input[type="search"]') as HTMLInputElement | null) ?? null)
     document.addEventListener('mousedown', onDown)
     form?.addEventListener('submit', onSubmit)
+    form?.addEventListener('keydown', onKeyDown)
     return () => {
       document.removeEventListener('mousedown', onDown)
       form?.removeEventListener('submit', onSubmit)
+      form?.removeEventListener('keydown', onKeyDown)
     }
   }, [open, variant, onClose])
 
   // スマホ：検索画面の表示中は後ろのページをスクロールさせない
   useEffect(() => {
-    if (!open || variant !== 'sheet') return
+    if (!open || !isSheet) return
     const prev = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     return () => {
       document.body.style.overflow = prev
     }
-  }, [open, variant])
+  }, [open, isSheet])
 
   // ページを移動したら閉じる
   const firstPath = useRef(pathname)
@@ -199,7 +252,10 @@ export function SearchOverlay({ open, onClose, variant, query: externalQuery }: 
     if (!t) return
     saveRecent(t)
     onClose()
-    router.push(`/products?q=${encodeURIComponent(t)}`)
+    const href = `/products?q=${encodeURIComponent(t)}`
+    // スマホは検索画面を開いたときに積んだ履歴を置き換える（戻るで検索画面の前のページに戻る）
+    if (isSheet) router.replace(href)
+    else router.push(href)
   }
 
   // 候補を選んだときも、入力した言葉を履歴に残す
@@ -216,6 +272,9 @@ export function SearchOverlay({ open, onClose, variant, query: externalQuery }: 
 
   if (!open) return null
 
+  // スマホの検索画面から移動するときは、開いたときに積んだ履歴を置き換える
+  const replace = isSheet
+
   const typed = (
     <div>
       {suggestions && suggestions.species.length > 0 && (
@@ -224,7 +283,7 @@ export function SearchOverlay({ open, onClose, variant, query: externalQuery }: 
           <ul>
             {suggestions.species.map(s => (
               <li key={s.slug}>
-                <Link href={`/products/category/${s.slug}`} onClick={follow} className={rowClass}>
+                <Link href={`/products/category/${s.slug}`} replace={replace} onClick={follow} data-option className={rowClass}>
                   <span className="flex-1 font-mincho text-base font-bold leading-normal tracking-[0.04em] max-lg:text-[17px]">
                     <Highlight text={s.name} query={q} />
                   </span>
@@ -243,7 +302,7 @@ export function SearchOverlay({ open, onClose, variant, query: externalQuery }: 
           <ul>
             {suggestions.products.map(p => (
               <li key={p.id}>
-                <Link href={`/products/${p.id}`} onClick={follow} className={rowClass}>
+                <Link href={`/products/${p.id}`} replace={replace} onClick={follow} data-option className={rowClass}>
                   <span className="line-clamp-2 flex-1 text-[13.5px] leading-normal max-lg:text-sm">
                     <Highlight text={p.name} query={q} />
                   </span>
@@ -260,7 +319,7 @@ export function SearchOverlay({ open, onClose, variant, query: externalQuery }: 
           <ul>
             {suggestions.articles.map(a => (
               <li key={a.slug}>
-                <Link href={`/guides/${a.slug}`} onClick={follow} className={rowClass}>
+                <Link href={`/guides/${a.slug}`} replace={replace} onClick={follow} data-option className={rowClass}>
                   <span className="flex-1 text-[13.5px] leading-normal max-lg:text-sm">
                     <Highlight text={a.title} query={q} />
                   </span>
@@ -275,9 +334,10 @@ export function SearchOverlay({ open, onClose, variant, query: externalQuery }: 
         <button
           type="button"
           onClick={() => search(q)}
+          data-option
           className={
             variant === 'dropdown'
-              ? 'border-b border-ink pb-px text-[13px] text-ink hover:text-gold-dark'
+              ? 'border-b border-ink pb-px text-[13px] text-ink outline-none hover:text-gold-dark focus-visible:bg-paper-deep'
               : 'flex h-[50px] w-full items-center justify-center bg-sumi px-4 text-sm tracking-[0.08em] text-paper'
           }
         >
@@ -295,10 +355,10 @@ export function SearchOverlay({ open, onClose, variant, query: externalQuery }: 
           <ul className="mt-2 border-t border-line">
             {recent.map(term => (
               <li key={term} className="flex items-center border-b border-paper-deep">
-                <button type="button" onClick={() => search(term)} className="flex-1 py-[13px] text-left text-sm text-ink hover:text-gold-dark">
+                <button type="button" onClick={() => search(term)} data-option className="min-h-11 flex-1 py-[11px] text-left text-sm text-ink outline-none hover:text-gold-dark focus-visible:bg-paper-deep">
                   {term}
                 </button>
-                <button type="button" onClick={() => removeRecent(term)} aria-label={`${term}を履歴から削除`} className="-mr-2 px-2 py-2 text-ink-muted hover:text-ink">
+                <button type="button" onClick={() => removeRecent(term)} aria-label={`${term}を履歴から削除`} className="-mr-3 flex h-11 w-11 shrink-0 items-center justify-center text-ink-muted hover:text-ink">
                   ×
                 </button>
               </li>
@@ -312,7 +372,7 @@ export function SearchOverlay({ open, onClose, variant, query: externalQuery }: 
           <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-3">
             {featured.map(s => (
               <li key={s.slug}>
-                <Link href={`/products/category/${s.slug}`} onClick={onClose} className="font-mincho text-[17px] font-bold tracking-[0.04em] text-ink hover:text-gold-dark">
+                <Link href={`/products/category/${s.slug}`} replace={replace} onClick={onClose} data-option className="font-mincho text-[17px] font-bold tracking-[0.04em] text-ink hover:text-gold-dark">
                   {s.name}
                 </Link>
               </li>
@@ -325,7 +385,7 @@ export function SearchOverlay({ open, onClose, variant, query: externalQuery }: 
         <ul className="mt-2 border-t border-line">
           {PURPOSES.map(p => (
             <li key={p.href}>
-              <Link href={p.href} onClick={onClose} className="flex items-center justify-between border-b border-paper-deep py-[13px] text-sm text-ink hover:text-gold-dark">
+              <Link href={p.href} replace={replace} onClick={onClose} data-option className="flex items-center justify-between border-b border-paper-deep py-[13px] text-sm text-ink outline-none hover:text-gold-dark focus-visible:bg-paper-deep">
                 {p.label}
                 <span className="text-xs text-ink-muted" aria-hidden="true">›</span>
               </Link>
@@ -346,7 +406,7 @@ export function SearchOverlay({ open, onClose, variant, query: externalQuery }: 
         <div
           ref={panelRef}
           role="region"
-          aria-label="検索候補"
+          aria-label="検索候補（↑↓キーで移動）"
           className="absolute left-0 top-full z-10 mt-[11px] max-h-[calc(100vh-88px)] w-[510px] overflow-y-auto border border-line bg-white px-6 pb-[18px] pt-2 text-ink shadow-[0_18px_40px_rgba(34,32,28,0.1)]"
         >
           <div className={q ? '' : 'py-3'}>{body}</div>
@@ -356,10 +416,17 @@ export function SearchOverlay({ open, onClose, variant, query: externalQuery }: 
   }
 
   return (
-    <div className="fixed inset-0 z-[60] flex flex-col bg-paper text-ink" role="dialog" aria-modal="true" aria-label="検索">
+    <div
+      ref={dialogRef}
+      className="fixed inset-0 z-[60] flex flex-col bg-paper text-ink"
+      role="dialog"
+      aria-modal="true"
+      aria-label="検索"
+      onKeyDown={e => moveFocus(e, panelRef.current, inputRef.current)}
+    >
       <form
         role="search"
-        className="flex h-14 shrink-0 items-center gap-3 bg-navy pl-5 pr-4 text-white"
+        className="flex h-14 shrink-0 items-center gap-1 bg-navy pl-5 pr-2 text-white"
         onSubmit={e => {
           e.preventDefault()
           search(ownQuery)
@@ -373,11 +440,11 @@ export function SearchOverlay({ open, onClose, variant, query: externalQuery }: 
           placeholder="樹種・商品名・記事を検索"
           aria-label="サイト内を検索"
           enterKeyHint="search"
-          className="h-9 min-w-0 flex-1 rounded-none border-b border-white/50 bg-transparent text-[15px] text-white outline-none placeholder:text-white/60 focus:border-white"
+          className="h-11 min-w-0 flex-1 rounded-none border-b border-white/50 bg-transparent text-[15px] text-white outline-none placeholder:text-white/60 focus:border-white"
         />
-        <button type="button" onClick={onClose} className="shrink-0 text-[13px] text-white">閉じる</button>
+        <button type="button" onClick={closeSheet} className="flex h-11 min-w-11 shrink-0 items-center justify-center px-3 text-[13px] text-white">閉じる</button>
       </form>
-      <div className={`flex-1 overflow-y-auto px-5 ${q ? 'py-1.5' : 'py-5'}`}>{body}</div>
+      <div ref={panelRef} className={`flex-1 overflow-y-auto px-5 ${q ? 'py-1.5' : 'py-5'}`}>{body}</div>
     </div>
   )
 }

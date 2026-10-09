@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
-import { useCallback, useState } from 'react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useFavorites } from '@/lib/favorites'
 import { NAV_ITEMS, SHOP_NAV, isNavActive } from './SiteNav'
 import { SearchOverlay } from './SearchOverlay'
@@ -16,6 +16,16 @@ function Logo() {
   )
 }
 
+// ページを移動したら、PCの検索欄を今の URL の ?q= に合わせる
+// useSearchParams は Suspense の中で使う（ほかのページの静的な表示を保つため）
+function QuerySync({ onChange }: { onChange: (q: string) => void }) {
+  const q = useSearchParams()?.get('q') ?? ''
+  useEffect(() => {
+    onChange(q)
+  }, [q, onChange])
+  return null
+}
+
 export function Header() {
   const pathname = usePathname() || '/'
   const router = useRouter()
@@ -25,6 +35,10 @@ export function Header() {
   const [query, setQuery] = useState('')
   const closePc = useCallback(() => setPcOpen(false), [])
   const closeSp = useCallback(() => setSpOpen(false), [])
+  const spTriggerRef = useRef<HTMLButtonElement>(null)
+  const pathnameRef = useRef(pathname)
+  pathnameRef.current = pathname
+  const syncQuery = useCallback((q: string) => setQuery(pathnameRef.current.startsWith('/products') ? q : ''), [])
   const shopActive = isNavActive(pathname, SHOP_NAV.match)
   const favActive = pathname === '/favorites'
 
@@ -91,12 +105,36 @@ export function Header() {
           </Link>
         </nav>
 
-        {/* スマホ：検索画面を開く */}
-        <button type="button" onClick={() => setSpOpen(true)} className="ml-auto text-[13px] text-white lg:hidden">
-          検索
-        </button>
+        {/* スマホ：気になる・検索（押しやすいよう 44px 四方以上） */}
+        <div className="-mr-2 ml-auto flex items-center lg:hidden">
+          <Link
+            href="/favorites"
+            aria-current={favActive ? 'page' : undefined}
+            className={`flex h-11 min-w-11 items-center justify-center gap-1 px-2 text-[13px] ${favActive ? 'font-bold text-white hover:text-white' : 'text-white/90 hover:text-white'}`}
+          >
+            気になる
+            {favorites.length > 0 && (
+              <span className="flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-white px-1 text-[10.5px] font-normal text-navy">
+                {favorites.length}<span className="sr-only">件</span>
+              </span>
+            )}
+          </Link>
+          <button
+            ref={spTriggerRef}
+            type="button"
+            onClick={() => setSpOpen(true)}
+            aria-haspopup="dialog"
+            aria-expanded={spOpen}
+            className="flex h-11 min-w-11 items-center justify-center px-2 text-[13px] text-white"
+          >
+            検索
+          </button>
+        </div>
       </div>
-      <SearchOverlay open={spOpen} onClose={closeSp} variant="sheet" />
+      <Suspense fallback={null}>
+        <QuerySync onChange={syncQuery} />
+      </Suspense>
+      <SearchOverlay open={spOpen} onClose={closeSp} variant="sheet" triggerRef={spTriggerRef} />
     </header>
   )
 }

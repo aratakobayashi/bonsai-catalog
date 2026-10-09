@@ -2,36 +2,33 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import {
+  categoryFilters,
   filterProducts,
   getCatalogProducts,
   hasActiveFilters,
+  nonEmptyCategorySlugs,
+  optionCounts,
   paginate,
   parseFilters,
-  type CatalogFilters,
+  type CatalogProduct,
 } from '@/lib/catalog'
-import { SHOP_CATEGORIES, getShopCategory, type ShopCategory } from '@/lib/shop-categories'
+import { SHOP_CATEGORIES, getShopCategory } from '@/lib/shop-categories'
 import { SITE_URL } from '@/lib/site'
 import { formatPrice } from '@/lib/utils'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
-import { CatalogBrowser } from '@/components/catalog/CatalogBrowser'
-import { currentSeason } from '@/components/catalog/CatalogProductCard'
+import { CatalogBrowser, buildCatalogTabs } from '@/components/catalog/CatalogBrowser'
+import { CatalogEmptyState } from '@/components/catalog/CatalogFilters'
+import { CatalogLoadError } from '@/components/catalog/CatalogLoadError'
 import { ChipLink } from '@/components/ui/design'
 import { selectionsForCategory } from '@/lib/selections'
-import { buildSpeciesTabs, conditionLabels, speciesTraitOf } from '@/lib/catalog-menus'
+import { conditionLabels, speciesTraitOf } from '@/lib/catalog-menus'
 import { getCareGuide } from '@/lib/care-guides'
-import { ENJOY_OPTIONS, LEVEL_OPTIONS, PLACE_OPTIONS, SEASON_OPTIONS, type Season, type SpeciesTrait } from '@/lib/species-traits'
+import { isInSeasonNow, jstMonth, peakLabel, peakMonths } from '@/lib/seasons'
+import { ENJOY_OPTIONS, LEVEL_OPTIONS, PLACE_OPTIONS, type SpeciesTrait } from '@/lib/species-traits'
 
 interface CategoryPageProps {
   params: { slug: string }
   searchParams: Record<string, string | string[] | undefined>
-}
-
-const PART_TYPE_BY_SLUG: Record<string, string> = {
-  hachi: 'pot',
-  tsuchi: 'soil',
-  dougu: 'tool',
-  harigane: 'wire',
-  hiryo: 'fertilizer',
 }
 
 const TREE_GROUP_BY_SLUG: Record<string, string> = {
@@ -41,24 +38,22 @@ const TREE_GROUP_BY_SLUG: Record<string, string> = {
   nanten: '実もの', himeringo: '実もの', mimono: '実もの',
 }
 
-const SEASON_MONTHS: Record<Season, number[]> = { spring: [3, 4, 5], summer: [6, 7, 8], autumn: [9, 10, 11], winter: [12, 1, 2] }
-
-// 樹種の性質の表（育てやすさ・置き場所・見頃・水やり）と、12か月の見頃の帯
-function SpeciesTraits({ trait, group }: { trait: SpeciesTrait; group: string | null }) {
-  const label = (options: { value: string; label: string }[], value: string) => options.find(o => o.value === value)?.label
-  const seasons = trait.seasons.map(v => label(SEASON_OPTIONS, v)).join('・')
+// 樹種の性質の表（育てやすさ・置き場所・見頃・水やり）と、12か月の見頃の帯（見頃は seasons.ts の月単位の目安）
+function SpeciesTraits({ slug, trait, group }: { slug: string; trait: SpeciesTrait; group: string | null }) {
+  const label = (options: readonly { value: string; label: string }[], value: string) => options.find(o => o.value === value)?.label
   const enjoy = trait.enjoy.map(v => label(ENJOY_OPTIONS, v)).filter(Boolean).join('・')
+  const peak = peakLabel(slug)
   // 水やりは分類ごとの育て方の目安（商品ページと同じ文章）から
   const water = group ? getCareGuide('tree', group)?.items.find(i => i.label === '水やり')?.text : undefined
   const facts = [
     { k: '育てやすさ', v: label(LEVEL_OPTIONS, trait.level) },
     { k: '置き場所', v: label(PLACE_OPTIONS, trait.place) },
-    { k: '見頃', v: seasons ? `${seasons}${enjoy ? `（${enjoy}）` : ''}` : enjoy || undefined },
+    { k: '見頃', v: peak ?? (enjoy || undefined) },
     { k: '水やり', v: water },
   ].filter((f): f is { k: string; v: string } => Boolean(f.v))
-  const months = trait.seasons.flatMap(v => SEASON_MONTHS[v])
-  const nowMonth = new Date(Date.now() + 9 * 3600 * 1000).getUTCMonth() + 1
-  const inSeason = trait.seasons.includes(currentSeason())
+  const months = peakMonths(slug)
+  const nowMonth = jstMonth()
+  const inSeason = isInSeasonNow(slug)
 
   return (
     <div className="text-[12.5px]">
@@ -91,20 +86,15 @@ function SpeciesTraits({ trait, group }: { trait: SpeciesTrait; group: string | 
 }
 
 // カテゴリの条件（樹種・種類）は固定し、並び順・ページ・予算などは URL の条件を使う
-function categoryFilters(category: ShopCategory, searchParams: CategoryPageProps['searchParams']): CatalogFilters {
-  const base = parseFilters(searchParams)
-  return category.group === 'part'
-    ? { ...base, species: undefined, type: PART_TYPE_BY_SLUG[category.slug] }
-    : { ...base, species: category.slug, type: category.slug === 'kokedama' ? 'kokedama' : 'tree' }
-}
+const filtersFor = (slug: string, searchParams: CategoryPageProps['searchParams']) => categoryFilters(slug, parseFilters(searchParams))
 
 export function generateMetadata({ params, searchParams }: CategoryPageProps): Metadata {
   const category = getShopCategory(params.slug)
   if (!category) return {}
-  const extra = hasActiveFilters(categoryFilters(category, searchParams)) && Object.keys(searchParams).length > 0
+  const extra = hasActiveFilters(filtersFor(category.slug, searchParams)) && Object.keys(searchParams).length > 0
   return {
     title: `${category.name}の通販・価格比較｜楽天市場・Amazonの人気商品 - 盆栽コレクション`,
-    description: `${category.name}を楽天市場とAmazonの商品から比較。価格帯・送料無料・レビュー件数で選べます。${category.intro}`.slice(0, 160),
+    description: `${category.name}を楽天市場とAmazonの商品から比較。価格帯・送料込・レビュー件数で選べます。${category.intro}`.slice(0, 160),
     alternates: { canonical: `/products/category/${category.slug}` },
     // 並び替え・ページ送りなどの URL は検索結果に出さない
     ...(extra && { robots: { index: false, follow: true } }),
@@ -116,14 +106,23 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   if (!category) notFound()
 
   const basePath = `/products/category/${category.slug}`
-  const filters = categoryFilters(category, searchParams)
-  const all = await getCatalogProducts()
+  const filters = filtersFor(category.slug, searchParams)
+  // 一時的な取得の失敗で例外を投げると、エラーのページが ISR に残るため、案内のページを出す
+  let all: CatalogProduct[]
+  try {
+    all = await getCatalogProducts()
+  } catch (error) {
+    console.error(`カテゴリ（${category.slug}）の商品データの取得に失敗しました:`, error instanceof Error ? error.message : error)
+    return <CatalogLoadError title={category.name} retryHref={basePath} />
+  }
   const products = filterProducts(all, filters)
   const { items, page, totalPages, total } = paginate(products, filters.page)
   const prices = products.map(p => p.price).sort((a, b) => a - b)
   const median = prices.length ? prices[Math.floor(prices.length / 2)] : null
   const pageUrl = `${SITE_URL}${basePath}`
-  const related = SHOP_CATEGORIES.filter(other => other.slug !== category.slug)
+  // 商品が1件以上あるカテゴリだけ
+  const nonEmpty = nonEmptyCategorySlugs(all)
+  const related = SHOP_CATEGORIES.filter(other => other.slug !== category.slug && nonEmpty.has(other.slug))
   const group = TREE_GROUP_BY_SLUG[category.slug] ?? (category.group === 'part' ? '鉢・土・道具' : null)
   const title = category.group === 'part' || category.slug === 'kokedama' || category.slug.endsWith('mono') || category.slug === 'mini' ? category.name : `${category.name}の盆栽`
   const selectedId = typeof searchParams.p === 'string' ? searchParams.p : undefined
@@ -169,10 +168,10 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           </div>
         )}
       </div>
-      {trait && <SpeciesTraits trait={trait} group={TREE_GROUP_BY_SLUG[category.slug] ?? null} />}
+      {trait && <SpeciesTraits slug={category.slug} trait={trait} group={TREE_GROUP_BY_SLUG[category.slug] ?? null} />}
     </div>
   )
-  const speciesTabs = buildSpeciesTabs(all, filters, category.slug)
+  const speciesTabs = buildCatalogTabs(all, filters, category.slug)
 
   return (
     <>
@@ -193,12 +192,12 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         selectedId={selectedId}
         basePath={basePath}
         speciesTabs={speciesTabs}
+        counts={optionCounts(all)}
         fixedCategory
-        menuBasePath="/products"
         intro={intro}
         activeCount={conditionLabels(filters, true).length}
-        emptyState={<p className="font-mincho text-base font-bold text-ink-soft">現在、掲載中の商品はありません。</p>}
-        footer={
+        emptyState={total === 0 ? <CatalogEmptyState products={all} filters={filters} basePath={basePath} category={{ slug: category.slug, name: category.name }} /> : null}
+        footer={related.length > 0 && (
           <section>
             <h2 className="font-mincho text-lg font-bold tracking-[0.06em] text-ink">ほかのカテゴリ</h2>
             <div className="mt-3 flex flex-wrap gap-2">
@@ -207,7 +206,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               ))}
             </div>
           </section>
-        }
+        )}
       />
     </>
   )

@@ -1,17 +1,80 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import { PAGE_SIZE, buildCatalogUrl, type CatalogFilters } from '@/lib/catalog'
-import { buildFilterMenus, conditionLabels, type SpeciesTab } from '@/lib/catalog-menus'
+import {
+  CATEGORY_PART_TYPES,
+  KEYWORD_MAX_LENGTH,
+  PAGE_SIZE,
+  buildCatalogUrl,
+  filterProducts,
+  type CatalogFilters,
+} from '@/lib/catalog'
+import { buildFilterMenus, buildSpeciesTabs, conditionLabels, type SpeciesTab } from '@/lib/catalog-menus'
 import type { CatalogProduct } from '@/lib/catalog-model'
+import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { CatalogProductCard } from './CatalogProductCard'
-import { CatalogFiltersForm, CatalogPagination } from './CatalogFilters'
+import { CatalogPagination } from './CatalogFilters'
 import { CompareBar } from './CompareBar'
-import { FilterBar, ListSelectArea, SortSelect } from './FilterBar'
+import { FilterBar, ListSelectArea, SortSelect, type KeywordFormTarget } from './FilterBar'
 import { ProductImage, ProductInfo } from './ProductDetailPanel'
 
 function withSelected(url: string, id: string) {
   return `${url}${url.includes('?') ? '&' : '?'}p=${id}`
+}
+
+export interface CatalogTabs {
+  all: SpeciesTab
+  tabs: SpeciesTab[]
+  // タブの列の名前（読み上げ用）
+  label: string
+}
+
+const PART_TYPE_VALUES = Object.values(CATEGORY_PART_TYPES) as string[]
+const isPartType = (type?: string) => type === 'parts' || (type !== undefined && PART_TYPE_VALUES.includes(type))
+
+// 一覧の上のタブ。樹木・苔玉（または種類の指定なし）は樹種のタブ、鉢・土・道具を見ているときはそのカテゴリのタブにする
+// activeSlug：カテゴリページの slug。knownAllCount：「すべて」の件数が一覧の件数と同じときに渡す
+export function buildCatalogTabs(products: CatalogProduct[], filters: CatalogFilters, activeSlug?: string, knownAllCount?: number): CatalogTabs {
+  const activePart = activeSlug ? CATEGORY_PART_TYPES[activeSlug] : undefined
+  if (!activePart && !isPartType(filters.type)) {
+    const species = buildSpeciesTabs(products, filters, activeSlug, knownAllCount)
+    // 種子など、樹種で分けられない種類のときは樹種のタブを出さない
+    return { ...species, tabs: filters.type && !['tree', 'kokedama'].includes(filters.type) ? [] : species.tabs, label: '樹種' }
+  }
+  const base: CatalogFilters = { ...filters, species: undefined, page: 1 }
+  const linkFilters: CatalogFilters = { ...base, type: undefined }
+  const count = (type: string) => filterProducts(products, { ...base, type }).length
+  const parts: SpeciesTab = {
+    key: 'parts',
+    label: '鉢・土・道具',
+    href: buildCatalogUrl(linkFilters, { type: 'parts' }, '/products'),
+    count: count('parts'),
+    active: !activeSlug && filters.type === 'parts',
+    inSeason: false,
+  }
+  const categoryTabs: SpeciesTab[] = SHOP_CATEGORIES.filter(c => CATEGORY_PART_TYPES[c.slug]).map(c => {
+    const type = CATEGORY_PART_TYPES[c.slug]
+    return {
+      key: c.slug,
+      label: c.name.replace(/^盆栽(用)?の?/, '').replace(/（.*）/, '') || c.name,
+      href: buildCatalogUrl(linkFilters, {}, `/products/category/${c.slug}`),
+      count: count(type),
+      active: activeSlug ? c.slug === activeSlug : filters.type === type,
+      inSeason: false,
+    }
+  })
+  return {
+    all: {
+      key: 'all',
+      label: 'すべて',
+      href: buildCatalogUrl(linkFilters, {}, '/products'),
+      count: filterProducts(products, linkFilters).length,
+      active: false,
+      inSeason: false,
+    },
+    tabs: [parts, ...categoryTabs].filter(t => t.count > 0 || t.active),
+    label: '鉢・土・道具',
+  }
 }
 
 interface CatalogBrowserProps {
@@ -22,24 +85,24 @@ interface CatalogBrowserProps {
   totalPages: number
   selectedId?: string
   basePath?: string
-  // 樹種のタブ（buildSpeciesTabs の結果）
-  speciesTabs: { all: SpeciesTab; tabs: SpeciesTab[] }
+  // 一覧の上のタブ（buildCatalogTabs の結果）
+  speciesTabs: CatalogTabs
+  // 種類・樹種ごとの件数（catalog.ts の optionCounts）。0件の選択肢を条件から外す
+  counts?: { type: Record<string, number>; species: Record<string, number> }
   // カテゴリページ（樹種・種類が固定）のとき true
   fixedCategory?: boolean
   // 一覧の上に出す説明（カテゴリページの樹種の説明など）
   intro?: ReactNode
   emptyState?: ReactNode
   activeCount: number
-  // 詳しい条件のフォームの送信先（カテゴリページでは全商品の一覧で探す）
-  menuBasePath?: string
   footer?: ReactNode
 }
 
 // 商品一覧の画面（PCは左に商品のグリッド・右に詳細、スマホは2列のカード）
-export function CatalogBrowser({ filters, items, total, page, totalPages, selectedId, basePath = '/products', speciesTabs, fixedCategory = false, intro, emptyState, activeCount, menuBasePath, footer }: CatalogBrowserProps) {
+export function CatalogBrowser({ filters, items, total, page, totalPages, selectedId, basePath = '/products', speciesTabs, counts, fixedCategory = false, intro, emptyState, activeCount, footer }: CatalogBrowserProps) {
   // カテゴリページの条件・並び順はカテゴリのURLのまま切り替える（樹種・種類はページ側で固定するのでURLに入れない）
   const urlFilters: CatalogFilters = fixedCategory ? { ...filters, species: undefined, type: undefined } : filters
-  const { menus, sort } = buildFilterMenus(urlFilters, fixedCategory ? basePath : menuBasePath ?? basePath)
+  const { menus, sort } = buildFilterMenus(urlFilters, basePath, counts)
   // 樹種はタブで選ぶので、条件のパネルからは除く（カテゴリページでは種類も固定）
   const panelMenus = menus.flatMap(menu => {
     if (menu.key !== 'species') return [menu]
@@ -49,21 +112,32 @@ export function CatalogBrowser({ filters, items, total, page, totalPages, select
   const conditions = conditionLabels(filters, fixedCategory)
   const listUrl = buildCatalogUrl(urlFilters, { page }, basePath)
   const selected = items.find(p => p.id === selectedId) ?? items[0]
+  // キーワード・価格の入力欄：今のページ（カテゴリページはカテゴリの URL）に、ほかの条件を保ったまま送る
+  const keepUrl = buildCatalogUrl({ ...urlFilters, q: undefined, min: undefined, max: undefined }, {}, basePath)
+  const keywordForm: KeywordFormTarget = {
+    action: basePath,
+    params: Array.from(new URLSearchParams(keepUrl.split('?')[1] ?? '').entries()),
+    q: filters.q,
+    min: filters.min,
+    max: filters.max,
+    maxLength: KEYWORD_MAX_LENGTH,
+  }
 
   return (
     <>
       <FilterBar
         allTab={speciesTabs.all}
         tabs={speciesTabs.tabs}
+        tabsLabel={speciesTabs.label}
         menus={panelMenus}
         sort={sort}
         conditions={conditions}
         activeCount={activeCount}
         total={total}
         clearHref={basePath}
-      >
-        <CatalogFiltersForm filters={filters} basePath={menuBasePath ?? basePath} />
-      </FilterBar>
+        keywordForm={keywordForm}
+        currentUrl={listUrl}
+      />
 
       {/* PC：左の一覧と右の詳細を、それぞれ独立してスクロールできるようにする（高さは画面からヘッダー56px・樹種のタブ56px＋線1pxを除いた分） */}
       <div className="mx-auto max-w-[1280px] lg:grid lg:h-[calc(100vh-113px)] lg:grid-cols-[minmax(0,1fr)_380px] xl:grid-cols-[minmax(0,1fr)_420px]">
@@ -103,7 +177,7 @@ export function CatalogBrowser({ filters, items, total, page, totalPages, select
                 href={buildCatalogUrl(urlFilters, { page: page + 1 }, basePath)}
                 className="mt-10 flex h-12 items-center justify-center border border-ink text-sm tracking-[0.06em] text-ink hover:bg-white hover:text-ink"
               >
-                次の{Math.min(PAGE_SIZE, total - page * PAGE_SIZE)}件を見る
+                次のページ（{Math.min(PAGE_SIZE, total - page * PAGE_SIZE)}件）
               </Link>
             )}
             <CatalogPagination filters={urlFilters} page={page} totalPages={totalPages} basePath={basePath} />

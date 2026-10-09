@@ -1,161 +1,147 @@
 import Link from 'next/link'
 import {
   ENJOY_OPTIONS,
-  FLAG_OPTIONS,
   LEVEL_OPTIONS,
   PLACE_OPTIONS,
   SEASON_OPTIONS,
   USE_OPTIONS,
-  PRICE_PRESETS,
   SIZE_OPTIONS,
-  SORT_OPTIONS,
   SPECIES_OPTIONS,
   TYPE_OPTIONS,
   buildCatalogUrl,
+  categoryCounts,
+  relaxSuggestions,
   type CatalogFilters,
+  type CatalogProduct,
+  type FilterKey,
 } from '@/lib/catalog'
+import { conditionLabels } from '@/lib/catalog-menus'
+import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 
-const selectClass = 'mt-1 h-11 w-full border border-line bg-white px-2 text-sm text-ink'
-const labelClass = 'text-[11.5px] tracking-[0.06em] text-ink-muted'
+const labelOf = (options: readonly { value: string; label: string }[], value: string | undefined) =>
+  options.find(o => o.value === value)?.label ?? ''
 
-// JavaScript なしで動く絞り込みフォーム（GET 送信で URL に条件が入る）
-export function CatalogFiltersForm({ filters, basePath = '/products' }: { filters: CatalogFilters; basePath?: string }) {
+// 0件のときの案内文（「○○」を外すと N件）に使う、条件の名前
+function filterKeyLabel(filters: CatalogFilters, key: FilterKey): string {
+  switch (key) {
+    case 'q': return `キーワード「${filters.q}」`
+    case 'type': return `種類「${labelOf(TYPE_OPTIONS, filters.type)}」`
+    case 'species': return `樹種「${labelOf(SPECIES_OPTIONS, filters.species)}」`
+    case 'size': return `サイズ「${labelOf(SIZE_OPTIONS, filters.size)}」`
+    case 'shop': return 'ショップの指定'
+    case 'price': return '価格の指定'
+    case 'place': return `「${labelOf(PLACE_OPTIONS, filters.place)}」`
+    case 'enjoy': return `「${labelOf(ENJOY_OPTIONS, filters.enjoy)}」`
+    case 'season': return `見ごろ「${labelOf(SEASON_OPTIONS, filters.season)}」`
+    case 'level': return `「${labelOf(LEVEL_OPTIONS, filters.level)}」`
+    case 'use': return `用途「${labelOf(USE_OPTIONS, filters.use)}」`
+    case 'flags': return 'こだわり条件'
+  }
+}
+
+// 商品の多い樹種（0件のときの案内に出す。件数は実際の掲載数）
+const SPECIES_LINK_EXCLUDE = ['mini', 'mimono', 'kokedama']
+function topSpecies(products: CatalogProduct[], exclude?: string, limit = 6) {
+  const counts = categoryCounts(products)
+  return SHOP_CATEGORIES
+    .filter(c => c.group === 'tree' && !SPECIES_LINK_EXCLUDE.includes(c.slug) && c.slug !== exclude && (counts[c.slug] ?? 0) > 0)
+    .sort((a, b) => (counts[b.slug] ?? 0) - (counts[a.slug] ?? 0))
+    .slice(0, limit)
+    .map(c => ({ slug: c.slug, name: c.name, count: counts[c.slug] ?? 0 }))
+}
+
+// 一覧が0件のときの案内（/products とカテゴリページで共通）
+// category：カテゴリページのとき（樹種・種類はページ側で固定。URL には入れない）
+export function CatalogEmptyState({
+  products,
+  filters,
+  basePath = '/products',
+  category,
+}: {
+  products: CatalogProduct[]
+  filters: CatalogFilters
+  basePath?: string
+  category?: { slug: string; name: string }
+}) {
+  const fixed = Boolean(category)
+  const conditions = conditionLabels(filters, fixed)
+  const hasConditions = conditions.length > 0
+  const keywordOnly = Boolean(filters.q) && !hasConditions
+  const species = topSpecies(products, category?.slug)
+
+  // 条件を何も指定していないのに0件（掲載中の商品がないカテゴリ）
+  if (!filters.q && !hasConditions) {
+    return (
+      <div className="text-ink-soft">
+        <p className="mb-4 font-mincho text-base font-bold text-ink">現在、掲載中の商品はありません。</p>
+        <SpeciesLinks species={species} />
+        <p className="mt-4 text-sm"><Link href="/products" className="border-b border-ink pb-0.5 text-ink">すべての商品を見る</Link></p>
+      </div>
+    )
+  }
+
+  // キーワードだけのときは「キーワードを外す」と同じになるので、外す案は出さない
+  const suggestions = keywordOnly ? [] : relaxSuggestions(products, filters)
+  // カテゴリページで、固定している樹種・種類を外す案は全商品の一覧へ
+  const suggestionHref = (key: FilterKey, relaxed: CatalogFilters) =>
+    fixed && (key === 'species' || key === 'type')
+      ? buildCatalogUrl(relaxed, {}, '/products')
+      : buildCatalogUrl(fixed ? { ...relaxed, species: undefined, type: undefined } : relaxed, {}, basePath)
+  const where = category ? `${category.name}の中に、` : ''
+
   return (
-    <form action={basePath} className="space-y-5">
-      <div>
-        <label className={labelClass} htmlFor="catalog-q">キーワード</label>
-        <input
-          id="catalog-q"
-          type="search"
-          name="q"
-          defaultValue={filters.q}
-          placeholder="例：五葉松 ミニ、信楽焼 鉢"
-          className="mt-1 h-11 w-full border border-line bg-white px-3 text-sm"
-        />
-      </div>
-
-      <fieldset>
-        <legend className={labelClass}>目的から選ぶ</legend>
-        <div className="mt-1 grid grid-cols-2 gap-3">
-          <OptionSelect label="置き場所" name="place" value={filters.place} options={PLACE_OPTIONS} />
-          <OptionSelect label="楽しみ方" name="enjoy" value={filters.enjoy} options={ENJOY_OPTIONS} />
-          <OptionSelect label="見ごろの季節" name="season" value={filters.season} options={SEASON_OPTIONS} />
-          <OptionSelect label="育てやすさ" name="level" value={filters.level} options={LEVEL_OPTIONS} />
-          <OptionSelect label="用途" name="use" value={filters.use} options={USE_OPTIONS} />
-        </div>
-        <p className="mt-2 text-[11px] text-ink-muted">
-          置き場所・楽しみ方・見ごろ・育てやすさは、樹種ごとの一般的な目安と販売店の表記をもとに判定しています。松やもみじなど多くの盆栽は屋外向きです。
+    <div className="text-ink-soft">
+      {keywordOnly ? (
+        <>
+          <p className="mb-2 font-mincho text-base font-bold text-ink">{where}「{filters.q}」に一致する商品は見つかりませんでした。</p>
+          <p className="mb-4 text-sm leading-relaxed">言葉を短くする、ひらがな・カタカナに言い換える、樹種の名前で探すと見つかることがあります。</p>
+        </>
+      ) : (
+        <p className="mb-4 font-mincho text-base font-bold text-ink">
+          {where}{filters.q ? `「${filters.q}」と条件に合う商品はありません。` : '条件に合う商品はありません。'}「条件」から一つ外してみてください。
         </p>
-      </fieldset>
-
-      <div className="grid grid-cols-2 gap-3">
-        <label className="block">
-          <span className={labelClass}>種類</span>
-          <select name="type" defaultValue={filters.type ?? ''} className={selectClass}>
-            <option value="">すべて</option>
-            {TYPE_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-          </select>
-        </label>
-        <label className="block">
-          <span className={labelClass}>樹種・分類</span>
-          <select name="species" defaultValue={filters.species ?? ''} className={selectClass}>
-            <option value="">すべて</option>
-            {SPECIES_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-          </select>
-        </label>
-        <label className="block">
-          <span className={labelClass}>サイズ</span>
-          <select name="size" defaultValue={filters.size ?? ''} className={selectClass}>
-            <option value="">すべて</option>
-            {SIZE_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-          </select>
-        </label>
-        <label className="block">
-          <span className={labelClass}>ショップ</span>
-          <select name="shop" defaultValue={filters.shop ?? ''} className={selectClass}>
-            <option value="">すべて</option>
-            <option value="rakuten">楽天市場</option>
-            <option value="amazon">Amazon</option>
-          </select>
-        </label>
-        <label className="block">
-          <span className={labelClass}>価格（下限・円）</span>
-          <input type="number" name="min" min={0} step={100} defaultValue={filters.min} className={selectClass} />
-        </label>
-        <label className="block">
-          <span className={labelClass}>価格（上限・円）</span>
-          <input type="number" name="max" min={0} step={100} defaultValue={filters.max} className={selectClass} />
-        </label>
-      </div>
-
-      <fieldset>
-        <legend className={labelClass}>こだわり条件（販売店の表記より）</legend>
-        <div className="mt-2 grid grid-cols-2 gap-2">
-          {FLAG_OPTIONS.map(o => (
-            <label key={o.value} className="flex min-h-[36px] items-center gap-2 text-sm text-ink">
-              <input type="checkbox" name="flag" value={o.value} defaultChecked={filters.flags.includes(o.value)} />
-              {o.label}
-            </label>
-          ))}
-        </div>
-        <p className="mt-2 text-[11px] text-ink-muted">
-          販売店の商品名に記載がある商品です。実際の条件は各商品ページでご確認ください。
-        </p>
-      </fieldset>
-
-      <label className="block">
-        <span className={labelClass}>並び順</span>
-        <select name="sort" defaultValue={filters.sort} className={selectClass}>
-          {SORT_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-        </select>
-      </label>
-
-      <div className="flex gap-2">
-        <button type="submit" className="h-12 flex-1 bg-sumi text-sm tracking-[0.06em] text-white hover:bg-sumi-light">
-          この条件で探す
-        </button>
-        <Link href={basePath} className="flex h-12 items-center border border-line px-4 text-sm text-ink-soft hover:border-ink">
-          クリア
-        </Link>
-      </div>
-
-      <div>
-        <p className={labelClass}>価格帯から選ぶ</p>
-        <div className="mt-2 flex flex-wrap gap-2">
-          {PRICE_PRESETS.map(preset => (
-            <Link
-              key={preset.label}
-              href={buildCatalogUrl(filters, { min: preset.min, max: preset.max }, basePath)}
-              className="border border-line bg-white px-3 py-1.5 text-xs text-ink hover:border-ink"
-            >
-              {preset.label}
-            </Link>
-          ))}
-        </div>
-      </div>
-    </form>
+      )}
+      {suggestions.length > 0 && (
+        <>
+          <p className="mb-2 text-sm">条件を1つ外すと、次の商品が見つかります。</p>
+          <ul className="mb-5 space-y-2.5 text-sm">
+            {suggestions.map(suggestion => (
+              <li key={suggestion.key}>
+                <Link href={suggestionHref(suggestion.key, suggestion.filters)} className="border-b border-ink pb-0.5 text-ink">
+                  {filterKeyLabel(filters, suggestion.key)}を外す（{suggestion.count.toLocaleString()}件）
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      <Link href={basePath} className="text-sm text-ink-muted underline">
+        {keywordOnly ? 'キーワードをクリアする' : '条件をすべてクリアする'}
+      </Link>
+      <SpeciesLinks species={species} />
+      <p className="mt-5 text-sm">
+        <Link href="/shindan" className="border-b border-ink pb-0.5 text-ink">何を選べばよいか迷ったら、かんたん盆栽診断（4つの質問）</Link>
+      </p>
+    </div>
   )
 }
 
-function OptionSelect({
-  label,
-  name,
-  value,
-  options,
-}: {
-  label: string
-  name: string
-  value: string | undefined
-  options: readonly { value: string; label: string }[]
-}) {
+function SpeciesLinks({ species }: { species: { slug: string; name: string; count: number }[] }) {
+  if (species.length === 0) return null
   return (
-    <label className="block">
-      <span className={labelClass}>{label}</span>
-      <select name={name} defaultValue={value ?? ''} className={selectClass}>
-        <option value="">指定なし</option>
-        {options.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-      </select>
-    </label>
+    <div className="mt-6">
+      <p className="mb-2 text-[11.5px] tracking-[0.06em] text-ink-muted">商品の多い樹種から探す</p>
+      <ul className="flex flex-wrap gap-x-5 gap-y-2">
+        {species.map(s => (
+          <li key={s.slug}>
+            <Link href={`/products/category/${s.slug}`} className="inline-flex min-h-11 items-center gap-1.5 font-mincho text-[15px] font-bold text-ink hover:text-gold-dark lg:min-h-0">
+              {s.name}
+              <span className="font-sans text-[11px] font-normal text-ink-muted">{s.count.toLocaleString()}件</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
 

@@ -270,7 +270,7 @@ export default function EventsPageClient({ initialEvents }: { initialEvents?: Ev
         ) : view === 'map' ? (
           <EventMap events={displayed} />
         ) : (
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-14">
+          <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-14">
             <EventListView events={displayed} selectedId={selected?.id} onSelect={e => setSelectedId(e.id)} />
             {selected && (
               <div className="hidden lg:block">
