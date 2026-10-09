@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 488" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>ハナカイドウの花芽は数cmの短い枝の先にできるので残す。勢いよく伸びた長い枝は2〜3芽残して切り詰める</title>
+  <rect width="800" height="488" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">花芽は短い枝につく</text>
+  <rect x="20" y="68" width="370" height="400" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="205" y="108" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">短い枝（残す）</text>
+  <path d="M50 300 L360 230" stroke="#6f5439" stroke-width="9" stroke-linecap="round"/>
+  <path d="M110 287 L114 257" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="115" cy="245" rx="11" ry="13" fill="#e08aa3"/>
+  <path d="M190 269 L194 239" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="195" cy="227" rx="11" ry="13" fill="#e08aa3"/>
+  <path d="M270 250 L274 220" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="275" cy="208" rx="11" ry="13" fill="#e08aa3"/>
+  <path d="M330 237 L334 207" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="335" cy="195" rx="11" ry="13" fill="#e08aa3"/>
+  <text x="205" y="380" text-anchor="middle" font-size="22" fill="#22201c">数cmの短い枝の先に</text>
+  <text x="205" y="414" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">丸い花芽ができる</text>
+  <rect x="410" y="68" width="370" height="400" rx="14" fill="#fff" stroke="#b8935a" stroke-width="3"/>
+  <text x="595" y="108" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">長い枝（切り詰める）</text>
+  <path d="M440 300 L560 270" stroke="#6f5439" stroke-width="9" stroke-linecap="round"/>
+  <path d="M560 270 C620 240 680 190 750 150" stroke="#6f5439" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M585 258 q-8 -14 0 -26 q8 12 0 26 z" fill="#5b7f4a"/>
+  <path d="M612 240 q-8 -14 0 -26 q8 12 0 26 z" fill="#5b7f4a"/>
+  <line x1="618" y1="200" x2="650" y2="244" stroke="#b8935a" stroke-width="4" stroke-dasharray="8 5"/>
+  <text x="660" y="262" font-size="22" font-weight="700" fill="#b8935a">切る</text>
+  <text x="595" y="380" text-anchor="middle" font-size="22" fill="#22201c">勢いよく伸びた枝は</text>
+  <text x="595" y="414" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">2〜3芽残して切る</text>
+</svg>

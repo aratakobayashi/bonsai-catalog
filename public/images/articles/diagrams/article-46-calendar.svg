@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 556" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>ハナカイドウの盆栽の年間作業カレンダー</title>
+  <rect width="800" height="556" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">ハナカイドウの一年の作業</text>
+  <text x="780" y="44" text-anchor="end" font-size="22" fill="#6b655b">関東の平地の目安</text>
+  <text x="20" y="94" font-size="22" fill="#6b655b">月</text>
+  <text x="215.0" y="94" text-anchor="middle" font-size="22" fill="#22201c">1</text>
+  <text x="265.0" y="94" text-anchor="middle" font-size="22" fill="#22201c">2</text>
+  <text x="315.0" y="94" text-anchor="middle" font-size="22" fill="#22201c">3</text>
+  <text x="365.0" y="94" text-anchor="middle" font-size="22" fill="#22201c">4</text>
+  <text x="415.0" y="94" text-anchor="middle" font-size="22" fill="#22201c">5</text>
+  <text x="465.0" y="94" text-anchor="middle" font-size="22" fill="#22201c">6</text>
+  <text x="515.0" y="94" text-anchor="middle" font-size="22" fill="#22201c">7</text>
+  <text x="565.0" y="94" text-anchor="middle" font-size="22" fill="#22201c">8</text>
+  <text x="615.0" y="94" text-anchor="middle" font-size="22" fill="#22201c">9</text>
+  <text x="665.0" y="94" text-anchor="middle" font-size="22" fill="#22201c">10</text>
+  <text x="715.0" y="94" text-anchor="middle" font-size="22" fill="#22201c">11</text>
+  <text x="765.0" y="94" text-anchor="middle" font-size="22" fill="#22201c">12</text>
+  <rect x="20" y="108" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="164" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="220" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="276" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="332" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="388" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="444" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <line x1="190.0" y1="108" x2="190.0" y2="494" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="240.0" y1="108" x2="240.0" y2="494" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="290.0" y1="108" x2="290.0" y2="494" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="340.0" y1="108" x2="340.0" y2="494" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="390.0" y1="108" x2="390.0" y2="494" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="440.0" y1="108" x2="440.0" y2="494" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="490.0" y1="108" x2="490.0" y2="494" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="540.0" y1="108" x2="540.0" y2="494" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="590.0" y1="108" x2="590.0" y2="494" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="640.0" y1="108" x2="640.0" y2="494" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="690.0" y1="108" x2="690.0" y2="494" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="740.0" y1="108" x2="740.0" y2="494" stroke="#ebe7df" stroke-width="1.5"/>
+  <text x="34" y="142" font-size="24" font-weight="700" fill="#22201c">開花</text>
+  <rect x="340.0" y="119" width="45.0" height="28" rx="6" fill="#e08aa3"/>
+  <text x="34" y="198" font-size="24" font-weight="700" fill="#22201c">花後の剪定</text>
+  <rect x="380.0" y="175" width="40.0" height="28" rx="6" fill="#1a365d"/>
+  <text x="34" y="254" font-size="24" font-weight="700" fill="#22201c">冬の剪定</text>
+  <rect x="740.0" y="231" width="50.0" height="28" rx="6" fill="#1a365d" fill-opacity="0.45"/>
+  <rect x="190.0" y="231" width="80.0" height="28" rx="6" fill="#1a365d" fill-opacity="0.45"/>
+  <text x="34" y="310" font-size="24" font-weight="700" fill="#22201c">植え替え</text>
+  <rect x="270.0" y="287" width="50.0" height="28" rx="6" fill="#8b6b4a"/>
+  <rect x="640.0" y="287" width="40.0" height="28" rx="6" fill="#8b6b4a" fill-opacity="0.45"/>
+  <text x="34" y="366" font-size="24" font-weight="700" fill="#22201c">肥料</text>
+  <rect x="390.0" y="343" width="65.0" height="28" rx="6" fill="#b8935a"/>
+  <rect x="605.0" y="343" width="60.0" height="28" rx="6" fill="#b8935a"/>
+  <text x="34" y="422" font-size="24" font-weight="700" fill="#22201c">花芽ができる</text>
+  <rect x="475.0" y="399" width="95.0" height="28" rx="6" fill="#5b7f4a" fill-opacity="0.5"/>
+  <text x="34" y="478" font-size="24" font-weight="700" fill="#22201c">赤星病に注意</text>
+  <rect x="340.0" y="455" width="125.0" height="28" rx="6" fill="#d9822b"/>
+  <text x="20" y="540" font-size="22" fill="#6b655b">薄い色：冬は長い枝だけ／植え替えは春が基本</text>
+</svg>
