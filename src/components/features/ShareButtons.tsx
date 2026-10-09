@@ -41,7 +41,7 @@ export function ShareButtons({ url, title, size = 'small' }: ShareButtonsProps) 
     window.open(lineUrl, '_blank', 'noopener,noreferrer')
   }
 
-  const btn = 'inline-flex items-center gap-1.5 rounded-lg border border-line bg-white px-3 py-2 text-[13px] text-ink hover:border-gold'
+  const btn = 'inline-flex items-center gap-1.5 border border-line bg-white px-3 py-2 text-[13px] text-ink hover:border-ink'
   const iconSize = size === 'large' ? 'h-4 w-4' : 'h-3.5 w-3.5'
 
   return (
@@ -51,11 +51,11 @@ export function ShareButtons({ url, title, size = 'small' }: ShareButtonsProps) 
         <span>X</span>
       </button>
       <button type="button" onClick={shareOnFacebook} className={btn} aria-label="Facebookでシェア">
-        <Facebook className={`${iconSize} text-[#1877f2]`} />
+        <Facebook className={`${iconSize} text-ink`} />
         <span>Facebook</span>
       </button>
       <button type="button" onClick={shareOnLine} className={btn} aria-label="LINEで送る">
-        <span className={`${iconSize} flex items-center justify-center rounded-sm bg-[#06c755] text-[9px] font-bold text-white`}>L</span>
+        <span className={`${iconSize} flex items-center justify-center border border-ink text-[9px] font-bold text-ink`}>L</span>
         <span>LINE</span>
       </button>
       <button type="button" onClick={copyToClipboard} className={btn} aria-label="URLをコピー">

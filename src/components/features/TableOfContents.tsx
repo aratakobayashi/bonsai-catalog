@@ -66,7 +66,7 @@ function useReadingState(items: TOCItem[]) {
 function TocList({ items, activeId, onSelect }: { items: TOCItem[]; activeId: string; onSelect?: () => void }) {
   const minLevel = Math.min(...items.map(item => item.level))
   return (
-    <ul className="border-l border-line">
+    <ul>
       {items.map((item, index) => {
         const isActive = activeId === item.id
         return (
@@ -77,9 +77,10 @@ function TocList({ items, activeId, onSelect }: { items: TOCItem[]; activeId: st
                 scrollToHeading(item.id)
                 onSelect?.()
               }}
-              className={`-ml-px block w-full border-l-[3px] py-2 pr-1 text-left text-[13px] leading-snug transition-colors ${
-                item.level > minLevel ? 'pl-6' : 'pl-3'
-              } ${isActive ? 'border-gold font-bold text-navy' : 'border-transparent text-ink-soft hover:text-navy'}`}
+              aria-current={isActive ? 'location' : undefined}
+              className={`block w-full py-[9px] text-left text-[13px] leading-[1.65] transition-colors ${
+                item.level > minLevel ? 'pl-4' : ''
+              } ${isActive ? 'font-bold text-ink' : 'text-ink-muted hover:text-ink'}`}
             >
               {item.text}
             </button>
@@ -90,21 +91,21 @@ function TocList({ items, activeId, onSelect }: { items: TOCItem[]; activeId: st
   )
 }
 
-// PC：サイドバーの目次（読了率つき）
+// PC：サイドバーの目次（細い線で読了率を示す）
 export function TableOfContents({ items }: TableOfContentsProps) {
   const { activeId, progress } = useReadingState(items)
   if (items.length === 0) return null
 
   return (
-    <nav aria-label="目次" className="rounded-xl border border-line bg-white p-4">
-      <div className="flex items-baseline">
-        <span className="text-[13px] font-bold text-navy">目次</span>
-        <span className="ml-auto text-[11px] text-ink-muted">読了 {progress}%</span>
+    <nav aria-label="目次">
+      <div className="flex items-baseline text-[11px] tracking-[0.1em] text-ink-muted">
+        <span>目次</span>
+        <span className="sr-only">読了 {progress}%</span>
       </div>
-      <div className="mb-3 mt-2 h-[2px] bg-line">
-        <div className="h-full bg-gold transition-[width] duration-300" style={{ width: `${progress}%` }} />
+      <div className="relative mb-1 mt-2.5 h-px bg-line" aria-hidden="true">
+        <div className="absolute inset-y-0 left-0 bg-ink transition-[width] duration-300" style={{ width: `${progress}%` }} />
       </div>
-      <div className="max-h-[60vh] overflow-y-auto">
+      <div className="max-h-[55vh] overflow-y-auto">
         <TocList items={items} activeId={activeId} />
       </div>
     </nav>
@@ -120,13 +121,16 @@ export function MobileTableOfContents({ items }: TableOfContentsProps) {
 
   return (
     <>
-      <nav aria-label="目次" className="rounded-[10px] border border-line bg-white">
-        <button type="button" onClick={() => setOpen(!open)} aria-expanded={open} className="flex w-full items-center px-3.5 py-3 text-left">
-          <span className="text-[13px] font-bold text-navy">目次（{items.length}項目）</span>
-          <span className="ml-auto text-[11px] text-ink-muted">{open ? '閉じる ▴' : '開く ▾'}</span>
+      <nav aria-label="目次" className="border-y border-line">
+        <button type="button" onClick={() => setOpen(!open)} aria-expanded={open} className="flex w-full items-center py-3 text-left text-[13.5px] text-ink">
+          <span>目次</span>
+          <span className="ml-auto text-xs text-ink-muted">
+            {items.length}項目
+            <span className={`ml-3 inline-block transition-transform ${open ? 'rotate-180' : ''}`} aria-hidden="true">▾</span>
+          </span>
         </button>
         {open && (
-          <div className="px-3.5 pb-3">
+          <div className="border-t border-line pb-2">
             <TocList items={items} activeId={activeId} />
           </div>
         )}
@@ -136,17 +140,17 @@ export function MobileTableOfContents({ items }: TableOfContentsProps) {
       <button
         type="button"
         onClick={() => setSheetOpen(true)}
-        className="fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom))] right-4 z-30 rounded-full bg-navy px-4 py-2.5 text-[13px] font-bold text-white shadow-lg"
+        className="fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom))] right-4 z-30 flex h-10 items-center gap-2 rounded-full bg-sumi px-4 text-[12.5px] text-paper shadow-lg"
       >
-        目次 <span className="ml-1 font-normal text-[#e9c793]">{Math.max(activeIndex + 1, 1)}/{items.length}</span>
+        目次 <span className="text-[#d9c7a3]">{Math.max(activeIndex + 1, 1)}/{items.length}</span>
       </button>
 
       {sheetOpen && (
         <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label="目次">
           <button type="button" aria-label="閉じる" className="absolute inset-0 bg-black/40" onClick={() => setSheetOpen(false)} />
-          <div className="absolute inset-x-0 bottom-0 max-h-[70vh] overflow-y-auto rounded-t-2xl bg-white px-4 pb-[calc(1.5rem+env(safe-area-inset-bottom))] pt-4">
-            <div className="mb-2 flex items-center">
-              <span className="text-sm font-bold text-navy">目次</span>
+          <div className="absolute inset-x-0 bottom-0 max-h-[70vh] overflow-y-auto bg-paper px-5 pb-[calc(1.5rem+env(safe-area-inset-bottom))] pt-4 shadow-lg">
+            <div className="mb-1 flex items-center border-b border-line pb-3">
+              <span className="text-[11px] tracking-[0.1em] text-ink-muted">目次</span>
               <button type="button" onClick={() => setSheetOpen(false)} className="ml-auto text-xs text-ink-muted">閉じる ✕</button>
             </div>
             <TocList items={items} activeId={activeId} onSelect={() => setSheetOpen(false)} />

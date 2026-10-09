@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
 import { getArticleBySlug, getArticles } from '@/lib/database/articles'
 import { supabaseServer } from '@/lib/supabase-server'
 import { ShareButtons } from '@/components/features/ShareButtons'
@@ -20,7 +21,7 @@ const demoteH1 = (html: string) => html.replace(/<h1(\s|>)/g, '<h2$1').replace(/
 import { normalizeProduct } from '@/lib/catalog-model'
 import { SITE_URL } from '@/lib/site'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
-import { CONTAINER, Breadcrumbs, SectionTitle, Tag } from '@/components/ui/design'
+import { CONTAINER, Breadcrumbs, SectionTitle } from '@/components/ui/design'
 import { isArticleIndexable } from '@/lib/content-policy'
 import type { Product } from '@/types'
 
@@ -170,45 +171,44 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         />
       )}
 
-      <div className={`${CONTAINER} pb-12 pt-4 lg:pt-8`}>
-        <div className="mx-auto lg:grid lg:max-w-[1040px] lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-12">
+      <div className={`${CONTAINER} pb-16 pt-5 lg:pb-20 lg:pt-6`}>
+        <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, ...crumbs]} className="hidden lg:block" />
+        <div className="lg:mt-10 lg:grid lg:grid-cols-[minmax(0,680px)_280px] lg:justify-center lg:gap-16 xl:gap-24">
           <article className="min-w-0">
             {/* 記事ヘッダー */}
             <header>
-              <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, ...crumbs]} className="hidden lg:block" />
-              <Breadcrumbs items={crumbs} className="lg:hidden" />
-              <div className="mt-3 hidden flex-wrap gap-1.5 lg:flex">
-                <Tag>{article.category.name}</Tag>
-                {article.tags?.slice(0, 3).map(tag => (
-                  <span key={tag.id} className="inline-block rounded bg-[#eef2f7] px-1.5 py-0.5 text-[11px] font-bold text-navy">{tag.name}</span>
+              <p className="text-[11px] tracking-[0.08em] text-gold-dark lg:text-xs">
+                <Link href={`/guides?category=${article.category.slug}`} className="hover:text-ink">{article.category.name}</Link>
+                {article.tags?.slice(0, 2).map(tag => (
+                  <span key={tag.id} className="hidden lg:inline">・{tag.name}</span>
                 ))}
-              </div>
-              <h1 className="mt-2 font-mincho text-[23px] font-bold leading-[1.5] text-navy lg:mt-3 lg:text-[32px] lg:leading-[1.45]">
+              </p>
+              <h1 className="mt-2 font-mincho text-[22px] font-bold leading-[1.45] tracking-[0.08em] text-ink lg:mt-3 lg:text-[32px]">
                 {article.title}
               </h1>
-              <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[11.5px] text-ink-muted lg:mt-3 lg:text-xs">
+              <div className="mt-2.5 flex flex-wrap gap-x-5 gap-y-1 text-[11px] text-ink-muted lg:mt-4 lg:text-xs">
                 <span className="hidden lg:inline">公開 {formatDate(article.publishedAt)}</span>
                 {article.updatedAt !== article.publishedAt && <span>更新 {formatDate(article.updatedAt)}</span>}
                 {article.readingTime && <span>{article.readingTime}分で読めます</span>}
-                <span className="hidden lg:inline">盆栽コレクション</span>
+                <span className="hidden lg:inline">盆栽コレクション編集部</span>
               </div>
             </header>
 
-            {/* アイキャッチ画像 */}
+            {/* アイキャッチ画像（SPは画面幅いっぱい） */}
             {featuredImageUrl && (
-              <div className="relative mt-4 aspect-[16/9] overflow-hidden rounded-xl bg-[#f1eee8] lg:mt-5">
+              <div className="relative -mx-4 mt-5 aspect-[16/9] overflow-hidden bg-paper-deep lg:mx-0 lg:mt-8 lg:aspect-[680/420]">
                 <Image
                   src={featuredImageUrl}
                   alt={featuredImageAlt}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 720px"
+                  sizes="(max-width: 1023px) 100vw, 680px"
                   className="object-cover"
                   priority
                 />
               </div>
             )}
 
-            <PrDisclosure compact className="mt-3" />
+            <PrDisclosure className="mt-4 lg:mt-5" />
 
             {/* SP：目次 */}
             {tableOfContents.length > 0 && (
@@ -220,28 +220,28 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             {/* 記事本文 */}
             <div
               id="article-body"
-              className="article-body mt-6 lg:mt-8"
+              className="article-body mt-5 lg:mt-8"
               dangerouslySetInnerHTML={{ __html: demoteH1(processMarkdown(article.content)) }}
             />
 
             {/* シェア */}
-            <div className="mt-10 border-t border-line pt-6">
-              <p className="mb-3 text-[13px] font-bold text-navy">この記事をシェア</p>
+            <div className="mt-12 border-t border-line pt-6">
+              <p className="mb-3 text-[11px] tracking-[0.1em] text-ink-muted">この記事をシェア</p>
               <ShareButtons url={articleUrl} title={article.title} size="large" />
             </div>
 
             {/* 関連商品（PCはサイドバーに表示） */}
             {catalogProducts.length > 0 && (
-              <section id="related-products" className="mt-10 lg:hidden">
+              <section id="related-products" className="mt-12 lg:hidden">
                 <SectionTitle>この記事に関連する商品</SectionTitle>
                 <p className="mt-1 text-[11px] text-ink-muted">PR・価格は取得時点の情報です</p>
-                <div className="mt-3 grid grid-cols-2 gap-3">
+                <div className="mt-4 grid grid-cols-2 gap-x-3 gap-y-6">
                   {catalogProducts.map(product => (
                     <CatalogProductCard key={product.id} product={product} />
                   ))}
                 </div>
                 {hasRakuten && (
-                  <p className="mt-2 text-[11px] text-ink-muted">
+                  <p className="mt-3 text-[11px] text-ink-muted">
                     楽天市場の商品情報は{' '}
                     <a href="https://developers.rakuten.com/" target="_blank" rel="noopener noreferrer" className="underline">Supported by Rakuten Developers</a>
                   </p>
@@ -251,9 +251,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
             {/* 関連記事 */}
             {relatedArticles.length > 0 && (
-              <section className="mt-10">
+              <section className="mt-12 lg:mt-16">
                 <SectionTitle>関連記事</SectionTitle>
-                <div className="mt-3 divide-y divide-line overflow-hidden rounded-xl border border-line bg-white lg:grid lg:grid-cols-2 lg:gap-5 lg:divide-y-0 lg:overflow-visible lg:rounded-none lg:border-0 lg:bg-transparent">
+                <div className="mt-2 lg:mt-6 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-10">
                   {relatedArticles.map(related => (
                     <GuideArticleCard key={related.id} article={related} />
                   ))}
@@ -263,12 +263,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </article>
 
           {/* PC：サイドバー（目次・関連商品） */}
-          <aside className="hidden lg:block">
-            <div className="sticky top-24 space-y-5">
+          <aside className="hidden pt-[120px] lg:block">
+            <div className="sticky top-24 space-y-10">
               {tableOfContents.length > 0 && <TableOfContents items={tableOfContents} />}
               <ArticleSidebarProducts products={catalogProducts} />
               {hasRakuten && (
-                <p className="px-1 text-[11px] text-ink-muted">
+                <p className="-mt-6 text-[11px] text-ink-muted">
                   楽天市場の商品情報は{' '}
                   <a href="https://developers.rakuten.com/" target="_blank" rel="noopener noreferrer" className="underline">Supported by Rakuten Developers</a>
                 </p>

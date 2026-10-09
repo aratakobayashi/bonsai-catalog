@@ -160,15 +160,14 @@
 }
 /* 記事本文（/guides/[slug]）。明朝の見出し・ゆったりした行間。markdown.ts が付けるクラスより優先させる */
 .article-body {
-  color: #22201c;
+  color: #2f2c27;
   font-size: 15px;
-  line-height: 1.95;
+  line-height: 2.05;
   overflow-wrap: anywhere;
 }
 @media (min-width: 1024px) {
   .article-body {
-    font-size: 15.5px;
-    line-height: 2;
+    font-size: 16px;
   }
 }
 .article-body > :first-child {
@@ -178,17 +177,19 @@
 .article-body h2 {
   font-family: var(--font-mincho), 'Hiragino Mincho ProN', 'Yu Mincho', serif;
   font-weight: 700;
-  color: #1a365d;
-  font-size: 20px;
-  line-height: 1.5;
-  margin: 2.6em 0 1em;
-  padding-bottom: 0.5em;
+  color: #22201c;
+  font-size: 21px;
+  letter-spacing: 0.04em;
+  line-height: 1.55;
+  margin: 40px 0 24px;
+  padding-bottom: 12px;
   border-bottom: 1px solid #ebe7df;
 }
 @media (min-width: 1024px) {
   .article-body h1,
   .article-body h2 {
-    font-size: 23px;
+    font-size: 25px;
+    margin-top: 56px;
   }
 }
 .article-body h3 {
@@ -196,28 +197,33 @@
   color: #22201c;
   font-size: 16px;
   line-height: 1.6;
-  margin: 2em 0 0.6em;
+  margin: 24px 0 12px;
+}
+@media (min-width: 1024px) {
+  .article-body h3 {
+    font-size: 17px;
+  }
 }
 .article-body h4 {
   font-weight: 700;
-  color: #1a365d;
+  color: #22201c;
   font-size: 15px;
   margin: 1.6em 0 0.4em;
 }
 .article-body p {
-  color: #22201c;
+  color: #2f2c27;
   line-height: inherit;
   margin: 0 0 1.25em;
 }
 .article-body a {
-  color: #1a365d;
+  color: #22201c;
   font-weight: 500;
   text-decoration: underline;
   text-decoration-color: #b8935a;
   text-underline-offset: 3px;
 }
 .article-body a:hover {
-  color: #7d6238;
+  color: #86683a;
 }
 .article-body strong {
   font-weight: 700;
@@ -249,7 +255,7 @@
 .article-body img {
   max-width: 100%;
   height: auto;
-  border-radius: 12px;
+  border-radius: 0;
   margin: 1.5em 0;
 }
 .article-body hr {
@@ -274,8 +280,8 @@
   vertical-align: top;
 }
 .article-body th {
-  background: #faf9f6;
-  color: #1a365d;
+  background: #f3f0ea;
+  color: #22201c;
   font-weight: 700;
   white-space: nowrap;
 }
@@ -283,7 +289,7 @@
   background: #fff;
 }
 .article-body pre {
-  border-radius: 10px;
+  border-radius: 0;
 }
 .article-body code {
   font-size: 0.875em;
@@ -292,7 +298,7 @@
 .article-body [class*='bg-gradient-to-r'] {
   background: #fff;
   border: 1px solid #ebe7df;
-  border-radius: 12px;
+  border-radius: 0;
   box-shadow: none;
   padding: 1rem 1.1rem;
   margin: 0 0 1.5em;
@@ -300,7 +306,7 @@
 .article-body [class*='bg-gradient-to-r'] h4 {
   margin: 0 0 0.3em;
   font-size: 14px;
-  color: #1a365d;
+  color: #22201c;
 }
 .article-body [class*='bg-gradient-to-r'] blockquote,
 .article-body [class*='bg-gradient-to-r'] .flex-1 > div {
@@ -320,4 +326,8 @@
 }
 .article-body [class*='from-red-50'] h4 {
   color: #9b1c1c;
+}
+/* 本文中の角丸はすべて外す（v2 は四角） */
+.article-body [class*='rounded'] {
+  border-radius: 0;
 }

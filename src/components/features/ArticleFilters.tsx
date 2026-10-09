@@ -39,9 +39,9 @@ export function ArticleSearchBox({ initialQuery = '' }: { initialQuery?: string 
         onChange={e => setQuery(e.target.value)}
         placeholder="記事を検索"
         aria-label="記事を検索"
-        className="h-11 w-full rounded-[10px] border border-[#dcd5c8] bg-white pl-3.5 pr-12 text-[13.5px] text-ink placeholder:text-ink-muted focus:border-gold focus:outline-none"
+        className="h-11 w-full appearance-none rounded-none border-0 border-b border-ink bg-transparent pl-0 pr-10 text-[13.5px] text-ink placeholder:text-ink-muted focus:border-gold-dark focus:outline-none focus:ring-0"
       />
-      <button type="submit" aria-label="検索" className="absolute inset-y-0 right-0 flex w-11 items-center justify-center text-ink-muted hover:text-navy">
+      <button type="submit" aria-label="検索" className="absolute inset-y-0 right-0 flex w-10 items-center justify-end text-ink-muted hover:text-ink">
         <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
           <circle cx="11" cy="11" r="7" />
           <path d="m20 20-3.5-3.5" strokeLinecap="round" />
@@ -64,13 +64,13 @@ export function ArticleSortSelect({ totalCount, sortBy }: { totalCount: number; 
   const current = sortBy || 'publishedAt'
 
   return (
-    <label className="relative inline-flex items-center whitespace-nowrap text-[13px] text-ink-soft">
+    <label className="relative inline-flex items-center whitespace-nowrap text-xs text-ink-muted">
       <span>{totalCount.toLocaleString()}件・</span>
       <select
         value={current}
         onChange={e => updateFilters({ sortBy: e.target.value })}
         aria-label="並び順"
-        className="cursor-pointer appearance-none bg-transparent pr-4 text-[13px] text-ink-soft focus:outline-none"
+        className="cursor-pointer appearance-none bg-transparent pr-4 text-xs text-ink-muted focus:outline-none"
       >
         {SORT_OPTIONS.map(option => (
           <option key={option.value} value={option.value}>{option.label}</option>

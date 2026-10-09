@@ -4,7 +4,7 @@ import { Suspense } from 'react'
 import { getArticles, getCategories } from '@/lib/database/articles'
 import { ArticleList, guidesHref } from '@/components/features/ArticleList'
 import { ArticleSearchBox, ArticleSortSelect } from '@/components/features/ArticleFilters'
-import { CONTAINER, PageHeading, ChipLink, SectionTitle } from '@/components/ui/design'
+import { CONTAINER, PageHeading } from '@/components/ui/design'
 
 const baseMetadata: Metadata = {
   title: '盆栽ガイド記事一覧 - 盆栽コレクション',
@@ -73,23 +73,31 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
   // 「はじめての方へ」は絞り込みのない1ページ目だけに出す
   const showBeginnerSteps = !filters.category && !filters.search && !filters.tags && filters.page === 1
 
-  const chips = (
-    <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 lg:mx-0 lg:flex-wrap lg:overflow-visible lg:px-0 lg:pb-0">
-      <span className="flex-none">
-        <ChipLink href={guidesHref(filters, { category: undefined })} active={!filters.category}>すべて</ChipLink>
-      </span>
-      {categories.map(category => (
-        <span key={category.id} className="flex-none">
-          <ChipLink href={guidesHref(filters, { category: category.slug })} active={filters.category === category.slug}>
-            {category.name}
-          </ChipLink>
-        </span>
-      ))}
-    </div>
+  // カテゴリのタブ（下線で現在地を示す。SPは横スクロール）
+  const tabClass = (active: boolean) =>
+    `flex-none py-3 font-mincho text-sm font-bold lg:text-[15px] ${
+      active ? 'text-ink shadow-[inset_0_-1.5px_0_#22201c]' : 'text-ink-muted hover:text-ink'
+    }`
+  const tabs = (
+    <nav aria-label="記事のカテゴリ" className="-mx-4 overflow-x-auto px-4 lg:mx-0 lg:overflow-visible lg:px-0">
+      <div className="flex gap-5 border-b border-line lg:flex-wrap lg:gap-x-7">
+        <Link href={guidesHref(filters, { category: undefined })} className={tabClass(!filters.category)} aria-current={!filters.category ? 'page' : undefined}>
+          すべて
+        </Link>
+        {categories.map(category => {
+          const active = filters.category === category.slug
+          return (
+            <Link key={category.id} href={guidesHref(filters, { category: category.slug })} className={tabClass(active)} aria-current={active ? 'page' : undefined}>
+              {category.name}
+            </Link>
+          )
+        })}
+      </div>
+    </nav>
   )
 
   return (
-    <div className={`${CONTAINER} pb-12`}>
+    <div className={`${CONTAINER} pb-16 lg:pb-20`}>
       <PageHeading
         title="育て方"
         lead="盆栽の育て方から選び方まで、専門的な知識をわかりやすく解説。"
@@ -97,16 +105,23 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
         aside={<ArticleSearchBox key={filters.search || ''} initialQuery={filters.search || ''} />}
       />
 
-      {/* PC：はじめての方へ（3ステップ） */}
+      {/* はじめての方へ（PCは見出し＋3列、SPは線で区切った3行） */}
       {showBeginnerSteps && (
-        <section className="mt-8 hidden lg:block">
-          <SectionTitle>はじめての方へ</SectionTitle>
-          <ol className="mt-3 grid grid-cols-3 gap-4">
+        <section className="mt-8 lg:mt-14 lg:grid lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-16" aria-labelledby="beginner-steps">
+          <div>
+            <h2 id="beginner-steps" className="text-[11px] tracking-[0.08em] text-ink-muted lg:font-mincho lg:text-[22px] lg:font-bold lg:tracking-[0.06em] lg:text-ink">
+              はじめての方へ
+            </h2>
+            <p className="mt-2.5 hidden text-[13.5px] leading-[2] text-ink-soft lg:block">この3つを読めば、最初の一年は困りません。</p>
+          </div>
+          <ol className="mt-2 border-t border-line lg:mt-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:border-0">
             {BEGINNER_STEPS.map((step, i) => (
-              <li key={step.slug}>
-                <Link href={`/guides/${step.slug}`} className="block h-full rounded-[14px] bg-navy px-5 py-4 text-white hover:bg-navy-light">
-                  <div className="font-mono text-[11px] tracking-[0.1em] text-[#e9c793]">STEP {i + 1}</div>
-                  <div className="mt-1.5 font-mincho text-[17px] font-bold leading-snug">{step.label}</div>
+              <li key={step.slug} className="border-b border-line lg:border-b-0 lg:border-t lg:border-ink">
+                <Link href={`/guides/${step.slug}`} className="group flex gap-3.5 py-3 lg:block lg:pb-0 lg:pt-4">
+                  <span className="font-mincho text-[17px] font-bold text-gold-dark lg:block lg:text-[22px]" aria-hidden="true">{KANJI_NUM[i]}</span>
+                  <span className="font-mincho text-[14.5px] font-bold leading-[1.55] text-ink group-hover:text-gold-dark lg:mt-1.5 lg:block lg:text-base lg:leading-[1.6]">
+                    {step.label}
+                  </span>
                 </Link>
               </li>
             ))}
@@ -114,60 +129,32 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
         </section>
       )}
 
-      {/* カテゴリと件数・並び順 */}
-      <div className="mt-5 lg:mt-8 lg:flex lg:items-center lg:gap-4">
-        <div className="min-w-0 lg:flex-1">{chips}</div>
-        <div className="hidden flex-none lg:block">
-          <Suspense fallback={null}>
-            <ArticleSortSelect totalCount={articlesData.totalCount} sortBy={filters.sortBy} />
-          </Suspense>
+      {/* カテゴリ・件数・並び順 */}
+      <div className={showBeginnerSteps ? 'mt-8 lg:mt-20' : 'mt-6 lg:mt-12'}>
+        {tabs}
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-3 text-xs text-ink-muted lg:pt-4">
+          {filters.search && (
+            <p>
+              「<span className="font-bold text-ink">{filters.search}</span>」の検索結果
+              <Link href={guidesHref(filters, { search: undefined })} className="ml-2 border-b border-ink pb-0.5 text-ink">検索を解除</Link>
+            </p>
+          )}
+          <div className="ml-auto">
+            <Suspense fallback={null}>
+              <ArticleSortSelect totalCount={articlesData.totalCount} sortBy={filters.sortBy} />
+            </Suspense>
+          </div>
         </div>
       </div>
 
-      {/* SP：はじめての方へ（開くと3記事） */}
-      {showBeginnerSteps && (
-        <details className="group mt-4 rounded-[14px] bg-navy text-white lg:hidden">
-          <summary className="flex cursor-pointer list-none items-center px-4 py-3.5 [&::-webkit-details-marker]:hidden">
-            <span className="min-w-0 flex-1">
-              <span className="block text-xs text-[#e9c793]">はじめての方へ</span>
-              <span className="mt-0.5 block font-mincho text-[15px] font-bold">盆栽の選び方・水やり・置き場所の3記事</span>
-            </span>
-            <span className="ml-2 text-xs text-[#e9c793] transition-transform group-open:rotate-180" aria-hidden="true">▾</span>
-          </summary>
-          <ol className="border-t border-white/15 px-4 pb-3">
-            {BEGINNER_STEPS.map((step, i) => (
-              <li key={step.slug}>
-                <Link href={`/guides/${step.slug}`} className="flex items-baseline gap-2 py-2.5 text-sm">
-                  <span className="font-mono text-[11px] text-[#e9c793]">STEP {i + 1}</span>
-                  <span className="font-mincho font-bold">{step.label}</span>
-                </Link>
-              </li>
-            ))}
-          </ol>
-        </details>
-      )}
-
-      {/* 検索中の表示と件数（SPは並び順もここ） */}
-      <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-ink-soft lg:mt-5">
-        {filters.search && (
-          <p>
-            「<span className="font-bold text-ink">{filters.search}</span>」の検索結果
-            <Link href={guidesHref(filters, { search: undefined })} className="ml-2 text-gold-dark underline">検索を解除</Link>
-          </p>
-        )}
-        <div className="ml-auto lg:hidden">
-          <Suspense fallback={null}>
-            <ArticleSortSelect totalCount={articlesData.totalCount} sortBy={filters.sortBy} />
-          </Suspense>
-        </div>
-      </div>
-
-      <div className="mt-3">
+      <div className="lg:mt-6">
         <ArticleList articlesData={listData} currentFilters={filters} />
       </div>
     </div>
   )
 }
+
+const KANJI_NUM = ['一', '二', '三']
 
 // 「はじめての方へ」で案内する記事（実在する初心者向け記事）
 const BEGINNER_STEPS = [

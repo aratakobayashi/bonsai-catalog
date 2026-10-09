@@ -30,10 +30,10 @@ export function ArticleList({ articlesData, currentFilters }: ArticleListProps) 
 
   if (articles.length === 0) {
     return (
-      <div className="rounded-xl border border-line bg-white px-6 py-12 text-center">
-        <p className="font-mincho text-lg font-bold text-navy">記事が見つかりませんでした</p>
+      <div className="border-y border-line px-6 py-14 text-center lg:mt-2">
+        <p className="font-mincho text-lg font-bold tracking-[0.04em] text-ink">記事が見つかりませんでした</p>
         <p className="mt-2 text-sm text-ink-soft">検索条件を変更するか、絞り込みを解除してお試しください。</p>
-        <Link href="/guides" className="mt-5 inline-block rounded-lg border border-line px-4 py-2 text-sm text-ink hover:border-gold">
+        <Link href="/guides" className="mt-6 inline-block border-b border-ink pb-0.5 text-sm text-ink">
           すべての記事を見る
         </Link>
       </div>
@@ -42,9 +42,9 @@ export function ArticleList({ articlesData, currentFilters }: ArticleListProps) 
 
   return (
     <div>
-      <div className="divide-y divide-line overflow-hidden rounded-xl border border-line bg-white lg:grid lg:grid-cols-3 lg:gap-5 lg:divide-y-0 lg:overflow-visible lg:rounded-none lg:border-0 lg:bg-transparent">
-        {articles.map(article => (
-          <GuideArticleCard key={article.id} article={article} />
+      <div className="lg:grid lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12">
+        {articles.map((article, i) => (
+          <GuideArticleCard key={article.id} article={article} priority={i < 3} />
         ))}
       </div>
 
@@ -67,28 +67,30 @@ function Pagination({ currentPage, totalPages, currentFilters }: { currentPage: 
   })
 
   const href = (p: number) => guidesHref(currentFilters, { page: p > 1 ? String(p) : undefined })
-  const box = 'flex h-[38px] min-w-[38px] items-center justify-center rounded-lg px-2 text-[13.5px]'
+  const item = 'flex h-9 min-w-[28px] items-center justify-center px-1 text-sm'
 
   return (
-    <nav aria-label="ページ送り" className="mt-8 flex flex-wrap items-center justify-center gap-1.5">
+    <nav aria-label="ページ送り" className="mt-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 lg:mt-12 lg:gap-x-6">
       {currentPage > 1 && (
-        <Link href={href(currentPage - 1)} className={`${box} border border-line bg-white text-ink hover:border-gold`} aria-label="前のページ">
+        <Link href={href(currentPage - 1)} className={`${item} text-ink-muted hover:text-ink`} aria-label="前のページ">
           ‹
         </Link>
       )}
-      {items.map((item, i) =>
-        item === 'gap' ? (
-          <span key={`gap-${i}`} className={`${box} border border-line bg-white text-ink-muted`}>…</span>
-        ) : item === currentPage ? (
-          <span key={item} className={`${box} bg-navy font-bold text-white`} aria-current="page">{item}</span>
+      {items.map((p, i) =>
+        p === 'gap' ? (
+          <span key={`gap-${i}`} className={`${item} text-ink-muted`}>…</span>
+        ) : p === currentPage ? (
+          <span key={p} className={item} aria-current="page">
+            <span className="border-b border-ink text-ink">{p}</span>
+          </span>
         ) : (
-          <Link key={item} href={href(item)} className={`${box} border border-line bg-white text-ink hover:border-gold`}>
-            {item}
+          <Link key={p} href={href(p)} className={`${item} text-ink-muted hover:text-ink`}>
+            {p}
           </Link>
         )
       )}
       {currentPage < totalPages && (
-        <Link href={href(currentPage + 1)} className={`${box} border border-line bg-white text-ink hover:border-gold`} aria-label="次のページ">
+        <Link href={href(currentPage + 1)} className={`${item} text-ink-muted hover:text-ink`} aria-label="次のページ">
           ›
         </Link>
       )}
