@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>藤の剪定は3回。花後に花がらを切る、夏から秋に伸びたつるを2〜3芽残して切る、冬に丸い花芽を残して枝先を整理する</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">藤の剪定は3回に分けて</text>
+  <rect x="20" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="142" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">① 花後</text>
+  <path d="M40 160 L240 150" stroke="#6f5439" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="87" cy="170.0" r="9.0" fill="#8a6fa8"/>
+  <circle cx="93" cy="185.0" r="8.2" fill="#8a6fa8"/>
+  <circle cx="87" cy="200.0" r="7.4" fill="#8a6fa8"/>
+  <circle cx="93" cy="215.0" r="6.6" fill="#8a6fa8"/>
+  <circle cx="87" cy="230.0" r="5.8" fill="#8a6fa8"/>
+  <circle cx="93" cy="245.0" r="5.0" fill="#8a6fa8"/>
+  <circle cx="87" cy="260.0" r="4.199999999999999" fill="#8a6fa8"/>
+  <g opacity="0.35">  <circle cx="177" cy="170.0" r="9.0" fill="#8a6fa8"/>
+  <circle cx="183" cy="185.0" r="8.2" fill="#8a6fa8"/>
+  <circle cx="177" cy="200.0" r="7.4" fill="#8a6fa8"/>
+  <circle cx="183" cy="215.0" r="6.6" fill="#8a6fa8"/>
+  <circle cx="177" cy="230.0" r="5.8" fill="#8a6fa8"/>
+  <circle cx="183" cy="245.0" r="5.0" fill="#8a6fa8"/>
+  <circle cx="177" cy="260.0" r="4.199999999999999" fill="#8a6fa8"/></g>
+  <line x1="160" y1="164" x2="200" y2="164" stroke="#b8935a" stroke-width="4" stroke-dasharray="8 5"/>
+  <text x="180" y="300" text-anchor="middle" font-size="22" fill="#6b655b">散った房</text>
+  <text x="142" y="352" text-anchor="middle" font-size="22" fill="#22201c">花がらを付け根で</text>
+  <text x="142" y="386" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">切る（実をつけない）</text>
+  <text x="142" y="430" text-anchor="middle" font-size="22" fill="#6b655b">5月中〜下旬</text>
+  <rect x="278" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#b8935a" stroke-width="3"/>
+  <text x="400" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">② 夏〜秋</text>
+  <path d="M300 290 L380 260" stroke="#6f5439" stroke-width="7" stroke-linecap="round"/>
+  <path d="M380 260 C420 240 450 200 470 160 S500 120 505 140" stroke="#5b7f4a" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="392" cy="242" rx="9" ry="14" fill="#5b7f4a" transform="rotate(-30 392 242)"/>
+  <ellipse cx="420" cy="224" rx="9" ry="14" fill="#5b7f4a" transform="rotate(-30 420 224)"/>
+  <line x1="418" y1="196" x2="452" y2="232" stroke="#b8935a" stroke-width="4" stroke-dasharray="8 5"/>
+  <text x="462" y="260" font-size="22" font-weight="700" fill="#b8935a">切る</text>
+  <text x="400" y="352" text-anchor="middle" font-size="22" fill="#22201c">長く伸びたつるは</text>
+  <text x="400" y="386" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">2〜3芽残して切る</text>
+  <text x="400" y="430" text-anchor="middle" font-size="22" fill="#6b655b">伸びるたびに</text>
+  <rect x="536" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="658" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">③ 冬</text>
+  <path d="M556 280 L760 220" stroke="#6f5439" stroke-width="7" stroke-linecap="round"/>
+  <ellipse cx="600" cy="248" rx="13" ry="16" fill="#a08cbf"/>
+  <ellipse cx="640" cy="236" rx="13" ry="16" fill="#a08cbf"/>
+  <path d="M700 228 q-9 -16 0 -30 q9 14 0 30 z" fill="#5b7f4a"/>
+  <path d="M735 216 q-9 -16 0 -30 q9 14 0 30 z" fill="#5b7f4a"/>
+  <circle cx="620" cy="238" r="44" fill="none" stroke="#a08cbf" stroke-width="3"/>
+  <text x="620" y="172" text-anchor="middle" font-size="22" font-weight="700" fill="#6d5590">花芽</text>
+  <text x="718" y="174" text-anchor="middle" font-size="22" font-weight="700" fill="#5b7f4a">葉芽</text>
+  <text x="658" y="352" text-anchor="middle" font-size="22" fill="#22201c">丸い花芽を残して</text>
+  <text x="658" y="386" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">枝先を整理する</text>
+  <text x="658" y="430" text-anchor="middle" font-size="22" fill="#6b655b">12〜2月</text>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>ベランダの断面。夏は日が高く奥まで届かず、冬は日が低く室内近くまで届く。棚で高さを上げると光を受けやすい</title>
+  <rect width="800" height="500" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">季節で変わる日の入り方</text>
+  <rect x="20" y="70" width="120" height="390" fill="#f3f0ea" stroke="#ebe7df" stroke-width="2"/>
+  <text x="80" y="280" font-size="24" font-weight="700" text-anchor="middle" fill="#6b655b">室内</text>
+  <rect x="20" y="70" width="430" height="22" fill="#8b6b4a"/>
+  <text x="300" y="120" font-size="22" text-anchor="middle" fill="#6b655b">上の階の床・庇</text>
+  <rect x="20" y="440" width="430" height="20" fill="#8b6b4a"/>
+  <rect x="430" y="330" width="16" height="110" fill="#6b655b"/>
+  <text x="440" y="488" font-size="22" text-anchor="middle" fill="#6b655b">手すり壁</text>
+  <rect x="230" y="360" width="120" height="10" fill="#6f5439"/>
+  <rect x="240" y="370" width="8" height="70" fill="#6f5439"/><rect x="332" y="370" width="8" height="70" fill="#6f5439"/>
+  <path d="M262 340 h56 l-8 20 h-40 z" fill="#8b6b4a"/>
+  <ellipse cx="290" cy="318" rx="36" ry="20" fill="#5b7f4a"/><rect x="287" y="326" width="6" height="16" fill="#6f5439"/>
+  <circle cx="690" cy="110" r="26" fill="#b8935a"/>
+  <text x="690" y="168" font-size="22" font-weight="700" text-anchor="middle" fill="#22201c">夏の日（高い）</text>
+  <line x1="666" y1="128" x2="450" y2="330" stroke="#b8935a" stroke-width="4" stroke-dasharray="10 7"/>
+  <circle cx="700" cy="300" r="26" fill="#1a365d"/>
+  <text x="690" y="358" font-size="22" font-weight="700" text-anchor="middle" fill="#22201c">冬の日（低い）</text>
+  <line x1="674" y1="304" x2="140" y2="372" stroke="#1a365d" stroke-width="4" stroke-dasharray="10 7"/>
+</svg>

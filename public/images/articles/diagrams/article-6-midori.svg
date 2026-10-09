@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>五葉松のみどり摘み：春に伸びる新芽（みどり）のうち、強く伸びたものを葉が開く前に半分ほど摘み、弱い芽はそのまま残して伸びをそろえる</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <defs>
+    <g id="nd" stroke="#2f5a3a" stroke-width="3" stroke-linecap="round">
+      <line x1="0" y1="0" x2="-30" y2="-18"/><line x1="0" y1="0" x2="-26" y2="6"/><line x1="0" y1="0" x2="30" y2="-18"/><line x1="0" y1="0" x2="26" y2="6"/><line x1="0" y1="0" x2="-14" y2="20"/><line x1="0" y1="0" x2="14" y2="20"/>
+    </g>
+  </defs>
+
+  <!-- ① -->
+  <rect x="20" y="20" width="244" height="430" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="142" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">① みどりが伸びる</text>
+  <path d="M40 360 Q100 340 142 330" stroke="#6f5439" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <use href="#nd" transform="translate(142 330)"/>
+  <rect x="135" y="170" width="14" height="150" rx="7" fill="#9bbf7a"/>
+  <use href="#nd" transform="translate(90 344) scale(0.8)"/>
+  <rect x="84" y="290" width="12" height="46" rx="6" fill="#9bbf7a"/>
+  <text x="200" y="200" font-size="22" fill="#5b7f4a">強い</text>
+  <text x="38" y="282" font-size="22" fill="#5b7f4a">弱い</text>
+  <text x="142" y="428" text-anchor="middle" font-size="22" fill="#6b655b">4月下旬〜5月</text>
+
+  <!-- ② -->
+  <rect x="278" y="20" width="244" height="430" rx="14" fill="#fff" stroke="#b8935a" stroke-width="3"/>
+  <text x="400" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">② 半分ほど摘む</text>
+  <path d="M298 360 Q358 340 400 330" stroke="#6f5439" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <use href="#nd" transform="translate(400 330)"/>
+  <rect x="393" y="246" width="14" height="74" rx="7" fill="#9bbf7a"/>
+  <rect x="393" y="170" width="14" height="76" rx="7" fill="#9bbf7a" opacity="0.3"/>
+  <line x1="360" y1="246" x2="440" y2="246" stroke="#b8935a" stroke-width="4" stroke-dasharray="10 6"/>
+  <text x="448" y="254" font-size="22" font-weight="700" fill="#b8935a">摘む</text>
+  <use href="#nd" transform="translate(348 344) scale(0.8)"/>
+  <rect x="342" y="290" width="12" height="46" rx="6" fill="#9bbf7a"/>
+  <text x="400" y="400" text-anchor="middle" font-size="22" fill="#6b655b">弱い芽はそのまま</text>
+  <text x="400" y="428" text-anchor="middle" font-size="22" fill="#1a365d">指でつまんで折る</text>
+
+  <!-- ③ -->
+  <rect x="536" y="20" width="244" height="430" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="658" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">③ 伸びがそろう</text>
+  <path d="M556 360 Q616 340 658 330" stroke="#6f5439" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <use href="#nd" transform="translate(658 330)"/>
+  <rect x="652" y="262" width="12" height="60" rx="6" fill="#6f5439"/>
+  <use href="#nd" transform="translate(658 262) scale(1.1)"/>
+  <use href="#nd" transform="translate(606 344) scale(0.8)"/>
+  <rect x="601" y="282" width="10" height="56" rx="5" fill="#6f5439"/>
+  <use href="#nd" transform="translate(606 282) scale(1.0)"/>
+  <text x="658" y="428" text-anchor="middle" font-size="22" fill="#6b655b">葉が短く締まる</text>
+</svg>

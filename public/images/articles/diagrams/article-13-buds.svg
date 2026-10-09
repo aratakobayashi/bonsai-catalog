@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>梅の花芽と葉芽の見分け方</title>
+  <rect width="800" height="400" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">花芽と葉芽の見分け方（秋〜冬）</text>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="70" width="370" height="310" rx="14"/>
+    <rect x="410" y="70" width="370" height="310" rx="14"/>
+  </g>
+  <line x1="60" y1="250" x2="350" y2="200" stroke="#8b6b4a" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="160" cy="216" r="17" fill="#c98a96"/><circle cx="190" cy="211" r="17" fill="#c98a96"/>
+  <circle cx="270" cy="197" r="17" fill="#c98a96"/>
+  <text x="205" y="122" text-anchor="middle" font-size="26" font-weight="700" fill="#22201c">花芽</text>
+  <text x="205" y="300" text-anchor="middle" font-size="22" fill="#22201c">丸くふっくら</text>
+  <text x="205" y="336" text-anchor="middle" font-size="22" fill="#6b655b">節に1〜2個つく</text>
+  <line x1="450" y1="250" x2="740" y2="200" stroke="#8b6b4a" stroke-width="10" stroke-linecap="round"/>
+  <path d="M560 228 l-6 -30 l14 0 z" fill="#5b7f4a"/>
+  <path d="M660 212 l-6 -30 l14 0 z" fill="#5b7f4a"/>
+  <text x="595" y="122" text-anchor="middle" font-size="26" font-weight="700" fill="#22201c">葉芽</text>
+  <text x="595" y="300" text-anchor="middle" font-size="22" fill="#22201c">小さく先がとがる</text>
+  <text x="595" y="336" text-anchor="middle" font-size="22" fill="#6b655b">春に枝や葉になる</text>
+</svg>

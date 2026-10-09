@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>展示会・コンテストに出品するまでの流れ</title>
+  <rect width="800" height="520" fill="#faf9f6"/>
+  <text x="20" y="46" font-size="28" font-weight="700" fill="#1a365d">出品までの流れ（一般的な例）</text>
+
+  <line x1="64" y1="90" x2="64" y2="490" stroke="#ebe7df" stroke-width="6"/>
+
+  <g font-size="22" fill="#22201c">
+    <circle cx="64" cy="100" r="22" fill="#1a365d"/><text x="64" y="108" text-anchor="middle" fill="#fff" font-weight="700">1</text>
+    <text x="104" y="96" font-size="25" font-weight="700">募集要項を確かめる</text>
+    <text x="104" y="126" fill="#6b655b">出品資格・樹の大きさ・申込の方法と締め切り</text>
+
+    <circle cx="64" cy="180" r="22" fill="#1a365d"/><text x="64" y="188" text-anchor="middle" fill="#fff" font-weight="700">2</text>
+    <text x="104" y="176" font-size="25" font-weight="700">出品する樹を決める</text>
+    <text x="104" y="206" fill="#6b655b">見頃と展示の時期が合う樹を選ぶ</text>
+
+    <circle cx="64" cy="260" r="22" fill="#1a365d"/><text x="64" y="268" text-anchor="middle" fill="#fff" font-weight="700">3</text>
+    <text x="104" y="256" font-size="25" font-weight="700">樹を仕上げる</text>
+    <text x="104" y="286" fill="#6b655b">植え替えや大きな剪定は早めに済ませる</text>
+
+    <circle cx="64" cy="340" r="22" fill="#1a365d"/><text x="64" y="348" text-anchor="middle" fill="#fff" font-weight="700">4</text>
+    <text x="104" y="336" font-size="25" font-weight="700">申し込む（写真審査がある場合も）</text>
+    <text x="104" y="366" fill="#6b655b">正面からの写真を明るい背景で撮っておく</text>
+
+    <circle cx="64" cy="420" r="22" fill="#b8935a"/><text x="64" y="428" text-anchor="middle" fill="#fff" font-weight="700">5</text>
+    <text x="104" y="416" font-size="25" font-weight="700">搬入前の手入れ</text>
+    <text x="104" y="446" fill="#6b655b">苔・鉢・卓をきれいにし、名札の情報を用意</text>
+
+    <circle cx="64" cy="490" r="22" fill="#b8935a"/><text x="64" y="498" text-anchor="middle" fill="#fff" font-weight="700">6</text>
+    <text x="104" y="498" font-size="25" font-weight="700">展示・搬出、樹を休ませる</text>
+  </g>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 414" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽師になるまでの一般的な道のり</title>
+  <rect width="800" height="414" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">盆栽師になるまでの道のり</text>
+  <rect x="20" y="70" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="98.0" r="19" fill="#5b7f4a"/>
+  <text x="56" y="106.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">1</text>
+  <text x="92" y="107.0" font-size="24" font-weight="700" fill="#22201c">趣味で育てて基本を知る</text>
+  <text x="764" y="106.0" font-size="22" text-anchor="end" fill="#5b7f4a">愛好会・教室</text>
+  <rect x="20" y="136" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="164.0" r="19" fill="#5b7f4a"/>
+  <text x="56" y="172.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">2</text>
+  <text x="92" y="173.0" font-size="24" font-weight="700" fill="#22201c">盆栽園を訪ねて相談する</text>
+  <text x="764" y="172.0" font-size="22" text-anchor="end" fill="#5b7f4a">展示会の場でも</text>
+  <rect x="20" y="202" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="230.0" r="19" fill="#5b7f4a"/>
+  <text x="56" y="238.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">3</text>
+  <text x="92" y="239.0" font-size="24" font-weight="700" fill="#22201c">弟子入りして修業する</text>
+  <text x="764" y="238.0" font-size="22" text-anchor="end" fill="#5b7f4a">住み込みが多い</text>
+  <rect x="20" y="268" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="296.0" r="19" fill="#5b7f4a"/>
+  <text x="56" y="304.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">4</text>
+  <text x="92" y="305.0" font-size="24" font-weight="700" fill="#22201c">年季明け</text>
+  <text x="764" y="304.0" font-size="22" text-anchor="end" fill="#5b7f4a">園に残る道も</text>
+  <rect x="20" y="334" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="362.0" r="19" fill="#5b7f4a"/>
+  <text x="56" y="370.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">5</text>
+  <text x="92" y="371.0" font-size="24" font-weight="700" fill="#22201c">独立・開業</text>
+  <text x="764" y="370.0" font-size="22" text-anchor="end" fill="#5b7f4a">販売・管理・教室</text>
+</svg>

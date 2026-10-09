@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 486" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>新築祝いと引越し祝いの違い</title>
+<defs>
+  <g id="tree"><path d="M-40 0 h80 l-9 26 h-62 z" fill="#8b6b4a"/><path d="M0 0 q-6 -30 4 -56" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="2" cy="-62" rx="34" ry="20" fill="#5b7f4a"/><ellipse cx="-24" cy="-40" rx="20" ry="12" fill="#5b7f4a"/><ellipse cx="28" cy="-38" rx="20" ry="12" fill="#5b7f4a"/></g>
+  <g id="ok"><circle r="15" fill="none" stroke="#5b7f4a" stroke-width="5"/></g>
+  <g id="ng"><g stroke="#8b6b4a" stroke-width="5" stroke-linecap="round"><line x1="-13" y1="-13" x2="13" y2="13"/><line x1="13" y1="-13" x2="-13" y2="13"/></g></g>
+  <g id="tri"><path d="M0 -15 L15 12 H-15 Z" fill="none" stroke="#b8935a" stroke-width="5" stroke-linejoin="round"/></g>
+  <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#6b655b"/></marker>
+</defs>
+  <rect width="800" height="486" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">新築祝いと引越し祝いの違い</text>
+  <rect x="190" y="66" width="290" height="52" rx="10" fill="#1a365d"/>
+  <rect x="490" y="66" width="290" height="52" rx="10" fill="#5b7f4a"/>
+  <text x="335" y="101" font-size="25" text-anchor="middle" font-weight="700" fill="#fff">新築祝い</text>
+  <text x="635" y="101" font-size="25" text-anchor="middle" font-weight="700" fill="#fff">引越し祝い</text>
+  <rect x="20" y="130" width="760" height="94" rx="10" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="36" y="185" font-size="23" font-weight="700" fill="#22201c">相手</text>
+  <text x="204" y="168" font-size="22" fill="#22201c">家を建てた・買った人</text>
+  <text x="504" y="168" font-size="22" fill="#22201c">住まいを移った人</text>
+  <text x="504" y="200" font-size="22" fill="#22201c">（賃貸・転勤も含む）</text>
+  <rect x="20" y="232" width="760" height="62" rx="10" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="36" y="271" font-size="23" font-weight="700" fill="#22201c">置き場所</text>
+  <text x="204" y="270" font-size="22" fill="#22201c">庭や玄関前がある家が多い</text>
+  <text x="504" y="270" font-size="22" fill="#22201c">ベランダや窓辺が中心</text>
+  <rect x="20" y="302" width="760" height="94" rx="10" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="36" y="357" font-size="23" font-weight="700" fill="#22201c">向く盆栽</text>
+  <text x="204" y="340" font-size="22" fill="#22201c">中くらいの鉢も置ける</text>
+  <text x="504" y="340" font-size="22" fill="#22201c">小さく軽い鉢</text>
+  <text x="504" y="372" font-size="22" fill="#22201c">室内向きの樹も候補</text>
+  <rect x="20" y="404" width="760" height="62" rx="10" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="36" y="443" font-size="23" font-weight="700" fill="#22201c">のし</text>
+  <text x="204" y="442" font-size="22" fill="#22201c">「御新築御祝」など</text>
+  <text x="504" y="442" font-size="22" fill="#22201c">「御新居祝」「御祝」</text>
+</svg>

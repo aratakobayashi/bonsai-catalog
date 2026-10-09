@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽展の一席の飾りの例。主木を卓にのせ、添えと掛け軸を組み合わせる</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">一席の飾りの例</text>
+  <rect x="30" y="80" width="740" height="330" fill="#f3f0ea" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="112" y="96" width="96" height="220" fill="#fff" stroke="#c9c2b5" stroke-width="2"/>
+  <rect x="104" y="92" width="112" height="8" fill="#6f5439"/><rect x="104" y="312" width="112" height="10" fill="#6f5439"/>
+  <path d="M140 150 q20 -30 40 0 q-20 40 -40 0" fill="none" stroke="#6b655b" stroke-width="3"/>
+  <rect x="330" y="350" width="240" height="20" fill="#6f5439"/><rect x="340" y="370" width="16" height="30" fill="#6f5439"/><rect x="544" y="370" width="16" height="30" fill="#6f5439"/>
+  <path d="M362.0 302.0 h176.0 l-12.8 48.0 h-150.4 z" fill="#1a365d"/>
+  <path d="M440.4 302.0 C434.0 238.0 482.0 206.0 453.2 142.0 L469.2 142.0 C501.2 206.0 459.6 238.0 466.0 302.0 z" fill="#6f5439"/>
+  <ellipse cx="389.2" cy="177.2" rx="64.0" ry="28.8" fill="#5b7f4a"/>
+  <ellipse cx="514.0" cy="142.0" rx="57.6" ry="25.6" fill="#5b7f4a"/>
+  <ellipse cx="456.4" cy="97.2" rx="54.4" ry="28.8" fill="#5b7f4a"/>
+  <rect x="630" y="388" width="110" height="10" fill="#8b6b4a"/>
+  <path d="M664 364 h42 l-4 24 h-34 z" fill="#2c4a75"/>
+  <path d="M673 364 q-7.199999999999999 -30 -16.799999999999997 -44" stroke="#5b7f4a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M685 364 q0.0 -30 0.0 -44" stroke="#5b7f4a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M697 364 q7.199999999999999 -30 16.799999999999997 -44" stroke="#5b7f4a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <text x="160" y="348" text-anchor="middle" font-size="24" font-weight="700" fill="#1a365d">掛け軸</text>
+  <text x="590" y="150" font-size="26" font-weight="700" fill="#1a365d">主木</text>
+  <text x="450" y="444" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">卓（台）</text>
+  <text x="686" y="300" text-anchor="middle" font-size="24" font-weight="700" fill="#1a365d">添え</text>
+  <text x="686" y="444" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">地板</text>
+</svg>

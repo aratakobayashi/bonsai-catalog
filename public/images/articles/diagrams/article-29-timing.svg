@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 398" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>新築祝いを贈る時期</title>
+<defs>
+  <g id="tree"><path d="M-40 0 h80 l-9 26 h-62 z" fill="#8b6b4a"/><path d="M0 0 q-6 -30 4 -56" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="2" cy="-62" rx="34" ry="20" fill="#5b7f4a"/><ellipse cx="-24" cy="-40" rx="20" ry="12" fill="#5b7f4a"/><ellipse cx="28" cy="-38" rx="20" ry="12" fill="#5b7f4a"/></g>
+  <g id="ok"><circle r="15" fill="none" stroke="#5b7f4a" stroke-width="5"/></g>
+  <g id="ng"><g stroke="#8b6b4a" stroke-width="5" stroke-linecap="round"><line x1="-13" y1="-13" x2="13" y2="13"/><line x1="13" y1="-13" x2="-13" y2="13"/></g></g>
+  <g id="tri"><path d="M0 -15 L15 12 H-15 Z" fill="none" stroke="#b8935a" stroke-width="5" stroke-linejoin="round"/></g>
+  <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#6b655b"/></marker>
+</defs>
+  <rect width="800" height="398" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">新築祝いを贈る時期</text>
+  <rect x="456.7" y="98" width="273.3" height="40" rx="10" fill="#b8935a" fill-opacity="0.25"/>
+  <text x="593.333" y="126" font-size="22" text-anchor="middle" font-weight="700" fill="#7a5a2a">贈りやすい時期</text>
+  <line x1="80" y1="150" x2="730" y2="150" stroke="#6b655b" stroke-width="4" marker-end="url(#ar)"/>
+  <circle cx="110.0" cy="150" r="13" fill="#fff" stroke="#1a365d" stroke-width="4"/>
+  <text x="110" y="200" font-size="24" text-anchor="middle" font-weight="700" fill="#22201c">引き渡し</text>
+  <text x="110" y="236" font-size="22" text-anchor="middle" fill="#6b655b">家が完成</text>
+  <text x="110" y="267" font-size="22" text-anchor="middle" fill="#6b655b">まだ贈らない</text>
+  <circle cx="303.3" cy="150" r="13" fill="#fff" stroke="#1a365d" stroke-width="4"/>
+  <text x="303.333" y="200" font-size="24" text-anchor="middle" font-weight="700" fill="#22201c">入居</text>
+  <text x="303.333" y="236" font-size="22" text-anchor="middle" fill="#6b655b">荷解きで</text>
+  <text x="303.333" y="267" font-size="22" text-anchor="middle" fill="#6b655b">慌ただしい</text>
+  <circle cx="496.7" cy="150" r="13" fill="#1a365d" stroke="#1a365d" stroke-width="4"/>
+  <text x="496.667" y="200" font-size="24" text-anchor="middle" font-weight="700" fill="#22201c">落ち着いたころ</text>
+  <text x="496.667" y="236" font-size="22" text-anchor="middle" fill="#6b655b">入居後</text>
+  <text x="496.667" y="267" font-size="22" text-anchor="middle" fill="#6b655b">半月〜2か月</text>
+  <circle cx="690.0" cy="150" r="13" fill="#1a365d" stroke="#1a365d" stroke-width="4"/>
+  <text x="690" y="200" font-size="24" text-anchor="middle" font-weight="700" fill="#22201c">お披露目</text>
+  <text x="690" y="236" font-size="22" text-anchor="middle" fill="#6b655b">招かれたら</text>
+  <text x="690" y="267" font-size="22" text-anchor="middle" fill="#6b655b">当日に持参も</text>
+  <rect x="20" y="320" width="760" height="58" rx="14" fill="#f3f0ea" stroke="#8b6b4a" stroke-width="2"/>
+  <text x="44" y="360" font-size="23" fill="#22201c">配送するときは、受け取れる日時を先に聞いておく</text>
+</svg>

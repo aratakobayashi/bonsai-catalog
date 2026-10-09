@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>黒松の芽切りの流れ</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">芽切りの流れ</text>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="70" width="240" height="300" rx="14"/>
+    <rect x="280" y="70" width="240" height="300" rx="14"/>
+    <rect x="540" y="70" width="240" height="300" rx="14"/>
+  </g>
+  <!-- 1 春の新芽が伸びる -->
+  <g transform="translate(140 0)">
+    <line x1="-70" y1="300" x2="0" y2="250" stroke="#8b6b4a" stroke-width="10" stroke-linecap="round"/>
+    <g stroke="#3f5f33" stroke-width="3" stroke-linecap="round">
+      <line x1="-50" y1="286" x2="-80" y2="250"/><line x1="-50" y1="286" x2="-30" y2="246"/>
+      <line x1="-30" y1="272" x2="-56" y2="236"/><line x1="-30" y1="272" x2="-6" y2="236"/>
+    </g>
+    <rect x="-6" y="130" width="12" height="122" rx="6" fill="#9bbf6a"/>
+    <g stroke="#5b7f4a" stroke-width="3" stroke-linecap="round">
+      <line x1="0" y1="230" x2="-34" y2="196"/><line x1="0" y1="230" x2="34" y2="196"/>
+      <line x1="0" y1="200" x2="-34" y2="166"/><line x1="0" y1="200" x2="34" y2="166"/>
+      <line x1="0" y1="170" x2="-28" y2="140"/><line x1="0" y1="170" x2="28" y2="140"/>
+    </g>
+  </g>
+  <text x="140" y="112" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">① 春の芽が伸びる</text>
+  <!-- 2 元から切る -->
+  <g transform="translate(400 0)">
+    <line x1="-70" y1="300" x2="0" y2="250" stroke="#8b6b4a" stroke-width="10" stroke-linecap="round"/>
+    <g stroke="#3f5f33" stroke-width="3" stroke-linecap="round">
+      <line x1="-50" y1="286" x2="-80" y2="250"/><line x1="-50" y1="286" x2="-30" y2="246"/>
+      <line x1="-30" y1="272" x2="-56" y2="236"/><line x1="-30" y1="272" x2="-6" y2="236"/>
+    </g>
+    <rect x="-6" y="236" width="12" height="16" rx="4" fill="#9bbf6a"/>
+    <line x1="-40" y1="230" x2="40" y2="230" stroke="#b4573a" stroke-width="4" stroke-dasharray="8 6"/>
+    <rect x="-6" y="150" width="12" height="60" rx="6" fill="#9bbf6a" fill-opacity="0.35"/>
+  </g>
+  <text x="400" y="112" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">② 元で切る</text>
+  <text x="400" y="352" text-anchor="middle" font-size="22" fill="#b4573a">6月中旬〜7月上旬</text>
+  <!-- 3 二番芽 -->
+  <g transform="translate(660 0)">
+    <line x1="-70" y1="300" x2="0" y2="250" stroke="#8b6b4a" stroke-width="10" stroke-linecap="round"/>
+    <g stroke="#3f5f33" stroke-width="3" stroke-linecap="round">
+      <line x1="-50" y1="286" x2="-80" y2="250"/><line x1="-50" y1="286" x2="-30" y2="246"/>
+      <line x1="-30" y1="272" x2="-56" y2="236"/><line x1="-30" y1="272" x2="-6" y2="236"/>
+    </g>
+    <g stroke="#5b7f4a" stroke-width="3" stroke-linecap="round">
+      <line x1="0" y1="250" x2="-36" y2="200"/><line x1="-36" y1="200" x2="-56" y2="184"/><line x1="-36" y1="200" x2="-20" y2="178"/>
+      <line x1="0" y1="250" x2="36" y2="200"/><line x1="36" y1="200" x2="20" y2="178"/><line x1="36" y1="200" x2="56" y2="184"/>
+    </g>
+    <circle cx="-36" cy="200" r="6" fill="#9bbf6a"/><circle cx="36" cy="200" r="6" fill="#9bbf6a"/>
+  </g>
+  <text x="660" y="112" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">③ 短い二番芽</text>
+  <text x="660" y="352" text-anchor="middle" font-size="22" fill="#5b7f4a">秋に2本に減らす</text>
+  <rect x="20" y="390" width="760" height="62" rx="14" fill="#1a365d"/>
+  <text x="400" y="430" text-anchor="middle" font-size="25" font-weight="700" fill="#faf9f6">元気な樹だけ。弱い芽を先に、強い芽は後で切る</text>
+</svg>

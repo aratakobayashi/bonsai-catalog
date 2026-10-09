@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 432" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>卒業・入学のころに見ごろの樹</title>
+<defs>
+  <g id="tree"><path d="M-40 0 h80 l-9 26 h-62 z" fill="#8b6b4a"/><path d="M0 0 q-6 -30 4 -56" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="2" cy="-62" rx="34" ry="20" fill="#5b7f4a"/><ellipse cx="-24" cy="-40" rx="20" ry="12" fill="#5b7f4a"/><ellipse cx="28" cy="-38" rx="20" ry="12" fill="#5b7f4a"/></g>
+  <g id="ok"><circle r="15" fill="none" stroke="#5b7f4a" stroke-width="5"/></g>
+  <g id="ng"><g stroke="#8b6b4a" stroke-width="5" stroke-linecap="round"><line x1="-13" y1="-13" x2="13" y2="13"/><line x1="13" y1="-13" x2="-13" y2="13"/></g></g>
+  <g id="tri"><path d="M0 -15 L15 12 H-15 Z" fill="none" stroke="#b8935a" stroke-width="5" stroke-linejoin="round"/></g>
+  <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#6b655b"/></marker>
+</defs>
+  <rect width="800" height="432" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">卒業・入学のころに見ごろの樹</text>
+  <text x="780" y="44" font-size="22" text-anchor="end" fill="#6b655b">関東の平地の目安</text>
+  <text x="176.667" y="94" font-size="22" text-anchor="middle" fill="#22201c">1</text>
+  <text x="230" y="94" font-size="22" text-anchor="middle" fill="#22201c">2</text>
+  <text x="283.333" y="94" font-size="22" text-anchor="middle" fill="#22201c">3</text>
+  <text x="336.667" y="94" font-size="22" text-anchor="middle" fill="#22201c">4</text>
+  <text x="390" y="94" font-size="22" text-anchor="middle" fill="#22201c">5</text>
+  <text x="443.333" y="94" font-size="22" text-anchor="middle" fill="#22201c">6</text>
+  <text x="496.667" y="94" font-size="22" text-anchor="middle" fill="#22201c">7</text>
+  <text x="550" y="94" font-size="22" text-anchor="middle" fill="#22201c">8</text>
+  <text x="603.333" y="94" font-size="22" text-anchor="middle" fill="#22201c">9</text>
+  <text x="656.667" y="94" font-size="22" text-anchor="middle" fill="#22201c">10</text>
+  <text x="710" y="94" font-size="22" text-anchor="middle" fill="#22201c">11</text>
+  <text x="763.333" y="94" font-size="22" text-anchor="middle" fill="#22201c">12</text>
+  <text x="20" y="94" font-size="22" fill="#6b655b">月</text>
+  <rect x="20" y="108" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="164" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="220" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="276" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="332" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <line x1="150.0" y1="108" x2="150.0" y2="382" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="203.3" y1="108" x2="203.3" y2="382" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="256.7" y1="108" x2="256.7" y2="382" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="310.0" y1="108" x2="310.0" y2="382" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="363.3" y1="108" x2="363.3" y2="382" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="416.7" y1="108" x2="416.7" y2="382" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="470.0" y1="108" x2="470.0" y2="382" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="523.3" y1="108" x2="523.3" y2="382" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="576.7" y1="108" x2="576.7" y2="382" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="630.0" y1="108" x2="630.0" y2="382" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="683.3" y1="108" x2="683.3" y2="382" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="736.7" y1="108" x2="736.7" y2="382" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="790.0" y1="108" x2="790.0" y2="382" stroke="#ebe7df" stroke-width="1.5"/>
+  <text x="34" y="141" font-size="24" font-weight="700" fill="#22201c">梅</text>
+  <rect x="203.3" y="119" width="106.7" height="28" rx="6" fill="#c0392b" fill-opacity="0.55"/>
+  <text x="256.667" y="141" font-size="22" text-anchor="middle" fill="#22201c">花</text>
+  <text x="34" y="197" font-size="24" font-weight="700" fill="#22201c">桜</text>
+  <rect x="288.7" y="175" width="74.7" height="28" rx="6" fill="#d98aa0" fill-opacity="1"/>
+  <text x="326" y="197" font-size="22" text-anchor="middle" fill="#fff">花</text>
+  <text x="34" y="253" font-size="24" font-weight="700" fill="#22201c">長寿梅</text>
+  <rect x="256.7" y="231" width="160.0" height="28" rx="6" fill="#c0392b" fill-opacity="0.9"/>
+  <text x="336.667" y="253" font-size="22" text-anchor="middle" fill="#fff">花</text>
+  <text x="34" y="309" font-size="24" font-weight="700" fill="#22201c">もみじ</text>
+  <rect x="310.0" y="287" width="80.0" height="28" rx="6" fill="#5b7f4a" fill-opacity="1"/>
+  <text x="350" y="309" font-size="22" text-anchor="middle" fill="#fff">芽吹き</text>
+  <text x="34" y="365" font-size="24" font-weight="700" fill="#22201c">さつき</text>
+  <rect x="395.3" y="343" width="74.7" height="28" rx="6" fill="#c2577a" fill-opacity="1"/>
+  <text x="432.667" y="365" font-size="22" text-anchor="middle" fill="#fff">花</text>
+  <text x="20" y="414" font-size="22" fill="#6b655b">卒業式・入学式のころ（3〜4月）に合うのは梅・桜・長寿梅</text>
+</svg>

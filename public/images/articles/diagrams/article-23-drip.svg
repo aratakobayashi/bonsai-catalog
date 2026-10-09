@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 510" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>タイマーと点滴チューブで水やりするしくみ。水道やタンクからタイマーを通し、チューブを分けて鉢ごとの点滴ノズルから水を出す</title>
+  <rect width="800" height="510" fill="#faf9f6"/>
+  <text x="400" y="48" font-size="30" font-weight="700" fill="#1a365d" text-anchor="middle">タイマーと点滴チューブのしくみ</text>
+  <rect x="20" y="72" width="760" height="340" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="50" y="150" width="90" height="150" rx="10" fill="#1a365d" fill-opacity="0.25" stroke="#1a365d" stroke-width="3"/>
+  <text x="95" y="336" font-size="22" font-weight="700" fill="#22201c" text-anchor="middle">水道・</text>
+  <text x="95" y="364" font-size="22" font-weight="700" fill="#22201c" text-anchor="middle">タンク</text>
+  <rect x="180" y="190" width="90" height="70" rx="10" fill="#b8935a"/><circle cx="225" cy="225" r="18" fill="#fff"/><line x1="225" y1="225" x2="225" y2="212" stroke="#22201c" stroke-width="3"/>
+  <text x="225" y="296" font-size="22" font-weight="700" fill="#22201c" text-anchor="middle">タイマー</text>
+  <path d="M140 225 h40 M270 225 h40 q20 0 20 -20 v-40 h400" stroke="#6b655b" stroke-width="6" fill="none"/>
+  <path d="M420 165 v70" stroke="#6b655b" stroke-width="3"/><circle cx="420" cy="238" r="5" fill="#1a365d"/>
+  <path d="M370.0 250 h100 l-10.0 60 h-80.0 z" fill="#8b6b4a"/>
+  <path d="M376 254 h88 l-4 10 h-80 z" fill="#5e4630"/>
+  <path d="M420 250 v-0" />  <path d="M540 165 v70" stroke="#6b655b" stroke-width="3"/><circle cx="540" cy="238" r="5" fill="#1a365d"/>
+  <path d="M490.0 250 h100 l-10.0 60 h-80.0 z" fill="#8b6b4a"/>
+  <path d="M496 254 h88 l-4 10 h-80 z" fill="#5e4630"/>
+  <path d="M540 250 v-0" />  <path d="M660 165 v70" stroke="#6b655b" stroke-width="3"/><circle cx="660" cy="238" r="5" fill="#1a365d"/>
+  <path d="M610.0 250 h100 l-10.0 60 h-80.0 z" fill="#8b6b4a"/>
+  <path d="M616 254 h88 l-4 10 h-80 z" fill="#5e4630"/>
+  <path d="M660 250 v-0" />  <text x="540" y="142" font-size="22" font-weight="700" fill="#22201c" text-anchor="middle">点滴ノズル</text>
+  <text x="540" y="360" font-size="22" fill="#6b655b" text-anchor="middle">鉢ごとに出る量を調整</text>
+  <rect x="20" y="428" width="760" height="62" rx="14" fill="#1a365d"/>
+  <text x="400" y="468.36" font-size="26" font-weight="700" fill="#faf9f6" text-anchor="middle">出かける1週間前から動かして確かめる</text>
+
+</svg>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>イチョウの長い枝と短い枝</title>
+  <defs>
+    <path id="fan" d="M0 0 L-18 -34 Q0 -46 18 -34 Z"/>
+  </defs>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">長い枝と短い枝</text>
+
+  <!-- 幹（左） -->
+  <path d="M60 470 L60 120" stroke="#6f5439" stroke-width="18" stroke-linecap="round"/>
+
+  <!-- 長い枝：右上へ伸びる -->
+  <path d="M66 330 L560 170" stroke="#6f5439" stroke-width="7" stroke-linecap="round"/>
+  <!-- 長い枝の葉（間隔があいて1枚ずつ） -->
+  <g fill="#5b7f4a" stroke="#faf9f6" stroke-width="2">
+    <use href="#fan" x="300" y="253" transform="rotate(-20 300 253)"/>
+    <use href="#fan" x="380" y="227" transform="rotate(-20 380 227)"/>
+    <use href="#fan" x="460" y="201" transform="rotate(-20 460 201)"/>
+    <use href="#fan" x="540" y="176" transform="rotate(-20 540 176)"/>
+  </g>
+  <!-- 切る位置 -->
+  <line x1="492" y1="164" x2="508" y2="216" stroke="#b4573a" stroke-width="5" stroke-dasharray="7 5"/>
+  <text x="250" y="110" font-size="24" font-weight="700" fill="#22201c">長い枝</text>
+  <text x="250" y="142" font-size="22" fill="#b4573a">2〜3芽を残して切る</text>
+
+  <!-- 短い枝：こぶから葉の束 -->
+  <g>
+    <rect x="150" y="286" width="16" height="22" rx="4" fill="#8b6b4a" transform="rotate(-18 158 297)"/>
+    <g fill="#5b7f4a" stroke="#faf9f6" stroke-width="2">
+      <use href="#fan" x="160" y="286" transform="rotate(-60 160 286)"/>
+      <use href="#fan" x="160" y="286" transform="rotate(-10 160 286)"/>
+      <use href="#fan" x="160" y="286" transform="rotate(40 160 286)"/>
+    </g>
+    <rect x="215" y="266" width="16" height="22" rx="4" fill="#8b6b4a" transform="rotate(-18 223 277)"/>
+    <g fill="#5b7f4a" stroke="#faf9f6" stroke-width="2">
+      <use href="#fan" x="225" y="266" transform="rotate(-60 225 266)"/>
+      <use href="#fan" x="225" y="266" transform="rotate(-10 225 266)"/>
+      <use href="#fan" x="225" y="266" transform="rotate(40 225 266)"/>
+    </g>
+  </g>
+  <!-- 短い枝の説明 -->
+  <circle cx="190" cy="250" r="72" fill="none" stroke="#b8935a" stroke-width="3" stroke-dasharray="8 6"/>
+  <line x1="200" y1="322" x2="250" y2="380" stroke="#b8935a" stroke-width="3"/>
+  <text x="220" y="410" font-size="24" font-weight="700" fill="#22201c">短い枝</text>
+  <text x="220" y="442" font-size="22" fill="#5b7f4a">葉が束になる部分。残す</text>
+
+  <!-- 右の凡例 -->
+  <rect x="560" y="300" width="220" height="150" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="580" y="340" font-size="22" fill="#22201c">長い枝＝骨格</text>
+  <text x="580" y="376" font-size="22" fill="#22201c">短い枝＝葉の量</text>
+  <line x1="580" y1="410" x2="620" y2="410" stroke="#b4573a" stroke-width="5" stroke-dasharray="7 5"/>
+  <text x="630" y="418" font-size="22" fill="#22201c">切る位置</text>
+</svg>

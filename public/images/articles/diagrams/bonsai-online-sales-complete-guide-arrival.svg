@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>通販で届いた盆栽の、届いた日から1週間の手当ての流れ</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">届いてから1週間の手当て</text>
+  <rect x="20" y="70" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="98.0" r="19" fill="#1a365d"/>
+  <text x="56" y="106.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">1</text>
+  <text x="92" y="107.0" font-size="24" font-weight="700" fill="#22201c">届いたらすぐ開ける</text>
+  <text x="764" y="106.0" font-size="22" text-anchor="end" fill="#5b7f4a">その日のうちに</text>
+  <rect x="20" y="136" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="164.0" r="19" fill="#1a365d"/>
+  <text x="56" y="172.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">2</text>
+  <text x="92" y="173.0" font-size="24" font-weight="700" fill="#22201c">傷みがないか確かめる</text>
+  <text x="764" y="172.0" font-size="22" text-anchor="end" fill="#5b7f4a">枝折れ・土のこぼれ</text>
+  <rect x="20" y="202" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="230.0" r="19" fill="#1a365d"/>
+  <text x="56" y="238.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">3</text>
+  <text x="92" y="239.0" font-size="24" font-weight="700" fill="#22201c">土が乾いていれば水を</text>
+  <text x="764" y="238.0" font-size="22" text-anchor="end" fill="#5b7f4a">鉢底から流れるまで</text>
+  <rect x="20" y="268" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="296.0" r="19" fill="#1a365d"/>
+  <text x="56" y="304.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">4</text>
+  <text x="92" y="305.0" font-size="24" font-weight="700" fill="#22201c">明るい日陰で休ませる</text>
+  <text x="764" y="304.0" font-size="22" text-anchor="end" fill="#5b7f4a">2〜3日</text>
+  <rect x="20" y="334" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="362.0" r="19" fill="#1a365d"/>
+  <text x="56" y="370.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">5</text>
+  <text x="92" y="371.0" font-size="24" font-weight="700" fill="#22201c">いつもの置き場所へ</text>
+  <text x="764" y="370.0" font-size="22" text-anchor="end" fill="#5b7f4a">少しずつ日に慣らす</text>
+  <rect x="20" y="400" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="428.0" r="19" fill="#1a365d"/>
+  <text x="56" y="436.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">6</text>
+  <text x="92" y="437.0" font-size="24" font-weight="700" fill="#22201c">植え替え・剪定は待つ</text>
+  <text x="764" y="436.0" font-size="22" text-anchor="end" fill="#5b7f4a">次の適期まで</text>
+</svg>

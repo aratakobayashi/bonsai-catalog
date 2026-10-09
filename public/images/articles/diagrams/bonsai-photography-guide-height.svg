@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>カメラの高さの比較。高すぎると鉢の中を見下ろし、低すぎると見上げてゆがむ。幹の下の方の高さがちょうどよい</title>
+  <rect width="800" height="500" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">カメラの高さ</text>
+  <rect x="420" y="330" width="340" height="14" fill="#6f5439"/><rect x="440" y="344" width="12" height="110" fill="#6f5439"/><rect x="728" y="344" width="12" height="110" fill="#6f5439"/>
+  <path d="M520 300 h140 l-12 30 h-116 z" fill="#8b6b4a"/>
+  <path d="M584 300 q-8 -50 6 -100 l12 0 q-8 50 2 100 z" fill="#6f5439"/>
+  <ellipse cx="560" cy="200" rx="56" ry="26" fill="#5b7f4a"/><ellipse cx="628" cy="164" rx="52" ry="24" fill="#5b7f4a"/><ellipse cx="594" cy="122" rx="46" ry="24" fill="#5b7f4a"/>
+  <rect x="40" y="90" width="54" height="36" rx="6" fill="#22201c"/><circle cx="94" cy="108" r="10" fill="#6b655b"/>
+  <path d="M106 108 L500 262" stroke="#8b6b4a" stroke-width="3" stroke-dasharray="8 6"/>
+  <text x="40" y="160" font-size="24" font-weight="700" fill="#8b6b4a">高すぎる</text>
+  <text x="40" y="190" font-size="22" fill="#6b655b">鉢の中を見下ろす</text>
+  <rect x="40" y="242" width="54" height="36" rx="6" fill="#22201c"/><circle cx="94" cy="260" r="10" fill="#6b655b"/>
+  <path d="M106 260 L500 262" stroke="#5b7f4a" stroke-width="3" stroke-dasharray="0"/>
+  <text x="40" y="312" font-size="24" font-weight="700" fill="#5b7f4a">ちょうどよい</text>
+  <text x="40" y="342" font-size="22" fill="#6b655b">幹の下の方の高さ</text>
+  <rect x="40" y="380" width="54" height="36" rx="6" fill="#22201c"/><circle cx="94" cy="398" r="10" fill="#6b655b"/>
+  <path d="M106 398 L500 262" stroke="#8b6b4a" stroke-width="3" stroke-dasharray="8 6"/>
+  <text x="40" y="450" font-size="24" font-weight="700" fill="#8b6b4a">低すぎる</text>
+  <text x="40" y="480" font-size="22" fill="#6b655b">見上げてゆがむ</text>
+</svg>

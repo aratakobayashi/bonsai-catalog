@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 512" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>観察ノートの1ページの例。日付と天気、同じ角度の写真、高さ、新しい芽の数、水やりの時刻、気づいたことを書く</title>
+  <rect width="800" height="512" fill="#faf9f6"/>
+  <text x="400" y="48" font-size="30" font-weight="700" fill="#1a365d" text-anchor="middle">観察ノートの1ページの例</text>
+  <rect x="40" y="72" width="720" height="420" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="70" y="120" font-size="26" font-weight="700" fill="#22201c">○月○日（○）</text>
+  <text x="730" y="120" font-size="24" fill="#6b655b" text-anchor="end">天気・気温</text>
+  <line x1="70" y1="138" x2="730" y2="138" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="70" y="156" width="300" height="220" rx="10" fill="#f3f0ea" stroke="#ebe7df" stroke-width="2"/>
+  <path d="M220 330 q-5.4 -36.0 3.6 -72.0" stroke="#6f5439" stroke-width="8.1" fill="none" stroke-linecap="round"/>
+  <g fill="#5b7f4a"><ellipse cx="221.8" cy="247.2" rx="41.4" ry="23.400000000000002"/><ellipse cx="185.8" cy="274.2" rx="30.6" ry="16.2"/><ellipse cx="257.8" cy="277.8" rx="28.8" ry="15.3"/></g>
+  <path d="M150.0 328 h140 l-14.0 36 h-112.0 z" fill="#8b6b4a"/>
+  <text x="220" y="406" font-size="22" fill="#6b655b" text-anchor="middle">写真は同じ場所・同じ角度</text>
+  <text x="400" y="186" font-size="24" font-weight="700" fill="#1a365d">高さ</text>
+  <text x="400" y="216" font-size="22" fill="#22201c">○cm（定規で）</text>
+  <text x="400" y="252" font-size="24" font-weight="700" fill="#1a365d">新しい芽</text>
+  <text x="400" y="282" font-size="22" fill="#22201c">○本</text>
+  <text x="400" y="318" font-size="24" font-weight="700" fill="#1a365d">水やり</text>
+  <text x="400" y="348" font-size="22" fill="#22201c">朝○時・夕方○時</text>
+  <text x="400" y="384" font-size="24" font-weight="700" fill="#1a365d">気づいたこと</text>
+  <text x="400" y="414" font-size="22" fill="#22201c">葉の色・虫など</text>
+  <text x="400" y="470" font-size="22" font-weight="700" fill="#5b7f4a" text-anchor="middle">1週間ごとに同じ項目を記録すると比べやすい</text>
+
+</svg>

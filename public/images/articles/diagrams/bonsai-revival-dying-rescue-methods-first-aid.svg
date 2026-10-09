@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>原因別の応急処置</title>
+  <rect width="800" height="500" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">原因別の応急処置</text>
+
+  <rect x="20" y="74" width="374" height="196" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="74" width="374" height="54" rx="14" fill="#1a365d"/>
+  <rect x="20" y="110" width="374" height="18" fill="#1a365d"/>
+  <text x="207" y="111" text-anchor="middle" font-size="26" font-weight="700" fill="#faf9f6">水切れ</text>
+  <text x="44" y="172" font-size="23" fill="#22201c">・鉢ごと水に沈める</text>
+  <text x="44" y="210" font-size="23" fill="#22201c">・明るい日陰で休ませる</text>
+  <text x="44" y="248" font-size="23" fill="#5b7f4a" font-weight="700">水を与える</text>
+
+  <rect x="406" y="74" width="374" height="196" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="406" y="74" width="374" height="54" rx="14" fill="#8b6b4a"/>
+  <rect x="406" y="110" width="374" height="18" fill="#8b6b4a"/>
+  <text x="593" y="111" text-anchor="middle" font-size="26" font-weight="700" fill="#faf9f6">根腐れ</text>
+  <text x="430" y="172" font-size="23" fill="#22201c">・受け皿を外し、乾かす</text>
+  <text x="430" y="210" font-size="23" fill="#22201c">・適期なら植え替え</text>
+  <text x="430" y="248" font-size="23" fill="#8b6b4a" font-weight="700">水を控える</text>
+
+  <rect x="20" y="284" width="374" height="196" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="284" width="374" height="54" rx="14" fill="#b8935a"/>
+  <rect x="20" y="320" width="374" height="18" fill="#b8935a"/>
+  <text x="207" y="321" text-anchor="middle" font-size="26" font-weight="700" fill="#faf9f6">葉焼け</text>
+  <text x="44" y="382" font-size="23" fill="#22201c">・半日陰へ移す</text>
+  <text x="44" y="420" font-size="23" fill="#22201c">・少しずつ日に慣らす</text>
+  <text x="44" y="458" font-size="23" fill="#5b7f4a" font-weight="700">水やりは普段どおり</text>
+
+  <rect x="406" y="284" width="374" height="196" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="406" y="284" width="374" height="54" rx="14" fill="#5b7f4a"/>
+  <rect x="406" y="320" width="374" height="18" fill="#5b7f4a"/>
+  <text x="593" y="321" text-anchor="middle" font-size="26" font-weight="700" fill="#faf9f6">肥料のやりすぎ</text>
+  <text x="430" y="382" font-size="23" fill="#22201c">・置き肥を取り除く</text>
+  <text x="430" y="420" font-size="23" fill="#22201c">・水を何度か流す</text>
+  <text x="430" y="458" font-size="23" fill="#8b6b4a" font-weight="700">肥料は1〜2か月休む</text>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽の値段を左右する要素</title>
+  <rect width="800" height="460" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">値段を左右する5つの要素</text>
+  <!-- young -->
+  <rect x="20" y="74" width="300" height="290" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="170" y="114" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">手頃な樹</text>
+  <path d="M120 290 h100 l-8 26 h-84 z" fill="#b59b78"/>
+  <path d="M170 290 q-2 -50 4 -110" stroke="#6f5439" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <ellipse cx="176" cy="172" rx="36" ry="22" fill="#5b7f4a"/><ellipse cx="150" cy="226" rx="24" ry="14" fill="#5b7f4a"/>
+  <text x="170" y="346" text-anchor="middle" font-size="22" fill="#5b7f4a">若く、これから作る</text>
+  <!-- arrow -->
+  <path d="M332 220 h40 m-12 -12 l12 12 l-12 12" stroke="#b8935a" stroke-width="5" fill="none"/>
+  <!-- mature -->
+  <rect x="384" y="74" width="396" height="290" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="582" y="114" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">年月をかけた樹</text>
+  <path d="M500 290 h164 l-12 26 h-140 z" fill="#1a365d"/>
+  <path d="M566 290 q-20 -50 10 -90 q16 -24 -4 -50 M600 290 q14 -30 30 -50" stroke="#6f5439" stroke-width="18" fill="none" stroke-linecap="round"/>
+  <ellipse cx="560" cy="150" rx="60" ry="20" fill="#5b7f4a"/><ellipse cx="640" cy="196" rx="54" ry="18" fill="#5b7f4a"/><ellipse cx="508" cy="206" rx="44" ry="16" fill="#5b7f4a"/>
+  <text x="582" y="346" text-anchor="middle" font-size="22" fill="#5b7f4a">幹が太く、枝が整う</text>
+  <!-- factors -->
+  <g font-size="22" font-weight="700" text-anchor="middle">
+    <rect x="20" y="384" width="144" height="56" rx="12" fill="#1a365d"/><text x="92" y="420" fill="#faf9f6">樹の年数</text>
+    <rect x="174" y="384" width="144" height="56" rx="12" fill="#1a365d"/><text x="246" y="420" fill="#faf9f6">幹の太さ</text>
+    <rect x="328" y="384" width="144" height="56" rx="12" fill="#1a365d"/><text x="400" y="420" fill="#faf9f6">枝の仕上がり</text>
+    <rect x="482" y="384" width="144" height="56" rx="12" fill="#1a365d"/><text x="554" y="420" fill="#faf9f6">鉢</text>
+    <rect x="636" y="384" width="144" height="56" rx="12" fill="#1a365d"/><text x="708" y="420" fill="#faf9f6">樹種</text>
+  </g>
+</svg>

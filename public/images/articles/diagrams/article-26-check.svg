@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 432" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>母の日の盆栽を選ぶ前に確かめたい4つのこと。置き場所、植物を育てた経験、大きさ、届く日の花の状態</title>
+  <rect width="800" height="432" fill="#faf9f6"/>
+  <text x="400" y="48" font-size="30" font-weight="700" fill="#1a365d" text-anchor="middle">選ぶ前に確かめたい4つのこと</text>
+  <rect x="20" y="76" width="370" height="154" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="64" cy="126" r="22" fill="#b8935a"/>  <text x="64" y="135" font-size="24" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+  <text x="100" y="136" font-size="28" font-weight="700" fill="#22201c">置き場所</text>
+  <text x="50" y="188" font-size="22" fill="#6b655b">ベランダや庭があるか</text>
+  <rect x="410" y="76" width="370" height="154" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="454" cy="126" r="22" fill="#b8935a"/>  <text x="454" y="135" font-size="24" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+  <text x="490" y="136" font-size="28" font-weight="700" fill="#22201c">経験</text>
+  <text x="440" y="188" font-size="22" fill="#6b655b">植物を育てたことがあるか</text>
+  <rect x="20" y="246" width="370" height="154" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="64" cy="296" r="22" fill="#b8935a"/>  <text x="64" y="305" font-size="24" font-weight="700" fill="#fff" text-anchor="middle">3</text>
+  <text x="100" y="306" font-size="28" font-weight="700" fill="#22201c">大きさ</text>
+  <text x="50" y="358" font-size="22" fill="#6b655b">棚や窓辺に収まるか</text>
+  <rect x="410" y="246" width="370" height="154" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="454" cy="296" r="22" fill="#b8935a"/>  <text x="454" y="305" font-size="24" font-weight="700" fill="#fff" text-anchor="middle">4</text>
+  <text x="490" y="306" font-size="28" font-weight="700" fill="#22201c">届く日</text>
+  <text x="440" y="358" font-size="22" fill="#6b655b">つぼみで届くか、咲いているか</text>
+
+</svg>

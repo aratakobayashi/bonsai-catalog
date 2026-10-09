@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 504" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>シダレザクラの一年</title>
+  <rect width="800" height="504" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">シダレザクラの一年</text>
+  <text x="780" y="44" text-anchor="end" font-size="22" fill="#6b655b">関東の平地の目安</text>
+  <g font-size="22" fill="#22201c" text-anchor="middle">
+    <text x="186.2" y="94">1</text>
+    <text x="238.8" y="94">2</text>
+    <text x="291.2" y="94">3</text>
+    <text x="343.8" y="94">4</text>
+    <text x="396.2" y="94">5</text>
+    <text x="448.8" y="94">6</text>
+    <text x="501.2" y="94">7</text>
+    <text x="553.8" y="94">8</text>
+    <text x="606.2" y="94">9</text>
+    <text x="658.8" y="94">10</text>
+    <text x="711.2" y="94">11</text>
+    <text x="763.8" y="94">12</text>
+  </g>
+  <text x="20" y="94" font-size="22" fill="#6b655b">月</text>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="108" width="770" height="50" rx="8"/>
+    <rect x="20" y="164" width="770" height="50" rx="8"/>
+    <rect x="20" y="220" width="770" height="50" rx="8"/>
+    <rect x="20" y="276" width="770" height="50" rx="8"/>
+    <rect x="20" y="332" width="770" height="50" rx="8"/>
+    <rect x="20" y="388" width="770" height="50" rx="8"/>
+  </g>
+  <g stroke="#ebe7df" stroke-width="1.5">
+    <line x1="160.0" y1="108" x2="160.0" y2="438"/>
+    <line x1="212.5" y1="108" x2="212.5" y2="438"/>
+    <line x1="265.0" y1="108" x2="265.0" y2="438"/>
+    <line x1="317.5" y1="108" x2="317.5" y2="438"/>
+    <line x1="370.0" y1="108" x2="370.0" y2="438"/>
+    <line x1="422.5" y1="108" x2="422.5" y2="438"/>
+    <line x1="475.0" y1="108" x2="475.0" y2="438"/>
+    <line x1="527.5" y1="108" x2="527.5" y2="438"/>
+    <line x1="580.0" y1="108" x2="580.0" y2="438"/>
+    <line x1="632.5" y1="108" x2="632.5" y2="438"/>
+    <line x1="685.0" y1="108" x2="685.0" y2="438"/>
+    <line x1="737.5" y1="108" x2="737.5" y2="438"/>
+  </g>
+  <text x="34" y="141" font-size="24" font-weight="700" fill="#22201c">開花</text>
+  <rect x="296.5" y="119" width="42.0" height="28" rx="6" fill="#c77d92"/>
+  <text x="34" y="197" font-size="24" font-weight="700" fill="#22201c">剪定</text>
+  <rect x="333.2" y="175" width="47.2" height="28" rx="6" fill="#1a365d"/>
+  <text x="34" y="253" font-size="24" font-weight="700" fill="#22201c">植え替え</text>
+  <rect x="244.0" y="231" width="42.0" height="28" rx="6" fill="#8b6b4a"/>
+  <rect x="333.2" y="231" width="36.8" height="28" rx="6" fill="#8b6b4a" fill-opacity="0.45"/>
+  <text x="34" y="309" font-size="24" font-weight="700" fill="#22201c">花芽づくり</text>
+  <rect x="475.0" y="287" width="105.0" height="28" rx="6" fill="#5b7f4a" fill-opacity="0.45"/>
+  <text x="34" y="365" font-size="24" font-weight="700" fill="#22201c">肥料</text>
+  <rect x="343.8" y="343" width="78.8" height="28" rx="6" fill="#b8935a"/>
+  <rect x="580.0" y="343" width="78.8" height="28" rx="6" fill="#b8935a"/>
+  <text x="34" y="421" font-size="24" font-weight="700" fill="#22201c">夏の日よけ</text>
+  <rect x="475.0" y="399" width="105.0" height="28" rx="6" fill="#6b655b"/>
+  <text x="20" y="488" font-size="22" fill="#6b655b">薄い色：花後に植え替える場合／花芽が作られる時期</text>
+</svg>

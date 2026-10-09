@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>針金のかけ方の基本。枝に沿わせて約45度で巻き、太さは枝の3分の1程度。間隔が粗いと枝を支えられず形が戻る。枝が太ると食い込んで跡が残るので、食い込む前に外す</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">針金のかけ方の基本</text>
+  <rect x="20" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <text x="142" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">○ よい巻き方</text>
+  <line x1="50" y1="280" x2="236" y2="200" stroke="#6f5439" stroke-width="18" stroke-linecap="round"/>
+  <line x1="63.5" y1="286.2" x2="70.5" y2="259.2" stroke="#b27a4a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="94.8" y1="272.7" x2="101.7" y2="245.8" stroke="#b27a4a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="126.0" y1="259.3" x2="132.9" y2="232.4" stroke="#b27a4a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="157.2" y1="245.9" x2="164.2" y2="218.9" stroke="#b27a4a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="188.5" y1="232.4" x2="195.4" y2="205.5" stroke="#b27a4a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="219.7" y1="219.0" x2="226.6" y2="192.1" stroke="#b27a4a" stroke-width="5" stroke-linecap="round"/>
+  <text x="142" y="340" text-anchor="middle" font-size="22" fill="#22201c">枝に沿わせて</text>
+  <text x="142" y="374" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">約45度で巻く</text>
+  <text x="142" y="418" text-anchor="middle" font-size="22" fill="#6b655b">太さは枝の3分の1</text>
+  <rect x="278" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="400" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">× 間隔が粗い</text>
+  <line x1="308" y1="280" x2="494" y2="200" stroke="#6f5439" stroke-width="18" stroke-linecap="round"/>
+  <line x1="321.5" y1="286.2" x2="348.7" y2="250.5" stroke="#b27a4a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="393.2" y1="255.3" x2="420.3" y2="219.7" stroke="#b27a4a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="464.8" y1="224.5" x2="492.0" y2="188.9" stroke="#b27a4a" stroke-width="5" stroke-linecap="round"/>
+  <text x="400" y="340" text-anchor="middle" font-size="22" fill="#22201c">枝を支えられず</text>
+  <text x="400" y="374" text-anchor="middle" font-size="22" font-weight="700" fill="#b4573a">形が戻る</text>
+  <text x="400" y="418" text-anchor="middle" font-size="22" fill="#6b655b">細すぎる針金も同じ</text>
+  <rect x="536" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="658" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">× 食い込み</text>
+  <line x1="566" y1="280" x2="752" y2="200" stroke="#6f5439" stroke-width="18" stroke-linecap="round"/>
+  <line x1="579.5" y1="286.2" x2="586.5" y2="259.2" stroke="#b27a4a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="610.8" y1="272.7" x2="617.7" y2="245.8" stroke="#b27a4a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="642.0" y1="259.3" x2="648.9" y2="232.4" stroke="#b27a4a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="673.2" y1="245.9" x2="680.2" y2="218.9" stroke="#b27a4a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="704.5" y1="232.4" x2="711.4" y2="205.5" stroke="#b27a4a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="735.7" y1="219.0" x2="742.6" y2="192.1" stroke="#b27a4a" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="612" cy="260" rx="9" ry="14" fill="none" stroke="#b4573a" stroke-width="3"/>
+  <ellipse cx="659" cy="240" rx="9" ry="14" fill="none" stroke="#b4573a" stroke-width="3"/>
+  <ellipse cx="706" cy="220" rx="9" ry="14" fill="none" stroke="#b4573a" stroke-width="3"/>
+  <text x="658" y="340" text-anchor="middle" font-size="22" fill="#22201c">枝が太ると</text>
+  <text x="658" y="374" text-anchor="middle" font-size="22" font-weight="700" fill="#b4573a">跡が残る</text>
+  <text x="658" y="418" text-anchor="middle" font-size="22" fill="#6b655b">食い込む前に外す</text>
+</svg>

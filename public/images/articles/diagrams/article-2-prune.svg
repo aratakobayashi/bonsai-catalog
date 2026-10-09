@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 494" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>姫リンゴの冬の剪定。長く伸びた枝は2〜3芽を残して切り、短い枝についた丸くふくらんだ花芽は残す</title>
+  <rect width="800" height="494" fill="#faf9f6"/>
+  <text x="400" y="48" font-size="30" font-weight="700" fill="#1a365d" text-anchor="middle">花芽を残す冬の剪定</text>
+  <rect x="20" y="76" width="760" height="320" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <path d="M60 330 q160 -20 300 -80 q120 -50 240 -150" stroke="#6f5439" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <ellipse cx="420" cy="208" rx="6" ry="13" fill="#5b7f4a" transform="rotate(35 420 220)"/>
+  <ellipse cx="500" cy="156" rx="6" ry="13" fill="#5b7f4a" transform="rotate(35 500 168)"/>
+  <ellipse cx="570" cy="106" rx="6" ry="13" fill="#5b7f4a" transform="rotate(35 570 118)"/>
+  <g stroke="#1a365d" stroke-width="4" stroke-dasharray="8 6"><line x1="440" y1="150" x2="490" y2="232"/></g>
+  <text x="560" y="132" font-size="24" font-weight="700" fill="#1a365d" text-anchor="end">2〜3芽を残して切る</text>
+  <path d="M180 314 l-6 -40" stroke="#6f5439" stroke-width="8" stroke-linecap="round"/><circle cx="173" cy="262" r="15" fill="#b8935a"/>
+  <path d="M300 270 l-6 -40" stroke="#6f5439" stroke-width="8" stroke-linecap="round"/><circle cx="293" cy="218" r="15" fill="#b8935a"/>
+  <text x="60" y="130" font-size="24" font-weight="700" fill="#22201c">短い枝の</text>
+  <text x="60" y="162" font-size="24" font-weight="700" fill="#b8935a">丸い芽＝花芽</text>
+  <path d="M150 172 L168 244" stroke="#22201c" stroke-width="2"/>
+  <ellipse cx="660" cy="300" rx="7" ry="16" fill="#5b7f4a"/>  <text x="686" y="296" font-size="22" fill="#22201c">細い芽</text>
+  <text x="686" y="326" font-size="22" font-weight="700" fill="#5b7f4a">＝葉芽</text>
+  <circle cx="660" cy="360" r="0" fill="none"/>
+  <rect x="20" y="412" width="760" height="62" rx="14" fill="#1a365d"/>
+  <text x="400" y="452.36" font-size="26" font-weight="700" fill="#faf9f6" text-anchor="middle">丸くふくらんだ花芽は切らずに残す</text>
+
+</svg>

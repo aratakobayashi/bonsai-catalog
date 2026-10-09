@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>紅葉の色づきに関わる4つのこと。秋に日によく当てる、昼と夜の気温差、夏に葉を傷めていないこと、秋の肥料を早めに切り上げること</title>
+  <rect width="800" height="450" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">色づきに関わる4つのこと</text>
+
+  <rect x="20" y="72" width="178" height="280" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="109" cy="150" r="30" fill="#b8935a"/>
+  <g stroke="#b8935a" stroke-width="5" stroke-linecap="round"><line x1="109" y1="98" x2="109" y2="108"/><line x1="109" y1="192" x2="109" y2="202"/><line x1="57" y1="150" x2="67" y2="150"/><line x1="151" y1="150" x2="161" y2="150"/></g>
+  <text x="109" y="250" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">秋の日差し</text>
+  <text x="109" y="290" text-anchor="middle" font-size="22" fill="#6b655b">よく日に</text>
+  <text x="109" y="320" text-anchor="middle" font-size="22" fill="#6b655b">当てる</text>
+
+  <rect x="214" y="72" width="178" height="280" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="268" y="110" width="20" height="90" rx="10" fill="none" stroke="#22201c" stroke-width="3"/>
+  <circle cx="278" cy="206" r="16" fill="#b4573a"/><rect x="273" y="150" width="10" height="50" fill="#b4573a"/>
+  <path d="M330 120 a18 18 0 1 0 14 30 a14 14 0 1 1 -14 -30 z" fill="#1a365d"/>
+  <text x="303" y="250" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">寒暖差</text>
+  <text x="303" y="290" text-anchor="middle" font-size="22" fill="#6b655b">夜に冷える</text>
+  <text x="303" y="320" text-anchor="middle" font-size="22" fill="#6b655b">場所がよい</text>
+
+  <rect x="408" y="72" width="178" height="280" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <path d="M497 200 L493 176 L459 172 L481 158 L465 126 L489 140 L497 106 L505 140 L529 126 L513 158 L535 172 L501 176 Z" fill="#5b7f4a"/>
+  <line x1="497" y1="200" x2="497" y2="216" stroke="#6f5439" stroke-width="4"/>
+  <text x="497" y="250" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">夏の葉</text>
+  <text x="497" y="290" text-anchor="middle" font-size="22" fill="#6b655b">葉焼け・水切れ</text>
+  <text x="497" y="320" text-anchor="middle" font-size="22" fill="#6b655b">させない</text>
+
+  <rect x="602" y="72" width="178" height="280" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="660" y="120" width="62" height="70" rx="8" fill="#b8935a"/>
+  <g stroke="#b4573a" stroke-width="6" stroke-linecap="round"><line x1="650" y1="110" x2="732" y2="200"/></g>
+  <text x="691" y="250" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">肥料</text>
+  <text x="691" y="290" text-anchor="middle" font-size="22" fill="#6b655b">10月までに</text>
+  <text x="691" y="320" text-anchor="middle" font-size="22" fill="#6b655b">切り上げる</text>
+
+  <rect x="20" y="372" width="760" height="58" rx="14" fill="#1a365d"/>
+  <text x="400" y="410" text-anchor="middle" font-size="25" font-weight="700" fill="#faf9f6">いちばん差が出るのは「夏に葉を守ること」</text>
+</svg>

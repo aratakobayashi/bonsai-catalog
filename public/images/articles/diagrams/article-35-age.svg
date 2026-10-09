@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 293" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>相手の年代で選ぶ</title>
+<defs>
+  <g id="tree"><path d="M-40 0 h80 l-9 26 h-62 z" fill="#8b6b4a"/><path d="M0 0 q-6 -30 4 -56" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="2" cy="-62" rx="34" ry="20" fill="#5b7f4a"/><ellipse cx="-24" cy="-40" rx="20" ry="12" fill="#5b7f4a"/><ellipse cx="28" cy="-38" rx="20" ry="12" fill="#5b7f4a"/></g>
+  <g id="ok"><circle r="15" fill="none" stroke="#5b7f4a" stroke-width="5"/></g>
+  <g id="ng"><g stroke="#8b6b4a" stroke-width="5" stroke-linecap="round"><line x1="-13" y1="-13" x2="13" y2="13"/><line x1="13" y1="-13" x2="-13" y2="13"/></g></g>
+  <g id="tri"><path d="M0 -15 L15 12 H-15 Z" fill="none" stroke="#b8935a" stroke-width="5" stroke-linejoin="round"/></g>
+  <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#6b655b"/></marker>
+</defs>
+  <rect width="800" height="293" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">相手の年代で選ぶ</text>
+  <rect x="20" y="68" width="178" height="205" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="109" y="124" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">小学生</text>
+  <text x="109" y="166" font-size="22" text-anchor="middle" fill="#6b655b">花や実が</text>
+  <text x="109" y="197" font-size="22" text-anchor="middle" fill="#6b655b">分かりやすい樹</text>
+  <text x="109" y="228" font-size="22" text-anchor="middle" fill="#6b655b">家族と育てる</text>
+  <rect x="214" y="68" width="178" height="205" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="303" y="124" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">中学・高校生</text>
+  <text x="303" y="166" font-size="22" text-anchor="middle" fill="#6b655b">丈夫な樹を</text>
+  <text x="303" y="197" font-size="22" text-anchor="middle" fill="#6b655b">小さめの鉢で</text>
+  <text x="303" y="228" font-size="22" text-anchor="middle" fill="#6b655b">机の近くに</text>
+  <rect x="408" y="68" width="178" height="205" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="497" y="124" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">一人暮らし</text>
+  <text x="497" y="166" font-size="22" text-anchor="middle" fill="#6b655b">窓辺で育つ</text>
+  <text x="497" y="197" font-size="22" text-anchor="middle" fill="#6b655b">室内向きの樹</text>
+  <text x="497" y="228" font-size="22" text-anchor="middle" fill="#6b655b">受け皿つき</text>
+  <rect x="602" y="68" width="178" height="205" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="691" y="124" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">新社会人</text>
+  <text x="691" y="166" font-size="22" text-anchor="middle" fill="#6b655b">松柏やもみじ</text>
+  <text x="691" y="197" font-size="22" text-anchor="middle" fill="#6b655b">長く付き合える</text>
+  <text x="691" y="228" font-size="22" text-anchor="middle" fill="#6b655b">落ち着いた樹</text>
+</svg>

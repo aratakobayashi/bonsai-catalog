@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 574" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>日本から盆栽を送る・持っていくときの流れ</title>
+  <rect width="800" height="574" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">日本から送るときの流れ</text>
+  <rect x="30" y="80" width="740" height="64" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="72" cy="112" r="20" fill="#1a365d"/>
+  <text x="72" y="120" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">1</text>
+  <text x="108" y="121" font-size="26" font-weight="700" fill="#22201c">相手の国の条件を調べる</text>
+  <text x="760" y="120" text-anchor="end" font-size="22" fill="#5b7f4a">樹種・土の規制</text>
+  <path d="M72 146 v12" stroke="#b8935a" stroke-width="5" stroke-linecap="round"/><path d="M63 150 l9 9 l9 -9" fill="none" stroke="#b8935a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="30" y="164" width="740" height="64" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="72" cy="196" r="20" fill="#1a365d"/>
+  <text x="72" y="204" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">2</text>
+  <text x="108" y="205" font-size="26" font-weight="700" fill="#22201c">植物防疫所に相談する</text>
+  <text x="760" y="204" text-anchor="end" font-size="22" fill="#5b7f4a">早めに</text>
+  <path d="M72 230 v12" stroke="#b8935a" stroke-width="5" stroke-linecap="round"/><path d="M63 234 l9 9 l9 -9" fill="none" stroke="#b8935a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="30" y="248" width="740" height="64" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="72" cy="280" r="20" fill="#1a365d"/>
+  <text x="72" y="288" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">3</text>
+  <text x="108" y="289" font-size="26" font-weight="700" fill="#22201c">条件に合わせて準備</text>
+  <text x="760" y="288" text-anchor="end" font-size="22" fill="#5b7f4a">土を落とすなど</text>
+  <path d="M72 314 v12" stroke="#b8935a" stroke-width="5" stroke-linecap="round"/><path d="M63 318 l9 9 l9 -9" fill="none" stroke="#b8935a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="30" y="332" width="740" height="64" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="72" cy="364" r="20" fill="#1a365d"/>
+  <text x="72" y="372" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">4</text>
+  <text x="108" y="373" font-size="26" font-weight="700" fill="#22201c">輸出検査を受ける</text>
+  <text x="760" y="372" text-anchor="end" font-size="22" fill="#5b7f4a">証明書の発行</text>
+  <path d="M72 398 v12" stroke="#b8935a" stroke-width="5" stroke-linecap="round"/><path d="M63 402 l9 9 l9 -9" fill="none" stroke="#b8935a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="30" y="416" width="740" height="64" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="72" cy="448" r="20" fill="#1a365d"/>
+  <text x="72" y="456" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">5</text>
+  <text x="108" y="457" font-size="26" font-weight="700" fill="#22201c">送る・持っていく</text>
+  <text x="760" y="456" text-anchor="end" font-size="22" fill="#5b7f4a">相手国でも検査</text>
+  <rect x="30" y="496" width="740" height="58" rx="14" fill="#1a365d"/>
+  <text x="400" y="534" text-anchor="middle" font-size="24" font-weight="700" fill="#faf9f6">条件が合わない樹は送れません</text>
+</svg>

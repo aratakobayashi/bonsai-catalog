@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽の体験教室の主な種類</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">体験教室の主な種類</text>
+  <rect x="24" y="80" width="370" height="170" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="24" y="80" width="10" height="170" rx="4" fill="#5b7f4a"/>
+  <text x="54" y="130" font-size="26" font-weight="700" fill="#1a365d">ミニ盆栽の植え付け</text>
+  <text x="54" y="178" font-size="22" fill="#22201c">小さな苗を鉢に植える</text>
+  <text x="54" y="218" font-size="22" fill="#5b7f4a">持ち帰りできることが多い</text>
+  <rect x="406" y="80" width="370" height="170" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="406" y="80" width="10" height="170" rx="4" fill="#b8935a"/>
+  <text x="436" y="130" font-size="26" font-weight="700" fill="#1a365d">苔玉・寄せ植え</text>
+  <text x="436" y="178" font-size="22" fill="#22201c">土を丸めて苔で包む</text>
+  <text x="436" y="218" font-size="22" fill="#5b7f4a">室内に少し飾りやすい</text>
+  <rect x="24" y="266" width="370" height="170" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="24" y="266" width="10" height="170" rx="4" fill="#1a365d"/>
+  <text x="54" y="316" font-size="26" font-weight="700" fill="#1a365d">手入れの体験</text>
+  <text x="54" y="364" font-size="22" fill="#22201c">剪定や針金かけを教わる</text>
+  <text x="54" y="404" font-size="22" fill="#5b7f4a">経験者にも向く</text>
+  <rect x="406" y="266" width="370" height="170" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="406" y="266" width="10" height="170" rx="4" fill="#8b6b4a"/>
+  <text x="436" y="316" font-size="26" font-weight="700" fill="#1a365d">連続の講座</text>
+  <text x="436" y="364" font-size="22" fill="#22201c">数回に分けて基礎から</text>
+  <text x="436" y="404" font-size="22" fill="#5b7f4a">年間の作業が分かる</text>
+</svg>

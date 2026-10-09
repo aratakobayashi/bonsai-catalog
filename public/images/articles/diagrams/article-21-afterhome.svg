@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 426" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>体験で作った盆栽を持ち帰ったあと。車内に置かない、半日陰の屋外に置く、土が乾いたら鉢底から流れるまで水を与える</title>
+  <rect width="800" height="426" fill="#faf9f6"/>
+  <text x="400" y="48" font-size="30" font-weight="700" fill="#1a365d" text-anchor="middle">持ち帰ったあとの3つのこと</text>
+  <rect x="20" y="76" width="248" height="330" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="60" cy="116" r="22" fill="#1a365d"/>  <text x="60" y="125" font-size="24" font-weight="700" fill="#faf9f6" text-anchor="middle">1</text>
+  <path d="M74 250 v-40 l24 -36 h80 l26 36 h10 v40 z" fill="#6b655b"/><circle cx="104" cy="252" r="14" fill="#22201c"/><circle cx="184" cy="252" r="14" fill="#22201c"/>
+  <rect x="106" y="182" width="30" height="24" fill="#f3f0ea"/><rect x="146" y="182" width="34" height="24" fill="#f3f0ea"/>
+  <g stroke="#8b6b4a" stroke-width="5" stroke-linecap="round"><line x1="202" y1="144" x2="234" y2="176"/><line x1="234" y1="144" x2="202" y2="176"/></g>
+  <text x="144" y="324" font-size="25" font-weight="700" fill="#22201c" text-anchor="middle">車内に置かない</text>
+  <text x="144" y="362" font-size="22" fill="#6b655b" text-anchor="middle">夏の車内は高温</text>
+  <rect x="276" y="76" width="248" height="330" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="316" cy="116" r="22" fill="#1a365d"/>  <text x="316" y="125" font-size="24" font-weight="700" fill="#faf9f6" text-anchor="middle">2</text>
+  <path d="M310 170 l90 -34 l90 34 z" fill="#8b6b4a"/><rect x="320" y="170" width="160" height="10" fill="#8b6b4a"/>
+  <path d="M400 240 q-3.3000000000000003 -22.0 2.2 -44.0" stroke="#6f5439" stroke-width="4.95" fill="none" stroke-linecap="round"/>
+  <g fill="#5b7f4a"><ellipse cx="401.1" cy="189.4" rx="25.3" ry="14.3"/><ellipse cx="379.1" cy="205.9" rx="18.700000000000003" ry="9.9"/><ellipse cx="423.1" cy="208.1" rx="17.6" ry="9.350000000000001"/></g>
+  <path d="M355.0 238 h90 l-9.0 28 h-72.0 z" fill="#8b6b4a"/>
+  <text x="400" y="324" font-size="25" font-weight="700" fill="#22201c" text-anchor="middle">半日陰の屋外へ</text>
+  <text x="400" y="362" font-size="22" fill="#6b655b" text-anchor="middle">軒下などで数日</text>
+  <rect x="532" y="76" width="248" height="330" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="572" cy="116" r="22" fill="#1a365d"/>  <text x="572" y="125" font-size="24" font-weight="700" fill="#faf9f6" text-anchor="middle">3</text>
+  <path d="M586 170 h70 l12 50 h-94 z" fill="#b8935a"/><path d="M656 186 l56 26" stroke="#b8935a" stroke-width="10" stroke-linecap="round"/>
+  <g stroke="#1a365d" stroke-width="3" stroke-linecap="round"><line x1="716" y1="226" x2="712" y2="256"/><line x1="726" y1="226" x2="726" y2="258"/><line x1="736" y1="224" x2="740" y2="254"/></g>
+  <text x="656" y="324" font-size="25" font-weight="700" fill="#22201c" text-anchor="middle">乾いたらたっぷり</text>
+  <text x="656" y="362" font-size="22" fill="#6b655b" text-anchor="middle">鉢底から流れるまで</text>
+
+</svg>

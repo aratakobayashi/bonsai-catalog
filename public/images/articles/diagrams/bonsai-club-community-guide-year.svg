@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 482" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<title>盆栽の会の1年の活動の例</title>
+<rect width="800" height="482" fill="#faf9f6"/>
+<text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">会の1年の活動の例</text>
+<text x="214.6" y="100" text-anchor="middle" font-size="22" fill="#22201c">1</text>
+<text x="263.8" y="100" text-anchor="middle" font-size="22" fill="#22201c">2</text>
+<text x="312.9" y="100" text-anchor="middle" font-size="22" fill="#22201c">3</text>
+<text x="362.1" y="100" text-anchor="middle" font-size="22" fill="#22201c">4</text>
+<text x="411.2" y="100" text-anchor="middle" font-size="22" fill="#22201c">5</text>
+<text x="460.4" y="100" text-anchor="middle" font-size="22" fill="#22201c">6</text>
+<text x="509.6" y="100" text-anchor="middle" font-size="22" fill="#22201c">7</text>
+<text x="558.8" y="100" text-anchor="middle" font-size="22" fill="#22201c">8</text>
+<text x="607.9" y="100" text-anchor="middle" font-size="22" fill="#22201c">9</text>
+<text x="657.1" y="100" text-anchor="middle" font-size="22" fill="#22201c">10</text>
+<text x="706.2" y="100" text-anchor="middle" font-size="22" fill="#22201c">11</text>
+<text x="755.4" y="100" text-anchor="middle" font-size="22" fill="#22201c">12</text>
+<text x="182" y="100" text-anchor="end" font-size="22" fill="#6b655b">月</text>
+<rect x="20" y="120" width="760" height="52" rx="8" fill="#fff"/>
+<text x="34" y="154" font-size="24" font-weight="700" fill="#22201c">例会</text>
+<rect x="193.0" y="139.0" width="584.0" height="14" rx="7.0" fill="#b8935a"/>
+<rect x="20" y="182" width="760" height="52" rx="8" fill="#f3f0ea"/>
+<text x="34" y="216" font-size="24" font-weight="700" fill="#22201c">植え替え</text>
+<rect x="242.2" y="193.0" width="141.5" height="30" rx="15.0" fill="#8b6b4a"/>
+<rect x="20" y="244" width="760" height="52" rx="8" fill="#fff"/>
+<text x="34" y="278" font-size="24" font-weight="700" fill="#22201c">芽摘み・剪定</text>
+<rect x="389.7" y="255.0" width="141.5" height="30" rx="15.0" fill="#5b7f4a"/>
+<rect x="20" y="306" width="760" height="52" rx="8" fill="#f3f0ea"/>
+<text x="34" y="340" font-size="24" font-weight="700" fill="#22201c">展示会</text>
+<rect x="635.5" y="317.0" width="92.3" height="30" rx="15.0" fill="#1a365d"/>
+<rect x="20" y="368" width="760" height="52" rx="8" fill="#fff"/>
+<text x="34" y="402" font-size="24" font-weight="700" fill="#22201c">針金かけ</text>
+<rect x="684.7" y="379.0" width="92.3" height="30" rx="15.0" fill="#6b655b"/>
+<rect x="193.0" y="379.0" width="92.3" height="30" rx="15.0" fill="#6b655b"/>
+<text x="400" y="460" text-anchor="middle" font-size="22" fill="#6b655b">時期や内容は会や地域によって異なります</text>
+</svg>

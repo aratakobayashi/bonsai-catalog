@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>道具をそろえる順番。最初は盆栽ばさみ・じょうろ・ピンセット。植え替えをするときに根かき・土入れ・ふるい・鉢底ネット。樹形を作り始めたら又枝切り・針金・針金切り</title>
+  <rect width="800" height="440" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">そろえる順番</text>
+  <g>
+    <rect x="20" y="70" width="244" height="350" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+    <circle cx="142" cy="116" r="26" fill="#5b7f4a"/><text x="142" y="125" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">1</text>
+    <text x="142" y="182" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">最初に</text>
+    <g font-size="22" fill="#22201c" text-anchor="middle"><text x="142" y="240">盆栽ばさみ</text><text x="142" y="276">じょうろ</text><text x="142" y="312">ピンセット</text></g>
+    <text x="142" y="392" text-anchor="middle" font-size="22" fill="#6b655b">毎日の手入れ</text>
+  </g>
+  <g>
+    <rect x="278" y="70" width="244" height="350" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <circle cx="400" cy="116" r="26" fill="#8b6b4a"/><text x="400" y="125" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">2</text>
+    <text x="400" y="182" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">植え替えのとき</text>
+    <g font-size="22" fill="#22201c" text-anchor="middle"><text x="400" y="240">根かき</text><text x="400" y="276">土入れ</text><text x="400" y="312">ふるい</text><text x="400" y="348">鉢底ネット</text></g>
+    <text x="400" y="392" text-anchor="middle" font-size="22" fill="#6b655b">1〜3年に1回</text>
+  </g>
+  <g>
+    <rect x="536" y="70" width="244" height="350" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <circle cx="658" cy="116" r="26" fill="#1a365d"/><text x="658" y="125" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">3</text>
+    <text x="658" y="182" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">形を作るとき</text>
+    <g font-size="22" fill="#22201c" text-anchor="middle"><text x="658" y="240">又枝切り</text><text x="658" y="276">針金</text><text x="658" y="312">針金切り</text></g>
+    <text x="658" y="392" text-anchor="middle" font-size="22" fill="#6b655b">慣れてきたら</text>
+  </g>
+</svg>

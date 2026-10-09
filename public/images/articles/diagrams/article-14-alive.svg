@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>枝が生きているかの確かめ方</title>
+  <rect width="800" height="420" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">枝が生きているかを確かめる</text>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="70" width="240" height="320" rx="14"/>
+    <rect x="280" y="70" width="240" height="320" rx="14"/>
+    <rect x="540" y="70" width="240" height="320" rx="14"/>
+  </g>
+  <g font-size="24" font-weight="700" fill="#22201c" text-anchor="middle">
+    <text x="140" y="112">皮を少し削る</text>
+    <text x="400" y="112">緑色なら</text>
+    <text x="660" y="112">茶色で乾く</text>
+  </g>
+  <!-- branch 1 with nail -->
+  <rect x="50" y="200" width="180" height="26" rx="13" fill="#8b6b4a"/>
+  <rect x="120" y="202" width="34" height="22" rx="8" fill="#9bbf6a"/>
+  <path d="M150 150 q20 10 6 50" fill="none" stroke="#22201c" stroke-width="4"/>
+  <ellipse cx="156" cy="200" rx="8" ry="5" fill="#f3e3d0" stroke="#22201c" stroke-width="2"/>
+  <text x="140" y="290" text-anchor="middle" font-size="22" fill="#6b655b">爪で数mm</text>
+  <text x="140" y="326" text-anchor="middle" font-size="22" fill="#6b655b">枝先から順に</text>
+  <!-- green -->
+  <rect x="310" y="200" width="180" height="26" rx="13" fill="#8b6b4a"/>
+  <rect x="382" y="202" width="36" height="22" rx="8" fill="#9bbf6a"/>
+  <text x="400" y="290" text-anchor="middle" font-size="22" fill="#5b7f4a">生きている</text>
+  <text x="400" y="326" text-anchor="middle" font-size="22" fill="#5b7f4a">芽が出る見込み</text>
+  <!-- brown -->
+  <rect x="570" y="200" width="180" height="26" rx="13" fill="#8b6b4a"/>
+  <rect x="642" y="202" width="36" height="22" rx="8" fill="#c9b48f"/>
+  <text x="660" y="290" text-anchor="middle" font-size="22" fill="#b4573a">その先は枯れ</text>
+  <text x="660" y="326" text-anchor="middle" font-size="22" fill="#b4573a">元のほうを確かめる</text>
+</svg>

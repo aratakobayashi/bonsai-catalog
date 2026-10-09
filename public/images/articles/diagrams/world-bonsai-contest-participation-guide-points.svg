@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>展示や審査で見られる盆栽の部分：根張り・立ち上がり・枝・葉・鉢・全体の調和</title>
+  <rect width="800" height="500" fill="#faf9f6"/>
+
+  <!-- 樹 -->
+  <g fill="#5b7f4a">
+    <ellipse cx="300" cy="120" rx="120" ry="44"/>
+    <ellipse cx="190" cy="200" rx="90" ry="34"/>
+    <ellipse cx="400" cy="214" rx="80" ry="30"/>
+  </g>
+  <path d="M276 380 C 270 330, 300 290, 286 240 C 280 200, 300 170, 300 140 L 316 140 C 318 172, 302 204, 306 240 C 320 292, 300 330, 318 380 Z" fill="#6f5439"/>
+  <path d="M290 250 C 250 236, 220 222, 200 206" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M304 262 C 340 248, 370 236, 398 218" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <!-- 根張り -->
+  <path d="M250 384 C 262 372, 276 368, 286 366 M342 384 C 330 372, 316 368, 308 366" stroke="#6f5439" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <!-- 鉢と卓 -->
+  <path d="M150 384 h300 l-18 50 h-264 z" fill="#8b6b4a"/>
+  <rect x="144" y="376" width="312" height="14" rx="4" fill="#6f5439"/>
+  <rect x="120" y="446" width="360" height="14" rx="4" fill="#22201c"/>
+
+  <!-- ラベル -->
+  <g font-size="24" font-weight="700" fill="#22201c">
+    <circle cx="490" cy="80" r="16" fill="#b8935a"/><text x="490" y="88" text-anchor="middle" fill="#fff" font-size="20">1</text>
+    <text x="516" y="88">全体の姿と調和</text>
+    <circle cx="490" cy="150" r="16" fill="#b8935a"/><text x="490" y="158" text-anchor="middle" fill="#fff" font-size="20">2</text>
+    <text x="516" y="158">葉の色・つや</text>
+    <circle cx="490" cy="220" r="16" fill="#b8935a"/><text x="490" y="228" text-anchor="middle" fill="#fff" font-size="20">3</text>
+    <text x="516" y="228">枝の配りと流れ</text>
+    <circle cx="490" cy="290" r="16" fill="#b8935a"/><text x="490" y="298" text-anchor="middle" fill="#fff" font-size="20">4</text>
+    <text x="516" y="298">幹の立ち上がり</text>
+    <circle cx="490" cy="360" r="16" fill="#b8935a"/><text x="490" y="368" text-anchor="middle" fill="#fff" font-size="20">5</text>
+    <text x="516" y="368">根張り</text>
+    <circle cx="490" cy="430" r="16" fill="#b8935a"/><text x="490" y="438" text-anchor="middle" fill="#fff" font-size="20">6</text>
+    <text x="516" y="438">鉢・卓との組み合わせ</text>
+  </g>
+  <g stroke="#b8935a" stroke-width="2" stroke-dasharray="5 5">
+    <line x1="420" y1="96" x2="472" y2="84"/>
+    <line x1="430" y1="150" x2="472" y2="150"/>
+    <line x1="400" y1="222" x2="472" y2="222"/>
+    <line x1="314" y1="300" x2="472" y2="292"/>
+    <line x1="342" y1="374" x2="472" y2="362"/>
+    <line x1="450" y1="420" x2="472" y2="428"/>
+  </g>
+</svg>

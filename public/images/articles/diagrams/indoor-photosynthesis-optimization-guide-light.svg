@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>植物用LEDライトの当て方</title>
+  <rect width="800" height="460" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">ライトの当て方</text>
+
+  <!-- 台と樹 -->
+  <rect x="60" y="380" width="360" height="20" fill="#8b6b4a"/>
+  <path d="M170 380 h140 l-12 -34 h-116 z" fill="#6b655b"/>
+  <path d="M232 346 Q226 300 240 270 Q252 300 248 346 Z" fill="#6f5439"/>
+  <ellipse cx="240" cy="262" rx="90" ry="40" fill="#5b7f4a"/>
+
+  <!-- ライト -->
+  <rect x="150" y="96" width="180" height="26" rx="8" fill="#22201c"/>
+  <line x1="240" y1="70" x2="240" y2="96" stroke="#22201c" stroke-width="4"/>
+  <g stroke="#b8935a" stroke-width="3" stroke-dasharray="8 7">
+    <line x1="170" y1="126" x2="150" y2="214"/>
+    <line x1="240" y1="126" x2="240" y2="214"/>
+    <line x1="310" y1="126" x2="330" y2="214"/>
+  </g>
+  <!-- 距離 -->
+  <line x1="372" y1="122" x2="372" y2="222" stroke="#1a365d" stroke-width="3"/>
+  <line x1="362" y1="122" x2="382" y2="122" stroke="#1a365d" stroke-width="3"/>
+  <line x1="362" y1="222" x2="382" y2="222" stroke="#1a365d" stroke-width="3"/>
+  <text x="392" y="168" font-size="22" fill="#1a365d">距離は説明書の</text>
+  <text x="392" y="196" font-size="22" fill="#1a365d">推奨に合わせる</text>
+
+  <!-- 右の要点 -->
+  <rect x="580" y="80" width="200" height="320" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <g font-size="22" fill="#22201c">
+    <circle cx="604" cy="122" r="7" fill="#5b7f4a"/><text x="620" y="130">真上から</text>
+    <circle cx="604" cy="182" r="7" fill="#5b7f4a"/><text x="620" y="190">タイマーで</text>
+    <text x="620" y="220">日中だけ</text>
+    <circle cx="604" cy="272" r="7" fill="#5b7f4a"/><text x="620" y="280">夜は消す</text>
+    <circle cx="604" cy="332" r="7" fill="#b4573a"/><text x="620" y="340">光を直接</text>
+    <text x="620" y="370">見ない</text>
+  </g>
+</svg>

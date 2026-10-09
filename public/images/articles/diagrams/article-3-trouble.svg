@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 378" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>長寿梅で気をつけたい3つ</title>
+<defs>
+  <g id="tree"><path d="M-40 0 h80 l-9 26 h-62 z" fill="#8b6b4a"/><path d="M0 0 q-6 -30 4 -56" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="2" cy="-62" rx="34" ry="20" fill="#5b7f4a"/><ellipse cx="-24" cy="-40" rx="20" ry="12" fill="#5b7f4a"/><ellipse cx="28" cy="-38" rx="20" ry="12" fill="#5b7f4a"/></g>
+  <g id="ok"><circle r="15" fill="none" stroke="#5b7f4a" stroke-width="5"/></g>
+  <g id="ng"><g stroke="#8b6b4a" stroke-width="5" stroke-linecap="round"><line x1="-13" y1="-13" x2="13" y2="13"/><line x1="13" y1="-13" x2="-13" y2="13"/></g></g>
+  <g id="tri"><path d="M0 -15 L15 12 H-15 Z" fill="none" stroke="#b8935a" stroke-width="5" stroke-linejoin="round"/></g>
+  <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#6b655b"/></marker>
+</defs>
+  <rect width="800" height="378" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">長寿梅で気をつけたい3つ</text>
+  <rect x="20" y="68" width="242.667" height="290" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <use href="#ng" x="141.333" y="118"/>
+  <text x="141.333" y="188" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">赤星病</text>
+  <text x="141.333" y="230" font-size="22" text-anchor="middle" fill="#6b655b">真柏など</text>
+  <text x="141.333" y="261" font-size="22" text-anchor="middle" fill="#6b655b">ビャクシン類と</text>
+  <text x="141.333" y="292" font-size="22" text-anchor="middle" fill="#6b655b">離して置く</text>
+  <rect x="278.667" y="68" width="242.667" height="290" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <use href="#tri" x="400" y="118"/>
+  <text x="400" y="188" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">ひこばえ</text>
+  <text x="400" y="230" font-size="22" text-anchor="middle" fill="#6b655b">根元から出る芽は</text>
+  <text x="400" y="261" font-size="22" text-anchor="middle" fill="#6b655b">早めに元から</text>
+  <text x="400" y="292" font-size="22" text-anchor="middle" fill="#6b655b">切り取る</text>
+  <rect x="537.333" y="68" width="242.667" height="290" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <use href="#tri" x="658.667" y="118"/>
+  <text x="658.667" y="188" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">根のこぶ</text>
+  <text x="658.667" y="230" font-size="22" text-anchor="middle" fill="#6b655b">植え替えのとき</text>
+  <text x="658.667" y="261" font-size="22" text-anchor="middle" fill="#6b655b">根にこぶがないか</text>
+  <text x="658.667" y="292" font-size="22" text-anchor="middle" fill="#6b655b">確かめる</text>
+</svg>

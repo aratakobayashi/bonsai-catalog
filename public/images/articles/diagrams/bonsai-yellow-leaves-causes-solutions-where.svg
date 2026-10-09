@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<title>葉が黄色くなる場所と考えられる原因</title>
+<rect width="800" height="470" fill="#faf9f6"/>
+<text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">どの葉が黄色くなったか</text>
+<rect x="20" y="72" width="176" height="378" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+<path d="M64 0 h88 l-8 24 h-72 z" fill="#8b6b4a" transform="translate(0 300)"/>
+<path d="M108 300 v-110" stroke="#6f5439" stroke-width="9" stroke-linecap="round"/>
+<circle cx="58" cy="150" r="22" fill="#5b7f4a"/>
+<circle cx="108" cy="130" r="22" fill="#5b7f4a"/>
+<circle cx="158" cy="150" r="22" fill="#5b7f4a"/>
+<circle cx="38" cy="190" r="22" fill="#d9b43c"/>
+<circle cx="83" cy="180" r="22" fill="#d9b43c"/>
+<circle cx="133" cy="180" r="22" fill="#d9b43c"/>
+<circle cx="178" cy="190" r="22" fill="#d9b43c"/>
+<circle cx="68" cy="220" r="22" fill="#d9b43c"/>
+<circle cx="148" cy="220" r="22" fill="#d9b43c"/>
+<circle cx="108" cy="205" r="22" fill="#d9b43c"/>
+<text x="108" y="370" text-anchor="middle" font-size="23" font-weight="700" fill="#22201c">古い葉から</text>
+<text x="108" y="404" text-anchor="middle" font-size="20" fill="#8b6b4a">水のやりすぎ</text>
+<text x="108" y="434" text-anchor="middle" font-size="20" fill="#8b6b4a">日照不足</text>
+<rect x="212" y="72" width="176" height="378" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+<path d="M256 0 h88 l-8 24 h-72 z" fill="#8b6b4a" transform="translate(0 300)"/>
+<path d="M300 300 v-110" stroke="#6f5439" stroke-width="9" stroke-linecap="round"/>
+<circle cx="250" cy="150" r="22" fill="#e8d77a"/>
+<path d="M250 136 v28 M250 150 l-9 -8 M250 150 l9 -8" stroke="#5b7f4a" stroke-width="2.5" fill="none"/>
+<circle cx="300" cy="130" r="22" fill="#e8d77a"/>
+<path d="M300 116 v28 M300 130 l-9 -8 M300 130 l9 -8" stroke="#5b7f4a" stroke-width="2.5" fill="none"/>
+<circle cx="350" cy="150" r="22" fill="#e8d77a"/>
+<path d="M350 136 v28 M350 150 l-9 -8 M350 150 l9 -8" stroke="#5b7f4a" stroke-width="2.5" fill="none"/>
+<circle cx="230" cy="190" r="22" fill="#5b7f4a"/>
+<circle cx="275" cy="180" r="22" fill="#5b7f4a"/>
+<circle cx="325" cy="180" r="22" fill="#5b7f4a"/>
+<circle cx="370" cy="190" r="22" fill="#5b7f4a"/>
+<circle cx="260" cy="220" r="22" fill="#5b7f4a"/>
+<circle cx="340" cy="220" r="22" fill="#5b7f4a"/>
+<circle cx="300" cy="205" r="22" fill="#5b7f4a"/>
+<text x="300" y="370" text-anchor="middle" font-size="23" font-weight="700" fill="#22201c">新しい葉が</text>
+<text x="300" y="404" text-anchor="middle" font-size="20" fill="#8b6b4a">肥料</text>
+<text x="300" y="434" text-anchor="middle" font-size="20" fill="#8b6b4a">用土の傷み</text>
+<rect x="404" y="72" width="176" height="378" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+<path d="M448 0 h88 l-8 24 h-72 z" fill="#8b6b4a" transform="translate(0 300)"/>
+<path d="M492 300 v-110" stroke="#6f5439" stroke-width="9" stroke-linecap="round"/>
+<circle cx="442" cy="150" r="22" fill="#d9b43c"/>
+<circle cx="492" cy="130" r="22" fill="#d9b43c"/>
+<circle cx="542" cy="150" r="22" fill="#d9b43c"/>
+<circle cx="422" cy="190" r="22" fill="#d9b43c"/>
+<circle cx="467" cy="180" r="22" fill="#d9b43c"/>
+<circle cx="517" cy="180" r="22" fill="#d9b43c"/>
+<circle cx="562" cy="190" r="22" fill="#d9b43c"/>
+<circle cx="452" cy="220" r="22" fill="#d9b43c"/>
+<circle cx="532" cy="220" r="22" fill="#d9b43c"/>
+<circle cx="492" cy="205" r="22" fill="#d9b43c"/>
+<text x="492" y="370" text-anchor="middle" font-size="23" font-weight="700" fill="#22201c">全体が急に</text>
+<text x="492" y="404" text-anchor="middle" font-size="20" fill="#8b6b4a">水切れ</text>
+<text x="492" y="434" text-anchor="middle" font-size="20" fill="#8b6b4a">根腐れ</text>
+<rect x="596" y="72" width="176" height="378" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+<path d="M640 0 h88 l-8 24 h-72 z" fill="#8b6b4a" transform="translate(0 300)"/>
+<path d="M684 300 v-110" stroke="#6f5439" stroke-width="9" stroke-linecap="round"/>
+<circle cx="634" cy="150" r="22" fill="#5b7f4a"/>
+<circle cx="684" cy="130" r="22" fill="#5b7f4a"/>
+<circle cx="734" cy="150" r="22" fill="#e8e0c0"/>
+<circle cx="614" cy="190" r="22" fill="#5b7f4a"/>
+<circle cx="659" cy="180" r="22" fill="#5b7f4a"/>
+<circle cx="709" cy="180" r="22" fill="#e8e0c0"/>
+<circle cx="754" cy="190" r="22" fill="#e8e0c0"/>
+<circle cx="644" cy="220" r="22" fill="#5b7f4a"/>
+<circle cx="724" cy="220" r="22" fill="#e8e0c0"/>
+<circle cx="684" cy="205" r="22" fill="#5b7f4a"/>
+<circle cx="746" cy="104" r="14" fill="#b8935a"/>
+<text x="684" y="370" text-anchor="middle" font-size="23" font-weight="700" fill="#22201c">日の当たる面</text>
+<text x="684" y="404" text-anchor="middle" font-size="20" fill="#8b6b4a">葉焼け</text>
+</svg>

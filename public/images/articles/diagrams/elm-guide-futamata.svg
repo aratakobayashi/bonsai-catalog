@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>枝を二つずつ分けていく剪定</title>
+  <defs>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#b8935a"/></marker>
+  </defs>
+  <rect width="800" height="460" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">枝を二つずつ分ける</text>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="70" width="230" height="370" rx="14"/>
+    <rect x="285" y="70" width="230" height="370" rx="14"/>
+    <rect x="550" y="70" width="230" height="370" rx="14"/>
+  </g>
+  <g stroke="#b8935a" stroke-width="4" marker-end="url(#ar)">
+    <line x1="254" y1="250" x2="276" y2="250"/>
+    <line x1="519" y1="250" x2="541" y2="250"/>
+  </g>
+
+  <!-- 1 3本以上出ている -->
+  <g stroke="#6f5439" stroke-linecap="round" fill="none">
+    <path d="M60 350 L120 300" stroke-width="10"/>
+    <path d="M120 300 L170 200" stroke-width="5"/>
+    <path d="M120 300 L215 260" stroke-width="5"/>
+    <path d="M120 300 L196 222" stroke-width="5"/>
+  </g>
+  <g stroke="#b4573a" stroke-width="5" stroke-linecap="round"><line x1="168" y1="246" x2="186" y2="264"/><line x1="186" y1="246" x2="168" y2="264"/></g>
+  <text x="135" y="390" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">3本以上</text>
+  <text x="135" y="422" text-anchor="middle" font-size="22" fill="#b4573a">2本を残して切る</text>
+
+  <!-- 2 1年目：2本 -->
+  <g stroke="#6f5439" stroke-linecap="round" fill="none">
+    <path d="M325 350 L385 300" stroke-width="10"/>
+    <path d="M385 300 L430 210" stroke-width="5"/>
+    <path d="M385 300 L478 262" stroke-width="5"/>
+  </g>
+  <g stroke="#b4573a" stroke-width="4"><line x1="410" y1="232" x2="432" y2="242"/><line x1="448" y1="262" x2="458" y2="284"/></g>
+  <text x="400" y="390" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">1年目</text>
+  <text x="400" y="422" text-anchor="middle" font-size="22" fill="#6b655b">2〜3芽で切り戻す</text>
+
+  <!-- 3 2年目：さらに2本ずつ -->
+  <g stroke="#6f5439" stroke-linecap="round" fill="none">
+    <path d="M590 350 L650 300" stroke-width="11"/>
+    <path d="M650 300 L678 238" stroke-width="7"/>
+    <path d="M650 300 L716 270" stroke-width="7"/>
+    <path d="M678 238 L668 176" stroke-width="3.5"/>
+    <path d="M678 238 L718 196" stroke-width="3.5"/>
+    <path d="M716 270 L752 230" stroke-width="3.5"/>
+    <path d="M716 270 L762 278" stroke-width="3.5"/>
+    <path d="M668 176 l-8 -22 M668 176 l12 -18 M718 196 l2 -24 M718 196 l20 -12 M752 230 l6 -22 M752 230 l18 -6" stroke-width="2"/>
+  </g>
+  <text x="665" y="390" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">2年目以降</text>
+  <text x="665" y="422" text-anchor="middle" font-size="22" fill="#5b7f4a">枝先ほど細かく</text>
+</svg>

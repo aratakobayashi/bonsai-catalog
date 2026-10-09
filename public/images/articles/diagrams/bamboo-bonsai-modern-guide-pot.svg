@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>竹の鉢の中の地下茎と株分けの位置</title>
+  <rect width="800" height="500" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">鉢の中で地下茎が回る</text>
+  <!-- 鉢 -->
+  <path d="M90 250 h540 l-30 150 h-480 z" fill="#8b6b4a"/>
+  <rect x="84" y="240" width="552" height="16" rx="4" fill="#6f5439"/>
+  <rect x="104" y="256" width="512" height="132" fill="#e3d2b4"/>
+  <!-- 地下茎 -->
+  <path d="M150 330 C 220 300, 300 360, 380 320 S 520 300, 580 340 C 600 355, 560 372, 520 366 S 300 380, 180 362 C 140 356, 130 340, 150 330 z" fill="none" stroke="#b8935a" stroke-width="9" stroke-linecap="round"/>
+  <g stroke="#b8935a" stroke-width="3">
+    <line x1="220" y1="318" x2="214" y2="346"/><line x1="300" y1="336" x2="292" y2="360"/>
+    <line x1="450" y1="314" x2="448" y2="340"/><line x1="540" y1="322" x2="538" y2="350"/>
+  </g>
+  <!-- 稈 -->
+  <g stroke="#5b7f4a" stroke-width="9" stroke-linecap="round">
+    <line x1="200" y1="318" x2="200" y2="110"/><line x1="250" y1="322" x2="252" y2="140"/>
+    <line x1="420" y1="322" x2="420" y2="120"/><line x1="480" y1="310" x2="482" y2="150"/>
+  </g>
+  <g fill="#5b7f4a">
+    <path d="M200 150 l-46 -14 l46 2 z"/><path d="M200 180 l44 -16 l-44 6 z"/>
+    <path d="M252 175 l42 -14 l-42 4 z"/><path d="M420 160 l-44 -16 l44 4 z"/>
+    <path d="M420 190 l44 -14 l-44 4 z"/><path d="M482 185 l40 -16 l-40 6 z"/>
+  </g>
+  <!-- 古い稈（色あせ） -->
+  <line x1="540" y1="326" x2="540" y2="170" stroke="#c9b48f" stroke-width="9" stroke-linecap="round"/>
+  <!-- 新しいタケノコ -->
+  <path d="M290 326 l12 -50 l12 50 z" fill="#8b6b4a"/>
+  <!-- 株分けの線 -->
+  <line x1="345" y1="96" x2="345" y2="414" stroke="#1a365d" stroke-width="4" stroke-dasharray="12 8"/>
+  <!-- ラベル -->
+  <g font-size="22" fill="#22201c">
+    <text x="660" y="190">古い稈</text>
+    <line x1="656" y1="184" x2="552" y2="200" stroke="#6b655b" stroke-width="2"/>
+    <text x="660" y="300">タケノコ</text>
+    <line x1="656" y1="294" x2="316" y2="296" stroke="#6b655b" stroke-width="2"/>
+    <text x="660" y="356">地下茎</text>
+    <line x1="656" y1="350" x2="590" y2="344" stroke="#6b655b" stroke-width="2"/>
+  </g>
+  <rect x="20" y="430" width="760" height="56" rx="14" fill="#1a365d"/>
+  <text x="400" y="466" text-anchor="middle" font-size="25" font-weight="700" fill="#faf9f6">株分けは芽のついた地下茎ごと、点線のように分ける</text>
+</svg>

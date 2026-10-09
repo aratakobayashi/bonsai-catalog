@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>山もみじと野村もみじの季節ごとの葉の色</title>
+  <defs><path id="mv-lf" d="M0 0 L-4 -10 L-20 -12 L-10 -18 L-18 -32 L-6 -26 L0 -42 L6 -26 L18 -32 L10 -18 L20 -12 L4 -10 Z"/></defs>
+  <rect width="800" height="520" fill="#faf9f6"/>
+  <text x="330" y="50" text-anchor="middle" font-size="28" font-weight="700" fill="#1a365d">春</text>
+  <text x="505" y="50" text-anchor="middle" font-size="28" font-weight="700" fill="#1a365d">夏</text>
+  <text x="680" y="50" text-anchor="middle" font-size="28" font-weight="700" fill="#1a365d">秋</text>
+  <rect x="20" y="76" width="760" height="200" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="44" y="186" font-size="27" font-weight="700" fill="#22201c">山もみじ</text>
+  <use href="#mv-lf" fill="#a9c46c" transform="translate(330 210) scale(2.4)"/>
+  <text x="330" y="254" text-anchor="middle" font-size="23" fill="#22201c">黄緑</text>
+  <use href="#mv-lf" fill="#5b7f4a" transform="translate(505 210) scale(2.4)"/>
+  <text x="505" y="254" text-anchor="middle" font-size="23" fill="#22201c">緑</text>
+  <use href="#mv-lf" fill="#b4573a" transform="translate(654 206) scale(2.1) rotate(-14)"/>
+  <use href="#mv-lf" fill="#d9a640" transform="translate(708 212) scale(1.8) rotate(16)"/>
+  <text x="680" y="254" text-anchor="middle" font-size="23" fill="#22201c">赤・黄</text>
+  <rect x="20" y="294" width="760" height="200" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="44" y="404" font-size="27" font-weight="700" fill="#22201c">野村もみじ</text>
+  <use href="#mv-lf" fill="#7a2f3f" transform="translate(330 428) scale(2.4)"/>
+  <text x="330" y="472" text-anchor="middle" font-size="23" fill="#22201c">赤紫</text>
+  <use href="#mv-lf" fill="#7a5a3c" transform="translate(479 424) scale(2.1) rotate(-14)"/>
+  <use href="#mv-lf" fill="#6f7d4a" transform="translate(533 430) scale(1.8) rotate(16)"/>
+  <text x="505" y="472" text-anchor="middle" font-size="23" fill="#22201c">赤褐色〜緑</text>
+  <use href="#mv-lf" fill="#b4573a" transform="translate(680 428) scale(2.4)"/>
+  <text x="680" y="472" text-anchor="middle" font-size="23" fill="#22201c">赤</text>
+</svg>

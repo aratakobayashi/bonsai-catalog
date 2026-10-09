@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>ヨーロッパの地域ごとの気候と盆栽の管理</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">地域ごとの一番の課題</text>
+
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="70" width="760" height="118" rx="14"/>
+    <rect x="20" y="202" width="760" height="118" rx="14"/>
+    <rect x="20" y="334" width="760" height="118" rx="14"/>
+  </g>
+
+  <!-- 雪の結晶 -->
+  <g stroke="#1a365d" stroke-width="4" stroke-linecap="round" transform="translate(80 129)">
+    <line x1="0" y1="-30" x2="0" y2="30"/><line x1="-26" y1="-15" x2="26" y2="15"/><line x1="-26" y1="15" x2="26" y2="-15"/>
+  </g>
+  <text x="140" y="118" font-size="26" font-weight="700" fill="#22201c">北部・中東部</text>
+  <text x="140" y="156" font-size="22" fill="#6b655b">冬が長く寒い</text>
+  <text x="440" y="118" font-size="22" fill="#1a365d">根を凍らせない</text>
+  <text x="440" y="156" font-size="22" fill="#22201c">鉢を土に埋める・無加温室</text>
+
+  <!-- 雨 -->
+  <g transform="translate(80 258)">
+    <path d="M-30 0 q0 -22 22 -22 q8 -16 26 -10 q20 -2 22 16 q12 2 12 16 z" fill="#8a8578"/>
+    <g stroke="#1a365d" stroke-width="4" stroke-linecap="round"><line x1="-18" y1="14" x2="-24" y2="30"/><line x1="0" y1="14" x2="-6" y2="30"/><line x1="18" y1="14" x2="12" y2="30"/></g>
+  </g>
+  <text x="140" y="250" font-size="26" font-weight="700" fill="#22201c">西部</text>
+  <text x="140" y="288" font-size="22" fill="#6b655b">涼しく雨が多い</text>
+  <text x="440" y="250" font-size="22" fill="#1a365d">過湿を防ぐ</text>
+  <text x="440" y="288" font-size="22" fill="#22201c">水はけのよい用土</text>
+
+  <!-- 太陽 -->
+  <g transform="translate(80 393)">
+    <circle r="16" fill="#b8935a"/>
+    <g stroke="#b8935a" stroke-width="4" stroke-linecap="round">
+      <line x1="0" y1="-24" x2="0" y2="-34"/><line x1="0" y1="24" x2="0" y2="34"/><line x1="-24" y1="0" x2="-34" y2="0"/><line x1="24" y1="0" x2="34" y2="0"/>
+      <line x1="17" y1="17" x2="24" y2="24"/><line x1="-17" y1="-17" x2="-24" y2="-24"/><line x1="17" y1="-17" x2="24" y2="-24"/><line x1="-17" y1="17" x2="-24" y2="24"/>
+    </g>
+  </g>
+  <text x="140" y="382" font-size="26" font-weight="700" fill="#22201c">地中海沿岸</text>
+  <text x="140" y="420" font-size="22" fill="#6b655b">夏は暑く乾く</text>
+  <text x="440" y="382" font-size="22" fill="#1a365d">水切れを防ぐ</text>
+  <text x="440" y="420" font-size="22" fill="#22201c">深めの鉢・夏の日よけ</text>
+
+  <g stroke="#ebe7df" stroke-width="2"><line x1="420" y1="86" x2="420" y2="172"/><line x1="420" y1="218" x2="420" y2="304"/><line x1="420" y1="350" x2="420" y2="436"/></g>
+</svg>

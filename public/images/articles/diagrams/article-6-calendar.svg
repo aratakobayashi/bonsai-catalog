@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 494" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>五葉松の年間作業カレンダー。植え替えは3月中旬〜4月中旬、みどり摘みは4月下旬〜5月、肥料は5〜6月と9〜10月、夏は西日を避ける、剪定と針金かけは10〜2月、古葉取りは11〜12月</title>
+  <rect width="800" height="494" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">五葉松の一年の作業</text>
+  <text x="780" y="44" text-anchor="end" font-size="22" fill="#6b655b">関東の平地の目安</text>
+  <g font-size="22" fill="#22201c" text-anchor="middle">
+    <text x="186" y="94">1</text><text x="239" y="94">2</text><text x="291" y="94">3</text><text x="344" y="94">4</text><text x="396" y="94">5</text><text x="449" y="94">6</text><text x="501" y="94">7</text><text x="554" y="94">8</text><text x="606" y="94">9</text><text x="659" y="94">10</text><text x="711" y="94">11</text><text x="764" y="94">12</text>
+  </g>
+  <text x="20" y="94" font-size="22" fill="#6b655b">月</text>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="108" width="770" height="50" rx="8"/>
+    <rect x="20" y="164" width="770" height="50" rx="8"/>
+    <rect x="20" y="220" width="770" height="50" rx="8"/>
+    <rect x="20" y="276" width="770" height="50" rx="8"/>
+    <rect x="20" y="332" width="770" height="50" rx="8"/>
+    <rect x="20" y="388" width="770" height="50" rx="8"/>
+  </g>
+  <g stroke="#ebe7df" stroke-width="1.5">
+    <line x1="160.0" y1="108" x2="160.0" y2="438"/>
+    <line x1="212.5" y1="108" x2="212.5" y2="438"/>
+    <line x1="265.0" y1="108" x2="265.0" y2="438"/>
+    <line x1="317.5" y1="108" x2="317.5" y2="438"/>
+    <line x1="370.0" y1="108" x2="370.0" y2="438"/>
+    <line x1="422.5" y1="108" x2="422.5" y2="438"/>
+    <line x1="475.0" y1="108" x2="475.0" y2="438"/>
+    <line x1="527.5" y1="108" x2="527.5" y2="438"/>
+    <line x1="580.0" y1="108" x2="580.0" y2="438"/>
+    <line x1="632.5" y1="108" x2="632.5" y2="438"/>
+    <line x1="685.0" y1="108" x2="685.0" y2="438"/>
+    <line x1="737.5" y1="108" x2="737.5" y2="438"/>
+  </g>
+  <text x="32" y="141" font-size="24" font-weight="700" fill="#22201c">植え替え</text>
+  <rect x="286.0" y="119" width="63.0" height="28" rx="6" fill="#8b6b4a"/>
+  <text x="32" y="197" font-size="24" font-weight="700" fill="#22201c">みどり摘み</text>
+  <rect x="349.0" y="175" width="73.5" height="28" rx="6" fill="#5b7f4a"/>
+  <text x="32" y="253" font-size="24" font-weight="700" fill="#22201c">肥料</text>
+  <rect x="370.0" y="231" width="84.0" height="28" rx="6" fill="#b8935a"/>
+  <rect x="580.0" y="231" width="105.0" height="28" rx="6" fill="#b8935a"/>
+  <text x="32" y="309" font-size="24" font-weight="700" fill="#22201c">西日よけ</text>
+  <rect x="475.0" y="287" width="131.2" height="28" rx="6" fill="#6b655b"/>
+  <text x="32" y="365" font-size="24" font-weight="700" fill="#22201c">剪定・針金</text>
+  <rect x="160.0" y="343" width="105.0" height="28" rx="6" fill="#1a365d"/>
+  <rect x="632.5" y="343" width="157.5" height="28" rx="6" fill="#1a365d"/>
+  <text x="32" y="421" font-size="24" font-weight="700" fill="#22201c">古葉取り</text>
+  <rect x="685.0" y="399" width="105.0" height="28" rx="6" fill="#5b7f4a" fill-opacity="0.45"/>
+  <text x="20" y="480" font-size="22" fill="#6b655b">寒い地域では春の作業を2〜3週間遅らせます</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>ネットと店のどちらで買うかの決め方</title>
+  <rect width="800" height="520" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">どこで買うかの決め方</text>
+  <!-- Q1 -->
+  <rect x="150" y="74" width="500" height="64" rx="14" fill="#fff" stroke="#1a365d" stroke-width="2.5"/>
+  <text x="400" y="115" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">通える距離に盆栽園や園芸店がある</text>
+  <!-- arrows -->
+  <path d="M260 138 V184" stroke="#6b655b" stroke-width="3" fill="none"/><path d="M250 176 l10 14 l10 -14" fill="#6b655b"/>
+  <path d="M540 138 V184" stroke="#6b655b" stroke-width="3" fill="none"/><path d="M530 176 l10 14 l10 -14" fill="#6b655b"/>
+  <text x="240" y="170" text-anchor="end" font-size="22" fill="#5b7f4a">ある</text>
+  <text x="560" y="170" font-size="22" fill="#b4573a">ない</text>
+  <!-- left result -->
+  <rect x="40" y="196" width="340" height="120" rx="14" fill="#5b7f4a"/>
+  <text x="210" y="240" text-anchor="middle" font-size="26" font-weight="700" fill="#faf9f6">最初の1鉢は店で</text>
+  <text x="210" y="276" text-anchor="middle" font-size="22" fill="#faf9f6">実物を見て、育て方を聞く</text>
+  <text x="210" y="302" text-anchor="middle" font-size="22" fill="#faf9f6">2鉢目からはネットも</text>
+  <!-- Q2 -->
+  <rect x="420" y="196" width="340" height="120" rx="14" fill="#fff" stroke="#1a365d" stroke-width="2.5"/>
+  <text x="590" y="244" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">樹種と大きさが</text>
+  <text x="590" y="280" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">決まっている</text>
+  <path d="M520 316 V364" stroke="#6b655b" stroke-width="3" fill="none"/><path d="M510 356 l10 14 l10 -14" fill="#6b655b"/>
+  <path d="M680 316 V364" stroke="#6b655b" stroke-width="3" fill="none"/><path d="M670 356 l10 14 l10 -14" fill="#6b655b"/>
+  <text x="508" y="350" text-anchor="end" font-size="22" fill="#5b7f4a">はい</text>
+  <text x="694" y="350" font-size="22" fill="#b4573a">いいえ</text>
+  <rect x="420" y="376" width="200" height="120" rx="14" fill="#1a365d"/>
+  <text x="520" y="426" text-anchor="middle" font-size="25" font-weight="700" fill="#faf9f6">ネットで</text>
+  <text x="520" y="462" text-anchor="middle" font-size="22" fill="#faf9f6">説明の多い店</text>
+  <rect x="636" y="376" width="144" height="120" rx="14" fill="#b8935a"/>
+  <text x="708" y="426" text-anchor="middle" font-size="24" font-weight="700" fill="#faf9f6">先に</text>
+  <text x="708" y="462" text-anchor="middle" font-size="24" font-weight="700" fill="#faf9f6">樹種選び</text>
+  <!-- note -->
+  <text x="40" y="380" font-size="22" fill="#6b655b">展示会や即売会で</text>
+  <text x="40" y="412" font-size="22" fill="#6b655b">実物を見るのも手</text>
+</svg>

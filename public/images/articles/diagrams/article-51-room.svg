@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>室内に飾るときの置き場所。レースのカーテン越しの明るい窓辺がよい。エアコンの風が直接当たる場所、テレビや家電の上、窓から離れた暗い場所は避ける</title>
+  <rect width="800" height="500" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">室内での置き場所</text>
+
+  <!-- 部屋 -->
+  <rect x="20" y="70" width="760" height="330" rx="10" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <line x1="20" y1="350" x2="780" y2="350" stroke="#ebe7df" stroke-width="2"/>
+  <!-- 窓 -->
+  <rect x="44" y="96" width="150" height="200" fill="#e8eef5" stroke="#1a365d" stroke-width="3"/>
+  <line x1="119" y1="96" x2="119" y2="296" stroke="#1a365d" stroke-width="2"/>
+  <path d="M44 96 q20 100 0 200 M70 96 q20 100 0 200" stroke="#c9c2b4" stroke-width="2" fill="none"/>
+  <rect x="44" y="296" width="160" height="12" fill="#c9b48f"/>
+  <!-- 窓辺の盆栽 -->
+  <path d="M120 296 h44 l-5 -16 h-34 z" fill="#8b6b4a"/>
+  <path d="M142 282 q-4 -22 4 -36" stroke="#6f5439" stroke-width="4" fill="none"/>
+  <ellipse cx="144" cy="246" rx="24" ry="12" fill="#5b7f4a"/>
+  <circle cx="72" cy="330" r="13" fill="none" stroke="#5b7f4a" stroke-width="4"/>
+
+  <!-- エアコン -->
+  <rect x="300" y="90" width="170" height="44" rx="8" fill="#f3f0ea" stroke="#c9c2b4" stroke-width="2"/>
+  <g stroke="#6b655b" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M330 146 q10 20 0 40"/><path d="M385 146 q10 20 0 40"/><path d="M440 146 q10 20 0 40"/>
+  </g>
+  <g stroke="#b4573a" stroke-width="5" stroke-linecap="round"><line x1="370" y1="218" x2="400" y2="248"/><line x1="400" y1="218" x2="370" y2="248"/></g>
+
+  <!-- テレビ -->
+  <rect x="560" y="200" width="170" height="100" rx="6" fill="#22201c"/>
+  <rect x="600" y="300" width="90" height="50" fill="#c9b48f"/>
+  <path d="M630 200 h30 l-4 -14 h-22 z" fill="#8b6b4a" opacity="0.6"/>
+  <g stroke="#b4573a" stroke-width="5" stroke-linecap="round"><line x1="630" y1="140" x2="660" y2="170"/><line x1="660" y1="140" x2="630" y2="170"/></g>
+
+  <g text-anchor="middle">
+    <text x="120" y="440" font-size="24" font-weight="700" fill="#5b7f4a">明るい窓辺</text>
+    <text x="120" y="472" font-size="22" fill="#6b655b">レース越しの光</text>
+    <text x="385" y="440" font-size="24" font-weight="700" fill="#b4573a">エアコンの風</text>
+    <text x="385" y="472" font-size="22" fill="#6b655b">葉が乾いて傷む</text>
+    <text x="645" y="440" font-size="24" font-weight="700" fill="#b4573a">家電の上・奥</text>
+    <text x="645" y="472" font-size="22" fill="#6b655b">熱と光不足</text>
+  </g>
+</svg>

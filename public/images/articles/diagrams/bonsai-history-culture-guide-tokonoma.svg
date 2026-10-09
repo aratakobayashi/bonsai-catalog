@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 490" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>床の間の飾りの例。主木を卓にのせ、掛け軸と添えを組み合わせて季節をそろえる</title>
+  <rect width="800" height="490" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">床の間の飾りの例</text>
+  <rect x="60" y="76" width="680" height="350" fill="#f3f0ea" stroke="#6f5439" stroke-width="6"/>
+  <rect x="60" y="76" width="680" height="30" fill="#6f5439"/>
+  <rect x="60" y="400" width="680" height="26" fill="#8b6b4a"/>
+  <rect x="470" y="120" width="110" height="230" fill="#fff" stroke="#c9c2b5" stroke-width="2"/>
+  <rect x="462" y="116" width="126" height="8" fill="#6f5439"/><rect x="462" y="346" width="126" height="10" fill="#6f5439"/>
+  <path d="M500 190 q24 -34 48 0 q-24 44 -48 0" fill="none" stroke="#6b655b" stroke-width="3"/>
+  <rect x="170" y="378" width="200" height="22" fill="#6f5439"/>
+  <path d="M193.0 336.0 h154.0 l-11.2 42.0 h-131.6 z" fill="#1a365d"/>
+  <path d="M261.6 336.0 C256.0 280.0 298.0 252.0 272.8 196.0 L286.8 196.0 C314.8 252.0 278.4 280.0 284.0 336.0 z" fill="#6f5439"/>
+  <ellipse cx="216.8" cy="226.8" rx="56.0" ry="25.2" fill="#b8935a"/>
+  <ellipse cx="326.0" cy="196.0" rx="50.4" ry="22.4" fill="#b8935a"/>
+  <ellipse cx="275.6" cy="156.8" rx="47.6" ry="25.2" fill="#b8935a"/>
+  <rect x="620" y="390" width="90" height="10" fill="#6f5439"/>
+  <path d="M646 372 h38 l-4 18 h-30 z" fill="#2c4a75"/>
+  <path d="M655 372 q-6.0 -26 -14.0 -38" stroke="#5b7f4a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M665 372 q0.0 -26 0.0 -38" stroke="#5b7f4a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M675 372 q6.0 -26 14.0 -38" stroke="#5b7f4a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <text x="390" y="210" font-size="26" font-weight="700" fill="#1a365d">主木</text>
+  <text x="525" y="386" text-anchor="middle" font-size="24" font-weight="700" fill="#1a365d">掛け軸</text>
+  <text x="665" y="316" text-anchor="middle" font-size="24" font-weight="700" fill="#1a365d">添え</text>
+  <text x="270" y="466" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">卓</text>
+  <text x="560" y="466" text-anchor="middle" font-size="24" font-weight="700" fill="#5b7f4a">季節をそろえる</text>
+</svg>

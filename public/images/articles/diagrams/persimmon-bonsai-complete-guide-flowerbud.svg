@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>柿の花は前年に伸びた枝の先のほうの芽から出る新しい枝につく。枝先を全部切ると花がつかない</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">柿の花がつく位置</text>
+  <rect x="20.0" y="68" width="372.0" height="306" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <path d="M126.0 272 q40 -60 70 -100 q20 -30 40 -50" stroke="#6f5439" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <path d="M186.0 202 q-30 -30 -40 -70" stroke="#6f5439" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <ellipse cx="154.0" cy="232" rx="6" ry="9" fill="#8b6b4a"/>
+  <ellipse cx="200.0" cy="186" rx="6" ry="9" fill="#8b6b4a"/>
+  <path d="M236.0 122 q8 -20 26 -26" stroke="#5b7f4a" stroke-width="4" fill="none"/>
+  <ellipse cx="266.0" cy="102" rx="16" ry="8" fill="#5b7f4a"/>
+  <circle cx="250.0" cy="112" r="9" fill="#d2783c"/>
+  <path d="M146.0 132 q8 -20 26 -26" stroke="#5b7f4a" stroke-width="4" fill="none"/>
+  <ellipse cx="176.0" cy="112" rx="16" ry="8" fill="#5b7f4a"/>
+  <circle cx="160.0" cy="122" r="9" fill="#d2783c"/>
+  <circle cx="100" cy="303" r="11" fill="none" stroke="#5b7f4a" stroke-width="4"/>
+  <text x="206" y="312" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">枝先の芽を残す</text>
+  <text x="206" y="350" font-size="22" text-anchor="middle" fill="#5b7f4a">新しい枝に花と実</text>
+  <rect x="408.0" y="68" width="372.0" height="306" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <path d="M514.0 272 q40 -60 70 -100 q20 -30 40 -50" stroke="#6f5439" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <path d="M574.0 202 q-30 -30 -40 -70" stroke="#6f5439" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <ellipse cx="542.0" cy="232" rx="6" ry="9" fill="#8b6b4a"/>
+  <ellipse cx="588.0" cy="186" rx="6" ry="9" fill="#8b6b4a"/>
+  <line x1="588.0" y1="152" x2="628.0" y2="174" stroke="#b4573a" stroke-width="4" stroke-dasharray="6 5"/>
+  <line x1="530.0" y1="174" x2="566.0" y2="156" stroke="#b4573a" stroke-width="4" stroke-dasharray="6 5"/>
+  <path d="M542.0 232 q-6 -26 4 -46" stroke="#5b7f4a" stroke-width="4" fill="none"/><ellipse cx="554.0" cy="198" rx="14" ry="7" fill="#5b7f4a"/>
+  <path d="M588.0 186 q-6 -26 4 -46" stroke="#5b7f4a" stroke-width="4" fill="none"/><ellipse cx="600.0" cy="152" rx="14" ry="7" fill="#5b7f4a"/>
+  <path d="M478 293 l20 20 M498 293 l-20 20" stroke="#b4573a" stroke-width="4" stroke-linecap="round"/>
+  <text x="594" y="312" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">枝先を全部切る</text>
+  <text x="594" y="350" font-size="22" text-anchor="middle" fill="#8b6b4a">葉だけの枝になる</text>
+  <rect x="20" y="394" width="760" height="66" rx="14" fill="#1a365d"/>
+  <text x="400" y="437" font-size="26" text-anchor="middle" font-weight="700" fill="#faf9f6">冬の剪定は、実をつけたい枝の先の芽を残す</text>
+</svg>

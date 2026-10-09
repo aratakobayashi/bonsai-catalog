@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>藤の水やり。春と秋は土の表面が乾いたら底から流れるまで与える。真夏の日中は浅い皿に水を張って鉢を置き、夕方には皿を外す</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">藤は水切れに弱い</text>
+  <rect x="20" y="68" width="370" height="380" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="205" y="108" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">ふだん（春・秋）</text>
+  <rect x="142.0" y="294" width="126.0" height="9" rx="3" fill="#8b6b4a"/>
+  <path d="M148.0 300 L262.0 300 L249.46 328.5 L160.54 328.5 Z" fill="#8b6b4a"/>
+  <path d="M205 300 C199.3 262.0 222.1 243.0 208.8 205.0" stroke="#6f5439" stroke-width="8.549999999999999" fill="none" stroke-linecap="round"/>
+  <ellipse cx="176.5" cy="209.75" rx="39.9" ry="24.7" fill="#5b7f4a"/>
+  <ellipse cx="237.3" cy="195.5" rx="38.0" ry="22.799999999999997" fill="#5b7f4a"/>
+  <ellipse cx="208.8" cy="171.75" rx="41.8" ry="24.7" fill="#5b7f4a"/>
+  <text x="205" y="380" text-anchor="middle" font-size="22" fill="#22201c">土の表面が乾いたら</text>
+  <text x="205" y="414" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">底から流れるまで</text>
+  <rect x="410" y="68" width="370" height="380" rx="14" fill="#fff" stroke="#b8935a" stroke-width="3"/>
+  <text x="595" y="108" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">真夏の日中</text>
+  <rect x="505" y="300" width="180" height="40" rx="6" fill="#fff" stroke="#6b655b" stroke-width="3"/>
+  <rect x="508" y="314" width="174" height="23" fill="#b9cbe0"/>
+  <rect x="532.0" y="290" width="126.0" height="9" rx="3" fill="#8b6b4a"/>
+  <path d="M538.0 296 L652.0 296 L639.46 324.5 L550.54 324.5 Z" fill="#8b6b4a"/>
+  <path d="M595 296 C589.3 258.0 612.1 239.0 598.8 201.0" stroke="#6f5439" stroke-width="8.549999999999999" fill="none" stroke-linecap="round"/>
+  <ellipse cx="566.5" cy="205.75" rx="39.9" ry="24.7" fill="#5b7f4a"/>
+  <ellipse cx="627.3" cy="191.5" rx="38.0" ry="22.799999999999997" fill="#5b7f4a"/>
+  <ellipse cx="598.8" cy="167.75" rx="41.8" ry="24.7" fill="#5b7f4a"/>
+  <text x="700" y="300" font-size="20" font-weight="700" fill="#4a6a92">浅く水</text>
+  <text x="595" y="380" text-anchor="middle" font-size="22" fill="#22201c">浅い皿に水を張り</text>
+  <text x="595" y="414" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">夕方には皿を外す</text>
+</svg>

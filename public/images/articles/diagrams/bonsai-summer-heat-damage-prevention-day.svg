@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>夏の1日の管理</title>
+  <rect width="800" height="420" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">夏の1日の管理</text>
+  <rect x="20" y="76" width="240" height="320" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="76" width="240" height="56" rx="14" fill="#b8935a"/><rect x="20" y="114" width="240" height="18" fill="#b8935a"/>
+  <text x="140" y="114" text-anchor="middle" font-size="26" font-weight="700" fill="#faf9f6">朝</text>
+  <text x="140" y="190" text-anchor="middle" font-size="23" fill="#22201c">鉢底から</text>
+  <text x="140" y="222" text-anchor="middle" font-size="23" fill="#22201c">流れるまで</text>
+  <text x="140" y="254" text-anchor="middle" font-size="23" fill="#22201c">たっぷり</text>
+  <text x="140" y="346" text-anchor="middle" font-size="22" fill="#5b7f4a" font-weight="700">毎日の基本</text>
+
+  <rect x="280" y="76" width="240" height="320" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="280" y="76" width="240" height="56" rx="14" fill="#8b6b4a"/><rect x="280" y="114" width="240" height="18" fill="#8b6b4a"/>
+  <text x="400" y="114" text-anchor="middle" font-size="26" font-weight="700" fill="#faf9f6">昼</text>
+  <text x="400" y="190" text-anchor="middle" font-size="23" fill="#22201c">午後の日差しを</text>
+  <text x="400" y="222" text-anchor="middle" font-size="23" fill="#22201c">遮る</text>
+  <text x="400" y="286" text-anchor="middle" font-size="22" fill="#22201c">熱い水は与えない</text>
+  <text x="400" y="346" text-anchor="middle" font-size="22" fill="#8b6b4a" font-weight="700">ミニ盆栽は確認</text>
+
+  <rect x="540" y="76" width="240" height="320" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="540" y="76" width="240" height="56" rx="14" fill="#1a365d"/><rect x="540" y="114" width="240" height="18" fill="#1a365d"/>
+  <text x="660" y="114" text-anchor="middle" font-size="26" font-weight="700" fill="#faf9f6">夕方</text>
+  <text x="660" y="190" text-anchor="middle" font-size="23" fill="#22201c">乾いていれば</text>
+  <text x="660" y="222" text-anchor="middle" font-size="23" fill="#22201c">もう一度</text>
+  <text x="660" y="286" text-anchor="middle" font-size="22" fill="#22201c">葉水・打ち水</text>
+  <text x="660" y="346" text-anchor="middle" font-size="22" fill="#1a365d" font-weight="700">夜の温度を下げる</text>
+</svg>

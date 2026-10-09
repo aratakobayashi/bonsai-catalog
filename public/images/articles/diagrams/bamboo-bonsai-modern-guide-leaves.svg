@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>竹の葉の様子で分かること</title>
+  <rect width="800" height="440" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">葉の様子で分かること</text>
+  <!-- 1 -->
+  <rect x="20" y="72" width="245" height="280" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <path d="M142 120 C 110 150, 100 200, 142 250 C 184 200, 174 150, 142 120 z" fill="#5b7f4a"/>
+  <line x1="142" y1="130" x2="142" y2="240" stroke="#faf9f6" stroke-width="2"/>
+  <text x="142" y="292" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">開いている</text>
+  <text x="142" y="328" text-anchor="middle" font-size="22" fill="#5b7f4a">元気</text>
+  <!-- 2 -->
+  <rect x="277" y="72" width="245" height="280" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <path d="M400 120 C 388 160, 386 210, 400 250 C 414 210, 412 160, 400 120 z" fill="#7d9a6a"/>
+  <path d="M400 120 C 420 160, 420 210, 400 250" fill="none" stroke="#5b7f4a" stroke-width="3"/>
+  <text x="400" y="292" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">細く巻く</text>
+  <text x="400" y="328" text-anchor="middle" font-size="22" fill="#b4573a">水切れ</text>
+  <!-- 3 -->
+  <rect x="534" y="72" width="246" height="280" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <path d="M657 120 C 625 150, 615 200, 657 250 C 699 200, 689 150, 657 120 z" fill="#d9c27a"/>
+  <path d="M657 120 C 635 150, 630 180, 640 200" fill="none" stroke="#b8935a" stroke-width="3"/>
+  <text x="657" y="292" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">春に黄ばむ</text>
+  <text x="657" y="328" text-anchor="middle" font-size="22" fill="#6b655b">葉の入れ替わり</text>
+  <rect x="20" y="370" width="760" height="56" rx="14" fill="#1a365d"/>
+  <text x="400" y="406" text-anchor="middle" font-size="25" font-weight="700" fill="#faf9f6">葉が巻いたら、すぐにたっぷり水を与える</text>
+</svg>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 452" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>展示会での作品の見る順番</title>
+  <rect width="800" height="452" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">見る順番の目安</text>
+  <rect x="22" y="86" width="138" height="200" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="91" cy="130" r="20" fill="#1a365d"/>
+  <text x="91" y="138" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">1</text>
+  <text x="91" y="196" text-anchor="middle" font-size="22" font-weight="700" fill="#22201c">離れて</text>
+  <text x="91" y="228" text-anchor="middle" font-size="22" font-weight="700" fill="#22201c">全体を見る</text>
+  <path d="M162 186 h12" stroke="#b8935a" stroke-width="5" stroke-linecap="round"/><path d="M166 177 l9 9 l-9 9" fill="none" stroke="#b8935a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="176" y="86" width="138" height="200" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="245" cy="130" r="20" fill="#1a365d"/>
+  <text x="245" y="138" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">2</text>
+  <text x="245" y="196" text-anchor="middle" font-size="22" font-weight="700" fill="#22201c">正面から</text>
+  <text x="245" y="228" text-anchor="middle" font-size="22" font-weight="700" fill="#22201c">見る</text>
+  <path d="M316 186 h12" stroke="#b8935a" stroke-width="5" stroke-linecap="round"/><path d="M320 177 l9 9 l-9 9" fill="none" stroke="#b8935a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="330" y="86" width="138" height="200" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="399" cy="130" r="20" fill="#1a365d"/>
+  <text x="399" y="138" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">3</text>
+  <text x="399" y="196" text-anchor="middle" font-size="22" font-weight="700" fill="#22201c">根元を</text>
+  <text x="399" y="228" text-anchor="middle" font-size="22" font-weight="700" fill="#22201c">見る</text>
+  <path d="M470 186 h12" stroke="#b8935a" stroke-width="5" stroke-linecap="round"/><path d="M474 177 l9 9 l-9 9" fill="none" stroke="#b8935a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="484" y="86" width="138" height="200" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="553" cy="130" r="20" fill="#1a365d"/>
+  <text x="553" y="138" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">4</text>
+  <text x="553" y="196" text-anchor="middle" font-size="22" font-weight="700" fill="#22201c">幹と枝を</text>
+  <text x="553" y="228" text-anchor="middle" font-size="22" font-weight="700" fill="#22201c">たどる</text>
+  <path d="M624 186 h12" stroke="#b8935a" stroke-width="5" stroke-linecap="round"/><path d="M628 177 l9 9 l-9 9" fill="none" stroke="#b8935a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="638" y="86" width="138" height="200" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="707" cy="130" r="20" fill="#1a365d"/>
+  <text x="707" y="138" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">5</text>
+  <text x="707" y="196" text-anchor="middle" font-size="22" font-weight="700" fill="#22201c">鉢・卓・</text>
+  <text x="707" y="228" text-anchor="middle" font-size="22" font-weight="700" fill="#22201c">飾りを見る</text>
+  <rect x="22" y="312" width="756" height="118" rx="14" fill="#f3f0ea"/>
+  <text x="48" y="358" font-size="24" font-weight="700" fill="#1a365d">名札で樹種と樹高を確かめる</text>
+  <text x="48" y="400" font-size="22" fill="#22201c">気に入った作品は最後にもう一度見に戻る</text>
+</svg>

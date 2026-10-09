@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 426" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>健康な根と傷んだ根の比較。健康な根は白から薄茶色で張りがあり、松では白い菌糸が見られることがある。傷んだ根は黒っぽく、ぬめりやにおいがある</title>
+  <rect width="800" height="426" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">根の様子を見る</text>
+  <rect x="20.0" y="68" width="372.0" height="338" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <rect x="126.0" y="102" width="160" height="170" rx="10" fill="#e3d2b4"/>
+  <path d="M206.0 102 v60" stroke="#eadcc4" stroke-width="10" stroke-linecap="round"/>
+  <path d="M206.0 152 q-20 53 -60 90" stroke="#eadcc4" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M206.0 152 q-10 57 -30 100" stroke="#eadcc4" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M206.0 152 q0 58 0 105" stroke="#eadcc4" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M206.0 152 q10 56 30 98" stroke="#eadcc4" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M206.0 152 q20 50 60 80" stroke="#eadcc4" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M156.0 222 q10 -10 22 -2 q8 8 18 0" stroke="#ffffff" stroke-width="3" fill="none"/>
+  <path d="M246.0 212 q10 -10 22 -2 q8 8 18 0" stroke="#ffffff" stroke-width="3" fill="none"/>
+  <path d="M196.0 242 q10 -10 22 -2 q8 8 18 0" stroke="#ffffff" stroke-width="3" fill="none"/>
+  <circle cx="138" cy="303" r="11" fill="none" stroke="#5b7f4a" stroke-width="4"/>
+  <text x="206" y="312" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">健康な根</text>
+  <text x="206" y="350" font-size="22" text-anchor="middle" fill="#5b7f4a">白〜薄茶色で張りがある</text>
+  <text x="206" y="382" font-size="22" text-anchor="middle" fill="#6b655b">松は白い菌糸が付くことも</text>
+  <rect x="408.0" y="68" width="372.0" height="338" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="514.0" y="102" width="160" height="170" rx="10" fill="#e3d2b4"/>
+  <path d="M594.0 102 v60" stroke="#4a3a2c" stroke-width="10" stroke-linecap="round"/>
+  <path d="M594.0 152 q-20 53 -60 90" stroke="#4a3a2c" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M594.0 152 q-10 57 -30 100" stroke="#4a3a2c" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M594.0 152 q0 58 0 105" stroke="#4a3a2c" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M594.0 152 q10 56 30 98" stroke="#4a3a2c" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M594.0 152 q20 50 60 80" stroke="#4a3a2c" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <circle cx="554.0" cy="212" r="5" fill="#2b2620"/>
+  <circle cx="614.0" cy="232" r="5" fill="#2b2620"/>
+  <circle cx="644.0" cy="192" r="5" fill="#2b2620"/>
+  <path d="M516 293 l20 20 M536 293 l-20 20" stroke="#b4573a" stroke-width="4" stroke-linecap="round"/>
+  <text x="594" y="312" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">傷んだ根</text>
+  <text x="594" y="350" font-size="22" text-anchor="middle" fill="#8b6b4a">黒っぽく、ぬめる</text>
+  <text x="594" y="382" font-size="22" text-anchor="middle" fill="#6b655b">いやなにおいがする</text>
+</svg>

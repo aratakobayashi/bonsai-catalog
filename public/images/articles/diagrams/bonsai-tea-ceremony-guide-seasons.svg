@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>季節ごとの主木の例</title>
+  <rect width="800" height="420" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">季節ごとの主木の例</text>
+  <g>
+    <rect x="20" y="76" width="179" height="320" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <rect x="20" y="76" width="179" height="56" rx="14" fill="#b8935a"/><rect x="20" y="114" width="179" height="18" fill="#b8935a"/>
+    <text x="110" y="114" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">春</text>
+    <text x="110" y="190" text-anchor="middle" font-size="23" fill="#22201c">梅</text>
+    <text x="110" y="234" text-anchor="middle" font-size="23" fill="#22201c">桜</text>
+    <text x="110" y="278" text-anchor="middle" font-size="23" fill="#22201c">長寿梅</text>
+    <text x="110" y="356" text-anchor="middle" font-size="22" fill="#8b6b4a" font-weight="700">花が主役</text>
+  </g>
+  <g>
+    <rect x="213" y="76" width="179" height="320" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <rect x="213" y="76" width="179" height="56" rx="14" fill="#5b7f4a"/><rect x="213" y="114" width="179" height="18" fill="#5b7f4a"/>
+    <text x="303" y="114" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">夏</text>
+    <text x="303" y="190" text-anchor="middle" font-size="23" fill="#22201c">雑木の</text>
+    <text x="303" y="222" text-anchor="middle" font-size="23" fill="#22201c">寄せ植え</text>
+    <text x="303" y="278" text-anchor="middle" font-size="23" fill="#22201c">苔・水石</text>
+    <text x="303" y="356" text-anchor="middle" font-size="22" fill="#8b6b4a" font-weight="700">涼しさ</text>
+  </g>
+  <g>
+    <rect x="406" y="76" width="179" height="320" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <rect x="406" y="76" width="179" height="56" rx="14" fill="#8b6b4a"/><rect x="406" y="114" width="179" height="18" fill="#8b6b4a"/>
+    <text x="496" y="114" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">秋</text>
+    <text x="496" y="190" text-anchor="middle" font-size="23" fill="#22201c">もみじ</text>
+    <text x="496" y="234" text-anchor="middle" font-size="23" fill="#22201c">欅</text>
+    <text x="496" y="278" text-anchor="middle" font-size="23" fill="#22201c">実もの</text>
+    <text x="496" y="356" text-anchor="middle" font-size="22" fill="#8b6b4a" font-weight="700">色づき</text>
+  </g>
+  <g>
+    <rect x="599" y="76" width="181" height="320" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <rect x="599" y="76" width="181" height="56" rx="14" fill="#1a365d"/><rect x="599" y="114" width="181" height="18" fill="#1a365d"/>
+    <text x="690" y="114" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">冬</text>
+    <text x="690" y="190" text-anchor="middle" font-size="23" fill="#22201c">松・真柏</text>
+    <text x="690" y="234" text-anchor="middle" font-size="23" fill="#22201c">椿</text>
+    <text x="690" y="278" text-anchor="middle" font-size="23" fill="#22201c">雑木の枝</text>
+    <text x="690" y="356" text-anchor="middle" font-size="22" fill="#8b6b4a" font-weight="700">静けさ</text>
+  </g>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>植え替えの6つの手順</title>
+  <rect width="800" height="520" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">植え替えの手順</text>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="70" width="246" height="200" rx="14"/>
+    <rect x="277" y="70" width="246" height="200" rx="14"/>
+    <rect x="534" y="70" width="246" height="200" rx="14"/>
+    <rect x="20" y="290" width="246" height="200" rx="14"/>
+    <rect x="277" y="290" width="246" height="200" rx="14"/>
+    <rect x="534" y="290" width="246" height="200" rx="14"/>
+  </g>
+  <g fill="#1a365d">
+    <circle cx="52" cy="102" r="20"/><circle cx="309" cy="102" r="20"/><circle cx="566" cy="102" r="20"/>
+    <circle cx="52" cy="322" r="20"/><circle cx="309" cy="322" r="20"/><circle cx="566" cy="322" r="20"/>
+  </g>
+  <g font-size="22" font-weight="700" fill="#faf9f6" text-anchor="middle">
+    <text x="52" y="110">1</text><text x="309" y="110">2</text><text x="566" y="110">3</text>
+    <text x="52" y="330">4</text><text x="309" y="330">5</text><text x="566" y="330">6</text>
+  </g>
+  <g font-size="24" font-weight="700" fill="#22201c">
+    <text x="84" y="111">鉢から抜く</text>
+    <text x="341" y="111">古い土を落とす</text>
+    <text x="598" y="111">根を切る</text>
+    <text x="84" y="331">鉢の準備</text>
+    <text x="341" y="331">植え付ける</text>
+    <text x="598" y="331">水やり・養生</text>
+  </g>
+  <g font-size="22" fill="#6b655b">
+    <text x="44" y="170">縁をへらで一周</text>
+    <text x="44" y="206">根鉢ごと抜く</text>
+    <text x="301" y="170">竹串で外側から</text>
+    <text x="301" y="206">3分の1ほど</text>
+    <text x="558" y="170">長い根・傷んだ根</text>
+    <text x="558" y="206">太い根は短く</text>
+    <text x="44" y="390">鉢底網と</text>
+    <text x="44" y="426">固定用の針金</text>
+    <text x="301" y="390">竹串でつついて</text>
+    <text x="301" y="426">すき間をなくす</text>
+    <text x="558" y="390">透明な水が出るまで</text>
+    <text x="558" y="426">2週間は日陰で</text>
+  </g>
+</svg>

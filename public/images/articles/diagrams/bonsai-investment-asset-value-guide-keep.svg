@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>値打ちを保ちやすい状態と、下がりやすい状態の比較</title>
+  <rect width="800" height="350" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">値打ちを左右すること</text>
+  <rect x="20" y="70" width="370" height="260" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <rect x="20" y="70" width="370" height="52" rx="14" fill="#5b7f4a"/>
+  <rect x="20" y="104" width="370" height="18" fill="#5b7f4a"/>
+  <text x="205" y="105" font-size="26" font-weight="700" text-anchor="middle" fill="#fff">保ちやすい</text>
+  <circle cx="46" cy="152" r="6" fill="#5b7f4a"/>
+  <text x="62" y="160" font-size="22" fill="#22201c">毎年よく芽吹いている</text>
+  <circle cx="46" cy="198" r="6" fill="#5b7f4a"/>
+  <text x="62" y="206" font-size="22" fill="#22201c">根張り・幹に見どころ</text>
+  <circle cx="46" cy="244" r="6" fill="#5b7f4a"/>
+  <text x="62" y="252" font-size="22" fill="#22201c">手入れの記録が残る</text>
+  <circle cx="46" cy="290" r="6" fill="#5b7f4a"/>
+  <text x="62" y="298" font-size="22" fill="#22201c">来歴を確かめられる</text>
+  <rect x="410" y="70" width="370" height="260" rx="14" fill="#fff" stroke="#8b6b4a" stroke-width="3"/>
+  <rect x="410" y="70" width="370" height="52" rx="14" fill="#8b6b4a"/>
+  <rect x="410" y="104" width="370" height="18" fill="#8b6b4a"/>
+  <text x="595" y="105" font-size="26" font-weight="700" text-anchor="middle" fill="#fff">下がりやすい</text>
+  <circle cx="436" cy="152" r="6" fill="#8b6b4a"/>
+  <text x="452" y="160" font-size="22" fill="#22201c">枝枯れ・根の傷み</text>
+  <circle cx="436" cy="198" r="6" fill="#8b6b4a"/>
+  <text x="452" y="206" font-size="22" fill="#22201c">太い切り口が目立つ</text>
+  <circle cx="436" cy="244" r="6" fill="#8b6b4a"/>
+  <text x="452" y="252" font-size="22" fill="#22201c">針金の食い込み跡</text>
+  <circle cx="436" cy="290" r="6" fill="#8b6b4a"/>
+  <text x="452" y="298" font-size="22" fill="#22201c">出どころが分からない</text>
+</svg>

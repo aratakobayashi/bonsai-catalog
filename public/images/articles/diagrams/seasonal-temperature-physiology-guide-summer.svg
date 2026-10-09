@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>夏に鉢を熱くしない工夫。コンクリートの床に直置きすると照り返しで鉢と根が熱くなる。棚に上げて床から離し、すだれで午後の日差しを和らげ、鉢の間をあける</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">夏に鉢を熱くしない工夫</text>
+  <rect x="20" y="420" width="760" height="40" fill="#c9c2b5"/>
+  <text x="400" y="449" font-size="22" text-anchor="middle" fill="#22201c">コンクリートの床</text>
+  <rect x="76" y="370" width="128" height="9" rx="3" fill="#6f5439"/>
+  <path d="M80 378 h120 l-10 36 h-100 z" fill="#8b6b4a"/>
+  <path d="M66 416 q8 -14 0 -28 q-8 -14 0 -28" stroke="#b4573a" stroke-width="3.5" fill="none"/>
+  <path d="M214 416 q8 -14 0 -28 q-8 -14 0 -28" stroke="#b4573a" stroke-width="3.5" fill="none"/>
+  <text x="140" y="110" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">床に直置き</text>
+  <text x="140" y="146" font-size="22" text-anchor="middle" fill="#8b6b4a">照り返しで</text>
+  <text x="140" y="178" font-size="22" text-anchor="middle" fill="#8b6b4a">鉢と根が熱くなる</text>
+  <path d="M126 210 l28 28 M154 210 l-28 28" stroke="#b4573a" stroke-width="4" stroke-linecap="round"/>
+  <rect x="330" y="300" width="430" height="14" fill="#8b6b4a"/>
+  <rect x="350" y="314" width="12" height="106" fill="#6f5439"/>
+  <rect x="728" y="314" width="12" height="106" fill="#6f5439"/>
+  <rect x="386" y="262" width="108" height="9" rx="3" fill="#6f5439"/>
+  <path d="M390 270 h100 l-10 30 h-80 z" fill="#8b6b4a"/>
+  <rect x="586" y="262" width="108" height="9" rx="3" fill="#6f5439"/>
+  <path d="M590 270 h100 l-10 30 h-80 z" fill="#8b6b4a"/>
+  <line x1="330" y1="120" x2="770" y2="120" stroke="#b8935a" stroke-width="6"/>
+  <line x1="340" y1="120" x2="340" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="362" y1="120" x2="362" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="384" y1="120" x2="384" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="406" y1="120" x2="406" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="428" y1="120" x2="428" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="450" y1="120" x2="450" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="472" y1="120" x2="472" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="494" y1="120" x2="494" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="516" y1="120" x2="516" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="538" y1="120" x2="538" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="560" y1="120" x2="560" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="582" y1="120" x2="582" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="604" y1="120" x2="604" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="626" y1="120" x2="626" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="648" y1="120" x2="648" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="670" y1="120" x2="670" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="692" y1="120" x2="692" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="714" y1="120" x2="714" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="736" y1="120" x2="736" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <line x1="758" y1="120" x2="758" y2="200" stroke="#b8935a" stroke-width="3"/>
+  <text x="545" y="104" font-size="22" text-anchor="middle" fill="#22201c">すだれで午後の日差しを和らげる</text>
+  <text x="545" y="360" font-size="22" text-anchor="middle" font-weight="700" fill="#5b7f4a">棚に上げて床から離す</text>
+  <text x="545" y="394" font-size="22" text-anchor="middle" fill="#5b7f4a">鉢どうしの間をあける</text>
+  <circle cx="545" cy="232" r="0" fill="none"/>
+</svg>

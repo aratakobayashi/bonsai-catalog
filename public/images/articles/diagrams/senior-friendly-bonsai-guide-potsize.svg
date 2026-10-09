@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 416" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>鉢の大きさと手間の比較。小さな鉢は乾きやすく夏は水やりの回数が増える。中くらいの鉢は扱いやすい。大きな鉢は乾きにくいが重くて動かしにくい</title>
+  <rect width="800" height="416" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">鉢の大きさと手間</text>
+  <rect x="20.0" y="68" width="242.7" height="328" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="107" y="234" width="68" height="9" rx="3" fill="#6f5439"/>
+  <path d="M111 242 h60 l-10 18 h-40 z" fill="#8b6b4a"/>
+  <path d="M141.33333333333331 234.0 q3 -18 0 -27" stroke="#6f5439" stroke-width="4" fill="none"/>
+  <ellipse cx="141" cy="205" rx="25" ry="12" fill="#3f6a33"/>
+  <text x="141" y="302" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">手のひらサイズ</text>
+  <text x="141" y="340" font-size="22" text-anchor="middle" fill="#8b6b4a">乾きやすい</text>
+  <text x="141" y="372" font-size="22" text-anchor="middle" fill="#6b655b">夏は水やりが増える</text>
+  <rect x="278.7" y="68" width="242.7" height="328" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <rect x="341" y="219" width="118" height="9" rx="3" fill="#6f5439"/>
+  <path d="M345 227 h110 l-10 33 h-90 z" fill="#8b6b4a"/>
+  <path d="M399.99999999999994 219.0 q3 -33 0 -50" stroke="#6f5439" stroke-width="6" fill="none"/>
+  <ellipse cx="400" cy="166" rx="46" ry="22" fill="#3f6a33"/>
+  <circle cx="307" cy="293" r="11" fill="none" stroke="#5b7f4a" stroke-width="4"/>
+  <text x="400" y="302" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">両手で持てる</text>
+  <text x="400" y="340" font-size="22" text-anchor="middle" fill="#5b7f4a">乾き方がゆるやか</text>
+  <text x="400" y="372" font-size="22" text-anchor="middle" fill="#6b655b">移動もしやすい</text>
+  <rect x="537.3" y="68" width="242.7" height="328" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="580" y="207" width="158" height="9" rx="3" fill="#6f5439"/>
+  <path d="M584 215 h150 l-10 45 h-130 z" fill="#8b6b4a"/>
+  <path d="M658.6666666666666 207.0 q3 -45 0 -68" stroke="#6f5439" stroke-width="8" fill="none"/>
+  <ellipse cx="659" cy="135" rx="63" ry="30" fill="#3f6a33"/>
+  <text x="659" y="302" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">大きな鉢</text>
+  <text x="659" y="340" font-size="22" text-anchor="middle" fill="#5b7f4a">乾きにくい</text>
+  <text x="659" y="372" font-size="22" text-anchor="middle" fill="#8b6b4a">重くて動かしにくい</text>
+</svg>

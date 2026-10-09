@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>毎日数分の手入れの流れ</title>
+  <rect width="800" height="440" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">毎朝の数分の流れ</text>
+  <!-- 1 見る -->
+  <rect x="20" y="76" width="170" height="250" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <path d="M60 160 q45 -40 90 0 q-45 40 -90 0 z" fill="none" stroke="#1a365d" stroke-width="4"/>
+  <circle cx="105" cy="160" r="14" fill="#1a365d"/>
+  <text x="105" y="244" text-anchor="middle" font-size="28" font-weight="700" fill="#22201c">見る</text>
+  <text x="105" y="290" text-anchor="middle" font-size="22" fill="#5b7f4a">葉・芽・虫</text>
+  <!-- 2 触る -->
+  <rect x="216" y="76" width="170" height="250" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="246" y="160" width="110" height="40" fill="#e3d2b4"/><line x1="246" y1="160" x2="356" y2="160" stroke="#8b6b4a" stroke-width="3"/>
+  <path d="M286 104 h28 v62 a14 14 0 0 1 -28 0 z" fill="#f3e3d0" stroke="#22201c" stroke-width="2.5"/>
+  <text x="301" y="244" text-anchor="middle" font-size="28" font-weight="700" fill="#22201c">触る</text>
+  <text x="301" y="290" text-anchor="middle" font-size="22" fill="#5b7f4a">土の乾き</text>
+  <!-- 3 水やり -->
+  <rect x="412" y="76" width="170" height="250" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <path d="M450 150 h56 v44 h-56 z" fill="#1a365d"/>
+  <path d="M506 158 l34 -20" stroke="#1a365d" stroke-width="8" stroke-linecap="round"/>
+  <path d="M450 160 q-18 0 -18 18 q0 18 18 18" fill="none" stroke="#1a365d" stroke-width="5"/>
+  <g fill="#9cc0d8"><circle cx="548" cy="150" r="4"/><circle cx="552" cy="166" r="4"/><circle cx="544" cy="180" r="4"/></g>
+  <text x="497" y="244" text-anchor="middle" font-size="28" font-weight="700" fill="#22201c">水やり</text>
+  <text x="497" y="290" text-anchor="middle" font-size="22" fill="#5b7f4a">乾いていれば</text>
+  <!-- 4 記録 -->
+  <rect x="608" y="76" width="172" height="250" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="654" y="118" width="80" height="96" rx="6" fill="#f3f0ea" stroke="#8b6b4a" stroke-width="3"/>
+  <g stroke="#8b6b4a" stroke-width="3"><line x1="666" y1="146" x2="722" y2="146"/><line x1="666" y1="168" x2="722" y2="168"/><line x1="666" y1="190" x2="704" y2="190"/></g>
+  <text x="694" y="244" text-anchor="middle" font-size="28" font-weight="700" fill="#22201c">記録</text>
+  <text x="694" y="290" text-anchor="middle" font-size="22" fill="#5b7f4a">一言メモ</text>
+  <!-- arrows -->
+  <g fill="#b8935a"><path d="M212 196 l-18 -11 v22 z"/><path d="M408 196 l-18 -11 v22 z"/><path d="M604 196 l-18 -11 v22 z"/></g>
+  <rect x="20" y="350" width="760" height="70" rx="14" fill="#f3f0ea" stroke="#b8935a" stroke-width="2"/>
+  <text x="400" y="394" text-anchor="middle" font-size="25" fill="#22201c">湿っていれば、その日は「見る」だけで終わり</text>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>植え替えのときの根の整理</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">根の整理のしかた</text>
+  <!-- before -->
+  <rect x="20" y="72" width="370" height="290" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="205" y="112" text-anchor="middle" font-size="26" font-weight="700" fill="#22201c">抜いた根鉢</text>
+  <rect x="198" y="126" width="14" height="40" fill="#6f5439"/>
+  <path d="M90 166 h230 l-20 120 h-190 z" fill="#b59b78"/>
+  <g stroke="#6f5439" stroke-width="5" fill="none"><path d="M96 172 h218 l-18 108 h-182 z"/><path d="M106 182 h198 l-16 90 h-166 z"/></g>
+  <text x="205" y="336" text-anchor="middle" font-size="22" fill="#22201c">外周を根が回っている</text>
+  <!-- arrow -->
+  <path d="M396 220 h20 m-10 -10 l10 10 l-10 10" stroke="#b8935a" stroke-width="5" fill="none"/>
+  <!-- after -->
+  <rect x="420" y="72" width="360" height="290" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="600" y="112" text-anchor="middle" font-size="26" font-weight="700" fill="#22201c">ほぐして切る</text>
+  <rect x="593" y="126" width="14" height="40" fill="#6f5439"/>
+  <path d="M520 166 h160 l-14 84 h-132 z" fill="#b59b78"/>
+  <g stroke="#6f5439" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M520 190 q-24 6 -40 22"/><path d="M680 190 q24 6 40 22"/><path d="M540 250 q-10 16 -24 26"/><path d="M660 250 q10 16 24 26"/><path d="M600 250 v30"/>
+  </g>
+  <g stroke="#8b6b4a" stroke-width="2" stroke-dasharray="6 6" fill="none"><path d="M470 160 h260 l-24 140 h-212 z"/></g>
+  <g fill="#b8935a"><circle cx="480" cy="212" r="7"/><circle cx="720" cy="212" r="7"/><circle cx="600" cy="282" r="7"/></g>
+  <text x="600" y="336" text-anchor="middle" font-size="22" fill="#22201c">点線の外側を落とす</text>
+
+  <rect x="20" y="380" width="760" height="72" rx="14" fill="#1a365d"/>
+  <text x="400" y="426" text-anchor="middle" font-size="25" font-weight="700" fill="#faf9f6">外側と底の土を1/3ほど落とし、中心は崩さない</text>
+</svg>

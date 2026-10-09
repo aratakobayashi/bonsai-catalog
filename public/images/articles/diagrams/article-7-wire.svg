@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>針金のかけ方の基本。針金の端を幹や太い枝に固定し、枝に対しておよそ45度の角度でらせん状に巻く。間隔を詰めすぎず開けすぎない。隣り合う2本の枝は1本の針金でつなぐように巻くと固定しやすい</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+
+  <!-- ① 角度 -->
+  <rect x="20" y="20" width="372" height="430" rx="14" fill="#fff" stroke="#b8935a" stroke-width="3"/>
+  <text x="206" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">① 約45度で巻く</text>
+  <rect x="60" y="200" width="300" height="40" rx="20" fill="#8b6b4a"/>
+  <g stroke="#b8935a" stroke-width="6" stroke-linecap="round" fill="none">
+    <path d="M80 244 L104 196 M128 244 L152 196 M176 244 L200 196 M224 244 L248 196 M272 244 L296 196 M320 244 L344 196"/>
+  </g>
+  <path d="M206 300 v-50" stroke="#1a365d" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="206" y="330" text-anchor="middle" font-size="22" fill="#1a365d">同じ間隔で</text>
+  <g font-size="22" fill="#6b655b" text-anchor="middle">
+    <text x="206" y="146">太さは枝の</text><text x="206" y="174">3分の1ほどが目安</text>
+  </g>
+  <rect x="44" y="370" width="324" height="56" rx="10" fill="#f3f0ea"/>
+  <text x="206" y="406" text-anchor="middle" font-size="22" fill="#22201c">端は幹か太い枝に固定</text>
+
+  <!-- ② 2本をつなぐ -->
+  <rect x="408" y="20" width="372" height="430" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="594" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">② 2本の枝をつなぐ</text>
+  <g stroke="#8b6b4a" stroke-linecap="round" fill="none">
+    <path d="M594 360 V250" stroke-width="22"/>
+    <path d="M594 262 L470 170" stroke-width="12"/>
+    <path d="M594 262 L718 170" stroke-width="12"/>
+  </g>
+  <g stroke="#b8935a" stroke-width="5" stroke-linecap="round" fill="none">
+    <path d="M486 172 l10 -14 M508 190 l10 -14 M530 206 l10 -14 M552 222 l10 -14 M574 238 l8 -12"/>
+    <path d="M574 238 Q594 280 614 238"/>
+    <path d="M614 238 l8 12 M634 222 l10 14 M656 206 l10 14 M678 190 l10 14 M700 172 l10 14" transform="translate(0 -14)"/>
+  </g>
+  <text x="594" y="320" text-anchor="middle" font-size="22" fill="#faf9f6">股</text>
+  <g font-size="22" fill="#6b655b" text-anchor="middle">
+    <text x="594" y="396">股をまたいで1本で巻くと</text><text x="594" y="426">両方の枝が固定される</text>
+  </g>
+</svg>

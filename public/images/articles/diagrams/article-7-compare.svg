@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>剪定・芽摘み・針金かけの違い。剪定は枝を切って形と風通しを整える作業で、落葉樹は葉が落ちた冬が中心。芽摘みは伸びる新芽を指で摘んで枝を細かくする作業で春から初夏。針金かけは枝に針金を巻いて向きを変える作業で、秋から冬が中心</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">3つの作業の違い</text>
+
+  <!-- 剪定 -->
+  <rect x="20" y="70" width="244" height="380" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="142" y="112" text-anchor="middle" font-size="27" font-weight="700" fill="#22201c">剪定</text>
+  <g transform="translate(142 180)">
+    <path d="M-34 -30 L10 10 M-34 30 L10 -10" stroke="#22201c" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="-40" cy="-34" r="12" fill="none" stroke="#22201c" stroke-width="5"/><circle cx="-40" cy="34" r="12" fill="none" stroke="#22201c" stroke-width="5"/>
+    <path d="M10 10 L40 -24" stroke="#6f5439" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <text x="142" y="268" text-anchor="middle" font-size="24" font-weight="700" fill="#1a365d">枝を切る</text>
+  <g font-size="22" fill="#22201c" text-anchor="middle">
+    <text x="142" y="314">形と風通しを</text><text x="142" y="344">整える</text>
+  </g>
+  <rect x="40" y="378" width="204" height="48" rx="10" fill="#f3f0ea"/>
+  <text x="142" y="410" text-anchor="middle" font-size="22" fill="#6b655b">冬（休眠期）中心</text>
+
+  <!-- 芽摘み -->
+  <rect x="278" y="70" width="244" height="380" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="400" y="112" text-anchor="middle" font-size="27" font-weight="700" fill="#22201c">芽摘み</text>
+  <g transform="translate(400 180)">
+    <path d="M0 50 V-10" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="0" cy="-22" rx="9" ry="16" fill="#9bbf7a"/>
+    <path d="M-14 22 q-20 -6 -30 -20 q20 2 30 20 z M14 22 q20 -6 30 -20 q-20 2 -30 20 z" fill="#5b7f4a"/>
+    <path d="M-40 -48 q24 -6 30 18 M40 -48 q-24 -6 -30 18" stroke="#22201c" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+  <text x="400" y="268" text-anchor="middle" font-size="24" font-weight="700" fill="#1a365d">新芽を摘む</text>
+  <g font-size="22" fill="#22201c" text-anchor="middle">
+    <text x="400" y="314">枝を細かく</text><text x="400" y="344">節を詰める</text>
+  </g>
+  <rect x="298" y="378" width="204" height="48" rx="10" fill="#f3f0ea"/>
+  <text x="400" y="410" text-anchor="middle" font-size="22" fill="#6b655b">春〜初夏</text>
+
+  <!-- 針金 -->
+  <rect x="536" y="70" width="244" height="380" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="658" y="112" text-anchor="middle" font-size="27" font-weight="700" fill="#22201c">針金かけ</text>
+  <g transform="translate(658 180)">
+    <path d="M-50 40 Q-10 30 10 0 Q30 -30 50 -36" stroke="#6f5439" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M-44 46 l6 -16 M-30 42 l6 -16 M-16 36 l8 -16 M-2 24 l10 -14 M10 10 l12 -12 M22 -6 l12 -10 M34 -20 l12 -8" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <text x="658" y="268" text-anchor="middle" font-size="24" font-weight="700" fill="#1a365d">巻いて曲げる</text>
+  <g font-size="22" fill="#22201c" text-anchor="middle">
+    <text x="658" y="314">枝の向きと</text><text x="658" y="344">流れを作る</text>
+  </g>
+  <rect x="556" y="378" width="204" height="48" rx="10" fill="#f3f0ea"/>
+  <text x="658" y="410" text-anchor="middle" font-size="22" fill="#6b655b">秋〜冬が中心</text>
+</svg>

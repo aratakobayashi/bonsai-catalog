@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>桜の花芽と葉芽の見分け方、花後の剪定、夏に花芽ができる様子</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">花芽の見分け方と花後の剪定</text>
+  <rect x="20" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="142" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">① 芽を見分ける</text>
+  <path d="M50 290 L236 260" stroke="#6f5439" stroke-width="7" stroke-linecap="round"/>
+  <ellipse cx="90" cy="265.5483870967742" rx="14" ry="17" fill="#d98aa0"/>
+  <path d="M140 273.48387096774195 q-10 -18 0 -34 q10 16 0 34 z" fill="#5b7f4a"/>
+  <ellipse cx="190" cy="249.4193548387097" rx="14" ry="17" fill="#d98aa0"/>
+  <ellipse cx="70" cy="250" rx="14" ry="17" fill="#d98aa0"/>
+  <circle cx="70" cy="250" r="22" fill="none" stroke="#d98aa0" stroke-width="3"/>
+  <path d="M200 213 q-10 -18 0 -34 q10 16 0 34 z" fill="#5b7f4a"/>
+  <circle cx="200" cy="196" r="22" fill="none" stroke="#5b7f4a" stroke-width="3"/>
+  <text x="142" y="352" text-anchor="middle" font-size="22" font-weight="700" fill="#a0475f">丸くふっくら＝花芽</text>
+  <text x="142" y="386" text-anchor="middle" font-size="22" font-weight="700" fill="#5b7f4a">細くとがる＝葉芽</text>
+  <text x="142" y="430" text-anchor="middle" font-size="22" fill="#6b655b">冬のうちに確かめる</text>
+  <rect x="278" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#b8935a" stroke-width="3"/>
+  <text x="400" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">② 花後すぐ切る</text>
+  <path d="M300 300 L470 230" stroke="#6f5439" stroke-width="7" stroke-linecap="round"/>
+  <path d="M470 230 L505 216" stroke="#6f5439" stroke-width="7" stroke-linecap="round" opacity="0.3"/>
+  <path d="M330 283.6470588235294 q-10 -18 0 -34 q10 16 0 34 z" fill="#5b7f4a"/>
+  <path d="M370 267.1764705882353 q-10 -18 0 -34 q10 16 0 34 z" fill="#5b7f4a"/>
+  <path d="M410 250.70588235294116 q-10 -18 0 -34 q10 16 0 34 z" fill="#5b7f4a"/>
+  <line x1="440" y1="190" x2="455" y2="280" stroke="#b8935a" stroke-width="4" stroke-dasharray="9 6"/>
+  <text x="452" y="176" text-anchor="middle" font-size="22" font-weight="700" fill="#b8935a">ここで切る</text>
+  <text x="400" y="352" text-anchor="middle" font-size="22" fill="#22201c">伸びた枝は</text>
+  <text x="400" y="386" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">2〜3芽残して切る</text>
+  <text x="400" y="430" text-anchor="middle" font-size="22" fill="#6b655b">花が散ったら早めに</text>
+  <rect x="536" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="658" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">③ 夏に花芽</text>
+  <path d="M560 300 L680 250" stroke="#6f5439" stroke-width="7" stroke-linecap="round"/>
+  <path d="M680 250 L750 196" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+  <path d="M680 250 L760 252" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="705" cy="210" rx="14" ry="17" fill="#d98aa0"/>
+  <ellipse cx="735" cy="188" rx="14" ry="17" fill="#d98aa0"/>
+  <ellipse cx="712" cy="230" rx="14" ry="17" fill="#d98aa0"/>
+  <ellipse cx="745" cy="230" rx="14" ry="17" fill="#d98aa0"/>
+  <text x="658" y="352" text-anchor="middle" font-size="22" fill="#22201c">新しい枝の付け根に</text>
+  <text x="658" y="386" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">来年の花芽ができる</text>
+  <text x="658" y="430" text-anchor="middle" font-size="22" fill="#6b655b">7〜8月ごろ</text>
+</svg>

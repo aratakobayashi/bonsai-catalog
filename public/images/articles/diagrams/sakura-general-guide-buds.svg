@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>桜の花芽と葉芽の見分け方。花芽は丸くふっくらして数個かたまってつく。葉芽は細くとがってひとつずつつく</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">花芽と葉芽の見分け方</text>
+  <path d="M60 270 q200 -40 340 -100 q140 -60 300 -70" stroke="#6f5439" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <line x1="220" y1="230" x2="220" y2="208" stroke="#6f5439" stroke-width="5"/>
+  <circle cx="208" cy="200" r="13" fill="#d98c9a"/>
+  <circle cx="232" cy="200" r="13" fill="#d98c9a"/>
+  <circle cx="220" cy="186" r="13" fill="#d98c9a"/>
+  <line x1="330" y1="192" x2="330" y2="170" stroke="#6f5439" stroke-width="5"/>
+  <circle cx="318" cy="162" r="13" fill="#d98c9a"/>
+  <circle cx="342" cy="162" r="13" fill="#d98c9a"/>
+  <circle cx="330" cy="148" r="13" fill="#d98c9a"/>
+  <line x1="470" y1="146" x2="470" y2="124" stroke="#6f5439" stroke-width="5"/>
+  <circle cx="458" cy="116" r="13" fill="#d98c9a"/>
+  <circle cx="482" cy="116" r="13" fill="#d98c9a"/>
+  <circle cx="470" cy="102" r="13" fill="#d98c9a"/>
+  <path d="M400 172 q-6 -22 0 -44 q6 22 0 44 z" fill="#5b7f4a"/>
+  <path d="M580 126 q-6 -22 0 -44 q6 22 0 44 z" fill="#5b7f4a"/>
+  <path d="M690 110 q-6 -22 0 -44 q6 22 0 44 z" fill="#5b7f4a"/>
+  <rect x="40" y="320" width="350" height="120" rx="14" fill="#fff" stroke="#d98c9a" stroke-width="3"/>
+  <circle cx="80" cy="362" r="13" fill="#d98c9a"/>
+  <text x="110" y="371" font-size="25" font-weight="700" fill="#22201c">花芽</text>
+  <text x="70" y="414" font-size="22" fill="#6b655b">丸くふっくら・数個かたまる</text>
+  <rect x="410" y="320" width="350" height="120" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <path d="M450 384 q-6 -22 0 -44 q6 22 0 44 z" fill="#5b7f4a"/>
+  <text x="476" y="371" font-size="25" font-weight="700" fill="#22201c">葉芽</text>
+  <text x="440" y="414" font-size="22" fill="#6b655b">細くとがる・ひとつずつ</text>
+</svg>

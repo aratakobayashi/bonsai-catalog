@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 441" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>シマトネリコの置き場所。春から秋は屋外の明るい場所、冬は霜の当たらない軒下か明るい室内。暗い室内に置き続けると枝がひょろひょろと伸びる</title>
+  <rect width="800" height="441" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">季節ごとの置き場所</text>
+  <rect x="20.0" y="68" width="242.7" height="353" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <circle cx="141.33333333333331" cy="142" r="26" fill="#b8935a"/>
+  <line x1="175" y1="142" x2="185" y2="142" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="165" y1="166" x2="172" y2="173" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="141" y1="176" x2="141" y2="186" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="117" y1="166" x2="110" y2="173" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="107" y1="142" x2="97" y2="142" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="117" y1="118" x2="110" y2="111" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="141" y1="108" x2="141" y2="98" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="165" y1="118" x2="172" y2="111" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <rect x="107" y="268" width="68" height="9" rx="3" fill="#6f5439"/>
+  <path d="M111 276 h61 l-10 18 h-41 z" fill="#8b6b4a"/>
+  <path d="M137 270 q-2 -22 6 -38 q7 -13 -1 -26" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <ellipse cx="125" cy="217" rx="20" ry="12" fill="#5b7f4a"/>
+  <ellipse cx="160" cy="213" rx="21" ry="12" fill="#5b7f4a"/>
+  <ellipse cx="141" cy="195" rx="22" ry="13" fill="#5b7f4a"/>
+  <text x="141" y="327" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">春〜秋</text>
+  <text x="141" y="365" font-size="22" text-anchor="middle" fill="#5b7f4a">屋外の明るい場所</text>
+  <text x="141" y="397" font-size="22" text-anchor="middle" fill="#6b655b">真夏の西日は避ける</text>
+  <rect x="278.7" y="68" width="242.7" height="353" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <line x1="334" y1="142" x2="386" y2="142" stroke="#1a365d" stroke-width="4" stroke-linecap="round"/>
+  <line x1="347" y1="119" x2="373" y2="165" stroke="#1a365d" stroke-width="4" stroke-linecap="round"/>
+  <line x1="373" y1="119" x2="347" y2="165" stroke="#1a365d" stroke-width="4" stroke-linecap="round"/>
+  <rect x="409.99999999999994" y="112" width="80" height="70" fill="#f3f0ea" stroke="#6b655b" stroke-width="3"/>
+  <line x1="449.99999999999994" y1="112" x2="449.99999999999994" y2="182" stroke="#6b655b" stroke-width="3"/>
+  <rect x="366" y="268" width="68" height="9" rx="3" fill="#6f5439"/>
+  <path d="M370 276 h61 l-10 18 h-41 z" fill="#8b6b4a"/>
+  <path d="M396 270 q-2 -22 6 -38 q7 -13 -1 -26" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <ellipse cx="383" cy="217" rx="20" ry="12" fill="#5b7f4a"/>
+  <ellipse cx="419" cy="213" rx="21" ry="12" fill="#5b7f4a"/>
+  <ellipse cx="400" cy="195" rx="22" ry="13" fill="#5b7f4a"/>
+  <text x="400" y="327" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">冬</text>
+  <text x="400" y="365" font-size="22" text-anchor="middle" fill="#5b7f4a">霜の当たらない軒下</text>
+  <text x="400" y="397" font-size="22" text-anchor="middle" fill="#6b655b">寒い地域は明るい室内</text>
+  <rect x="537.3" y="68" width="242.7" height="353" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="598.6666666666666" y="102" width="120" height="90" fill="#d8d2c6"/>
+  <rect x="625" y="270" width="68" height="9" rx="3" fill="#6f5439"/>
+  <path d="M629 278 h60 l-10 18 h-40 z" fill="#8b6b4a"/>
+  <path d="M658.6666666666666 272 q-6 -50 20 -90 q14 -20 10 -36" stroke="#6f5439" stroke-width="5" fill="none"/>
+  <ellipse cx="689" cy="158" rx="22" ry="10" fill="#a9bf8f"/>
+  <ellipse cx="675" cy="198" rx="18" ry="8" fill="#a9bf8f"/>
+  <path d="M581 308 l20 20 M601 308 l-20 20" stroke="#b4573a" stroke-width="4" stroke-linecap="round"/>
+  <text x="659" y="327" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">暗い室内</text>
+  <text x="659" y="365" font-size="22" text-anchor="middle" fill="#6b655b">置き続けると</text>
+  <text x="659" y="397" font-size="22" text-anchor="middle" fill="#8b6b4a">枝が間延びする</text>
+</svg>

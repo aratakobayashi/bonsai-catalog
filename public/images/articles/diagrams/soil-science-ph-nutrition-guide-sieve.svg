@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>用土の微塵抜きの手順。ふるいにかける、下に落ちた細かい粉を捨てる、粒のそろった土で植える</title>
+  <rect width="800" height="460" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">使う前に微塵（みじん）を抜く</text>
+  <rect x="20.0" y="68" width="242.7" height="286" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <ellipse cx="141.33333333333331" cy="162" rx="70" ry="18" fill="none" stroke="#6b655b" stroke-width="5"/>
+  <path d="M71.33333333333331 162 q70 60 140 0" fill="none" stroke="#6b655b" stroke-width="3" stroke-dasharray="4 4"/>
+  <circle cx="111.33333333333331" cy="158" r="7" fill="#b5714a"/>
+  <circle cx="131.33333333333331" cy="162" r="7" fill="#b5714a"/>
+  <circle cx="153.33333333333331" cy="156" r="7" fill="#b5714a"/>
+  <circle cx="175.33333333333331" cy="160" r="7" fill="#b5714a"/>
+  <circle cx="141.33333333333331" cy="150" r="7" fill="#b5714a"/>
+  <circle cx="163.33333333333331" cy="166" r="7" fill="#b5714a"/>
+  <circle cx="101.33333333333331" cy="232" r="2.5" fill="#b5714a"/>
+  <circle cx="101.33333333333331" cy="248" r="2.5" fill="#b5714a"/>
+  <circle cx="111.33333333333331" cy="232" r="2.5" fill="#b5714a"/>
+  <circle cx="111.33333333333331" cy="248" r="2.5" fill="#b5714a"/>
+  <circle cx="121.33333333333331" cy="232" r="2.5" fill="#b5714a"/>
+  <circle cx="121.33333333333331" cy="248" r="2.5" fill="#b5714a"/>
+  <circle cx="131.33333333333331" cy="232" r="2.5" fill="#b5714a"/>
+  <circle cx="131.33333333333331" cy="248" r="2.5" fill="#b5714a"/>
+  <circle cx="141.33333333333331" cy="232" r="2.5" fill="#b5714a"/>
+  <circle cx="141.33333333333331" cy="248" r="2.5" fill="#b5714a"/>
+  <circle cx="151.33333333333331" cy="232" r="2.5" fill="#b5714a"/>
+  <circle cx="151.33333333333331" cy="248" r="2.5" fill="#b5714a"/>
+  <circle cx="161.33333333333331" cy="232" r="2.5" fill="#b5714a"/>
+  <circle cx="161.33333333333331" cy="248" r="2.5" fill="#b5714a"/>
+  <circle cx="171.33333333333331" cy="232" r="2.5" fill="#b5714a"/>
+  <circle cx="171.33333333333331" cy="248" r="2.5" fill="#b5714a"/>
+  <circle cx="181.33333333333331" cy="232" r="2.5" fill="#b5714a"/>
+  <circle cx="181.33333333333331" cy="248" r="2.5" fill="#b5714a"/>
+  <text x="141" y="292" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">①ふるいにかける</text>
+  <text x="141" y="330" font-size="22" text-anchor="middle" fill="#6b655b">乾いた状態で</text>
+  <rect x="278.7" y="68" width="242.7" height="286" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <path d="M339.99999999999994 242 q60 -50 120 0 z" fill="#c98b5c"/>
+  <line x1="380" y1="142" x2="440" y2="192" stroke="#b4573a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M426 189 L440 192 L435 179" fill="none" stroke="#b4573a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="349.99999999999994" cy="142" r="2.5" fill="#c98b5c"/>
+  <circle cx="359.99999999999994" cy="154" r="2.5" fill="#c98b5c"/>
+  <circle cx="343.99999999999994" cy="166" r="2.5" fill="#c98b5c"/>
+  <circle cx="369.99999999999994" cy="132" r="2.5" fill="#c98b5c"/>
+  <text x="400" y="292" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">②粉を除く</text>
+  <text x="400" y="330" font-size="22" text-anchor="middle" fill="#6b655b">細かい粉は使わない</text>
+  <rect x="537.3" y="68" width="242.7" height="286" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <rect x="595" y="192" width="128" height="9" rx="3" fill="#6f5439"/>
+  <path d="M599 200 h120 l-10 36 h-100 z" fill="#8b6b4a"/>
+  <circle cx="610.6666666666666" cy="186" r="6" fill="#b5714a"/>
+  <circle cx="624.6666666666666" cy="186" r="6" fill="#b5714a"/>
+  <circle cx="638.6666666666666" cy="186" r="6" fill="#b5714a"/>
+  <circle cx="652.6666666666666" cy="186" r="6" fill="#b5714a"/>
+  <circle cx="666.6666666666666" cy="186" r="6" fill="#b5714a"/>
+  <circle cx="680.6666666666666" cy="186" r="6" fill="#b5714a"/>
+  <circle cx="694.6666666666666" cy="186" r="6" fill="#b5714a"/>
+  <path d="M658.6666666666666 180 q4 -30 0 -50" stroke="#6f5439" stroke-width="6" fill="none"/>
+  <ellipse cx="659" cy="128" rx="34" ry="16" fill="#3f6a33"/>
+  <text x="659" y="292" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">③粒の土で植える</text>
+  <text x="659" y="330" font-size="22" text-anchor="middle" fill="#5b7f4a">水はけが続く</text>
+  <rect x="20" y="374" width="760" height="66" rx="14" fill="#1a365d"/>
+  <text x="400" y="417" font-size="26" text-anchor="middle" font-weight="700" fill="#faf9f6">粉が詰まると水はけが悪くなり、根が傷みやすい</text>
+</svg>

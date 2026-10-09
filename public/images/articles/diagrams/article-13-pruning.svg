@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>梅の花後の剪定</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">花が終わったら、2〜3芽残して切る</text>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="70" width="370" height="300" rx="14"/>
+    <rect x="410" y="70" width="370" height="300" rx="14"/>
+  </g>
+  <text x="205" y="110" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">花が終わった枝</text>
+  <text x="595" y="110" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">春〜夏に伸びる枝</text>
+  <!-- left: branch -->
+  <path d="M60 330 L150 290 L340 170" fill="none" stroke="#8b6b4a" stroke-width="10" stroke-linecap="round"/>
+  <g fill="#c98a96">
+    <circle cx="300" cy="195" r="9"/><circle cx="325" cy="180" r="9"/><circle cx="270" cy="214" r="7"/>
+  </g>
+  <g fill="#5b7f4a">
+    <circle cx="175" cy="275" r="7"/><circle cx="200" cy="259" r="7"/><circle cx="225" cy="243" r="7"/>
+  </g>
+  <line x1="236" y1="214" x2="262" y2="258" stroke="#b4573a" stroke-width="4" stroke-dasharray="8 6"/>
+  <text x="290" y="290" font-size="22" fill="#b4573a">ここで切る</text>
+  <text x="120" y="232" font-size="22" fill="#5b7f4a">芽を2〜3つ</text>
+  <text x="205" y="350" text-anchor="middle" font-size="22" fill="#6b655b">花がらも摘み取る</text>
+  <!-- right -->
+  <path d="M450 330 L540 290 L620 240" fill="none" stroke="#8b6b4a" stroke-width="10" stroke-linecap="round"/>
+  <g stroke="#5b7f4a" stroke-width="6" stroke-linecap="round" fill="none">
+    <path d="M565 275 Q 600 210 640 160"/>
+    <path d="M590 258 Q 650 230 730 190"/>
+    <path d="M620 240 Q 660 215 700 210"/>
+  </g>
+  <g fill="#5b7f4a"><ellipse cx="640" cy="160" rx="14" ry="8"/><ellipse cx="730" cy="190" rx="14" ry="8"/><ellipse cx="700" cy="210" rx="12" ry="7"/></g>
+  <text x="595" y="350" text-anchor="middle" font-size="22" fill="#6b655b">夏に花芽ができる</text>
+  <rect x="20" y="390" width="760" height="62" rx="14" fill="#1a365d"/>
+  <text x="400" y="430" text-anchor="middle" font-size="25" font-weight="700" fill="#faf9f6">7月以降は強く切らない（花芽を落とさない）</text>
+</svg>

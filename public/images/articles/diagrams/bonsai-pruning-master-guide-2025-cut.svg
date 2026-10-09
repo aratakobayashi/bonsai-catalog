@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>切る位置の比較。芽の少し上で切るのがよく、残しすぎると先が枯れ込み、芽のすぐ際で切ると芽が傷む</title>
+  <rect width="800" height="460" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">切る位置のちがい</text>
+  <rect x="20" y="70" width="244" height="330" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <path d="M142 340 V170" stroke="#6f5439" stroke-width="12" stroke-linecap="butt"/>
+  <ellipse cx="158" cy="206" rx="10" ry="16" fill="#5b7f4a" transform="rotate(30 158 206)"/>
+  <path d="M102 186 L182 176" stroke="#1a365d" stroke-width="4"/>
+  <text x="142" y="372" font-size="26" font-weight="700" text-anchor="middle" fill="#5b7f4a">よい</text>
+  <text x="142" y="432" font-size="22" text-anchor="middle" fill="#22201c">芽の少し上で切る</text>
+  <rect x="278" y="70" width="244" height="330" rx="14" fill="#fff" stroke="#8b6b4a" stroke-width="2"/>
+  <path d="M400 340 V170" stroke="#6f5439" stroke-width="12" stroke-linecap="butt"/>
+  <ellipse cx="416" cy="206" rx="10" ry="16" fill="#5b7f4a" transform="rotate(30 416 206)"/>
+  <path d="M400 170 V130" stroke="#6f5439" stroke-width="12"/>
+  <path d="M394 130 V170" stroke="#6b655b" stroke-width="4" stroke-dasharray="4 4"/>
+  <path d="M360 130 L440 120" stroke="#8b6b4a" stroke-width="4"/>
+  <text x="400" y="372" font-size="26" font-weight="700" text-anchor="middle" fill="#8b6b4a">残しすぎ</text>
+  <text x="400" y="432" font-size="22" text-anchor="middle" fill="#22201c">先が枯れ込む</text>
+  <rect x="536" y="70" width="244" height="330" rx="14" fill="#fff" stroke="#8b6b4a" stroke-width="2"/>
+  <path d="M658 340 V170" stroke="#6f5439" stroke-width="12" stroke-linecap="butt"/>
+  <ellipse cx="674" cy="206" rx="10" ry="16" fill="#5b7f4a" transform="rotate(30 674 206)"/>
+  <path d="M618 206 L698 196" stroke="#8b6b4a" stroke-width="4"/>
+  <text x="658" y="372" font-size="26" font-weight="700" text-anchor="middle" fill="#8b6b4a">切りすぎ</text>
+  <text x="658" y="432" font-size="22" text-anchor="middle" fill="#22201c">芽が乾いて傷む</text>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽の会を見学するときに確かめる5つのこと</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="400" y="50" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">見学で確かめる5つのこと</text>
+  <g font-size="26" font-weight="700" fill="#22201c">
+    <rect x="30" y="78" width="740" height="64" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <circle cx="72" cy="110" r="20" fill="#1a365d"/><text x="72" y="119" text-anchor="middle" font-size="24" fill="#faf9f6">1</text>
+    <text x="108" y="119">活動の日時と場所</text>
+    <rect x="30" y="152" width="740" height="64" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <circle cx="72" cy="184" r="20" fill="#1a365d"/><text x="72" y="193" text-anchor="middle" font-size="24" fill="#faf9f6">2</text>
+    <text x="108" y="193">初心者への教え方</text>
+    <rect x="30" y="226" width="740" height="64" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <circle cx="72" cy="258" r="20" fill="#1a365d"/><text x="72" y="267" text-anchor="middle" font-size="24" fill="#faf9f6">3</text>
+    <text x="108" y="267">費用</text>
+    <rect x="30" y="300" width="740" height="64" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <circle cx="72" cy="332" r="20" fill="#1a365d"/><text x="72" y="341" text-anchor="middle" font-size="24" fill="#faf9f6">4</text>
+    <text x="108" y="341">樹の持ち込み</text>
+    <rect x="30" y="374" width="740" height="64" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <circle cx="72" cy="406" r="20" fill="#1a365d"/><text x="72" y="415" text-anchor="middle" font-size="24" fill="#faf9f6">5</text>
+    <text x="108" y="415">会の雰囲気</text>
+  </g>
+  <g font-size="22" fill="#5b7f4a">
+    <text x="420" y="118">無理なく通えるか</text>
+    <text x="420" y="192">実技を見せてくれるか</text>
+    <text x="420" y="266">会費と材料費の別</text>
+    <text x="420" y="340">自分の樹を見てもらえるか</text>
+    <text x="420" y="414">人数・年齢層・話しやすさ</text>
+  </g>
+</svg>

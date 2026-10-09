@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>作業しやすい置き場所の高さ。地面に置くと腰を深く曲げることになる。腰の高さの棚なら立ったまま見て手が届く</title>
+  <rect width="800" height="440" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">作業しやすい置き場所の高さ</text>
+  <rect x="20" y="410" width="760" height="16" fill="#c9c2b5"/>
+  <line x1="400" y1="70" x2="400" y2="400" stroke="#ebe7df" stroke-width="3"/>
+  <circle cx="156" cy="222" r="20" fill="#1a365d"/>
+  <path d="M110 310 q20 -70 54 -78" stroke="#1a365d" stroke-width="16" fill="none" stroke-linecap="round"/>
+  <path d="M110 310 l-6 90 M110 310 l20 88" stroke="#1a365d" stroke-width="14" stroke-linecap="round"/>
+  <path d="M150 246 l20 70" stroke="#1a365d" stroke-width="10" stroke-linecap="round"/>
+  <rect x="176" y="380" width="88" height="9" rx="3" fill="#6f5439"/>
+  <path d="M180 388 h80 l-10 24 h-60 z" fill="#8b6b4a"/>
+  <path d="M220 338 q4 -20 0 -30" stroke="#6f5439" stroke-width="6" fill="none"/>
+  <ellipse cx="220" cy="304" rx="34" ry="16" fill="#3f6a33"/>
+  <text x="210" y="104" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">地面に置く</text>
+  <text x="210" y="140" font-size="22" text-anchor="middle" fill="#8b6b4a">腰を深く曲げる</text>
+  <path d="M296 84 l24 24 M320 84 l-24 24" stroke="#b4573a" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="480" cy="180" r="20" fill="#1a365d"/>
+  <line x1="480" y1="206" x2="480" y2="310" stroke="#1a365d" stroke-width="16" stroke-linecap="round"/>
+  <path d="M480 310 l-10 100 M480 310 l12 100" stroke="#1a365d" stroke-width="14" stroke-linecap="round"/>
+  <path d="M480 230 l50 40" stroke="#1a365d" stroke-width="10" stroke-linecap="round"/>
+  <rect x="540" y="270" width="220" height="14" fill="#8b6b4a"/>
+  <rect x="556" y="284" width="12" height="126" fill="#6f5439"/>
+  <rect x="732" y="284" width="12" height="126" fill="#6f5439"/>
+  <rect x="591" y="232" width="98" height="9" rx="3" fill="#6f5439"/>
+  <path d="M595 240 h90 l-10 27 h-70 z" fill="#8b6b4a"/>
+  <path d="M640 236 q4 -22 0 -34" stroke="#6f5439" stroke-width="6" fill="none"/>
+  <ellipse cx="640" cy="198" rx="38" ry="18" fill="#3f6a33"/>
+  <text x="620" y="104" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">腰の高さの棚</text>
+  <text x="620" y="140" font-size="22" text-anchor="middle" fill="#5b7f4a">立ったまま見て手が届く</text>
+  <circle cx="720" cy="96" r="11" fill="none" stroke="#5b7f4a" stroke-width="4"/>
+</svg>

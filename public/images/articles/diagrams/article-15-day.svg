@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>夏の一日の世話の流れ</title>
+  <rect width="800" height="440" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">夏の一日の世話</text>
+  <line x1="60" y1="120" x2="740" y2="120" stroke="#ebe7df" stroke-width="8" stroke-linecap="round"/>
+  <g fill="#b8935a"><circle cx="110" cy="120" r="16"/><circle cx="300" cy="120" r="16"/><circle cx="500" cy="120" r="16"/><circle cx="690" cy="120" r="16"/></g>
+  <g font-size="24" font-weight="700" fill="#22201c" text-anchor="middle">
+    <text x="110" y="88">朝</text><text x="300" y="88">日中</text><text x="500" y="88">夕方</text><text x="690" y="88">夜</text>
+  </g>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="150" width="180" height="200" rx="14"/>
+    <rect x="210" y="150" width="180" height="200" rx="14"/>
+    <rect x="410" y="150" width="180" height="200" rx="14"/>
+    <rect x="600" y="150" width="180" height="200" rx="14"/>
+  </g>
+  <g font-size="23" fill="#22201c" text-anchor="middle">
+    <text x="110" y="200">たっぷり</text><text x="110" y="234">水やり</text>
+    <text x="300" y="200">水やりは控える</text><text x="300" y="234">遮光の下</text>
+    <text x="500" y="200">土を見て</text><text x="500" y="234">乾いていれば</text><text x="500" y="268">もう一度</text>
+    <text x="690" y="200">風通しを</text><text x="690" y="234">確保</text>
+  </g>
+  <g font-size="22" fill="#5b7f4a" text-anchor="middle">
+    <text x="110" y="316">涼しいうちに</text>
+    <text x="300" y="316">しおれたら日陰</text>
+    <text x="500" y="316">葉水もこのとき</text>
+    <text x="690" y="316">室外機を避ける</text>
+  </g>
+  <rect x="20" y="370" width="760" height="56" rx="12" fill="#1a365d"/>
+  <text x="400" y="407" text-anchor="middle" font-size="24" font-weight="700" fill="#faf9f6">ホースの最初の水は熱いので、冷たくなってから</text>
+</svg>

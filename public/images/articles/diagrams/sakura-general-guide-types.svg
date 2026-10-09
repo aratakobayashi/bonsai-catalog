@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 446" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽で育てられる主な桜。旭山桜は八重で淡い紅色、富士桜（豆桜）の仲間は一重の小さな花、枝垂れ桜は枝が垂れる</title>
+  <rect width="800" height="446" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">盆栽でよく見る桜</text>
+  <rect x="20.0" y="68" width="242.7" height="358" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="93" y="264" width="96" height="9" rx="3" fill="#6f5439"/>
+  <path d="M97 272 h88 l-10 26 h-68 z" fill="#8b6b4a"/>
+  <path d="M136 266 q-3 -32 8 -56 q10 -19 -2 -38" stroke="#6f5439" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <line x1="144" y1="208" x2="109" y2="188" stroke="#6f5439" stroke-width="3" stroke-linecap="round"/>
+  <line x1="144" y1="208" x2="175" y2="184" stroke="#6f5439" stroke-width="3" stroke-linecap="round"/>
+  <line x1="142" y1="176" x2="117" y2="152" stroke="#6f5439" stroke-width="3" stroke-linecap="round"/>
+  <line x1="142" y1="176" x2="165" y2="154" stroke="#6f5439" stroke-width="3" stroke-linecap="round"/>
+  <line x1="140" y1="170" x2="141" y2="144" stroke="#6f5439" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="111" cy="195" r="7" fill="#d98c9a"/>
+  <circle cx="165" cy="190" r="7" fill="#d98c9a"/>
+  <circle cx="178" cy="181" r="7" fill="#d98c9a"/>
+  <circle cx="132" cy="163" r="7" fill="#d98c9a"/>
+  <circle cx="153" cy="152" r="7" fill="#d98c9a"/>
+  <circle cx="121" cy="184" r="7" fill="#d98c9a"/>
+  <circle cx="141" cy="174" r="7" fill="#d98c9a"/>
+  <circle cx="106" cy="187" r="7" fill="#d98c9a"/>
+  <circle cx="170" cy="165" r="7" fill="#d98c9a"/>
+  <text x="141" y="332" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">旭山桜</text>
+  <text x="141" y="370" font-size="22" text-anchor="middle" fill="#6b655b">八重・淡い紅色</text>
+  <text x="141" y="402" font-size="22" text-anchor="middle" fill="#5b7f4a">若い木でも咲く</text>
+  <rect x="278.7" y="68" width="242.7" height="358" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="352" y="264" width="96" height="9" rx="3" fill="#6f5439"/>
+  <path d="M356 272 h88 l-10 26 h-68 z" fill="#8b6b4a"/>
+  <path d="M394 266 q-3 -32 8 -56 q10 -19 -2 -38" stroke="#6f5439" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <line x1="402" y1="208" x2="368" y2="188" stroke="#6f5439" stroke-width="3" stroke-linecap="round"/>
+  <line x1="402" y1="208" x2="434" y2="184" stroke="#6f5439" stroke-width="3" stroke-linecap="round"/>
+  <line x1="401" y1="176" x2="376" y2="152" stroke="#6f5439" stroke-width="3" stroke-linecap="round"/>
+  <line x1="401" y1="176" x2="424" y2="154" stroke="#6f5439" stroke-width="3" stroke-linecap="round"/>
+  <line x1="398" y1="170" x2="400" y2="144" stroke="#6f5439" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="370" cy="195" r="7" fill="#f0d4d9"/>
+  <circle cx="424" cy="190" r="7" fill="#f0d4d9"/>
+  <circle cx="437" cy="181" r="7" fill="#f0d4d9"/>
+  <circle cx="390" cy="163" r="7" fill="#f0d4d9"/>
+  <circle cx="411" cy="152" r="7" fill="#f0d4d9"/>
+  <circle cx="379" cy="184" r="7" fill="#f0d4d9"/>
+  <circle cx="400" cy="174" r="7" fill="#f0d4d9"/>
+  <circle cx="365" cy="187" r="7" fill="#f0d4d9"/>
+  <circle cx="429" cy="165" r="7" fill="#f0d4d9"/>
+  <text x="400" y="332" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">富士桜の仲間</text>
+  <text x="400" y="370" font-size="22" text-anchor="middle" fill="#6b655b">一重・小さな花</text>
+  <text x="400" y="402" font-size="22" text-anchor="middle" fill="#5b7f4a">下向きに咲く</text>
+  <rect x="537.3" y="68" width="242.7" height="358" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="605" y="264" width="108" height="9" rx="3" fill="#6f5439"/>
+  <path d="M609 272 h100 l-10 30 h-80 z" fill="#8b6b4a"/>
+  <path d="M658.6666666666666 266 q-6 -60 0 -130" stroke="#6f5439" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M658.6666666666666 154 q-50 -30 -60 60" stroke="#6f5439" stroke-width="3" fill="none"/>
+  <circle cx="600.6666666666666" cy="152" r="6" fill="#d98c9a"/>
+  <circle cx="600.6666666666666" cy="170" r="6" fill="#d98c9a"/>
+  <circle cx="600.6666666666666" cy="188" r="6" fill="#d98c9a"/>
+  <circle cx="600.6666666666666" cy="206" r="6" fill="#d98c9a"/>
+  <path d="M658.6666666666666 168 q-50 -30 -70 80" stroke="#6f5439" stroke-width="3" fill="none"/>
+  <circle cx="590.6666666666666" cy="166" r="6" fill="#d98c9a"/>
+  <circle cx="590.6666666666666" cy="184" r="6" fill="#d98c9a"/>
+  <circle cx="590.6666666666666" cy="202" r="6" fill="#d98c9a"/>
+  <circle cx="590.6666666666666" cy="220" r="6" fill="#d98c9a"/>
+  <path d="M658.6666666666666 182 q-50 -30 -80 100" stroke="#6f5439" stroke-width="3" fill="none"/>
+  <circle cx="580.6666666666666" cy="180" r="6" fill="#d98c9a"/>
+  <circle cx="580.6666666666666" cy="198" r="6" fill="#d98c9a"/>
+  <circle cx="580.6666666666666" cy="216" r="6" fill="#d98c9a"/>
+  <circle cx="580.6666666666666" cy="234" r="6" fill="#d98c9a"/>
+  <path d="M658.6666666666666 154 q50 -30 60 60" stroke="#6f5439" stroke-width="3" fill="none"/>
+  <circle cx="716.6666666666666" cy="152" r="6" fill="#d98c9a"/>
+  <circle cx="716.6666666666666" cy="170" r="6" fill="#d98c9a"/>
+  <circle cx="716.6666666666666" cy="188" r="6" fill="#d98c9a"/>
+  <circle cx="716.6666666666666" cy="206" r="6" fill="#d98c9a"/>
+  <path d="M658.6666666666666 168 q50 -30 70 80" stroke="#6f5439" stroke-width="3" fill="none"/>
+  <circle cx="726.6666666666666" cy="166" r="6" fill="#d98c9a"/>
+  <circle cx="726.6666666666666" cy="184" r="6" fill="#d98c9a"/>
+  <circle cx="726.6666666666666" cy="202" r="6" fill="#d98c9a"/>
+  <circle cx="726.6666666666666" cy="220" r="6" fill="#d98c9a"/>
+  <path d="M658.6666666666666 182 q50 -30 80 100" stroke="#6f5439" stroke-width="3" fill="none"/>
+  <circle cx="736.6666666666666" cy="180" r="6" fill="#d98c9a"/>
+  <circle cx="736.6666666666666" cy="198" r="6" fill="#d98c9a"/>
+  <circle cx="736.6666666666666" cy="216" r="6" fill="#d98c9a"/>
+  <circle cx="736.6666666666666" cy="234" r="6" fill="#d98c9a"/>
+  <text x="659" y="332" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">枝垂れ桜</text>
+  <text x="659" y="370" font-size="22" text-anchor="middle" fill="#6b655b">枝が垂れる</text>
+  <text x="659" y="402" font-size="22" text-anchor="middle" fill="#5b7f4a">枝づくりに年数</text>
+</svg>

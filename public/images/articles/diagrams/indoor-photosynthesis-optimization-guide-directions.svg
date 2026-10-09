@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>窓の方角ごとの特徴</title>
+  <rect width="800" height="500" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">窓の方角と光</text>
+
+  <!-- 部屋（中央） -->
+  <rect x="300" y="190" width="200" height="160" fill="#fff" stroke="#22201c" stroke-width="3"/>
+  <text x="400" y="278" text-anchor="middle" font-size="24" fill="#6b655b">部屋</text>
+  <!-- 窓の位置 -->
+  <g stroke="#1a365d" stroke-width="8">
+    <line x1="350" y1="350" x2="450" y2="350"/>
+    <line x1="350" y1="190" x2="450" y2="190"/>
+    <line x1="500" y1="230" x2="500" y2="310"/>
+    <line x1="300" y1="230" x2="300" y2="310"/>
+  </g>
+
+  <!-- 北（上） -->
+  <rect x="230" y="66" width="340" height="104" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="250" y="104" font-size="26" font-weight="700" fill="#22201c">北</text>
+  <text x="290" y="104" font-size="22" fill="#22201c">やわらかいが光が少ない</text>
+  <text x="290" y="146" font-size="22" fill="#8b6b4a">育てるには暗め</text>
+
+  <!-- 南（下） -->
+  <rect x="230" y="370" width="340" height="110" rx="12" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <text x="250" y="410" font-size="26" font-weight="700" fill="#22201c">南</text>
+  <text x="290" y="410" font-size="22" fill="#22201c">一日中明るい</text>
+  <text x="290" y="452" font-size="22" fill="#8b6b4a">夏はガラス越しの熱に注意</text>
+
+  <!-- 東（右） -->
+  <rect x="520" y="190" width="260" height="160" rx="12" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <text x="540" y="230" font-size="26" font-weight="700" fill="#22201c">東</text>
+  <text x="540" y="270" font-size="22" fill="#22201c">午前のやわらかい光</text>
+  <text x="540" y="306" font-size="22" fill="#5b7f4a">葉の薄い樹にも</text>
+  <text x="540" y="336" font-size="22" fill="#8b6b4a">午後は暗い</text>
+
+  <!-- 西（左） -->
+  <rect x="20" y="190" width="260" height="160" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="40" y="230" font-size="26" font-weight="700" fill="#22201c">西</text>
+  <text x="40" y="270" font-size="22" fill="#22201c">午後の強い光</text>
+  <text x="40" y="306" font-size="22" fill="#8b6b4a">夏の西日は</text>
+  <text x="40" y="336" font-size="22" fill="#8b6b4a">熱と葉焼けに注意</text>
+</svg>

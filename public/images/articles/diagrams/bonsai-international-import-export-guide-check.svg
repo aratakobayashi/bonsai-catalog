@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>検査で止まりやすい状態と、準備のポイントの比較</title>
+  <rect width="800" height="350" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">検査の前に確かめること</text>
+  <rect x="20" y="70" width="370" height="260" rx="14" fill="#fff" stroke="#8b6b4a" stroke-width="3"/>
+  <rect x="20" y="70" width="370" height="52" rx="14" fill="#8b6b4a"/>
+  <rect x="20" y="104" width="370" height="18" fill="#8b6b4a"/>
+  <text x="205" y="105" font-size="26" font-weight="700" text-anchor="middle" fill="#fff">止まりやすい状態</text>
+  <circle cx="46" cy="152" r="6" fill="#8b6b4a"/>
+  <text x="62" y="160" font-size="22" fill="#22201c">根に土が残っている</text>
+  <circle cx="46" cy="198" r="6" fill="#8b6b4a"/>
+  <text x="62" y="206" font-size="22" fill="#22201c">葉や幹に虫・卵がつく</text>
+  <circle cx="46" cy="244" r="6" fill="#8b6b4a"/>
+  <text x="62" y="252" font-size="22" fill="#22201c">苔や雑草がついたまま</text>
+  <circle cx="46" cy="290" r="6" fill="#8b6b4a"/>
+  <text x="62" y="298" font-size="22" fill="#22201c">書類と中身が合わない</text>
+  <rect x="410" y="70" width="370" height="260" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <rect x="410" y="70" width="370" height="52" rx="14" fill="#5b7f4a"/>
+  <rect x="410" y="104" width="370" height="18" fill="#5b7f4a"/>
+  <text x="595" y="105" font-size="26" font-weight="700" text-anchor="middle" fill="#fff">準備のポイント</text>
+  <circle cx="436" cy="152" r="6" fill="#5b7f4a"/>
+  <text x="452" y="160" font-size="22" fill="#22201c">根を水で洗い土を落とす</text>
+  <circle cx="436" cy="198" r="6" fill="#5b7f4a"/>
+  <text x="452" y="206" font-size="22" fill="#22201c">葉裏と幹の割れ目を見る</text>
+  <circle cx="436" cy="244" r="6" fill="#5b7f4a"/>
+  <text x="452" y="252" font-size="22" fill="#22201c">表面の苔・雑草を取る</text>
+  <circle cx="436" cy="290" r="6" fill="#5b7f4a"/>
+  <text x="452" y="298" font-size="22" fill="#22201c">樹種名は学名でそろえる</text>
+</svg>

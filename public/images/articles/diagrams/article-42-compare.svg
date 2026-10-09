@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 508" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>黒松と五葉松の見分け方。黒松は葉が2本で1組で太く硬く長め、日なたと水を好み芽切りで葉を短くする。五葉松は葉が5本で1組で短く柔らかく白っぽく、水はやや控えめにし芽切りはしない</title>
+  <rect width="800" height="508" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">黒松と五葉松の見分け方</text>
+  <rect x="20" y="68" width="370" height="420" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="205" y="110" text-anchor="middle" font-size="28" font-weight="700" fill="#22201c">黒松</text>
+  <rect x="198" y="300" width="14" height="22" rx="4" fill="#8b6b4a"/>
+  <line x1="205" y1="302" x2="181.3" y2="131.7" stroke="#2f5a2a" stroke-width="7" stroke-linecap="round"/>
+  <line x1="205" y1="302" x2="228.7" y2="131.7" stroke="#2f5a2a" stroke-width="7" stroke-linecap="round"/>
+  <text x="205" y="360" text-anchor="middle" font-size="23" font-weight="700" fill="#1a365d">葉は2本で1組</text>
+  <text x="205" y="396" text-anchor="middle" font-size="22" fill="#6b655b">太く硬く、長め</text>
+  <text x="205" y="430" text-anchor="middle" font-size="22" fill="#6b655b">日なたと水を好む</text>
+  <text x="205" y="464" text-anchor="middle" font-size="22" fill="#6b655b">芽切りで葉を短くする</text>
+  <rect x="410" y="68" width="370" height="420" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="595" y="110" text-anchor="middle" font-size="28" font-weight="700" fill="#22201c">五葉松</text>
+  <rect x="588" y="300" width="14" height="22" rx="4" fill="#8b6b4a"/>
+  <line x1="595" y1="302" x2="543.4" y2="202.9" stroke="#5f8f78" stroke-width="5" stroke-linecap="round"/>
+  <line x1="595" y1="302" x2="568.4" y2="193.3" stroke="#5f8f78" stroke-width="5" stroke-linecap="round"/>
+  <line x1="595" y1="302" x2="595.0" y2="190.0" stroke="#5f8f78" stroke-width="5" stroke-linecap="round"/>
+  <line x1="595" y1="302" x2="621.6" y2="193.3" stroke="#5f8f78" stroke-width="5" stroke-linecap="round"/>
+  <line x1="595" y1="302" x2="646.6" y2="202.9" stroke="#5f8f78" stroke-width="5" stroke-linecap="round"/>
+  <text x="595" y="360" text-anchor="middle" font-size="23" font-weight="700" fill="#1a365d">葉は5本で1組</text>
+  <text x="595" y="396" text-anchor="middle" font-size="22" fill="#6b655b">短く柔らかく、白っぽい</text>
+  <text x="595" y="430" text-anchor="middle" font-size="22" fill="#6b655b">水はやや控えめに</text>
+  <text x="595" y="464" text-anchor="middle" font-size="22" fill="#6b655b">芽切りはしない</text>
+</svg>

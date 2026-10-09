@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 396" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>母の日のころに楽しめる花の時期。長寿梅は2月下旬〜4月、姫リンゴは4月に花が咲き秋に実がなる、藤は4月中旬〜5月上旬、さつきは5月下旬〜6月で母の日のころはつぼみ</title>
+  <rect width="800" height="396" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">花の時期と母の日</text>
+  <text x="780" y="44" font-size="22" fill="#6b655b" text-anchor="end">関東の平地の目安</text>
+  <text x="186" y="94" font-size="22" fill="#22201c" text-anchor="middle">1</text>
+  <text x="239" y="94" font-size="22" fill="#22201c" text-anchor="middle">2</text>
+  <text x="291" y="94" font-size="22" fill="#22201c" text-anchor="middle">3</text>
+  <text x="344" y="94" font-size="22" fill="#22201c" text-anchor="middle">4</text>
+  <text x="396" y="94" font-size="22" fill="#22201c" text-anchor="middle">5</text>
+  <text x="449" y="94" font-size="22" fill="#22201c" text-anchor="middle">6</text>
+  <text x="501" y="94" font-size="22" fill="#22201c" text-anchor="middle">7</text>
+  <text x="554" y="94" font-size="22" fill="#22201c" text-anchor="middle">8</text>
+  <text x="606" y="94" font-size="22" fill="#22201c" text-anchor="middle">9</text>
+  <text x="659" y="94" font-size="22" fill="#22201c" text-anchor="middle">10</text>
+  <text x="711" y="94" font-size="22" fill="#22201c" text-anchor="middle">11</text>
+  <text x="764" y="94" font-size="22" fill="#22201c" text-anchor="middle">12</text>
+  <text x="20" y="94" font-size="22" fill="#6b655b">月</text>
+  <rect x="20" y="108" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="164" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="220" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="276" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <line x1="212.5" y1="108" x2="212.5" y2="326" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="265.0" y1="108" x2="265.0" y2="326" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="317.5" y1="108" x2="317.5" y2="326" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="370.0" y1="108" x2="370.0" y2="326" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="422.5" y1="108" x2="422.5" y2="326" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="475.0" y1="108" x2="475.0" y2="326" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="527.5" y1="108" x2="527.5" y2="326" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="580.0" y1="108" x2="580.0" y2="326" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="632.5" y1="108" x2="632.5" y2="326" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="685.0" y1="108" x2="685.0" y2="326" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="737.5" y1="108" x2="737.5" y2="326" stroke="#ebe7df" stroke-width="1.5"/>
+  <text x="34" y="141" font-size="24" font-weight="700" fill="#22201c">長寿梅</text>
+  <rect x="244.0" y="119" width="105.0" height="28" rx="6" fill="#b8935a" fill-opacity="1"/>
+  <text x="34" y="197" font-size="24" font-weight="700" fill="#22201c">姫リンゴ</text>
+  <rect x="317.5" y="175" width="52.5" height="28" rx="6" fill="#b8935a" fill-opacity="1"/>
+  <rect x="580.0" y="175" width="131.2" height="28" rx="6" fill="#8b6b4a" fill-opacity="0.55"/>
+  <text x="646" y="197" font-size="22" fill="#8b6b4a" text-anchor="middle">実</text>
+  <text x="34" y="253" font-size="24" font-weight="700" fill="#22201c">藤</text>
+  <rect x="333.2" y="231" width="57.8" height="28" rx="6" fill="#b8935a" fill-opacity="1"/>
+  <text x="34" y="309" font-size="24" font-weight="700" fill="#22201c">さつき</text>
+  <rect x="401.5" y="287" width="63.0" height="28" rx="6" fill="#b8935a" fill-opacity="1"/>
+  <rect x="359.5" y="287" width="42.0" height="28" rx="6" fill="#b8935a" fill-opacity="0.35"/>
+  <line x1="385.8" y1="104" x2="385.8" y2="332" stroke="#1a365d" stroke-width="4" stroke-dasharray="6 6"/>
+  <rect x="329.8" y="340" width="112" height="36" rx="8" fill="#1a365d"/>  <text x="386" y="366" font-size="22" font-weight="700" fill="#faf9f6" text-anchor="middle">母の日</text>
+  <text x="780" y="366" font-size="22" fill="#6b655b" text-anchor="end">薄い色＝つぼみ</text>
+
+</svg>

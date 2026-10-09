@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>姫リンゴの人工授粉。別の品種の花の花粉を筆にとり、姫リンゴの花のめしべにつける</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="400" y="48" font-size="30" font-weight="700" fill="#1a365d" text-anchor="middle">人工授粉のしかた</text>
+  <rect x="20" y="76" width="330" height="300" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <g fill="#fff" stroke="#c9b48f" stroke-width="2"><ellipse cx="185" cy="170" rx="20" ry="30" transform="rotate(0 185 200)"/><ellipse cx="185" cy="170" rx="20" ry="30" transform="rotate(72 185 200)"/><ellipse cx="185" cy="170" rx="20" ry="30" transform="rotate(144 185 200)"/><ellipse cx="185" cy="170" rx="20" ry="30" transform="rotate(216 185 200)"/><ellipse cx="185" cy="170" rx="20" ry="30" transform="rotate(288 185 200)"/></g><circle cx="185" cy="200" r="14" fill="#b8935a"/>
+  <text x="185" y="300" font-size="26" font-weight="700" fill="#22201c" text-anchor="middle">別の品種の花</text>
+  <text x="185" y="336" font-size="22" fill="#6b655b" text-anchor="middle">（ズミ・カイドウなど）</text>
+  <rect x="450" y="76" width="330" height="300" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <g fill="#f1d3d3"><ellipse cx="615" cy="170" rx="20" ry="30" transform="rotate(0 615 200)"/><ellipse cx="615" cy="170" rx="20" ry="30" transform="rotate(72 615 200)"/><ellipse cx="615" cy="170" rx="20" ry="30" transform="rotate(144 615 200)"/><ellipse cx="615" cy="170" rx="20" ry="30" transform="rotate(216 615 200)"/><ellipse cx="615" cy="170" rx="20" ry="30" transform="rotate(288 615 200)"/></g><circle cx="615" cy="200" r="14" fill="#b8935a"/>
+  <text x="615" y="300" font-size="26" font-weight="700" fill="#22201c" text-anchor="middle">姫リンゴの花</text>
+  <text x="615" y="336" font-size="22" fill="#6b655b" text-anchor="middle">開いた花のめしべに</text>
+  <path d="M362 210 h70" stroke="#1a365d" stroke-width="6" stroke-linecap="round"/><path d="M420 196 l16 14 l-16 14" fill="none" stroke="#1a365d" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="368" y="150" width="60" height="10" rx="4" fill="#8b6b4a" transform="rotate(-20 398 155)"/><path d="M424 140 l18 -6 l-4 18 z" fill="#b8935a"/>
+  <text x="400" y="250" font-size="22" font-weight="700" fill="#1a365d" text-anchor="middle">筆で</text>
+  <rect x="20" y="396" width="760" height="62" rx="14" fill="#1a365d"/>
+  <text x="400" y="436.36" font-size="26" font-weight="700" fill="#faf9f6" text-anchor="middle">晴れた日の午前中に、花粉を筆で移す</text>
+
+</svg>

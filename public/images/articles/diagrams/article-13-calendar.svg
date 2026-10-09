@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>梅の盆栽の年間作業カレンダー</title>
+  <rect width="800" height="540" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">梅の一年の作業</text>
+  <text x="780" y="44" text-anchor="end" font-size="22" fill="#6b655b">関東の平地の目安</text>
+  <g font-size="22" fill="#22201c" text-anchor="middle">
+    <text x="186" y="94">1</text><text x="239" y="94">2</text><text x="291" y="94">3</text>
+    <text x="344" y="94">4</text><text x="396" y="94">5</text><text x="449" y="94">6</text>
+    <text x="501" y="94">7</text><text x="554" y="94">8</text><text x="606" y="94">9</text>
+    <text x="659" y="94">10</text><text x="711" y="94">11</text><text x="764" y="94">12</text>
+  </g>
+  <text x="20" y="94" font-size="22" fill="#6b655b">月</text>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="108" width="770" height="50" rx="8"/>
+    <rect x="20" y="164" width="770" height="50" rx="8"/>
+    <rect x="20" y="220" width="770" height="50" rx="8"/>
+    <rect x="20" y="276" width="770" height="50" rx="8"/>
+    <rect x="20" y="332" width="770" height="50" rx="8"/>
+    <rect x="20" y="388" width="770" height="50" rx="8"/>
+    <rect x="20" y="444" width="770" height="50" rx="8"/>
+  </g>
+  <g stroke="#ebe7df" stroke-width="1.5">
+    <line x1="160" y1="108" x2="160" y2="494"/><line x1="212.5" y1="108" x2="212.5" y2="494"/>
+    <line x1="265" y1="108" x2="265" y2="494"/><line x1="317.5" y1="108" x2="317.5" y2="494"/>
+    <line x1="370" y1="108" x2="370" y2="494"/><line x1="422.5" y1="108" x2="422.5" y2="494"/>
+    <line x1="475" y1="108" x2="475" y2="494"/><line x1="527.5" y1="108" x2="527.5" y2="494"/>
+    <line x1="580" y1="108" x2="580" y2="494"/><line x1="632.5" y1="108" x2="632.5" y2="494"/>
+    <line x1="685" y1="108" x2="685" y2="494"/><line x1="737.5" y1="108" x2="737.5" y2="494"/>
+  </g>
+  <g font-size="24" font-weight="700" fill="#22201c">
+    <text x="34" y="141">開花</text>
+    <text x="34" y="197">花後の剪定</text>
+    <text x="34" y="253">植え替え</text>
+    <text x="34" y="309">枝の整理</text>
+    <text x="34" y="365">花芽ができる</text>
+    <text x="34" y="421">肥料</text>
+    <text x="34" y="477">冬の剪定</text>
+  </g>
+  <!-- 開花 1〜3月 -->
+  <rect x="160" y="119" width="140" height="28" rx="6" fill="#c98a96"/>
+  <!-- 花後剪定 2月下旬〜3月 -->
+  <rect x="245" y="175" width="72" height="28" rx="6" fill="#1a365d"/>
+  <!-- 植え替え 2月下旬〜3月 -->
+  <rect x="245" y="231" width="72" height="28" rx="6" fill="#8b6b4a"/>
+  <!-- 枝の整理 5〜6月 -->
+  <rect x="370" y="287" width="105" height="28" rx="6" fill="#1a365d" fill-opacity="0.35"/>
+  <text x="422" y="309" text-anchor="middle" font-size="22" fill="#1a365d">軽く</text>
+  <!-- 花芽 7〜8月 -->
+  <rect x="475" y="343" width="105" height="28" rx="6" fill="#5b7f4a"/>
+  <!-- 肥料 4〜6月、9〜10月 -->
+  <rect x="317.5" y="399" width="157.5" height="28" rx="6" fill="#b8935a"/>
+  <rect x="580" y="399" width="105" height="28" rx="6" fill="#b8935a"/>
+  <!-- 冬の剪定 11〜12月 -->
+  <rect x="685" y="455" width="105" height="28" rx="6" fill="#1a365d" fill-opacity="0.35"/>
+  <text x="737" y="477" text-anchor="middle" font-size="22" fill="#1a365d">軽く</text>
+  <text x="20" y="528" font-size="22" fill="#6b655b">開花の時期は品種と地域でずれます</text>
+</svg>

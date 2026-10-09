@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>日本の盆栽と中国の盆景の見せ方の違い</title>
+  <rect width="800" height="460" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">何を見せるか</text>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="70" width="370" height="370" rx="14"/>
+    <rect x="410" y="70" width="370" height="370" rx="14"/>
+  </g>
+  <text x="205" y="110" text-anchor="middle" font-size="26" font-weight="700" fill="#22201c">日本の盆栽</text>
+  <text x="595" y="110" text-anchor="middle" font-size="26" font-weight="700" fill="#22201c">中国の盆景</text>
+
+  <!-- 盆栽：一本の樹と余白 -->
+  <path d="M120 320 h170 l-16 30 h-138 z" fill="#8b6b4a"/>
+  <path d="M190 320 Q176 280 194 246 Q214 214 200 180" stroke="#6f5439" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <ellipse cx="146" cy="236" rx="46" ry="18" fill="#5b7f4a"/>
+  <ellipse cx="244" cy="214" rx="44" ry="17" fill="#5b7f4a"/>
+  <ellipse cx="198" cy="172" rx="46" ry="22" fill="#5b7f4a"/>
+  <rect x="44" y="132" width="322" height="176" fill="none" stroke="#b8935a" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="205" y="392" text-anchor="middle" font-size="22" fill="#22201c">一本の樹と余白で</text>
+  <text x="205" y="422" text-anchor="middle" font-size="22" fill="#22201c">大木の姿を表す</text>
+
+  <!-- 盆景：景色 -->
+  <rect x="440" y="324" width="310" height="22" rx="4" fill="#f3f0ea" stroke="#8b6b4a" stroke-width="3"/>
+  <rect x="600" y="316" width="146" height="10" fill="#9fb8cc"/>
+  <path d="M444 324 Q500 290 604 316 L604 324 Z" fill="#8b6b4a"/>
+  <path d="M640 320 L668 200 L690 240 L706 180 L736 320 Z" fill="#8a8578"/>
+  <path d="M492 312 Q486 260 500 226" stroke="#6f5439" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <ellipse cx="502" cy="218" rx="40" ry="18" fill="#5b7f4a"/>
+  <path d="M552 304 Q552 276 562 258" stroke="#6f5439" stroke-width="5" fill="none"/>
+  <ellipse cx="564" cy="252" rx="24" ry="12" fill="#5b7f4a"/>
+  <!-- 東屋と人 -->
+  <path d="M574 300 l16 -12 l16 12 z" fill="#b4573a"/>
+  <rect x="580" y="300" width="20" height="10" fill="#b4573a" fill-opacity="0.6"/>
+  <circle cx="624" cy="302" r="4" fill="#22201c"/><rect x="621" y="306" width="6" height="8" fill="#22201c"/>
+  <text x="595" y="392" text-anchor="middle" font-size="22" fill="#22201c">樹・石・添え物で</text>
+  <text x="595" y="422" text-anchor="middle" font-size="22" fill="#22201c">一つの景色を表す</text>
+</svg>

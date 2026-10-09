@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>置き肥の置き方。固形肥料は鉢の縁に沿って等間隔に置き、幹の根元からは離す。水やりのたびに少しずつ溶けて土に染み込む</title>
+  <rect width="800" height="450" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">置き肥の置き方</text>
+
+  <!-- 上から -->
+  <rect x="20" y="70" width="372" height="360" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="206" y="108" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">上から見る</text>
+  <rect x="66" y="140" width="280" height="200" rx="20" fill="#8b6b4a"/>
+  <rect x="80" y="154" width="252" height="172" rx="14" fill="#e3d2b4"/>
+  <circle cx="206" cy="240" r="22" fill="#6f5439"/>
+  <circle cx="206" cy="240" r="48" fill="none" stroke="#b4573a" stroke-width="2.5" stroke-dasharray="6 5"/>
+  <g fill="#b8935a" stroke="#8b6b4a" stroke-width="2">
+    <rect x="98" y="170" width="22" height="18" rx="5"/><rect x="292" y="170" width="22" height="18" rx="5"/>
+    <rect x="98" y="292" width="22" height="18" rx="5"/><rect x="292" y="292" width="22" height="18" rx="5"/>
+  </g>
+  <text x="206" y="378" text-anchor="middle" font-size="22" fill="#5b7f4a">鉢の縁に等間隔</text>
+  <text x="206" y="410" text-anchor="middle" font-size="22" fill="#b4573a">幹の根元には置かない</text>
+
+  <!-- 横から -->
+  <rect x="408" y="70" width="372" height="360" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="594" y="108" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">横から見る</text>
+  <path d="M594 236 V150" stroke="#6f5439" stroke-width="10" stroke-linecap="round"/>
+  <ellipse cx="594" cy="150" rx="60" ry="22" fill="#5b7f4a"/>
+  <path d="M454 236 h280 l-20 80 h-240 z" fill="#8b6b4a"/>
+  <rect x="464" y="236" width="260" height="14" fill="#e3d2b4"/>
+  <g fill="#b8935a" stroke="#8b6b4a" stroke-width="2"><rect x="476" y="222" width="24" height="16" rx="5"/><rect x="688" y="222" width="24" height="16" rx="5"/></g>
+  <g stroke="#1a365d" stroke-width="3" stroke-linecap="round"><path d="M488 252 v30 M482 270 l6 12 l6 -12"/><path d="M700 252 v30 M694 270 l6 12 l6 -12"/></g>
+  <g text-anchor="middle" font-size="22" fill="#1a365d"><text x="594" y="356">水やりのたびに</text><text x="594" y="388">少しずつ溶けて効く</text></g>
+</svg>

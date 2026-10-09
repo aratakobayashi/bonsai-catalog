@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>回復までの流れ</title>
+  <rect width="800" height="440" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">回復までの流れ</text>
+  <line x1="130" y1="120" x2="670" y2="120" stroke="#ebe7df" stroke-width="8"/>
+  <circle cx="130" cy="120" r="26" fill="#1a365d"/><text x="130" y="129" text-anchor="middle" font-size="24" font-weight="700" fill="#faf9f6">1</text>
+  <circle cx="400" cy="120" r="26" fill="#b8935a"/><text x="400" y="129" text-anchor="middle" font-size="24" font-weight="700" fill="#faf9f6">2</text>
+  <circle cx="670" cy="120" r="26" fill="#5b7f4a"/><text x="670" y="129" text-anchor="middle" font-size="24" font-weight="700" fill="#faf9f6">3</text>
+
+  <rect x="20" y="168" width="240" height="250" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="140" y="210" text-anchor="middle" font-size="26" font-weight="700" fill="#1a365d">当日</text>
+  <text x="140" y="262" text-anchor="middle" font-size="22" fill="#22201c">原因に合った</text>
+  <text x="140" y="294" text-anchor="middle" font-size="22" fill="#22201c">応急処置</text>
+  <text x="140" y="346" text-anchor="middle" font-size="22" fill="#22201c">明るい日陰に</text>
+  <text x="140" y="378" text-anchor="middle" font-size="22" fill="#22201c">置いて動かさない</text>
+
+  <rect x="280" y="168" width="240" height="250" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="400" y="210" text-anchor="middle" font-size="26" font-weight="700" fill="#b8935a">芽が出るまで</text>
+  <text x="400" y="262" text-anchor="middle" font-size="22" fill="#22201c">乾いたら水やり</text>
+  <text x="400" y="294" text-anchor="middle" font-size="22" fill="#22201c">肥料は与えない</text>
+  <text x="400" y="346" text-anchor="middle" font-size="22" fill="#22201c">枯れ枝は</text>
+  <text x="400" y="378" text-anchor="middle" font-size="22" fill="#22201c">まだ切らない</text>
+
+  <rect x="540" y="168" width="240" height="250" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="660" y="210" text-anchor="middle" font-size="26" font-weight="700" fill="#5b7f4a">葉が開いたら</text>
+  <text x="660" y="262" text-anchor="middle" font-size="22" fill="#22201c">少しずつ日なたへ</text>
+  <text x="660" y="294" text-anchor="middle" font-size="22" fill="#22201c">肥料を控えめに</text>
+  <text x="660" y="346" text-anchor="middle" font-size="22" fill="#22201c">枯れた枝先を</text>
+  <text x="660" y="378" text-anchor="middle" font-size="22" fill="#22201c">整理する</text>
+</svg>

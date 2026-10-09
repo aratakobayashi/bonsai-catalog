@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 456" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>頂芽優勢の図。先端の芽があると先端だけが伸び、先を摘むと下の脇芽が伸びて枝が分かれる</title>
+  <rect width="800" height="456" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">先端を摘むと脇芽が伸びる</text>
+  <rect x="20.0" y="68" width="372.0" height="368" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <line x1="206.0" y1="302" x2="206.0" y2="112" stroke="#6f5439" stroke-width="7" stroke-linecap="round"/>
+  <ellipse cx="206.0" cy="106" rx="11" ry="18" fill="#5b7f4a"/>
+  <line x1="246" y1="172" x2="246" y2="112" stroke="#b4573a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M253 124 L246 112 L239 124" fill="none" stroke="#b4573a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <ellipse cx="236.0" cy="262" rx="26" ry="10" fill="#3f6a33"/>
+  <circle cx="214.0" cy="252" r="6" fill="#8b6b4a"/>
+  <ellipse cx="176.0" cy="222" rx="26" ry="10" fill="#3f6a33"/>
+  <circle cx="198.0" cy="212" r="6" fill="#8b6b4a"/>
+  <ellipse cx="236.0" cy="182" rx="26" ry="10" fill="#3f6a33"/>
+  <circle cx="214.0" cy="172" r="6" fill="#8b6b4a"/>
+  <ellipse cx="176.0" cy="142" rx="26" ry="10" fill="#3f6a33"/>
+  <circle cx="198.0" cy="132" r="6" fill="#8b6b4a"/>
+  <text x="206" y="342" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">先端があるとき</text>
+  <text x="206" y="380" font-size="22" text-anchor="middle" fill="#6b655b">先端だけが伸び</text>
+  <text x="206" y="412" font-size="22" text-anchor="middle" fill="#8b6b4a">脇芽は休んだまま</text>
+  <rect x="408.0" y="68" width="372.0" height="368" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <line x1="594.0" y1="302" x2="594.0" y2="192" stroke="#6f5439" stroke-width="7" stroke-linecap="round"/>
+  <ellipse cx="624.0" cy="262" rx="26" ry="10" fill="#3f6a33"/>
+  <circle cx="602.0" cy="252" r="6" fill="#8b6b4a"/>
+  <ellipse cx="564.0" cy="222" rx="26" ry="10" fill="#3f6a33"/>
+  <circle cx="586.0" cy="212" r="6" fill="#8b6b4a"/>
+  <ellipse cx="624.0" cy="182" rx="26" ry="10" fill="#3f6a33"/>
+  <circle cx="602.0" cy="172" r="6" fill="#8b6b4a"/>
+  <line x1="578.0" y1="190" x2="610.0" y2="174" stroke="#b4573a" stroke-width="4" stroke-linecap="round" stroke-dasharray="6 5"/>
+  <path d="M588.0 212 q-30 -20 -40 -70" stroke="#5b7f4a" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="548.0" cy="138" rx="10" ry="16" fill="#5b7f4a"/>
+  <path d="M600.0 172 q30 -20 40 -70" stroke="#5b7f4a" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="640.0" cy="98" rx="10" ry="16" fill="#5b7f4a"/>
+  <text x="594" y="342" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">先端を摘んだあと</text>
+  <text x="594" y="380" font-size="22" text-anchor="middle" fill="#6b655b">下の脇芽が動き</text>
+  <text x="594" y="412" font-size="22" text-anchor="middle" fill="#5b7f4a">枝が分かれる</text>
+</svg>

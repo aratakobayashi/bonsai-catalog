@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>自動水やりの組み方：タイマー、太いホース、細いチューブ、ドリッパー</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <rect x="30" y="60" width="26" height="70" fill="#6b655b"/><rect x="30" y="60" width="80" height="22" fill="#6b655b"/>
+  <rect x="60" y="130" width="90" height="70" rx="12" fill="#1a365d"/>
+  <circle cx="105" cy="165" r="22" fill="none" stroke="#fff" stroke-width="4"/><path d="M105 165 v-14 M105 165 h10" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  <text x="105" y="236" text-anchor="middle" font-size="24" font-weight="700" fill="#1a365d">タイマー</text>
+  <text x="44" y="44" font-size="23" fill="#6b655b">蛇口・タンク</text>
+  <path d="M105 200 V270 H770" stroke="#22201c" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <text x="560" y="250" font-size="23" fill="#22201c">太いホース</text>
+  <path d="M240 270 q0 40 40 50 L300 336" stroke="#b8935a" stroke-width="5" fill="none"/>
+  <circle cx="300" cy="340" r="7" fill="#1a365d"/>
+  <g fill="#1a365d"><path d="M300 354 q-5 8 0 12 q5 -4 0 -12 z"/></g>
+  <path d="M245.0 400 h110 l-12 46 h-86 z" fill="#8b6b4a"/><path d="M300 400 q-4 -40 4 -70" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="304" cy="318" rx="44" ry="24" fill="#5b7f4a"/>
+  <path d="M410 270 q0 40 40 50 L470 336" stroke="#b8935a" stroke-width="5" fill="none"/>
+  <circle cx="470" cy="340" r="7" fill="#1a365d"/>
+  <g fill="#1a365d"><path d="M470 354 q-5 8 0 12 q5 -4 0 -12 z"/></g>
+  <path d="M415.0 400 h110 l-12 46 h-86 z" fill="#8b6b4a"/><path d="M470 400 q-4 -40 4 -70" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="474" cy="318" rx="44" ry="24" fill="#5b7f4a"/>
+  <path d="M580 270 q0 40 40 50 L640 336" stroke="#b8935a" stroke-width="5" fill="none"/>
+  <circle cx="640" cy="340" r="7" fill="#1a365d"/>
+  <g fill="#1a365d"><path d="M640 354 q-5 8 0 12 q5 -4 0 -12 z"/></g>
+  <path d="M585.0 400 h110 l-12 46 h-86 z" fill="#8b6b4a"/><path d="M640 400 q-4 -40 4 -70" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="644" cy="318" rx="44" ry="24" fill="#5b7f4a"/>
+  <text x="120" y="330" font-size="23" fill="#8b6b4a">細いチューブ</text>
+  <text x="120" y="366" font-size="23" fill="#1a365d">ドリッパー</text>
+  <path d="M248 360 L290 343" stroke="#1a365d" stroke-width="2"/>
+</svg>

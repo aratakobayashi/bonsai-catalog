@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>ハーブの剪定で切る位置</title>
+  <rect width="800" height="460" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">切るのは緑の葉が残るところ</text>
+
+  <!-- よい例 -->
+  <rect x="20" y="70" width="370" height="370" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <path d="M205 376 L205 280" stroke="#8b6b4a" stroke-width="10" stroke-linecap="round"/>
+  <path d="M205 280 L205 130" stroke="#5b7f4a" stroke-width="6" stroke-linecap="round"/>
+  <g stroke="#5b7f4a" stroke-width="4" stroke-linecap="round">
+    <path d="M205 260 l-26 -10 M205 260 l26 -10 M205 236 l-26 -10 M205 236 l26 -10 M205 212 l-26 -10 M205 212 l26 -10"/>
+    <path d="M205 188 l-24 -10 M205 188 l24 -10 M205 164 l-22 -10 M205 164 l22 -10 M205 140 l-18 -8 M205 140 l18 -8"/>
+  </g>
+  <line x1="168" y1="200" x2="242" y2="200" stroke="#b4573a" stroke-width="5" stroke-dasharray="8 5"/>
+  <!-- 新しい脇芽 -->
+  <g stroke="#8fae78" stroke-width="4" stroke-linecap="round" fill="none">
+    <path d="M205 212 Q180 196 172 172"/><path d="M205 212 Q230 196 238 172"/>
+  </g>
+  <circle cx="62" cy="108" r="13" fill="none" stroke="#5b7f4a" stroke-width="4"/>
+  <text x="86" y="117" font-size="26" font-weight="700" fill="#22201c">よい切り方</text>
+  <text x="252" y="206" font-size="22" fill="#b4573a">切る</text>
+  <text x="40" y="420" font-size="22" fill="#5b7f4a">下に葉が残り、脇から芽が出る</text>
+
+  <!-- 悪い例 -->
+  <rect x="410" y="70" width="370" height="370" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <path d="M595 376 L595 280" stroke="#8b6b4a" stroke-width="10" stroke-linecap="round"/>
+  <path d="M595 280 L595 250" stroke="#8b6b4a" stroke-width="8" stroke-linecap="round"/>
+  <path d="M595 230 L595 130" stroke="#5b7f4a" stroke-width="6" stroke-linecap="round" stroke-opacity="0.35"/>
+  <g stroke="#5b7f4a" stroke-width="4" stroke-linecap="round" stroke-opacity="0.35">
+    <path d="M595 212 l-26 -10 M595 212 l26 -10 M595 188 l-24 -10 M595 188 l24 -10 M595 164 l-22 -10 M595 164 l22 -10 M595 140 l-18 -8 M595 140 l18 -8"/>
+  </g>
+  <line x1="556" y1="244" x2="634" y2="244" stroke="#b4573a" stroke-width="5" stroke-dasharray="8 5"/>
+  <g stroke="#b4573a" stroke-width="5" stroke-linecap="round"><line x1="440" y1="98" x2="462" y2="120"/><line x1="462" y1="98" x2="440" y2="120"/></g>
+  <text x="476" y="117" font-size="26" font-weight="700" fill="#22201c">深く切りすぎ</text>
+  <line x1="606" y1="290" x2="650" y2="310" stroke="#b8935a" stroke-width="2.5"/>
+  <text x="656" y="316" font-size="22" fill="#8b6b4a">葉のない</text>
+  <text x="656" y="344" font-size="22" fill="#8b6b4a">古い枝</text>
+  <text x="430" y="420" font-size="22" fill="#b4573a">芽が出にくく、枯れ込みやすい</text>
+</svg>

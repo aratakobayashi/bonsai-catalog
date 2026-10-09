@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽の見どころ。全体の形、枝の配り、幹の流れ、立ち上がり、根張り、鉢との釣り合い</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">作品の見どころ</text>
+  <path d="M400 70 L190 330 L610 330 z" fill="none" stroke="#b8935a" stroke-width="3" stroke-dasharray="10 8"/>
+  <path d="M270 392 h260 l-14 46 h-232 z" fill="#8b6b4a"/>
+  <path d="M340 394 q40 -6 46 -50 C394 300 360 260 392 200 L410 200 C396 260 430 300 420 344 q4 44 46 50 z" fill="#6f5439"/>
+  <path d="M390 250 q-70 -6 -150 4" stroke="#6f5439" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <path d="M412 218 q70 -12 140 0" stroke="#6f5439" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <ellipse cx="250" cy="250" rx="66" ry="24" fill="#5b7f4a"/>
+  <ellipse cx="548" cy="214" rx="62" ry="22" fill="#5b7f4a"/>
+  <ellipse cx="400" cy="128" rx="70" ry="34" fill="#5b7f4a"/>
+  <ellipse cx="330" cy="176" rx="46" ry="18" fill="#5b7f4a"/>
+  <ellipse cx="470" cy="166" rx="40" ry="16" fill="#5b7f4a"/>
+  <line x1="634" y1="102" x2="470" y2="120" stroke="#1a365d" stroke-width="2.5"/>
+  <circle cx="470" cy="120" r="5" fill="#1a365d"/>
+  <text x="640" y="110" font-size="24" font-weight="700" fill="#22201c">全体の形</text>
+  <line x1="634" y1="212" x2="560" y2="230" stroke="#1a365d" stroke-width="2.5"/>
+  <circle cx="560" cy="230" r="5" fill="#1a365d"/>
+  <text x="640" y="220" font-size="24" font-weight="700" fill="#22201c">枝の配り</text>
+  <line x1="132" y1="206" x2="395" y2="270" stroke="#1a365d" stroke-width="2.5"/>
+  <circle cx="395" cy="270" r="5" fill="#1a365d"/>
+  <text x="30" y="214" font-size="24" font-weight="700" fill="#22201c">幹の流れ</text>
+  <line x1="156" y1="322" x2="410" y2="360" stroke="#1a365d" stroke-width="2.5"/>
+  <circle cx="410" cy="360" r="5" fill="#1a365d"/>
+  <text x="30" y="330" font-size="24" font-weight="700" fill="#22201c">立ち上がり</text>
+  <line x1="634" y1="372" x2="470" y2="392" stroke="#1a365d" stroke-width="2.5"/>
+  <circle cx="470" cy="392" r="5" fill="#1a365d"/>
+  <text x="640" y="380" font-size="24" font-weight="700" fill="#22201c">根張り</text>
+  <line x1="204" y1="440" x2="290" y2="420" stroke="#1a365d" stroke-width="2.5"/>
+  <circle cx="290" cy="420" r="5" fill="#1a365d"/>
+  <text x="30" y="448" font-size="24" font-weight="700" fill="#22201c">鉢との釣り合い</text>
+</svg>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>ウメモドキは雌木と雄木が別。実をつけるには近くに雄木が必要</title>
+  <rect width="800" height="460" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="28" font-weight="700" fill="#1a365d">実がなるのは雌木。花の時期に雄木を近くに</text>
+
+  <!-- 雌木 -->
+  <rect x="20" y="70" width="300" height="370" rx="14" fill="#fff" stroke="#b4573a" stroke-width="3"/>
+  <text x="170" y="110" text-anchor="middle" font-size="26" font-weight="700" fill="#b4573a">雌木</text>
+  <path d="M170 330 C 166 290, 176 250, 168 200" stroke="#6f5439" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M170 262 C 140 248, 116 236, 96 210 M168 228 C 196 214, 222 200, 244 176 M168 200 C 160 176, 172 160, 170 140" stroke="#6f5439" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <g fill="#b4573a">
+    <circle cx="100" cy="214" r="7"/><circle cx="114" cy="226" r="7"/><circle cx="128" cy="236" r="7"/><circle cx="146" cy="246" r="7"/>
+    <circle cx="240" cy="182" r="7"/><circle cx="226" cy="196" r="7"/><circle cx="208" cy="206" r="7"/>
+    <circle cx="170" cy="146" r="7"/><circle cx="164" cy="164" r="7"/><circle cx="176" cy="180" r="7"/>
+  </g>
+  <path d="M100 330 h140 l-12 34 h-116 z" fill="#8b6b4a"/>
+  <text x="170" y="408" text-anchor="middle" font-size="22" fill="#22201c">花のあとに赤い実</text>
+
+  <!-- 花粉の流れ -->
+  <g fill="none" stroke="#b8935a" stroke-width="4" stroke-dasharray="10 8" stroke-linecap="round">
+    <path d="M470 200 C 420 160, 380 160, 334 200"/>
+  </g>
+  <path d="M334 200 l18 -4 l-8 16 z" fill="#b8935a"/>
+  <text x="402" y="146" text-anchor="middle" font-size="22" fill="#b8935a">花粉</text>
+  <text x="402" y="250" text-anchor="middle" font-size="22" fill="#6b655b">虫が運ぶ</text>
+
+  <!-- 雄木 -->
+  <rect x="480" y="70" width="300" height="370" rx="14" fill="#fff" stroke="#1a365d" stroke-width="3"/>
+  <text x="630" y="110" text-anchor="middle" font-size="26" font-weight="700" fill="#1a365d">雄木</text>
+  <path d="M630 330 C 626 290, 636 250, 628 200" stroke="#6f5439" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M630 262 C 600 248, 576 236, 556 210 M628 228 C 656 214, 682 200, 704 176 M628 200 C 620 176, 632 160, 630 140" stroke="#6f5439" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <g fill="#c77d92">
+    <circle cx="560" cy="214" r="5"/><circle cx="576" cy="228" r="5"/><circle cx="596" cy="240" r="5"/>
+    <circle cx="700" cy="182" r="5"/><circle cx="684" cy="196" r="5"/><circle cx="664" cy="208" r="5"/>
+    <circle cx="630" cy="148" r="5"/><circle cx="626" cy="168" r="5"/>
+  </g>
+  <path d="M560 330 h140 l-12 34 h-116 z" fill="#8b6b4a"/>
+  <text x="630" y="408" text-anchor="middle" font-size="22" fill="#22201c">花は咲くが実はならない</text>
+</svg>

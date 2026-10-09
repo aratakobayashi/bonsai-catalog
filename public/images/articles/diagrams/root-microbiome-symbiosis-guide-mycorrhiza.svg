@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>菌根のしくみ。根のまわりに伸びた菌糸が、根の届かない所から水や養分を集め、根は糖を菌に渡す</title>
+  <rect width="800" height="500" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">菌根（きんこん）のしくみ</text>
+  <rect x="20" y="70" width="760" height="330" rx="14" fill="#e3d2b4"/>
+  <path d="M140 70 q20 80 80 120 q70 50 180 60 q120 10 240 70" stroke="#c9a77c" stroke-width="20" fill="none" stroke-linecap="round"/>
+  <path d="M300 236 q-40 40 -90 70" stroke="#c9a77c" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M520 270 q30 50 20 100" stroke="#c9a77c" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M260 210 q-5 -12 -10 -37" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M260 210 q12 17 24 51" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M260 210 q-27 -22 -54 -67" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M260 210 q25 -1 50 -4" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M260 210 q-6 -7 -11 -21" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M380 248 q25 17 50 51" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M380 248 q16 -11 31 -32" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M380 248 q-6 -11 -11 -32" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M380 248 q32 10 63 29" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M380 248 q-34 -18 -67 -54" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M470 258 q-15 -20 -30 -60" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M470 258 q4 -21 7 -63" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M470 258 q-1 17 -2 51" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M470 258 q14 13 29 39" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M470 258 q16 14 31 43" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M600 292 q-18 8 -36 23" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M600 292 q-23 -20 -46 -61" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M600 292 q-18 19 -36 56" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M600 292 q-8 -1 -15 -4" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M600 292 q20 2 41 7" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M230 300 q18 20 37 59" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M230 300 q14 6 28 19" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M230 300 q33 11 66 34" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M230 300 q-6 5 -11 16" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M230 300 q-32 0 -63 1" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M540 360 q-14 4 -29 13" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M540 360 q34 -15 68 -44" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M540 360 q-8 -1 -16 -2" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M540 360 q1 -13 2 -39" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <path d="M540 360 q-27 18 -54 53" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <circle cx="140" cy="330" r="6" fill="#1a365d"/>
+  <circle cx="690" cy="160" r="6" fill="#1a365d"/>
+  <circle cx="340" cy="120" r="6" fill="#1a365d"/>
+  <circle cx="720" cy="380" r="6" fill="#1a365d"/>
+  <circle cx="90" cy="200" r="6" fill="#1a365d"/>
+  <line x1="110" y1="324" x2="220" y2="300" stroke="#1a365d" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M209 309 L220 300 L207 296" fill="none" stroke="#1a365d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="460" y="96" width="300" height="100" rx="12" fill="#efe3cf" stroke="#8b6b4a" stroke-width="2"/>
+  <line x1="480" y1="130" x2="520" y2="130" stroke="#fff" stroke-width="4"/><line x1="480" y1="130" x2="520" y2="130" stroke="#6b655b" stroke-width="1" stroke-opacity="0.4"/>
+  <path d="M478 130 q20 -8 44 0" stroke="#d8d2c6" stroke-width="4" fill="none"/>
+  <text x="536" y="138" font-size="22" fill="#22201c">菌の糸（菌糸）</text>
+  <circle cx="500" cy="172" r="6" fill="#1a365d"/>
+  <text x="536" y="180" font-size="22" fill="#22201c">水や養分</text>
+  <text x="40" y="440" font-size="22" fill="#22201c">菌糸が根の届かない所から水や養分を集め、</text>
+  <text x="40" y="474" font-size="22" fill="#22201c">根は光合成でつくった糖を菌に渡します</text>
+</svg>

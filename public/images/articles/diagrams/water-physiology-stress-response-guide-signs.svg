@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>水が足りなくなるときの葉の変化：4つの段階</title>
+  <rect width="800" height="440" fill="#faf9f6"/>
+  <text x="400" y="44" text-anchor="middle" font-size="28" font-weight="700" fill="#1a365d">水が足りないときの葉の変化</text>
+
+  <!-- 矢印帯 -->
+  <path d="M30 400 H 740 l 20 -12 l -20 -12 H 30 z" fill="#ebe7df"/>
+  <text x="40" y="396" font-size="20" fill="#6b655b">早めに気づくほど回復しやすい</text>
+
+  <!-- 1 -->
+  <rect x="20" y="66" width="182" height="290" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <line x1="111" y1="240" x2="111" y2="130" stroke="#6f5439" stroke-width="4"/>
+  <ellipse cx="80" cy="150" rx="30" ry="12" fill="#5b7f4a" transform="rotate(-25 80 150)"/>
+  <ellipse cx="142" cy="150" rx="30" ry="12" fill="#5b7f4a" transform="rotate(25 142 150)"/>
+  <ellipse cx="80" cy="200" rx="30" ry="12" fill="#5b7f4a" transform="rotate(-25 80 200)"/>
+  <ellipse cx="142" cy="200" rx="30" ry="12" fill="#5b7f4a" transform="rotate(25 142 200)"/>
+  <text x="111" y="290" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">元気</text>
+  <text x="111" y="326" text-anchor="middle" font-size="22" fill="#5b7f4a">葉が上を向く</text>
+
+  <!-- 2 -->
+  <rect x="216" y="66" width="182" height="290" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <line x1="307" y1="240" x2="307" y2="130" stroke="#6f5439" stroke-width="4"/>
+  <ellipse cx="276" cy="158" rx="30" ry="11" fill="#7d9a68" transform="rotate(5 276 158)"/>
+  <ellipse cx="338" cy="158" rx="30" ry="11" fill="#7d9a68" transform="rotate(-5 338 158)"/>
+  <ellipse cx="276" cy="208" rx="30" ry="11" fill="#7d9a68" transform="rotate(5 276 208)"/>
+  <ellipse cx="338" cy="208" rx="30" ry="11" fill="#7d9a68" transform="rotate(-5 338 208)"/>
+  <text x="307" y="290" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">つやが減る</text>
+  <text x="307" y="326" text-anchor="middle" font-size="22" fill="#b8935a">水やりで戻る</text>
+
+  <!-- 3 -->
+  <rect x="412" y="66" width="182" height="290" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <path d="M503 240 V 150 C 503 136, 510 128, 520 124" stroke="#6f5439" stroke-width="4" fill="none"/>
+  <ellipse cx="474" cy="176" rx="28" ry="10" fill="#9aa77a" transform="rotate(55 474 176)"/>
+  <ellipse cx="532" cy="176" rx="28" ry="10" fill="#9aa77a" transform="rotate(-55 532 176)"/>
+  <ellipse cx="474" cy="222" rx="28" ry="10" fill="#9aa77a" transform="rotate(55 474 222)"/>
+  <ellipse cx="532" cy="222" rx="28" ry="10" fill="#9aa77a" transform="rotate(-55 532 222)"/>
+  <text x="503" y="290" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">しおれる</text>
+  <text x="503" y="326" text-anchor="middle" font-size="22" fill="#b4573a">日陰で水やり</text>
+
+  <!-- 4 -->
+  <rect x="608" y="66" width="172" height="290" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <path d="M694 240 V 150 C 694 136, 701 128, 711 124" stroke="#8b6b4a" stroke-width="4" fill="none"/>
+  <ellipse cx="666" cy="176" rx="28" ry="10" fill="#9aa77a" transform="rotate(60 666 176)"/>
+  <ellipse cx="722" cy="176" rx="28" ry="10" fill="#9aa77a" transform="rotate(-60 722 176)"/>
+  <ellipse cx="666" cy="222" rx="28" ry="10" fill="#9aa77a" transform="rotate(60 666 222)"/>
+  <ellipse cx="722" cy="222" rx="28" ry="10" fill="#9aa77a" transform="rotate(-60 722 222)"/>
+  <g fill="#b48a5a"><circle cx="654" cy="198" r="8"/><circle cx="734" cy="198" r="8"/><circle cx="654" cy="244" r="8"/><circle cx="734" cy="244" r="8"/></g>
+  <text x="694" y="290" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">葉先が枯れる</text>
+  <text x="694" y="326" text-anchor="middle" font-size="22" fill="#6b655b">葉は戻らない</text>
+</svg>

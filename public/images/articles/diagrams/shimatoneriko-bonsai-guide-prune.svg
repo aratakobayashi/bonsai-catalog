@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>シマトネリコの切り戻し。長く伸びた枝は、残したい葉の付け根（節）の少し上で切る</title>
+  <rect width="800" height="460" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">伸びた枝の切り戻し</text>
+  <polyline points="120,440 160,370 196,320 240,262 280,216 330,184" stroke="#6f5439" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="330,184 400,152 470,128 540,112" stroke="#c9b9a6" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="312" y1="160" x2="348" y2="210" stroke="#b4573a" stroke-width="5" stroke-dasharray="8 6" stroke-linecap="round"/>
+  <text x="186" y="168" font-size="22" font-weight="700" fill="#b4573a">ここで切る</text>
+  <g transform="rotate(-70 196 320)">
+  <line x1="196" y1="320" x2="286" y2="320" stroke="#5b7f4a" stroke-width="3"/>
+  <ellipse cx="216" cy="310" rx="10" ry="5" fill="#5b7f4a" transform="rotate(-40 216 310)"/>
+  <ellipse cx="216" cy="330" rx="10" ry="5" fill="#5b7f4a" transform="rotate(40 216 330)"/>
+  <ellipse cx="234" cy="310" rx="10" ry="5" fill="#5b7f4a" transform="rotate(-40 234 310)"/>
+  <ellipse cx="234" cy="330" rx="10" ry="5" fill="#5b7f4a" transform="rotate(40 234 330)"/>
+  <ellipse cx="251" cy="310" rx="10" ry="5" fill="#5b7f4a" transform="rotate(-40 251 310)"/>
+  <ellipse cx="251" cy="330" rx="10" ry="5" fill="#5b7f4a" transform="rotate(40 251 330)"/>
+  <ellipse cx="268" cy="310" rx="10" ry="5" fill="#5b7f4a" transform="rotate(-40 268 310)"/>
+  <ellipse cx="268" cy="330" rx="10" ry="5" fill="#5b7f4a" transform="rotate(40 268 330)"/>
+  <ellipse cx="294" cy="320" rx="11" ry="5" fill="#5b7f4a"/>
+  </g>
+  <g transform="rotate(20 280 216)">
+  <line x1="280" y1="216" x2="370" y2="216" stroke="#5b7f4a" stroke-width="3"/>
+  <ellipse cx="300" cy="206" rx="10" ry="5" fill="#5b7f4a" transform="rotate(-40 300 206)"/>
+  <ellipse cx="300" cy="226" rx="10" ry="5" fill="#5b7f4a" transform="rotate(40 300 226)"/>
+  <ellipse cx="318" cy="206" rx="10" ry="5" fill="#5b7f4a" transform="rotate(-40 318 206)"/>
+  <ellipse cx="318" cy="226" rx="10" ry="5" fill="#5b7f4a" transform="rotate(40 318 226)"/>
+  <ellipse cx="335" cy="206" rx="10" ry="5" fill="#5b7f4a" transform="rotate(-40 335 206)"/>
+  <ellipse cx="335" cy="226" rx="10" ry="5" fill="#5b7f4a" transform="rotate(40 335 226)"/>
+  <ellipse cx="352" cy="206" rx="10" ry="5" fill="#5b7f4a" transform="rotate(-40 352 206)"/>
+  <ellipse cx="352" cy="226" rx="10" ry="5" fill="#5b7f4a" transform="rotate(40 352 226)"/>
+  <ellipse cx="378" cy="216" rx="11" ry="5" fill="#5b7f4a"/>
+  </g>
+  <g transform="rotate(-70 400 152)">
+  <line x1="400" y1="152" x2="490" y2="152" stroke="#8fae78" stroke-width="3"/>
+  <ellipse cx="420" cy="142" rx="10" ry="5" fill="#8fae78" transform="rotate(-40 420 142)"/>
+  <ellipse cx="420" cy="162" rx="10" ry="5" fill="#8fae78" transform="rotate(40 420 162)"/>
+  <ellipse cx="438" cy="142" rx="10" ry="5" fill="#8fae78" transform="rotate(-40 438 142)"/>
+  <ellipse cx="438" cy="162" rx="10" ry="5" fill="#8fae78" transform="rotate(40 438 162)"/>
+  <ellipse cx="455" cy="142" rx="10" ry="5" fill="#8fae78" transform="rotate(-40 455 142)"/>
+  <ellipse cx="455" cy="162" rx="10" ry="5" fill="#8fae78" transform="rotate(40 455 162)"/>
+  <ellipse cx="472" cy="142" rx="10" ry="5" fill="#8fae78" transform="rotate(-40 472 142)"/>
+  <ellipse cx="472" cy="162" rx="10" ry="5" fill="#8fae78" transform="rotate(40 472 162)"/>
+  <ellipse cx="498" cy="152" rx="11" ry="5" fill="#8fae78"/>
+  </g>
+  <g transform="rotate(20 520 116)">
+  <line x1="520" y1="116" x2="610" y2="116" stroke="#8fae78" stroke-width="3"/>
+  <ellipse cx="540" cy="106" rx="10" ry="5" fill="#8fae78" transform="rotate(-40 540 106)"/>
+  <ellipse cx="540" cy="126" rx="10" ry="5" fill="#8fae78" transform="rotate(40 540 126)"/>
+  <ellipse cx="558" cy="106" rx="10" ry="5" fill="#8fae78" transform="rotate(-40 558 106)"/>
+  <ellipse cx="558" cy="126" rx="10" ry="5" fill="#8fae78" transform="rotate(40 558 126)"/>
+  <ellipse cx="575" cy="106" rx="10" ry="5" fill="#8fae78" transform="rotate(-40 575 106)"/>
+  <ellipse cx="575" cy="126" rx="10" ry="5" fill="#8fae78" transform="rotate(40 575 126)"/>
+  <ellipse cx="592" cy="106" rx="10" ry="5" fill="#8fae78" transform="rotate(-40 592 106)"/>
+  <ellipse cx="592" cy="126" rx="10" ry="5" fill="#8fae78" transform="rotate(40 592 126)"/>
+  <ellipse cx="618" cy="116" rx="11" ry="5" fill="#8fae78"/>
+  </g>
+  <rect x="470" y="230" width="300" height="190" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="620" y="274" font-size="22" text-anchor="middle" fill="#22201c">残したい節の</text>
+  <text x="620" y="306" font-size="22" text-anchor="middle" fill="#22201c">少し上で切る</text>
+  <text x="620" y="352" font-size="22" text-anchor="middle" font-weight="700" fill="#5b7f4a">残す枝：濃い色</text>
+  <text x="620" y="390" font-size="22" text-anchor="middle" fill="#6b655b">切る枝：薄い色</text>
+</svg>

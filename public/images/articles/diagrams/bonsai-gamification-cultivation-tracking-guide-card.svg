@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽の栽培記録の1回分の例。日付と天気、作業、水やり、肥料、気づき、写真</title>
+  <rect width="800" height="500" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">1回分の記録の例</text>
+  <rect x="60" y="76" width="680" height="404" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="60" y="76" width="680" height="56" rx="14" fill="#1a365d"/><rect x="60" y="110" width="680" height="22" fill="#1a365d"/>
+  <text x="90" y="114" font-size="24" font-weight="700" fill="#faf9f6">黒松（1号）</text>
+  <text x="710" y="114" text-anchor="end" font-size="22" fill="#faf9f6">4月12日　晴れ</text>
+  <line x1="84" y1="202" x2="716" y2="202" stroke="#ebe7df" stroke-width="2"/>
+  <text x="90" y="188" font-size="22" font-weight="700" fill="#5b7f4a">作業</text>
+  <text x="210" y="188" font-size="22" fill="#22201c">芽切りの前の確認・下枝を少し剪定</text>
+  <line x1="84" y1="266" x2="716" y2="266" stroke="#ebe7df" stroke-width="2"/>
+  <text x="90" y="252" font-size="22" font-weight="700" fill="#5b7f4a">水やり</text>
+  <text x="210" y="252" font-size="22" fill="#22201c">朝1回　表面が白く乾いてから</text>
+  <line x1="84" y1="330" x2="716" y2="330" stroke="#ebe7df" stroke-width="2"/>
+  <text x="90" y="316" font-size="22" font-weight="700" fill="#5b7f4a">肥料</text>
+  <text x="210" y="316" font-size="22" fill="#22201c">置き肥を2個追加</text>
+  <line x1="84" y1="394" x2="716" y2="394" stroke="#ebe7df" stroke-width="2"/>
+  <text x="90" y="380" font-size="22" font-weight="700" fill="#5b7f4a">気づき</text>
+  <text x="210" y="380" font-size="22" fill="#22201c">南側の芽の伸びが強い</text>
+  <line x1="84" y1="458" x2="716" y2="458" stroke="#ebe7df" stroke-width="2"/>
+  <text x="90" y="444" font-size="22" font-weight="700" fill="#5b7f4a">写真</text>
+  <text x="210" y="444" font-size="22" fill="#22201c">正面・右横の2枚</text>
+</svg>

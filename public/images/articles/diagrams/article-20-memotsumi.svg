@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 518" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>真柏の芽摘み。伸びた芽の先は指でつまみ取る。ハサミで葉の途中を切ると切り口が茶色くなりやすい。とがった杉葉は元から取る</title>
+  <rect width="800" height="518" fill="#faf9f6"/>
+  <rect x="20" y="20" width="370" height="400" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="62" r="17" fill="none" stroke="#5b7f4a" stroke-width="5"/>
+  <text x="88" y="72" font-size="28" font-weight="700" fill="#22201c">指でつまみ取る</text>
+  <g fill="#5b7f4a"><ellipse cx="205" cy="220" rx="70" ry="34"/><ellipse cx="155" cy="232" rx="36" ry="22"/><ellipse cx="257" cy="230" rx="36" ry="22"/></g>
+  <path d="M220 190 q6 -40 26 -66" stroke="#9cbb85" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M258 98 a22 22 0 1 1 -10 40" fill="none" stroke="#22201c" stroke-width="3"/>
+  <text x="205" y="330" font-size="24" fill="#22201c" text-anchor="middle">伸びた芽の先だけ</text>
+  <text x="205" y="366" font-size="24" fill="#22201c" text-anchor="middle">指先で摘む</text>
+  <rect x="410" y="20" width="370" height="400" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <g stroke="#8b6b4a" stroke-width="5" stroke-linecap="round"><line x1="430" y1="46" x2="462" y2="78"/><line x1="462" y1="46" x2="430" y2="78"/></g>
+  <text x="478" y="72" font-size="28" font-weight="700" fill="#22201c">葉の途中で切る</text>
+  <g fill="#5b7f4a"><ellipse cx="595" cy="220" rx="70" ry="34"/><ellipse cx="545" cy="232" rx="36" ry="22"/><ellipse cx="647" cy="230" rx="36" ry="22"/></g>
+  <g fill="#8b6b4a"><rect x="556" y="196" width="14" height="8" rx="2"/><rect x="600" y="192" width="14" height="8" rx="2"/><rect x="636" y="206" width="14" height="8" rx="2"/></g>
+  <g stroke="#22201c" stroke-width="4" fill="none"><circle cx="672" cy="132" r="12"/><circle cx="696" cy="142" r="12"/><path d="M664 120 l-50 -24 M704 130 l-46 -36"/></g>
+  <text x="595" y="330" font-size="24" fill="#22201c" text-anchor="middle">切り口が茶色く</text>
+  <text x="595" y="366" font-size="24" fill="#22201c" text-anchor="middle">枯れ込みやすい</text>
+  <rect x="20" y="436" width="760" height="62" rx="14" fill="#1a365d"/>
+  <text x="400" y="476.0" font-size="25" font-weight="700" fill="#faf9f6" text-anchor="middle">とがった針状の葉（杉葉）が出たら元から取る</text>
+
+</svg>

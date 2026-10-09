@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 506" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>海外の相手への盆栽ギフトは、相手がいま日本にいるか海外にいるかで考える</title>
+<defs>
+  <g id="tree"><path d="M-40 0 h80 l-9 26 h-62 z" fill="#8b6b4a"/><path d="M0 0 q-6 -30 4 -56" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="2" cy="-62" rx="34" ry="20" fill="#5b7f4a"/><ellipse cx="-24" cy="-40" rx="20" ry="12" fill="#5b7f4a"/><ellipse cx="28" cy="-38" rx="20" ry="12" fill="#5b7f4a"/></g>
+  <g id="ok"><circle r="15" fill="none" stroke="#5b7f4a" stroke-width="5"/></g>
+  <g id="ng"><g stroke="#8b6b4a" stroke-width="5" stroke-linecap="round"><line x1="-13" y1="-13" x2="13" y2="13"/><line x1="13" y1="-13" x2="-13" y2="13"/></g></g>
+  <g id="tri"><path d="M0 -15 L15 12 H-15 Z" fill="none" stroke="#b8935a" stroke-width="5" stroke-linejoin="round"/></g>
+  <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#6b655b"/></marker>
+</defs>
+  <rect width="800" height="506" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">相手がいる場所で考える</text>
+  <rect x="250" y="66" width="300" height="64" rx="14" fill="#fff" stroke="#1a365d" stroke-width="3"/>
+  <text x="400" y="108" font-size="26" text-anchor="middle" font-weight="700" fill="#1a365d">相手はいまどこに？</text>
+  <line x1="330" y1="130" x2="200" y2="178" stroke="#6b655b" stroke-width="3" marker-end="url(#ar)"/>
+  <line x1="470" y1="130" x2="600" y2="178" stroke="#6b655b" stroke-width="3" marker-end="url(#ar)"/>
+  <rect x="20" y="186" width="370" height="300" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="205" y="230" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">日本で暮らしている</text>
+  <use href="#ok" x="52" y="284"/>
+  <text x="80" y="292" font-size="22" fill="#22201c">日本で育てるなら</text>
+  <text x="80" y="324" font-size="22" fill="#22201c">盆栽を贈れる</text>
+  <use href="#ng" x="52" y="384"/>
+  <text x="80" y="392" font-size="22" fill="#22201c">帰国時に持ち帰るのは</text>
+  <text x="80" y="424" font-size="22" fill="#22201c">難しいと伝えておく</text>
+  <rect x="410" y="186" width="370" height="300" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="595" y="230" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">海外で暮らしている</text>
+  <use href="#ng" x="442" y="284"/>
+  <text x="470" y="292" font-size="22" fill="#22201c">土のついた植物は</text>
+  <text x="470" y="324" font-size="22" fill="#22201c">送らない</text>
+  <use href="#ok" x="442" y="384"/>
+  <text x="470" y="392" font-size="22" fill="#22201c">鉢・道具・本など</text>
+  <text x="470" y="424" font-size="22" fill="#22201c">植物以外を選ぶ</text>
+</svg>

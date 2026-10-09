@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>椿の花芽と葉芽の見分け方と剪定</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <!-- 芽の見分け -->
+  <rect x="20" y="20" width="370" height="340" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="205" y="64" text-anchor="middle" font-size="28" font-weight="700" fill="#22201c">芽の見分け方</text>
+  <path d="M120 256 v-106" stroke="#6f5439" stroke-width="10" stroke-linecap="round"/>
+  <ellipse cx="120" cy="132" rx="20" ry="26" fill="#5b7f4a"/>
+  <path d="M120 230 q-50 -10 -64 -50 q40 0 64 50" fill="#1f4a3a"/>
+  <path d="M290 256 v-106" stroke="#6f5439" stroke-width="10" stroke-linecap="round"/>
+  <path d="M290 150 q-10 -20 0 -50 q10 30 0 50" fill="#5b7f4a"/>
+  <path d="M290 230 q50 -10 64 -50 q-40 0 -64 50" fill="#1f4a3a"/>
+  <text x="120" y="290" text-anchor="middle" font-size="23" font-weight="700" fill="#b8935a">花芽</text>
+  <text x="120" y="324" text-anchor="middle" font-size="21" fill="#22201c">丸く太い</text>
+  <text x="290" y="290" text-anchor="middle" font-size="23" font-weight="700" fill="#5b7f4a">葉芽</text>
+  <text x="290" y="324" text-anchor="middle" font-size="21" fill="#22201c">細くとがる</text>
+  <!-- 剪定位置 -->
+  <rect x="410" y="20" width="370" height="340" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="595" y="64" text-anchor="middle" font-size="28" font-weight="700" fill="#22201c">花後すぐに切る</text>
+  <path d="M460 250 q40 -50 120 -90 q60 -30 140 -44" stroke="#6f5439" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M550 176 q-6 -20 4 -40 q8 22 -4 40" fill="#5b7f4a"/>
+  <path d="M520 206 q-40 0 -56 -30 q36 -6 56 30" fill="#1f4a3a"/>
+  <path d="M640 140 q20 -30 60 -30 q-20 30 -60 30" fill="#1f4a3a"/>
+  <line x1="586" y1="118" x2="610" y2="166" stroke="#8b6b4a" stroke-width="4" stroke-dasharray="6 5"/>
+  <g stroke="#8b6b4a" stroke-width="4" stroke-linecap="round"><path d="M612 112 l14 14"/><path d="M626 112 l-14 14"/></g>
+  <text x="595" y="290" text-anchor="middle" font-size="22" fill="#22201c">残す葉芽の少し上で</text>
+  <text x="595" y="324" text-anchor="middle" font-size="22" fill="#22201c">切り戻す</text>
+  <rect x="20" y="378" width="760" height="72" rx="14" fill="#f3f0ea" stroke="#8b6b4a" stroke-width="2"/>
+  <text x="400" y="424" text-anchor="middle" font-size="25" fill="#22201c">夏以降に枝先を切る → 翌年の花芽がなくなる</text>
+</svg>

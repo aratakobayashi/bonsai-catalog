@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>桜の花芽と葉芽の見分け方：丸くふっくらしたのが花芽、細くとがったのが葉芽</title>
+  <rect width="800" height="440" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="28" font-weight="700" fill="#1a365d">冬の枝で見る、花芽と葉芽</text>
+
+  <!-- 枝 -->
+  <path d="M60 250 C 220 236, 520 236, 740 220" stroke="#6f5439" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <!-- 花芽（丸い） -->
+  <g fill="#8b6b4a" stroke="#6f5439" stroke-width="2">
+    <ellipse cx="200" cy="214" rx="16" ry="20"/><ellipse cx="236" cy="216" rx="15" ry="19"/>
+    <ellipse cx="420" cy="212" rx="16" ry="20"/><ellipse cx="456" cy="212" rx="15" ry="19"/>
+  </g>
+  <!-- 葉芽（細い） -->
+  <g fill="#5b7f4a" stroke="#3f5a33" stroke-width="2">
+    <path d="M318 238 C 310 222, 314 204, 322 190 C 330 204, 332 222, 326 238 Z"/>
+    <path d="M598 230 C 590 214, 594 196, 602 182 C 610 196, 612 214, 606 230 Z"/>
+    <path d="M722 222 C 714 206, 718 188, 726 174 C 734 188, 736 206, 730 222 Z"/>
+  </g>
+
+  <!-- ラベル -->
+  <rect x="80" y="290" width="300" height="120" rx="14" fill="#fff" stroke="#c77d92" stroke-width="3"/>
+  <ellipse cx="124" cy="350" rx="16" ry="20" fill="#8b6b4a"/>
+  <text x="156" y="336" font-size="25" font-weight="700" fill="#22201c">花芽</text>
+  <text x="156" y="372" font-size="22" fill="#22201c">丸くふっくら</text>
+  <text x="156" y="398" font-size="22" fill="#6b655b">数個ずつ集まる</text>
+
+  <rect x="420" y="290" width="300" height="120" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <path d="M460 368 C 452 352, 456 334, 464 320 C 472 334, 474 352, 468 368 Z" fill="#5b7f4a"/>
+  <text x="496" y="336" font-size="25" font-weight="700" fill="#22201c">葉芽</text>
+  <text x="496" y="372" font-size="22" fill="#22201c">細くとがる</text>
+  <text x="496" y="398" font-size="22" fill="#6b655b">枝先や単独でつく</text>
+
+  <line x1="218" y1="236" x2="200" y2="290" stroke="#c77d92" stroke-width="2" stroke-dasharray="6 5"/>
+  <line x1="322" y1="240" x2="470" y2="290" stroke="#5b7f4a" stroke-width="2" stroke-dasharray="6 5"/>
+</svg>

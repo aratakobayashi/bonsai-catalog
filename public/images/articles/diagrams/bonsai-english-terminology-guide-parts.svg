@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽の部位の英語と日本語</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">部位の英語</text>
+  <rect x="250" y="440" width="300" height="10" rx="3" fill="#ebe7df"/>
+  <path d="M262 380 h276 l-16 58 h-244 z" fill="#1a365d"/>
+  <rect x="256" y="372" width="288" height="12" rx="3" fill="#2c4a75"/>
+  <path d="M330 374 q40 -10 50 -60 C392 260 350 220 384 160 L404 160 C384 220 430 262 420 314 q6 50 52 60 z" fill="#6f5439"/>
+  <path d="M384 210 q-60 -10 -110 -6" stroke="#6f5439" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <path d="M410 180 q60 -14 110 -4" stroke="#6f5439" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <ellipse cx="262" cy="196" rx="70" ry="26" fill="#5b7f4a"/>
+  <ellipse cx="528" cy="168" rx="66" ry="24" fill="#5b7f4a"/>
+  <ellipse cx="396" cy="112" rx="72" ry="34" fill="#5b7f4a"/>
+  <ellipse cx="330" cy="136" rx="46" ry="18" fill="#5b7f4a"/>
+  <line x1="592" y1="78" x2="430" y2="92" stroke="#b8935a" stroke-width="2.5"/>
+  <circle cx="430" cy="92" r="5" fill="#b8935a"/>
+  <text x="600" y="80" font-size="24" font-weight="700" fill="#1a365d">Apex</text>
+  <text x="600" y="108" font-size="22" fill="#22201c">頭</text>
+  <line x1="592" y1="228" x2="560" y2="182" stroke="#b8935a" stroke-width="2.5"/>
+  <circle cx="560" cy="182" r="5" fill="#b8935a"/>
+  <text x="600" y="230" font-size="24" font-weight="700" fill="#1a365d">Foliage pad</text>
+  <text x="600" y="258" font-size="22" fill="#22201c">枝葉の塊</text>
+  <line x1="180" y1="254" x2="300" y2="208" stroke="#b8935a" stroke-width="2.5"/>
+  <circle cx="300" cy="208" r="5" fill="#b8935a"/>
+  <text x="30" y="256" font-size="24" font-weight="700" fill="#1a365d">Branch</text>
+  <text x="30" y="284" font-size="22" fill="#22201c">枝</text>
+  <line x1="180" y1="322" x2="388" y2="260" stroke="#b8935a" stroke-width="2.5"/>
+  <circle cx="388" cy="260" r="5" fill="#b8935a"/>
+  <text x="30" y="324" font-size="24" font-weight="700" fill="#1a365d">Trunk</text>
+  <text x="30" y="352" font-size="22" fill="#22201c">幹</text>
+  <line x1="592" y1="322" x2="450" y2="368" stroke="#b8935a" stroke-width="2.5"/>
+  <circle cx="450" cy="368" r="5" fill="#b8935a"/>
+  <text x="600" y="324" font-size="24" font-weight="700" fill="#1a365d">Nebari</text>
+  <text x="600" y="352" font-size="22" fill="#22201c">根張り</text>
+  <line x1="592" y1="410" x2="520" y2="410" stroke="#b8935a" stroke-width="2.5"/>
+  <circle cx="520" cy="410" r="5" fill="#b8935a"/>
+  <text x="600" y="412" font-size="24" font-weight="700" fill="#1a365d">Pot</text>
+  <text x="600" y="440" font-size="22" fill="#22201c">鉢</text>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 536" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>長寿梅の枝の切り方。花芽を含む2〜3芽を残して、その先を切る</title>
+<defs>
+  <g id="tree"><path d="M-40 0 h80 l-9 26 h-62 z" fill="#8b6b4a"/><path d="M0 0 q-6 -30 4 -56" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="2" cy="-62" rx="34" ry="20" fill="#5b7f4a"/><ellipse cx="-24" cy="-40" rx="20" ry="12" fill="#5b7f4a"/><ellipse cx="28" cy="-38" rx="20" ry="12" fill="#5b7f4a"/></g>
+  <g id="ok"><circle r="15" fill="none" stroke="#5b7f4a" stroke-width="5"/></g>
+  <g id="ng"><g stroke="#8b6b4a" stroke-width="5" stroke-linecap="round"><line x1="-13" y1="-13" x2="13" y2="13"/><line x1="13" y1="-13" x2="-13" y2="13"/></g></g>
+  <g id="tri"><path d="M0 -15 L15 12 H-15 Z" fill="none" stroke="#b8935a" stroke-width="5" stroke-linejoin="round"/></g>
+  <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#6b655b"/></marker>
+</defs>
+  <rect width="800" height="536" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">伸びた枝の切り方</text>
+  <path d="M60 300 C 200 290, 380 250, 720 170" stroke="#6f5439" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <circle cx="150" cy="274" r="13" fill="#c0392b"/>
+  <circle cx="240" cy="262" r="13" fill="#c0392b"/>
+  <circle cx="330" cy="244" r="13" fill="#c0392b"/>
+  <path d="M434 230 q6 -26 12 0 z" fill="#5b7f4a"/>
+  <path d="M534 206 q6 -26 12 0 z" fill="#5b7f4a"/>
+  <path d="M634 184 q6 -26 12 0 z" fill="#5b7f4a"/>
+  <line x1="385" y1="200" x2="400" y2="300" stroke="#1a365d" stroke-width="4" stroke-dasharray="10 7"/>
+  <text x="392" y="190" font-size="24" text-anchor="middle" font-weight="700" fill="#1a365d">ここで切る</text>
+  <path d="M60 360 h330" stroke="#5b7f4a" stroke-width="5"/>
+  <text x="225" y="395" font-size="24" text-anchor="middle" font-weight="700" fill="#5b7f4a">残す（2〜3芽）</text>
+  <path d="M405 360 h330" stroke="#8b6b4a" stroke-width="5" stroke-dasharray="10 7"/>
+  <text x="570" y="395" font-size="24" text-anchor="middle" font-weight="700" fill="#8b6b4a">切り落とす</text>
+  <rect x="20" y="420" width="370" height="96" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="58" cy="468" r="13" fill="#c0392b"/>
+  <text x="86" y="460" font-size="22" fill="#22201c">花芽：ふっくら丸い</text>
+  <text x="86" y="492" font-size="22" fill="#22201c">短い枝のつけ根に多い</text>
+  <rect x="410" y="420" width="370" height="96" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <path d="M442 480 q6 -26 12 0 z" fill="#5b7f4a"/>
+  <text x="476" y="460" font-size="22" fill="#22201c">葉芽：細くとがる</text>
+  <text x="476" y="492" font-size="22" fill="#22201c">長く伸びた枝の先に多い</text>
+</svg>

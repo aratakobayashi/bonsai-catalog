@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>価格帯ごとの違い。手頃なものは若い苗や小さな鉢が中心で育てる楽しみが大きい。中くらいのものは形が整い始め鉢も選ばれている。高めのものは長く仕立てられた樹で管理にも経験がいる</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">価格帯ごとの違い</text>
+
+  <g>
+    <rect x="20" y="70" width="244" height="390" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+    <text x="142" y="112" text-anchor="middle" font-size="26" font-weight="700" fill="#22201c">手頃</text>
+    <path d="M118 196 h48 l-5 -16 h-38 z" fill="#8b6b4a"/>
+    <path d="M142 182 v-30" stroke="#6f5439" stroke-width="4"/>
+    <ellipse cx="142" cy="150" rx="22" ry="12" fill="#5b7f4a"/>
+    <g font-size="22" fill="#22201c">
+      <text x="40" y="250">・若い苗や小さな鉢</text>
+      <text x="40" y="288">・これから形を作る</text>
+      <text x="40" y="326">・練習にも向く</text>
+    </g>
+    <text x="142" y="430" text-anchor="middle" font-size="22" font-weight="700" fill="#5b7f4a">はじめての一鉢</text>
+  </g>
+  <g>
+    <rect x="278" y="70" width="244" height="390" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <text x="400" y="112" text-anchor="middle" font-size="26" font-weight="700" fill="#22201c">中くらい</text>
+    <path d="M362 200 h76 l-7 -20 h-62 z" fill="#8b6b4a"/>
+    <path d="M400 182 q-8 -24 2 -44" stroke="#6f5439" stroke-width="6" fill="none"/>
+    <ellipse cx="386" cy="160" rx="26" ry="12" fill="#5b7f4a"/><ellipse cx="414" cy="138" rx="28" ry="13" fill="#5b7f4a"/>
+    <g font-size="22" fill="#22201c">
+      <text x="298" y="250">・形が整い始めた樹</text>
+      <text x="298" y="288">・鉢との釣り合い</text>
+      <text x="298" y="326">・贈り物にも向く</text>
+    </g>
+    <text x="400" y="430" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">飾って楽しむ</text>
+  </g>
+  <g>
+    <rect x="536" y="70" width="244" height="390" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <text x="658" y="112" text-anchor="middle" font-size="26" font-weight="700" fill="#22201c">高め</text>
+    <g transform="translate(0 24)"><path d="M606 204 h104 l-9 -22 h-86 z" fill="#8b6b4a"/>
+    <path d="M656 184 q-16 -30 4 -60" stroke="#6f5439" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="630" cy="156" rx="30" ry="13" fill="#5b7f4a"/><ellipse cx="690" cy="140" rx="32" ry="13" fill="#5b7f4a"/><ellipse cx="660" cy="118" rx="28" ry="12" fill="#5b7f4a"/></g>
+    <g font-size="22" fill="#22201c">
+      <text x="556" y="250">・長年仕立てた樹</text>
+      <text x="556" y="288">・幹に古さがある</text>
+      <text x="556" y="326">・管理に経験がいる</text>
+    </g>
+    <text x="658" y="430" text-anchor="middle" font-size="22" font-weight="700" fill="#8b6b4a">慣れてから</text>
+  </g>
+</svg>

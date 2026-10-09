@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>冬の置き場所の目安</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">冬の置き場所の目安</text>
+  <!-- 屋外 -->
+  <rect x="20" y="74" width="244" height="376" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="74" width="244" height="56" rx="14" fill="#5b7f4a"/><rect x="20" y="112" width="244" height="18" fill="#5b7f4a"/>
+  <text x="142" y="112" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">屋外の棚</text>
+  <path d="M100 248 h84 l-8 24 h-68 z" fill="#8b6b4a"/>
+  <path d="M142 248 q-8 -30 4 -56" stroke="#6f5439" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <ellipse cx="150" cy="186" rx="48" ry="16" fill="#1f4a3a"/><ellipse cx="118" cy="214" rx="30" ry="11" fill="#1f4a3a"/><ellipse cx="174" cy="220" rx="26" ry="10" fill="#1f4a3a"/>
+  <text x="142" y="330" text-anchor="middle" font-size="23" fill="#22201c">黒松・五葉松</text>
+  <text x="142" y="364" text-anchor="middle" font-size="23" fill="#22201c">真柏など</text>
+  <text x="142" y="414" text-anchor="middle" font-size="21" fill="#5b7f4a" font-weight="700">寒さに強い</text>
+  <!-- 軒下 -->
+  <rect x="278" y="74" width="244" height="376" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="278" y="74" width="244" height="56" rx="14" fill="#b8935a"/><rect x="278" y="112" width="244" height="18" fill="#b8935a"/>
+  <text x="400" y="112" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">軒下・棚の下</text>
+  <path d="M300 158 h200 l-20 22 h-160 z" fill="#8b6b4a"/>
+  <path d="M370 262 h60 l-6 18 h-48 z" fill="#8b6b4a"/>
+  <g stroke="#6f5439" stroke-width="4" fill="none" stroke-linecap="round"><path d="M400 262 v-50"/><path d="M400 236 l-22 -18"/><path d="M400 228 l20 -20"/></g>
+  <text x="400" y="330" text-anchor="middle" font-size="23" fill="#22201c">ミニ盆栽</text>
+  <text x="400" y="364" text-anchor="middle" font-size="23" fill="#22201c">小鉢の雑木・花もの</text>
+  <text x="400" y="414" text-anchor="middle" font-size="21" fill="#8b6b4a" font-weight="700">霜と寒風を避ける</text>
+  <!-- 室内 -->
+  <rect x="536" y="74" width="244" height="376" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="536" y="74" width="244" height="56" rx="14" fill="#1a365d"/><rect x="536" y="112" width="244" height="18" fill="#1a365d"/>
+  <text x="658" y="112" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">室内の窓辺</text>
+  <rect x="590" y="154" width="136" height="96" fill="#eef3f7" stroke="#8b6b4a" stroke-width="4"/>
+  <line x1="658" y1="154" x2="658" y2="250" stroke="#8b6b4a" stroke-width="4"/>
+  <rect x="580" y="250" width="156" height="10" fill="#8b6b4a"/>
+  <path d="M636 250 h44 l-5 -18 h-34 z" fill="#8b6b4a"/>
+  <ellipse cx="658" cy="214" rx="26" ry="16" fill="#5b7f4a"/>
+  <text x="658" y="330" text-anchor="middle" font-size="23" fill="#22201c">ガジュマルなど</text>
+  <text x="658" y="364" text-anchor="middle" font-size="23" fill="#22201c">暖かい地域の樹</text>
+  <text x="658" y="414" text-anchor="middle" font-size="21" fill="#1a365d" font-weight="700">寒さに弱い</text>
+</svg>

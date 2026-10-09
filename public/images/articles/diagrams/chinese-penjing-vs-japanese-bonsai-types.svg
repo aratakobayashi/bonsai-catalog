@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆景の三つの種類</title>
+  <rect width="800" height="440" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">盆景の三つの種類</text>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="70" width="240" height="350" rx="14"/>
+    <rect x="280" y="70" width="240" height="350" rx="14"/>
+    <rect x="540" y="70" width="240" height="350" rx="14"/>
+  </g>
+
+  <!-- 樹木盆景 -->
+  <path d="M70 300 h140 l-14 26 h-112 z" fill="#8b6b4a"/>
+  <path d="M132 300 Q120 260 146 230 Q164 206 140 180" stroke="#6f5439" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <ellipse cx="104" cy="210" rx="44" ry="20" fill="#5b7f4a"/>
+  <ellipse cx="180" cy="196" rx="40" ry="18" fill="#5b7f4a"/>
+  <ellipse cx="140" cy="158" rx="40" ry="20" fill="#5b7f4a"/>
+  <text x="140" y="370" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">樹木盆景</text>
+  <text x="140" y="402" text-anchor="middle" font-size="22" fill="#6b655b">樹が中心</text>
+
+  <!-- 山水盆景 -->
+  <rect x="300" y="300" width="200" height="22" rx="4" fill="#f3f0ea" stroke="#8b6b4a" stroke-width="3"/>
+  <rect x="304" y="292" width="192" height="10" fill="#9fb8cc"/>
+  <path d="M330 296 L360 170 L384 214 L404 140 L438 296 Z" fill="#8a8578"/>
+  <path d="M440 296 L458 236 L476 296 Z" fill="#a39e90"/>
+  <path d="M396 150 q8 -10 16 0" stroke="#5b7f4a" stroke-width="5" fill="none"/>
+  <text x="400" y="370" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">山水盆景</text>
+  <text x="400" y="402" text-anchor="middle" font-size="22" fill="#6b655b">石と水が中心</text>
+
+  <!-- 水旱盆景 -->
+  <rect x="560" y="300" width="200" height="22" rx="4" fill="#f3f0ea" stroke="#8b6b4a" stroke-width="3"/>
+  <rect x="660" y="292" width="96" height="10" fill="#9fb8cc"/>
+  <path d="M564 300 Q600 270 664 292 L664 300 Z" fill="#8b6b4a"/>
+  <path d="M640 296 L656 260 L676 296 Z" fill="#8a8578"/>
+  <path d="M596 290 Q592 240 604 210" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <ellipse cx="604" cy="204" rx="36" ry="18" fill="#5b7f4a"/>
+  <path d="M626 288 Q628 256 636 236" stroke="#6f5439" stroke-width="4" fill="none"/>
+  <ellipse cx="638" cy="232" rx="20" ry="11" fill="#5b7f4a"/>
+  <path d="M700 290 l22 0 l-6 6 l-12 0 z" fill="#22201c"/>
+  <text x="660" y="370" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">水旱盆景</text>
+  <text x="660" y="402" text-anchor="middle" font-size="22" fill="#6b655b">樹・石・水辺</text>
+</svg>

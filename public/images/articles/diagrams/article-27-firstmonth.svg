@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 448" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽が届いてからの1か月。届いた日は半日陰で休ませて水やり、数日後から日当たりのよい屋外の棚へ、梅雨明けからは水切れと西日に注意</title>
+  <rect width="800" height="448" fill="#faf9f6"/>
+  <text x="400" y="48" font-size="30" font-weight="700" fill="#1a365d" text-anchor="middle">届いてからの1か月</text>
+  <rect x="20" y="76" width="248" height="270" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="76" width="248" height="56" rx="16" fill="#1a365d"/><rect x="20" y="110" width="248" height="22" fill="#1a365d"/>  <text x="144" y="114" font-size="26" font-weight="700" fill="#faf9f6" text-anchor="middle">届いた日</text>
+  <text x="144" y="200" font-size="24" font-weight="700" fill="#22201c" text-anchor="middle">半日陰で休ませる</text>
+  <text x="144" y="250" font-size="22" fill="#6b655b" text-anchor="middle">箱から出して水やり</text>
+  <path d="M270 220 l14 -10 v20 z" fill="#b8935a"/>
+  <rect x="276" y="76" width="248" height="270" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="276" y="76" width="248" height="56" rx="16" fill="#1a365d"/><rect x="276" y="110" width="248" height="22" fill="#1a365d"/>  <text x="400" y="114" font-size="26" font-weight="700" fill="#faf9f6" text-anchor="middle">数日後から</text>
+  <text x="400" y="200" font-size="24" font-weight="700" fill="#22201c" text-anchor="middle">日なたの屋外へ</text>
+  <text x="400" y="250" font-size="22" fill="#6b655b" text-anchor="middle">棚の上・風通しよく</text>
+  <path d="M526 220 l14 -10 v20 z" fill="#b8935a"/>
+  <rect x="532" y="76" width="248" height="270" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="532" y="76" width="248" height="56" rx="16" fill="#1a365d"/><rect x="532" y="110" width="248" height="22" fill="#1a365d"/>  <text x="656" y="114" font-size="26" font-weight="700" fill="#faf9f6" text-anchor="middle">梅雨明け</text>
+  <text x="656" y="200" font-size="24" font-weight="700" fill="#22201c" text-anchor="middle">水切れと西日に注意</text>
+  <text x="656" y="250" font-size="22" fill="#6b655b" text-anchor="middle">朝夕に土を見る</text>
+  <rect x="20" y="366" width="760" height="62" rx="14" fill="#1a365d"/>
+  <text x="400" y="406.36" font-size="26" font-weight="700" fill="#faf9f6" text-anchor="middle">室内に飾るのは2〜3日まで。ふだんは屋外で</text>
+
+</svg>

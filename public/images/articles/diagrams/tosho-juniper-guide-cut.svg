@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>杜松の芽切り：葉のある所で切り、葉のない所まで切り戻さない</title>
+  <defs>
+    <g id="nd" stroke="#5b7f4a" stroke-width="3" stroke-linecap="round">
+      <line x1="0" y1="0" x2="-14" y2="-12"/><line x1="0" y1="0" x2="14" y2="-12"/><line x1="0" y1="0" x2="0" y2="-17"/>
+    </g>
+    <g id="ndl" stroke="#8fb07a" stroke-width="3" stroke-linecap="round">
+      <line x1="0" y1="0" x2="-12" y2="-10"/><line x1="0" y1="0" x2="12" y2="-10"/><line x1="0" y1="0" x2="0" y2="-15"/>
+    </g>
+  </defs>
+  <rect width="800" height="480" fill="#faf9f6"/>
+
+  <!-- ① 伸びた枝 -->
+  <rect x="20" y="20" width="244" height="440" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="142" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">① 芽が伸びる</text>
+  <line x1="142" y1="400" x2="142" y2="120" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+  <use href="#nd" transform="translate(142 370)"/><use href="#nd" transform="translate(142 340)"/>
+  <use href="#nd" transform="translate(142 310)"/><use href="#nd" transform="translate(142 280)"/>
+  <use href="#ndl" transform="translate(142 245)"/><use href="#ndl" transform="translate(142 210)"/>
+  <use href="#ndl" transform="translate(142 175)"/><use href="#ndl" transform="translate(142 140)"/>
+  <text x="142" y="438" text-anchor="middle" font-size="22" fill="#6b655b">淡い色が今年の芽</text>
+
+  <!-- ② 切る位置 -->
+  <rect x="278" y="20" width="244" height="440" rx="14" fill="#fff" stroke="#b8935a" stroke-width="3"/>
+  <text x="400" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">② 葉を残して切る</text>
+  <line x1="400" y1="400" x2="400" y2="232" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+  <line x1="400" y1="222" x2="400" y2="120" stroke="#6f5439" stroke-width="5" stroke-linecap="round" opacity="0.3"/>
+  <use href="#nd" transform="translate(400 370)"/><use href="#nd" transform="translate(400 340)"/>
+  <use href="#nd" transform="translate(400 310)"/><use href="#nd" transform="translate(400 280)"/>
+  <use href="#ndl" transform="translate(400 245)"/>
+  <g opacity="0.3"><use href="#ndl" transform="translate(400 210)"/><use href="#ndl" transform="translate(400 175)"/><use href="#ndl" transform="translate(400 140)"/></g>
+  <line x1="340" y1="228" x2="460" y2="228" stroke="#b8935a" stroke-width="4" stroke-dasharray="10 6"/>
+  <text x="400" y="110" text-anchor="middle" font-size="22" font-weight="700" fill="#b8935a">ハサミで切る</text>
+  <text x="400" y="438" text-anchor="middle" font-size="22" fill="#1a365d">葉のある所で切る</text>
+
+  <!-- ③ 悪い例 -->
+  <rect x="536" y="20" width="244" height="440" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="658" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#b4573a">× 葉まで全部切る</text>
+  <line x1="658" y1="400" x2="658" y2="250" stroke="#8b6b4a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="636" y1="258" x2="680" y2="258" stroke="#b4573a" stroke-width="4" stroke-dasharray="10 6"/>
+  <g stroke="#b4573a" stroke-width="5" stroke-linecap="round">
+    <line x1="618" y1="300" x2="698" y2="380"/><line x1="698" y1="300" x2="618" y2="380"/>
+  </g>
+  <text x="658" y="438" text-anchor="middle" font-size="22" fill="#b4573a">芽が出ず枝が枯れる</text>
+</svg>

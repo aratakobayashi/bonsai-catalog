@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 506" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽園に出かける前に確かめること</title>
+  <rect width="800" height="506" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">出かける前に確かめること</text>
+  <rect x="30" y="80" width="740" height="64" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="72" cy="112" r="20" fill="#1a365d"/>
+  <text x="72" y="120" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">1</text>
+  <text x="108" y="121" font-size="26" font-weight="700" fill="#22201c">見学できる園か</text>
+  <text x="760" y="120" text-anchor="end" font-size="22" fill="#5b7f4a">販売のみの園も</text>
+  <path d="M72 146 v12" stroke="#b8935a" stroke-width="5" stroke-linecap="round"/><path d="M63 150 l9 9 l9 -9" fill="none" stroke="#b8935a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="30" y="164" width="740" height="64" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="72" cy="196" r="20" fill="#1a365d"/>
+  <text x="72" y="204" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">2</text>
+  <text x="108" y="205" font-size="26" font-weight="700" fill="#22201c">休みの日と時間</text>
+  <text x="760" y="204" text-anchor="end" font-size="22" fill="#5b7f4a">季節で変わることも</text>
+  <path d="M72 230 v12" stroke="#b8935a" stroke-width="5" stroke-linecap="round"/><path d="M63 234 l9 9 l9 -9" fill="none" stroke="#b8935a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="30" y="248" width="740" height="64" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="72" cy="280" r="20" fill="#1a365d"/>
+  <text x="72" y="288" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">3</text>
+  <text x="108" y="289" font-size="26" font-weight="700" fill="#22201c">予約が要るか</text>
+  <text x="760" y="288" text-anchor="end" font-size="22" fill="#5b7f4a">団体は特に</text>
+  <path d="M72 314 v12" stroke="#b8935a" stroke-width="5" stroke-linecap="round"/><path d="M63 318 l9 9 l9 -9" fill="none" stroke="#b8935a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="30" y="332" width="740" height="64" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="72" cy="364" r="20" fill="#1a365d"/>
+  <text x="72" y="372" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">4</text>
+  <text x="108" y="373" font-size="26" font-weight="700" fill="#22201c">交通と駐車場</text>
+  <text x="760" y="372" text-anchor="end" font-size="22" fill="#5b7f4a">住宅地の園が多い</text>
+  <path d="M72 398 v12" stroke="#b8935a" stroke-width="5" stroke-linecap="round"/><path d="M63 402 l9 9 l9 -9" fill="none" stroke="#b8935a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="30" y="416" width="740" height="64" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="72" cy="448" r="20" fill="#1a365d"/>
+  <text x="72" y="456" text-anchor="middle" font-size="22" font-weight="700" fill="#faf9f6">5</text>
+  <text x="108" y="457" font-size="26" font-weight="700" fill="#22201c">買ったときの運び方</text>
+  <text x="760" y="456" text-anchor="end" font-size="22" fill="#5b7f4a">箱・車の場所</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽を買うときのチェック</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">買うときのチェック</text>
+  <!-- tree in center-left -->
+  <rect x="20" y="74" width="300" height="376" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <path d="M90 330 h160 l-14 34 h-132 z" fill="#8b6b4a"/>
+  <rect x="96" y="322" width="148" height="10" fill="#7a9a5a"/>
+  <path d="M170 324 q-14 -50 6 -100 q10 -24 -6 -50" stroke="#6f5439" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <ellipse cx="190" cy="170" rx="66" ry="26" fill="#5b7f4a"/><ellipse cx="118" cy="226" rx="44" ry="18" fill="#5b7f4a"/><ellipse cx="236" cy="240" rx="40" ry="16" fill="#5b7f4a"/>
+  <g fill="#b8935a" font-size="20" font-weight="700" text-anchor="middle">
+    <circle cx="262" cy="150" r="17"/><circle cx="56" cy="214" r="17"/><circle cx="58" cy="318" r="17"/><circle cx="196" cy="300" r="17"/><circle cx="170" cy="400" r="17"/>
+  </g>
+  <g fill="#fff" font-size="20" font-weight="700" text-anchor="middle">
+    <text x="262" y="157">1</text><text x="56" y="221">4</text><text x="58" y="325">2</text><text x="196" y="307">3</text><text x="170" y="407">5</text>
+  </g>
+  <!-- list -->
+  <g font-size="23" fill="#22201c">
+    <rect x="340" y="74" width="440" height="66" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <circle cx="372" cy="107" r="17" fill="#b8935a"/><text x="372" y="114" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">1</text>
+    <text x="402" y="115">葉の色つや・枯れ枝</text>
+    <rect x="340" y="150" width="440" height="66" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <circle cx="372" cy="183" r="17" fill="#b8935a"/><text x="372" y="190" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">2</text>
+    <text x="402" y="191">土の乾き・カビ</text>
+    <rect x="340" y="226" width="440" height="66" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <circle cx="372" cy="259" r="17" fill="#b8935a"/><text x="372" y="266" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">3</text>
+    <text x="402" y="267">根元がぐらつかない</text>
+    <rect x="340" y="302" width="440" height="66" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <circle cx="372" cy="335" r="17" fill="#b8935a"/><text x="372" y="342" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">4</text>
+    <text x="402" y="343">葉の裏や枝に虫がいない</text>
+    <rect x="340" y="378" width="440" height="66" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+    <circle cx="372" cy="411" r="17" fill="#b8935a"/><text x="372" y="418" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">5</text>
+    <text x="402" y="419">鉢底から根が出ていない</text>
+  </g>
+</svg>

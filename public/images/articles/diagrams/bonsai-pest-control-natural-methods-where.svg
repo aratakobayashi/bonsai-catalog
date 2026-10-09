@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽の害虫が見つかりやすい場所。アブラムシは新芽、ハダニは葉の裏、カイガラムシは枝や幹、ケムシは葉、ナメクジやアリは鉢底や土</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">虫が見つかりやすい場所</text>
+  <path d="M80 400 h260 l-20 50 h-220 z" fill="#8b6b4a"/><rect x="72" y="392" width="276" height="14" rx="4" fill="#6f5439"/>
+  <path d="M196 394 q-10 -80 8 -150 q12 -50 2 -100 l18 0 q14 52 0 104 q-14 70 0 146 z" fill="#6f5439"/>
+  <path d="M206 270 q-50 -10 -100 -2" stroke="#6f5439" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M214 210 q50 -12 96 -2" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <ellipse cx="100" cy="258" rx="60" ry="26" fill="#5b7f4a"/>
+  <ellipse cx="312" cy="198" rx="58" ry="26" fill="#5b7f4a"/>
+  <ellipse cx="214" cy="124" rx="72" ry="34" fill="#5b7f4a"/>
+  <path d="M214 92 q6 -18 0 -30" stroke="#8fae78" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <circle cx="214" cy="70" r="7" fill="#b8935a"/>
+  <path d="M214 70 L430 88 H446" stroke="#b8935a" stroke-width="2.5" fill="none"/>
+  <text x="456" y="96" font-size="24" font-weight="700" fill="#22201c">アブラムシ</text>
+  <text x="456" y="126" font-size="22" fill="#6b655b">新芽・若い葉</text>
+  <circle cx="272" cy="116" r="7" fill="#b8935a"/>
+  <path d="M272 116 L430 168 H446" stroke="#b8935a" stroke-width="2.5" fill="none"/>
+  <text x="456" y="176" font-size="24" font-weight="700" fill="#22201c">ケムシ・イモムシ</text>
+  <text x="456" y="206" font-size="22" fill="#6b655b">葉を食べる</text>
+  <circle cx="350" cy="210" r="7" fill="#b8935a"/>
+  <path d="M350 210 L430 248 H446" stroke="#b8935a" stroke-width="2.5" fill="none"/>
+  <text x="456" y="256" font-size="24" font-weight="700" fill="#22201c">ハダニ</text>
+  <text x="456" y="286" font-size="22" fill="#6b655b">葉の裏</text>
+  <circle cx="214" cy="300" r="7" fill="#b8935a"/>
+  <path d="M214 300 L430 328 H446" stroke="#b8935a" stroke-width="2.5" fill="none"/>
+  <text x="456" y="336" font-size="24" font-weight="700" fill="#22201c">カイガラムシ</text>
+  <text x="456" y="366" font-size="22" fill="#6b655b">枝・幹の付け根</text>
+  <circle cx="300" cy="440" r="7" fill="#b8935a"/>
+  <path d="M300 440 L430 408 H446" stroke="#b8935a" stroke-width="2.5" fill="none"/>
+  <text x="456" y="416" font-size="24" font-weight="700" fill="#22201c">ナメクジ・アリ</text>
+  <text x="456" y="446" font-size="22" fill="#6b655b">鉢底・土の表面</text>
+</svg>

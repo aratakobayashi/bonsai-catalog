@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 392" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽の歴史の大まかな流れ</title>
+  <rect width="800" height="392" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">歴史の大まかな流れ</text>
+  <line x1="40" y1="128" x2="760" y2="128" stroke="#b8935a" stroke-width="5"/>
+  <circle cx="90" cy="128" r="12" fill="#1a365d"/>
+  <text x="90" y="98" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">中国</text>
+  <rect x="15" y="154" width="150" height="170" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="90" y="200" text-anchor="middle" font-size="22" fill="#22201c">盆景が</text>
+  <text x="90" y="240" text-anchor="middle" font-size="22" fill="#22201c">起こりと</text>
+  <text x="90" y="280" text-anchor="middle" font-size="22" fill="#22201c">される</text>
+  <circle cx="245" cy="128" r="12" fill="#1a365d"/>
+  <text x="245" y="98" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">鎌倉〜室町</text>
+  <rect x="170" y="154" width="150" height="170" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="245" y="200" text-anchor="middle" font-size="22" fill="#22201c">絵巻に</text>
+  <text x="245" y="240" text-anchor="middle" font-size="22" fill="#22201c">鉢植えの樹が</text>
+  <text x="245" y="280" text-anchor="middle" font-size="22" fill="#22201c">描かれる</text>
+  <circle cx="400" cy="128" r="12" fill="#1a365d"/>
+  <text x="400" y="98" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">江戸</text>
+  <rect x="325" y="154" width="150" height="170" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="400" y="200" text-anchor="middle" font-size="22" fill="#22201c">武家や町人に</text>
+  <text x="400" y="240" text-anchor="middle" font-size="22" fill="#22201c">鉢植えが</text>
+  <text x="400" y="280" text-anchor="middle" font-size="22" fill="#22201c">広まる</text>
+  <circle cx="555" cy="128" r="12" fill="#1a365d"/>
+  <text x="555" y="98" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">明治〜大正</text>
+  <rect x="480" y="154" width="150" height="170" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="555" y="200" text-anchor="middle" font-size="22" fill="#22201c">盆栽の名が</text>
+  <text x="555" y="240" text-anchor="middle" font-size="22" fill="#22201c">定着、大宮に</text>
+  <text x="555" y="280" text-anchor="middle" font-size="22" fill="#22201c">盆栽村</text>
+  <circle cx="710" cy="128" r="12" fill="#1a365d"/>
+  <text x="710" y="98" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">昭和以降</text>
+  <rect x="635" y="154" width="150" height="170" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="710" y="200" text-anchor="middle" font-size="22" fill="#22201c">海外に</text>
+  <text x="710" y="240" text-anchor="middle" font-size="22" fill="#22201c">広まり</text>
+  <text x="710" y="280" text-anchor="middle" font-size="22" fill="#22201c">BONSAIに</text>
+  <text x="400" y="368" text-anchor="middle" font-size="24" font-weight="700" fill="#5b7f4a">中国の盆景から、日本の盆栽へ</text>
+</svg>

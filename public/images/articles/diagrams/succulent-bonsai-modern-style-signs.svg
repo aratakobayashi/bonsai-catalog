@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>多肉植物の盆栽で見かける3つの不調と原因</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+
+  <!-- 1 元気な株 -->
+  <rect x="20" y="20" width="182" height="440" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <text x="111" y="60" text-anchor="middle" font-size="24" font-weight="700" fill="#5b7f4a">元気な株</text>
+  <path d="M111 300 v-120" stroke="#8b6b4a" stroke-width="7" stroke-linecap="round"/>
+  <path d="M111 240 l-34 -24 M111 210 l30 -22" stroke="#8b6b4a" stroke-width="5" stroke-linecap="round"/>
+  <g fill="#5b7f4a">
+    <ellipse cx="111" cy="168" rx="15" ry="11"/><ellipse cx="90" cy="176" rx="13" ry="9"/><ellipse cx="132" cy="176" rx="13" ry="9"/>
+    <ellipse cx="72" cy="210" rx="13" ry="9"/><ellipse cx="86" cy="204" rx="11" ry="8"/>
+    <ellipse cx="146" cy="184" rx="13" ry="9"/><ellipse cx="132" cy="182" rx="10" ry="7"/>
+  </g>
+  <path d="M60 300 h102 l-10 34 h-82 z" fill="#8b6b4a"/>
+  <text x="111" y="384" text-anchor="middle" font-size="22" fill="#22201c">節が詰まり</text>
+  <text x="111" y="414" text-anchor="middle" font-size="22" fill="#22201c">葉が厚い</text>
+
+  <!-- 2 徒長 -->
+  <rect x="216" y="20" width="182" height="440" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="307" y="60" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">徒長</text>
+  <path d="M307 300 C 305 240, 318 170, 300 96" stroke="#8b6b4a" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <g fill="#8fa77f">
+    <ellipse cx="300" cy="100" rx="10" ry="6"/><ellipse cx="318" cy="150" rx="9" ry="5"/><ellipse cx="296" cy="196" rx="9" ry="5"/><ellipse cx="318" cy="244" rx="9" ry="5"/>
+  </g>
+  <path d="M256 300 h102 l-10 34 h-82 z" fill="#8b6b4a"/>
+  <text x="307" y="384" text-anchor="middle" font-size="22" fill="#22201c">光が足りない</text>
+  <text x="307" y="414" text-anchor="middle" font-size="22" fill="#6b655b">→ 日なたへ</text>
+
+  <!-- 3 腐敗 -->
+  <rect x="412" y="20" width="182" height="440" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="503" y="60" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">根元が黒い</text>
+  <path d="M503 300 v-120" stroke="#8b6b4a" stroke-width="7" stroke-linecap="round"/>
+  <path d="M503 300 v-46" stroke="#22201c" stroke-width="9" stroke-linecap="round"/>
+  <g fill="#9a8f5a">
+    <ellipse cx="503" cy="170" rx="15" ry="9"/><ellipse cx="482" cy="182" rx="13" ry="7"/><ellipse cx="524" cy="182" rx="13" ry="7"/>
+  </g>
+  <path d="M452 300 h102 l-10 34 h-82 z" fill="#8b6b4a"/>
+  <rect x="462" y="304" width="82" height="22" fill="#1a365d" opacity="0.35"/>
+  <text x="503" y="384" text-anchor="middle" font-size="22" fill="#22201c">水が多すぎる</text>
+  <text x="503" y="414" text-anchor="middle" font-size="22" fill="#6b655b">→ 乾かす</text>
+
+  <!-- 4 色あせ -->
+  <rect x="608" y="20" width="172" height="440" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="694" y="60" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">白く焼ける</text>
+  <path d="M694 300 v-120" stroke="#8b6b4a" stroke-width="7" stroke-linecap="round"/>
+  <g fill="#5b7f4a">
+    <ellipse cx="694" cy="170" rx="15" ry="11"/><ellipse cx="673" cy="180" rx="13" ry="9"/><ellipse cx="715" cy="180" rx="13" ry="9"/>
+  </g>
+  <g fill="#e8e1cf">
+    <ellipse cx="694" cy="166" rx="8" ry="5"/><ellipse cx="711" cy="176" rx="6" ry="4"/>
+  </g>
+  <circle cx="752" cy="100" r="16" fill="#b8935a"/>
+  <path d="M648 300 h92 l-9 34 h-74 z" fill="#8b6b4a"/>
+  <text x="694" y="384" text-anchor="middle" font-size="22" fill="#22201c">急な強光</text>
+  <text x="694" y="414" text-anchor="middle" font-size="22" fill="#6b655b">→ 徐々に慣らす</text>
+</svg>

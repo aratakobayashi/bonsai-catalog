@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>寒い地域での盆栽の冬越し</title>
+  <rect width="800" height="440" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">寒い地域の冬越しの例</text>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="70" width="370" height="350" rx="14"/>
+    <rect x="410" y="70" width="370" height="350" rx="14"/>
+  </g>
+
+  <!-- 左：鉢を土に埋める（断面） -->
+  <text x="205" y="110" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">鉢ごと土に埋める</text>
+  <rect x="40" y="250" width="330" height="110" fill="#8b6b4a" fill-opacity="0.35"/>
+  <line x1="40" y1="250" x2="370" y2="250" stroke="#8b6b4a" stroke-width="4"/>
+  <path d="M150 250 h110 l-10 60 h-90 z" fill="#6b655b"/>
+  <path d="M196 250 L204 170" stroke="#6f5439" stroke-width="10" stroke-linecap="round"/>
+  <path d="M204 190 L166 160 M204 186 L246 156 M204 176 L196 140" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+  <g fill="#1a365d"><circle cx="90" cy="150" r="5"/><circle cx="130" cy="186" r="4"/><circle cx="300" cy="140" r="5"/><circle cx="330" cy="196" r="4"/><circle cx="270" cy="210" r="4"/></g>
+  <text x="205" y="394" text-anchor="middle" font-size="22" fill="#22201c">土が根の温度を保つ</text>
+
+  <!-- 右：無加温の小屋 -->
+  <text x="595" y="110" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">無加温の室に入れる</text>
+  <path d="M460 330 L460 210 L595 140 L730 210 L730 330 Z" fill="#f3f0ea" stroke="#22201c" stroke-width="3"/>
+  <line x1="440" y1="330" x2="750" y2="330" stroke="#8b6b4a" stroke-width="4"/>
+  <rect x="490" y="294" width="210" height="10" fill="#8b6b4a"/>
+  <path d="M510 294 h44 l-5 -18 h-34 z" fill="#6b655b"/><path d="M574 294 h44 l-5 -18 h-34 z" fill="#6b655b"/><path d="M638 294 h44 l-5 -18 h-34 z" fill="#6b655b"/>
+  <g stroke="#6f5439" stroke-width="4" stroke-linecap="round"><line x1="532" y1="276" x2="532" y2="246"/><line x1="596" y1="276" x2="596" y2="240"/><line x1="660" y1="276" x2="660" y2="248"/></g>
+  <text x="595" y="372" text-anchor="middle" font-size="22" fill="#22201c">凍らせないが</text>
+  <text x="595" y="400" text-anchor="middle" font-size="22" fill="#22201c">暖めすぎない</text>
+</svg>

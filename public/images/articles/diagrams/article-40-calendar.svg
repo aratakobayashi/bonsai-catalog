@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 612" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>藤の盆栽の年間作業カレンダー</title>
+  <rect width="800" height="612" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">藤の一年の作業</text>
+  <text x="780" y="44" text-anchor="end" font-size="22" fill="#6b655b">関東の平地の目安</text>
+  <text x="20" y="94" font-size="22" fill="#6b655b">月</text>
+  <text x="205.4" y="94" text-anchor="middle" font-size="22" fill="#22201c">1</text>
+  <text x="256.2" y="94" text-anchor="middle" font-size="22" fill="#22201c">2</text>
+  <text x="307.1" y="94" text-anchor="middle" font-size="22" fill="#22201c">3</text>
+  <text x="357.9" y="94" text-anchor="middle" font-size="22" fill="#22201c">4</text>
+  <text x="408.8" y="94" text-anchor="middle" font-size="22" fill="#22201c">5</text>
+  <text x="459.6" y="94" text-anchor="middle" font-size="22" fill="#22201c">6</text>
+  <text x="510.4" y="94" text-anchor="middle" font-size="22" fill="#22201c">7</text>
+  <text x="561.2" y="94" text-anchor="middle" font-size="22" fill="#22201c">8</text>
+  <text x="612.1" y="94" text-anchor="middle" font-size="22" fill="#22201c">9</text>
+  <text x="662.9" y="94" text-anchor="middle" font-size="22" fill="#22201c">10</text>
+  <text x="713.8" y="94" text-anchor="middle" font-size="22" fill="#22201c">11</text>
+  <text x="764.6" y="94" text-anchor="middle" font-size="22" fill="#22201c">12</text>
+  <rect x="20" y="108" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="164" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="220" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="276" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="332" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="388" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="444" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="500" width="770" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <line x1="180.0" y1="108" x2="180.0" y2="550" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="230.8" y1="108" x2="230.8" y2="550" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="281.7" y1="108" x2="281.7" y2="550" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="332.5" y1="108" x2="332.5" y2="550" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="383.3" y1="108" x2="383.3" y2="550" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="434.2" y1="108" x2="434.2" y2="550" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="485.0" y1="108" x2="485.0" y2="550" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="535.8" y1="108" x2="535.8" y2="550" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="586.7" y1="108" x2="586.7" y2="550" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="637.5" y1="108" x2="637.5" y2="550" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="688.3" y1="108" x2="688.3" y2="550" stroke="#ebe7df" stroke-width="1.5"/>
+  <line x1="739.2" y1="108" x2="739.2" y2="550" stroke="#ebe7df" stroke-width="1.5"/>
+  <text x="34" y="142" font-size="24" font-weight="700" fill="#22201c">開花</text>
+  <rect x="363.0" y="119" width="45.8" height="28" rx="6" fill="#8a6fa8"/>
+  <text x="34" y="198" font-size="24" font-weight="700" fill="#22201c">花がら切り</text>
+  <rect x="383.3" y="175" width="40.7" height="28" rx="6" fill="#1a365d"/>
+  <text x="34" y="254" font-size="24" font-weight="700" fill="#22201c">つるを切る</text>
+  <rect x="434.2" y="231" width="177.9" height="28" rx="6" fill="#1a365d" fill-opacity="0.45"/>
+  <text x="34" y="310" font-size="24" font-weight="700" fill="#22201c">冬の剪定</text>
+  <rect x="739.2" y="287" width="50.8" height="28" rx="6" fill="#1a365d"/>
+  <rect x="180.0" y="287" width="86.4" height="28" rx="6" fill="#1a365d"/>
+  <text x="34" y="366" font-size="24" font-weight="700" fill="#22201c">植え替え</text>
+  <rect x="281.7" y="343" width="40.7" height="28" rx="6" fill="#8b6b4a"/>
+  <text x="34" y="422" font-size="24" font-weight="700" fill="#22201c">肥料</text>
+  <rect x="398.6" y="399" width="50.8" height="28" rx="6" fill="#b8935a"/>
+  <rect x="601.9" y="399" width="66.1" height="28" rx="6" fill="#b8935a"/>
+  <text x="34" y="478" font-size="24" font-weight="700" fill="#22201c">花芽ができる</text>
+  <rect x="464.7" y="455" width="111.8" height="28" rx="6" fill="#5b7f4a" fill-opacity="0.5"/>
+  <text x="34" y="534" font-size="24" font-weight="700" fill="#22201c">水切れ注意</text>
+  <rect x="434.2" y="511" width="177.9" height="28" rx="6" fill="#8aa0bf"/>
+  <text x="20" y="596" font-size="22" fill="#6b655b">薄い色：伸びたつるをその都度切る期間</text>
+</svg>

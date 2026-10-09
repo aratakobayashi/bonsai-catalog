@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>五葉松の古葉取り：秋から冬に、枝の元のほうに残る前年より古い葉を抜き、その年に伸びた葉を残す。枝の内側まで日と風が通るようになる</title>
+  <rect width="800" height="420" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">古葉取り（11〜12月）</text>
+  <defs>
+    <g id="nd2" stroke-width="3" stroke-linecap="round">
+      <line x1="0" y1="0" x2="-14" y2="-26"/><line x1="0" y1="0" x2="-4" y2="-30"/><line x1="0" y1="0" x2="8" y2="-28"/><line x1="0" y1="0" x2="16" y2="-24"/><line x1="0" y1="0" x2="22" y2="-16"/>
+    </g>
+  </defs>
+
+  <rect x="20" y="70" width="372" height="270" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="206" y="108" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">前</text>
+  <line x1="50" y1="260" x2="360" y2="200" stroke="#6f5439" stroke-width="7" stroke-linecap="round"/>
+  <g stroke="#a8925f"><use href="#nd2" transform="translate(90 252)"/><use href="#nd2" transform="translate(140 243)"/><use href="#nd2" transform="translate(190 233)"/><use href="#nd2" transform="translate(110 248) rotate(160)"/><use href="#nd2" transform="translate(170 237) rotate(160)"/></g>
+  <g stroke="#2f5a3a"><use href="#nd2" transform="translate(250 222)"/><use href="#nd2" transform="translate(300 212)"/><use href="#nd2" transform="translate(350 202)"/><use href="#nd2" transform="translate(280 216) rotate(160)"/><use href="#nd2" transform="translate(330 206) rotate(160)"/></g>
+  <text x="140" y="318" text-anchor="middle" font-size="22" fill="#8b6b4a">古い葉</text>
+  <text x="300" y="318" text-anchor="middle" font-size="22" fill="#5b7f4a">今年の葉</text>
+
+  <path d="M404 205 h30" stroke="#b8935a" stroke-width="6" stroke-linecap="round"/>
+  <path d="M424 191 l14 14 l-14 14" fill="none" stroke="#b8935a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="448" y="70" width="332" height="270" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <text x="614" y="108" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">後</text>
+  <line x1="474" y1="260" x2="760" y2="204" stroke="#6f5439" stroke-width="7" stroke-linecap="round"/>
+  <g stroke="#2f5a3a"><use href="#nd2" transform="translate(656 225)"/><use href="#nd2" transform="translate(704 215)"/><use href="#nd2" transform="translate(752 206)"/><use href="#nd2" transform="translate(684 220) rotate(160)"/><use href="#nd2" transform="translate(732 210) rotate(160)"/></g>
+  <text x="614" y="318" text-anchor="middle" font-size="22" fill="#5b7f4a">枝の元がすっきり</text>
+
+  <rect x="20" y="356" width="760" height="50" rx="12" fill="#1a365d"/>
+  <text x="400" y="390" text-anchor="middle" font-size="24" font-weight="700" fill="#faf9f6">内側まで日と風が通り、芽が育ちやすい</text>
+</svg>

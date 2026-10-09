@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>100円ショップの物で代わりになる道具と、専用品にしたい道具。霧吹き、ピンセット、竹串、鉢底ネット、ふるい、ハス口のじょうろは代用できる。剪定ばさみ、盆栽用の土、底穴の大きい鉢、盆栽用の針金は専用品に</title>
+  <rect width="800" height="500" fill="#faf9f6"/>
+  <rect x="20" y="20" width="370" height="460" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="62" r="17" fill="none" stroke="#5b7f4a" stroke-width="5"/>
+  <text x="88" y="72" font-size="28" font-weight="700" fill="#22201c">代わりになる</text>
+  <circle cx="64" cy="124" r="7" fill="#5b7f4a"/>  <text x="86" y="132" font-size="26" fill="#22201c">霧吹き</text>
+  <circle cx="64" cy="180" r="7" fill="#5b7f4a"/>  <text x="86" y="188" font-size="26" fill="#22201c">ピンセット</text>
+  <circle cx="64" cy="236" r="7" fill="#5b7f4a"/>  <text x="86" y="244" font-size="26" fill="#22201c">竹串・割り箸</text>
+  <circle cx="64" cy="292" r="7" fill="#5b7f4a"/>  <text x="86" y="300" font-size="26" fill="#22201c">鉢底ネット</text>
+  <circle cx="64" cy="348" r="7" fill="#5b7f4a"/>  <text x="86" y="356" font-size="26" fill="#22201c">ふるい</text>
+  <circle cx="64" cy="404" r="7" fill="#5b7f4a"/>  <text x="86" y="412" font-size="26" fill="#22201c">ハス口のじょうろ</text>
+  <rect x="410" y="20" width="370" height="460" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="446" cy="62" r="17" fill="#1a365d"/>  <text x="478" y="72" font-size="28" font-weight="700" fill="#22201c">専用品にしたい</text>
+  <circle cx="454" cy="124" r="7" fill="#1a365d"/>  <text x="476" y="132" font-size="26" font-weight="700" fill="#22201c">剪定ばさみ</text>
+  <text x="476" y="164" font-size="22" fill="#6b655b">太い枝がつぶれる</text>
+  <circle cx="454" cy="208" r="7" fill="#1a365d"/>  <text x="476" y="216" font-size="26" font-weight="700" fill="#22201c">盆栽用の土</text>
+  <text x="476" y="248" font-size="22" fill="#6b655b">赤玉土の小粒など</text>
+  <circle cx="454" cy="292" r="7" fill="#1a365d"/>  <text x="476" y="300" font-size="26" font-weight="700" fill="#22201c">底穴の大きい鉢</text>
+  <text x="476" y="332" font-size="22" fill="#6b655b">水はけと固定のため</text>
+  <circle cx="454" cy="376" r="7" fill="#1a365d"/>  <text x="476" y="384" font-size="26" font-weight="700" fill="#22201c">盆栽用の針金</text>
+  <text x="476" y="416" font-size="22" fill="#6b655b">アルミ線・銅線</text>
+
+</svg>

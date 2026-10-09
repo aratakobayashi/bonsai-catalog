@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>ウメモドキの花と実がつく位置：春に伸びた枝の葉の付け根</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+
+  <!-- ① 冬〜早春の剪定 -->
+  <rect x="20" y="20" width="244" height="440" rx="14" fill="#fff" stroke="#b8935a" stroke-width="3"/>
+  <text x="142" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">① 2〜3月に剪定</text>
+  <line x1="142" y1="400" x2="142" y2="150" stroke="#6f5439" stroke-width="6" stroke-linecap="round"/>
+  <line x1="142" y1="140" x2="142" y2="100" stroke="#6f5439" stroke-width="6" stroke-linecap="round" opacity="0.3"/>
+  <g fill="#8b6b4a">
+    <ellipse cx="152" cy="330" rx="7" ry="5"/><ellipse cx="132" cy="270" rx="7" ry="5"/><ellipse cx="152" cy="210" rx="7" ry="5"/><ellipse cx="132" cy="160" rx="7" ry="5"/>
+  </g>
+  <line x1="100" y1="148" x2="184" y2="148" stroke="#b8935a" stroke-width="4" stroke-dasharray="10 6"/>
+  <text x="142" y="438" text-anchor="middle" font-size="22" fill="#1a365d">芽を2〜3個残す</text>
+
+  <!-- ② 春に枝が伸び花が咲く -->
+  <rect x="278" y="20" width="244" height="440" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="400" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">② 6月ごろ花</text>
+  <line x1="400" y1="400" x2="400" y2="250" stroke="#6f5439" stroke-width="6" stroke-linecap="round"/>
+  <path d="M400 260 C 430 220, 446 180, 450 120" stroke="#7a9a5e" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <g fill="#5b7f4a">
+    <ellipse cx="452" cy="214" rx="20" ry="9" transform="rotate(-30 452 214)"/>
+    <ellipse cx="420" cy="180" rx="20" ry="9" transform="rotate(30 420 180)"/>
+    <ellipse cx="470" cy="150" rx="20" ry="9" transform="rotate(-30 470 150)"/>
+  </g>
+  <g fill="#c77d92"><circle cx="436" cy="218" r="6"/><circle cx="438" cy="186" r="6"/><circle cx="450" cy="156" r="6"/></g>
+  <text x="400" y="408" text-anchor="middle" font-size="22" fill="#1a365d">新しい枝の</text>
+  <text x="400" y="438" text-anchor="middle" font-size="22" fill="#1a365d">葉の付け根に咲く</text>
+
+  <!-- ③ 秋に実 -->
+  <rect x="536" y="20" width="244" height="440" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="658" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">③ 秋に赤い実</text>
+  <line x1="658" y1="400" x2="658" y2="250" stroke="#6f5439" stroke-width="6" stroke-linecap="round"/>
+  <path d="M658 260 C 688 220, 704 180, 708 120" stroke="#6f5439" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <g fill="#b4573a"><circle cx="692" cy="220" r="9"/><circle cx="700" cy="188" r="9"/><circle cx="706" cy="156" r="9"/><circle cx="684" cy="236" r="8"/></g>
+  <text x="658" y="438" text-anchor="middle" font-size="22" fill="#6b655b">落葉後も枝に残る</text>
+</svg>

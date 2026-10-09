@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>背が伸びた南天は、古い幹を根元近くで1本ずつ切ると、根元から新しい幹が育つ</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">背が伸びた南天は、古い幹から切る</text>
+  <rect x="20" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="142" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">① 背が高くなる</text>
+  <rect x="79.0" y="354" width="126.0" height="9" rx="3" fill="#8b6b4a"/>
+  <path d="M85.0 360 L199.0 360 L186.46 388.5 L97.53999999999999 388.5 Z" fill="#8b6b4a"/>
+  <line x1="119.2" y1="360" x2="119.2" y2="217.5" stroke="#6f5439" stroke-width="5.699999999999999" stroke-linecap="round"/>
+  <ellipse cx="119.2" cy="217.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-15 119.2 217.5) translate(24.7 0)"/>
+  <ellipse cx="119.2" cy="217.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-55 119.2 217.5) translate(24.7 0)"/>
+  <ellipse cx="119.2" cy="217.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-125 119.2 217.5) translate(24.7 0)"/>
+  <ellipse cx="119.2" cy="217.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-165 119.2 217.5) translate(24.7 0)"/>
+  <line x1="142.0" y1="360" x2="142.0" y2="179.5" stroke="#6f5439" stroke-width="5.699999999999999" stroke-linecap="round"/>
+  <ellipse cx="142.0" cy="179.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-15 142.0 179.5) translate(24.7 0)"/>
+  <ellipse cx="142.0" cy="179.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-55 142.0 179.5) translate(24.7 0)"/>
+  <ellipse cx="142.0" cy="179.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-125 142.0 179.5) translate(24.7 0)"/>
+  <ellipse cx="142.0" cy="179.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-165 142.0 179.5) translate(24.7 0)"/>
+  <line x1="166.7" y1="360" x2="166.7" y2="236.5" stroke="#6f5439" stroke-width="5.699999999999999" stroke-linecap="round"/>
+  <ellipse cx="166.7" cy="236.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-15 166.7 236.5) translate(24.7 0)"/>
+  <ellipse cx="166.7" cy="236.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-55 166.7 236.5) translate(24.7 0)"/>
+  <ellipse cx="166.7" cy="236.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-125 166.7 236.5) translate(24.7 0)"/>
+  <ellipse cx="166.7" cy="236.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-165 166.7 236.5) translate(24.7 0)"/>
+  <text x="142" y="420" text-anchor="middle" font-size="22" fill="#6b655b">葉が上だけに残る</text>
+  <rect x="278" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#b8935a" stroke-width="3"/>
+  <text x="400" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">② 根元近くで切る</text>
+  <rect x="337.0" y="354" width="126.0" height="9" rx="3" fill="#8b6b4a"/>
+  <path d="M343.0 360 L457.0 360 L444.46 388.5 L355.54 388.5 Z" fill="#8b6b4a"/>
+  <line x1="377.2" y1="360" x2="377.2" y2="217.5" stroke="#6f5439" stroke-width="5.699999999999999" stroke-linecap="round"/>
+  <ellipse cx="377.2" cy="217.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-15 377.2 217.5) translate(24.7 0)"/>
+  <ellipse cx="377.2" cy="217.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-55 377.2 217.5) translate(24.7 0)"/>
+  <ellipse cx="377.2" cy="217.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-125 377.2 217.5) translate(24.7 0)"/>
+  <ellipse cx="377.2" cy="217.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-165 377.2 217.5) translate(24.7 0)"/>
+  <g opacity="0.25">
+  <line x1="400.0" y1="360" x2="400.0" y2="179.5" stroke="#6f5439" stroke-width="5.699999999999999" stroke-linecap="round"/>
+  <ellipse cx="400.0" cy="179.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-15 400.0 179.5) translate(24.7 0)"/>
+  <ellipse cx="400.0" cy="179.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-55 400.0 179.5) translate(24.7 0)"/>
+  <ellipse cx="400.0" cy="179.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-125 400.0 179.5) translate(24.7 0)"/>
+  <ellipse cx="400.0" cy="179.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-165 400.0 179.5) translate(24.7 0)"/>
+  </g>
+  <line x1="400" y1="360" x2="400" y2="346.7" stroke="#6f5439" stroke-width="5.699999999999999" stroke-linecap="round"/>
+  <line x1="424.7" y1="360" x2="424.7" y2="236.5" stroke="#6f5439" stroke-width="5.699999999999999" stroke-linecap="round"/>
+  <ellipse cx="424.7" cy="236.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-15 424.7 236.5) translate(24.7 0)"/>
+  <ellipse cx="424.7" cy="236.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-55 424.7 236.5) translate(24.7 0)"/>
+  <ellipse cx="424.7" cy="236.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-125 424.7 236.5) translate(24.7 0)"/>
+  <ellipse cx="424.7" cy="236.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-165 424.7 236.5) translate(24.7 0)"/>
+  <line x1="378" y1="340" x2="422" y2="340" stroke="#b8935a" stroke-width="4" stroke-dasharray="8 5"/>
+  <text x="400" y="420" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">古い幹を1本ずつ</text>
+  <rect x="536" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="658" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">③ 新しい幹が育つ</text>
+  <rect x="595.0" y="354" width="126.0" height="9" rx="3" fill="#8b6b4a"/>
+  <path d="M601.0 360 L715.0 360 L702.46 388.5 L613.54 388.5 Z" fill="#8b6b4a"/>
+  <line x1="635.2" y1="360" x2="635.2" y2="217.5" stroke="#6f5439" stroke-width="5.699999999999999" stroke-linecap="round"/>
+  <ellipse cx="635.2" cy="217.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-15 635.2 217.5) translate(24.7 0)"/>
+  <ellipse cx="635.2" cy="217.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-55 635.2 217.5) translate(24.7 0)"/>
+  <ellipse cx="635.2" cy="217.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-125 635.2 217.5) translate(24.7 0)"/>
+  <ellipse cx="635.2" cy="217.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-165 635.2 217.5) translate(24.7 0)"/>
+  <g opacity="0">
+  <line x1="658.0" y1="360" x2="658.0" y2="179.5" stroke="#6f5439" stroke-width="5.699999999999999" stroke-linecap="round"/>
+  <ellipse cx="658.0" cy="179.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-15 658.0 179.5) translate(24.7 0)"/>
+  <ellipse cx="658.0" cy="179.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-55 658.0 179.5) translate(24.7 0)"/>
+  <ellipse cx="658.0" cy="179.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-125 658.0 179.5) translate(24.7 0)"/>
+  <ellipse cx="658.0" cy="179.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-165 658.0 179.5) translate(24.7 0)"/>
+  </g>
+  <line x1="658" y1="360" x2="658" y2="346.7" stroke="#6f5439" stroke-width="5.699999999999999" stroke-linecap="round"/>
+  <line x1="682.7" y1="360" x2="682.7" y2="236.5" stroke="#6f5439" stroke-width="5.699999999999999" stroke-linecap="round"/>
+  <ellipse cx="682.7" cy="236.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-15 682.7 236.5) translate(24.7 0)"/>
+  <ellipse cx="682.7" cy="236.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-55 682.7 236.5) translate(24.7 0)"/>
+  <ellipse cx="682.7" cy="236.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-125 682.7 236.5) translate(24.7 0)"/>
+  <ellipse cx="682.7" cy="236.5" rx="28.5" ry="7.6" fill="#5b7f4a" transform="rotate(-165 682.7 236.5) translate(24.7 0)"/>
+  <line x1="658" y1="346" x2="658" y2="270" stroke="#5b7f4a" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="672" cy="266" rx="18" ry="6" fill="#5b7f4a" transform="rotate(-30 672 266)"/>
+  <ellipse cx="644" cy="266" rx="18" ry="6" fill="#5b7f4a" transform="rotate(30 644 266)"/>
+  <text x="658" y="420" text-anchor="middle" font-size="22" fill="#6b655b">根元から芽が出る</text>
+</svg>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>サルスベリの剪定と花のつき方</title>
+  <defs>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#b8935a"/></marker>
+    <path id="lf" d="M0 0 q14 -10 30 0 q-16 10 -30 0 z"/>
+  </defs>
+  <rect width="800" height="460" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">花はその年に伸びた枝に咲く</text>
+
+  <!-- パネル枠 -->
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="70" width="230" height="370" rx="14"/>
+    <rect x="285" y="70" width="230" height="370" rx="14"/>
+    <rect x="550" y="70" width="230" height="370" rx="14"/>
+  </g>
+  <g stroke="#b8935a" stroke-width="4" marker-end="url(#ar)">
+    <line x1="254" y1="250" x2="276" y2="250"/>
+    <line x1="519" y1="250" x2="541" y2="250"/>
+  </g>
+
+  <!-- 1 冬：切り戻し -->
+  <path d="M135 360 L135 250" stroke="#6f5439" stroke-width="12" stroke-linecap="round"/>
+  <path d="M135 262 L95 190" stroke="#6f5439" stroke-width="6" stroke-linecap="round"/>
+  <path d="M135 262 L178 186" stroke="#6f5439" stroke-width="6" stroke-linecap="round"/>
+  <path d="M95 190 L80 130" stroke="#8b6b4a" stroke-width="4" stroke-dasharray="6 6"/>
+  <path d="M178 186 L195 128" stroke="#8b6b4a" stroke-width="4" stroke-dasharray="6 6"/>
+  <g stroke="#b4573a" stroke-width="5"><line x1="80" y1="186" x2="110" y2="180"/><line x1="164" y1="178" x2="194" y2="186"/></g>
+  <text x="135" y="398" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">冬</text>
+  <text x="135" y="428" text-anchor="middle" font-size="22" fill="#b4573a">2〜3芽残して切る</text>
+
+  <!-- 2 春：新しい枝 -->
+  <path d="M400 360 L400 250" stroke="#6f5439" stroke-width="12" stroke-linecap="round"/>
+  <path d="M400 262 L360 190" stroke="#6f5439" stroke-width="6" stroke-linecap="round"/>
+  <path d="M400 262 L443 186" stroke="#6f5439" stroke-width="6" stroke-linecap="round"/>
+  <g stroke="#5b7f4a" stroke-width="4" stroke-linecap="round" fill="none">
+    <path d="M360 190 Q340 150 330 120"/><path d="M360 190 Q372 150 382 118"/>
+    <path d="M443 186 Q430 150 422 118"/><path d="M443 186 Q462 150 474 122"/>
+  </g>
+  <g fill="#5b7f4a">
+    <use href="#lf" x="334" y="150" transform="rotate(200 334 150)"/><use href="#lf" x="376" y="150"/>
+    <use href="#lf" x="428" y="150" transform="rotate(200 428 150)"/><use href="#lf" x="460" y="150"/>
+  </g>
+  <text x="400" y="398" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">春</text>
+  <text x="400" y="428" text-anchor="middle" font-size="22" fill="#5b7f4a">新しい枝が伸びる</text>
+
+  <!-- 3 夏：枝先に花 -->
+  <path d="M665 360 L665 250" stroke="#6f5439" stroke-width="12" stroke-linecap="round"/>
+  <path d="M665 262 L625 190" stroke="#6f5439" stroke-width="6" stroke-linecap="round"/>
+  <path d="M665 262 L708 186" stroke="#6f5439" stroke-width="6" stroke-linecap="round"/>
+  <g stroke="#5b7f4a" stroke-width="4" stroke-linecap="round" fill="none">
+    <path d="M625 190 Q605 150 595 120"/><path d="M625 190 Q637 150 647 118"/>
+    <path d="M708 186 Q695 150 687 118"/><path d="M708 186 Q727 150 739 122"/>
+  </g>
+  <g fill="#c2457a">
+    <circle cx="595" cy="110" r="18"/><circle cx="647" cy="106" r="18"/>
+    <circle cx="687" cy="106" r="18"/><circle cx="739" cy="110" r="18"/>
+  </g>
+  <g fill="#e48bb0">
+    <circle cx="585" cy="100" r="9"/><circle cx="657" cy="96" r="9"/><circle cx="677" cy="96" r="9"/><circle cx="749" cy="100" r="9"/>
+  </g>
+  <text x="665" y="398" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">夏</text>
+  <text x="665" y="428" text-anchor="middle" font-size="22" fill="#c2457a">枝先に花が咲く</text>
+</svg>

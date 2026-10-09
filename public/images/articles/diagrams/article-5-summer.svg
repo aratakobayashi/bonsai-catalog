@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>小さな鉢を夏に乾かしにくくする置き方。浅いトレーに湿らせた砂を敷き、鉢の底を少し埋めて並べる。半日陰に置き、朝と夕方に乾き具合を見る</title>
+  <rect width="800" height="460" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">夏は砂を敷いたトレーに並べる</text>
+
+  <!-- 日よけ -->
+  <rect x="80" y="84" width="640" height="16" rx="4" fill="#b8935a"/>
+  <g stroke="#b8935a" stroke-width="3"><line x1="120" y1="100" x2="120" y2="128"/><line x1="680" y1="100" x2="680" y2="128"/></g>
+  <text x="400" y="140" text-anchor="middle" font-size="22" fill="#6b655b">すだれ・寒冷紗で半日陰に</text>
+
+  <!-- トレー -->
+  <path d="M90 330 h620 l-16 46 h-588 z" fill="#ebe7df" stroke="#c9c2b4" stroke-width="2"/>
+  <rect x="104" y="318" width="592" height="22" fill="#e3d2b4"/>
+  <!-- 鉢 -->
+  <g>
+    <path d="M160 330 h80 l-8 -40 h-64 z" fill="#8b6b4a"/>
+    <path d="M200 292 q-6 -40 8 -70" stroke="#6f5439" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="206" cy="226" rx="36" ry="16" fill="#5b7f4a"/>
+    <path d="M360 330 h80 l-8 -40 h-64 z" fill="#8b6b4a"/>
+    <path d="M400 292 q8 -36 -6 -64" stroke="#6f5439" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="394" cy="228" rx="38" ry="16" fill="#5b7f4a"/>
+    <path d="M560 330 h80 l-8 -40 h-64 z" fill="#8b6b4a"/>
+    <path d="M600 292 q-4 -38 10 -66" stroke="#6f5439" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="608" cy="230" rx="36" ry="16" fill="#5b7f4a"/>
+  </g>
+  <rect x="104" y="318" width="592" height="12" fill="#e3d2b4"/>
+  <line x1="104" y1="318" x2="696" y2="318" stroke="#8b6b4a" stroke-width="2"/>
+  <!-- ラベル -->
+  <text x="400" y="414" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">湿らせた砂に鉢の底を少し埋める</text>
+  <text x="400" y="446" text-anchor="middle" font-size="22" fill="#5b7f4a">鉢の中が乾きにくく、熱くなりにくい</text>
+</svg>

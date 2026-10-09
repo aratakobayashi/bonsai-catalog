@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>海外の人に盆栽を贈る3つの方法の比較</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">海外の人へ贈る3つの方法</text>
+  <rect x="24" y="78" width="240" height="380" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="144" y="124" text-anchor="middle" font-size="26" font-weight="700" fill="#1a365d">日本から持参</text>
+  <line x1="44" y1="146" x2="244" y2="146" stroke="#ebe7df" stroke-width="2"/>
+  <text x="144" y="190" text-anchor="middle" font-size="22" fill="#22201c">検疫と証明書が</text>
+  <text x="144" y="230" text-anchor="middle" font-size="22" fill="#22201c">必要</text>
+  <text x="144" y="286" text-anchor="middle" font-size="22" fill="#22201c">土つきは多くの</text>
+  <text x="144" y="326" text-anchor="middle" font-size="22" fill="#22201c">国で持ち込めない</text>
+  <rect x="40" y="384" width="208" height="56" rx="10" fill="#f3f0ea"/>
+  <path d="M68 399 l14 25 h-28 z" fill="none" stroke="#b8935a" stroke-width="4" stroke-linejoin="round"/>
+  <text x="90" y="420" font-size="22" font-weight="700" fill="#22201c">準備に時間</text>
+  <rect x="280" y="78" width="240" height="380" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="400" y="124" text-anchor="middle" font-size="26" font-weight="700" fill="#1a365d">相手の国で用意</text>
+  <line x1="300" y1="146" x2="500" y2="146" stroke="#ebe7df" stroke-width="2"/>
+  <text x="400" y="190" text-anchor="middle" font-size="22" fill="#22201c">現地の盆栽店や</text>
+  <text x="400" y="230" text-anchor="middle" font-size="22" fill="#22201c">園で手配する</text>
+  <text x="400" y="286" text-anchor="middle" font-size="22" fill="#22201c">その土地の気候に</text>
+  <text x="400" y="326" text-anchor="middle" font-size="22" fill="#22201c">合う樹を選べる</text>
+  <rect x="296" y="384" width="208" height="56" rx="10" fill="#f3f0ea"/>
+  <circle cx="324" cy="412" r="13" fill="none" stroke="#5b7f4a" stroke-width="5"/>
+  <text x="346" y="420" font-size="22" font-weight="700" fill="#22201c">手軽で確実</text>
+  <rect x="536" y="78" width="240" height="380" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="656" y="124" text-anchor="middle" font-size="26" font-weight="700" fill="#1a365d">盆栽以外を贈る</text>
+  <line x1="556" y1="146" x2="756" y2="146" stroke="#ebe7df" stroke-width="2"/>
+  <text x="656" y="190" text-anchor="middle" font-size="22" fill="#22201c">鉢・道具・本</text>
+  <text x="656" y="230" text-anchor="middle" font-size="22" fill="#22201c">写真集など</text>
+  <text x="656" y="286" text-anchor="middle" font-size="22" fill="#22201c">体験や見学に</text>
+  <text x="656" y="326" text-anchor="middle" font-size="22" fill="#22201c">招待する方法も</text>
+  <rect x="552" y="384" width="208" height="56" rx="10" fill="#f3f0ea"/>
+  <circle cx="580" cy="412" r="13" fill="none" stroke="#5b7f4a" stroke-width="5"/>
+  <text x="602" y="420" font-size="22" font-weight="700" fill="#22201c">検疫の心配なし</text>
+</svg>

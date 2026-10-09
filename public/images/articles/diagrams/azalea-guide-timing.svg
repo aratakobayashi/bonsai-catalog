@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>花後すぐ切れば翌年も咲き、夏以降に切ると花芽を落とす</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">切る時期で翌年の花が変わる</text>
+
+  <!-- 良い例 -->
+  <rect x="20" y="72" width="370" height="300" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="205" y="112" text-anchor="middle" font-size="26" font-weight="700" fill="#5b7f4a">花後すぐ（6月）</text>
+  <!-- 枝 -->
+  <path d="M205 330 V230 M205 260 L150 210 M205 250 L262 205" stroke="#8b6b4a" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <!-- 切った位置の印 -->
+  <!-- 新しい芽と翌年の花芽 -->
+  <circle cx="150" cy="208" r="12" fill="#5b7f4a"/>
+  <circle cx="262" cy="203" r="12" fill="#5b7f4a"/>
+  <circle cx="205" cy="226" r="12" fill="#5b7f4a"/>
+  <circle cx="150" cy="182" r="14" fill="#b4573a"/>
+  <circle cx="262" cy="177" r="14" fill="#b4573a"/>
+  <circle cx="205" cy="198" r="14" fill="#b4573a"/>
+  <text x="205" y="356" text-anchor="middle" font-size="22" fill="#22201c">新芽の先に花芽ができる</text>
+
+  <!-- 悪い例 -->
+  <rect x="410" y="72" width="370" height="300" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="595" y="112" text-anchor="middle" font-size="26" font-weight="700" fill="#b4573a">8月以降</text>
+  <path d="M595 330 V230 M595 260 L540 210 M595 250 L652 205" stroke="#8b6b4a" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <circle cx="540" cy="208" r="12" fill="#5b7f4a"/>
+  <circle cx="652" cy="203" r="12" fill="#5b7f4a"/>
+  <!-- 切り落とされた花芽 -->
+  <circle cx="525" cy="160" r="14" fill="none" stroke="#b4573a" stroke-width="3" stroke-dasharray="5 4"/>
+  <circle cx="667" cy="155" r="14" fill="none" stroke="#b4573a" stroke-width="3" stroke-dasharray="5 4"/>
+  <path d="M520 186 l20 -16 M520 170 l20 16" stroke="#1a365d" stroke-width="4"/>
+  <path d="M650 182 l20 -16 M650 166 l20 16" stroke="#1a365d" stroke-width="4"/>
+  <text x="595" y="356" text-anchor="middle" font-size="22" fill="#22201c">できた花芽ごと切ってしまう</text>
+
+  <rect x="20" y="392" width="760" height="62" rx="14" fill="#1a365d"/>
+  <text x="400" y="432" text-anchor="middle" font-size="26" font-weight="700" fill="#faf9f6">剪定は花が終わったら、6月中に済ませる</text>
+</svg>

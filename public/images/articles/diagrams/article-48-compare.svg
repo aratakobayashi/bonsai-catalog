@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>ニレケヤキとケヤキの違い。ニレケヤキは葉が小さく縁のぎざぎざが細かく、樹皮が古くなるとまだらにはがれる。ケヤキは葉が細長く先がとがり、箒立ちの樹形が代表的</title>
+  <rect width="800" height="470" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">ニレケヤキとケヤキの見分け方</text>
+
+  <rect x="20" y="70" width="372" height="380" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <text x="206" y="112" text-anchor="middle" font-size="27" font-weight="700" fill="#22201c">ニレケヤキ</text>
+  <text x="206" y="142" text-anchor="middle" font-size="22" fill="#6b655b">（アキニレの仲間）</text>
+  <!-- 小さな葉 -->
+  <g fill="#5b7f4a">
+    <path d="M120 230 q14 -24 30 0 q-16 22 -30 0 z"/>
+    <path d="M165 216 q14 -24 30 0 q-16 22 -30 0 z"/>
+    <path d="M210 232 q14 -24 30 0 q-16 22 -30 0 z"/>
+  </g>
+  <!-- まだらの樹皮 -->
+  <rect x="270" y="170" width="46" height="110" rx="6" fill="#8b6b4a"/>
+  <g fill="#c9b48f"><ellipse cx="284" cy="190" rx="9" ry="12"/><ellipse cx="302" cy="222" rx="8" ry="11"/><ellipse cx="282" cy="250" rx="8" ry="10"/><ellipse cx="303" cy="266" rx="7" ry="8"/></g>
+  <g font-size="22" fill="#22201c">
+    <text x="44" y="330">・葉は小さく、厚め</text>
+    <text x="44" y="368">・樹皮がまだらにはがれる</text>
+    <text x="44" y="406">・枝がよく出て生長が早い</text>
+  </g>
+
+  <rect x="408" y="70" width="372" height="380" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="594" y="112" text-anchor="middle" font-size="27" font-weight="700" fill="#22201c">ケヤキ</text>
+  <text x="594" y="142" text-anchor="middle" font-size="22" fill="#6b655b">（ケヤキ属）</text>
+  <g fill="#5b7f4a">
+    <path d="M470 236 q30 -34 76 -10 q-40 28 -76 10 z"/>
+    <path d="M520 192 q30 -34 76 -10 q-40 28 -76 10 z"/>
+  </g>
+  <!-- 箒立ち -->
+  <g stroke="#6f5439" stroke-linecap="round" fill="none">
+    <path d="M700 290 V230" stroke-width="7"/>
+    <path d="M700 232 L668 176 M700 232 L686 166 M700 232 L714 166 M700 232 L732 176" stroke-width="4"/>
+  </g>
+  <path d="M650 182 Q700 120 750 182 Q700 160 650 182 z" fill="#5b7f4a" opacity="0.5"/>
+  <g font-size="22" fill="#22201c">
+    <text x="432" y="330">・葉は細長く、先がとがる</text>
+    <text x="432" y="368">・樹皮は若いうちなめらか</text>
+    <text x="432" y="406">・箒立ちの樹形が代表的</text>
+  </g>
+</svg>

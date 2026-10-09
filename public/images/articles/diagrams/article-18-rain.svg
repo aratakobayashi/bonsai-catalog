@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>雨の日に水やりが必要かの判断</title>
+  <rect width="800" height="460" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">雨の日も、土を見て決める</text>
+  <rect x="250" y="72" width="300" height="64" rx="14" fill="#1a365d"/>
+  <text x="400" y="113" text-anchor="middle" font-size="25" font-weight="700" fill="#faf9f6">雨が降った</text>
+  <path d="M400 136 v30" stroke="#6b655b" stroke-width="4"/>
+  <path d="M170 166 h460" stroke="#6b655b" stroke-width="4" fill="none"/>
+  <path d="M170 166 v24 M630 166 v24" stroke="#6b655b" stroke-width="4"/>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="190" width="300" height="140" rx="14"/>
+    <rect x="480" y="190" width="300" height="140" rx="14"/>
+  </g>
+  <g font-size="23" font-weight="700" fill="#22201c" text-anchor="middle">
+    <text x="170" y="232">長い雨・強い雨</text>
+    <text x="630" y="232">小雨・にわか雨</text>
+  </g>
+  <g font-size="22" fill="#6b655b" text-anchor="middle">
+    <text x="170" y="272">土の中まで湿る</text>
+    <text x="170" y="306">ことが多い</text>
+    <text x="630" y="272">葉に遮られ</text>
+    <text x="630" y="306">土は乾いたまま</text>
+  </g>
+  <rect x="20" y="350" width="760" height="92" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <text x="400" y="388" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">どちらも、雨の後に土の表面と鉢の重さを確かめる</text>
+  <text x="400" y="424" text-anchor="middle" font-size="22" fill="#5b7f4a">軒下・葉が茂った樹・小さな鉢は、乾いていることが多い</text>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 408" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽の主な害虫が出やすい時期の目安</title>
+  <rect width="800" height="408" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">出やすい時期の目安</text>
+  <text x="780" y="44" text-anchor="end" font-size="22" fill="#6b655b">関東の平地の目安</text>
+  <text x="20" y="96" font-size="22" fill="#6b655b">月</text>
+  <text x="224.16665" y="96" font-size="22" text-anchor="middle" fill="#22201c">1</text>
+  <text x="272.49995" y="96" font-size="22" text-anchor="middle" fill="#22201c">2</text>
+  <text x="320.83325" y="96" font-size="22" text-anchor="middle" fill="#22201c">3</text>
+  <text x="369.16655000000003" y="96" font-size="22" text-anchor="middle" fill="#22201c">4</text>
+  <text x="417.49985000000004" y="96" font-size="22" text-anchor="middle" fill="#22201c">5</text>
+  <text x="465.83315" y="96" font-size="22" text-anchor="middle" fill="#22201c">6</text>
+  <text x="514.1664499999999" y="96" font-size="22" text-anchor="middle" fill="#22201c">7</text>
+  <text x="562.49975" y="96" font-size="22" text-anchor="middle" fill="#22201c">8</text>
+  <text x="610.83305" y="96" font-size="22" text-anchor="middle" fill="#22201c">9</text>
+  <text x="659.16635" y="96" font-size="22" text-anchor="middle" fill="#22201c">10</text>
+  <text x="707.49965" y="96" font-size="22" text-anchor="middle" fill="#22201c">11</text>
+  <text x="755.83295" y="96" font-size="22" text-anchor="middle" fill="#22201c">12</text>
+  <rect x="20" y="110" width="760" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="34" y="144" font-size="24" font-weight="700" fill="#22201c">アブラムシ</text>
+  <rect x="20" y="168" width="760" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="34" y="202" font-size="24" font-weight="700" fill="#22201c">ハダニ</text>
+  <rect x="20" y="226" width="760" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="34" y="260" font-size="24" font-weight="700" fill="#22201c">カイガラムシ</text>
+  <rect x="20" y="284" width="760" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="34" y="318" font-size="24" font-weight="700" fill="#22201c">ケムシ類</text>
+  <rect x="20" y="342" width="760" height="50" rx="8" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="34" y="376" font-size="24" font-weight="700" fill="#22201c">ナメクジ</text>
+  <line x1="248.3" y1="110" x2="248.3" y2="392" stroke="#ebe7df" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="296.7" y1="110" x2="296.7" y2="392" stroke="#ebe7df" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="345.0" y1="110" x2="345.0" y2="392" stroke="#ebe7df" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="393.3" y1="110" x2="393.3" y2="392" stroke="#ebe7df" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="441.7" y1="110" x2="441.7" y2="392" stroke="#ebe7df" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="490.0" y1="110" x2="490.0" y2="392" stroke="#ebe7df" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="538.3" y1="110" x2="538.3" y2="392" stroke="#ebe7df" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="586.7" y1="110" x2="586.7" y2="392" stroke="#ebe7df" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="635.0" y1="110" x2="635.0" y2="392" stroke="#ebe7df" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="683.3" y1="110" x2="683.3" y2="392" stroke="#ebe7df" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="731.7" y1="110" x2="731.7" y2="392" stroke="#ebe7df" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <rect x="345.0" y="121" width="120.8" height="28" rx="6" fill="#5b7f4a"/>
+  <rect x="610.8" y="121" width="72.5" height="28" rx="6" fill="#5b7f4a" fill-opacity="0.45"/>
+  <rect x="441.7" y="179" width="178.8" height="28" rx="6" fill="#8b6b4a"/>
+  <rect x="393.3" y="237" width="120.8" height="28" rx="6" fill="#1a365d"/>
+  <text x="453.74982500000004" y="259" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">幼虫</text>
+  <rect x="200.0" y="237" width="96.7" height="28" rx="6" fill="#1a365d" fill-opacity="0.35"/>
+  <text x="248.3333" y="259" font-size="22" font-weight="700" text-anchor="middle" fill="#1a365d">落とす</text>
+  <rect x="359.5" y="295" width="106.3" height="28" rx="6" fill="#b8935a"/>
+  <rect x="562.5" y="295" width="96.7" height="28" rx="6" fill="#b8935a"/>
+  <rect x="345.0" y="353" width="169.2" height="28" rx="6" fill="#6b655b"/>
+  <rect x="586.7" y="353" width="96.7" height="28" rx="6" fill="#6b655b" fill-opacity="0.45"/>
+</svg>

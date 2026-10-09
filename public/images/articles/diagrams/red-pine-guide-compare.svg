@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 490" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>赤松と黒松の違い。赤松は葉が細く柔らかく冬芽が赤褐色で幹肌が赤みを帯びる。黒松は葉が太く硬く冬芽が白っぽく幹肌は黒っぽい</title>
+  <rect width="800" height="490" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">赤松と黒松の見分け方</text>
+  <rect x="20.0" y="68" width="372.0" height="402" rx="14" fill="#fff" stroke="#b4573a" stroke-width="3"/>
+  <line x1="206.0" y1="282" x2="206.0" y2="142" stroke="#a5583a" stroke-width="12" stroke-linecap="round"/>
+  <line x1="206.0" y1="172" x2="140" y2="153" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="212" x2="140" y2="193" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="172" x2="150" y2="138" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="212" x2="150" y2="178" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="172" x2="166" y2="126" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="212" x2="166" y2="166" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="172" x2="185" y2="119" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="212" x2="185" y2="159" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="172" x2="206" y2="116" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="212" x2="206" y2="156" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="172" x2="227" y2="119" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="212" x2="227" y2="159" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="172" x2="246" y2="126" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="212" x2="246" y2="166" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="172" x2="262" y2="138" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="212" x2="262" y2="178" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="172" x2="272" y2="153" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="206.0" y1="212" x2="272" y2="193" stroke="#6f9a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <ellipse cx="206.0" cy="134" rx="9" ry="16" fill="#a5583a" stroke="#7a3e28" stroke-width="2"/>
+  <text x="206" y="312" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">赤松</text>
+  <text x="206" y="350" font-size="22" text-anchor="middle" fill="#6b655b">葉：細く柔らかい</text>
+  <text x="206" y="382" font-size="22" text-anchor="middle" fill="#6b655b">冬芽：赤褐色</text>
+  <text x="206" y="414" font-size="22" text-anchor="middle" fill="#6b655b">幹肌：赤みがある</text>
+  <text x="206" y="446" font-size="22" text-anchor="middle" fill="#6b655b">勢い：やや穏やか</text>
+  <rect x="408.0" y="68" width="372.0" height="402" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <line x1="594.0" y1="282" x2="594.0" y2="142" stroke="#3d3a36" stroke-width="12" stroke-linecap="round"/>
+  <line x1="594.0" y1="172" x2="536" y2="155" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="212" x2="536" y2="195" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="172" x2="545" y2="142" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="212" x2="545" y2="182" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="172" x2="558" y2="131" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="212" x2="558" y2="171" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="172" x2="575" y2="125" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="212" x2="575" y2="165" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="172" x2="594" y2="122" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="212" x2="594" y2="162" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="172" x2="613" y2="125" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="212" x2="613" y2="165" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="172" x2="630" y2="131" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="212" x2="630" y2="171" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="172" x2="643" y2="142" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="212" x2="643" y2="182" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="172" x2="652" y2="155" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="594.0" y1="212" x2="652" y2="195" stroke="#2f5a2a" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="594.0" cy="134" rx="9" ry="16" fill="#e9e4d8" stroke="#b9b2a2" stroke-width="2"/>
+  <text x="594" y="312" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">黒松</text>
+  <text x="594" y="350" font-size="22" text-anchor="middle" fill="#6b655b">葉：太く硬い</text>
+  <text x="594" y="382" font-size="22" text-anchor="middle" fill="#6b655b">冬芽：白っぽい</text>
+  <text x="594" y="414" font-size="22" text-anchor="middle" fill="#6b655b">幹肌：黒っぽく厚い</text>
+  <text x="594" y="446" font-size="22" text-anchor="middle" fill="#6b655b">勢い：強い</text>
+</svg>

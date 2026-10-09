@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>通販で買う場合と、店や盆栽園で買う場合の比較</title>
+  <rect width="800" height="350" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">通販と店頭のちがい</text>
+  <rect x="20" y="70" width="370" height="260" rx="14" fill="#fff" stroke="#1a365d" stroke-width="3"/>
+  <rect x="20" y="70" width="370" height="52" rx="14" fill="#1a365d"/>
+  <rect x="20" y="104" width="370" height="18" fill="#1a365d"/>
+  <text x="205" y="105" font-size="26" font-weight="700" text-anchor="middle" fill="#fff">通販</text>
+  <circle cx="46" cy="152" r="6" fill="#1a365d"/>
+  <text x="62" y="160" font-size="22" fill="#22201c">遠くの園からも選べる</text>
+  <circle cx="46" cy="198" r="6" fill="#1a365d"/>
+  <text x="62" y="206" font-size="22" fill="#22201c">時間を気にせず選べる</text>
+  <circle cx="46" cy="244" r="6" fill="#1a365d"/>
+  <text x="62" y="252" font-size="22" fill="#22201c">実物を手に取れない</text>
+  <circle cx="46" cy="290" r="6" fill="#1a365d"/>
+  <text x="62" y="298" font-size="22" fill="#22201c">配送中に傷むことも</text>
+  <rect x="410" y="70" width="370" height="260" rx="14" fill="#fff" stroke="#8b6b4a" stroke-width="3"/>
+  <rect x="410" y="70" width="370" height="52" rx="14" fill="#8b6b4a"/>
+  <rect x="410" y="104" width="370" height="18" fill="#8b6b4a"/>
+  <text x="595" y="105" font-size="26" font-weight="700" text-anchor="middle" fill="#fff">店・盆栽園</text>
+  <circle cx="436" cy="152" r="6" fill="#8b6b4a"/>
+  <text x="452" y="160" font-size="22" fill="#22201c">実物を見て選べる</text>
+  <circle cx="436" cy="198" r="6" fill="#8b6b4a"/>
+  <text x="452" y="206" font-size="22" fill="#22201c">育て方を直接聞ける</text>
+  <circle cx="436" cy="244" r="6" fill="#8b6b4a"/>
+  <text x="452" y="252" font-size="22" fill="#22201c">選べる数に限りがある</text>
+  <circle cx="436" cy="290" r="6" fill="#8b6b4a"/>
+  <text x="452" y="298" font-size="22" fill="#22201c">持ち帰りの手間がある</text>
+</svg>

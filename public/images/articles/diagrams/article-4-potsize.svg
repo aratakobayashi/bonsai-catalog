@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 530" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>鉢の大きさと乾きやすさ。中品の鉢は乾きにくく、小品は1日1回が目安、ミニ・豆鉢は夏に朝夕2回になることもある</title>
+  <rect width="800" height="530" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">鉢が小さいほど早く乾く</text>
+  <path d="M50.0 300 L250.0 300 L228.0 372.0 L72.0 372.0 Z" fill="#8b6b4a"/>
+  <rect x="44.0" y="292" width="212" height="10" rx="3" fill="#8b6b4a"/>
+  <rect x="58.0" y="302" width="184" height="36.0" fill="#a98a66"/>
+  <path d="M150 294 C142.0 240.0 170.0 220.0 154.0 170.0" stroke="#6f5439" stroke-width="10.0" fill="none" stroke-linecap="round"/>
+  <ellipse cx="112.0" cy="180.0" rx="52.0" ry="30.0" fill="#5b7f4a"/>
+  <ellipse cx="190.0" cy="160.0" rx="50.0" ry="28.0" fill="#5b7f4a"/>
+  <ellipse cx="152.0" cy="130.0" rx="54.0" ry="30.0" fill="#5b7f4a"/>
+  <text x="150" y="400" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">中品の鉢</text>
+  <text x="150" y="434" text-anchor="middle" font-size="22" fill="#6b655b">土が多く乾きにくい</text>
+  <path d="M335.0 300 L465.0 300 L450.7 346.8 L349.3 346.8 Z" fill="#8b6b4a"/>
+  <rect x="329.0" y="292" width="142" height="10" rx="3" fill="#8b6b4a"/>
+  <rect x="343.0" y="302" width="114" height="23.4" fill="#a98a66"/>
+  <path d="M400 294 C394.8 261.0 413.0 248.0 402.6 215.5" stroke="#6f5439" stroke-width="6.5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="375.3" cy="222.0" rx="33.800000000000004" ry="19.5" fill="#5b7f4a"/>
+  <ellipse cx="426.0" cy="209.0" rx="32.5" ry="18.2" fill="#5b7f4a"/>
+  <ellipse cx="401.3" cy="189.5" rx="35.1" ry="19.5" fill="#5b7f4a"/>
+  <text x="400" y="400" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">小品の鉢</text>
+  <text x="400" y="434" text-anchor="middle" font-size="22" fill="#6b655b">1日1回が目安</text>
+  <path d="M600.0 300 L680.0 300 L671.2 328.8 L608.8 328.8 Z" fill="#8b6b4a"/>
+  <rect x="594.0" y="292" width="92" height="10" rx="3" fill="#8b6b4a"/>
+  <rect x="608.0" y="302" width="64" height="14.399999999999999" fill="#a98a66"/>
+  <path d="M640 294 C636.8 276.0 648.0 268.0 641.6 248.0" stroke="#6f5439" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <ellipse cx="624.8" cy="252.0" rx="20.8" ry="12.0" fill="#5b7f4a"/>
+  <ellipse cx="656.0" cy="244.0" rx="20.0" ry="11.200000000000001" fill="#5b7f4a"/>
+  <ellipse cx="640.8" cy="232.0" rx="21.6" ry="12.0" fill="#5b7f4a"/>
+  <text x="640" y="400" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">ミニ・豆鉢</text>
+  <text x="640" y="434" text-anchor="middle" font-size="22" fill="#6b655b">夏は朝夕2回も</text>
+  <line x1="90" y1="470" x2="700" y2="470" stroke="#b8935a" stroke-width="5"/>
+  <path d="M700 458 L724 470 L700 482 Z" fill="#b8935a"/>
+  <text x="400" y="506" text-anchor="middle" font-size="22" font-weight="700" fill="#b8935a">小さいほど乾きやすい</text>
+</svg>

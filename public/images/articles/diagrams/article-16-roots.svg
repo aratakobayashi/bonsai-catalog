@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>植え替え前後の根鉢の比較</title>
+  <rect width="800" height="440" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">根鉢をどこまで整えるか</text>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="70" width="370" height="350" rx="14"/>
+    <rect x="410" y="70" width="370" height="350" rx="14"/>
+  </g>
+  <text x="205" y="110" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">根が詰まった状態</text>
+  <text x="595" y="110" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">整えた後</text>
+  <!-- left rootball -->
+  <rect x="200" y="130" width="10" height="60" fill="#6f5439"/>
+  <rect x="80" y="190" width="250" height="120" rx="20" fill="#8b6b4a"/>
+  <g fill="none" stroke="#e3d2b4" stroke-width="4">
+    <path d="M90 300 q120 20 230 0"/><path d="M90 280 q120 24 230 0"/>
+    <path d="M90 200 v100"/><path d="M320 200 v100"/>
+    <path d="M150 300 q-6 30 -30 40"/><path d="M260 300 q10 30 40 40"/>
+  </g>
+  <text x="205" y="380" text-anchor="middle" font-size="22" fill="#b4573a">底と周りを根が巻く</text>
+  <!-- right rootball -->
+  <rect x="590" y="130" width="10" height="60" fill="#6f5439"/>
+  <rect x="510" y="190" width="170" height="90" rx="20" fill="#8b6b4a"/>
+  <rect x="470" y="190" width="250" height="120" rx="20" fill="none" stroke="#b8935a" stroke-width="3" stroke-dasharray="10 8"/>
+  <g fill="none" stroke="#e3d2b4" stroke-width="4">
+    <path d="M520 280 l-10 18"/><path d="M560 280 l-4 20"/><path d="M630 280 l4 20"/><path d="M670 280 l10 18"/>
+    <path d="M510 230 l-18 4"/><path d="M680 230 l18 4"/>
+  </g>
+  <text x="595" y="345" text-anchor="middle" font-size="22" fill="#5b7f4a">外側と底を3分の1ほど</text>
+  <text x="595" y="380" text-anchor="middle" font-size="22" fill="#6b655b">点線：元の大きさ</text>
+</svg>

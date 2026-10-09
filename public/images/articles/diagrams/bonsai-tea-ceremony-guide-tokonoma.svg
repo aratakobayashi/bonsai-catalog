@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>床の間の三点飾り</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <!-- 床の間 -->
+  <rect x="60" y="30" width="680" height="330" fill="#f3f0ea" stroke="#8b6b4a" stroke-width="3"/>
+  <rect x="60" y="30" width="680" height="24" fill="#8b6b4a"/>
+  <rect x="60" y="330" width="680" height="30" fill="#b59b78"/>
+  <!-- 掛軸 -->
+  <rect x="420" y="66" width="90" height="200" fill="#fff" stroke="#b8935a" stroke-width="3"/>
+  <rect x="412" y="60" width="106" height="10" fill="#6f5439"/><rect x="412" y="262" width="106" height="10" fill="#6f5439"/>
+  <circle cx="465" cy="140" r="26" fill="none" stroke="#1a365d" stroke-width="3"/>
+  <path d="M432 220 l20 -30 l14 18 l12 -14 l20 26 z" fill="#1a365d" opacity="0.6"/>
+  <!-- 主木 -->
+  <rect x="150" y="312" width="200" height="18" fill="#22201c"/>
+  <path d="M175 290 h150 l-10 22 h-130 z" fill="#8b6b4a"/>
+  <path d="M250 290 q-10 -50 10 -100 q10 -20 -10 -40" stroke="#6f5439" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <ellipse cx="300" cy="190" rx="70" ry="26" fill="#5b7f4a"/>
+  <ellipse cx="230" cy="150" rx="56" ry="22" fill="#5b7f4a"/>
+  <ellipse cx="200" cy="230" rx="44" ry="18" fill="#5b7f4a"/>
+  <!-- 添え -->
+  <rect x="590" y="318" width="70" height="12" fill="#22201c"/>
+  <path d="M600 300 h50 l-6 18 h-38 z" fill="#8b6b4a"/>
+  <path d="M614 300 q-6 -24 -16 -34 M625 300 v-36 M636 300 q6 -24 16 -32" stroke="#5b7f4a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- 三角形 -->
+  <path d="M250 260 L465 110 L625 285 Z" fill="none" stroke="#b8935a" stroke-width="3" stroke-dasharray="10 8"/>
+  <!-- labels -->
+  <text x="250" y="400" text-anchor="middle" font-size="26" font-weight="700" fill="#22201c">主木</text>
+  <text x="250" y="434" text-anchor="middle" font-size="22" fill="#22201c">片側に寄せて卓に</text>
+  <text x="465" y="400" text-anchor="middle" font-size="26" font-weight="700" fill="#22201c">掛軸</text>
+  <text x="465" y="434" text-anchor="middle" font-size="22" fill="#22201c">季節を添える</text>
+  <text x="640" y="400" text-anchor="middle" font-size="26" font-weight="700" fill="#22201c">添え</text>
+  <text x="640" y="434" text-anchor="middle" font-size="22" fill="#22201c">小さく低く</text>
+</svg>

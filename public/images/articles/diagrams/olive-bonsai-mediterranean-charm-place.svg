@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 441" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>オリーブの季節ごとの置き場所。春と秋は日なた、梅雨は長雨を避ける、夏は照り返しに注意、冬は霜と寒風を避ける</title>
+  <rect width="800" height="441" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">季節ごとの置き場所</text>
+  <rect x="20.0" y="68" width="178.0" height="353" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="109.0" cy="142" r="26" fill="#b8935a"/>
+  <line x1="143" y1="142" x2="153" y2="142" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="133" y1="166" x2="140" y2="173" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="109" y1="176" x2="109" y2="186" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="85" y1="166" x2="78" y2="173" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="75" y1="142" x2="65" y2="142" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="85" y1="118" x2="78" y2="111" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="109" y1="108" x2="109" y2="98" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="133" y1="118" x2="140" y2="111" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <rect x="75" y="270" width="68" height="9" rx="3" fill="#6f5439"/>
+  <path d="M79 278 h61 l-10 18 h-41 z" fill="#8b6b4a"/>
+  <path d="M105 272 q-2 -22 6 -38 q7 -13 -1 -26" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <ellipse cx="92" cy="219" rx="20" ry="12" fill="#8f9c7e"/>
+  <ellipse cx="128" cy="215" rx="21" ry="12" fill="#8f9c7e"/>
+  <ellipse cx="109" cy="197" rx="22" ry="13" fill="#8f9c7e"/>
+  <text x="109" y="327" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">春・秋</text>
+  <text x="109" y="365" font-size="22" text-anchor="middle" fill="#6b655b">よく日の当たる</text>
+  <text x="109" y="397" font-size="22" text-anchor="middle" fill="#5b7f4a">屋外の棚</text>
+  <rect x="214.0" y="68" width="178.0" height="353" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <ellipse cx="273" cy="138" rx="26" ry="18" fill="#b9b3a8"/>
+  <ellipse cx="305" cy="126" rx="30" ry="24" fill="#b9b3a8"/>
+  <ellipse cx="329" cy="140" rx="22" ry="16" fill="#b9b3a8"/>
+  <line x1="275.0" y1="166" x2="269.0" y2="184" stroke="#1a365d" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="295.0" y1="166" x2="289.0" y2="184" stroke="#1a365d" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="315.0" y1="166" x2="309.0" y2="184" stroke="#1a365d" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="335.0" y1="166" x2="329.0" y2="184" stroke="#1a365d" stroke-width="3.5" stroke-linecap="round"/>
+  <rect x="243.0" y="200" width="120" height="10" fill="#6b655b"/>
+  <rect x="272" y="270" width="63" height="9" rx="3" fill="#6f5439"/>
+  <path d="M276 278 h55 l-10 16 h-35 z" fill="#8b6b4a"/>
+  <path d="M300 272 q-2 -20 5 -35 q6 -12 -1 -24" stroke="#6f5439" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <ellipse cx="288" cy="224" rx="18" ry="11" fill="#8f9c7e"/>
+  <ellipse cx="320" cy="220" rx="19" ry="11" fill="#8f9c7e"/>
+  <ellipse cx="303" cy="204" rx="20" ry="12" fill="#8f9c7e"/>
+  <text x="303" y="327" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">梅雨</text>
+  <text x="303" y="365" font-size="22" text-anchor="middle" fill="#6b655b">長雨の続く日は</text>
+  <text x="303" y="397" font-size="22" text-anchor="middle" fill="#5b7f4a">軒下へ</text>
+  <rect x="408.0" y="68" width="178.0" height="353" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="497.0" cy="142" r="26" fill="#b8935a"/>
+  <line x1="531" y1="142" x2="541" y2="142" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="521" y1="166" x2="528" y2="173" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="497" y1="176" x2="497" y2="186" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="473" y1="166" x2="466" y2="173" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="463" y1="142" x2="453" y2="142" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="473" y1="118" x2="466" y2="111" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="497" y1="108" x2="497" y2="98" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="521" y1="118" x2="528" y2="111" stroke="#b8935a" stroke-width="4" stroke-linecap="round"/>
+  <rect x="427.0" y="250" width="140" height="12" fill="#c9c2b5"/>
+  <rect x="470" y="232" width="54" height="9" rx="3" fill="#6f5439"/>
+  <path d="M474 240 h46 l-10 14 h-26 z" fill="#8b6b4a"/>
+  <path d="M494 234 q-2 -17 4 -29 q5 -10 -1 -20" stroke="#6f5439" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="484" cy="193" rx="15" ry="9" fill="#8f9c7e"/>
+  <ellipse cx="511" cy="190" rx="16" ry="9" fill="#8f9c7e"/>
+  <ellipse cx="497" cy="177" rx="17" ry="10" fill="#8f9c7e"/>
+  <path d="M441.0 248 q6 -12 0 -24 q-6 -12 0 -24" stroke="#b4573a" stroke-width="3" fill="none"/>
+  <path d="M553.0 248 q6 -12 0 -24 q-6 -12 0 -24" stroke="#b4573a" stroke-width="3" fill="none"/>
+  <text x="497" y="327" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">夏</text>
+  <text x="497" y="365" font-size="22" text-anchor="middle" fill="#6b655b">日なたでよい</text>
+  <text x="497" y="397" font-size="22" text-anchor="middle" fill="#8b6b4a">照り返しに注意</text>
+  <rect x="602.0" y="68" width="178.0" height="353" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <line x1="665" y1="142" x2="717" y2="142" stroke="#1a365d" stroke-width="4" stroke-linecap="round"/>
+  <line x1="678" y1="119" x2="704" y2="165" stroke="#1a365d" stroke-width="4" stroke-linecap="round"/>
+  <line x1="704" y1="119" x2="678" y2="165" stroke="#1a365d" stroke-width="4" stroke-linecap="round"/>
+  <rect x="631.0" y="192" width="120" height="10" fill="#6b655b"/>
+  <rect x="660" y="270" width="63" height="9" rx="3" fill="#6f5439"/>
+  <path d="M664 278 h55 l-10 16 h-35 z" fill="#8b6b4a"/>
+  <path d="M688 272 q-2 -20 5 -35 q6 -12 -1 -24" stroke="#6f5439" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <ellipse cx="676" cy="224" rx="18" ry="11" fill="#8f9c7e"/>
+  <ellipse cx="708" cy="220" rx="19" ry="11" fill="#8f9c7e"/>
+  <ellipse cx="691" cy="204" rx="20" ry="12" fill="#8f9c7e"/>
+  <text x="691" y="327" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">冬</text>
+  <text x="691" y="365" font-size="22" text-anchor="middle" fill="#6b655b">霜と北風を</text>
+  <text x="691" y="397" font-size="22" text-anchor="middle" fill="#5b7f4a">避けた軒下</text>
+</svg>

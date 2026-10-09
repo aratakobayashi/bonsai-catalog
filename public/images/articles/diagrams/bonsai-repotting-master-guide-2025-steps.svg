@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 546" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽の植え替えの手順</title>
+  <rect width="800" height="546" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">植え替えの手順</text>
+  <rect x="20" y="70" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="98.0" r="19" fill="#8b6b4a"/>
+  <text x="56" y="106.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">1</text>
+  <text x="92" y="107.0" font-size="24" font-weight="700" fill="#22201c">用土をふるい、鉢を準備</text>
+  <text x="764" y="106.0" font-size="22" text-anchor="end" fill="#5b7f4a">鉢底網と針金</text>
+  <rect x="20" y="136" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="164.0" r="19" fill="#8b6b4a"/>
+  <text x="56" y="172.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">2</text>
+  <text x="92" y="173.0" font-size="24" font-weight="700" fill="#22201c">樹を鉢から抜く</text>
+  <text x="764" y="172.0" font-size="22" text-anchor="end" fill="#5b7f4a">縁にへらを入れる</text>
+  <rect x="20" y="202" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="230.0" r="19" fill="#8b6b4a"/>
+  <text x="56" y="238.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">3</text>
+  <text x="92" y="239.0" font-size="24" font-weight="700" fill="#22201c">根をほぐす</text>
+  <text x="764" y="238.0" font-size="22" text-anchor="end" fill="#5b7f4a">竹箸で外側から</text>
+  <rect x="20" y="268" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="296.0" r="19" fill="#8b6b4a"/>
+  <text x="56" y="304.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">4</text>
+  <text x="92" y="305.0" font-size="24" font-weight="700" fill="#22201c">根を切る</text>
+  <text x="764" y="304.0" font-size="22" text-anchor="end" fill="#5b7f4a">太い根・傷んだ根</text>
+  <rect x="20" y="334" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="362.0" r="19" fill="#8b6b4a"/>
+  <text x="56" y="370.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">5</text>
+  <text x="92" y="371.0" font-size="24" font-weight="700" fill="#22201c">高さと正面を決めて据える</text>
+  <text x="764" y="370.0" font-size="22" text-anchor="end" fill="#5b7f4a">ゴロ土の上に</text>
+  <rect x="20" y="400" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="428.0" r="19" fill="#8b6b4a"/>
+  <text x="56" y="436.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">6</text>
+  <text x="92" y="437.0" font-size="24" font-weight="700" fill="#22201c">固定して土を入れる</text>
+  <text x="764" y="436.0" font-size="22" text-anchor="end" fill="#5b7f4a">竹箸で突き込む</text>
+  <rect x="20" y="466" width="760" height="56" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <circle cx="56" cy="494.0" r="19" fill="#8b6b4a"/>
+  <text x="56" y="502.0" font-size="22" font-weight="700" text-anchor="middle" fill="#fff">7</text>
+  <text x="92" y="503.0" font-size="24" font-weight="700" fill="#22201c">たっぷり水をやる</text>
+  <text x="764" y="502.0" font-size="22" text-anchor="end" fill="#5b7f4a">濁りが消えるまで</text>
+</svg>

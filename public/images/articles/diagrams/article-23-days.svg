@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 456" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>留守の長さと季節で選ぶ水やりの方法。春秋の1〜2日はたっぷり与えて明るい日陰へ。夏の2〜3日は日陰にまとめて腰水や給水器。それ以上や鉢が多いときはタイマーと点滴か人に頼む</title>
+  <rect width="800" height="456" fill="#faf9f6"/>
+  <text x="400" y="48" font-size="30" font-weight="700" fill="#1a365d" text-anchor="middle">留守の長さと季節で選ぶ</text>
+  <rect x="20" y="76" width="760" height="96" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="76" width="14" height="96" rx="6" fill="#5b7f4a"/>
+  <text x="56" y="134" font-size="26" font-weight="700" fill="#22201c">春秋の1〜2日</text>
+  <path d="M338 124 h34" stroke="#6b655b" stroke-width="4"/><path d="M366 114 l10 10 l-10 10" fill="none" stroke="#6b655b" stroke-width="4"/>
+  <text x="392" y="134" font-size="24" font-weight="700" fill="#5b7f4a">たっぷり与えて明るい日陰へ</text>
+  <rect x="20" y="188" width="760" height="96" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="188" width="14" height="96" rx="6" fill="#b8935a"/>
+  <text x="56" y="246" font-size="26" font-weight="700" fill="#22201c">夏の2〜3日</text>
+  <path d="M338 236 h34" stroke="#6b655b" stroke-width="4"/><path d="M366 226 l10 10 l-10 10" fill="none" stroke="#6b655b" stroke-width="4"/>
+  <text x="392" y="246" font-size="24" font-weight="700" fill="#8b6b4a">日陰にまとめて腰水・給水器</text>
+  <rect x="20" y="300" width="760" height="96" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="20" y="300" width="14" height="96" rx="6" fill="#1a365d"/>
+  <text x="56" y="358" font-size="26" font-weight="700" fill="#22201c">それ以上・鉢が多い</text>
+  <path d="M338 348 h34" stroke="#6b655b" stroke-width="4"/><path d="M366 338 l10 10 l-10 10" fill="none" stroke="#6b655b" stroke-width="4"/>
+  <text x="392" y="358" font-size="24" font-weight="700" fill="#1a365d">タイマー＋点滴か、人に頼む</text>
+  <text x="400" y="432" font-size="22" fill="#6b655b" text-anchor="middle">どの方法も、帰宅したら土の乾き具合を見て元に戻す</text>
+
+</svg>

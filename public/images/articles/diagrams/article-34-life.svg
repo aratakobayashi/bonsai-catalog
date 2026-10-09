@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 408" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>二人の暮らしに合わせて選ぶ</title>
+<defs>
+  <g id="tree"><path d="M-40 0 h80 l-9 26 h-62 z" fill="#8b6b4a"/><path d="M0 0 q-6 -30 4 -56" stroke="#6f5439" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="2" cy="-62" rx="34" ry="20" fill="#5b7f4a"/><ellipse cx="-24" cy="-40" rx="20" ry="12" fill="#5b7f4a"/><ellipse cx="28" cy="-38" rx="20" ry="12" fill="#5b7f4a"/></g>
+  <g id="ok"><circle r="15" fill="none" stroke="#5b7f4a" stroke-width="5"/></g>
+  <g id="ng"><g stroke="#8b6b4a" stroke-width="5" stroke-linecap="round"><line x1="-13" y1="-13" x2="13" y2="13"/><line x1="13" y1="-13" x2="-13" y2="13"/></g></g>
+  <g id="tri"><path d="M0 -15 L15 12 H-15 Z" fill="none" stroke="#b8935a" stroke-width="5" stroke-linejoin="round"/></g>
+  <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#6b655b"/></marker>
+</defs>
+  <rect width="800" height="408" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">二人の暮らしに合わせて選ぶ</text>
+  <rect x="20" y="68" width="372" height="150" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <use href="#tri" x="58" y="112"/>
+  <text x="90" y="121" font-size="25" font-weight="700" fill="#22201c">共働きで留守が多い</text>
+  <text x="46" y="166" font-size="22" fill="#6b655b">乾きにくい中くらいの鉢を</text>
+  <rect x="408" y="68" width="372" height="150" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <use href="#tri" x="446" y="112"/>
+  <text x="478" y="121" font-size="25" font-weight="700" fill="#22201c">旅行や帰省が多い</text>
+  <text x="434" y="166" font-size="22" fill="#6b655b">預け先や留守中の水やりを</text>
+  <rect x="20" y="234" width="372" height="150" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <use href="#ok" x="58" y="278"/>
+  <text x="90" y="287" font-size="25" font-weight="700" fill="#22201c">庭やベランダがある</text>
+  <text x="46" y="332" font-size="22" fill="#6b655b">屋外向きの花ものや松柏も</text>
+  <rect x="408" y="234" width="372" height="150" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <use href="#tri" x="446" y="278"/>
+  <text x="478" y="287" font-size="25" font-weight="700" fill="#22201c">ペットがいる</text>
+  <text x="434" y="332" font-size="22" fill="#6b655b">かじられない高い棚に置く</text>
+</svg>

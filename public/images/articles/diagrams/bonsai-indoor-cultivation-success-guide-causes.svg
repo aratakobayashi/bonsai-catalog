@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 410" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>室内でうまく育たない4つの理由</title>
+  <rect width="800" height="410" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">うまく育たない4つの理由</text>
+  <rect x="24" y="80" width="370" height="144" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="24" y="80" width="10" height="144" rx="4" fill="#b8935a"/>
+  <text x="54" y="134" font-size="26" font-weight="700" fill="#1a365d">光が足りない</text>
+  <text x="54" y="184" font-size="22" fill="#22201c">枝が間延びし、葉の色が薄い</text>
+  <rect x="406" y="80" width="370" height="144" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="406" y="80" width="10" height="144" rx="4" fill="#1a365d"/>
+  <text x="436" y="134" font-size="26" font-weight="700" fill="#1a365d">風が通らない</text>
+  <text x="436" y="184" font-size="22" fill="#22201c">蒸れて病気や虫が出やすい</text>
+  <rect x="24" y="240" width="370" height="144" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="24" y="240" width="10" height="144" rx="4" fill="#8b6b4a"/>
+  <text x="54" y="294" font-size="26" font-weight="700" fill="#1a365d">乾き方が変わる</text>
+  <text x="54" y="344" font-size="22" fill="#22201c">冷暖房で乾く／日が弱く乾かない</text>
+  <rect x="406" y="240" width="370" height="144" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="406" y="240" width="10" height="144" rx="4" fill="#5b7f4a"/>
+  <text x="436" y="294" font-size="26" font-weight="700" fill="#1a365d">冬の寒さがない</text>
+  <text x="436" y="344" font-size="22" fill="#22201c">落葉樹は春の芽吹きが乱れる</text>
+</svg>

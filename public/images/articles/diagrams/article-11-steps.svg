@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>盆栽を始めるまでの4つのステップ</title>
+  <rect width="800" height="440" fill="#faf9f6"/>
+  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">始めるまでの4ステップ</text>
+  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+    <rect x="20" y="72" width="176" height="290" rx="14"/>
+    <rect x="214" y="72" width="176" height="290" rx="14"/>
+    <rect x="408" y="72" width="176" height="290" rx="14"/>
+    <rect x="602" y="72" width="176" height="290" rx="14"/>
+  </g>
+  <g fill="#1a365d"><circle cx="108" cy="112" r="22"/><circle cx="302" cy="112" r="22"/><circle cx="496" cy="112" r="22"/><circle cx="690" cy="112" r="22"/></g>
+  <g font-size="24" font-weight="700" fill="#faf9f6" text-anchor="middle"><text x="108" y="121">1</text><text x="302" y="121">2</text><text x="496" y="121">3</text><text x="690" y="121">4</text></g>
+  <!-- 1 置き場所 -->
+  <rect x="58" y="190" width="100" height="12" fill="#8b6b4a"/>
+  <rect x="68" y="202" width="8" height="40" fill="#8b6b4a"/><rect x="140" y="202" width="8" height="40" fill="#8b6b4a"/>
+  <circle cx="150" cy="160" r="16" fill="#b8935a"/>
+  <!-- 2 樹種 -->
+  <path d="M262 214 h80 l-10 30 h-60 z" fill="#8b6b4a"/>
+  <path d="M302 214 v-40" stroke="#6f5439" stroke-width="7"/>
+  <ellipse cx="302" cy="170" rx="40" ry="22" fill="#5b7f4a"/>
+  <!-- 3 道具 -->
+  <g stroke="#22201c" stroke-width="5" stroke-linecap="round" fill="none">
+    <circle cx="466" cy="226" r="11"/><circle cx="490" cy="226" r="11"/>
+    <line x1="470" y1="216" x2="506" y2="168"/><line x1="486" y1="216" x2="450" y2="168"/>
+  </g>
+  <path d="M520 200 h34 v40 h-34 z" fill="#1a365d"/><path d="M554 206 l22 -16" stroke="#1a365d" stroke-width="6" stroke-linecap="round"/>
+  <!-- 4 毎日見る -->
+  <ellipse cx="690" cy="200" rx="46" ry="26" fill="none" stroke="#22201c" stroke-width="4"/>
+  <circle cx="690" cy="200" r="13" fill="#22201c"/>
+  <g font-size="25" font-weight="700" fill="#22201c" text-anchor="middle">
+    <text x="108" y="290">置き場所</text><text x="302" y="290">樹種を選ぶ</text><text x="496" y="290">道具</text><text x="690" y="290">毎日見る</text>
+  </g>
+  <g font-size="22" fill="#5b7f4a" text-anchor="middle">
+    <text x="108" y="330">屋外の日なた</text><text x="302" y="330">丈夫な樹から</text><text x="496" y="330">はさみと水</text><text x="690" y="330">土と葉の様子</text>
+  </g>
+  <rect x="20" y="378" width="760" height="50" rx="12" fill="#1a365d"/>
+  <text x="400" y="412" text-anchor="middle" font-size="24" font-weight="700" fill="#faf9f6">置き場所を先に決めると、樹種も選びやすくなります</text>
+</svg>

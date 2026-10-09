@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 548" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>室内の盆栽の置き場所。レースカーテン越しの明るい窓辺で、窓から少し離す。エアコンの風が直接当たる場所は避け、冬の夜は部屋の内側へ</title>
+  <rect width="800" height="548" fill="#faf9f6"/>
+  <text x="400" y="48" font-size="30" font-weight="700" fill="#1a365d" text-anchor="middle">窓辺の置き場所</text>
+  <rect x="20" y="72" width="760" height="380" rx="16" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="50" y="100" width="180" height="250" fill="#fff" stroke="#6b655b" stroke-width="4"/><line x1="140" y1="100" x2="140" y2="350" stroke="#6b655b" stroke-width="3"/>
+  <path d="M60 100 q20 125 0 250 h40 q20 -125 0 -250 z M110 100 q20 125 0 250 h30 q14 -125 0 -250 z" fill="#f3f0ea" stroke="#ebe7df" stroke-width="2"/>
+  <text x="140" y="384" font-size="22" font-weight="700" fill="#22201c" text-anchor="middle">レースカーテン越し</text>
+  <rect x="240" y="300" width="200" height="12" fill="#8b6b4a"/><rect x="250" y="312" width="12" height="90" fill="#8b6b4a"/><rect x="418" y="312" width="12" height="90" fill="#8b6b4a"/>
+  <path d="M330 296 q-3.5999999999999996 -24.0 2.4 -48.0" stroke="#6f5439" stroke-width="5.3999999999999995" fill="none" stroke-linecap="round"/>
+  <g fill="#5b7f4a"><ellipse cx="331.2" cy="240.8" rx="27.599999999999998" ry="15.6"/><ellipse cx="307.2" cy="258.8" rx="20.4" ry="10.799999999999999"/><ellipse cx="355.2" cy="261.2" rx="19.2" ry="10.2"/></g>
+  <path d="M280.0 294 h100 l-10.0 30 h-80.0 z" fill="#8b6b4a"/>
+  <text x="330" y="424" font-size="22" font-weight="700" fill="#5b7f4a" text-anchor="middle">窓から少し離した明るい場所</text>
+  <rect x="560" y="100" width="190" height="56" rx="10" fill="#fff" stroke="#6b655b" stroke-width="3"/><line x1="580" y1="140" x2="730" y2="140" stroke="#6b655b" stroke-width="3"/>
+  <text x="655" y="132" font-size="22" font-weight="700" fill="#22201c" text-anchor="middle">エアコン</text>
+  <g stroke="#1a365d" stroke-width="4" stroke-linecap="round" fill="none"><path d="M600 170 q-10 40 -40 70"/><path d="M650 170 q-10 50 -40 90"/><path d="M700 170 q-10 40 -40 70"/></g>
+  <g stroke="#8b6b4a" stroke-width="5" stroke-linecap="round"><line x1="624" y1="284" x2="656" y2="316"/><line x1="656" y1="284" x2="624" y2="316"/></g>
+  <text x="640" y="352" font-size="22" font-weight="700" fill="#22201c" text-anchor="middle">風が直接</text>
+  <text x="640" y="380" font-size="22" font-weight="700" fill="#22201c" text-anchor="middle">当たる場所</text>
+  <rect x="20" y="466" width="760" height="62" rx="14" fill="#1a365d"/>
+  <text x="400" y="506.36" font-size="26" font-weight="700" fill="#faf9f6" text-anchor="middle">冬の夜は窓際が冷えるので、部屋の内側へ</text>
+
+</svg>

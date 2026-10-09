@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>葉がしおれたときの見分け方：土が乾いているか湿っているか</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+
+  <rect x="230" y="24" width="340" height="70" rx="14" fill="#1a365d"/>
+  <text x="400" y="69" text-anchor="middle" font-size="26" font-weight="700" fill="#fff">葉がしおれている</text>
+  <line x1="400" y1="94" x2="400" y2="124" stroke="#6b655b" stroke-width="3"/>
+  <rect x="200" y="124" width="400" height="64" rx="14" fill="#fff" stroke="#b8935a" stroke-width="3"/>
+  <text x="400" y="166" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">鉢の土を指で確かめる</text>
+
+  <path d="M300 188 L 190 238" stroke="#6b655b" stroke-width="3" fill="none"/>
+  <path d="M500 188 L 610 238" stroke="#6b655b" stroke-width="3" fill="none"/>
+  <text x="208" y="222" text-anchor="end" font-size="22" fill="#6b655b">乾いている</text>
+  <text x="592" y="222" text-anchor="start" font-size="22" fill="#6b655b">湿っている</text>
+
+  <!-- 左 -->
+  <rect x="20" y="244" width="370" height="216" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <text x="205" y="288" text-anchor="middle" font-size="26" font-weight="700" fill="#5b7f4a">水切れ</text>
+  <text x="44" y="330" font-size="22" fill="#22201c">・日陰に移して、鉢底から</text>
+  <text x="44" y="360" font-size="22" fill="#22201c">　流れるまで水を与える</text>
+  <text x="44" y="396" font-size="22" fill="#22201c">・水を張ったバケツに鉢ごと</text>
+  <text x="44" y="426" font-size="22" fill="#22201c">　数分沈める方法もある</text>
+
+  <!-- 右 -->
+  <rect x="410" y="244" width="370" height="216" rx="14" fill="#fff" stroke="#b4573a" stroke-width="3"/>
+  <text x="595" y="288" text-anchor="middle" font-size="26" font-weight="700" fill="#b4573a">根の不調・暑さ</text>
+  <text x="434" y="330" font-size="22" fill="#22201c">・水は足さずに乾くのを待つ</text>
+  <text x="434" y="366" font-size="22" fill="#22201c">・風通しのよい半日陰へ</text>
+  <text x="434" y="402" font-size="22" fill="#22201c">・真夏の昼だけなら夕方に</text>
+  <text x="434" y="432" font-size="22" fill="#22201c">　戻るかを見る</text>
+</svg>

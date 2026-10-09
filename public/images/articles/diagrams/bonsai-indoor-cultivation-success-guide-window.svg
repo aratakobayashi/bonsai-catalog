@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 506" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>室内の置き場所。明るい窓辺はよく、部屋の奥や冷暖房の風が当たる場所は避ける</title>
+  <rect width="800" height="506" fill="#faf9f6"/>
+  <text x="400" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">室内での置き場所</text>
+  <rect x="20" y="70" width="40" height="370" fill="#ebe7df"/>
+  <rect x="26" y="120" width="28" height="200" fill="#dfe8f0" stroke="#c9c2b5" stroke-width="2"/>
+  <rect x="20" y="440" width="760" height="18" fill="#c9c2b5"/>
+  <path d="M60 130 L330 330 L330 360 L60 320 z" fill="#b8935a" opacity="0.25"/>
+  <rect x="110" y="350" width="200" height="12" fill="#8b6b4a"/><rect x="124" y="362" width="10" height="78" fill="#6f5439"/><rect x="286" y="362" width="10" height="78" fill="#6f5439"/>
+  <path d="M160.5 323.0 h99.0 l-7.2 27.0 h-84.6 z" fill="#1a365d"/>
+  <path d="M204.6 323.0 C201.0 287.0 228.0 269.0 211.8 233.0 L220.8 233.0 C238.8 269.0 215.4 287.0 219.0 323.0 z" fill="#6f5439"/>
+  <ellipse cx="175.8" cy="252.8" rx="36.0" ry="16.2" fill="#5b7f4a"/>
+  <ellipse cx="246.0" cy="233.0" rx="32.4" ry="14.4" fill="#5b7f4a"/>
+  <ellipse cx="213.6" cy="207.8" rx="30.6" ry="16.2" fill="#5b7f4a"/>
+  <circle cx="150" cy="150" r="13" fill="none" stroke="#5b7f4a" stroke-width="5"/>
+  <text x="176" y="160" font-size="26" font-weight="700" fill="#22201c">窓辺</text>
+  <text x="110" y="486" font-size="22" fill="#22201c">明るい窓辺に</text>
+  <rect x="430" y="380" width="120" height="60" fill="#f3f0ea" stroke="#6b655b" stroke-width="2"/>
+  <path d="M451.5 359.0 h77.0 l-5.6 21.0 h-65.8 z" fill="#1a365d"/>
+  <path d="M485.8 359.0 C483.0 331.0 504.0 317.0 491.4 289.0 L498.4 289.0 C512.4 317.0 494.2 331.0 497.0 359.0 z" fill="#6f5439"/>
+  <ellipse cx="463.4" cy="304.4" rx="28.0" ry="12.6" fill="#9cb38e"/>
+  <ellipse cx="518.0" cy="289.0" rx="25.2" ry="11.2" fill="#9cb38e"/>
+  <ellipse cx="492.8" cy="269.4" rx="23.8" ry="12.6" fill="#9cb38e"/>
+  <g stroke="#8b6b4a" stroke-width="5" stroke-linecap="round"><line x1="429" y1="219" x2="451" y2="241"/><line x1="451" y1="219" x2="429" y2="241"/></g>
+  <text x="462" y="240" font-size="24" font-weight="700" fill="#22201c">部屋の奥</text>
+  <text x="430" y="486" font-size="22" fill="#22201c">光が足りない</text>
+  <rect x="620" y="96" width="150" height="50" rx="8" fill="#fff" stroke="#6b655b" stroke-width="2.5"/>
+  <line x1="636" y1="132" x2="754" y2="132" stroke="#6b655b" stroke-width="2"/>
+  <path d="M650 158 q-8 14 0 28 t0 28" stroke="#1a365d" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M686 158 q-8 14 0 28 t0 28" stroke="#1a365d" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M722 158 q-8 14 0 28 t0 28" stroke="#1a365d" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="650" y="380" width="100" height="60" fill="#f3f0ea" stroke="#6b655b" stroke-width="2"/>
+  <path d="M667.0 362.0 h66.0 l-4.8 18.0 h-56.4 z" fill="#1a365d"/>
+  <path d="M696.4 362.0 C694.0 338.0 712.0 326.0 701.2 302.0 L707.2 302.0 C719.2 326.0 703.6 338.0 706.0 362.0 z" fill="#6f5439"/>
+  <ellipse cx="677.2" cy="315.2" rx="24.0" ry="10.8" fill="#5b7f4a"/>
+  <ellipse cx="724.0" cy="302.0" rx="21.6" ry="9.6" fill="#5b7f4a"/>
+  <ellipse cx="702.4" cy="285.2" rx="20.4" ry="10.8" fill="#5b7f4a"/>
+  <g stroke="#8b6b4a" stroke-width="5" stroke-linecap="round"><line x1="613" y1="229" x2="635" y2="251"/><line x1="635" y1="229" x2="613" y2="251"/></g>
+  <text x="646" y="250" font-size="22" font-weight="700" fill="#22201c">冷暖房の風</text>
+  <text x="620" y="486" font-size="22" fill="#22201c">葉が乾いて傷む</text>
+</svg>

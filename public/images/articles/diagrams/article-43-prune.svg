@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>梅の花後の剪定。花が終わったら花の咲いた枝を2〜3芽残して切る。新しく伸びた枝に夏ごろ翌年の花芽がつく</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">梅は花が終わったらすぐに切る</text>
+  <rect x="20" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="142" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">① 花が終わる</text>
+  <path d="M50 300 L240 210" stroke="#6f5439" stroke-width="7" stroke-linecap="round"/>
+  <g opacity="0.4">  <circle cx="78.5" cy="272.5" r="10" fill="#d27a8f"/></g>
+  <g opacity="0.4">  <circle cx="110.80000000000001" cy="257.2" r="10" fill="#d27a8f"/></g>
+  <g opacity="0.4">  <circle cx="145.0" cy="241.0" r="10" fill="#d27a8f"/></g>
+  <g opacity="0.4">  <circle cx="179.20000000000002" cy="224.8" r="10" fill="#d27a8f"/></g>
+  <g opacity="0.4">  <circle cx="213.4" cy="208.6" r="10" fill="#d27a8f"/></g>
+  <text x="142" y="352" text-anchor="middle" font-size="22" fill="#22201c">花がらが残り</text>
+  <text x="142" y="386" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">葉芽が動き出す</text>
+  <text x="142" y="430" text-anchor="middle" font-size="22" fill="#6b655b">2月下旬〜3月</text>
+  <rect x="278" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#b8935a" stroke-width="3"/>
+  <text x="400" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">② 2〜3芽で切る</text>
+  <path d="M300 300 L400 252" stroke="#6f5439" stroke-width="7" stroke-linecap="round"/>
+  <path d="M400 252 L500 204" stroke="#6f5439" stroke-width="7" stroke-linecap="round" opacity="0.25"/>
+  <path d="M330 279.6 q-8 -14 0 -26 q8 12 0 26 z" fill="#5b7f4a"/>
+  <path d="M357 266.64 q-8 -14 0 -26 q8 12 0 26 z" fill="#5b7f4a"/>
+  <path d="M384 253.68 q-8 -14 0 -26 q8 12 0 26 z" fill="#5b7f4a"/>
+  <line x1="396" y1="212" x2="412" y2="290" stroke="#b8935a" stroke-width="4" stroke-dasharray="9 6"/>
+  <text x="420" y="196" text-anchor="middle" font-size="22" font-weight="700" fill="#b8935a">ここで切る</text>
+  <text x="400" y="352" text-anchor="middle" font-size="22" fill="#22201c">花の咲いた枝を</text>
+  <text x="400" y="386" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">2〜3芽残して切る</text>
+  <text x="400" y="430" text-anchor="middle" font-size="22" fill="#6b655b">切り口は斜めに</text>
+  <rect x="536" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="658" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">③ 夏に花芽</text>
+  <path d="M560 300 L640 262" stroke="#6f5439" stroke-width="7" stroke-linecap="round"/>
+  <path d="M640 262 L740 190" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+  <path d="M640 262 L760 250" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="668" cy="230" r="8" fill="#e7b3bf"/>
+  <circle cx="696" cy="212" r="8" fill="#e7b3bf"/>
+  <circle cx="724" cy="194" r="8" fill="#e7b3bf"/>
+  <circle cx="672" cy="250" r="8" fill="#e7b3bf"/>
+  <circle cx="702" cy="247" r="8" fill="#e7b3bf"/>
+  <circle cx="732" cy="244" r="8" fill="#e7b3bf"/>
+  <text x="658" y="352" text-anchor="middle" font-size="22" fill="#22201c">新しく伸びた枝に</text>
+  <text x="658" y="386" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">翌年の花芽がつく</text>
+  <text x="658" y="430" text-anchor="middle" font-size="22" fill="#6b655b">7〜8月ごろ</text>
+</svg>
