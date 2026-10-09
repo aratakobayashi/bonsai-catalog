@@ -161,7 +161,7 @@ export default async function ShindanPage({ searchParams }: ShindanPageProps) {
     <div className={`${CONTAINER} pb-12 lg:pb-20`}>
       <PageHeading
         title="かんたん盆栽診断"
-        lead={`4つの質問に答えると、${SHOP_NAMES_AND}の盆栽から合いそうな商品を探します。`}
+        lead="4つの質問に答えると、あなたに合いそうな盆栽を探します。"
         crumbs={[{ label: 'ホーム', href: '/' }, { label: 'かんたん盆栽診断' }]}
       />
 

@@ -24,8 +24,9 @@ function parseIds(value: string | string[] | undefined): string[] {
 export default function FavoritesPage({ searchParams }: FavoritesPageProps) {
   return (
     <div className={`${CONTAINER} pb-16`}>
+      {/* 販売ページへのボタンが並ぶため、PR表記は内容より先に出す */}
+      <PrDisclosure compact className="pt-4 lg:pt-6" />
       <FavoritesView sharedIds={parseIds(searchParams.ids)} />
-      <PrDisclosure className="mt-10 border-t border-line pt-5" />
     </div>
   )
 }

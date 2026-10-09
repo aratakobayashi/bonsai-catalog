@@ -27,7 +27,7 @@ function ShopLink({ product, className = '' }: { product: CompactProduct; classN
       rel={AFFILIATE_LINK_REL}
       className={`flex h-11 items-center justify-center gap-1 whitespace-nowrap bg-sumi text-xs tracking-[0.04em] text-white hover:bg-sumi-light hover:text-white lg:text-[13px] ${className}`}
     >
-      {SHOP_LABELS[product.source]}で見る <span aria-hidden="true">↗</span>
+      販売ページを見る <span aria-hidden="true">↗</span>
     </a>
   )
 }

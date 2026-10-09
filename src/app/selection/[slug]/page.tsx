@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { SHOP_NAMES } from '@/lib/affiliate'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { SELECTIONS, getSelection, pickSelectionProducts } from '@/lib/selections'
@@ -179,7 +178,7 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
               </div>
             )}
             <p className="mt-3 text-xs leading-relaxed text-ink-soft">
-              {products.length}件を掲載（{SHOP_NAMES}）
+              {products.length}件を掲載
               {priceRanges.length > 0 ? (
                 <>
                   。サイズ別の参考価格：

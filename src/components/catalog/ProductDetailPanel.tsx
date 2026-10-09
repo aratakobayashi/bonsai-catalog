@@ -17,6 +17,7 @@ import { FavoriteButton } from './FavoriteButton'
 import { ProductThumb } from './ProductThumb'
 
 // ショップの商品ページへのボタン（墨・四角）。広告リンクのクリックは GA の共通処理で rel="sponsored" から記録する
+// ショップ名はボタンの下に小さく添え（ShopCaption）、ボタン自体は「販売ページを見る」にする
 export function ShopButton({ product, className = '', size = 'lg' }: { product: CatalogProduct; className?: string; size?: 'lg' | 'md' }) {
   if (!product.buyUrl) return null
   return (
@@ -24,10 +25,23 @@ export function ShopButton({ product, className = '', size = 'lg' }: { product: 
       href={product.buyUrl}
       target="_blank"
       rel={AFFILIATE_LINK_REL}
+      aria-label={`${SHOP_LABELS[product.source]}の販売ページを見る（新しいタブで開きます）`}
       className={`flex items-center justify-center gap-3 bg-sumi tracking-[0.08em] text-white hover:bg-sumi-light hover:text-white ${size === 'lg' ? 'h-[50px] text-sm' : 'h-12 text-sm'} ${className}`}
     >
-      {SHOP_LABELS[product.source]}で見る <span aria-hidden="true">↗</span>
+      販売ページを見る <span aria-hidden="true">↗</span>
     </a>
+  )
+}
+
+// ボタンの下の小さな注記：PR・販売するショップ
+export function ShopCaption({ product, className = '' }: { product: CatalogProduct; className?: string }) {
+  if (!product.buyUrl) return null
+  const shop = product.shopName && product.shopName !== SHOP_LABELS[product.source] ? `${SHOP_LABELS[product.source]}・${product.shopName}` : SHOP_LABELS[product.source]
+  return (
+    <p className={`flex min-w-0 items-center gap-1.5 text-[11px] leading-[1.6] text-ink-muted ${className}`}>
+      <PrMark />
+      <span className="truncate">{shop}</span>
+    </p>
   )
 }
 
@@ -121,10 +135,8 @@ export function ProductInfo({
       {/* スマホは画面下のバーにボタンを出す */}
       <div className="hidden lg:block">
         <ShopButton product={product} className="mt-5" />
-        <p className="mt-2 flex items-start gap-1.5 text-[11px] leading-[1.7] text-ink-muted">
-          {product.buyUrl && <PrMark className="mt-[3px]" />}
-          <span>{priceNote(product)}</span>
-        </p>
+        <ShopCaption product={product} className="mt-2" />
+        <p className="mt-1 text-[11px] leading-[1.7] text-ink-muted">{priceNote(product)}</p>
       </div>
       <p className="mt-2 text-[11px] leading-[1.7] text-ink-muted lg:hidden">{priceNote(product)}</p>
       {product.soldOut && <p className="mt-2 text-[13px] text-ink">現在、販売されていない可能性があります。</p>}
@@ -152,7 +164,7 @@ export function ProductInfo({
         </details>
       )}
 
-      <PrDisclosure className="mt-4" />
+      <PrDisclosure compact className="mt-4" />
       {product.source === 'rakuten' && (
         <p className="mt-1 text-[11px] text-ink-muted">
           楽天市場の商品情報は{' '}
@@ -210,7 +222,7 @@ export function ProductBuyBar({ product }: { product: CatalogProduct }) {
             <div className="text-[19px] leading-tight text-ink">{formatPrice(product.price)}</div>
             <div className="mt-0.5 flex items-center gap-1 text-[10.5px] text-ink-muted">
               <PrMark />
-              <span>{shortPriceNote(product)}</span>
+              <span>{[SHOP_LABELS[product.source], shortPriceNote(product)].filter(Boolean).join('・')}</span>
             </div>
           </div>
           <ShopButton product={product} size="md" className="flex-1" />

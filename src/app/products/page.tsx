@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { SHOP_NAMES, SHOP_NAMES_AND } from '@/lib/affiliate'
+import { SHOP_NAMES_AND } from '@/lib/affiliate'
 import Link from 'next/link'
 import {
   filterProducts,
@@ -77,7 +77,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         filterKeys={activeFilterKeys(filters).join(',')}
         resultCount={total}
       />
-      <h1 className="sr-only">盆栽・鉢・道具を探す（{SHOP_NAMES}の商品{all.length.toLocaleString()}件）</h1>
+      <h1 className="sr-only">盆栽・鉢・道具を探す（{all.length.toLocaleString()}件）</h1>
       <CatalogBrowser
         filters={filters}
         items={items}
