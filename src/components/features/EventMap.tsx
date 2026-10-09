@@ -1,46 +1,10 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
-import dynamic from 'next/dynamic'
-import 'leaflet/dist/leaflet.css'
+import { useState, useMemo } from 'react'
 import { Event } from '@/types'
-import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { EventCard } from './EventCard'
-import { eventPriceText } from '@/lib/event-display'
-import { EVENT_TYPE_LABEL, eventShortDateText, getEventStatus } from './EventShared'
-
-// Dynamically import Leaflet components to avoid SSR issues
-const MapContainer = dynamic(
-  () => import('react-leaflet').then((mod) => mod.MapContainer),
-  { ssr: false }
-)
-const TileLayer = dynamic(
-  () => import('react-leaflet').then((mod) => mod.TileLayer),
-  { ssr: false }
-)
-const Marker = dynamic(
-  () => import('react-leaflet').then((mod) => mod.Marker),
-  { ssr: false }
-)
-const Popup = dynamic(
-  () => import('react-leaflet').then((mod) => mod.Popup),
-  { ssr: false }
-)
-
-// Fix Leaflet default markers
-const FixLeafletIcons = dynamic(
-  () => import('leaflet').then((L) => {
-    delete (L.Icon.Default.prototype as any)._getIconUrl
-    L.Icon.Default.mergeOptions({
-      iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-    })
-    return () => null
-  }),
-  { ssr: false }
-)
+import { GardenMap, type GardenMapPoint } from '@/components/gardens/GardenMap'
 
 // Prefecture coordinates (approximate center points)
 const prefectureCoordinates: Record<string, [number, number]> = {
@@ -101,12 +65,7 @@ interface EventMapProps {
 }
 
 export function EventMap({ events, className, selectedEvent, onEventSelect }: EventMapProps) {
-  const [mapLoaded, setMapLoaded] = useState(false)
   const [selectedPrefecture, setSelectedPrefecture] = useState<string | null>(selectedEvent?.prefecture ?? null)
-
-  useEffect(() => {
-    setMapLoaded(true)
-  }, [])
 
   // 都道府県ごとにまとめてピンを立てる
   const eventGroups = useMemo(() => {
@@ -125,75 +84,39 @@ export function EventMap({ events, className, selectedEvent, onEventSelect }: Ev
     }))
   }, [events])
 
+  // 盆栽園の地図と同じ部品・同じ紺のピンで表示する（全ピンが収まるように表示）
+  const points: GardenMapPoint[] = useMemo(
+    () => eventGroups.map(g => ({ id: g.prefecture, name: `${g.prefecture}のイベント（${g.count}件）`, lat: g.coordinates[0], lng: g.coordinates[1] })),
+    [eventGroups]
+  )
+
   const selectedGroup = eventGroups.find(g => g.prefecture === selectedPrefecture) ?? null
 
-  if (!mapLoaded) {
-    return (
-      <div className={cn('flex h-96 items-center justify-center border border-line bg-white text-sm text-ink-muted', className)}>
-        地図を読み込み中…
-      </div>
-    )
+  const select = (prefecture: string) => {
+    setSelectedPrefecture(prefecture)
+    const group = eventGroups.find(g => g.prefecture === prefecture)
+    onEventSelect?.(group && group.events.length === 1 ? group.events[0] : null)
   }
 
   return (
     <div className={cn('grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px]', className)}>
       <div>
-        <div className="relative h-[360px] overflow-hidden border border-line lg:h-[520px]">
-          <MapContainer
-            center={[36.2, 138.25]}
-            zoom={5}
-            style={{ height: '100%', width: '100%' }}
-            className="z-0"
-          >
-            <FixLeafletIcons />
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-
-            {eventGroups.map(({ prefecture, events: groupEvents, coordinates, count }) => (
-              <Marker
-                key={prefecture}
-                position={coordinates}
-                eventHandlers={{
-                  click: () => {
-                    setSelectedPrefecture(prefecture)
-                    onEventSelect?.(groupEvents.length === 1 ? groupEvents[0] : null)
-                  }
-                }}
-              >
-                <Popup>
-                  <div className="min-w-56">
-                    <p className="mb-1.5 font-bold text-ink">{prefecture}（{count}件）</p>
-                    <ul className="max-h-48 space-y-1.5 overflow-y-auto">
-                      {groupEvents.slice(0, 3).map(event => (
-                        <li key={event.id} className="border-t border-line pt-1.5">
-                          <Link href={`/events/${event.slug}`} className="block text-[13px] font-bold leading-snug text-ink hover:text-gold-dark">
-                            {event.title}
-                          </Link>
-                          <span className="block text-[11.5px] text-ink-soft">
-                            {event.types.map(t => EVENT_TYPE_LABEL[t]).join('・')}　{eventShortDateText(event)}・{eventPriceText(event)}
-                            {getEventStatus(event) === 'past' && '（終了）'}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                    {groupEvents.length > 3 && <p className="mt-1.5 text-[11.5px] text-ink-muted">ほか{groupEvents.length - 3}件は右の一覧で確認できます</p>}
-                  </div>
-                </Popup>
-              </Marker>
-            ))}
-          </MapContainer>
+        <div className="isolate relative h-[360px] overflow-hidden border border-line lg:h-[520px]">
+          {points.length > 0 ? (
+            <GardenMap points={points} selectedId={selectedPrefecture} onSelect={select} showPopup={false} />
+          ) : (
+            <div className="flex h-full items-center justify-center bg-white text-sm text-ink-muted">地図に表示できるイベントがありません</div>
+          )}
         </div>
         <p className="mt-2 text-[11.5px] text-ink-muted">※ ピンは都道府県ごとのおおよその位置です。ピンを押すとその地域のイベントを表示します。</p>
       </div>
 
       <div>
         <div className="lg:sticky lg:top-24">
-          <h3 className="mb-2.5 flex items-baseline gap-2 text-[13px] font-bold text-ink-soft">
-            {selectedGroup ? `${selectedGroup.prefecture}のイベント（${selectedGroup.count}件）` : '地図のピンを選んでください'}
+          <h3 className="mb-2.5 flex items-baseline gap-2 text-[13px] font-bold text-ink-soft" aria-live="polite">
+            {selectedGroup ? `${selectedGroup.prefecture}のイベント（${selectedGroup.count}件）` : '地図のピンか地域を選んでください'}
             {selectedGroup && (
-              <button onClick={() => setSelectedPrefecture(null)} className="ml-auto text-xs font-normal border-b border-ink text-ink hover:text-gold-dark">
+              <button type="button" onClick={() => setSelectedPrefecture(null)} className="ml-auto inline-flex min-h-11 items-center text-xs font-normal text-ink underline underline-offset-4 hover:text-gold-dark lg:min-h-0">
                 選択を解除
               </button>
             )}
@@ -205,7 +128,7 @@ export function EventMap({ events, className, selectedEvent, onEventSelect }: Ev
           ) : (
             <div className="flex flex-wrap gap-1.5">
               {eventGroups.map(g => (
-                <button key={g.prefecture} onClick={() => setSelectedPrefecture(g.prefecture)} className="border border-line bg-white px-3 py-1 text-[13px] text-ink hover:border-ink">
+                <button key={g.prefecture} type="button" onClick={() => select(g.prefecture)} className="min-h-11 border border-line bg-white px-3 py-1 text-[13px] text-ink hover:border-ink lg:min-h-0">
                   {g.prefecture}<span className="ml-1 text-ink-muted">{g.count}</span>
                 </button>
               ))}

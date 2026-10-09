@@ -30,14 +30,14 @@ export function EventCard({ event, className, active = false, onHover }: EventCa
       onMouseEnter={onHover ? () => onHover(event) : undefined}
       onFocus={onHover ? () => onHover(event) : undefined}
       aria-current={active ? 'true' : undefined}
-      className={cn('group flex gap-4 border-b border-line py-5 lg:gap-6 lg:py-[22px]', past && 'opacity-75', className)}
+      className={cn('group flex gap-4 border-b border-line py-5 lg:gap-6 lg:py-[22px]', className)}
     >
       <EventDateBlock event={event} muted={past} />
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap gap-x-3 gap-y-0.5">
           {event.types.slice(0, 2).map(type => <EventTypeTag key={type} type={type} />)}
           <EventPlaceTag>{eventPlaceText(event)}</EventPlaceTag>
-          {past && <span className="text-[11px] text-ink-muted">開催終了</span>}
+          {past && <span className="border border-line bg-paper-deep px-1.5 text-[11px] leading-[1.6] text-ink-soft">開催終了</span>}
         </div>
         <h3 className={cn('mt-1 line-clamp-2 font-mincho text-base font-bold leading-snug tracking-[0.04em] group-hover:text-gold-dark lg:text-lg', active ? 'text-gold-dark' : 'text-ink')}>
           {event.title}

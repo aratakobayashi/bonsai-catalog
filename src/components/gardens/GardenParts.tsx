@@ -12,6 +12,28 @@ export function gardenRegion(garden: Pick<Garden, 'prefecture'>): string {
   return getRegionFromPrefecture(garden.prefecture || '')
 }
 
+// 都道府県の並び（北から南。JISの都道府県コード順）
+export const PREFECTURE_ORDER = [
+  '北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県',
+  '茨城県', '栃木県', '群馬県', '埼玉県', '千葉県', '東京都', '神奈川県',
+  '新潟県', '富山県', '石川県', '福井県', '山梨県', '長野県', '岐阜県', '静岡県', '愛知県',
+  '三重県', '滋賀県', '京都府', '大阪府', '兵庫県', '奈良県', '和歌山県',
+  '鳥取県', '島根県', '岡山県', '広島県', '山口県',
+  '徳島県', '香川県', '愛媛県', '高知県',
+  '福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県',
+]
+
+// 都道府県（北から南）→ 市区町村 → 園名の順に並べる
+export function compareGardens(a: Pick<Garden, 'prefecture' | 'city' | 'name'>, b: Pick<Garden, 'prefecture' | 'city' | 'name'>): number {
+  const rank = (p?: string | null) => {
+    const i = p ? PREFECTURE_ORDER.indexOf(p) : -1
+    return i === -1 ? PREFECTURE_ORDER.length : i
+  }
+  return rank(a.prefecture) - rank(b.prefecture)
+    || (a.city || '').localeCompare(b.city || '', 'ja')
+    || a.name.localeCompare(b.name, 'ja')
+}
+
 // 「埼玉県さいたま市」
 export function gardenArea(garden: Pick<Garden, 'prefecture' | 'city'>): string {
   return `${garden.prefecture || ''}${garden.city || ''}`

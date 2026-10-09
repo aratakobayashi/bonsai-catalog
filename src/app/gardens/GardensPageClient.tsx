@@ -77,6 +77,15 @@ export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
   const [position, setPosition] = useState<{ lat: number; lng: number } | null>(null)
   const [geoStatus, setGeoStatus] = useState<'idle' | 'loading' | 'error'>('idle')
   const [showMapSp, setShowMapSp] = useState(false)
+  // PCでは常に地図を出す。SPは「地図で見る」を押したときだけ地図（Leaflet）を読み込む
+  const [isDesktop, setIsDesktop] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)')
+    const update = () => setIsDesktop(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
 
   // 詳細ページからの「〇〇県の盆栽園一覧」リンク（?prefecture=）に対応
   useEffect(() => {
@@ -143,7 +152,8 @@ export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
   // 地図のピンを押したら一覧の該当カードまでスクロール
   const selectFromMap = (id: string) => {
     setSelectedId(id)
-    document.getElementById(`garden-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    document.getElementById(`garden-${id}`)?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' })
   }
 
   const toggleFeature = (key: FeatureKey) => {
@@ -186,7 +196,9 @@ export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
   const tabClass = (active: boolean) =>
     `flex-none py-3 font-mincho text-[14px] font-bold lg:text-[15px] ${active ? 'text-ink shadow-[inset_0_-1.5px_0_#22201c]' : 'text-ink-muted hover:text-ink'}`
   const textButton = (active: boolean) =>
-    `text-[12.5px] ${active ? 'border-b border-ink pb-0.5 font-bold text-ink' : 'text-ink-soft hover:text-ink'}`
+    `text-[12.5px] ${active ? 'border-b border-ink pb-0.5 font-bold text-ink' : 'text-ink-soft group-hover:text-ink'}`
+  // SPでも押しやすいよう、文字のボタンの押せる範囲を高さ44px以上にする
+  const tapButton = 'group inline-flex min-h-11 items-center lg:min-h-0'
 
   return (
     <div className={`${CONTAINER} pb-14`}>
@@ -224,13 +236,13 @@ export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
       </div>
 
       {/* できること・件数 */}
-      <div className="mt-3.5 flex flex-wrap items-center gap-x-5 gap-y-2">
+      <div className="mt-2 flex flex-wrap items-center gap-x-5 lg:mt-3.5 lg:gap-y-2">
         <span className="text-[12.5px] text-ink-muted">できること</span>
         {FEATURES.map(f => {
           const active = features.includes(f.key)
           return (
-            <button key={f.key} type="button" onClick={() => toggleFeature(f.key)} aria-pressed={active} className={textButton(active)}>
-              {f.label}
+            <button key={f.key} type="button" onClick={() => toggleFeature(f.key)} aria-pressed={active} className={tapButton}>
+              <span className={textButton(active)}>{f.label}</span>
             </button>
           )
         })}
@@ -240,34 +252,17 @@ export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
       </div>
 
       {/* SP: 現在地・地図 */}
-      <div className="mt-3 flex gap-5 lg:hidden">
-        <button type="button" onClick={locate} className="border-b border-ink pb-0.5 text-[13px] text-ink">
-          {geoStatus === 'loading' ? '現在地を取得中…' : position ? '近い順を解除' : '現在地から探す'}
+      <div className="mt-1 flex gap-5 lg:hidden">
+        <button type="button" onClick={locate} className="inline-flex min-h-11 items-center text-[13px] text-ink">
+          <span className="border-b border-ink pb-0.5">{geoStatus === 'loading' ? '現在地を取得中…' : position ? '近い順を解除' : '現在地から探す'}</span>
         </button>
-        <button type="button" onClick={() => setShowMapSp(v => !v)} aria-expanded={showMapSp} className="text-[13px] text-ink hover:text-gold-dark">
+        <button type="button" onClick={() => setShowMapSp(v => !v)} aria-expanded={showMapSp} aria-controls="gardens-map" className="inline-flex min-h-11 items-center text-[13px] text-ink hover:text-gold-dark">
           {showMapSp ? '地図を閉じる' : '地図で見る'}
         </button>
       </div>
       {geoStatus === 'error' && <p className="mt-2 text-xs text-rakuten">現在地を取得できませんでした。端末の位置情報の設定をご確認ください。</p>}
 
       <div className="mt-2 grid gap-4 lg:mt-5 lg:grid-cols-[minmax(0,1fr)_480px] lg:gap-12">
-        {/* 地図（PCは右に固定、SPは「地図で見る」で開く） */}
-        <div className={`${showMapSp ? 'block' : 'hidden'} pt-2 lg:order-2 lg:block lg:pt-0`}>
-          <div className="lg:sticky lg:top-24">
-            <div className="isolate h-[320px] overflow-hidden border border-line lg:h-[calc(100vh-8rem)] lg:max-h-[640px]">
-              {points.length > 0 ? (
-                <GardenMap points={points} selectedId={selectedId} onSelect={selectFromMap} />
-              ) : (
-                <Placeholder label="地図に表示できる盆栽園がありません" className="h-full w-full" />
-              )}
-            </div>
-            {/* PCのみ現在地ボタン */}
-            <button type="button" onClick={locate} className="mt-3 hidden border-b border-ink pb-0.5 text-xs text-ink hover:text-gold-dark lg:inline-block">
-              {geoStatus === 'loading' ? '現在地を取得中…' : position ? '近い順を解除' : '現在地から近い順に並べる'}
-            </button>
-          </div>
-        </div>
-
         {/* 一覧 */}
         <div className="lg:order-1">
           {filtered.length > 0 ? (
@@ -294,6 +289,23 @@ export function GardensPageClient({ gardens }: { gardens: Garden[] }) {
             掲載内容の修正・掲載のご相談は<Link href="/contact" className="border-b border-ink-muted hover:text-gold-dark">お問い合わせ</Link>からどうぞ。
           </p>
         </div>
+        {/* 地図（PCは右に固定、SPは「地図で見る」で開く）。キーボードで一覧を先に操作できるよう、DOMでは一覧の後に置く */}
+        <div id="gardens-map" className={`${showMapSp ? 'block' : 'hidden'} order-first pt-2 lg:order-2 lg:block lg:pt-0`}>
+          <div className="lg:sticky lg:top-24">
+            <div className="isolate h-[320px] overflow-hidden border border-line lg:h-[calc(100vh-8rem)] lg:max-h-[640px]">
+              {!(isDesktop || showMapSp) ? null : points.length > 0 ? (
+                <GardenMap points={points} selectedId={selectedId} onSelect={selectFromMap} />
+              ) : (
+                <Placeholder label="地図に表示できる盆栽園がありません" className="h-full w-full" />
+              )}
+            </div>
+            {/* PCのみ現在地ボタン */}
+            <button type="button" onClick={locate} className="mt-3 hidden border-b border-ink pb-0.5 text-xs text-ink hover:text-gold-dark lg:inline-block">
+              {geoStatus === 'loading' ? '現在地を取得中…' : position ? '近い順を解除' : '現在地から近い順に並べる'}
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   )

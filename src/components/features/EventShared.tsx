@@ -1,6 +1,6 @@
 // イベント一覧・詳細で共通して使う表示部品と日付の判定
 import type { Event, EventType } from '@/types'
-import { eventDateText, isTentativeEvent } from '@/lib/event-display'
+import { eventDateText, getEventMeta, isTentativeEvent } from '@/lib/event-display'
 
 export const EVENT_TYPE_LABEL: Record<EventType, string> = {
   exhibition: '展示',
@@ -43,9 +43,19 @@ function md(date: Date) {
   return `${date.getMonth() + 1}/${date.getDate()}（${WEEKDAYS[date.getDay()]}）`
 }
 
+// 日程の表示。日程未発表のイベントは「例年◯月ごろ」だけを出す（公式発表の確認のお願いは注意書きで1回だけ出す）
+export function eventPeriodText(event: Pick<Event, 'slug' | 'start_date' | 'end_date'>, withYear = false): string {
+  if (isTentativeEvent(event)) {
+    const usual = getEventMeta(event.slug)?.usualPeriod
+    if (usual) return usual.startsWith('例年') ? usual : `例年${usual}`
+    return `例年${parseEventDate(event.start_date).getMonth() + 1}月ごろ`
+  }
+  return eventDateText(event, withYear)
+}
+
 // 一覧用の短い日程（10/10（土）〜10/12（月））。日程未発表なら例年の時期を出す
 export function eventShortDateText(event: Event): string {
-  if (isTentativeEvent(event)) return eventDateText(event)
+  if (isTentativeEvent(event)) return eventPeriodText(event)
   const start = parseEventDate(event.start_date)
   const end = parseEventDate(event.end_date)
   const withYear = start.getFullYear() !== new Date().getFullYear()

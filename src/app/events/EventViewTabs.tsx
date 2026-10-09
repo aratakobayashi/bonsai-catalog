@@ -30,9 +30,9 @@ export function EventViewTabsView({ active, onSelect }: { active: EventView; onS
             role="tab"
             aria-selected={active === tab.view}
             onClick={() => onSelect?.(tab.view)}
-            className={active === tab.view ? 'border-b border-ink font-bold text-ink' : 'text-ink-soft hover:text-ink'}
+            className="group inline-flex min-h-11 items-center px-0.5 lg:min-h-0"
           >
-            {tab.label}
+            <span className={active === tab.view ? 'border-b border-ink font-bold text-ink' : 'text-ink-soft group-hover:text-ink'}>{tab.label}</span>
           </button>
         </span>
       ))}

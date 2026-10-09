@@ -4,8 +4,10 @@ import { supabaseServer } from '@/lib/supabase-server'
 import { Event, EventArticle, Product, Article } from '@/types'
 import EventDetailClient from './EventDetailClient'
 import { getEventBySlug } from '@/lib/events'
+import { EVENT_ARTICLE_TOPICS, getTopicArticles } from '@/app/gardens/related-articles'
 import { SITE_URL } from '@/lib/site'
-import { eventDateText, getEventMeta, isTentativeEvent } from '@/lib/event-display'
+import { getEventMeta, isTentativeEvent } from '@/lib/event-display'
+import { eventPeriodText } from '@/components/features/EventShared'
 
 interface EventDetailPageProps {
   params: { slug: string }
@@ -22,39 +24,9 @@ async function getPopularProducts(limit = 6): Promise<Product[]> {
   return data || []
 }
 
-// おすすめ記事を取得
-async function getRecommendedArticles(limit = 6): Promise<Article[]> {
-  const { data } = await supabaseServer
-    .from('articles')
-    .select(`
-      id,
-      title,
-      slug,
-      excerpt,
-      featured_image_url,
-      published_at,
-      category:article_categories!articles_category_id_fkey(*)
-    `)
-    .eq('status', 'published')
-    .order('published_at', { ascending: false })
-    .limit(limit)
-
-  // データを変換してArticle型に合わせる
-  const articles = (data || []).map((item: any) => ({
-    id: item.id,
-    title: item.title,
-    slug: item.slug,
-    excerpt: item.excerpt,
-    featuredImage: item.featured_image_url ? {
-      url: item.featured_image_url
-    } : undefined,
-    publishedAt: item.published_at,
-    category: item.category,
-    content: '', // 必須フィールドだが詳細は不要
-    updatedAt: item.published_at // フォールバック
-  }))
-
-  return articles
+// おすすめ記事を取得（展示会・イベント関連の記事を優先し、足りない分は新着）
+async function getRecommendedArticles(limit = 4): Promise<Article[]> {
+  return getTopicArticles(EVENT_ARTICLE_TOPICS, limit)
 }
 
 // 自サイトのAPIを外部URL経由で呼ばず、DBから直接取得する
@@ -94,7 +66,7 @@ export async function generateMetadata({ params }: EventDetailPageProps): Promis
     ? new Date(event.end_date).toLocaleDateString('ja-JP', { month: 'long', day: 'numeric' })
     : null
 
-  const dateRange = isTentativeEvent(event) ? eventDateText(event, true) : endDate ? `${startDate} - ${endDate}` : startDate
+  const dateRange = isTentativeEvent(event) ? eventPeriodText(event, true) : endDate ? `${startDate} - ${endDate}` : startDate
   const title = `${event.title} | ${dateRange} | ${event.prefecture}`
   const description = `${event.title}が${dateRange}に${event.prefecture}${event.venue_name ? `の${event.venue_name}` : ''}で開催。${event.description || '詳細はこちらをご確認ください。'}`
 

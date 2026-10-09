@@ -11,7 +11,7 @@ import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { GardenMap } from '@/components/gardens/GardenMap'
 import { PrefPlate, gardenArea, gardenRegion, mapAppUrl } from '@/components/gardens/GardenParts'
 import { LocalBusinessStructuredData, BreadcrumbStructuredData } from '@/components/seo/StructuredData'
-import { getArticles } from '@/lib/database/articles'
+import { GARDEN_ARTICLE_TOPICS, getTopicArticles } from '../related-articles'
 
 // 仮の画像サービス（via.placeholder.com）やダミーURL（example.com）は写真として扱わない
 function isRealPhoto(url?: string | null): boolean {
@@ -74,15 +74,9 @@ async function getRecommendedProducts(): Promise<CatalogProduct[]> {
   return visibleProducts.map(normalizeProduct)
 }
 
-// 関連記事を取得
+// 関連記事を取得（盆栽園めぐり・見学・購入などの記事を優先）
 async function getRelatedArticles(): Promise<Article[]> {
-  const articlesData = await getArticles({
-    limit: 3,
-    sortBy: 'publishedAt',
-    sortOrder: 'desc'
-  })
-
-  return articlesData.articles
+  return getTopicArticles(GARDEN_ARTICLE_TOPICS, 3)
 }
 
 // 同じ地域の他の盆栽園を取得

@@ -81,11 +81,11 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
         <div className="mb-3 flex items-center gap-2">
           <h2 className="font-mincho text-lg font-bold tracking-[0.04em] text-ink lg:text-xl">{currentYear}年{currentMonth + 1}月</h2>
           <div className="ml-auto flex items-center gap-1">
-            <button onClick={goToToday} className="border border-line bg-white px-3 py-1 text-xs text-ink hover:border-ink">今日</button>
-            <button onClick={() => moveMonth(-1)} className="p-1.5 text-ink-soft hover:bg-paper-deep" aria-label="前の月">
+            <button type="button" onClick={goToToday} className="h-11 border border-line bg-white px-3 text-xs text-ink hover:border-ink lg:h-8">今日</button>
+            <button type="button" onClick={() => moveMonth(-1)} className="flex h-11 w-11 items-center justify-center text-ink-soft hover:bg-paper-deep lg:h-9 lg:w-9" aria-label="前の月">
               <ChevronLeft className="h-5 w-5" />
             </button>
-            <button onClick={() => moveMonth(1)} className="p-1.5 text-ink-soft hover:bg-paper-deep" aria-label="次の月">
+            <button type="button" onClick={() => moveMonth(1)} className="flex h-11 w-11 items-center justify-center text-ink-soft hover:bg-paper-deep lg:h-9 lg:w-9" aria-label="次の月">
               <ChevronRight className="h-5 w-5" />
             </button>
           </div>
@@ -97,7 +97,8 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
           ))}
         </div>
 
-        <div className="grid grid-cols-7 gap-px overflow-hidden border border-line bg-line" role="grid" aria-label={`${currentYear}年${currentMonth + 1}月のカレンダー`}>
+        {/* 日付のマス。マス全体が日付を選ぶボタンで、イベント名のリンクはその上に重ねる（ボタンの中にリンクを入れない） */}
+        <div className="grid grid-cols-7 gap-px overflow-hidden border border-line bg-line">
           {calendarDays.map((date, index) => {
             const key = dateKey(date)
             const dayEvents = eventsByDate[key] || []
@@ -108,41 +109,42 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
             return (
               <div
                 key={key}
-                role="gridcell"
-                aria-selected={isSelected}
-                onClick={() => setSelectedDate(date)}
                 className={cn(
-                  'flex h-16 cursor-pointer flex-col p-1 text-left sm:h-20 lg:h-24 lg:p-1.5',
-                  inMonth ? 'bg-white hover:bg-[#fffdf9]' : 'bg-paper text-ink-muted',
-                  isSelected && 'bg-paper-deep hover:bg-paper-deep'
+                  'relative flex h-16 flex-col p-1 text-left sm:h-20 lg:h-24 lg:p-1.5',
+                  inMonth ? 'bg-white' : 'bg-paper text-ink-muted',
+                  isSelected && 'bg-paper-deep'
                 )}
               >
                 <button
                   type="button"
+                  onClick={() => setSelectedDate(date)}
+                  className={cn('absolute inset-0 focus-visible:outline-offset-[-2px]', !isSelected && inMonth && 'hover:bg-[#fffdf9]')}
+                  aria-label={`${date.getMonth() + 1}月${date.getDate()}日${dayEvents.length ? `（${dayEvents.length}件のイベント）` : ''}`}
+                  aria-pressed={isSelected}
+                />
+                <span
+                  aria-hidden="true"
                   className={cn(
-                    'flex h-6 w-6 items-center justify-center text-xs lg:text-[13px]',
+                    'pointer-events-none relative flex h-6 w-6 items-center justify-center text-xs lg:text-[13px]',
                     key === todayKey && 'bg-sumi font-bold text-white',
                     key !== todayKey && inMonth && (dow === 0 ? 'text-red-600' : dow === 6 ? 'text-blue-700' : 'text-ink')
                   )}
-                  aria-label={`${date.getMonth() + 1}月${date.getDate()}日${dayEvents.length ? `（${dayEvents.length}件のイベント）` : ''}`}
-                  aria-pressed={isSelected}
                 >
                   {date.getDate()}
-                </button>
+                </span>
                 {dayEvents.length > 0 && (
-                  <div className="mt-0.5 min-w-0 flex-1 space-y-0.5 overflow-hidden">
+                  <div className="pointer-events-none relative mt-0.5 min-w-0 flex-1 space-y-0.5 overflow-hidden">
                     {dayEvents.slice(0, 2).map(event => (
                       <Link
                         key={event.id}
                         href={`/events/${event.slug}`}
-                        onClick={e => e.stopPropagation()}
-                        className="hidden truncate px-1 py-px text-[11px] text-gold-dark hover:underline sm:block"
+                        className="pointer-events-auto hidden truncate px-1 py-px text-[11px] text-gold-dark hover:underline sm:block"
                         title={event.title}
                       >
                         {event.title}
                       </Link>
                     ))}
-                    <span className="block text-[10px] text-gold-dark sm:hidden">●{dayEvents.length > 1 ? dayEvents.length : ''}</span>
+                    <span className="block text-[10px] text-gold-dark sm:hidden" aria-hidden="true">●{dayEvents.length > 1 ? dayEvents.length : ''}</span>
                     {dayEvents.length > 2 && <span className="hidden text-[10px] text-ink-muted sm:block">他{dayEvents.length - 2}件</span>}
                   </div>
                 )}
@@ -156,13 +158,13 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
       {/* 選択した日（未選択ならその月）のイベント */}
       <div>
         <div className="lg:sticky lg:top-24">
-          <h3 className="mb-2.5 flex items-baseline gap-2 text-[13px] font-bold text-ink-soft">
+          <h3 className="mb-2.5 flex items-center gap-2 text-[13px] font-bold text-ink-soft">
             {selectedDate
               ? `${selectedDate.getMonth() + 1}月${selectedDate.getDate()}日（${WEEKDAYS[selectedDate.getDay()]}）のイベント`
               : `${currentMonth + 1}月のイベント`}
             {selectedDate && (
-              <button onClick={() => setSelectedDate(null)} className="ml-auto text-xs font-normal border-b border-ink text-ink hover:text-gold-dark">
-                月の一覧に戻る
+              <button type="button" onClick={() => setSelectedDate(null)} className="ml-auto inline-flex min-h-11 items-center text-xs font-normal lg:min-h-0">
+                <span className="border-b border-ink text-ink hover:text-gold-dark">月の一覧に戻る</span>
               </button>
             )}
           </h3>

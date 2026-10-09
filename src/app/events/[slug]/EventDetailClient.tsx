@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Event, EventArticle, Product, Article } from '@/types'
@@ -12,11 +12,14 @@ import {
   EventTypeTag,
   getEventStatus,
   googleCalendarUrl,
+  eventPlaceText,
   mapAppUrl,
+  eventPeriodText,
   parseEventDate,
 } from '@/components/features/EventShared'
+import { GardenMap } from '@/components/gardens/GardenMap'
 import { Breadcrumbs, CONTAINER, Placeholder } from '@/components/ui/design'
-import { EVENT_VERIFIED_AT, eventDateText, eventPriceText, getEventMeta, isTentativeEvent } from '@/lib/event-display'
+import { EVENT_VERIFIED_AT, eventPriceText, getEventMeta, isTentativeEvent } from '@/lib/event-display'
 
 interface EventDetailClientProps {
   event: Event
@@ -29,7 +32,7 @@ interface EventDetailClientProps {
 // 開催情報の表（PCは右カラム、SPは本文の上）
 function InfoRows({ event }: { event: Event }) {
   const rows: [string, string][] = [
-    ['開催期間', eventDateText(event, true)],
+    ['開催期間', eventPeriodText(event, true)],
     ...(event.venue_name ? [['会場', event.venue_name] as [string, string]] : []),
     ['住所', event.address ? (event.address.startsWith(event.prefecture) ? event.address : `${event.prefecture}${event.address}`) : event.prefecture],
     ['参加費', eventPriceText(event)],
@@ -79,6 +82,12 @@ export default function EventDetailClient({
   const meta = getEventMeta(event.slug)
   const calendarUrl = googleCalendarUrl(event)
   const mapUrl = mapAppUrl(event)
+  const hasCoords = typeof event.lat === 'number' && typeof event.lng === 'number' && Number.isFinite(event.lat) && Number.isFinite(event.lng)
+  // 地図のピン（再描画のたびに地図の位置が戻らないよう、同じ配列を使い回す）
+  const mapPoints = useMemo(
+    () => (hasCoords ? [{ id: event.id, name: event.venue_name || event.title, lat: event.lat!, lng: event.lng!, area: eventPlaceText(event) }] : []),
+    [event, hasCoords]
+  )
   const firstType = event.types[0]
 
   const articlesGrouped = {
@@ -131,7 +140,7 @@ export default function EventDetailClient({
           </div>
           <h1 className="mt-2 font-mincho text-[28px] font-bold leading-snug tracking-[0.06em] text-ink lg:mt-3 lg:text-[48px] lg:leading-tight">{event.title}</h1>
           <p className="mt-2 text-[13px] text-ink-soft lg:mt-3 lg:text-[15px]">
-            {eventDateText(event, true)}
+            {eventPeriodText(event, true)}
             {event.venue_name && <span className="hidden lg:inline">・{event.venue_name}</span>}
           </p>
 
@@ -154,9 +163,17 @@ export default function EventDetailClient({
           )}
 
           {/* 会場 */}
-          <section className="mt-8 lg:mt-12">
-            <Placeholder label={`地図（${event.venue_name || event.prefecture}）`} className="h-[180px] lg:h-[300px]" />
-            <div className="mt-3 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[13px]">
+          <section className="mt-8 lg:mt-12" aria-labelledby="event-venue">
+            <h2 id="event-venue" className="mb-3 font-mincho text-lg font-bold tracking-[0.06em] text-ink lg:text-xl">会場</h2>
+            {hasCoords ? (
+              <div className="isolate h-[220px] overflow-hidden border border-line lg:h-[300px]">
+                <GardenMap
+                  points={mapPoints}
+                  showPopup={false}
+                />
+              </div>
+            ) : null}
+            <div className={`${hasCoords ? 'mt-3' : ''} flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[13px]`}>
               <span className="text-ink">{event.venue_name || event.prefecture}</span>
               {event.address && <span className="text-ink-muted">{event.address}</span>}
               <a href={mapUrl} target="_blank" rel="noopener noreferrer" className={`hidden text-ink lg:ml-auto lg:inline ${linkClass}`}>

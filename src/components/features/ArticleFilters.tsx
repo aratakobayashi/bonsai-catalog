@@ -39,7 +39,7 @@ export function ArticleSearchBox({ initialQuery = '' }: { initialQuery?: string 
         onChange={e => setQuery(e.target.value)}
         placeholder="記事を検索"
         aria-label="記事を検索"
-        className="h-11 w-full appearance-none rounded-none border-0 border-b border-ink bg-transparent pl-0 pr-10 text-[13.5px] text-ink placeholder:text-ink-muted focus:border-gold-dark focus:outline-none focus:ring-0"
+        className="h-11 w-full appearance-none rounded-none border-0 border-b border-ink bg-transparent pl-0 pr-10 text-[13.5px] text-ink placeholder:text-ink-muted focus:border-gold-dark focus:ring-0"
       />
       <button type="submit" aria-label="検索" className="absolute inset-y-0 right-0 flex w-10 items-center justify-end text-ink-muted hover:text-ink">
         <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -70,7 +70,7 @@ export function ArticleSortSelect({ totalCount, sortBy }: { totalCount: number; 
         value={current}
         onChange={e => updateFilters({ sortBy: e.target.value })}
         aria-label="並び順"
-        className="cursor-pointer appearance-none bg-transparent pr-4 text-xs text-ink-muted focus:outline-none"
+        className="cursor-pointer appearance-none bg-transparent pr-4 text-xs text-ink-muted"
       >
         {SORT_OPTIONS.map(option => (
           <option key={option.value} value={option.value}>{option.label}</option>
