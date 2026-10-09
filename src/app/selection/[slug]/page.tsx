@@ -197,8 +197,8 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
             {/* 商品カード */}
             {cards.length > 0 ? (
               <div className="mt-4 grid grid-cols-2 gap-x-3.5 gap-y-6 md:grid-cols-3 lg:mt-7 lg:grid-cols-4 lg:gap-6">
-                {cards.map(product => (
-                  <CatalogProductCard key={product.id} product={product} />
+                {cards.map((product, index) => (
+                  <CatalogProductCard key={product.id} product={product} priority={index < 2} />
                 ))}
               </div>
             ) : (

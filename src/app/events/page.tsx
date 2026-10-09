@@ -88,7 +88,7 @@ export default async function EventsPage() {
         <Suspense fallback={
           <div className="min-h-[100vh]">
             <EventFiltersPlaceholder className="mt-5 lg:mt-9" trailing={<EventViewTabsView active="list" />} />
-            <div className="mt-6 grid gap-6 lg:mt-8 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-14">
+            <div className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-6 lg:mt-8 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-14">
               <EventListView events={upcoming} />
             </div>
           </div>

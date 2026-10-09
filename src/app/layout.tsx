@@ -81,11 +81,12 @@ export default function RootLayout({
             本文へスキップ
           </a>
           <Header />
+          {/* 下部タブは画面に固定して表示する。読み込みの途中で表示がずれないよう、本文より先に置く */}
+          <BottomNavigation />
           <main id="main" className="flex-1 pb-16 lg:pb-0">
             {children}
           </main>
           <Footer />
-          <BottomNavigation />
           <FavoritesDock />
           <Toaster 
             position="bottom-right"
