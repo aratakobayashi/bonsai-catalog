@@ -1,5 +1,6 @@
 import { ShoppingBag } from 'lucide-react'
 import { normalizeProduct } from '@/lib/catalog-model'
+import { isHiddenProductSource } from '@/lib/affiliate'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import type { Product } from '@/types'
 
@@ -8,8 +9,9 @@ interface RelatedProductsProps {
   articleTitle?: string
 }
 
-// 記事に関連する商品（Amazon・楽天のどちらの商品でも表示できる）
-export function RelatedProducts({ products }: RelatedProductsProps) {
+// 記事に関連する商品（Amazon の掲載を止めている間は楽天の商品だけ）
+export function RelatedProducts({ products: all }: RelatedProductsProps) {
+  const products = all.filter(product => !isHiddenProductSource(product.source))
   if (products.length === 0) return null
 
   return (

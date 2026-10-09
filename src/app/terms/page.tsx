@@ -14,7 +14,7 @@ export default function TermsPage() {
       <div className="mx-auto max-w-[664px]">
       <PageHeading
         title="利用規約"
-        lead="最終更新日: 2024年9月21日"
+        lead="最終更新日: 2026年10月9日"
         crumbs={[{ label: 'ホーム', href: '/' }, { label: '利用規約' }]}
       />
       {/* 読みやすい幅で、墨の線の下に本文を置く */}
@@ -54,7 +54,7 @@ export default function TermsPage() {
               <li>盆栽関連商品の情報提供・紹介</li>
               <li>盆栽園・販売店の情報提供</li>
               <li>盆栽に関する知識・ノウハウの提供</li>
-              <li>Amazon商品への適切なリンクサービス</li>
+              <li>通販サイト（楽天市場など）の商品ページへのリンクの提供</li>
               <li>その他、盆栽愛好家向けの情報サービス</li>
             </ul>
           </section>

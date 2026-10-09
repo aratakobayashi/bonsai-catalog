@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SHOP_NAMES_AND } from '@/lib/affiliate'
 import Link from 'next/link'
 import Script from 'next/script'
 import {
@@ -104,7 +105,7 @@ export function generateMetadata({ searchParams }: ShindanPageProps): Metadata {
   const answered = QUESTIONS.some(q => searchParams[q.name])
   return {
     title: 'かんたん盆栽診断｜4つの質問であなたに合う盆栽を探す - 盆栽コレクション',
-    description: '置き場所・予算・楽しみ方など4つの質問に答えるだけで、楽天市場とAmazonの盆栽から合いそうな商品を探せます。はじめての方や贈り物選びにも。',
+    description: `置き場所・予算・楽しみ方など4つの質問に答えるだけで、${SHOP_NAMES_AND}の盆栽から合いそうな商品を探せます。はじめての方や贈り物選びにも。`,
     alternates: { canonical: '/shindan' },
     ...(answered && { robots: { index: false, follow: true } }),
   }
@@ -160,7 +161,7 @@ export default async function ShindanPage({ searchParams }: ShindanPageProps) {
     <div className={`${CONTAINER} pb-12 lg:pb-20`}>
       <PageHeading
         title="かんたん盆栽診断"
-        lead="4つの質問に答えると、楽天市場とAmazonの盆栽から合いそうな商品を探します。"
+        lead={`4つの質問に答えると、${SHOP_NAMES_AND}の盆栽から合いそうな商品を探します。`}
         crumbs={[{ label: 'ホーム', href: '/' }, { label: 'かんたん盆栽診断' }]}
       />
 

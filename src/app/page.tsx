@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { AMAZON_ENABLED } from '@/lib/affiliate'
 import Link from 'next/link'
 import Image from 'next/image'
 import { filterProducts, getCatalogProducts, parseFilters, type CatalogProduct } from '@/lib/catalog'
@@ -185,7 +186,7 @@ export default async function HomePage() {
         </figure>
 
         <div className="px-4 pt-6 lg:px-0 lg:pt-0">
-          <p className="text-[11px] tracking-[0.18em] text-gold-dark lg:text-xs lg:tracking-[0.2em]">楽天市場・Amazon の盆栽をまとめて</p>
+          <p className="text-[11px] tracking-[0.18em] text-gold-dark lg:text-xs lg:tracking-[0.2em]">{AMAZON_ENABLED ? '楽天市場・Amazon の盆栽をまとめて' : '楽天市場の盆栽をまとめて'}</p>
           <h1 className="mt-2 font-mincho text-[27px] font-bold leading-[1.45] tracking-[0.08em] text-ink lg:mt-3.5 lg:text-[42px]">
             はじめての一鉢を、<br />ゆっくり選ぶ。
           </h1>

@@ -1,5 +1,18 @@
 // アフィリエイト（広告）リンクの共通設定
 
+// Amazon の掲載スイッチ（2026-10 時点で一時停止中）
+// Amazon の商品（2025-09 に手入力した64件）は価格・レビューが更新されておらず、
+// URL のアソシエイトタグ（oshikatsucoll-22）も別サイトのものだったため、公開サイトから一時的に外している。
+// DB の行は削除していない。再開するときは、タグを当サイト用に差し替え（NEXT_PUBLIC_AMAZON_ASSOCIATE_ID）、
+// 商品の価格・レビューを更新したうえで true に戻す。
+// 一覧・商品ページ・サイトマップ・記事内リンク・ショップの絞り込み・ページの文言（「楽天市場・Amazon」、
+// フッターとプライバシーポリシーの Amazon アソシエイトの表記など）は、すべてこの値で切り替わる。
+export const AMAZON_ENABLED = false
+
+// ページの文言で使うショップ名（Amazon を止めている間は楽天市場だけ）
+export const SHOP_NAMES = AMAZON_ENABLED ? '楽天市場・Amazon' : '楽天市場'
+export const SHOP_NAMES_AND = AMAZON_ENABLED ? '楽天市場とAmazon' : '楽天市場'
+
 // 広告リンクには rel="sponsored" を付ける（Google のリンク属性ガイドライン）
 export const AFFILIATE_LINK_REL = 'sponsored noopener noreferrer'
 
@@ -52,4 +65,9 @@ export function toAmazonAffiliateUrl(url: string): string | null {
 export function amazonSearchUrl(keyword: string): string {
   const params = new URLSearchParams({ k: keyword, tag: AMAZON_ASSOCIATE_TAG })
   return `https://www.amazon.co.jp/s?${params.toString()}`
+}
+
+// 公開サイトに出さない商品か（DB の source 列の値で判定。normalizeProduct と同じく楽天以外は Amazon 扱い）
+export function isHiddenProductSource(source: unknown): boolean {
+  return !AMAZON_ENABLED && source !== 'rakuten'
 }

@@ -17,6 +17,7 @@ import {
 } from '@/lib/species-traits'
 import { keywordTypeIntent, matchesKeyword, parseKeyword } from '@/lib/search-normalize'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
+import { AMAZON_ENABLED, isHiddenProductSource } from '@/lib/affiliate'
 
 export const PRODUCTS_CACHE_TAG = 'products'
 // キーワードの最大文字数（一覧の検索と検索候補で共通）
@@ -101,7 +102,8 @@ async function getCachedProductRows(): Promise<any[]> {
     })
     if (chunk.length < CHUNK_SIZE) break
   }
-  return rows.filter(row => row.is_active !== false)
+  // Amazon の掲載を止めている間は Amazon の商品を除く（src/lib/affiliate.ts の AMAZON_ENABLED）
+  return rows.filter(row => row.is_active !== false && !isHiddenProductSource(row.source))
 }
 
 export async function getCatalogProducts(): Promise<CatalogProduct[]> {
@@ -271,7 +273,8 @@ export function parseFilters(rawParams: RawParams): CatalogFilters {
     type: TYPE_OPTIONS.some(o => o.value === first(params.type)) ? first(params.type) : undefined,
     species: SPECIES_OPTIONS.some(o => o.value === first(params.species)) ? first(params.species) : undefined,
     size: SIZE_OPTIONS.some(o => o.value === size) ? (size as SizeCategory) : undefined,
-    shop: shop === 'amazon' || shop === 'rakuten' ? shop : undefined,
+    // Amazon の掲載を止めている間は楽天市場の商品だけなので、?shop= の指定は無視する（ショップの絞り込みも出さない）
+    shop: AMAZON_ENABLED && (shop === 'amazon' || shop === 'rakuten') ? shop : undefined,
     min: toPositiveInt(first(params.min)),
     max: toPositiveInt(first(params.max)),
     place: pick(PLACE_OPTIONS, first(params.place) ?? legacy.place),

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { ProductCard } from '@/components/features/ProductCard'
 import { supabase } from '@/lib/supabase'
+import { AMAZON_ENABLED } from '@/lib/affiliate'
 
 interface Product {
   id: string
@@ -46,6 +47,8 @@ export function ProductRecommendation({
           .from('products')
           .select('*')
           .eq('is_visible', true)
+        // Amazon の掲載を止めている間は楽天市場の商品だけ（src/lib/affiliate.ts）
+        if (!AMAZON_ENABLED) query = query.eq('source', 'rakuten')
 
         // 特定商品IDが指定されている場合
         if (productIds && productIds.length > 0) {

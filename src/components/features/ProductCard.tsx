@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Star, ShoppingBag } from 'lucide-react'
-import { AFFILIATE_LINK_REL } from '@/lib/affiliate'
+import { AFFILIATE_LINK_REL, AMAZON_ENABLED } from '@/lib/affiliate'
 
 interface ProductCardProps {
   id: string
@@ -35,6 +35,8 @@ export function ProductCard({
   compact = false,
   priority = false
 }: ProductCardProps) {
+  // Amazon の掲載を止めている間は Amazon の購入ボタンを出さない
+  const buyUrl = AMAZON_ENABLED ? amazon_url : undefined
 
   const getDifficultyColor = (level?: string) => {
     switch (level) {
@@ -100,8 +102,8 @@ export function ProductCard({
                   詳細を見る
                 </Button>
               </Link>
-              {amazon_url && (
-                <a href={amazon_url} target="_blank" rel={AFFILIATE_LINK_REL}>
+              {buyUrl && (
+                <a href={buyUrl} target="_blank" rel={AFFILIATE_LINK_REL}>
                   <Button size="sm" className="text-xs h-7 bg-orange-500 hover:bg-orange-600">
                     <ShoppingBag className="w-3 h-3 mr-1" />
                     購入
@@ -206,8 +208,8 @@ export function ProductCard({
               詳細を見る
             </Button>
           </Link>
-          {amazon_url && (
-            <a href={amazon_url} target="_blank" rel={AFFILIATE_LINK_REL} className="flex-1">
+          {buyUrl && (
+            <a href={buyUrl} target="_blank" rel={AFFILIATE_LINK_REL} className="flex-1">
               <Button size="sm" className="w-full bg-orange-500 hover:bg-orange-600">
                 <ShoppingBag className="w-4 h-4 mr-1" />
                 購入する

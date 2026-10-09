@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SHOP_NAMES, SHOP_NAMES_AND } from '@/lib/affiliate'
 import Link from 'next/link'
 import {
   filterProducts,
@@ -20,8 +21,8 @@ interface ProductsPageProps {
   searchParams: Record<string, string | string[] | undefined>
 }
 
-const TITLE = '盆栽・鉢・道具を探す｜楽天市場とAmazonの盆栽を価格・樹種・サイズで比較 - 盆栽コレクション'
-const DESCRIPTION = '楽天市場とAmazonの盆栽・苔玉・盆栽鉢・土・道具を、樹種・価格・サイズ・送料込・レビュー件数でまとめて絞り込み、比較できます。'
+const TITLE = `盆栽・鉢・道具を探す｜${SHOP_NAMES_AND}の盆栽を価格・樹種・サイズで比較 - 盆栽コレクション`
+const DESCRIPTION = `${SHOP_NAMES_AND}の盆栽・苔玉・盆栽鉢・土・道具を、樹種・価格・サイズ・送料込・レビュー件数でまとめて絞り込み、比較できます。`
 
 // 絞り込み・ページ送りのURLは検索結果に出さず、一覧トップに正規化する
 export function generateMetadata({ searchParams }: ProductsPageProps): Metadata {
@@ -76,7 +77,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         filterKeys={activeFilterKeys(filters).join(',')}
         resultCount={total}
       />
-      <h1 className="sr-only">盆栽・鉢・道具を探す（楽天市場・Amazonの商品{all.length.toLocaleString()}件）</h1>
+      <h1 className="sr-only">盆栽・鉢・道具を探す（{SHOP_NAMES}の商品{all.length.toLocaleString()}件）</h1>
       <CatalogBrowser
         filters={filters}
         items={items}

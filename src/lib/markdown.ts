@@ -95,7 +95,7 @@ export function processMarkdown(content: string, options: ProcessMarkdownOptions
     html = html.replace(/<ul>/g, '<ul class="mb-4">')
     html = html.replace(/<ol>/g, '<ol class="mb-4">')
 
-    // リンクと画像の補正（存在しないページ・仮のリンクは外す、Amazon にはアソシエイトタグを付ける、外部リンクは新しいタブ）
+    // リンクと画像の補正（存在しないページ・仮のリンクは外す、Amazon にはアソシエイトタグを付ける（掲載を止めている間はリンクを外す）、外部リンクは新しいタブ）
     html = rewriteArticleHtml(html, options.links)
 
     // 表は横スクロールできる枠で囲む。列が多い表には SP で「横にスクロール」の案内を出す

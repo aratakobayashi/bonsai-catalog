@@ -17,6 +17,7 @@ import {
 } from '@/lib/catalog'
 import type { CatalogProduct } from '@/lib/catalog-model'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
+import { AMAZON_ENABLED } from '@/lib/affiliate'
 import { SPECIES_TRAITS, type SpeciesTrait } from '@/lib/species-traits'
 import { isInSeasonNow } from '@/lib/seasons'
 import type { FilterMenu, FilterOption } from '@/components/catalog/FilterBar'
@@ -60,12 +61,15 @@ export function buildFilterMenus(
       current: label(SIZE_OPTIONS, filters.size),
       groups: [{ options: [opt('指定なし', { size: undefined }, !filters.size), ...SIZE_OPTIONS.map(o => opt(o.label, { size: o.value }, filters.size === o.value))] }],
     },
-    {
-      key: 'shop',
-      label: 'ショップ',
-      current: filters.shop === 'rakuten' ? '楽天市場' : filters.shop === 'amazon' ? 'Amazon' : undefined,
-      groups: [{ options: [opt('すべて', { shop: undefined }, !filters.shop), opt('楽天市場', { shop: 'rakuten' }, filters.shop === 'rakuten'), opt('Amazon', { shop: 'amazon' }, filters.shop === 'amazon')] }],
-    },
+    // ショップの絞り込みは Amazon を掲載しているときだけ（楽天市場だけでは選ぶ意味がない）
+    ...(AMAZON_ENABLED
+      ? [{
+          key: 'shop',
+          label: 'ショップ',
+          current: filters.shop === 'rakuten' ? '楽天市場' : filters.shop === 'amazon' ? 'Amazon' : undefined,
+          groups: [{ options: [opt('すべて', { shop: undefined }, !filters.shop), opt('楽天市場', { shop: 'rakuten' }, filters.shop === 'rakuten'), opt('Amazon', { shop: 'amazon' }, filters.shop === 'amazon')] }],
+        }]
+      : []),
     {
       key: 'purpose',
       label: 'こだわり',
@@ -107,7 +111,7 @@ export function conditionLabels(filters: CatalogFilters, fixedCategory = false):
   }
   labels.push(
     label(SIZE_OPTIONS, filters.size)?.replace(/（.*）/, ''),
-    filters.shop === 'rakuten' ? '楽天市場' : filters.shop === 'amazon' ? 'Amazon' : undefined,
+    AMAZON_ENABLED ? (filters.shop === 'rakuten' ? '楽天市場' : filters.shop === 'amazon' ? 'Amazon' : undefined) : undefined,
     label(PLACE_OPTIONS, filters.place),
     label(ENJOY_OPTIONS, filters.enjoy),
     filters.season ? `見ごろ：${label(SEASON_OPTIONS, filters.season)}` : undefined,

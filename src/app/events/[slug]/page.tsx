@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { supabaseServer } from '@/lib/supabase-server'
+import { AMAZON_ENABLED } from '@/lib/affiliate'
 import { Event, EventArticle, Product, Article } from '@/types'
 import EventDetailClient from './EventDetailClient'
 import { getEventBySlug } from '@/lib/events'
@@ -15,11 +16,10 @@ interface EventDetailPageProps {
 
 // 人気商品を取得
 async function getPopularProducts(limit = 6): Promise<Product[]> {
-  const { data } = await supabaseServer
-    .from('products')
-    .select('id, name, price, image_url, slug, category, description, created_at')
-    .order('created_at', { ascending: false })
-    .limit(limit)
+  let query = supabaseServer.from('products').select('id, name, price, image_url, slug, category, description, created_at')
+  // Amazon の掲載を止めている間は楽天市場の商品だけ（src/lib/affiliate.ts）
+  if (!AMAZON_ENABLED) query = query.eq('source', 'rakuten')
+  const { data } = await query.order('created_at', { ascending: false }).limit(limit)
 
   return data || []
 }

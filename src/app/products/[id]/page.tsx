@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
+import { isHiddenProductSource } from '@/lib/affiliate'
+import { getShopCategory } from '@/lib/shop-categories'
 import { supabaseServer } from '@/lib/supabase-server'
 import { filterProducts, getCatalogProducts, normalizeProduct, parseFilters, type CatalogProduct } from '@/lib/catalog'
 import { searchRakutenItems } from '@/lib/rakuten'
@@ -47,6 +49,11 @@ async function getProduct(id: string): Promise<ProductDetail | null> {
   const row = data as Record<string, unknown>
   if (row.is_active === false) return null
   const normalized = normalizeProduct(row)
+  // Amazon の掲載を止めている間は、商品ページを樹種のカテゴリ（不明なら商品一覧）へ転送する（検索結果に残る URL のため 404 にはしない）
+  if (isHiddenProductSource(row.source)) {
+    const speciesCategory = normalized.speciesKey ? getShopCategory(normalized.speciesKey) : undefined
+    permanentRedirect(categoryLink(normalized)?.href ?? (speciesCategory ? `/products/category/${speciesCategory.slug}` : '/products'))
+  }
   return {
     ...normalized,
     // 見出し用は一覧より長めに残す

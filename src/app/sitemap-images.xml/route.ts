@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
+import { isHiddenProductSource } from '@/lib/affiliate'
 
 const baseUrl = 'https://www.bonsai-collection.com'
 
@@ -23,7 +24,7 @@ export async function GET() {
       .from('products')
       .select('*')
       .not('image_url', 'is', null)
-    const products = (rows || []).filter((p: any) => p.source !== 'rakuten' && p.is_active !== false)
+    const products = (rows || []).filter((p: any) => p.source !== 'rakuten' && p.is_active !== false && !isHiddenProductSource(p.source))
 
     let xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"

@@ -1,4 +1,5 @@
 'use client'
+import { AMAZON_ENABLED } from '@/lib/affiliate'
 
 import Link from 'next/link'
 import { getAllFAQs, type FAQItem } from '@/lib/faq-data'
@@ -125,7 +126,7 @@ export default function FAQPage() {
           <div className="mt-6 border-b border-line border-t border-t-ink py-5 lg:mt-9">
             <p className="font-mincho text-[15px] font-bold text-ink lg:text-[17px]">このサイトで購入できますか？</p>
             <p className="mt-1.5 text-[13px] leading-[1.9] text-ink-soft lg:text-sm">
-              当サイトでは販売していません。「楽天市場で見る」「Amazonで見る」から各ショップで購入できます。注文・配送・返品は購入したショップへお問い合わせください。
+              当サイトでは販売していません。「楽天市場で見る」{AMAZON_ENABLED && '「Amazonで見る」'}から各ショップで購入できます。注文・配送・返品は購入したショップへお問い合わせください。
             </p>
           </div>
 

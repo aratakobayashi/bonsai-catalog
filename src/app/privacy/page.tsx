@@ -1,11 +1,12 @@
 import { Metadata } from 'next'
+import { AMAZON_ENABLED } from '@/lib/affiliate'
 import Link from 'next/link'
 import { CONTAINER, PageHeading } from '@/components/ui/design'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/privacy' },
   title: 'プライバシーポリシー | 盆栽コレクション',
-  description: '盆栽コレクションのプライバシーポリシーです。個人情報の取り扱い、Cookie・ブラウザへの保存、Google アナリティクス・Google AdSense、楽天アフィリエイト・Amazonアソシエイトについて説明しています。',
+  description: `盆栽コレクションのプライバシーポリシーです。個人情報の取り扱い、Cookie・ブラウザへの保存、Google アナリティクス・Google AdSense、楽天アフィリエイト${AMAZON_ENABLED ? '・Amazonアソシエイト' : ''}について説明しています。`,
 }
 
 export default function PrivacyPage() {
@@ -116,17 +117,25 @@ export default function PrivacyPage() {
               7. アフィリエイトプログラムについて
             </h2>
             <div className="border-y border-line py-5">
-              <p className="text-ink">
-                当サイトは、Amazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を
-                提供することを目的に設定されたアフィリエイトプログラムである、
-                <strong>Amazonアソシエイト・プログラム</strong>の参加者です。
-              </p>
-              <p className="text-ink mt-4">
-                また、楽天市場の商品へのリンクには、<strong>楽天アフィリエイト</strong>のリンクを含む場合があります。
-              </p>
+              {AMAZON_ENABLED ? (
+                <>
+                  <p className="text-ink">
+                    当サイトは、Amazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を
+                    提供することを目的に設定されたアフィリエイトプログラムである、
+                    <strong>Amazonアソシエイト・プログラム</strong>の参加者です。
+                  </p>
+                  <p className="text-ink mt-4">
+                    また、楽天市場の商品へのリンクには、<strong>楽天アフィリエイト</strong>のリンクを含む場合があります。
+                  </p>
+                </>
+              ) : (
+                <p className="text-ink">
+                  楽天市場の商品へのリンクには、<strong>楽天アフィリエイト</strong>のリンクを含む場合があります。
+                </p>
+              )}
               <p className="text-ink mt-4">
                 商品へのリンクにはアフィリエイト用の情報が含まれており、リンク先で商品が購入された場合に当サイトに紹介料が支払われることがあります。
-                リンク先の Amazon・楽天市場では、各社の規約に基づいて Cookie が利用されます。
+                {AMAZON_ENABLED ? 'リンク先の Amazon・楽天市場では、各社の規約に基づいて Cookie が利用されます。' : 'リンク先の楽天市場では、楽天グループの規約に基づいて Cookie が利用されます。'}
                 この仕組みによって購入者に追加の費用が発生することはありません。
                 当サイトでは商品の販売を行っていないため、注文・配送・返品は購入したショップへお問い合わせください。
               </p>

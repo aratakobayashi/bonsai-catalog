@@ -1,4 +1,5 @@
 'use client'
+import { AMAZON_ENABLED } from '@/lib/affiliate'
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -126,7 +127,7 @@ export default function ContactPage() {
         <div className="mt-5 border-b border-t border-b-line border-t-sumi py-4 text-[13px] leading-[1.9] lg:mt-8 lg:text-[14px]">
           <p className="font-bold text-ink">商品の注文・配送・返品について</p>
           <p className="text-ink-soft">
-            当サイトでは販売を行っていないため、購入したショップ（楽天市場の各店舗・Amazon）へ直接お問い合わせください。
+            当サイトでは販売を行っていないため、購入したショップ（楽天市場の各店舗{AMAZON_ENABLED && '・Amazon'}）へ直接お問い合わせください。
           </p>
         </div>
 

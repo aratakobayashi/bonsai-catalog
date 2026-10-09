@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SHOP_NAMES, SHOP_NAMES_AND } from '@/lib/affiliate'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import {
@@ -93,8 +94,8 @@ export function generateMetadata({ params, searchParams }: CategoryPageProps): M
   if (!category) return {}
   const extra = hasActiveFilters(filtersFor(category.slug, searchParams)) && Object.keys(searchParams).length > 0
   return {
-    title: `${category.name}の通販・価格比較｜楽天市場・Amazonの人気商品 - 盆栽コレクション`,
-    description: `${category.name}を楽天市場とAmazonの商品から比較。価格帯・送料込・レビュー件数で選べます。${category.intro}`.slice(0, 160),
+    title: `${category.name}の通販・価格比較｜${SHOP_NAMES}の人気商品 - 盆栽コレクション`,
+    description: `${category.name}を${SHOP_NAMES_AND}の商品から比較。価格帯・送料込・レビュー件数で選べます。${category.intro}`.slice(0, 160),
     alternates: { canonical: `/products/category/${category.slug}` },
     // 並び替え・ページ送りなどの URL は検索結果に出さない
     ...(extra && { robots: { index: false, follow: true } }),

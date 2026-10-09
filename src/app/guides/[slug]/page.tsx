@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getArticleBySlug, getArticleLinkContext, getRelatedArticles } from '@/lib/database/articles'
 import { supabaseServer } from '@/lib/supabase-server'
+import { AMAZON_ENABLED } from '@/lib/affiliate'
 import { ShareButtons } from '@/components/features/ShareButtons'
 import { TableOfContents, MobileTableOfContents } from '@/components/features/TableOfContents'
 import { ArticleSidebarProducts } from '@/components/article/ArticleSidebarProducts'
@@ -32,11 +33,10 @@ interface ArticlePageProps {
 async function getRelatedProducts(productIds?: string[], article?: any): Promise<Product[]> {
   // 手動設定の商品IDがある場合は優先
   if (productIds && productIds.length > 0) {
-    const { data, error } = await supabaseServer
-      .from('products')
-      .select('*')
-      .in('id', productIds)
-      .limit(4)
+    let query = supabaseServer.from('products').select('*').in('id', productIds)
+    // Amazon の掲載を止めている間は楽天市場の商品だけ（src/lib/affiliate.ts）
+    if (!AMAZON_ENABLED) query = query.eq('source', 'rakuten')
+    const { data, error } = await query.limit(4)
 
     if (!error && data && data.length > 0) {
       return data

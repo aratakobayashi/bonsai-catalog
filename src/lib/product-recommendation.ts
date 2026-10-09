@@ -3,6 +3,7 @@
  */
 
 import { supabase } from '@/lib/supabase'
+import { AMAZON_ENABLED } from '@/lib/affiliate'
 import type { Product } from '@/types'
 
 // 記事キーワードから商品カテゴリへのマッピング（実際のDBカテゴリに基づく）
@@ -55,6 +56,8 @@ export async function getRecommendedProducts(
     let query = supabase
       .from('products')
       .select('*')
+    // Amazon の掲載を止めている間は楽天市場の商品だけ（src/lib/affiliate.ts）
+    if (!AMAZON_ENABLED) query = query.eq('source', 'rakuten')
 
     // カテゴリでフィルタリング
     if (categories.length > 0) {
@@ -197,11 +200,9 @@ function calculateRelevanceScore(
  */
 async function getFallbackProducts(limit: number): Promise<Product[]> {
   try {
-    const { data: products } = await supabase
-      .from('products')
-      .select('*')
-      .order('created_at', { ascending: false })
-      .limit(limit)
+    let query = supabase.from('products').select('*')
+    if (!AMAZON_ENABLED) query = query.eq('source', 'rakuten')
+    const { data: products } = await query.order('created_at', { ascending: false }).limit(limit)
 
     return products || []
   } catch (error) {

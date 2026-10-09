@@ -14,6 +14,8 @@ export interface Product {
   location?: Location
   image_url: string
   amazon_url: string
+  // 'amazon' | 'rakuten'（古い行は空のことがある）
+  source?: string | null
   created_at: string
   updated_at: string
   // UI拡張フィールド

@@ -1,6 +1,6 @@
 // 記事本文の表示時の補正（リンク切れ・仮のリンク・アフィリエイトリンク・消えた画像）と、
 // 記事の樹種・話題の判定（関連記事・記事下の案内に使う）
-import { AFFILIATE_LINK_REL, amazonSearchUrl, isAffiliateUrl, toAmazonAffiliateUrl } from '@/lib/affiliate'
+import { AFFILIATE_LINK_REL, AMAZON_ENABLED, amazonSearchUrl, isAffiliateUrl, toAmazonAffiliateUrl } from '@/lib/affiliate'
 import { isArticleHidden, isArticleListable } from '@/lib/content-policy'
 
 // ---------------------------------------------------------------------------
@@ -116,6 +116,12 @@ const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
 // リンクを外すと意味がなくなる案内文（リンク先がないときは文言ごと消す）
 const LINK_ONLY_TEXT = /^[\s▶►▷👉📖→»>・]*(?:記事を読む|続きを読む|詳しくはこちら|(?:この商品の)?詳細(?:・申込)?はこちら|こちら|詳細を見る)[\s»→>]*$/u
 
+// Amazon へのボタン風の案内文（Amazon の掲載を止めている間は、リンクを外すと意味がなくなるので文言ごと消す）
+const AMAZON_BUTTON_TEXT = /^[\s▶►▷👉🛒→»>・]*(?:amazon|アマゾン)(?:で|の|を|は)?(?:見る|詳細を見る|詳しく見る|購入する|購入|買う|チェック(?:する)?|探す|価格を見る|価格をチェック|最新価格を見る|商品ページ(?:を見る)?|はこちら|こちら)?[\s»→>]*$/iu
+
+// Amazon のリンク先（短縮URLを含む）
+const AMAZON_LINK_HOST = /(^|\.)(?:amazon\.co\.jp|amazon\.jp|amazon\.com|amzn\.to|amzn\.asia)$/i
+
 // 汎用の文言（商品名ではないので検索キーワードにしない）
 const GENERIC_LINK_TEXT = /^(?:amazon|アマゾン|こちら|詳細|詳しく|購入|見る|チェック|リンク)/i
 
@@ -142,7 +148,8 @@ function mapGuidebookUrl(url: URL, linkText: string, ctx: ArticleLinkContext): s
   return findArticleByText(linkText.replace(/^[^\p{L}\p{N}]+/u, ''), ctx)
 }
 
-type LinkDecision = { keep: true; href: string; external: boolean } | { keep: false }
+// dropText：リンクを外したうえで、リンク文言も残さない
+type LinkDecision = { keep: true; href: string; external: boolean } | { keep: false; dropText?: boolean }
 
 // サイト内リンクの判定（存在しないページなら外し、同じ内容のページがあれば置き換える）
 function resolveInternalPath(pathWithQuery: string, ctx: ArticleLinkContext | undefined): string | null {
@@ -205,6 +212,12 @@ function decideLink(rawHref: string, linkText: string, ctx: ArticleLinkContext |
     return mapped ? { keep: true, href: mapped, external: false } : { keep: false }
   }
 
+  // Amazon の掲載を止めている間（src/lib/affiliate.ts の AMAZON_ENABLED）は、Amazon へのリンクを外して文言だけ残す。
+  // 「Amazonで見る」などの案内文や、URL そのままの文言は残しても意味がないので消す
+  if (!AMAZON_ENABLED && AMAZON_LINK_HOST.test(url.hostname)) {
+    return { keep: false, dropText: AMAZON_BUTTON_TEXT.test(linkText) || /^https?:\/\//i.test(linkText) }
+  }
+
   if (/(^|\.)amazon\.co\.jp$/i.test(url.hostname)) {
     const affiliate = toAmazonAffiliateUrl(url.toString())
     if (affiliate) return { keep: true, href: affiliate, external: true }
@@ -233,9 +246,10 @@ export function rewriteArticleHtml(html: string, ctx?: ArticleLinkContext): stri
     const hrefMatch = attrs.match(/href="([^"]*)"/)
     if (!hrefMatch) return inner
     const linkText = decodeEntities(inner.replace(/<[^>]*>/g, '')).trim()
-    const unwrap = () => (LINK_ONLY_TEXT.test(linkText) ? '' : inner)
+    // 仮のリンク先（example.com など）の「Amazonで見る」も、Amazon を止めている間は文言ごと消す
+    const unwrap = () => (LINK_ONLY_TEXT.test(linkText) || (!AMAZON_ENABLED && AMAZON_BUTTON_TEXT.test(linkText)) ? '' : inner)
     const decision = decideLink(hrefMatch[1], linkText, ctx)
-    if (!decision.keep) return unwrap()
+    if (!decision.keep) return decision.dropText ? '' : unwrap()
 
     if (decision.href.startsWith('#')) {
       const id = safeDecode(decision.href.slice(1))

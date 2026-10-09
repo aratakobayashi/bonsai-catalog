@@ -3,6 +3,7 @@ import { notFound, permanentRedirect } from 'next/navigation'
 import { GARDEN_VERIFIED_AT, getGardenSources, isGardenHiddenId, isGardenPublished } from '@/lib/garden-verification'
 import Link from 'next/link'
 import { supabaseServer } from '@/lib/supabase-server'
+import { AMAZON_ENABLED } from '@/lib/affiliate'
 import { Garden, Article } from '@/types'
 import { normalizeProduct, type CatalogProduct } from '@/lib/catalog'
 import { CONTAINER, Breadcrumbs, SectionTitle, Placeholder } from '@/components/ui/design'
@@ -43,23 +44,20 @@ async function getGarden(id: string): Promise<Garden | null> {
 async function getRelatedProducts(specialties: string[]): Promise<CatalogProduct[]> {
   if (!specialties || specialties.length === 0) return []
 
-  const { data } = await supabaseServer
-    .from('products')
-    .select('*')
-    .in('category', specialties)
-    .eq('is_visible', true)
-    .limit(4)
+  let query = supabaseServer.from('products').select('*').in('category', specialties).eq('is_visible', true)
+  // Amazon の掲載を止めている間は楽天市場の商品だけ（src/lib/affiliate.ts）
+  if (!AMAZON_ENABLED) query = query.eq('source', 'rakuten')
+  const { data } = await query.limit(4)
 
   return (data || []).map(normalizeProduct)
 }
 
 // おすすめ盆栽商品を取得
 async function getRecommendedProducts(): Promise<CatalogProduct[]> {
-  const { data, error } = await supabaseServer
-    .from('products')
-    .select('*')
-    .order('created_at', { ascending: false })
-    .limit(6)
+  let query = supabaseServer.from('products').select('*')
+  // Amazon の掲載を止めている間は楽天市場の商品だけ（src/lib/affiliate.ts）
+  if (!AMAZON_ENABLED) query = query.eq('source', 'rakuten')
+  const { data, error } = await query.order('created_at', { ascending: false }).limit(6)
 
   if (error) {
     console.error('Error fetching recommended products:', error)

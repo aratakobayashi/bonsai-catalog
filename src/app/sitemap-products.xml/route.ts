@@ -1,4 +1,5 @@
 import { supabase } from '@/lib/supabase'
+import { isHiddenProductSource } from '@/lib/affiliate'
 import { baseUrl, SITEMAP_CONFIG, createSitemapResponse, generateXmlHeader, generateXmlFooter, generateUrlElement } from '@/lib/sitemap-utils'
 
 export const revalidate = 3600
@@ -19,7 +20,7 @@ export async function GET() {
       const { data: rows } = await supabase
         .from('products')
         .select('*')
-      const products = (rows || []).filter((p: any) => p.source !== 'rakuten' && p.is_active !== false)
+      const products = (rows || []).filter((p: any) => p.source !== 'rakuten' && p.is_active !== false && !isHiddenProductSource(p.source))
 
       if (products && products.length > 0) {
         const productUrls = products.map((product: any) =>

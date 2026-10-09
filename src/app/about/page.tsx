@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { AMAZON_ENABLED, SHOP_NAMES_AND } from '@/lib/affiliate'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import { CONTAINER, PageHeading } from '@/components/ui/design'
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 }
 
 const STEPS = [
-  { num: '一', title: '探す', body: '樹種・予算・サイズから、楽天市場とAmazonの商品をまとめて探せます。' },
+  { num: '一', title: '探す', body: `樹種・予算・サイズから、${SHOP_NAMES_AND}の商品をまとめて探せます。` },
   { num: '二', title: '比べる', body: '価格・レビュー・サイズを同じ形式で並べて比べられます。' },
   { num: '三', title: 'ショップで買う', body: '購入は各ショップのページで行います。当サイトでは販売していません。' },
 ]
@@ -56,7 +57,7 @@ export default function AboutPage() {
           crumbs={[{ label: 'ホーム', href: '/' }, { label: 'このサイトについて' }]}
           lead={
             <span className="block text-[14px] leading-[2] text-ink-soft lg:text-[16px]">
-              盆栽コレクションは、楽天市場とAmazonで販売されている盆栽・鉢・土・道具を横断して探せる比較・検索サイトです。育て方の記事や、全国の盆栽園・イベントの情報もまとめています。
+              盆栽コレクションは、{SHOP_NAMES_AND}で販売されている盆栽・鉢・土・道具を横断して探せる比較・検索サイトです。育て方の記事や、全国の盆栽園・イベントの情報もまとめています。
             </span>
           }
         />
@@ -80,7 +81,7 @@ export default function AboutPage() {
             rows={[
               {
                 label: '広告について',
-                body: '本サイトはプロモーション（広告）を含みます。商品リンクから購入された場合、当サイトに紹介料が支払われることがあります。Amazonのアソシエイトとして、盆栽コレクションは適格販売により収入を得ています。紹介料によって購入価格が変わることはありません。',
+                body: `本サイトはプロモーション（広告）を含みます。商品リンクから購入された場合、当サイトに紹介料が支払われることがあります。${AMAZON_ENABLED ? 'Amazonのアソシエイトとして、盆栽コレクションは適格販売により収入を得ています。' : ''}紹介料によって購入価格が変わることはありません。`,
               },
               {
                 label: '価格について',
@@ -94,7 +95,7 @@ export default function AboutPage() {
                 label: '商品情報の取得元',
                 body: (
                   <>
-                    楽天市場の商品は、楽天ウェブサービスの商品検索APIから自動で取得し、価格・レビューを定期的に更新しています。しばらく見つからなくなった商品は販売終了とみなして表示を止めます。Amazonの商品は運営者が選んで掲載しているもので、価格は掲載・更新した時点の情報です。
+                    楽天市場の商品は、楽天ウェブサービスの商品検索APIから自動で取得し、価格・レビューを定期的に更新しています。しばらく見つからなくなった商品は販売終了とみなして表示を止めます。{AMAZON_ENABLED && 'Amazonの商品は運営者が選んで掲載しているもので、価格は掲載・更新した時点の情報です。'}
                   </>
                 ),
               },
