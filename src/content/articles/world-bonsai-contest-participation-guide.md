@@ -79,7 +79,7 @@ thumbLabel: 展示・イベント
 鉢の汚れを落とし、表面の苔や化粧砂を整えます。枯れ葉や雑草を取り除き、葉の裏の虫も確かめます。展示用の卓や、添えの草もの、掛け軸などを使う場合は、全体の組み合わせを一度並べて確かめておくと安心です。
 
 ![緑の背景の前に、小さな盆栽を棚に組み合わせて並べた小品の飾り](/images/articles/photos/world-bonsai-contest-participation-guide-2.jpg)
-*写真：jvmccoy@sbcglobal.net / CC BY 2.0*
+*写真：jvmccoy&#64;sbcglobal.net / CC BY 2.0*
 
 小さな盆栽をいくつか棚に組み合わせる飾り方では、樹種や高さに変化をつけ、全体で一つの景色になるように並べます。
 

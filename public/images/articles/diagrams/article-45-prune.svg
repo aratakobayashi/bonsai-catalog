@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>サルスベリの花は春から伸びた枝の先に咲く。冬の2〜3月に伸びた枝を付け根の1〜2芽で切ると、翌年は新しい枝に花が咲き枝数も増える</title>
+  <rect width="800" height="480" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">花は今年伸びた枝の先に咲く</text>
+  <rect x="20" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="142" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">① 夏の花</text>
+  <path d="M142 320 L142 250" stroke="#6f5439" stroke-width="9" stroke-linecap="round"/>
+  <path d="M142 250 L90 160" stroke="#5b7f4a" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="90.0" cy="146.0" r="7.700000000000001" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="76.8" cy="157.0" r="7.700000000000001" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="103.2" cy="157.0" r="7.700000000000001" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="83.4" cy="132.8" r="7.700000000000001" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="98.8" cy="135.0" r="7.700000000000001" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="90.0" cy="165.8" r="7.700000000000001" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="74.6" cy="143.8" r="7.700000000000001" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="105.4" cy="143.8" r="7.700000000000001" fill="#c46a9a" fill-opacity="1"/>
+  <path d="M142 250 L196 160" stroke="#5b7f4a" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="196.0" cy="146.0" r="7.700000000000001" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="182.8" cy="157.0" r="7.700000000000001" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="209.2" cy="157.0" r="7.700000000000001" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="189.4" cy="132.8" r="7.700000000000001" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="204.8" cy="135.0" r="7.700000000000001" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="196.0" cy="165.8" r="7.700000000000001" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="180.6" cy="143.8" r="7.700000000000001" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="211.4" cy="143.8" r="7.700000000000001" fill="#c46a9a" fill-opacity="1"/>
+  <text x="142" y="360" text-anchor="middle" font-size="22" fill="#22201c">春から伸びた枝の</text>
+  <text x="142" y="394" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">先に花が咲く</text>
+  <text x="142" y="434" text-anchor="middle" font-size="22" fill="#6b655b">7〜9月</text>
+  <rect x="278" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#b8935a" stroke-width="3"/>
+  <text x="400" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">② 冬に切る</text>
+  <path d="M400 320 L400 250" stroke="#6f5439" stroke-width="9" stroke-linecap="round"/>
+  <path d="M400 250 L348 160" stroke="#6f5439" stroke-width="5" stroke-linecap="round" opacity="0.25"/>
+  <path d="M400 250 L389 230" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+  <line x1="375" y1="226" x2="403" y2="234" stroke="#b8935a" stroke-width="4" transform="rotate(-60 389 230)"/>
+  <path d="M400 250 L452 160" stroke="#6f5439" stroke-width="5" stroke-linecap="round" opacity="0.25"/>
+  <path d="M400 250 L411 230" stroke="#6f5439" stroke-width="5" stroke-linecap="round"/>
+  <line x1="397" y1="226" x2="425" y2="234" stroke="#b8935a" stroke-width="4" transform="rotate(60 411 230)"/>
+  <text x="400" y="360" text-anchor="middle" font-size="22" fill="#22201c">伸びた枝を</text>
+  <text x="400" y="394" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">付け根の1〜2芽で</text>
+  <text x="400" y="434" text-anchor="middle" font-size="22" fill="#6b655b">2〜3月</text>
+  <rect x="536" y="68" width="244" height="392" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="658" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">③ 翌年の花</text>
+  <path d="M658 320 L658 250" stroke="#6f5439" stroke-width="9" stroke-linecap="round"/>
+  <path d="M658 250 L649 236 L600 166" stroke="#5b7f4a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <circle cx="600.0" cy="154.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="590.4" cy="162.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="609.6" cy="162.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="595.2" cy="144.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="606.4" cy="146.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="600.0" cy="168.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="588.8" cy="152.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="611.2" cy="152.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <path d="M658 250 L655 236 L636 150" stroke="#5b7f4a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <circle cx="636.0" cy="138.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="626.4" cy="146.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="645.6" cy="146.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="631.2" cy="128.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="642.4" cy="130.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="636.0" cy="152.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="624.8" cy="136.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="647.2" cy="136.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <path d="M658 250 L661 236 L680 150" stroke="#5b7f4a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <circle cx="680.0" cy="138.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="670.4" cy="146.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="689.6" cy="146.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="675.2" cy="128.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="686.4" cy="130.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="680.0" cy="152.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="668.8" cy="136.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="691.2" cy="136.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <path d="M658 250 L667 236 L716 166" stroke="#5b7f4a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <circle cx="716.0" cy="154.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="706.4" cy="162.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="725.6" cy="162.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="711.2" cy="144.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="722.4" cy="146.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="716.0" cy="168.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="704.8" cy="152.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="727.2" cy="152.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <text x="658" y="360" text-anchor="middle" font-size="22" fill="#22201c">切った所から出た</text>
+  <text x="658" y="394" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">新しい枝に咲く</text>
+  <text x="658" y="434" text-anchor="middle" font-size="22" fill="#6b655b">枝数が増える</text>
+</svg>

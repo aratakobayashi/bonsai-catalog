@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 468" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>サルスベリの咲き終わった房は、房の下の葉の上で房ごと切る。脇から出た枝にもう一度花が咲くことがある</title>
+  <rect width="800" height="468" fill="#faf9f6"/>
+  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">咲き終わった房は早めに切る</text>
+  <rect x="20" y="68" width="370" height="380" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <text x="205" y="108" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">咲き終わった房</text>
+  <path d="M205 330 L205 200" stroke="#5b7f4a" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="183" cy="300" rx="22" ry="9" fill="#5b7f4a" transform="rotate(20 183 300)"/>
+  <ellipse cx="227" cy="300" rx="22" ry="9" fill="#5b7f4a" transform="rotate(-20 227 300)"/>
+  <ellipse cx="183" cy="260" rx="22" ry="9" fill="#5b7f4a" transform="rotate(20 183 260)"/>
+  <ellipse cx="227" cy="260" rx="22" ry="9" fill="#5b7f4a" transform="rotate(-20 227 260)"/>
+  <circle cx="205" cy="176" r="7" fill="#a5784f"/>
+  <circle cx="189" cy="190" r="7" fill="#a5784f"/>
+  <circle cx="221" cy="190" r="7" fill="#a5784f"/>
+  <circle cx="197" cy="160" r="7" fill="#a5784f"/>
+  <circle cx="215" cy="162" r="7" fill="#a5784f"/>
+  <circle cx="205" cy="202" r="7" fill="#a5784f"/>
+  <line x1="170" y1="232" x2="240" y2="232" stroke="#b8935a" stroke-width="4" stroke-dasharray="9 6"/>
+  <text x="250" y="238" font-size="22" font-weight="700" fill="#b8935a">切る</text>
+  <text x="205" y="380" text-anchor="middle" font-size="22" fill="#22201c">房の下の葉の上で</text>
+  <text x="205" y="414" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">房ごと切る</text>
+  <rect x="410" y="68" width="370" height="380" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
+  <text x="595" y="108" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">二番花</text>
+  <path d="M595 330 L595 240" stroke="#5b7f4a" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="573" cy="300" rx="22" ry="9" fill="#5b7f4a" transform="rotate(20 573 300)"/>
+  <ellipse cx="617" cy="300" rx="22" ry="9" fill="#5b7f4a" transform="rotate(-20 617 300)"/>
+  <ellipse cx="573" cy="260" rx="22" ry="9" fill="#5b7f4a" transform="rotate(20 573 260)"/>
+  <ellipse cx="617" cy="260" rx="22" ry="9" fill="#5b7f4a" transform="rotate(-20 617 260)"/>
+  <path d="M595 242 L560 186" stroke="#5b7f4a" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="560.0" cy="172.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="550.4" cy="180.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="569.6" cy="180.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="555.2" cy="162.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="566.4" cy="164.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="560.0" cy="186.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="548.8" cy="170.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="571.2" cy="170.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <path d="M595 242 L630 186" stroke="#5b7f4a" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="630.0" cy="172.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="620.4" cy="180.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="639.6" cy="180.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="625.2" cy="162.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="636.4" cy="164.0" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="630.0" cy="186.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="618.8" cy="170.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <circle cx="641.2" cy="170.4" r="5.6000000000000005" fill="#c46a9a" fill-opacity="1"/>
+  <text x="595" y="380" text-anchor="middle" font-size="22" fill="#22201c">脇から出た枝に</text>
+  <text x="595" y="414" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">もう一度咲くことがある</text>
+</svg>
