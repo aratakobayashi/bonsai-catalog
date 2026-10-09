@@ -2,20 +2,20 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { supabaseServer } from '@/lib/supabase-server'
-import { getCatalogProducts, normalizeProduct, type CatalogProduct } from '@/lib/catalog'
+import { filterProducts, getCatalogProducts, normalizeProduct, parseFilters, type CatalogProduct } from '@/lib/catalog'
 import { searchRakutenItems } from '@/lib/rakuten'
 import { cleanProductName } from '@/lib/product-name'
 import { SITE_URL } from '@/lib/site'
 import { formatPrice } from '@/lib/utils'
 import { getRelatedArticles } from '@/lib/article-helpers'
+import { getCareGuide, getPurchaseChecklist } from '@/lib/care-guides'
 import { BreadcrumbStructuredData, ProductStructuredData } from '@/components/seo/StructuredData'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
-import { ProductBuyBar, ProductDetailPanel } from '@/components/catalog/ProductDetailPanel'
-import { SectionTitle, Tag } from '@/components/ui/design'
+import { ProductBuyBar, ProductImage, ProductInfo, SeasonBar } from '@/components/catalog/ProductDetailPanel'
+import { Breadcrumbs, CONTAINER, SectionTitle } from '@/components/ui/design'
 import { SelectionCard } from '@/components/selection/SelectionCard'
 import { selectionsForProduct } from '@/lib/selections'
-import { categoryLink, isPartProduct } from '@/lib/product-detail'
-import { ProductThumb } from '@/components/catalog/ProductThumb'
+import { categoryLink, enjoyText, isPartProduct, levelLabel, placeLabel, seasonText } from '@/lib/product-detail'
 
 interface ProductPageProps {
   params: { id: string }
@@ -104,11 +104,16 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
   const all = await getCatalogProducts()
   const isPart = isPartProduct(product)
+  const catLink = categoryLink(product)
   const sameGroup = (p: CatalogProduct) =>
     product.syncCategory ? p.syncCategory === product.syncCategory || p.category === product.category : p.category === product.category
-  const related = all
-    .filter(p => p.id !== product.id && p.productType === product.productType && sameGroup(p))
-    .sort((a, b) => b.reviewCount - a.reviewCount)
+  // 樹種のカテゴリがある商品は、カテゴリの一覧と同じ条件・並び順で「ほかの◯◯」を出す（件数も一覧と揃える）
+  const categoryProducts =
+    catLink?.group === 'tree'
+      ? filterProducts(all, { ...parseFilters({}), species: catLink.href.split('/').pop(), type: catLink.href.endsWith('/kokedama') ? 'kokedama' : 'tree' })
+      : null
+  const related = (categoryProducts ?? all.filter(p => p.productType === product.productType && sameGroup(p)).sort((a, b) => b.reviewCount - a.reviewCount))
+    .filter(p => p.id !== product.id)
   // 樹を見ている人には鉢・土・道具を、部品を見ている人には樹をすすめる
   const pairTypes = isPart ? ['tree'] : ['pot', 'soil', 'tool']
   const pairs = pairTypes
@@ -119,9 +124,20 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
   const relatedArticles = getRelatedArticles(product.category, product.tags, 3)
   const features = selectionsForProduct(product)
-  const catLink = categoryLink(product)
+  const careGuide = getCareGuide(product.productType, product.category)
+  const checklist = getPurchaseChecklist(product.productType)
   const listHref = catLink?.href ?? '/products'
-  const sideList = [product, ...related.slice(0, 11)]
+  const species = catLink?.label ?? product.speciesLabel
+  const level = levelLabel(product)
+  const place = placeLabel(product)
+  const seasons = seasonText(product)
+  const facts = [
+    ...(level ? [{ label: '育てやすさ', value: level }] : []),
+    ...(place ? [{ label: '置き場所', value: place }] : []),
+    ...(seasons ? [{ label: '見頃', value: seasons }] : product.enjoy.includes('evergreen') ? [{ label: '見頃', value: '一年中（常緑）' }] : []),
+  ]
+  const aboutTitle = !isPart && species ? `${species}について` : careGuide?.title
+  const guideLink = careGuide?.guideLink && { href: careGuide.guideLink.href, label: !isPart && species ? `${species}の育て方を読む` : careGuide.guideLink.label }
 
   const breadcrumbs = [
     { name: 'ホーム', url: SITE_URL, position: 1 },
@@ -129,6 +145,16 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     ...(catLink ? [{ name: catLink.label, url: `${SITE_URL}${catLink.href}`, position: 3 }] : []),
     { name: product.name, url: `${SITE_URL}/products/${product.id}`, position: catLink ? 4 : 3 },
   ]
+  const crumbs = [
+    { label: '探す', href: '/products' },
+    ...(catLink ? [{ label: catLink.label, href: catLink.href }] : []),
+    { label: product.name },
+  ]
+  const moreLink = (
+    <Link href={listHref} className="border-b border-ink pb-0.5 text-[13px] text-ink">
+      {catLink ? `${catLink.label}をすべて見る${categoryProducts ? `（${categoryProducts.length.toLocaleString()}件）` : ''}` : '一覧を見る'}
+    </Link>
+  )
 
   return (
     <>
@@ -141,87 +167,114 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       />
 
       {/* スマホ：一覧へ戻る */}
-      <div className="bg-navy px-4 py-2.5 text-sm text-white lg:hidden">
-        <Link href={listHref}>‹ {catLink ? `${catLink.label}の一覧` : '一覧'}（{(related.length + 1).toLocaleString()}件）</Link>
+      <div className="bg-navy px-4 py-3 text-[13.5px] text-white lg:hidden">
+        <Link href={listHref} className="text-white hover:text-white">‹ {catLink ? catLink.label : '一覧'}</Link>
       </div>
 
-      {/* PC：左の一覧と右の詳細を、それぞれ独立してスクロールできるようにする */}
-      <div className="mx-auto max-w-[1280px] pb-36 lg:grid lg:h-[calc(100vh-64px)] lg:grid-cols-[440px_minmax(0,1fr)] lg:border-x lg:border-line lg:pb-0">
-        {/* PC：同じカテゴリの商品の一覧 */}
-        <aside className="hidden border-r border-line bg-white lg:block lg:overflow-y-auto" aria-label="同じカテゴリの商品">
-          <div className="px-5 pb-3 pt-5">
-            <div className="flex items-baseline gap-2">
-              <span className="text-lg font-bold text-navy">{catLink ? catLink.label : '似ている商品'}</span>
-              <Link href={listHref} className="ml-auto text-xs font-bold text-navy underline">一覧を見る →</Link>
-            </div>
+      <div className={`${CONTAINER} pb-36 lg:pb-20`}>
+        <Breadcrumbs items={crumbs} className="hidden pt-6 lg:block" />
+
+        <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-16 lg:pt-6">
+          <ProductImage product={product} sizes="(max-width: 1024px) 100vw, 60vw" size={800} className="-mx-4 aspect-square lg:mx-0" />
+          <div className="mt-5 lg:sticky lg:top-6 lg:mt-0 lg:self-start">
+            <ProductInfo product={product} headingLevel="h1" showOriginalName showDescription />
           </div>
-          {sideList.map(p => (
-            <Link
-              key={p.id}
-              href={`/products/${p.id}`}
-              prefetch={false}
-              aria-current={p.id === product.id ? 'page' : undefined}
-              className={`flex gap-4 border-b border-line px-5 py-4 ${p.id === product.id ? 'border-l-[3px] border-l-gold bg-[#fbf7ef] pl-[17px]' : 'hover:bg-paper'}`}
-            >
-              <div className="relative h-[72px] w-[72px] shrink-0 overflow-hidden rounded-lg bg-[#f1eee8]">
-                <ProductThumb src={p.imageUrl} alt="" sizes="72px" size={200} />
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="line-clamp-2 text-[13px] leading-snug text-ink">{p.name}</p>
-                <p className="mt-1 text-sm font-bold text-ink">{formatPrice(p.price)}</p>
-              </div>
-            </Link>
-          ))}
-        </aside>
-
-        <div className="min-w-0 px-4 pt-0 lg:overflow-y-auto lg:px-9 lg:py-8">
-          <ProductDetailPanel product={product} headingLevel="h1" showDescription />
-
-          {features.length > 0 && (
-            <section className="mt-10">
-              <SectionTitle action={<Link href="/selection" className="font-bold text-navy underline">特集をすべて見る →</Link>}>この商品が載っている特集</SectionTitle>
-              <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3">
-                {features.map(selection => <SelectionCard key={selection.slug} selection={selection} compact />)}
-              </div>
-            </section>
-          )}
-
-          {pairs.length > 0 && (
-            <section className="mt-10">
-              <SectionTitle>{isPart ? 'この鉢・道具と合わせたい盆栽' : 'あわせて揃えたい鉢・土・道具'}</SectionTitle>
-              <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
-                {pairs.map(p => <CatalogProductCard key={p.id} product={p} />)}
-              </div>
-            </section>
-          )}
-
-          {related.length > 0 && (
-            <section className="mt-10">
-              <SectionTitle action={catLink && <Link href={catLink.href} className="font-bold text-navy underline">{catLink.label}をもっと見る →</Link>}>
-                似ている商品
-              </SectionTitle>
-              <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
-                {related.slice(0, 8).map(p => <CatalogProductCard key={p.id} product={p} />)}
-              </div>
-            </section>
-          )}
-
-          {relatedArticles.length > 0 && (
-            <section className="mt-10 pb-10">
-              <SectionTitle>関連する育て方ガイド</SectionTitle>
-              <ul className="mt-4 grid gap-3 md:grid-cols-3">
-                {relatedArticles.map(article => (
-                  <li key={article.slug}>
-                    <Link href={`/guides/${article.slug}`} className="block h-full rounded-xl border border-line bg-white p-4 hover:shadow-md">
-                      <Tag>{article.category}</Tag>
-                      <p className="mt-2 line-clamp-3 font-mincho text-[15px] font-bold leading-snug text-ink">{article.title}</p>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
         </div>
+
+        {aboutTitle && (
+          <section className="mt-10 border-t border-line pt-6 lg:mt-20 lg:grid lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-16 lg:pt-14">
+            <div>
+              {!isPart && product.category !== 'その他' && <div className="text-[10.5px] tracking-[0.08em] text-ink-muted lg:text-[11.5px]">{product.category}</div>}
+              <h2 className="mt-1 font-mincho text-[19px] font-bold tracking-[0.06em] text-ink lg:text-[26px]">{aboutTitle}</h2>
+              {guideLink && (
+                <Link href={guideLink.href} className="mt-[18px] hidden border-b border-ink pb-0.5 text-[13px] text-ink lg:inline-block">{guideLink.label}</Link>
+              )}
+            </div>
+            <div className="mt-2.5 min-w-0 lg:mt-0">
+              {!isPart && catLink?.intro && <p className="text-[13.5px] leading-[2] text-ink-soft lg:text-[15px]">{catLink.intro}</p>}
+              {!isPart && facts.length > 0 && (
+                <dl className="mt-5 grid grid-cols-2 gap-x-8 gap-y-4 lg:mt-7 lg:grid-cols-3">
+                  {facts.map(fact => (
+                    <div key={fact.label}>
+                      <dt className="text-[11px] text-ink-muted">{fact.label}</dt>
+                      <dd className="mt-1 text-[15px] text-ink lg:text-base">{fact.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+              {!isPart && seasons && (
+                <div className="mt-4 lg:mt-7">
+                  <div className="mb-2 text-[11px] text-ink-muted">見頃の目安　{enjoyText(product) ? `${enjoyText(product)}（${seasons}）` : seasons}</div>
+                  <SeasonBar product={product} />
+                </div>
+              )}
+              {careGuide && (
+                <dl className="mt-6 border-t border-line lg:mt-8">
+                  {careGuide.items.map(item => (
+                    <div key={item.label} className="grid grid-cols-[76px_minmax(0,1fr)] gap-3.5 border-b border-paper-deep py-3 text-[13px] leading-[1.8] lg:grid-cols-[110px_minmax(0,1fr)]">
+                      <dt className="text-ink-muted">{item.label}</dt>
+                      <dd className="text-ink-soft">{item.text}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+              <div className="mt-6">
+                <h3 className="text-[13px] font-bold text-ink">購入前に販売ページで確かめたいこと</h3>
+                <ul className="mt-2 space-y-1 text-[13px] leading-[1.8] text-ink-soft">
+                  {checklist.map(item => <li key={item}>・{item}</li>)}
+                </ul>
+              </div>
+              <p className="mt-4 text-[11px] text-ink-muted">一般的な目安です。品種や地域によって異なるため、商品ごとの説明もあわせてご確認ください。</p>
+              {guideLink && (
+                <Link href={guideLink.href} className="mt-3.5 inline-block border-b border-ink pb-0.5 text-[13px] text-ink lg:hidden">{guideLink.label}</Link>
+              )}
+            </div>
+          </section>
+        )}
+
+        {related.length > 0 && (
+          <section className="mt-10 lg:mt-20">
+            <SectionTitle action={<span className="hidden lg:inline">{moreLink}</span>}>{species && !isPart ? `ほかの${species}` : '似ている商品'}</SectionTitle>
+            <div className="mt-4 grid grid-cols-2 gap-x-3.5 gap-y-6 lg:mt-6 lg:grid-cols-4 lg:gap-6">
+              {related.slice(0, 4).map(p => <CatalogProductCard key={p.id} product={p} />)}
+            </div>
+            <div className="mt-5 lg:hidden">{moreLink}</div>
+          </section>
+        )}
+
+        {features.length > 0 && (
+          <section className="mt-12 lg:mt-20">
+            <SectionTitle action={<Link href="/selection" className="border-b border-ink pb-0.5 text-[13px] text-ink">特集をすべて見る</Link>}>この商品が載っている特集</SectionTitle>
+            <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:mt-6">
+              {features.map(selection => <SelectionCard key={selection.slug} selection={selection} compact />)}
+            </div>
+          </section>
+        )}
+
+        {pairs.length > 0 && (
+          <section className="mt-12 lg:mt-20">
+            <SectionTitle>{isPart ? 'この鉢・道具と合わせたい盆栽' : 'あわせて揃えたい鉢・土・道具'}</SectionTitle>
+            <div className="mt-4 grid grid-cols-2 gap-x-3.5 gap-y-6 lg:mt-6 lg:grid-cols-4 lg:gap-6">
+              {pairs.map(p => <CatalogProductCard key={p.id} product={p} />)}
+            </div>
+          </section>
+        )}
+
+        {relatedArticles.length > 0 && (
+          <section className="mt-12 lg:mt-20">
+            <SectionTitle>関連する育て方ガイド</SectionTitle>
+            <ul className="mt-4 border-t border-line lg:mt-6">
+              {relatedArticles.map(article => (
+                <li key={article.slug} className="border-b border-line">
+                  <Link href={`/guides/${article.slug}`} className="flex flex-col gap-1 py-4 lg:flex-row lg:items-baseline lg:gap-6">
+                    <span className="shrink-0 text-[11px] tracking-[0.04em] text-gold-dark lg:w-28">{article.category}</span>
+                    <span className="font-mincho text-[15px] font-bold leading-snug tracking-[0.04em] text-ink">{article.title}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </div>
 
       <ProductBuyBar product={product} />

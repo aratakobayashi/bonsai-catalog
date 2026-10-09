@@ -1,15 +1,22 @@
-import Link from 'next/link'
 import { AFFILIATE_LINK_REL } from '@/lib/affiliate'
 import { formatPrice } from '@/lib/utils'
-import { getCareGuide, getPurchaseChecklist } from '@/lib/care-guides'
-import { PRODUCT_TYPE_LABELS } from '@/lib/product-classify'
-import { SHOP_LABELS, categoryLink, isPartProduct, priceNote, productSpecs } from '@/lib/product-detail'
+import {
+  SHOP_LABELS,
+  categoryLink,
+  currentMonthJst,
+  priceNote,
+  productRows,
+  productStats,
+  seasonMonths,
+  shortPriceNote,
+} from '@/lib/product-detail'
 import type { CatalogProduct } from '@/lib/catalog-model'
-import { Breadcrumbs } from '@/components/ui/design'
+import { Placeholder } from '@/components/ui/design'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
+import { FavoriteButton } from './FavoriteButton'
 import { ProductThumb } from './ProductThumb'
-import { SourceBadge } from './CatalogProductCard'
 
+// ショップの商品ページへのボタン（墨・四角）。広告リンクのクリックは GA の共通処理で rel="sponsored" から記録する
 export function ShopButton({ product, className = '', size = 'lg' }: { product: CatalogProduct; className?: string; size?: 'lg' | 'md' }) {
   if (!product.buyUrl) return null
   return (
@@ -17,9 +24,7 @@ export function ShopButton({ product, className = '', size = 'lg' }: { product: 
       href={product.buyUrl}
       target="_blank"
       rel={AFFILIATE_LINK_REL}
-      className={`flex items-center justify-center gap-1 rounded-xl font-bold text-white ${size === 'lg' ? 'h-[52px] text-base' : 'h-11 text-[15px]'} ${
-        product.source === 'rakuten' ? 'bg-rakuten hover:bg-[#a30000]' : 'bg-amazon hover:bg-[#a84a0a]'
-      } ${className}`}
+      className={`flex items-center justify-center gap-3 bg-sumi tracking-[0.08em] text-white hover:bg-sumi-light hover:text-white ${size === 'lg' ? 'h-[50px] text-sm' : 'h-12 text-sm'} ${className}`}
     >
       {SHOP_LABELS[product.source]}で見る <span aria-hidden="true">↗</span>
     </a>
@@ -31,115 +36,96 @@ interface PanelProduct extends CatalogProduct {
   soldOut?: boolean
 }
 
-// 商品の詳細（PCの一覧では右側のパネル、商品ページでは本文として表示）
-export function ProductDetailPanel({ product, headingLevel = 'h2', showDescription = false }: { product: PanelProduct; headingLevel?: 'h1' | 'h2'; showDescription?: boolean }) {
-  const isPart = isPartProduct(product)
-  const catLink = categoryLink(product)
-  const specs = productSpecs(product)
-  const checklist = getPurchaseChecklist(product.productType)
-  const careGuide = getCareGuide(product.productType, product.category)
+// 商品画像（画像がないときは斜線の下地）
+export function ProductImage({ product, sizes, className = 'aspect-square', size = 600 }: { product: CatalogProduct; sizes: string; className?: string; size?: number }) {
+  return (
+    <div className={`relative overflow-hidden bg-white ${className}`}>
+      {product.imageUrl ? (
+        <ProductThumb src={product.imageUrl} alt={product.name} sizes={sizes} priority size={size} className="object-contain" />
+      ) : (
+        <Placeholder label="画像なし" className="absolute inset-0" />
+      )}
+    </div>
+  )
+}
+
+const STAT_COLS = ['grid-cols-1', 'grid-cols-1', 'grid-cols-2', 'grid-cols-3']
+
+// 商品の情報（見出し・3つの数字・ショップボタン・表）。一覧の右パネルと商品ページで共通
+export function ProductInfo({
+  product,
+  headingLevel = 'h2',
+  showOriginalName = false,
+  showDescription = false,
+}: {
+  product: PanelProduct
+  headingLevel?: 'h1' | 'h2'
+  showOriginalName?: boolean
+  showDescription?: boolean
+}) {
   const Title = headingLevel
-  const crumbs = [
-    { label: '探す', href: '/products' },
-    ...(catLink ? [{ label: catLink.label, href: catLink.href }] : !isPart && product.category !== 'その他' ? [{ label: product.category }] : []),
-    { label: PRODUCT_TYPE_LABELS[product.productType] },
-  ]
+  const stats = productStats(product)
+  const rows = productRows(product)
+  const species = categoryLink(product)?.label ?? product.speciesLabel
+  const hasTraits = Boolean(product.place || product.level || product.seasons.length)
 
   return (
-    <div className="space-y-6">
-      <Breadcrumbs items={crumbs} className="hidden lg:block" />
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-8">
-        <div className="relative -mx-4 aspect-square overflow-hidden bg-white lg:mx-0 lg:rounded-2xl lg:border lg:border-line">
-          <ProductThumb src={product.imageUrl} alt={product.name} sizes="(max-width: 1024px) 100vw, 40vw" priority size={600} className="object-contain" />
-        </div>
-        <div className="min-w-0">
-          <div className="flex flex-wrap gap-1.5">
-            <SourceBadge source={product.source} />
-            <span className="rounded bg-[#f1eee8] px-1.5 py-0.5 text-[11px] text-ink-soft">{PRODUCT_TYPE_LABELS[product.productType]}</span>
-            {!isPart && product.category !== 'その他' && (
-              <span className="rounded bg-[#f1eee8] px-1.5 py-0.5 text-[11px] text-ink-soft">{product.category}</span>
-            )}
-            {product.freeShipping && <span className="rounded bg-green-50 px-1.5 py-0.5 text-[11px] text-green-700">送料無料</span>}
-          </div>
-          <Title className="mt-2 text-xl font-bold leading-snug text-ink lg:text-[22px]">{product.name}</Title>
-          <p className="mt-2 text-[13px] text-ink-soft">
-            販売：{product.shopName}
-            {product.reviewCount > 0 && (
-              <span className="ml-3 lg:hidden">★{product.reviewAverage.toFixed(1)}（{product.reviewCount.toLocaleString()}件）</span>
-            )}
-          </p>
-
-          <div className="mt-4 hidden rounded-2xl border border-line bg-white p-5 lg:block">
-            <div className="flex items-baseline gap-3">
-              <span className="text-[32px] font-bold text-navy">{formatPrice(product.price)}</span>
-              {product.reviewCount > 0 && (
-                <span className="text-sm text-ink-muted">★{product.reviewAverage.toFixed(1)}（{product.reviewCount.toLocaleString()}件）</span>
-              )}
-            </div>
-            <ShopButton product={product} className="mt-4" />
-            <p className="mt-3 text-xs leading-relaxed text-ink-muted">{priceNote(product)}</p>
-            {product.soldOut && <p className="mt-2 text-sm text-amber-700">現在、販売されていない可能性があります。</p>}
-          </div>
-          <PrDisclosure className="mt-4" />
-        </div>
+    <div className="min-w-0">
+      <div className="flex items-center gap-3 text-xs text-ink-muted">
+        {species && <span>{species}</span>}
+        <span>{SHOP_LABELS[product.source]}</span>
+        <FavoriteButton productId={product.id} productName={product.name} variant="text" className="ml-auto" />
       </div>
+      <Title className="mt-2 font-mincho text-[21px] font-bold leading-[1.45] tracking-[0.08em] text-ink lg:text-[28px]">{product.name}</Title>
+      {showOriginalName && product.originalName !== product.name && (
+        <p className="mt-2 text-[11.5px] leading-[1.7] text-ink-muted">ショップでの商品名：{product.originalName}</p>
+      )}
 
-      <div className="grid gap-5 lg:grid-cols-2">
-        <section className="rounded-2xl border border-line bg-white p-5 lg:p-6">
-          <h3 className="font-bold text-navy">商品の情報</h3>
-          <table className="mt-3 w-full text-sm">
-            <tbody>
-              {specs.map(spec => (
-                <tr key={spec.label} className="border-b border-line last:border-b-0">
-                  <th className="w-28 py-2.5 pr-3 text-left align-top font-normal text-ink-muted">{spec.label}</th>
-                  <td className="py-2.5 text-ink">{spec.value}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {showDescription && product.description && (
-            <div className="mt-5">
-              <h4 className="text-sm font-bold text-ink">販売店の商品説明（抜粋）</h4>
-              <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-ink-soft">{product.description}</p>
+      {stats.length > 0 && (
+        <dl className={`mt-4 grid border-y border-line lg:mt-[22px] ${STAT_COLS[stats.length]}`}>
+          {stats.map((stat, i) => (
+            <div key={stat.label} className={`py-2.5 pl-2.5 lg:py-3.5 lg:pl-4 ${i > 0 ? 'border-l border-line' : ''}`}>
+              <dt className="text-[10px] text-ink-muted lg:text-[11px]">{stat.label}</dt>
+              <dd className="mt-0.5 text-[15px] text-ink lg:text-xl">{stat.value}</dd>
+              {stat.note && <dd className={`text-[10px] lg:text-[11px] ${stat.accent ? 'text-gold-dark' : 'text-ink-muted'}`}>{stat.note}</dd>}
             </div>
-          )}
-        </section>
+          ))}
+        </dl>
+      )}
 
-        <div className="space-y-5">
-          <section className="rounded-2xl border border-line bg-white p-5 lg:p-6">
-            <h3 className="font-bold text-navy">購入前にチェックしたいこと</h3>
-            <ul className="mt-3 space-y-2 text-sm text-ink">
-              {checklist.map(item => (
-                <li key={item} className="flex gap-2"><span className="text-gold">✓</span><span>{item}</span></li>
-              ))}
-            </ul>
-            <p className="mt-3 text-xs text-ink-muted">いずれも販売ページの説明やショップへの問い合わせで確認できます。</p>
-          </section>
-
-          {careGuide && (
-            <section className="rounded-2xl border border-[#eadfca] bg-[#fbf8f2] p-5 lg:p-6">
-              <h3 className="font-mincho text-lg font-bold text-navy">{careGuide.title}</h3>
-              <dl className="mt-3 space-y-2.5 text-sm leading-relaxed">
-                {careGuide.items.map(item => (
-                  <div key={item.label}>
-                    <dt className="inline font-bold text-ink">{item.label}</dt>
-                    <dd className="ml-3 inline text-ink-soft">{item.text}</dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="mt-3 text-xs text-ink-muted">一般的な目安です。品種や地域によって異なるため、商品ごとの説明もあわせてご確認ください。</p>
-              {careGuide.guideLink && (
-                <Link href={careGuide.guideLink.href} className="mt-2 inline-block text-sm font-bold text-navy underline">
-                  {careGuide.guideLink.label} →
-                </Link>
-              )}
-            </section>
-          )}
-        </div>
+      {/* スマホは画面下のバーにボタンを出す */}
+      <div className="hidden lg:block">
+        <ShopButton product={product} className="mt-5" />
+        <p className="mt-2 text-[11px] leading-[1.7] text-ink-muted">{priceNote(product)}</p>
       </div>
+      <p className="mt-2 text-[11px] leading-[1.7] text-ink-muted lg:hidden">{priceNote(product)}</p>
+      {product.soldOut && <p className="mt-2 text-[13px] text-ink">現在、販売されていない可能性があります。</p>}
 
+      <dl className="mt-[18px] border-t border-line lg:mt-7">
+        {rows.map(row => (
+          <div key={row.label} className="grid grid-cols-[76px_minmax(0,1fr)] gap-3.5 border-b border-paper-deep py-3 text-[12.5px] leading-[1.7] lg:grid-cols-[88px_minmax(0,1fr)] lg:text-[13px]">
+            <dt className="text-ink-muted">{row.label}</dt>
+            <dd className="min-w-0 break-words text-ink">
+              {row.value}
+              {row.note && <span className="block text-[11.5px] text-ink-muted">{row.note}</span>}
+            </dd>
+          </div>
+        ))}
+      </dl>
+      {hasTraits && <p className="mt-2 text-[11px] text-ink-muted">置き場所・育てやすさ・見頃は、樹種ごとの一般的な目安です。</p>}
+
+      {showDescription && product.description && (
+        <details className="group mt-4 border-b border-line pb-3">
+          <summary className="cursor-pointer list-none text-[13px] text-ink [&::-webkit-details-marker]:hidden">
+            <span className="border-b border-ink pb-0.5">販売店の商品説明（抜粋）</span>
+          </summary>
+          <p className="mt-3 whitespace-pre-line text-[13px] leading-[1.9] text-ink-soft">{product.description}</p>
+        </details>
+      )}
+
+      <PrDisclosure className="mt-4" />
       {product.source === 'rakuten' && (
-        <p className="text-xs text-ink-muted">
+        <p className="mt-1 text-[11px] text-ink-muted">
           楽天市場の商品情報は{' '}
           <a href="https://developers.rakuten.com/" target="_blank" rel="noopener noreferrer" className="underline">Supported by Rakuten Developers</a>。
         </p>
@@ -148,15 +134,47 @@ export function ProductDetailPanel({ product, headingLevel = 'h2', showDescripti
   )
 }
 
-// スマホで画面下に固定する価格とショップボタン
+// 12か月の見頃のバー（樹種の季節から。今月は少し高くする）
+export function SeasonBar({ product, className = '' }: { product: CatalogProduct; className?: string }) {
+  const months = seasonMonths(product)
+  if (!months.length) return null
+  const now = currentMonthJst()
+  return (
+    <div className={`max-w-[420px] ${className}`}>
+      <div className="grid h-2.5 grid-cols-12 items-end gap-[3px]" role="img" aria-label={`見頃の目安：${[...months].sort((a, b) => a - b).join('・')}月`}>
+        {Array.from({ length: 12 }, (_, i) => i + 1).map(m => (
+          <div key={m} className={`${m === now ? 'h-2.5' : 'h-1'} ${months.includes(m) ? 'bg-gold' : 'bg-line'}`} />
+        ))}
+      </div>
+      <div className="mt-1 flex justify-between text-[10px] text-ink-muted" aria-hidden="true">
+        <span>1月</span>
+        <span>6月</span>
+        <span>12月</span>
+      </div>
+    </div>
+  )
+}
+
+// 商品の詳細（PCの一覧の右側のパネル）。商品ページは ProductImage と ProductInfo を並べて使う
+export function ProductDetailPanel({ product, headingLevel = 'h2', showDescription = false }: { product: PanelProduct; headingLevel?: 'h1' | 'h2'; showDescription?: boolean }) {
+  return (
+    <div>
+      <ProductImage product={product} sizes="(max-width: 1024px) 100vw, 40vw" className="aspect-[4/3]" />
+      <div className="mt-6">
+        <ProductInfo product={product} headingLevel={headingLevel} showDescription={showDescription} />
+      </div>
+    </div>
+  )
+}
+
+// スマホで画面下（下のタブの上）に固定する価格とショップボタン
 export function ProductBuyBar({ product }: { product: CatalogProduct }) {
   if (!product.buyUrl) return null
-  const date = product.lastSyncedAt ? new Date(product.lastSyncedAt) : null
   return (
-    <div className="fixed inset-x-0 bottom-14 z-30 flex items-center gap-3 border-t border-line bg-white px-4 py-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom))] lg:hidden">
+    <div className="fixed inset-x-0 bottom-[calc(3.5rem+1px+env(safe-area-inset-bottom))] z-30 flex items-center gap-3.5 border-t border-line bg-paper px-4 py-3 lg:hidden">
       <div className="shrink-0">
-        <div className="text-xl font-bold text-navy">{formatPrice(product.price)}</div>
-        <div className="text-[10px] text-ink-muted">{date ? `${date.getMonth() + 1}/${date.getDate()}時点の` : ''}参考価格</div>
+        <div className="text-[19px] leading-tight text-ink">{formatPrice(product.price)}</div>
+        <div className="text-[10px] text-ink-muted">{shortPriceNote(product)}</div>
       </div>
       <ShopButton product={product} size="md" className="flex-1" />
     </div>
