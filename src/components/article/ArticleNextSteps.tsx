@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import type { CatalogProduct } from '@/lib/catalog-model'
+import { ArticleCardGrid, type ArticleCardItem } from '@/components/article/RelatedArticleRows'
 
 export interface NextStepLink {
   href: string
@@ -14,8 +15,8 @@ interface ArticleNextStepsProps {
   productsHeading?: string
   // 「すべて見る」の行き先（樹種の商品一覧）
   productsMore?: { href: string; label: string }
-  // 同じ樹種の育て方の記事
-  guides: NextStepLink[]
+  // 同じ樹種の育て方の記事（画像つきのカード）
+  guides: ArticleCardItem[]
   guidesHeading?: string
   // 特集・診断などの案内
   links: NextStepLink[]
@@ -78,8 +79,8 @@ export function ArticleNextSteps({ products, productsHeading, productsMore, guid
 
       {guides.length > 0 && (
         <div className="mt-10">
-          <h3 className="mb-2 text-[15px] font-bold text-ink">{guidesHeading ?? 'あわせて読みたい育て方'}</h3>
-          <LinkRows items={guides} />
+          <h3 className="mb-4 text-[15px] font-bold text-ink">{guidesHeading ?? 'あわせて読みたい育て方'}</h3>
+          <ArticleCardGrid items={guides} />
         </div>
       )}
 

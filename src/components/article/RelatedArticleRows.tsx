@@ -2,40 +2,56 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Placeholder } from '@/components/ui/design'
 import { canOptimizeImage } from '@/lib/article-overrides'
-import type { Article } from '@/types'
 
-// 関連記事（小さな画像つきの行。PC は2列）
-export function RelatedArticleRows({ articles }: { articles: Article[] }) {
-  if (articles.length === 0) return null
+export interface ArticleCardItem {
+  href: string
+  title: string
+  image?: string | null
+  readingTime?: number | null
+}
+
+// 記事のカード（サムネイルを大きく見せて、ほかの記事へ進みやすくする）。SP・PC とも2列
+export function ArticleCardGrid({ items }: { items: ArticleCardItem[] }) {
   return (
-    <section aria-labelledby="related-articles" className="mt-14 lg:mt-16">
-      <h2 id="related-articles" className="text-[15px] font-bold text-ink">関連する記事</h2>
-      <ul className="mt-3 border-t border-line lg:grid lg:grid-cols-2 lg:gap-x-8">
-        {articles.map(article => (
-          <li key={article.id} className="border-b border-line">
-            <Link href={`/guides/${article.slug}`} className="group flex min-h-[72px] items-center gap-3.5 py-3.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold">
-              <div className="relative h-14 w-20 flex-none overflow-hidden bg-paper-deep">
-                {article.featuredImage ? (
-                  <Image
-                    src={article.featuredImage.url}
-                    alt=""
-                    fill
-                    sizes="80px"
-                    className="object-cover"
-                    unoptimized={!canOptimizeImage(article.featuredImage.url)}
-                  />
-                ) : (
-                  <Placeholder className="h-full w-full" />
-                )}
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="line-clamp-2 text-[14px] font-medium leading-[1.6] text-ink group-hover:text-gold-dark">{article.title}</p>
-                {article.readingTime ? <p className="mt-0.5 text-[11.5px] text-ink-muted">{article.readingTime}分</p> : null}
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <ul className="grid grid-cols-2 gap-x-3 gap-y-6 lg:gap-x-6 lg:gap-y-8">
+      {items.map(item => (
+        <li key={item.href} className="min-w-0">
+          <Link href={item.href} className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold">
+            <div className="relative aspect-[40/21] overflow-hidden bg-paper-deep">
+              {item.image ? (
+                <Image
+                  src={item.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 1023px) 46vw, 310px"
+                  className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                  unoptimized={!canOptimizeImage(item.image)}
+                />
+              ) : (
+                <Placeholder className="h-full w-full" />
+              )}
+            </div>
+            <p className="mt-2.5 line-clamp-3 text-[13.5px] font-medium leading-[1.65] text-ink group-hover:text-gold-dark lg:text-[14.5px]">{item.title}</p>
+            {item.readingTime && item.readingTime <= 60 ? <p className="mt-1 text-[11.5px] text-ink-muted">約{item.readingTime}分</p> : null}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+// 記事の下の「ほかの記事も読む」
+export function RelatedArticleRows({ items }: { items: ArticleCardItem[] }) {
+  if (items.length === 0) return null
+  return (
+    <section aria-labelledby="related-articles" className="mt-14 border-t border-ink pt-8 lg:mt-16 lg:pt-10">
+      <h2 id="related-articles" className="font-mincho text-[21px] font-bold tracking-[0.06em] text-ink lg:text-2xl">ほかの記事も読む</h2>
+      <div className="mt-6">
+        <ArticleCardGrid items={items} />
+      </div>
+      <Link href="/guides" className="mt-8 inline-flex min-h-11 items-center border-b border-ink text-[13.5px] text-ink hover:text-gold-dark">
+        育て方の記事をすべて見る ›
+      </Link>
     </section>
   )
 }

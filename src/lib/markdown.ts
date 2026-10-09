@@ -60,6 +60,20 @@ function calloutHtml(kind: string, label: string, body: string): string {
 export interface ProcessMarkdownOptions {
   // サイト内リンクの存在確認に使う（省略時は存在確認をしない）
   links?: ArticleLinkContext
+  // 段落に記事へのリンクが1本だけあるとき、画像つきのカードにするための記事の情報（なければ普通のリンクのまま）
+  articleCard?: (slug: string) => { title: string; image?: string } | null
+}
+
+const escapeHtml = (s: string) => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c] as string)
+const SITE_PREFIX = SITE_URL.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+const LONE_ARTICLE_LINK = new RegExp(`<p>\\s*<a href="(?:${SITE_PREFIX})?/guides/([a-z0-9-]+)"[^>]*>(?:(?!<\\/a>|<\\/p>)[\\s\\S])*<\\/a>\\s*<\\/p>`, 'g')
+
+// 「あわせて読みたい」カード（本文の流れの中で、ほかの記事へ案内する）
+function articleCardHtml(slug: string, title: string, image?: string): string {
+  const img = image
+    ? `<span class="article-card-image"><img src="${escapeHtml(image)}" alt="" loading="lazy" decoding="async" width="1200" height="630"></span>`
+    : ''
+  return `<a class="article-card${image ? '' : ' article-card-text'}" href="/guides/${slug}"><span class="article-card-body"><span class="article-card-label">あわせて読みたい</span><span class="article-card-title">${escapeHtml(title)}</span><span class="article-card-more">記事を読む ›</span></span>${img}</a>`
 }
 
 // Markdownを処理する関数
@@ -103,6 +117,14 @@ export function processMarkdown(content: string, options: ProcessMarkdownOptions
 
     // リンクと画像の補正（存在しないページ・仮のリンクは外す、Amazon にはアソシエイトタグを付ける（掲載を止めている間はリンクを外す）、外部リンクは新しいタブ）
     html = rewriteArticleHtml(html, options.links)
+
+    // 記事へのリンクだけの段落は、画像つきのカードにする
+    if (options.articleCard) {
+      html = html.replace(LONE_ARTICLE_LINK, (match, slug: string) => {
+        const card = options.articleCard?.(slug)
+        return card ? articleCardHtml(slug, card.title, card.image) : match
+      })
+    }
 
     // 本文中の画像は遅延読み込み
     html = html.replace(/<img\s(?![^>]*\bloading=)/g, '<img loading="lazy" decoding="async" ')

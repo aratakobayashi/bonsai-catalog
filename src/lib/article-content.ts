@@ -59,8 +59,8 @@ export function stripLeadingTitleHeading(content: string, title: string): string
 // ---------------------------------------------------------------------------
 
 export interface ArticleLinkContext {
-  // 公開中の記事（slug とタイトル）
-  articles: { slug: string; title: string }[]
+  // 公開中の記事（slug・タイトル・アイキャッチ画像）
+  articles: { slug: string; title: string; image?: string | null }[]
   // 公開中のイベントの slug。取得できなかったときは null（イベントへのリンクはそのまま残す）
   eventSlugs: ReadonlySet<string> | null
 }

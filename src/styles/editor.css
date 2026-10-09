@@ -455,3 +455,74 @@
   height: auto;
   background: #faf9f6;
 }
+
+/* 本文中の「あわせて読みたい」カード（記事へのリンクだけの段落）。SP は画像が上、PC は画像が左 */
+.article-body a.article-card {
+  display: flex;
+  flex-direction: column;
+  margin: 2em 0;
+  border: 1px solid #e3ddd2;
+  background: #fbfaf7;
+  color: #22201c;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.article-body a.article-card:hover {
+  border-color: #b8935a;
+  color: #22201c;
+}
+.article-body .article-card-image {
+  order: -1;
+  display: block;
+  aspect-ratio: 40 / 21;
+  overflow: hidden;
+  background: #efebe3;
+}
+.article-body .article-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.article-body a.article-card:hover .article-card-image img {
+  transform: scale(1.03);
+}
+.article-body .article-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35em;
+  padding: 0.95em 1.1em 1.05em;
+}
+.article-body .article-card-label {
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  color: #86683a;
+}
+.article-body .article-card-title {
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+.article-body .article-card-more {
+  font-size: 12.5px;
+  color: #6b655b;
+}
+.article-body a.article-card:hover .article-card-title {
+  color: #86683a;
+}
+@media (min-width: 640px) {
+  .article-body a.article-card {
+    flex-direction: row;
+    align-items: center;
+  }
+  /* 画像は縦横比を保ったまま（サムネイルの文字が切れないように） */
+  .article-body .article-card-image {
+    flex: 0 0 54%;
+  }
+  .article-body .article-card-body {
+    padding: 1em 1.3em;
+  }
+}

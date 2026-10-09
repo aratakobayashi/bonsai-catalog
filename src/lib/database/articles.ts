@@ -277,10 +277,11 @@ export async function getRelatedArticles(article: Article, limit = 4): Promise<A
 // 本文中のサイト内リンクの存在確認に使う一覧（公開中の記事とイベント）
 export async function getArticleLinkContext(): Promise<ArticleLinkContext> {
   const [articlesResult, eventsResult] = await Promise.all([
-    supabase.from('articles').select('slug, title').eq('status', 'published').limit(2000),
+    supabase.from('articles').select('slug, title, featured_image_url').eq('status', 'published').limit(2000),
     supabase.from('events').select('slug').limit(5000),
   ])
-  const articles = ((articlesResult.data as { slug: string; title: string }[] | null) || [])
+  const articles = ((articlesResult.data as { slug: string; title: string; featured_image_url: string | null }[] | null) || [])
+    .map(a => ({ slug: a.slug, title: a.title, image: a.featured_image_url }))
   const events = eventsResult.error ? null : ((eventsResult.data as { slug: string | null }[] | null) || [])
   return {
     articles: articles.filter(a => a.slug),

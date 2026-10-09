@@ -11,13 +11,13 @@ import { TableOfContents, MobileTableOfContents } from '@/components/features/Ta
 import { ArticleSummary } from '@/components/article/ArticleSummary'
 import { ArticleNextSteps, type NextStepLink } from '@/components/article/ArticleNextSteps'
 import { byCuratedThenReviews } from '@/components/home/curated'
-import { RelatedArticleRows } from '@/components/article/RelatedArticleRows'
+import { RelatedArticleRows, type ArticleCardItem } from '@/components/article/RelatedArticleRows'
 import { ArticleStructuredData, BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { generateArticleSEO } from '@/lib/seo-utils'
 import { formatDate } from '@/lib/date-utils'
 import { processMarkdown, extractTableOfContents } from '@/lib/markdown'
 import { detectArticleSpecies, fallbackSelectionSlug, normalizeForMatch, stripLeadingTitleHeading } from '@/lib/article-content'
-import { applyArticleOverride, canOptimizeImage, getArticleOverride } from '@/lib/article-overrides'
+import { applyArticleOverride, canOptimizeImage, getArticleOverride, thumbnailPath } from '@/lib/article-overrides'
 import { getSelection, selectionsForCategory } from '@/lib/selections'
 import { categoryFilters, filterProducts, getCatalogProducts, normalizeProduct, type CatalogProduct } from '@/lib/catalog'
 import { getShopCategory } from '@/lib/shop-categories'
@@ -82,6 +82,11 @@ function cleanLead(text?: string): string | null {
   const t = text?.replace(/\s+/g, ' ').trim()
   if (!t || t.length < 20 || t.length > 200 || /[#*|<>\[\]]/.test(t)) return null
   return t
+}
+
+// 記事カードの画像（作ったサムネイル → DB のアイキャッチ。SVG は使わない）
+function cardImage(slug: string, dbImage?: string | null): string | undefined {
+  return thumbnailPath(slug) ?? (dbImage && !/\.svg(\?|$)/i.test(dbImage) ? dbImage : undefined)
 }
 
 // 初回アクセス時に生成してキャッシュし、1時間ごとに再生成（ISR）
@@ -152,12 +157,19 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const [speciesProducts, relatedProductRows, relatedCandidates, linkContext] = await Promise.all([
     speciesSlug ? getSpeciesProducts(speciesSlug) : Promise.resolve([] as CatalogProduct[]),
     speciesSlug ? Promise.resolve([] as Product[]) : getRelatedProducts(article.relatedProducts, article),
-    getRelatedArticles(article, 8),
+    getRelatedArticles(article, 12),
     getArticleLinkContext().catch(() => undefined),
   ])
 
   // 本文（先頭の「記事タイトルと同じ見出し」は h1 と重複するので外す）
-  const bodyHtml = processMarkdown(stripLeadingTitleHeading(article.content, article.title), { links: linkContext })
+  // 記事へのリンクだけの段落は、サムネイルつきのカードにする
+  const linked = new Map((linkContext?.articles ?? []).map(a => [a.slug, a]))
+  const articleCard = (slug: string) => {
+    const target = linked.get(slug)
+    if (!target || slug === article.slug || !isArticleListable(slug)) return null
+    return { title: getArticleOverride(slug)?.title ?? target.title, image: cardImage(slug, target.image) }
+  }
+  const bodyHtml = processMarkdown(stripLeadingTitleHeading(article.content, article.title), { links: linkContext, articleCard })
 
   // 目次を生成（大見出しだけを並べる。大見出しがない記事はすべての見出し）
   const titleKey = normalizeForMatch(article.title)
@@ -173,22 +185,28 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const hasRakuten = products.some(product => product.source === 'rakuten')
 
   // 同じ樹種の育て方の記事（育て方・手入れの記事を先に）
-  const speciesGuides: NextStepLink[] = speciesSlug && linkContext
+  const speciesGuides: ArticleCardItem[] = speciesSlug && linkContext
     ? linkContext.articles
         .filter(a => a.slug !== article.slug && isArticleListable(a.slug))
-        .map(a => ({ slug: a.slug, title: getArticleOverride(a.slug)?.title ?? a.title }))
+        .map(a => ({ slug: a.slug, title: getArticleOverride(a.slug)?.title ?? a.title, image: a.image }))
         .filter(a => detectArticleSpecies(a.title)?.category === speciesSlug)
         .sort((a, b) => Number(/育て方|手入れ|管理/.test(b.title)) - Number(/育て方|手入れ|管理/.test(a.title)))
-        .slice(0, 3)
-        .map(a => ({ href: `/guides/${a.slug}`, title: a.title }))
+        .slice(0, 4)
+        .map(a => ({ href: `/guides/${a.slug}`, title: a.title, image: cardImage(a.slug, a.image) }))
     : []
 
   // 関連記事（「次にやること」に出した記事は除く）
   const guideHrefs = new Set(speciesGuides.map(guide => guide.href))
   const relatedArticles = relatedCandidates
     .filter(related => !guideHrefs.has(`/guides/${related.slug}`))
-    .slice(0, 4)
+    .slice(0, 6)
     .map(related => applyArticleOverride(related))
+    .map(related => ({
+      href: `/guides/${related.slug}`,
+      title: related.title,
+      image: related.featuredImage?.url,
+      readingTime: related.readingTime,
+    }))
 
   // 特集（front matter の selection → 樹種向けの特集 → 話題から）
   const selection =
@@ -308,7 +326,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               hasRakuten={hasRakuten}
             />
 
-            <RelatedArticleRows articles={relatedArticles} />
+            <RelatedArticleRows items={relatedArticles} />
 
             <ShareButtons url={articleUrl} title={article.title} className="mt-10 border-t border-line pt-3" />
           </article>

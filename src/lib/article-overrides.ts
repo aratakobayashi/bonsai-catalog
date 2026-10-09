@@ -7,7 +7,7 @@ import type { Article } from '@/types'
 import photoCredits from '@/data/photo-credits.json'
 
 // 作ってあるサムネイル（public/images/articles/thumbs/<slug>.jpg）のパス。なければ undefined
-function thumbnailPath(slug: string): string | undefined {
+export function thumbnailPath(slug: string): string | undefined {
   const file = path.join(process.cwd(), 'public/images/articles/thumbs', `${slug}.jpg`)
   try {
     return fs.existsSync(file) ? `/images/articles/thumbs/${slug}.jpg` : undefined
