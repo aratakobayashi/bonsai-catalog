@@ -1,16 +1,26 @@
-// トップで使う「写真のきれいな商品」の判定と並べ替え（src/data/product-images.json で、ショップの候補から盆栽がよく見える1枚を選び直した商品）
-import productImages from '@/data/product-images.json'
+// トップで使う「写真のきれいな商品」の判定と並べ替え。
+// 今の表示画像を目で確かめた判定（src/data/product-image-review.json の labels：clean / minor / text）を使う
+// 手順は docs/growth/image-review.md
+import review from '@/data/product-image-review.json'
 import type { CatalogProduct } from '@/lib/catalog-model'
 
-const CURATED = new Set(Object.keys(productImages as Record<string, string>))
+const LABELS = (review as { labels: Record<string, 'clean' | 'minor' | 'text'> }).labels
 
+// 文字・バナーのない写真（トップの「よく選ばれている盆栽」などに使う）
 export function hasCuratedImage(product: Pick<CatalogProduct, 'id' | 'imageUrl'>): boolean {
-  return Boolean(product.imageUrl) && CURATED.has(product.id)
+  return Boolean(product.imageUrl) && LABELS[product.id] === 'clean'
+}
+
+// 写真のきれいさ（clean 2 > minor 1 > text・未確認 0）
+function imageScore(product: Pick<CatalogProduct, 'id' | 'imageUrl'>): number {
+  if (!product.imageUrl) return -1
+  const label = LABELS[product.id]
+  return label === 'clean' ? 2 : label === 'minor' ? 1 : 0
 }
 
 export const byReviews = (a: CatalogProduct, b: CatalogProduct) =>
   b.reviewCount - a.reviewCount || b.reviewAverage - a.reviewAverage
 
-// 写真を選び直した商品を先に、その中ではレビューの多い順
+// 写真のきれいな商品を先に、その中ではレビューの多い順
 export const byCuratedThenReviews = (a: CatalogProduct, b: CatalogProduct) =>
-  Number(hasCuratedImage(b)) - Number(hasCuratedImage(a)) || byReviews(a, b)
+  imageScore(b) - imageScore(a) || byReviews(a, b)
