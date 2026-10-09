@@ -15,7 +15,8 @@ import { ProductBuyBar, ProductImage, ProductInfo, SeasonBar } from '@/component
 import { Breadcrumbs, CONTAINER, SectionTitle } from '@/components/ui/design'
 import { SelectionCard } from '@/components/selection/SelectionCard'
 import { selectionsForProduct } from '@/lib/selections'
-import { categoryLink, enjoyText, isPartProduct, levelLabel, placeLabel, seasonText } from '@/lib/product-detail'
+import { categoryLink, isPartProduct, levelLabel, placeLabel } from '@/lib/product-detail'
+import { isEvergreen, peakLabel } from '@/lib/seasons'
 
 interface ProductPageProps {
   params: { id: string }
@@ -112,12 +113,16 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     catLink?.group === 'tree'
       ? filterProducts(all, { ...parseFilters({}), species: catLink.href.split('/').pop(), type: catLink.href.endsWith('/kokedama') ? 'kokedama' : 'tree' })
       : null
+  // 「ほかの◯◯」は同じ樹種だけ（ほかの樹種との寄せ植えなど、樹種の判定が違う商品は出さない）
+  const sameSpecies = (p: CatalogProduct) => isPart || !product.speciesKey || p.speciesKey === product.speciesKey
   const related = (categoryProducts ?? all.filter(p => p.productType === product.productType && sameGroup(p)).sort((a, b) => b.reviewCount - a.reviewCount))
-    .filter(p => p.id !== product.id)
+    .filter(p => p.id !== product.id && sameSpecies(p))
   // 樹を見ている人には鉢・土・道具を、部品を見ている人には樹をすすめる
   const pairTypes = isPart ? ['tree'] : ['pot', 'soil', 'tool']
+  // 鉢・土・道具は、盆栽用と分かるもの（商品名に「盆栽」）を、ほかの植物向け（観葉植物・バラ・多肉など）より先にする。同じならレビューの多い順
+  const pairScore = (p: CatalogProduct) => (/盆栽/.test(p.originalName) ? 2 : 0) - (/観葉|バラ|ばら|薔薇|多肉|サボテン|野菜|家庭菜園|花の土|草花/.test(p.originalName) ? 1 : 0)
   const pairs = pairTypes
-    .map(type => all.filter(p => p.productType === type).sort((a, b) => b.reviewCount - a.reviewCount)[0])
+    .map(type => all.filter(p => p.productType === type).sort((a, b) => pairScore(b) - pairScore(a) || b.reviewCount - a.reviewCount)[0])
     .filter((p): p is CatalogProduct => Boolean(p))
     .concat(isPart ? all.filter(p => p.productType === 'tree' && p.id !== product.id).sort((a, b) => b.reviewCount - a.reviewCount).slice(1, 4) : [])
     .slice(0, 4)
@@ -130,12 +135,13 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const species = catLink?.label ?? product.speciesLabel
   const level = levelLabel(product)
   const place = placeLabel(product)
-  const seasons = seasonText(product)
+  const peak = peakLabel(product)
   const facts = [
     ...(level ? [{ label: '育てやすさ', value: level }] : []),
     ...(place ? [{ label: '置き場所', value: place }] : []),
-    ...(seasons ? [{ label: '見頃', value: seasons }] : product.enjoy.includes('evergreen') ? [{ label: '見頃', value: '一年中（常緑）' }] : []),
+    ...(peak ? [{ label: '見頃', value: peak }] : []),
   ]
+  const title = product.displayName || product.name
   const aboutTitle = !isPart && species ? `${species}について` : careGuide?.title
   const guideLink = careGuide?.guideLink && { href: careGuide.guideLink.href, label: !isPart && species ? `${species}の育て方を読む` : careGuide.guideLink.label }
 
@@ -148,7 +154,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const crumbs = [
     { label: '探す', href: '/products' },
     ...(catLink ? [{ label: catLink.label, href: catLink.href }] : []),
-    { label: product.name },
+    { label: title },
   ]
   const moreLink = (
     <Link href={listHref} className="border-b border-ink pb-0.5 text-[13px] text-ink">
@@ -167,16 +173,17 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       />
 
       {/* スマホ：一覧へ戻る */}
-      <div className="bg-navy px-4 py-3 text-[13.5px] text-white lg:hidden">
-        <Link href={listHref} className="text-white hover:text-white">‹ {catLink ? catLink.label : '一覧'}</Link>
+      <div className="bg-navy px-4 text-[13.5px] text-white lg:hidden">
+        <Link href={listHref} className="-ml-1 inline-flex min-h-11 min-w-11 items-center px-1 text-white hover:text-white">‹ {catLink ? catLink.label : '一覧'}</Link>
       </div>
 
-      <div className={`${CONTAINER} pb-36 lg:pb-20`}>
+      {/* スマホの下の余白は、固定の購入バー（ProductBuyBar）が body に付ける */}
+      <div className={`${CONTAINER} pb-12 lg:pb-20`}>
         <Breadcrumbs items={crumbs} className="hidden pt-6 lg:block" />
 
         <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-16 lg:pt-6">
-          <ProductImage product={product} sizes="(max-width: 1024px) 100vw, 60vw" size={800} className="-mx-4 aspect-square lg:mx-0" />
-          <div className="mt-5 lg:sticky lg:top-6 lg:mt-0 lg:self-start">
+          <ProductImage product={product} sizes="(max-width: 1024px) 100vw, 60vw" size={800} className="-mx-4 aspect-[4/3] lg:mx-0 lg:aspect-square" />
+          <div className="mt-3 lg:sticky lg:top-6 lg:mt-0 lg:self-start">
             <ProductInfo product={product} headingLevel="h1" showOriginalName showDescription />
           </div>
         </div>
@@ -202,9 +209,9 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                   ))}
                 </dl>
               )}
-              {!isPart && seasons && (
+              {!isPart && peak && !isEvergreen(product) && (
                 <div className="mt-4 lg:mt-7">
-                  <div className="mb-2 text-[11px] text-ink-muted">見頃の目安　{enjoyText(product) ? `${enjoyText(product)}（${seasons}）` : seasons}</div>
+                  <div className="mb-2 text-[11px] text-ink-muted">見頃の目安　{peak}</div>
                   <SeasonBar product={product} />
                 </div>
               )}

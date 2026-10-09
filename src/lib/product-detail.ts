@@ -3,8 +3,10 @@
 import { PRODUCT_TYPE_LABELS } from '@/lib/product-classify'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { getCareGuide } from '@/lib/care-guides'
-import { ENJOY_OPTIONS, LEVEL_OPTIONS, PLACE_OPTIONS, SEASON_OPTIONS, type Season } from '@/lib/species-traits'
+import { ENJOY_OPTIONS, LEVEL_OPTIONS, PLACE_OPTIONS, SEASON_OPTIONS } from '@/lib/species-traits'
 import { formatPrice } from '@/lib/utils'
+import { isEvergreen, isInSeasonNow, peakLabel, peakMonths } from '@/lib/seasons'
+import { shippingDetail, shippingLabel } from '@/lib/shipping'
 import type { CatalogProduct } from '@/lib/catalog-model'
 
 export const SHOP_LABELS = { amazon: 'Amazon', rakuten: '楽天市場' } as const
@@ -28,16 +30,9 @@ export function categoryLink(product: CatalogProduct) {
   return category ? { href: `/products/category/${category.slug}`, label: category.name, intro: category.intro, group: category.group } : null
 }
 
-// 季節ごとの月（見頃のバー用。樹種の季節を月に置きかえた一般的な目安）
-const SEASON_MONTHS: Record<Season, number[]> = {
-  spring: [3, 4, 5],
-  summer: [6, 7, 8],
-  autumn: [9, 10, 11],
-  winter: [12, 1, 2],
-}
-
+// 見頃の月（見頃のバー用。seasons.ts の樹種ごとの見頃。常緑・樹種不明は空）
 export function seasonMonths(product: CatalogProduct): number[] {
-  return product.seasons.flatMap(s => SEASON_MONTHS[s])
+  return peakMonths(product)
 }
 
 // 日本時間の今月（1〜12）
@@ -61,10 +56,21 @@ export interface ProductStat {
   value: string
   note?: string
   accent?: boolean
+  // 価格の横に出すレビュー（★平均（件数））
+  rating?: string
+}
+
+// 見頃の表示（「花 2〜3月」「一年中（常緑）」）。樹種が分からないときは null
+export function peakText(product: CatalogProduct): string | null {
+  return peakLabel(product)
+}
+
+export function ratingText(product: CatalogProduct): string | null {
+  return product.reviewCount > 0 ? `★${product.reviewAverage.toFixed(1)}（${product.reviewCount.toLocaleString()}件）` : null
 }
 
 // 3つの数字（届くサイズ・価格・見頃）。データがあるものだけ返す
-export function productStats(product: CatalogProduct, month = currentMonthJst()): ProductStat[] {
+export function productStats(product: CatalogProduct, now = new Date()): ProductStat[] {
   const stats: ProductStat[] = []
   if (!isPartProduct(product)) {
     const size = SIZE_NAMES[product.sizeCategory]
@@ -72,17 +78,24 @@ export function productStats(product: CatalogProduct, month = currentMonthJst())
     else if (size) stats.push({ label: '届くサイズ', value: size.name, note: size.note })
   }
   if (product.price > 0) {
-    stats.push(
-      product.freeShipping === true
-        ? { label: '送料込み', value: formatPrice(product.price), note: '送料無料' }
-        : { label: '価格', value: formatPrice(product.price), note: product.freeShipping === false ? '送料別' : '送料は商品ページで' },
-    )
+    stats.push({
+      label: '価格',
+      value: formatPrice(product.price),
+      note: shippingLabel(product) ?? '送料はショップで確認',
+      // スマホの3列の幅に収まる短い形（★4.7・1,165件）
+      rating: product.reviewCount > 0 ? `★${product.reviewAverage.toFixed(1)}・${product.reviewCount.toLocaleString()}件` : undefined,
+    })
   }
-  if (product.seasons.length) {
-    const now = seasonMonths(product).includes(month)
-    stats.push({ label: '見頃', value: seasonText(product), note: now ? '今が見頃' : undefined, accent: now })
-  } else if (product.enjoy.includes('evergreen')) {
-    stats.push({ label: '見頃', value: '一年中', note: '常緑' })
+  if (!isPartProduct(product)) {
+    if (isEvergreen(product)) {
+      stats.push({ label: '見頃', value: '一年中', note: '常緑' })
+    } else {
+      const label = peakLabel(product)
+      if (label) {
+        const inSeason = isInSeasonNow(product, now)
+        stats.push({ label: '見頃', value: label, note: inSeason ? '今が見頃' : undefined, accent: inSeason })
+      }
+    }
   }
   return stats
 }
@@ -91,6 +104,19 @@ export interface ProductRow {
   label: string
   value: string
   note?: string
+  // 販売店の表記が樹種の性質と食い違うときの小さな注記
+  claim?: string
+}
+
+// 販売店の表記（「室内」「初心者」）が樹種の一般的な性質と食い違うときの注記
+export function placeClaimNote(product: CatalogProduct): string | undefined {
+  if (product.placeClaim !== 'indoor' || !product.place || product.place === 'indoor') return undefined
+  return '販売店の表記：室内向け（樹種としては屋外向き）'
+}
+
+export function levelClaimNote(product: CatalogProduct): string | undefined {
+  if (product.levelClaim !== 'easy' || !product.level || product.level === 'easy') return undefined
+  return `販売店の表記：初心者向け（樹種としては${levelLabel(product) ?? '少し手間がかかる'}）`
 }
 
 function careText(product: CatalogProduct, label: string): string | undefined {
@@ -111,9 +137,10 @@ export function productRows(product: CatalogProduct): ProductRow[] {
   ].filter((v): v is string => Boolean(v))
   return [
     ...(isPart || !product.speciesLabel ? [{ label: '種類', value: PRODUCT_TYPE_LABELS[product.productType] }] : []),
-    ...(place ? [{ label: '置き場所', value: place, note: careText(product, '置き場所') }] : []),
-    ...(level ? [{ label: '育てやすさ', value: level, note: water ? `水やり：${water}` : undefined }] : []),
+    ...(place ? [{ label: '置き場所', value: place, note: careText(product, '置き場所'), claim: placeClaimNote(product) }] : []),
+    ...(level ? [{ label: '育てやすさ', value: level, note: water ? `水やり：${water}` : undefined, claim: levelClaimNote(product) }] : []),
     ...(extras.length ? [{ label: 'ギフト・付属', value: extras.join('　'), note: '販売ページの商品名の表記より' }] : []),
+    { label: '送料', value: shippingDetail(product) },
     { label: '販売', value: `${product.shopName}（${SHOP_LABELS[product.source]}）` },
     ...(product.reviewCount > 0
       ? [{ label: 'レビュー', value: `${product.reviewCount.toLocaleString()}件　★${product.reviewAverage.toFixed(1)}` }]
@@ -133,13 +160,15 @@ function syncedDate(product: CatalogProduct): string | null {
 
 export function priceNote(product: CatalogProduct): string {
   const date = syncedDate(product)
-  return `${date ? `${date}時点の` : ''}参考価格。最新の価格・在庫・送料は商品ページでご確認ください。`
+  if (date) return `${date}時点の参考価格。最新の価格・在庫・送料は${SHOP_LABELS[product.source]}の商品ページでご確認ください。`
+  if (product.source === 'amazon') return '参考価格です。価格は変動します。Amazonでご確認ください。'
+  return '参考価格。最新の価格・在庫・送料は商品ページでご確認ください。'
 }
 
-// スマホ下部のバー用の短い注記（例：送料無料・10/7時点）
+// スマホ下部のバー用の短い注記（例：送料込・10/7時点）
 export function shortPriceNote(product: CatalogProduct): string {
   const date = syncedDate(product)
-  return [product.freeShipping === true ? '送料無料' : product.freeShipping === false ? '送料別' : '', date ? `${date}時点` : '参考価格']
+  return [shippingLabel(product) ?? '', date ? `${date}時点` : product.source === 'amazon' ? '価格は変動します' : '参考価格']
     .filter(Boolean)
     .join('・')
 }

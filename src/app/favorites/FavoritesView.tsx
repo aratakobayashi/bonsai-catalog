@@ -1,12 +1,14 @@
 'use client'
 
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { AFFILIATE_LINK_REL } from '@/lib/affiliate'
 import { FAVORITES_MAX, useFavorites } from '@/lib/favorites'
-import { LEVEL_OPTIONS, PLACE_OPTIONS, SEASON_OPTIONS } from '@/lib/species-traits'
+import { LEVEL_OPTIONS, PLACE_OPTIONS } from '@/lib/species-traits'
+import { isInSeasonNow, peakLabel } from '@/lib/seasons'
+import { shippingDetail, shippingLabel } from '@/lib/shipping'
 import { formatPrice } from '@/lib/utils'
 import { PageHeading } from '@/components/ui/design'
-import { isInSeasonNow, shippingNote } from '@/components/catalog/CatalogProductCard'
 import { useFavoriteProducts, useShareToast, type CompactProduct } from '@/components/catalog/CompareBar'
 import { FavoriteButton } from '@/components/catalog/FavoriteButton'
 import { ProductThumb } from '@/components/catalog/ProductThumb'
@@ -14,6 +16,21 @@ import { ProductThumb } from '@/components/catalog/ProductThumb'
 const SHOP_LABELS = { amazon: 'Amazon', rakuten: '楽天市場' } as const
 const SIZE_NAMES: Record<string, string> = { mini: 'ミニ', small: '小品', medium: '中品', large: '大品' }
 const label = (options: { value: string; label: string }[], value: string | null) => options.find(o => o.value === value)?.label
+
+// ショップの商品ページへのボタン（広告リンク）
+function ShopLink({ product, className = '' }: { product: CompactProduct; className?: string }) {
+  if (!product.buyUrl) return null
+  return (
+    <a
+      href={product.buyUrl}
+      target="_blank"
+      rel={AFFILIATE_LINK_REL}
+      className={`flex h-11 items-center justify-center gap-1 whitespace-nowrap bg-sumi text-xs tracking-[0.04em] text-white hover:bg-sumi-light hover:text-white lg:text-[13px] ${className}`}
+    >
+      {SHOP_LABELS[product.source]}で見る <span aria-hidden="true">↗</span>
+    </a>
+  )
+}
 
 interface Cell {
   value: string | null
@@ -26,7 +43,8 @@ function compareRows(products: CompactProduct[]): { label: string; cells: Cell[]
   const minPrice = Math.min(...products.map(p => p.price))
   const many = products.length >= 2
   return [
-    { label: '価格', cells: products.map(p => ({ value: formatPrice(p.price), best: many && p.price === minPrice, note: shippingNote(p) })) },
+    { label: '価格', cells: products.map(p => ({ value: formatPrice(p.price), best: many && p.price === minPrice, note: shippingLabel(p) })) },
+    { label: '送料', cells: products.map(p => ({ value: shippingDetail(p) })) },
     {
       label: '届くサイズ',
       cells: products.map(p => ({
@@ -37,13 +55,25 @@ function compareRows(products: CompactProduct[]): { label: string; cells: Cell[]
     {
       label: '見頃',
       cells: products.map(p => ({
-        value: p.seasons.length ? p.seasons.map(s => label(SEASON_OPTIONS, s)).join('・') : null,
+        value: peakLabel(p),
         note: isInSeasonNow(p) ? '今が見頃' : null,
         noteGold: true,
       })),
     },
-    { label: '置き場所', cells: products.map(p => ({ value: label(PLACE_OPTIONS, p.place) ?? null })) },
-    { label: '育てやすさ', cells: products.map(p => ({ value: label(LEVEL_OPTIONS, p.level) ?? null })) },
+    {
+      label: '置き場所',
+      cells: products.map(p => ({
+        value: label(PLACE_OPTIONS, p.place) ?? null,
+        note: p.placeClaim === 'indoor' && p.place && p.place !== 'indoor' ? '販売店の表記：室内向け（樹種としては屋外向き）' : null,
+      })),
+    },
+    {
+      label: '育てやすさ',
+      cells: products.map(p => ({
+        value: label(LEVEL_OPTIONS, p.level) ?? null,
+        note: p.levelClaim === 'easy' && p.level && p.level !== 'easy' ? `販売店の表記：初心者向け（樹種としては${label(LEVEL_OPTIONS, p.level)}）` : null,
+      })),
+    },
     { label: 'ショップ', cells: products.map(p => ({ value: p.shopName, note: SHOP_LABELS[p.source] })) },
     {
       label: 'レビュー',
@@ -59,13 +89,23 @@ export function FavoritesView({ sharedIds }: { sharedIds: string[] }) {
   const ids = shared ? sharedIds : favorites.ids
   const { products, missing, loading, failed } = useFavoriteProducts(ids)
   const { message, share } = useShareToast()
-  const notMine = sharedIds.filter(id => !favorites.has(id))
+  // 共有されたリストのうち、掲載中で自分の気になるにまだ入っていないもの
+  const notMine = products.map(p => p.id).filter(id => !favorites.has(id))
+  const room = FAVORITES_MAX - favorites.ids.length
+  // 掲載が終わった商品は、自分のリストから自動で外す（件数を見えている商品にそろえる）。外した件数はお知らせに出す
+  const [pruned, setPruned] = useState(0)
+  const { removeMany } = favorites
+  const missingKey = shared ? '' : missing.join(',')
+  useEffect(() => {
+    if (!missingKey) return
+    const gone = missingKey.split(',')
+    removeMany(gone)
+    setPruned(n => n + gone.length)
+  }, [missingKey, removeMany])
 
-  const addShared = () => {
-    // 共有された順に並ぶよう、後ろから先頭に追加する
-    ;[...notMine].reverse().forEach(id => favorites.toggle(id))
-  }
-  const columns = `grid-cols-[84px_repeat(var(--n),136px)] lg:grid-cols-[120px_repeat(var(--n),minmax(180px,1fr))]`
+  // 共有された順に、上限まで追加する（入りきらない分は追加せず、お知らせを出す。古いものを押し出さない）
+  const addShared = () => favorites.addMany(notMine)
+  const columns = `grid-cols-[84px_repeat(var(--n),136px)] lg:grid-cols-[120px_repeat(var(--n),minmax(180px,240px))]`
 
   return (
     <>
@@ -81,20 +121,26 @@ export function FavoritesView({ sharedIds }: { sharedIds: string[] }) {
         </span>
         {shared ? (
           <>
-            {notMine.length > 0 ? (
-              <button type="button" onClick={addShared} disabled={favorites.ids.length >= FAVORITES_MAX} className="h-10 bg-sumi px-5 text-[13px] text-white hover:bg-sumi-light disabled:opacity-50 lg:ml-auto">
-                自分の気になるに追加する
-              </button>
+            {products.length === 0 ? null : notMine.length > 0 ? (
+              <span className="flex flex-col gap-1 lg:ml-auto lg:items-end">
+                <button type="button" onClick={addShared} disabled={room <= 0} className="h-11 bg-sumi px-5 text-[13px] text-white hover:bg-sumi-light disabled:opacity-50">
+                  自分の気になるに追加する{room > 0 && notMine.length > room ? `（${room}件まで）` : ''}
+                </button>
+                {room <= 0 && <span className="text-[11.5px] text-ink-muted">自分の気になるが上限の{FAVORITES_MAX}件です。外してから追加してください</span>}
+                {room > 0 && notMine.length > room && <span className="text-[11.5px] text-ink-muted">上限の{FAVORITES_MAX}件までのため、{notMine.length - room}件は追加されません</span>}
+              </span>
             ) : (
               <span className="text-gold-dark lg:ml-auto">すべて自分の気になるに入っています</span>
             )}
-            <Link href="/favorites" className="border-b border-ink pb-0.5 text-ink">自分の気になるを見る（{favorites.ids.length}）</Link>
+            <Link href="/favorites" className="inline-flex min-h-11 items-center text-ink"><span className="border-b border-ink pb-0.5">自分の気になるを見る（{favorites.ids.length}）</span></Link>
           </>
         ) : (
-          ids.length > 0 && (
+          products.length > 0 && (
             <>
-              <button type="button" onClick={() => share(ids)} className="border-b border-ink pb-0.5 text-ink lg:ml-auto">家族に送る</button>
-              <button type="button" onClick={() => window.confirm('気になるをすべて外しますか？') && favorites.clear()} className="text-ink-muted hover:text-ink">
+              <button type="button" onClick={() => share(products.map(p => p.id))} className="inline-flex min-h-11 items-center text-ink lg:ml-auto">
+                <span className="border-b border-ink pb-0.5">家族に送る</span>
+              </button>
+              <button type="button" onClick={() => window.confirm('気になるをすべて外しますか？') && favorites.clear()} className="inline-flex min-h-11 items-center text-ink-muted hover:text-ink">
                 すべて外す
               </button>
             </>
@@ -120,17 +166,26 @@ export function FavoritesView({ sharedIds }: { sharedIds: string[] }) {
             {/* 商品（画像・名前） */}
             <div className={`grid ${columns} gap-x-3.5 pb-4 pr-4 lg:gap-x-8 lg:pr-0`}>
               <div className="sticky left-0 z-[1] bg-paper" />
-              {products.map(p => (
-                <div key={p.id} className="min-w-0">
-                  <Link href={`/products/${p.id}`} className="block text-ink hover:text-ink">
-                    <div className="relative aspect-[4/5] overflow-hidden bg-paper-deep lg:aspect-[4/3]">
-                      <ProductThumb src={p.imageUrl} alt={p.name} sizes="(max-width: 1024px) 136px, 280px" size={400} />
+              {products.map(p => {
+                const name = p.displayName || p.name
+                return (
+                  <div key={p.id} className="flex min-w-0 flex-col">
+                    <Link href={`/products/${p.id}`} className="block text-ink hover:text-ink">
+                      <div className="relative aspect-[4/5] overflow-hidden bg-paper-deep lg:aspect-[4/3]">
+                        <ProductThumb src={p.imageUrl} alt={name} sizes="(max-width: 1024px) 136px, 240px" size={400} />
+                      </div>
+                      <p className="mt-2 line-clamp-2 text-[13.5px] font-medium leading-[1.5] hover:text-gold-dark lg:mt-3 lg:font-mincho lg:text-[15px] lg:font-bold lg:tracking-[0.03em]">{name}</p>
+                    </Link>
+                    <div className="mt-1 text-[13px] text-ink">
+                      {formatPrice(p.price)}
+                      {shippingLabel(p) && <span className="ml-1.5 text-xs text-ink-muted">{shippingLabel(p)}</span>}
                     </div>
-                    <p className="mt-2 line-clamp-3 font-mincho text-[13.5px] font-bold leading-[1.5] tracking-[0.04em] hover:text-gold-dark lg:mt-3 lg:text-base">{p.name}</p>
-                  </Link>
-                  <FavoriteButton productId={p.id} productName={p.name} className="mt-1.5" />
-                </div>
-              ))}
+                    {/* ショップへのボタンは商品のすぐ下に置く（比較表の下まで下げない） */}
+                    <ShopLink product={p} className="mt-2" />
+                    <FavoriteButton productId={p.id} productName={name} className="self-start" />
+                  </div>
+                )
+              })}
             </div>
 
             {compareRows(products).map(row => (
@@ -150,18 +205,9 @@ export function FavoritesView({ sharedIds }: { sharedIds: string[] }) {
             <div className={`grid ${columns} gap-x-3.5 border-t border-line pb-2 pr-4 pt-4 lg:gap-x-8 lg:pr-0 lg:pt-[18px]`}>
               <div className="sticky left-0 z-[1] bg-paper" />
               {products.map(p => (
-                <div key={p.id} className="flex min-w-0 flex-col gap-3">
-                  {p.buyUrl && (
-                    <a
-                      href={p.buyUrl}
-                      target="_blank"
-                      rel={AFFILIATE_LINK_REL}
-                      className="flex h-11 items-center justify-center gap-1 bg-sumi text-xs tracking-[0.04em] text-white hover:bg-sumi-light hover:text-white lg:h-[46px] lg:text-[13px]"
-                    >
-                      {SHOP_LABELS[p.source]}で見る <span aria-hidden="true">↗</span>
-                    </a>
-                  )}
-                  <Link href={`/products/${p.id}`} className="self-start border-b border-ink pb-0.5 text-xs text-ink hover:text-ink lg:text-[13px]">詳しく見る</Link>
+                <div key={p.id} className="flex min-w-0 flex-col gap-1">
+                  <ShopLink product={p} />
+                  <Link href={`/products/${p.id}`} className="inline-flex min-h-11 items-center self-start text-xs text-ink hover:text-ink lg:text-[13px]"><span className="border-b border-ink pb-0.5">詳しく見る</span></Link>
                 </div>
               ))}
             </div>
@@ -180,13 +226,9 @@ export function FavoritesView({ sharedIds }: { sharedIds: string[] }) {
           )}
         </p>
       )}
-      {missing.length > 0 && (
-        <p className="mt-3 text-[12px] text-ink-muted">
-          掲載が終了した商品が{missing.length}件あります。
-          {!shared && (
-            <button type="button" onClick={() => missing.forEach(id => favorites.remove(id))} className="ml-2 border-b border-ink-muted pb-px">リストから外す</button>
-          )}
-        </p>
+      {shared && missing.length > 0 && <p className="mt-3 text-[12px] text-ink-muted">掲載が終了した商品が{missing.length}件あります。</p>}
+      {!shared && pruned > 0 && (
+        <p className="mt-3 text-[12px] text-ink-muted">掲載が終了した商品{pruned}件を、気になるから外しました。</p>
       )}
 
       {message && (

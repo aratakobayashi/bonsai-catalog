@@ -52,6 +52,13 @@ export function ProductImage({ product, sizes, className = 'aspect-square', size
 
 const STAT_COLS = ['grid-cols-1', 'grid-cols-1', 'grid-cols-2', 'grid-cols-3']
 
+// 広告リンクであることの小さな表示（ショップボタンの近くに出す）
+export function PrMark({ className = '' }: { className?: string }) {
+  return (
+    <span className={`inline-flex h-4 shrink-0 items-center border border-ink-muted/50 px-1 text-[10px] leading-none tracking-[0.04em] text-ink-muted ${className}`}>PR</span>
+  )
+}
+
 // 商品の情報（見出し・3つの数字・ショップボタン・表）。一覧の右パネルと商品ページで共通
 export function ProductInfo({
   product,
@@ -68,33 +75,44 @@ export function ProductInfo({
   const stats = productStats(product)
   const rows = productRows(product)
   const species = categoryLink(product)?.label ?? product.speciesLabel
-  const hasTraits = Boolean(product.place || product.level || product.seasons.length)
+  const hasTraits = Boolean(product.place || product.level || product.speciesKey)
+  const title = product.displayName || product.name
+  const shopTitle = product.originalDisplayName || product.originalName
 
   return (
     <div className="min-w-0">
       <div className="flex items-center gap-3 text-xs text-ink-muted">
         {species && <span>{species}</span>}
         <span>{SHOP_LABELS[product.source]}</span>
-        <FavoriteButton productId={product.id} productName={product.name} variant="text" className="ml-auto" />
+        <FavoriteButton productId={product.id} productName={title} variant="text" className="ml-auto" />
       </div>
       <Title
-        className={`mt-2 font-mincho font-bold leading-[1.5] text-ink ${
-          headingLevel === 'h1' ? 'text-[21px] tracking-[0.06em] lg:text-[26px]' : 'text-[19px] tracking-[0.04em] lg:text-xl'
+        className={`mt-1 font-mincho font-bold leading-[1.5] text-ink ${
+          headingLevel === 'h1' ? 'text-[21px] tracking-[0.04em] lg:text-[26px] lg:tracking-[0.06em]' : 'text-[19px] tracking-[0.04em] lg:text-xl'
         }`}
       >
-        {product.name}
+        {title}
       </Title>
-      {showOriginalName && product.originalName !== product.name && (
-        <p className="mt-2 text-[11.5px] leading-[1.7] text-ink-muted">ショップでの商品名：{product.originalName}</p>
+      {showOriginalName && shopTitle && shopTitle !== title && (
+        // ショップでの商品名は長いため、1行だけ見せて押すと全文を開く
+        <details className="group mt-1.5 text-[11.5px] leading-[1.7] text-ink-muted">
+          <summary className="flex min-h-8 cursor-pointer list-none items-center gap-1 [&::-webkit-details-marker]:hidden">
+            <span className="min-w-0 flex-1 truncate group-open:hidden">ショップでの商品名：{shopTitle}</span>
+            <span className="hidden flex-1 group-open:inline">ショップでの商品名</span>
+            <span aria-hidden="true" className="shrink-0 text-ink-soft group-open:rotate-180">⌄</span>
+          </summary>
+          <p className="break-words">{shopTitle}</p>
+        </details>
       )}
 
       {stats.length > 0 && (
-        <dl className={`mt-4 grid border-y border-line lg:mt-[22px] ${STAT_COLS[stats.length]}`}>
+        <dl className={`mt-3 grid border-y border-line lg:mt-[22px] ${STAT_COLS[stats.length]}`}>
           {stats.map((stat, i) => (
-            <div key={stat.label} className={`py-2.5 pl-2.5 lg:py-3.5 lg:pl-4 ${i > 0 ? 'border-l border-line' : ''}`}>
-              <dt className="text-[10px] text-ink-muted lg:text-[11px]">{stat.label}</dt>
-              <dd className="mt-0.5 text-[15px] text-ink lg:text-xl">{stat.value}</dd>
-              {stat.note && <dd className={`text-[10px] lg:text-[11px] ${stat.accent ? 'text-gold-dark' : 'text-ink-muted'}`}>{stat.note}</dd>}
+            <div key={stat.label} className={`min-w-0 py-2.5 pl-2.5 pr-1 lg:py-3.5 lg:pl-4 ${i > 0 ? 'border-l border-line' : ''}`}>
+              <dt className="text-[11px] text-ink-muted">{stat.label}</dt>
+              <dd className="mt-0.5 text-[15px] leading-snug text-ink lg:text-xl">{stat.value}</dd>
+              {stat.note && <dd className={`text-[11px] ${stat.accent ? 'text-gold-dark' : 'text-ink-muted'}`}>{stat.note}</dd>}
+              {stat.rating && <dd className="text-[11px] text-ink-muted">{stat.rating}</dd>}
             </div>
           ))}
         </dl>
@@ -103,7 +121,10 @@ export function ProductInfo({
       {/* スマホは画面下のバーにボタンを出す */}
       <div className="hidden lg:block">
         <ShopButton product={product} className="mt-5" />
-        <p className="mt-2 text-[11px] leading-[1.7] text-ink-muted">{priceNote(product)}</p>
+        <p className="mt-2 flex items-start gap-1.5 text-[11px] leading-[1.7] text-ink-muted">
+          {product.buyUrl && <PrMark className="mt-[3px]" />}
+          <span>{priceNote(product)}</span>
+        </p>
       </div>
       <p className="mt-2 text-[11px] leading-[1.7] text-ink-muted lg:hidden">{priceNote(product)}</p>
       {product.soldOut && <p className="mt-2 text-[13px] text-ink">現在、販売されていない可能性があります。</p>}
@@ -114,6 +135,7 @@ export function ProductInfo({
             <dt className="text-ink-muted">{row.label}</dt>
             <dd className="min-w-0 break-words text-ink">
               {row.value}
+              {row.claim && <span className="block text-[11.5px] text-gold-dark">{row.claim}</span>}
               {row.note && <span className="block text-[11.5px] text-ink-muted">{row.note}</span>}
             </dd>
           </div>
@@ -123,7 +145,7 @@ export function ProductInfo({
 
       {showDescription && product.description && (
         <details className="group mt-4 border-b border-line pb-3">
-          <summary className="cursor-pointer list-none text-[13px] text-ink [&::-webkit-details-marker]:hidden">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center text-[13px] text-ink [&::-webkit-details-marker]:hidden">
             <span className="border-b border-ink pb-0.5">販売店の商品説明（抜粋）</span>
           </summary>
           <p className="mt-3 whitespace-pre-line text-[13px] leading-[1.9] text-ink-soft">{product.description}</p>
@@ -174,16 +196,26 @@ export function ProductDetailPanel({ product, headingLevel = 'h2', showDescripti
   )
 }
 
-// スマホで画面下（下のタブの上）に固定する価格とショップボタン
+// スマホで画面下に固定する価格とショップボタン（商品ページでは下のタブを出さないため、画面の一番下に置く）
+// ページの最後（フッターのリンク）が隠れないよう、スマホでは body の下にバーの高さ分の余白をつける
+export const BUY_BAR_HEIGHT = 72
 export function ProductBuyBar({ product }: { product: CatalogProduct }) {
   if (!product.buyUrl) return null
   return (
-    <div className="fixed inset-x-0 bottom-[calc(3.5rem+1px+env(safe-area-inset-bottom))] z-30 flex items-center gap-3.5 border-t border-line bg-paper px-4 py-3 lg:hidden">
-      <div className="shrink-0">
-        <div className="text-[19px] leading-tight text-ink">{formatPrice(product.price)}</div>
-        <div className="text-[10px] text-ink-muted">{shortPriceNote(product)}</div>
+    <>
+      <style>{`@media (max-width: 1023.98px){body{padding-bottom:calc(${BUY_BAR_HEIGHT}px + env(safe-area-inset-bottom))}}`}</style>
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-line bg-paper pb-[env(safe-area-inset-bottom)] lg:hidden">
+        <div className="flex items-center gap-3.5 px-4 py-3" style={{ height: BUY_BAR_HEIGHT - 1 }}>
+          <div className="shrink-0">
+            <div className="text-[19px] leading-tight text-ink">{formatPrice(product.price)}</div>
+            <div className="mt-0.5 flex items-center gap-1 text-[10.5px] text-ink-muted">
+              <PrMark />
+              <span>{shortPriceNote(product)}</span>
+            </div>
+          </div>
+          <ShopButton product={product} size="md" className="flex-1" />
+        </div>
       </div>
-      <ShopButton product={product} size="md" className="flex-1" />
-    </div>
+    </>
   )
 }

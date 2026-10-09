@@ -3,6 +3,8 @@
 import { useFavorites } from '@/lib/favorites'
 
 // 「気になる」に入れる／外すボタン。variant=icon は商品画像の右下に置くハートだけの表示
+// icon：押せる範囲は 44×44px。写真の上でも見えるよう、生成りの丸い下地を敷く（位置は className で指定）
+// text：高さ 44px 以上。「気になるに入れました」は途中で折り返さない
 export function FavoriteButton({
   productId,
   productName,
@@ -32,9 +34,16 @@ export function FavoriteButton({
         onClick={onClick}
         aria-pressed={active}
         aria-label={label}
-        className={`flex h-9 w-9 items-center justify-center text-[15px] leading-none ${active ? 'text-gold-dark' : 'text-ink-muted/70 hover:text-gold-dark'} ${className}`}
+        className={`flex h-11 w-11 items-center justify-center ${className}`}
       >
-        <span aria-hidden="true">{active ? '♥' : '♡'}</span>
+        <span
+          aria-hidden="true"
+          className={`flex h-8 w-8 items-center justify-center rounded-full bg-paper/90 text-[15px] leading-none shadow-[0_1px_3px_rgba(34,32,28,0.12)] ${
+            active ? 'text-gold-dark' : 'text-ink-soft hover:text-gold-dark'
+          }`}
+        >
+          {active ? '♥' : '♡'}
+        </span>
       </button>
     )
   }
@@ -45,7 +54,7 @@ export function FavoriteButton({
       onClick={onClick}
       aria-pressed={active}
       aria-label={label}
-      className={`inline-flex items-center gap-1 text-xs ${active ? 'text-gold-dark' : 'text-ink-muted hover:text-gold-dark'} ${className}`}
+      className={`inline-flex min-h-11 items-center gap-1 whitespace-nowrap text-xs ${active ? 'text-gold-dark' : 'text-ink-muted hover:text-gold-dark'} ${className}`}
     >
       <span aria-hidden="true">{active ? '♥' : '♡'}</span>
       {active ? '気になるに入れました' : '気になるに入れる'}

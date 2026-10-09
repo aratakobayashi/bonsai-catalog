@@ -4,6 +4,7 @@ import '@/styles/editor.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { BottomNavigation } from '@/components/layout/BottomNavigation'
+import { FavoritesDock } from '@/components/catalog/CompareBar'
 import { WebSiteStructuredData, OrganizationStructuredData } from '@/components/seo/StructuredData'
 import { Toaster } from 'react-hot-toast'
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
@@ -85,6 +86,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <BottomNavigation />
+          <FavoritesDock />
           <Toaster 
             position="bottom-right"
             toastOptions={{
