@@ -33,7 +33,7 @@ thumbLabel: 樹種別の育て方
 
 「一才桜」という名前は、若い木でも花をつけやすい桜をまとめて呼ぶ流通名で、旭山桜や富士桜の系統のものが多く見られます。一才桜の育て方は、こちらでさらに詳しく説明しています。
 
-[一才桜の盆栽完全ガイド](/guides/issai-sakura-guide)
+[一才桜の盆栽の育て方](/guides/issai-sakura-guide)
 
 ### 最初の一鉢の選び方
 
@@ -111,6 +111,6 @@ thumbLabel: 樹種別の育て方
 
 枝が垂れる枝垂れ桜は、枝の誘引など少し違う手入れが必要です。
 
-[シダレザクラの盆栽完全ガイド](/guides/weeping-cherry-bonsai-guide)
+[シダレザクラの盆栽の育て方](/guides/weeping-cherry-bonsai-guide)
 
 桜の盆栽は[桜の盆栽一覧](/products/category/sakura)で探せます。ほかの花ものもあわせて見るなら[花を楽しむ盆栽の選び方](/selection/flowering-bonsai)をご覧ください。
