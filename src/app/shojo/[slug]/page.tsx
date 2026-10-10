@@ -19,8 +19,9 @@ interface PageProps {
   params: { slug: string }
 }
 
+// ビルド時にまとめて商品を取ると失敗しやすいため、初回アクセス時に作る（存在しない slug・月は notFound）
 export function generateStaticParams() {
-  return SHOJO.map(s => ({ slug: s.slug }))
+  return []
 }
 
 export function generateMetadata({ params }: PageProps): Metadata {

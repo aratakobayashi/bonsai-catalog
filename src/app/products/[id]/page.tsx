@@ -24,7 +24,8 @@ import { CareIcon, iconFor } from '@/components/catalog/CareIcon'
 import { Breadcrumbs, CONTAINER, SectionTitle } from '@/components/ui/design'
 import { SelectionCard } from '@/components/selection/SelectionCard'
 import { selectionsForProduct } from '@/lib/selections'
-import { categoryLink, isPartProduct } from '@/lib/product-detail'
+import { categoryLink, currentMonthJst, isPartProduct } from '@/lib/product-detail'
+import { ZUKAN_ENTRIES, matchZukanProducts } from '@/lib/zukan'
 import { isEvergreen, peakLabel } from '@/lib/seasons'
 
 interface ProductPageProps {
@@ -165,6 +166,8 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     .map(slug => ({ href: `/guides/${slug}`, title: getArticleOverride(slug)?.title ?? slug, image: thumbnailPath(slug) }))
     .filter(item => item.title !== item.href.split('/').pop())
   const features = selectionsForProduct(product)
+  // 商品名に出てくる樹形・品種名の図鑑（2つまで）
+  const zukanLinks = isPart ? [] : ZUKAN_ENTRIES.filter(entry => matchZukanProducts(entry, [product]).length > 0).slice(0, 2)
   const careGuide = getCareGuide(product.productType, product.category)
   const checklist = getPurchaseChecklist(product.productType)
   const listHref = catLink?.href ?? '/products'
@@ -260,6 +263,17 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                   {checklist.map(item => <li key={item}>・{item}</li>)}
                 </ul>
               </details>
+
+              {/* 届いたあと・今月の手入れ・名前の意味への案内 */}
+              {!isPart && (
+                <div className="mt-6 flex flex-wrap gap-2">
+                  <Link href="/hajimete" className="inline-flex min-h-11 items-center gap-1.5 border border-line bg-paper px-3.5 text-[13px] text-ink hover:border-ink"><CareIcon name="care" className="h-4 w-4 text-gold-dark" />届いてから1か月の手入れ</Link>
+                  <Link href={`/teire/${currentMonthJst()}`} className="inline-flex min-h-11 items-center gap-1.5 border border-line bg-paper px-3.5 text-[13px] text-ink hover:border-ink"><CareIcon name="season" className="h-4 w-4 text-gold-dark" />{currentMonthJst()}月の手入れ</Link>
+                  {zukanLinks.map(entry => (
+                    <Link key={entry.slug} href={`/zukan/${entry.slug}`} className="inline-flex min-h-11 items-center gap-1.5 border border-line bg-paper px-3.5 text-[13px] text-ink hover:border-ink">「{entry.name}」とは</Link>
+                  ))}
+                </div>
+              )}
 
               {/* この樹種の育て方（記事のサムネイルを大きく） */}
               {mainGuide ? (

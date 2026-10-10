@@ -1,4 +1,6 @@
 import { applyArticleOverride } from '@/lib/article-overrides'
+import { SITE_TOOLS } from '@/components/layout/site-tools'
+import { CareIcon } from '@/components/catalog/CareIcon'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { Suspense } from 'react'
@@ -148,6 +150,17 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
             ))}
           </ol>
         </section>
+      )}
+
+      {/* 育てる道具（今月の手入れ・症状・1か月・図鑑・ノート） */}
+      {showBeginnerSteps && (
+        <nav aria-label="育てる道具" className="mt-8 flex gap-2 overflow-x-auto pb-1 lg:mt-12 lg:flex-wrap lg:overflow-visible">
+          {SITE_TOOLS.filter(t => t.group === 'grow').map(t => (
+            <Link key={t.href} href={t.href} className="inline-flex min-h-11 flex-none items-center gap-1.5 border border-line bg-paper px-3.5 text-[13px] text-ink hover:border-ink">
+              <CareIcon name={t.icon} className="h-4 w-4 text-gold-dark" />{t.label}
+            </Link>
+          ))}
+        </nav>
       )}
 
       {/* カテゴリ・件数・並び順 */}

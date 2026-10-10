@@ -22,10 +22,10 @@ interface TeireMonthPageProps {
 }
 
 export const revalidate = 3600
-export const dynamicParams = false
 
+// ビルド時にまとめて商品を取ると失敗しやすいため、初回アクセス時に作る（存在しない slug・月は notFound）
 export function generateStaticParams() {
-  return MONTH_NUMBERS.map(m => ({ month: String(m) }))
+  return []
 }
 
 function parseMonth(value: string): number | null {

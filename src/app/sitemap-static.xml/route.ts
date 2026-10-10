@@ -1,6 +1,8 @@
 import eventData from '@/data/event-updates.json'
 import { SELECTIONS } from '@/lib/selections'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
+import { ZUKAN_ENTRIES } from '@/lib/zukan'
+import { SHOJO } from '@/lib/shojo'
 import { baseUrl, SITEMAP_CONFIG, createSitemapResponse, generateXmlHeader, generateXmlFooter, generateUrlElement } from '@/lib/sitemap-utils'
 
 export const revalidate = 3600
@@ -44,6 +46,31 @@ export async function GET() {
         url: `${baseUrl}/events/${event.slug}`,
         lastMod: eventData.verifiedAt || new Date().toISOString().split('T')[0],
         changeFreq: 'weekly',
+        priority: 0.6
+      })),
+      // 選ぶ・育てる道具
+      ...['/okurimono', '/kumiawase', '/soroeru', '/teire', '/shojo', '/hajimete', '/zukan', '/note'].map(path => ({
+        url: `${baseUrl}${path}`,
+        lastMod: new Date().toISOString().split('T')[0],
+        changeFreq: 'weekly',
+        priority: 0.8
+      })),
+      ...Array.from({ length: 12 }, (_, i) => ({
+        url: `${baseUrl}/teire/${i + 1}`,
+        lastMod: new Date().toISOString().split('T')[0],
+        changeFreq: 'monthly',
+        priority: 0.7
+      })),
+      ...SHOJO.map(entry => ({
+        url: `${baseUrl}/shojo/${entry.slug}`,
+        lastMod: new Date().toISOString().split('T')[0],
+        changeFreq: 'monthly',
+        priority: 0.7
+      })),
+      ...ZUKAN_ENTRIES.map(entry => ({
+        url: `${baseUrl}/zukan/${entry.slug}`,
+        lastMod: new Date().toISOString().split('T')[0],
+        changeFreq: 'monthly',
         priority: 0.6
       })),
       {

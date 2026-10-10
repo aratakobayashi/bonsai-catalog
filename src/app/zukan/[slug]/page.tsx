@@ -23,12 +23,12 @@ interface ZukanPageProps {
 
 // 商品は1時間ごとに作り直す（商品の取得に失敗したときは、商品の欄だけ空で出す）
 export const revalidate = 3600
-export const dynamicParams = false
 
 const PRODUCT_LIMIT = 8
 
+// ビルド時にまとめて商品を取ると失敗しやすいため、初回アクセス時に作る（存在しない slug・月は notFound）
 export function generateStaticParams() {
-  return ZUKAN_ENTRIES.map(entry => ({ slug: entry.slug }))
+  return []
 }
 
 const KIND_LABEL: Record<ZukanEntry['kind'], string> = { jukei: '樹形', meisho: '品種・名前' }

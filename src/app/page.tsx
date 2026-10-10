@@ -11,6 +11,8 @@ import { SELECTIONS, getSelection, pickSelectionProducts, type Selection } from 
 import { formatPrice } from '@/lib/utils'
 import { isFeaturable, orderSelectionsBySeason, selectionCounts } from '@/components/selection/selection-meta'
 import { SelectionCard } from '@/components/selection/SelectionCard'
+import { SITE_TOOLS } from '@/components/layout/site-tools'
+import { CareIcon } from '@/components/catalog/CareIcon'
 import { SelectionThumb } from '@/components/selection/SelectionThumb'
 import { ProductThumb } from '@/components/catalog/ProductThumb'
 import { Placeholder } from '@/components/ui/design'
@@ -374,6 +376,34 @@ export default async function HomePage() {
             )}
           </section>
         )}
+
+        {/* 選ぶ・育てるを手伝う道具 */}
+        <section className="pt-12 lg:pt-24" aria-labelledby="home-tools">
+          <h2 id="home-tools" className="font-mincho text-xl font-bold tracking-[0.06em] text-ink lg:text-[26px]">盆栽えらびと育て方の道具</h2>
+          <div className="mt-[18px] grid gap-8 lg:mt-7 lg:grid-cols-2 lg:gap-12">
+            {(['choose', 'grow'] as const).map(group => (
+              <div key={group}>
+                <p className="text-[12px] tracking-[0.12em] text-gold-dark">{group === 'choose' ? '選ぶ' : '育てる'}</p>
+                <ul className="mt-2 grid border-t border-line sm:grid-cols-2 sm:gap-x-6">
+                  {SITE_TOOLS.filter(t => t.group === group).map(t => (
+                    <li key={t.href} className="border-b border-line">
+                      <Link href={t.href === '/teire' ? `/teire/${month}` : t.href} className="group flex min-h-[64px] items-center gap-3 py-3">
+                        <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-paper-deep text-gold-dark">
+                          <CareIcon name={t.icon} className="h-5 w-5" />
+                        </span>
+                        <span className="min-w-0 flex-1">
+                          <span className="block font-mincho text-[15px] font-bold text-ink group-hover:text-gold-dark">{t.href === '/teire' ? `${month}月の手入れ` : t.label}</span>
+                          <span className="mt-0.5 block text-[12px] leading-snug text-ink-soft">{t.note}</span>
+                        </span>
+                        <span className="flex-none text-ink-muted" aria-hidden="true">›</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* いま見頃の盆栽 */}
         <section className="pt-12 lg:pt-24">
