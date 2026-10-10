@@ -107,14 +107,21 @@ async function getCachedProductRows(): Promise<any[]> {
 }
 
 export async function getCatalogProducts(): Promise<CatalogProduct[]> {
-  try {
-    return (await getCachedProductRows()).map(normalizeProduct)
-  } catch (error) {
-    // 通信が一時的に失敗した場合に備えて、少し待ってからもう一度だけ取得する
-    console.error('商品データの取得に失敗したため再取得します:', error instanceof Error ? error.message : error)
-    await new Promise(resolve => setTimeout(resolve, 800))
-    return (await getCachedProductRows()).map(normalizeProduct)
+  // 通信が一時的に失敗した場合に備えて、間をあけて3回まで取得する
+  // （デプロイ直後はキャッシュが空で取得が集中し、失敗しやすい。失敗したまま「準備中」の表示がキャッシュに残るのを防ぐ）
+  let lastError: unknown
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const rows = await getCachedProductRows()
+      if (rows.length > 0) return rows.map(normalizeProduct)
+      lastError = new Error('商品データが0件でした')
+    } catch (error) {
+      lastError = error
+    }
+    console.error(`商品データの取得に失敗しました（${attempt + 1}回目）:`, lastError instanceof Error ? lastError.message : lastError)
+    await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1)))
   }
+  throw lastError
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
