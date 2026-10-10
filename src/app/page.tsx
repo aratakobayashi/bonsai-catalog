@@ -250,14 +250,23 @@ export default async function HomePage() {
         </figure>
 
         <div className="px-4 pt-6 lg:px-0 lg:pt-0">
-          <p className="text-[11px] tracking-[0.18em] text-gold-dark lg:text-xs lg:tracking-[0.2em]">樹種と育てやすさから選ぶ</p>
+          <p className="text-[11px] tracking-[0.18em] text-gold-dark lg:text-xs lg:tracking-[0.2em]">楽天市場の盆栽を、まとめて比べる</p>
           <h1 className="mt-2 font-mincho text-[27px] font-bold leading-[1.45] tracking-[0.08em] text-ink lg:mt-3.5 lg:text-[42px]">
             はじめての一鉢を、<br />ゆっくり選ぶ。
           </h1>
           <p className="mt-3 text-[13px] leading-[1.9] text-ink-soft lg:mt-[18px] lg:text-[15px] lg:leading-[2]">
-            {total > 0 ? `${total.toLocaleString()}件の` : ''}盆栽・鉢・道具を、樹種・サイズ・価格で比べられます。
+            楽天市場の{total > 0 ? `${total.toLocaleString()}件の` : ''}盆栽・鉢・道具を、樹種・大きさ・育てやすさ・価格で比べられます。
           </p>
-          <form action="/products" method="get" role="search" className="mt-5 flex h-[46px] max-w-[440px] items-center gap-3 border-b border-ink lg:mt-7 lg:h-[50px]">
+          {/* 次の一歩：迷っている人は診断、決まっている人は一覧へ */}
+          <div className="mt-5 flex flex-wrap gap-2.5 lg:mt-7 lg:gap-3">
+            <Link href="/shindan" className="inline-flex min-h-12 flex-1 items-center justify-center bg-gold-dark px-5 text-[14px] font-bold tracking-[0.06em] text-white hover:bg-ink hover:text-white sm:flex-none lg:min-h-[52px] lg:px-7">
+              かんたん盆栽診断<span className="ml-1.5 hidden text-[11.5px] font-normal opacity-90 sm:inline">4つの質問</span>
+            </Link>
+            <Link href="/products?type=tree" className="inline-flex min-h-12 flex-1 items-center justify-center border border-ink px-5 text-[14px] tracking-[0.06em] text-ink hover:bg-ink hover:text-paper sm:flex-none lg:min-h-[52px] lg:px-7">
+              盆栽を探す
+            </Link>
+          </div>
+          <form action="/products" method="get" role="search" className="mt-4 flex h-[46px] max-w-[440px] items-center gap-3 border-b border-ink lg:mt-7 lg:h-[50px]">
             <label htmlFor="home-search" className="sr-only">盆栽を検索</label>
             <input
               id="home-search"
@@ -271,7 +280,7 @@ export default async function HomePage() {
 
           {/* SP：検索のすぐ下に目的からの入口（下の「目的から選ぶ」と同じ特集） */}
           {purposes.length > 0 && (
-            <nav aria-label="目的から選ぶ" className="mt-6 lg:hidden">
+            <nav aria-label="目的から選ぶ" className="mt-6 max-w-[440px] lg:mt-8">
               <p className="text-[11px] tracking-[0.12em] text-ink-muted">目的から選ぶ</p>
               <ul className="mt-1.5 grid grid-cols-2 border-t border-line">
                 {purposes.map(({ slug, label }, i) => (

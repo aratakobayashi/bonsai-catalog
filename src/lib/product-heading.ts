@@ -63,7 +63,7 @@ export function productHeading(product: Pick<CatalogProduct, 'originalName' | 's
   // 「肥料付き」の盆栽など、種類が肥料・道具として登録されている樹は盆栽として扱う（樹種は商品名から判定）
   const treeLike = product.productType !== 'tree' && /盆栽/.test(name) && /肥料付|肥料.{0,6}(プレゼント|サービス)|育て方説明書付/.test(name)
   const label = product.speciesLabel ?? (treeLike ? SPECIES_TRAITS.find(t => t.pattern.test(name))?.label ?? null : null)
-  if ((product.productType !== 'tree' && !treeLike) || !label) return partHeading(name, product.speciesLabel, product.productType) ?? shortFallback(fallback)
+  if ((product.productType !== 'tree' && !treeLike) || !label) return (product.productType === 'tree' ? null : partHeading(name, product.speciesLabel, product.productType)) ?? shortFallback(fallback)
   // 「もみじ・楓」「実もの」のようにまとめた樹種名は、商品名に出てくる名前（もみじ・梅もどき など）にする
   let species = label
   if (/・/.test(species) || species === '実もの') {

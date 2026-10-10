@@ -1,4 +1,5 @@
 // 商品データの共通の形（Amazon・楽天）。サーバー・クライアントのどちらからでも使える
+import { productHeading } from '@/lib/product-heading'
 import type { ProductType } from '@/lib/product-classify'
 import { findSpeciesTrait, speciesCandidates, type Enjoy, type Level, type Place, type Season } from '@/lib/species-traits'
 import { cleanProductName, shortProductName, stripPromoText } from '@/lib/product-name'
@@ -93,7 +94,13 @@ export function refineProductType(stored: ProductType, name: string): ProductTyp
 const NEW_YEAR_SPECIES = ['goyomatsu', 'kuromatsu', 'akamatsu', 'ume', 'nanten', 'senryo']
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// 一覧・カードの商品名も、商品ページの見出しと同じ「品種・樹種の盆栽｜特徴」の短い名前にする（src/lib/product-heading.ts）
 export function normalizeProduct(row: any): CatalogProduct {
+  const base = normalizeProductBase(row)
+  return { ...base, displayName: base.source === 'rakuten' ? productHeading(base, base.displayName) : base.displayName }
+}
+
+function normalizeProductBase(row: any): CatalogProduct {
   const source: ProductSource = row.source === 'rakuten' ? 'rakuten' : 'amazon'
   const tags: string[] = Array.isArray(row.tags) ? row.tags : []
   const isAmazon = source === 'amazon'
