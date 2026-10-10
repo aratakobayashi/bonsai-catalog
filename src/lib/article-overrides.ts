@@ -212,3 +212,29 @@ export function canOptimizeImage(src: string): boolean {
     return false
   }
 }
+
+// 樹種（front matter の species）ごとの書き直した記事。育て方の記事を先に（商品ページの「◯◯の育て方」に使う）
+let speciesIndex: Map<string, string[]> | null = null
+export function articlesForSpecies(species: string): string[] {
+  if (!speciesIndex || !useCache) {
+    const index = new Map<string, { slug: string; title: string }[]>()
+    let files: string[] = []
+    try {
+      files = fs.readdirSync(path.join(process.cwd(), 'src/content/articles')).filter(f => f.endsWith('.md'))
+    } catch {
+      files = []
+    }
+    for (const file of files) {
+      const slug = file.replace(/\.md$/, '')
+      const override = getArticleOverride(slug)
+      if (!override?.species) continue
+      index.set(override.species, [...(index.get(override.species) ?? []), { slug, title: override.title ?? '' }])
+    }
+    // 「◯◯の盆栽の育て方」を先に、その中では短いタイトル（基本の記事）を先に
+    const score = (title: string) => (/の育て方/.test(title) ? 0 : 1)
+    speciesIndex = new Map(
+      Array.from(index, ([key, list]) => [key, list.sort((a, b) => score(a.title) - score(b.title) || a.title.length - b.title.length).map(a => a.slug)]),
+    )
+  }
+  return speciesIndex.get(species) ?? []
+}

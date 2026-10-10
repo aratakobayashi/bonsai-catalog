@@ -79,15 +79,18 @@ export function ProductInfo({
   headingLevel = 'h2',
   showOriginalName = false,
   showDescription = false,
+  pageMode = false,
 }: {
   product: PanelProduct
   headingLevel?: 'h1' | 'h2'
   showOriginalName?: boolean
   showDescription?: boolean
+  // 商品ページ：育てやすさ・置き場所・見頃は下の「◯◯について」にまとめるので、ここでは出さない
+  pageMode?: boolean
 }) {
   const Title = headingLevel
-  const stats = productStats(product)
-  const rows = productRows(product)
+  const stats = productStats(product).filter(stat => !pageMode || stat.label !== '見頃')
+  const rows = productRows(product).filter(row => !pageMode || (row.label !== '置き場所' && row.label !== '育てやすさ'))
   const species = categoryLink(product)?.label ?? product.speciesLabel
   const hasTraits = Boolean(product.place || product.level || product.speciesKey)
   const title = product.displayName || product.name
@@ -96,13 +99,14 @@ export function ProductInfo({
   return (
     <div className="min-w-0">
       <div className="flex items-center gap-3 text-xs text-ink-muted">
-        {species && <span>{species}</span>}
-        <span>{SHOP_LABELS[product.source]}</span>
+        {species && <span className={pageMode ? 'tracking-[0.12em] text-gold-dark' : ''}>{species}</span>}
+        {!pageMode && <span>{SHOP_LABELS[product.source]}</span>}
         <FavoriteButton productId={product.id} productName={title} variant="text" className="ml-auto" />
       </div>
       <Title
+        title={title}
         className={`mt-1 font-mincho font-bold leading-[1.5] text-ink ${
-          headingLevel === 'h1' ? 'text-[21px] tracking-[0.04em] lg:text-[26px] lg:tracking-[0.06em]' : 'text-[19px] tracking-[0.04em] lg:text-xl'
+          headingLevel === 'h1' ? 'line-clamp-2 text-[19px] tracking-[0.04em] lg:text-[23px] lg:tracking-[0.05em]' : 'text-[19px] tracking-[0.04em] lg:text-xl'
         }`}
       >
         {title}
@@ -153,13 +157,14 @@ export function ProductInfo({
           </div>
         ))}
       </dl>
-      {hasTraits && <p className="mt-2 text-[11px] text-ink-muted">置き場所・育てやすさ・見頃は、樹種ごとの一般的な目安です。</p>}
+      {hasTraits && !pageMode && <p className="mt-2 text-[11px] text-ink-muted">置き場所・育てやすさ・見頃は、樹種ごとの一般的な目安です。</p>}
 
       {showDescription && product.description && (
         <details className="group mt-4 border-b border-line pb-3">
           <summary className="flex min-h-11 cursor-pointer list-none items-center text-[13px] text-ink [&::-webkit-details-marker]:hidden">
             <span className="border-b border-ink pb-0.5">販売店の商品説明（抜粋）</span>
           </summary>
+          {pageMode && shopTitle && shopTitle !== title && <p className="mt-3 break-words text-[12px] leading-[1.8] text-ink-muted">ショップでの商品名：{shopTitle}</p>}
           <p className="mt-3 whitespace-pre-line text-[13px] leading-[1.9] text-ink-soft">{product.description}</p>
         </details>
       )}

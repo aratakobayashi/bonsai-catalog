@@ -10,7 +10,10 @@ import { cleanProductName } from '@/lib/product-name'
 import { SITE_URL } from '@/lib/site'
 import { formatPrice } from '@/lib/utils'
 import { getRelatedArticles } from '@/lib/article-helpers'
-import { getArticleOverride } from '@/lib/article-overrides'
+import { articlesForSpecies, getArticleOverride, thumbnailPath } from '@/lib/article-overrides'
+import { ArticleCardGrid, type ArticleCardItem } from '@/components/article/RelatedArticleRows'
+import { byCuratedImage } from '@/components/home/curated'
+import Image from 'next/image'
 import { getCareGuide, getPurchaseChecklist } from '@/lib/care-guides'
 import { BreadcrumbStructuredData, ProductStructuredData } from '@/components/seo/StructuredData'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
@@ -137,16 +140,26 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   // 鉢・土・道具は、盆栽用と分かるもの（商品名に「盆栽」）を、ほかの植物向け（観葉植物・バラ・多肉など）より先にする。同じならレビューの多い順
   const pairScore = (p: CatalogProduct) => (/盆栽/.test(p.originalName) ? 2 : 0) - (/観葉|バラ|ばら|薔薇|多肉|サボテン|野菜|家庭菜園|花の土|草花/.test(p.originalName) ? 1 : 0)
   const pairs = pairTypes
-    .map(type => all.filter(p => p.productType === type).sort((a, b) => pairScore(b) - pairScore(a) || b.reviewCount - a.reviewCount)[0])
+    .map(type => all.filter(p => p.productType === type).sort((a, b) => byCuratedImage(a, b) || pairScore(b) - pairScore(a) || b.reviewCount - a.reviewCount)[0])
     .filter((p): p is CatalogProduct => Boolean(p))
     .concat(isPart ? all.filter(p => p.productType === 'tree' && p.id !== product.id).sort((a, b) => b.reviewCount - a.reviewCount).slice(1, 4) : [])
-    .slice(0, 4)
+    .slice(0, isPart ? 4 : 3)
 
   // 書き直した記事（src/content/articles）は新しいタイトルで出す
-  const relatedArticles = getRelatedArticles(product.category, product.tags, 3).map(article => ({
-    ...article,
-    title: getArticleOverride(article.slug)?.title ?? article.title,
-  }))
+  // この樹種の育て方の記事（一番上に大きく）と、そのほかの関連記事（画像つきのカード）
+  const speciesSlugs = !isPart && product.speciesKey ? articlesForSpecies(product.speciesKey) : []
+  const mainGuideSlug = speciesSlugs[0]
+  const mainGuide = mainGuideSlug
+    ? { href: `/guides/${mainGuideSlug}`, title: getArticleOverride(mainGuideSlug)?.title ?? '', image: thumbnailPath(mainGuideSlug), description: getArticleOverride(mainGuideSlug)?.description }
+    : null
+  const relatedArticles: ArticleCardItem[] = [
+    ...speciesSlugs.slice(1),
+    ...getRelatedArticles(product.category, product.tags, 6).map(article => article.slug),
+  ]
+    .filter((slug, i, list) => slug !== mainGuideSlug && list.indexOf(slug) === i)
+    .slice(0, 4)
+    .map(slug => ({ href: `/guides/${slug}`, title: getArticleOverride(slug)?.title ?? slug, image: thumbnailPath(slug) }))
+    .filter(item => item.title !== item.href.split('/').pop())
   const features = selectionsForProduct(product)
   const careGuide = getCareGuide(product.productType, product.category)
   const checklist = getPurchaseChecklist(product.productType)
@@ -203,7 +216,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-16 lg:pt-6">
           <ProductImage product={product} sizes="(max-width: 1024px) 100vw, 60vw" size={800} className="-mx-4 aspect-[4/3] lg:mx-0 lg:aspect-square" />
           <div className="mt-3 lg:sticky lg:top-6 lg:mt-0 lg:self-start">
-            <ProductInfo product={product} headingLevel="h1" showOriginalName showDescription />
+            <ProductInfo product={product} headingLevel="h1" showDescription pageMode />
           </div>
         </div>
 
@@ -212,7 +225,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <div>
               {!isPart && product.category !== 'その他' && <div className="text-[10.5px] tracking-[0.08em] text-ink-muted lg:text-[11.5px]">{product.category}</div>}
               <h2 className="mt-1 font-mincho text-[19px] font-bold tracking-[0.06em] text-ink lg:text-[26px]">{aboutTitle}</h2>
-              {guideLink && (
+              {guideLink && !mainGuide && (
                 <Link href={guideLink.href} className="mt-[18px] hidden border-b border-ink pb-0.5 text-[13px] text-ink lg:inline-block">{guideLink.label}</Link>
               )}
             </div>
@@ -244,15 +257,33 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                   ))}
                 </dl>
               )}
-              <div className="mt-6">
-                <h3 className="text-[13px] font-bold text-ink">購入前に販売ページで確かめたいこと</h3>
-                <ul className="mt-2 space-y-1 text-[13px] leading-[1.8] text-ink-soft">
+              <p className="mt-4 text-[11px] text-ink-muted">一般的な目安です。品種や地域によって異なるため、商品ごとの説明もあわせてご確認ください。</p>
+              <details className="group mt-4 border-y border-line">
+                <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between text-[13px] text-ink [&::-webkit-details-marker]:hidden">
+                  購入前に販売ページで確かめたいこと
+                  <span aria-hidden="true" className="text-ink-muted group-open:rotate-180">⌄</span>
+                </summary>
+                <ul className="space-y-1 pb-3 text-[13px] leading-[1.8] text-ink-soft">
                   {checklist.map(item => <li key={item}>・{item}</li>)}
                 </ul>
-              </div>
-              <p className="mt-4 text-[11px] text-ink-muted">一般的な目安です。品種や地域によって異なるため、商品ごとの説明もあわせてご確認ください。</p>
-              {guideLink && (
-                <Link href={guideLink.href} className="mt-3.5 inline-block border-b border-ink pb-0.5 text-[13px] text-ink lg:hidden">{guideLink.label}</Link>
+              </details>
+
+              {/* この樹種の育て方（記事のサムネイルを大きく） */}
+              {mainGuide ? (
+                <Link href={mainGuide.href} className="group mt-7 block border border-line bg-[#fbfaf7] hover:border-gold sm:flex sm:items-center">
+                  {mainGuide.image && (
+                    <span className="relative block aspect-[40/21] overflow-hidden bg-paper-deep sm:w-[52%] sm:flex-none">
+                      <Image src={mainGuide.image} alt="" fill sizes="(max-width: 639px) 100vw, 340px" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+                    </span>
+                  )}
+                  <span className="block px-4 py-4 sm:px-5">
+                    <span className="block text-[11.5px] tracking-[0.12em] text-gold-dark">{species ? `${species}の育て方` : '育て方'}</span>
+                    <span className="mt-1.5 block font-mincho text-[15.5px] font-bold leading-[1.6] text-ink group-hover:text-gold-dark">{mainGuide.title}</span>
+                    <span className="mt-2 block text-[12.5px] text-ink-soft">記事を読む ›</span>
+                  </span>
+                </Link>
+              ) : (
+                guideLink && <Link href={guideLink.href} className="mt-4 inline-block border-b border-ink pb-0.5 text-[13px] text-ink">{guideLink.label}</Link>
               )}
             </div>
           </section>
@@ -277,30 +308,24 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           </section>
         )}
 
+        {relatedArticles.length > 0 && (
+          <section className="mt-12 lg:mt-20">
+            <SectionTitle action={<Link href="/guides" className="border-b border-ink pb-0.5 text-[13px] text-ink">育て方の記事をすべて見る</Link>}>あわせて読みたい</SectionTitle>
+            <div className="mt-4 lg:mt-6">
+              <ArticleCardGrid items={relatedArticles} />
+            </div>
+          </section>
+        )}
+
         {pairs.length > 0 && (
           <section className="mt-12 lg:mt-20">
             <SectionTitle>{isPart ? 'この鉢・道具と合わせたい盆栽' : 'あわせて揃えたい鉢・土・道具'}</SectionTitle>
-            <div className="mt-4 grid grid-cols-2 gap-x-3.5 gap-y-6 lg:mt-6 lg:grid-cols-4 lg:gap-6">
+            <div className={`mt-4 grid gap-x-3.5 gap-y-6 lg:mt-6 lg:gap-6 ${isPart ? 'grid-cols-2 lg:grid-cols-4' : 'grid-cols-3 lg:grid-cols-6'}`}>
               {pairs.map(p => <CatalogProductCard key={p.id} product={p} />)}
             </div>
           </section>
         )}
 
-        {relatedArticles.length > 0 && (
-          <section className="mt-12 lg:mt-20">
-            <SectionTitle>関連する育て方ガイド</SectionTitle>
-            <ul className="mt-4 border-t border-line lg:mt-6">
-              {relatedArticles.map(article => (
-                <li key={article.slug} className="border-b border-line">
-                  <Link href={`/guides/${article.slug}`} className="flex flex-col gap-1 py-4 lg:flex-row lg:items-baseline lg:gap-6">
-                    <span className="shrink-0 text-[11px] tracking-[0.04em] text-gold-dark lg:w-28">{article.category}</span>
-                    <span className="font-mincho text-[15px] font-bold leading-snug tracking-[0.04em] text-ink">{article.title}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
       </div>
 
       <ProductBuyBar product={product} />
