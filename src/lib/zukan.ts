@@ -39,7 +39,7 @@ export interface ZukanEntry {
 export const ZUKAN_GROUPS = ['もみじ', '松柏類', '桜', '梅・長寿梅', 'さつき', 'いろいろな樹に付く名前'] as const
 
 // 樹形は鉢植えの苗（ポット苗）には当てはめない（「寄せ植えにも」のような用途の言葉で当たるため）
-const JUKEI_EXCLUDES = ['ポット苗', 'ポット']
+const JUKEI_EXCLUDES = ['ポット']
 
 export const ZUKAN_ENTRIES: ZukanEntry[] = [
   // ---- 樹形 ----
@@ -237,7 +237,7 @@ export const ZUKAN_ENTRIES: ZukanEntry[] = [
     kind: 'jukei',
     name: '寄せ植え',
     reading: 'よせうえ',
-    summary: '何本もの樹を1つの鉢に植えて、林や森の景色をつくる樹形です。',
+    summary: '何本もの樹を1つの鉢に植えて、林や森の景色をつくる樹形です。1本では出せない、遠くまで続く林の奥行きを楽しみます。',
     points: [
       '1つの鉢に、別々の根をもつ樹が何本も植わっている',
       '高い樹と低い樹、太い樹と細い樹を組み合わせて奥行きを出している',
@@ -415,7 +415,7 @@ export const ZUKAN_ENTRIES: ZukanEntry[] = [
     ],
     species: [{ label: '真柏', category: 'shimpaku' }],
     care: [
-      '伸びた芽は、はさみを使わず指で摘みます。はさみで切ると切り口が茶色くなりやすいためです。',
+      '伸びた芽は、はさみを使わず指でつまんで摘みます。はさみで葉の途中を切ると、切り口が茶色く変わります。',
       '針金かけは10〜11月と2〜3月が向いています。',
       '長寿梅やボケなどと近くに置くと赤星病が出ることがあるので、離して置きます。',
     ],
@@ -642,7 +642,7 @@ export const ZUKAN_ENTRIES: ZukanEntry[] = [
     group: '梅・長寿梅',
     name: '冬至梅',
     reading: 'とうじばい',
-    summary: '梅のなかでも早く咲く、白い一重の花の品種です。野梅系に入ります。',
+    summary: '梅のなかでも早い時期に咲く、白い一重の花の品種です。野梅系に入り、枝が細かく出て香りのよい梅です。',
     points: [
       '白い一重の花で、梅のなかでは早く咲く',
       '野梅系で、枝が細かく出て香りがよい',
@@ -650,7 +650,7 @@ export const ZUKAN_ENTRIES: ZukanEntry[] = [
     ],
     species: [{ label: '梅', category: 'ume' }],
     care: [
-      '室内に飾るのは花の時期の数日にとどめ、ふだんは屋外の日なたで育てます。',
+      '室内に飾るのは花の時期の2〜3日にとどめ、ふだんは屋外の日なたで育てます。',
       '花が終わったらすぐに剪定します。夏の管理が翌年の花の量を決めるので、夏の水切れに気をつけます。',
     ],
     articles: ['article-43', 'article-13'],
@@ -703,12 +703,32 @@ export function zukanProductsHref(entry: ZukanEntry): string {
 // 商品名にこの項目の言葉が入っている盆栽（鉢・道具などは除く）
 export function matchZukanProducts(entry: ZukanEntry, products: CatalogProduct[]): CatalogProduct[] {
   const terms = entry.terms.map(normalizeText)
-  const excludes = [...(entry.excludes ?? []), ...(entry.kind === 'jukei' ? JUKEI_EXCLUDES : [])].map(normalizeText)
+  const excludes = (entry.excludes ?? []).map(normalizeText)
+  const skip = entry.kind === 'jukei' ? JUKEI_EXCLUDES.map(normalizeText) : []
   return products.filter(product => {
     if (product.productType !== 'tree') return false
     let name = normalizeText(product.originalName)
-    if (entry.kind === 'jukei' && excludes.some(word => JUKEI_EXCLUDES.map(normalizeText).includes(word) && name.includes(word))) return false
+    if (skip.some(word => name.includes(word))) return false
     for (const word of excludes) name = name.split(word).join(' ')
     return terms.some(term => name.includes(term))
   })
+}
+
+// ページの説明文（110〜120字に収まる組み合わせを選ぶ）
+export function zukanDescription(entry: ZukanEntry): string {
+  const kind = entry.kind === 'jukei' ? '樹形' : '名前'
+  const what = entry.kind === 'jukei' ? '向いている樹種' : '樹種'
+  const heads = [`盆栽の${kind}「${entry.name}（${entry.reading}）」について。`, `盆栽の${kind}「${entry.name}」について。`, '']
+  const tails = [
+    `見分け方、${what}、育てるときの注意と、商品名に「${entry.name}」と入った盆栽を楽天市場の掲載商品から紹介します。`,
+    `見分け方、${what}、育てるときの注意と、商品名に「${entry.name}」と入った盆栽を紹介します。`,
+    `見分け方と育てるときの注意、「${entry.name}」と入った盆栽を紹介します。`,
+    '見分け方と育てるときの注意をまとめました。',
+  ]
+  const candidates = heads.flatMap(head => tails.map(tail => `${head}${entry.summary}${tail}`))
+  return (
+    candidates.find(text => text.length >= 110 && text.length <= 120) ??
+    candidates.filter(text => text.length <= 120).sort((a, b) => b.length - a.length)[0] ??
+    entry.summary
+  )
 }

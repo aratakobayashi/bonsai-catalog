@@ -3,8 +3,6 @@ import Link from 'next/link'
 import { CareIcon } from '@/components/catalog/CareIcon'
 import {
   TASK_ICON,
-  speciesInGroup,
-  speciesLabel,
   taskTargetLabel,
   type CareGroup,
   type CareTask,
@@ -86,7 +84,6 @@ export function BasicsList({ care }: { care: Pick<GroupMonthCare, 'water' | 'pla
 
 // 樹種グループのカード（その月の水やり・置き場所・肥料と作業）
 export function GroupCareCard({ group, care, guides }: { group: CareGroup; care: GroupMonthCare; guides: GuideLink[] }) {
-  const members = speciesInGroup(group.key).map(speciesLabel).join('・')
   return (
     <section aria-labelledby={`group-${group.key}`} className="flex min-w-0 flex-col border border-line bg-white">
       <header className="flex items-start gap-3 border-b border-line px-4 py-3.5 lg:px-5">
@@ -95,7 +92,7 @@ export function GroupCareCard({ group, care, guides }: { group: CareGroup; care:
         </span>
         <div className="min-w-0">
           <h3 id={`group-${group.key}`} className="font-mincho text-[18px] font-bold tracking-[0.06em] text-ink">{group.label}</h3>
-          <p className="mt-0.5 text-[12px] leading-relaxed text-ink-muted">{members}</p>
+          <p className="mt-0.5 text-[12px] leading-relaxed text-ink-muted">{group.examples}</p>
         </div>
       </header>
       <div className="flex-1 px-4 pb-2 pt-3 lg:px-5">
