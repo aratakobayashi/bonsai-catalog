@@ -19,6 +19,7 @@ import type { Product } from '@/types'
 import { SelectionCard } from '@/components/selection/SelectionCard'
 import { getSelectionGuideLinks, isFeaturable, selectionCounts } from '@/components/selection/selection-meta'
 import { PRODUCT_TYPE_LABELS } from '@/lib/product-classify'
+import { CONIFER_SPECIES } from '@/lib/selections-extra'
 
 interface SelectionPageProps {
   params: { slug: string }
@@ -53,10 +54,11 @@ export function generateMetadata({ params }: SelectionPageProps): Metadata {
 
 // 樹種カードから商品一覧へのリンク（特集ごと・項目名ごと）
 const POINT_LINKS: Record<string, Record<string, { species: string; href: string }>> = {
+  // 一覧の絞り込み（正月飾り）と同じ範囲。松は五葉松・黒松などの松柏類
   'new-year-bonsai': {
-    松: { species: 'goyomatsu', href: '/products/category/goyomatsu' },
-    梅: { species: 'ume', href: '/products/category/ume' },
-    南天: { species: 'nanten', href: '/products/category/nanten' },
+    松: { species: 'cat-shohaku', href: '/products?type=tree&use=new_year&species=cat-shohaku' },
+    梅: { species: 'ume', href: '/products?type=tree&use=new_year&species=ume' },
+    南天: { species: 'nanten', href: '/products?type=tree&use=new_year&species=nanten' },
   },
   'bonsai-gift': {
     花を楽しんでほしい: { species: 'cat-hana', href: '/products?type=tree&species=cat-hana' },
@@ -72,6 +74,22 @@ function parsePoint(point: string) {
   const text = i >= 0 ? point.slice(i + 1) : point
   const m = label.match(/^(.+?)（(.+)）$/)
   return { name: m ? m[1] : label, sub: m ? m[2] : '', text }
+}
+
+// 比較表の「分類」：樹種が分かるときは樹種から決め（販売店の登録の分類は、桜の寄せ植えが「松柏類」になるなど食い違うことがある）、
+// 分からないときだけ登録の分類を使う
+function groupLabel(p: CatalogProduct): string {
+  if (p.productType === 'kokedama') return '苔玉'
+  const key = p.speciesKey
+  if (!key) return p.category
+  if (key === 'gajumaru' || key === 'ficus') return '観葉・室内'
+  if (CONIFER_SPECIES.includes(key)) return '松柏類'
+  if (key === 'himeringo' || key === 'ringo') return '実もの'
+  const first = p.enjoy[0]
+  if (first === 'flower') return '花もの'
+  if (first === 'fruit') return '実もの'
+  if (first === 'leaf_color') return '雑木類'
+  return p.category
 }
 
 // サイズ別の参考価格（サイズ不明・価格なしの商品は除く）
@@ -349,7 +367,7 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
                           </Link>
                         </td>
                         <td className="whitespace-nowrap px-3 py-2.5 text-ink-soft">
-                          {isParts ? PRODUCT_TYPE_LABELS[product.productType] : product.category}
+                          {isParts ? PRODUCT_TYPE_LABELS[product.productType] : groupLabel(product)}
                         </td>
                         {!isParts && showSize && (
                           <td className="whitespace-nowrap px-3 py-2.5 text-ink-soft">

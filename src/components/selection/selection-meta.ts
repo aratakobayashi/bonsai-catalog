@@ -22,7 +22,7 @@ export function isFeaturable(selection: Pick<Selection, 'slug'>, counts: Map<str
 const SEASON_LEAD: string[][] = [
   ['new-year-bonsai', 'evergreen-bonsai', 'fruit-bonsai'],
   ['flowering-bonsai', 'new-year-bonsai', 'evergreen-bonsai'],
-  ['flowering-bonsai', 'beginner-mini-bonsai', 'bonsai-gift'],
+  ['flowering-bonsai', 'starter-tools', 'beginner-mini-bonsai'],
   ['flowering-bonsai', 'beginner-mini-bonsai', 'starter-tools'],
   ['bonsai-gift', 'flowering-bonsai', 'beginner-mini-bonsai'],
   ['flowering-bonsai', 'bonsai-gift', 'indoor-bonsai'],
@@ -45,14 +45,14 @@ export function orderSelectionsBySeason<T extends Pick<Selection, 'slug'>>(selec
 const SELECTION_GUIDES: Record<string, string[]> = {
   'new-year-bonsai': ['article-6', 'article-3', 'nanten-guide'],
   'beginner-mini-bonsai': ['article-11', 'article-4', 'beginner-tree-species-guide'],
-  'bonsai-gift': ['article-5', 'article-11'],
+  'bonsai-gift': ['article-26', 'article-32', 'article-37'],
   'indoor-bonsai': ['article-51', 'gajumaru-bonsai-guide', 'article-12'],
   'bonsai-under-3000': ['article-4', 'budget-guide'],
   'autumn-leaves-bonsai': ['article-1', 'autumn-maple-bonsai-guide', 'maple-varieties-guide'],
   'flowering-bonsai': ['sakura-general-guide', 'azalea-guide', 'article-3'],
   'fruit-bonsai': ['article-2', 'nanten-guide', 'umemodoki-bonsai-guide'],
   'evergreen-bonsai': ['article-6', 'article-10', 'article-20'],
-  'celebration-bonsai': ['article-3', 'senior-friendly-bonsai-guide'],
+  'celebration-bonsai': ['article-32', 'article-29', 'article-36', 'article-3'],
   'starter-tools': ['article-7', 'article-16', 'article-8'],
 }
 const COMMON_GUIDE = 'bonsai-watering-master-guide-2025'

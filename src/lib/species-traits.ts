@@ -36,7 +36,7 @@ const RAW_TRAITS: SpeciesTrait[] = [
   { key: 'ume', label: '梅', pattern: /梅(?!もどき|モドキ)|うめ|ウメ(?!モドキ)/, place: 'outdoor', enjoy: ['flower'], seasons: ['winter', 'spring'], level: 'normal' },
   { key: 'sakura', label: '桜', pattern: /桜|さくら|サクラ/, place: 'outdoor', enjoy: ['flower'], seasons: ['spring'], level: 'normal' },
   { key: 'satsuki', label: 'さつき', pattern: /さつき|サツキ|皐月|ツツジ|つつじ/, place: 'outdoor', enjoy: ['flower'], seasons: ['spring', 'summer'], level: 'normal' },
-  { key: 'fuji', label: '藤', pattern: /藤/, place: 'outdoor', enjoy: ['flower'], seasons: ['spring'], level: 'normal' },
+  { key: 'fuji', label: '藤', pattern: /(?<!葛)藤(?!色)/, place: 'outdoor', enjoy: ['flower'], seasons: ['spring'], level: 'normal' },
   // 夏椿（ヒメシャラの仲間・落葉樹）は椿とは別の樹種
   { key: 'natsutsubaki', label: '夏椿', pattern: /夏椿|ナツツバキ|沙羅|ヒメシャラ|姫シャラ/, place: 'outdoor', enjoy: ['flower', 'leaf_color'], seasons: ['summer'], level: 'normal' },
   { key: 'tsubaki', label: '椿', pattern: /椿|ツバキ|山茶花|サザンカ/, place: 'outdoor', enjoy: ['flower', 'evergreen'], seasons: ['winter', 'spring'], level: 'easy' },
