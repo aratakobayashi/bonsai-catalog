@@ -137,7 +137,7 @@ export function soroeruPicks(state: SoroeruState, guide: Guide, products: Catalo
   const range = POT_RANGE[state.size]
   const pots = state.purpose === 'repot' ? best(products.filter(p => p.productType === 'pot' && /鉢/.test(p.originalName) && potSizeMatches(p.originalName, range)), 3) : []
   const soilKinds = SOIL[state.group].kinds
-  const soils = state.purpose === 'repot' ? best(products.filter(p => p.productType === 'soil' && soilKinds.test(p.originalName) && !/スコップ|すくい|シャベル/.test(p.originalName)), 3) : []
+  const soils = state.purpose === 'repot' ? best(products.filter(p => p.productType === 'soil' && soilKinds.test(p.originalName) && /土|砂|軽石/.test(p.displayName) && !/スコップ|すくい|シャベル|線|鉢/.test(p.displayName)), 3) : []
   const tools = guide.tools.map(tool => ({
     label: tool.label,
     note: tool.note,
