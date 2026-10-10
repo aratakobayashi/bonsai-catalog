@@ -217,9 +217,9 @@ export default async function HomePage() {
               </span>
             )}
           </figcaption>
-          {/* 今月の一鉢（買える商品を小さく添える） */}
+          {/* 今月の一鉢（買える商品を小さく添える。SP は見出し・ボタンを先に見せるため、目的の入口の下に出す） */}
           {heroProduct && (
-            <Link href={`/products/${heroProduct.id}`} prefetch={false} className="group mx-4 mt-3 flex items-center gap-3 border border-line bg-paper p-2.5 hover:border-ink lg:mx-0">
+            <Link href={`/products/${heroProduct.id}`} prefetch={false} className="group mt-3 hidden lg:flex items-center gap-3 border border-line bg-paper p-2.5 hover:border-ink lg:mx-0">
               <span className="relative h-16 w-16 flex-none overflow-hidden bg-paper-deep">
                 <ProductThumb src={heroProduct.imageUrl} alt="" sizes="64px" size={160} />
               </span>
@@ -277,6 +277,20 @@ export default async function HomePage() {
                 ))}
               </ul>
             </nav>
+          )}
+          {/* SP：今月の一鉢 */}
+          {heroProduct && (
+            <Link href={`/products/${heroProduct.id}`} prefetch={false} className="group mt-6 flex lg:hidden items-center gap-3 border border-line bg-paper p-2.5 hover:border-ink lg:mx-0">
+              <span className="relative h-16 w-16 flex-none overflow-hidden bg-paper-deep">
+                <ProductThumb src={heroProduct.imageUrl} alt="" sizes="64px" size={160} />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-[11px] tracking-[0.1em] text-gold-dark">{season.monthLabel}の一鉢</span>
+                <span className="mt-0.5 block truncate text-[14px] font-bold text-ink group-hover:text-gold-dark">{heroProduct.displayName || heroProduct.name}</span>
+                <span className="block text-[12.5px] text-ink-soft">{formatPrice(heroProduct.price)}</span>
+              </span>
+              <span className="flex-none pr-1 text-ink-muted" aria-hidden="true">›</span>
+            </Link>
           )}
         </div>
       </section>

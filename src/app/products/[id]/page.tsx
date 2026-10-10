@@ -20,10 +20,11 @@ import { getCareGuide, getPurchaseChecklist } from '@/lib/care-guides'
 import { BreadcrumbStructuredData, ProductStructuredData } from '@/components/seo/StructuredData'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { ProductBuyBar, ProductImage, ProductInfo, SeasonBar } from '@/components/catalog/ProductDetailPanel'
+import { CareIcon, iconFor } from '@/components/catalog/CareIcon'
 import { Breadcrumbs, CONTAINER, SectionTitle } from '@/components/ui/design'
 import { SelectionCard } from '@/components/selection/SelectionCard'
 import { selectionsForProduct } from '@/lib/selections'
-import { categoryLink, isPartProduct, levelLabel, placeLabel } from '@/lib/product-detail'
+import { categoryLink, isPartProduct } from '@/lib/product-detail'
 import { isEvergreen, peakLabel } from '@/lib/seasons'
 
 interface ProductPageProps {
@@ -168,14 +169,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const checklist = getPurchaseChecklist(product.productType)
   const listHref = catLink?.href ?? '/products'
   const species = catLink?.label ?? product.speciesLabel
-  const level = levelLabel(product)
-  const place = placeLabel(product)
   const peak = peakLabel(product)
-  const facts = [
-    ...(level ? [{ label: '育てやすさ', value: level }] : []),
-    ...(place ? [{ label: '置き場所', value: place }] : []),
-    ...(peak ? [{ label: '見頃', value: peak }] : []),
-  ]
   const title = productHeading(product, product.displayName || product.name)
   const aboutTitle = !isPart && species ? `${species}について` : careGuide?.title
   const guideLink = careGuide?.guideLink && { href: careGuide.guideLink.href, label: !isPart && species ? `${species}の育て方を読む` : careGuide.guideLink.label }
@@ -234,31 +228,27 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             </div>
             <div className="mt-2.5 min-w-0 lg:mt-0">
               {!isPart && catLink?.intro && <p className="text-[13.5px] leading-[2] text-ink-soft lg:text-[15px]">{catLink.intro}</p>}
-              {!isPart && facts.length > 0 && (
-                <dl className="mt-5 grid grid-cols-2 gap-x-8 gap-y-4 lg:mt-7 lg:grid-cols-3">
-                  {facts.map(fact => (
-                    <div key={fact.label}>
-                      <dt className="text-[11px] text-ink-muted">{fact.label}</dt>
-                      <dd className="mt-1 text-[15px] text-ink lg:text-base">{fact.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              )}
               {!isPart && peak && !isEvergreen(product) && (
-                <div className="mt-4 lg:mt-7">
-                  <div className="mb-2 text-[11px] text-ink-muted">見頃の目安　{peak}</div>
+                <div className="mt-5 lg:mt-7">
+                  <div className="mb-2 flex items-center gap-1.5 text-[12px] text-ink-soft"><CareIcon name="season" className="h-4 w-4 text-gold-dark" />見頃の目安　<span className="font-bold text-ink">{peak}</span></div>
                   <SeasonBar product={product} />
                 </div>
               )}
+              {/* 育て方の目安（アイコン・太字の見出し・短い説明のカード） */}
               {careGuide && (
-                <dl className="mt-6 border-t border-line lg:mt-8">
+                <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:mt-8 lg:gap-4">
                   {careGuide.items.map(item => (
-                    <div key={item.label} className="grid grid-cols-[76px_minmax(0,1fr)] gap-3.5 border-b border-paper-deep py-3 text-[13px] leading-[1.8] lg:grid-cols-[110px_minmax(0,1fr)]">
-                      <dt className="text-ink-muted">{item.label}</dt>
-                      <dd className="text-ink-soft">{item.text}</dd>
-                    </div>
+                    <li key={item.label} className="flex gap-3 bg-paper-deep/60 px-4 py-3.5">
+                      <span className="mt-0.5 flex h-8 w-8 flex-none items-center justify-center rounded-full bg-paper text-gold-dark">
+                        <CareIcon name={iconFor(item.label)} />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block text-[14px] font-bold text-ink">{item.label}</span>
+                        <span className="mt-0.5 block text-[13px] leading-[1.8] text-ink-soft">{item.text}</span>
+                      </span>
+                    </li>
                   ))}
-                </dl>
+                </ul>
               )}
               <p className="mt-4 text-[11px] text-ink-muted">一般的な目安です。品種や地域によって異なるため、商品ごとの説明もあわせてご確認ください。</p>
               <details className="group mt-4 border-y border-line">

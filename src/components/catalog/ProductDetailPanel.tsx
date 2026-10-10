@@ -12,6 +12,9 @@ import {
 } from '@/lib/product-detail'
 import type { CatalogProduct } from '@/lib/catalog-model'
 import { productHeading } from '@/lib/product-heading'
+import { CareIcon } from './CareIcon'
+import { levelLabel, placeLabel } from '@/lib/product-detail'
+import { isEvergreen, peakLabel } from '@/lib/seasons'
 import { Placeholder } from '@/components/ui/design'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { FavoriteButton } from './FavoriteButton'
@@ -97,6 +100,14 @@ export function ProductInfo({
   // 商品ページの見出しは「品種・樹種の盆栽｜特徴」に整えた名前（src/lib/product-heading.ts）
   const title = pageMode ? productHeading(product, product.displayName || product.name) : product.displayName || product.name
   const shopTitle = product.originalDisplayName || product.originalName
+  const price = stats.find(stat => stat.label === '価格')
+  const sizeStat = stats.find(stat => stat.label === '届くサイズ')
+  const peak = isEvergreen(product) ? '一年中（常緑）' : peakLabel(product)
+  const traits = [
+    { label: '育てやすさ', value: levelLabel(product), icon: 'level' },
+    { label: '置き場所', value: placeLabel(product), icon: product.place === 'indoor' ? 'indoor' : 'outdoor' },
+    { label: '見頃', value: peak ? `見頃 ${peak}` : null, icon: 'season' },
+  ].filter((t): t is { label: string; value: string; icon: string } => Boolean(t.value))
 
   return (
     <div className="min-w-0">
@@ -125,7 +136,40 @@ export function ProductInfo({
         </details>
       )}
 
-      {stats.length > 0 && (
+      {/* 商品ページ：大事な3つ（育てやすさ・置き場所・見頃）をアイコン付きの札で */}
+      {pageMode && traits.length > 0 && (
+        <ul className="mt-3 flex flex-wrap gap-1.5 lg:mt-4">
+          {traits.map(trait => (
+            <li key={trait.label} className="inline-flex items-center gap-1.5 border border-line bg-paper px-2.5 py-1.5 text-[12.5px] text-ink">
+              <CareIcon name={trait.icon} className="h-4 w-4 text-gold-dark" />
+              <span className="sr-only">{trait.label}：</span>
+              {trait.value}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {pageMode && price ? (
+        // 価格を大きく太く、送料・レビュー・サイズは小さく
+        <div className="mt-4 flex flex-wrap items-end gap-x-5 gap-y-2 border-y border-line py-3.5 lg:mt-6 lg:py-4">
+          <div>
+            <div className="text-[28px] font-bold leading-none tracking-[0.01em] text-ink lg:text-[32px]">{price.value}</div>
+            <div className="mt-1.5 flex flex-wrap gap-x-2.5 text-[11.5px] text-ink-muted">
+              {price.note && <span>{price.note}</span>}
+              {price.rating && <span>{price.rating}</span>}
+            </div>
+          </div>
+          {sizeStat && (
+            <div className="ml-auto flex items-center gap-1.5 text-right">
+              <CareIcon name="size" className="h-4 w-4 text-ink-muted" />
+              <div>
+                <div className="text-[11px] text-ink-muted">{sizeStat.label}</div>
+                <div className="text-[15px] font-bold text-ink lg:text-base">{sizeStat.value}{sizeStat.note && <span className="ml-1 text-[11.5px] font-normal text-ink-muted">{sizeStat.note}</span>}</div>
+              </div>
+            </div>
+          )}
+        </div>
+      ) : stats.length > 0 && (
         <dl className={`mt-3 grid border-y border-line lg:mt-[22px] ${STAT_COLS[stats.length]}`}>
           {stats.map((stat, i) => (
             <div key={stat.label} className={`min-w-0 py-2.5 pl-2.5 pr-1 lg:py-3.5 lg:pl-4 ${i > 0 ? 'border-l border-line' : ''}`}>
