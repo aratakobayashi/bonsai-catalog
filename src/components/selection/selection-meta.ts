@@ -18,6 +18,29 @@ export function isFeaturable(selection: Pick<Selection, 'slug'>, counts: Map<str
   return (counts.get(selection.slug) ?? 0) >= MIN_FEATURED_PRODUCTS
 }
 
+// 月ごとに先に見せる特集（トップ・特集一覧の先頭。季節の行事や見頃に合わせる）。1月〜12月
+const SEASON_LEAD: string[][] = [
+  ['new-year-bonsai', 'evergreen-bonsai', 'fruit-bonsai'],
+  ['flowering-bonsai', 'new-year-bonsai', 'evergreen-bonsai'],
+  ['flowering-bonsai', 'beginner-mini-bonsai', 'bonsai-gift'],
+  ['flowering-bonsai', 'beginner-mini-bonsai', 'starter-tools'],
+  ['bonsai-gift', 'flowering-bonsai', 'beginner-mini-bonsai'],
+  ['flowering-bonsai', 'bonsai-gift', 'indoor-bonsai'],
+  ['indoor-bonsai', 'bonsai-under-3000', 'evergreen-bonsai'],
+  ['indoor-bonsai', 'bonsai-under-3000', 'celebration-bonsai'],
+  ['celebration-bonsai', 'bonsai-gift', 'fruit-bonsai'],
+  ['autumn-leaves-bonsai', 'fruit-bonsai', 'celebration-bonsai'],
+  ['autumn-leaves-bonsai', 'fruit-bonsai', 'new-year-bonsai'],
+  ['new-year-bonsai', 'fruit-bonsai', 'bonsai-gift'],
+]
+
+// 今月の特集を先に、そのあとは定義の順に並べる
+export function orderSelectionsBySeason<T extends Pick<Selection, 'slug'>>(selections: T[], month: number): T[] {
+  const lead = SEASON_LEAD[(month - 1 + 12) % 12] ?? []
+  const rank = (slug: string) => (lead.includes(slug) ? lead.indexOf(slug) : lead.length)
+  return selections.map((s, i) => ({ s, i })).sort((a, b) => rank(a.s.slug) - rank(b.s.slug) || a.i - b.i).map(x => x.s)
+}
+
 // 特集ページの最後に案内する育て方ガイド（docs/growth/content-audit.csv で「維持」などの記事から選んだ slug）
 const SELECTION_GUIDES: Record<string, string[]> = {
   'new-year-bonsai': ['article-6', 'article-3', 'nanten-guide'],

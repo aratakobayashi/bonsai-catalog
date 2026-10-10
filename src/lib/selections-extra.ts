@@ -14,7 +14,7 @@ export const EXTRA_SELECTIONS: Selection[] = [
     eyebrow: '特集・室内で楽しむ',
     shortTitle: '室内で楽しむ盆栽',
     tagline: 'ガジュマルなど室内向きの樹種',
-    thumbnail: '/images/selections/indoor-bonsai.svg',
+    thumbnail: '/images/selections/thumbs/indoor-bonsai.jpg',
     lead: '「部屋に飾りたい」という方は多いものの、盆栽の多くは本来屋外で育てる植物です。室内でも育てやすい樹種と、屋外向きの盆栽を室内で楽しむときのコツをまとめました。',
     sections: [
       {
@@ -71,7 +71,7 @@ export const EXTRA_SELECTIONS: Selection[] = [
     eyebrow: '特集・予算から',
     shortTitle: '3,000円以下の盆栽',
     tagline: '手頃に始められるミニ盆栽・苔玉',
-    thumbnail: '/images/selections/bonsai-under-3000.svg',
+    thumbnail: '/images/selections/thumbs/bonsai-under-3000.jpg',
     lead: 'まずは手頃な価格で試してみたい、という方に向けて、3,000円以下で買える盆栽と苔玉を集めました。安さだけで選ばないためのポイントもあわせて紹介します。',
     sections: [
       {
@@ -114,7 +114,7 @@ export const EXTRA_SELECTIONS: Selection[] = [
     eyebrow: '特集・秋',
     shortTitle: '紅葉を楽しむ盆栽',
     tagline: 'もみじ・欅など季節の移ろいを',
-    thumbnail: '/images/selections/autumn-leaves-bonsai.svg',
+    thumbnail: '/images/selections/thumbs/autumn-leaves-bonsai.jpg',
     lead: '春の芽吹き、夏の青葉、秋の紅葉、冬の枝ぶりと、季節ごとに姿を変える雑木の盆栽。秋に紅葉を楽しめる樹種と、色づきをよくするための管理のポイントをまとめました。',
     sections: [
       {
@@ -157,7 +157,7 @@ export const EXTRA_SELECTIONS: Selection[] = [
     eyebrow: '特集・花もの',
     shortTitle: '花を楽しむ盆栽',
     tagline: '梅・桜・さつきなど季節の花',
-    thumbnail: '/images/selections/flowering-bonsai.svg',
+    thumbnail: '/images/selections/thumbs/flowering-bonsai.jpg',
     lead: '小さな樹に咲く花は、花もの盆栽ならではの楽しみです。季節ごとに花を楽しめる樹種と、毎年花を咲かせるための管理のポイントをまとめました。',
     sections: [
       {
@@ -201,7 +201,7 @@ export const EXTRA_SELECTIONS: Selection[] = [
     eyebrow: '特集・実もの',
     shortTitle: '実ものの盆栽',
     tagline: '姫りんご・南天など秋冬の彩り',
-    thumbnail: '/images/selections/fruit-bonsai.svg',
+    thumbnail: '/images/selections/thumbs/fruit-bonsai.jpg',
     lead: '秋から冬にかけて、小さな実がなる姿を楽しめるのが実もの盆栽です。主な樹種と、実をつけるためのポイントをまとめました。',
     sections: [
       {
@@ -244,7 +244,7 @@ export const EXTRA_SELECTIONS: Selection[] = [
     eyebrow: '特集・松柏類',
     shortTitle: '一年中緑の松柏類',
     tagline: '五葉松・黒松・真柏など',
-    thumbnail: '/images/selections/evergreen-bonsai.svg',
+    thumbnail: '/images/selections/thumbs/evergreen-bonsai.jpg',
     lead: '松や真柏などの松柏類は、冬でも緑を保つ常緑樹で、盆栽らしい力強い姿が魅力です。代表的な樹種の特徴と、管理のポイントをまとめました。',
     sections: [
       {
@@ -287,7 +287,7 @@ export const EXTRA_SELECTIONS: Selection[] = [
     eyebrow: '特集・お祝い',
     shortTitle: '長寿・お祝いの盆栽',
     tagline: '敬老の日・還暦・開店祝いに',
-    thumbnail: '/images/selections/celebration-bonsai.svg',
+    thumbnail: '/images/selections/thumbs/celebration-bonsai.jpg',
     lead: '長く育てられる盆栽は、長寿祝いや新しい門出を祝う贈り物として選ばれています。お祝いの場面に合わせた選び方と、贈るときに確認したいことをまとめました。',
     sections: [
       {
@@ -330,7 +330,7 @@ export const EXTRA_SELECTIONS: Selection[] = [
     eyebrow: '特集・道具',
     shortTitle: 'はじめての鉢・土・道具',
     tagline: '最初にそろえたいものを比較',
-    thumbnail: '/images/selections/starter-tools.svg',
+    thumbnail: '/images/selections/thumbs/starter-tools.jpg',
     lead: '盆栽を始めるときに必要な道具は、実はそれほど多くありません。最初にそろえたいものと、鉢・土・道具を選ぶときのポイントをまとめました。下の一覧は、このサイトに掲載中の鉢・土・道具です。',
     sections: [
       {

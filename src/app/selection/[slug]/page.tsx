@@ -1,19 +1,21 @@
 import { getArticleOverride } from '@/lib/article-overrides'
+import Image from 'next/image'
+import { byCuratedImage } from '@/components/home/curated'
+import photoCredits from '@/data/photo-credits.json'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { SELECTIONS, getSelection, pickSelectionProducts } from '@/lib/selections'
+import { SELECTIONS, getSelection, pickSelectionProducts, selectionPhoto } from '@/lib/selections'
 import { formatPrice, getSizeCategoryLabel } from '@/lib/utils'
 import type { CatalogProduct } from '@/lib/catalog-model'
 import { LEVEL_OPTIONS, SPECIES_OPTIONS, getCatalogProducts } from '@/lib/catalog'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { ProductThumb } from '@/components/catalog/ProductThumb'
-import { SITE_URL } from '@/lib/site'
+import { SITE_URL, absoluteUrl } from '@/lib/site'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { Breadcrumbs, CONTAINER, ChipLink, Placeholder, SectionTitle, chipClass } from '@/components/ui/design'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import type { Product } from '@/types'
-import { SelectionThumb } from '@/components/selection/SelectionThumb'
 import { SelectionCard } from '@/components/selection/SelectionCard'
 import { getSelectionGuideLinks, isFeaturable, selectionCounts } from '@/components/selection/selection-meta'
 import { PRODUCT_TYPE_LABELS } from '@/lib/product-classify'
@@ -42,7 +44,10 @@ export function generateMetadata({ params }: SelectionPageProps): Metadata {
       description: selection.description,
       type: 'article',
       url: `/selection/${selection.slug}`,
+      // SNS で共有したときの画像（写真＋特集名のサムネイル）
+      images: [{ url: absoluteUrl(selection.thumbnail), width: 1200, height: 630 }],
     },
+    twitter: { card: 'summary_large_image', images: [absoluteUrl(selection.thumbnail)] },
   }
 }
 
@@ -107,7 +112,8 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
   const showLevel = products.some(p => p.level)
   const showReviews = products.some(p => p.reviewCount > 0)
   const pageUrl = `${SITE_URL}/selection/${selection.slug}`
-  const cards = products
+  // 文字やバナーのない写真の商品を先に（特集の並びはそのまま）
+  const cards = [...products].sort(byCuratedImage)
 
   const pointLinks = POINT_LINKS[selection.slug] ?? {}
   const catalogLinks = selection.catalog
@@ -130,6 +136,9 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
   }
 
   const [firstSection, ...restSections] = selection.sections
+  // 見出しの写真（文字なし）と出典
+  const heroPhoto = selectionPhoto(selection)
+  const heroCredit = (photoCredits as Record<string, { creator?: string; license?: string; source?: string }>)[heroPhoto]
 
   return (
     <>
@@ -145,19 +154,37 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
       />
 
       <article className="pb-12 lg:pb-20">
-        {/* 見出し（SP は商品を早く見せるためイラストを省き、短いリードだけ） */}
-        <header className="lg:mx-auto lg:max-w-[1184px] lg:px-12">
-          <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: '特集', href: '/selection' }, { label: selection.shortTitle }]} className="hidden pt-6 lg:block" />
-          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_480px] lg:items-end lg:gap-16 lg:pt-8">
-            <div className="px-4 pt-5 lg:px-0 lg:pt-0">
-              <p className="text-[11px] tracking-[0.18em] text-gold-dark lg:text-xs lg:tracking-[0.2em]">{selection.eyebrow.replace(/^特集・/, '特集　')}</p>
-              <h1 className="mt-2 font-mincho text-[23px] font-bold leading-[1.45] tracking-[0.08em] text-ink lg:mt-3 lg:text-[40px]">{selection.h1}</h1>
-              <p className="mt-2.5 text-[13px] leading-[1.9] text-ink-soft lg:mt-[18px] lg:text-[15px] lg:leading-[2]">{selection.lead}</p>
-              <PrDisclosure className="mt-2.5 lg:mt-5" />
+        {/* 見出し：特集の写真を大きく敷き、その上に特集名。SP はリードを写真の下に出す */}
+        <header>
+          <div className="lg:mx-auto lg:max-w-[1184px] lg:px-12">
+            <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: '特集', href: '/selection' }, { label: selection.shortTitle }]} className="hidden pt-6 lg:block" />
+          </div>
+          <div className="relative h-[240px] overflow-hidden bg-ink sm:h-[300px] lg:mx-auto lg:mt-6 lg:h-[440px] lg:max-w-[1184px]">
+            <Image src={heroPhoto} alt="" fill priority sizes="(max-width: 1183px) 100vw, 1184px" className="object-cover" />
+            <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(18,16,13,.82)_0%,rgba(18,16,13,.35)_55%,rgba(18,16,13,.1)_100%)] lg:bg-[linear-gradient(90deg,rgba(18,16,13,.85)_0%,rgba(18,16,13,.55)_45%,rgba(18,16,13,.05)_85%)]" />
+            <div className="absolute inset-x-0 bottom-0 px-4 pb-5 lg:inset-y-0 lg:left-0 lg:flex lg:max-w-[620px] lg:flex-col lg:justify-center lg:px-14 lg:pb-0">
+              <p className="flex items-center gap-3 text-[11px] tracking-[0.24em] text-[#d6ba84] lg:text-xs">
+                特集
+                <span className="h-px w-10 bg-[#d6ba84]" aria-hidden="true" />
+              </p>
+              <h1 className="mt-2 font-mincho text-[23px] font-bold leading-[1.45] tracking-[0.08em] text-white lg:mt-4 lg:text-[38px]">{selection.h1}</h1>
+              <p className="mt-4 hidden text-[15px] leading-[2] text-white/85 lg:block">{selection.lead}</p>
             </div>
-            <div className="relative hidden aspect-[16/10] overflow-hidden bg-paper-deep lg:block">
-              <SelectionThumb selection={selection} priority className="absolute inset-0 h-full w-full" />
-            </div>
+          </div>
+          {heroCredit && (
+            <p className="mt-1.5 px-4 text-right text-[11px] text-ink-muted lg:mx-auto lg:max-w-[1184px]">
+              写真：
+              {heroCredit.source ? (
+                <a href={heroCredit.source} target="_blank" rel="noopener noreferrer" className="underline">{heroCredit.creator || '出典'}</a>
+              ) : (
+                heroCredit.creator
+              )}
+              {heroCredit.license && ` / ${heroCredit.license}`}
+            </p>
+          )}
+          <div className="px-4 lg:mx-auto lg:max-w-[1184px] lg:px-12">
+            <p className="mt-3 text-[13px] leading-[1.9] text-ink-soft lg:hidden">{selection.lead}</p>
+            <PrDisclosure className="mt-2.5 lg:mt-4" />
           </div>
         </header>
 

@@ -8,7 +8,8 @@ import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { CONTAINER } from '@/components/ui/design'
 import { SELECTIONS, getSelection, pickSelectionProducts, type Selection } from '@/lib/selections'
 import { formatPrice } from '@/lib/utils'
-import { isFeaturable, selectionCounts } from '@/components/selection/selection-meta'
+import { isFeaturable, orderSelectionsBySeason, selectionCounts } from '@/components/selection/selection-meta'
+import { SelectionCard } from '@/components/selection/SelectionCard'
 import { SelectionThumb } from '@/components/selection/SelectionThumb'
 import { ProductThumb } from '@/components/catalog/ProductThumb'
 import { Placeholder } from '@/components/ui/design'
@@ -182,6 +183,9 @@ export default async function HomePage() {
   // 掲載商品が少ない特集はトップに出さない
   const counts = selectionCounts(products)
   const featuredCount = SELECTIONS.filter(s => isFeaturable(s, counts)).length
+  // 特集：掲載商品のある特集を、今月の特集から順に
+  const features = orderSelectionsBySeason(SELECTIONS.filter(s => isFeaturable(s, counts)), month)
+  const seasonLabel = `${month}月`
   const purposes = PURPOSES.flatMap(p => {
     const selection = getSelection(p.slug)
     if (!selection || !isFeaturable(selection, counts)) return []
@@ -323,6 +327,56 @@ export default async function HomePage() {
           </div>
         </section>
 
+        {/* 特集（写真のカードで大きく。今月の特集を先頭に。SP は1枚目を大きく、残りは横にスクロール） */}
+        {features.length > 0 && (
+          <section className="pt-12 lg:pt-24" aria-labelledby="home-features">
+            <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1">
+              <h2 id="home-features" className="font-mincho text-xl font-bold tracking-[0.06em] text-ink lg:text-[26px]">特集から選ぶ</h2>
+              <span className="order-last w-full text-xs text-ink-muted lg:order-none lg:w-auto lg:text-[12.5px]">目的や季節ごとに、選び方と商品をまとめました</span>
+              <Link href="/selection" className="-my-3 ml-auto inline-flex min-h-11 items-center text-[13px] text-ink lg:my-0 lg:min-h-0">
+                <span className="border-b border-ink pb-0.5">すべての特集（{featuredCount}件）</span>
+              </Link>
+            </div>
+            <div className="mt-[18px] lg:mt-7 lg:grid lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-6">
+              {/* 今月の特集 */}
+              <Link href={`/selection/${features[0].slug}`} className="group block">
+                <span className="relative block aspect-[40/21] overflow-hidden bg-ink">
+                  <SelectionThumb selection={features[0]} sizes="(max-width: 1023px) 100vw, 640px" className="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]" />
+                  <span className="absolute left-3 top-3 bg-gold px-2.5 py-1 text-[11px] font-bold tracking-[0.12em] text-white lg:left-4 lg:top-4">{seasonLabel}のおすすめ</span>
+                </span>
+                <span className="mt-3 block font-mincho text-[17px] font-bold tracking-[0.04em] text-ink group-hover:text-gold-dark lg:text-xl">{features[0].shortTitle}</span>
+                <span className="mt-1 block text-[12.5px] leading-relaxed text-ink-soft lg:text-[13.5px]">
+                  {features[0].tagline}
+                  {(counts.get(features[0].slug) ?? 0) > 0 && <span className="ml-2 text-ink-muted">{counts.get(features[0].slug)}件</span>}
+                </span>
+              </Link>
+              {/* 次の特集（SP は横にスクロール、PC は2列×2段） */}
+              <ul className="-mx-4 mt-6 flex snap-x gap-3.5 overflow-x-auto px-4 pb-1 lg:mx-0 lg:mt-0 lg:grid lg:grid-cols-2 lg:content-start lg:gap-x-5 lg:gap-y-5 lg:overflow-visible lg:px-0 lg:pb-0">
+                {features.slice(1, 5).map(selection => (
+                  <li key={selection.slug} className="w-[70%] flex-none snap-start sm:w-[44%] lg:w-auto">
+                    <SelectionCard selection={selection} compact sizes="(max-width: 1023px) 70vw, 300px" />
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* 残りの特集は名前だけ並べる */}
+            {features.length > 5 && (
+              <ul className="mt-6 flex flex-wrap gap-2 lg:mt-8">
+                {features.slice(5).map(selection => (
+                  <li key={selection.slug}>
+                    <Link href={`/selection/${selection.slug}`} className="inline-flex min-h-11 items-center border border-line bg-paper px-3.5 text-[13px] text-ink hover:border-ink">
+                      {selection.shortTitle}
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <Link href="/shindan" className="inline-flex min-h-11 items-center border border-ink px-3.5 text-[13px] text-ink hover:bg-ink hover:text-paper">迷ったら かんたん盆栽診断</Link>
+                </li>
+              </ul>
+            )}
+          </section>
+        )}
+
         {/* いま見頃の盆栽 */}
         <section className="pt-12 lg:pt-24">
           <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1">
@@ -373,31 +427,6 @@ export default async function HomePage() {
             </ul>
           </section>
         )}
-
-        {/* 目的から選ぶ */}
-        <section className="pt-12 lg:pt-24">
-          <h2 className="font-mincho text-xl font-bold tracking-[0.06em] text-ink lg:text-[26px]">目的から選ぶ</h2>
-          <ul className="mt-3 grid border-t border-line lg:mt-5 lg:grid-cols-2 lg:gap-x-12">
-            {purposes.map(({ slug, label, criteria, selection }) => (
-              <li key={slug} className="border-b border-line">
-                <Link href={`/selection/${slug}`} className="group flex items-center gap-3 py-3 lg:gap-4 lg:py-4">
-                  <span className="h-10 w-16 flex-none overflow-hidden bg-paper-deep lg:h-[50px] lg:w-20">
-                    <SelectionThumb selection={selection} className="h-full w-full" />
-                  </span>
-                  <span className="flex min-w-0 flex-1 flex-col">
-                    <span className="font-mincho text-base font-bold text-ink group-hover:text-gold-dark lg:text-[17px]">{label}</span>
-                    <span className="mt-0.5 text-[11.5px] text-ink-soft lg:text-[12.5px]">{criteria}</span>
-                  </span>
-                  <span className="flex-none text-ink-muted" aria-hidden="true">›</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-2 flex flex-wrap gap-x-6 text-[13px]">
-            <Link href="/selection" className="inline-flex min-h-11 items-center text-ink"><span className="border-b border-ink pb-0.5">特集をすべて見る（{featuredCount}件）</span></Link>
-            <Link href="/shindan" className="inline-flex min-h-11 items-center text-ink"><span className="border-b border-ink pb-0.5">迷ったら かんたん盆栽診断</span></Link>
-          </div>
-        </section>
 
         {/* 育て方を読む（PC は3列、SP は左に小さな画像の行。/guides の一覧と同じ見せ方） */}
         <section className="pt-12 lg:pt-24">

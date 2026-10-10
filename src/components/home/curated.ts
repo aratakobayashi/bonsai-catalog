@@ -21,6 +21,9 @@ function imageScore(product: Pick<CatalogProduct, 'id' | 'imageUrl'>): number {
 export const byReviews = (a: CatalogProduct, b: CatalogProduct) =>
   b.reviewCount - a.reviewCount || b.reviewAverage - a.reviewAverage
 
+// 写真のきれいな商品を先に（それ以外の並びは変えない。Array.prototype.sort は安定ソート）
+export const byCuratedImage = (a: CatalogProduct, b: CatalogProduct) => imageScore(b) - imageScore(a)
+
 // 写真のきれいな商品を先に、その中ではレビューの多い順
 export const byCuratedThenReviews = (a: CatalogProduct, b: CatalogProduct) =>
   imageScore(b) - imageScore(a) || byReviews(a, b)

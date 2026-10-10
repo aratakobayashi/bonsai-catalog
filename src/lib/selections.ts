@@ -26,7 +26,7 @@ export interface Selection {
   // 一覧・カードに出す短い名前と一言
   shortTitle: string
   tagline: string
-  // サムネイルのイラスト（public/images/selections/）
+  // サムネイル（写真＋特集名、1200×630。scripts/thumbs/render-selections.mjs で作る）。文字なしの写真は selectionPhoto()
   thumbnail: string
   // 掲載する商品の条件
   filter: (product: CatalogProduct) => boolean
@@ -92,7 +92,7 @@ export const SELECTIONS: Selection[] = [
     listHeading: '正月飾りにおすすめの盆栽（松・梅・南天など）',
     shortTitle: '正月に飾る盆栽',
     tagline: '松竹梅・南天など縁起物の盆栽',
-    thumbnail: '/images/selections/new-year-bonsai.svg',
+    thumbnail: '/images/selections/thumbs/new-year-bonsai.jpg',
     // 「松柏類」の「松」には反応させない
     filter: p => /(?<!真)松(?!柏)|梅|南天|竹|縁起/.test(nameText(p)),
     sort: byReviews,
@@ -142,7 +142,7 @@ export const SELECTIONS: Selection[] = [
     listHeading: '初心者向けのミニ盆栽・小品盆栽',
     shortTitle: 'はじめての一鉢',
     tagline: '育てやすいミニ盆栽・小品盆栽',
-    thumbnail: '/images/selections/beginner-mini-bonsai.svg',
+    thumbnail: '/images/selections/thumbs/beginner-mini-bonsai.jpg',
     // 初心者向けの最初の一鉢として、育てやすいとされる樹種・ミニ〜小品・1万円以下
     filter: p => (p.sizeCategory === 'mini' || p.sizeCategory === 'small') && p.level === 'easy' && p.price > 0 && p.price <= 10000,
     sort: byReviews,
@@ -191,7 +191,7 @@ export const SELECTIONS: Selection[] = [
     listHeading: '贈り物に選ばれている盆栽',
     shortTitle: '贈り物に選ぶ',
     tagline: '母の日・敬老の日・お祝いに',
-    thumbnail: '/images/selections/bonsai-gift.svg',
+    thumbnail: '/images/selections/thumbs/bonsai-gift.jpg',
     filter: p => p.gift || p.wrapping || /ギフト|プレゼント|贈|縁起/.test(nameText(p)) || p.category === '花もの',
     sort: byReviews,
     limit: 18,
@@ -206,6 +206,11 @@ export const SELECTIONS: Selection[] = [
   },
   ...EXTRA_SELECTIONS,
 ]
+
+// 特集の文字なしの写真（詳細ページの上に大きく出す）。出典は src/data/photo-credits.json
+export function selectionPhoto(selection: Pick<Selection, 'thumbnail'>): string {
+  return selection.thumbnail.replace('/selections/thumbs/', '/selections/photos/')
+}
 
 export function getSelection(slug: string): Selection | undefined {
   return SELECTIONS.find(selection => selection.slug === slug)
