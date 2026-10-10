@@ -15,3 +15,20 @@ export const HERO_PHOTOS: Partial<Record<number, string>> = {
   12: '841fddc5-70e7-4f91-87f7-e598ec027d02', // 南天（紅葉）
   1: 'ba3705ce-e2e2-461c-a71b-8ba31cc0ab13', // 五葉松
 }
+
+// トップのヒーローの大きな写真（月 1〜12）。無料で使える実物の盆栽写真（CC BY など。出典は src/data/photo-credits.json）
+// 商品写真は質がばらつくため、第一印象は質のそろった写真で決め、商品は「今月の一鉢」として小さく添える
+export const HERO_SCENES: Record<number, { src: string; alt: string }> = {
+  1: { src: '/images/articles/photos/article-10-1.jpg', alt: '白い壁の前に置かれた黒松の盆栽' },
+  2: { src: '/images/articles/photos/article-13-1.jpg', alt: '紅白の花を咲かせた梅の盆栽' },
+  3: { src: '/images/articles/photos/article-13-1.jpg', alt: '紅白の花を咲かせた梅の盆栽' },
+  4: { src: '/images/articles/photos/article-39-1.jpg', alt: '淡い桃色の花を咲かせた桜の盆栽' },
+  5: { src: '/images/articles/photos/article-49-1.jpg', alt: '桃色の花を咲かせたさつきの盆栽' },
+  6: { src: '/images/articles/photos/article-49-1.jpg', alt: '桃色の花を咲かせたさつきの盆栽' },
+  7: { src: '/images/selections/photos/evergreen-bonsai.jpg', alt: '濃い緑の葉を茂らせた松柏の盆栽' },
+  8: { src: '/images/articles/photos/article-20-1.jpg', alt: '幹のうねりが見える真柏の盆栽' },
+  9: { src: '/images/articles/photos/article-6-1.jpg', alt: 'ガラスの展示室に置かれた五葉松の盆栽' },
+  10: { src: '/images/articles/photos/autumn-maple-bonsai-guide-1.jpg', alt: '庭の棚で色づき始めたもみじの盆栽' },
+  11: { src: '/images/articles/photos/article-1-1.jpg', alt: '赤く紅葉したもみじの盆栽' },
+  12: { src: '/images/articles/photos/article-42-1.jpg', alt: '幹を斜めに伸ばした黒松の盆栽' },
+}

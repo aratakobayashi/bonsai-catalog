@@ -22,7 +22,8 @@ import { isGardenPublished } from '@/lib/garden-verification'
 import { getUpcomingEventsCount } from '@/lib/events'
 import { currentMonth, getSeasonalPick, getSeasonalShelf, type SeasonalShelf } from '@/components/home/seasonal'
 import { getHomeSpecies } from '@/components/home/species'
-import { HERO_PHOTOS } from '@/components/home/hero-photos'
+import { HERO_PHOTOS, HERO_SCENES } from '@/components/home/hero-photos'
+import photoCredits from '@/data/photo-credits.json'
 import { byCuratedThenReviews, byReviews, hasCuratedImage } from '@/components/home/curated'
 
 // 1時間ごとに再生成（ISR）。ページを開いた直後のHTMLに商品・記事が入る
@@ -41,17 +42,6 @@ const PURPOSES: { slug: string; label: string; criteria: string }[] = [
   { slug: 'starter-tools', label: '鉢・土・道具', criteria: '盆栽鉢・用土・道具・針金・肥料' },
 ]
 
-// ヒーローのイラスト（public/images/selections の自前の SVG。季節の一鉢の樹種に合わせる）
-const HERO_ILLUSTRATIONS: Record<string, string> = {
-  goyomatsu: 'evergreen-bonsai',
-  ume: 'flowering-bonsai',
-  sakura: 'flowering-bonsai',
-  satsuki: 'flowering-bonsai',
-  kokedama: 'indoor-bonsai',
-  mimono: 'fruit-bonsai',
-  momiji: 'autumn-leaves-bonsai',
-  nanten: 'new-year-bonsai',
-}
 
 // 「育て方を読む」：初心者向けの基本（水やり・置き場所）と、季節の一鉢の樹種のガイド（docs/growth/content-audit.csv の記事 slug）
 const CARE_BASICS = ['bonsai-watering-master-guide-2025', 'article-12']
@@ -168,10 +158,11 @@ export default async function HomePage() {
   const trees = products.filter(p => p.productType === 'tree')
 
   const month = currentMonth()
-  const heroImage = `/images/selections/${HERO_ILLUSTRATIONS[season.slug] ?? 'beginner-mini-bonsai'}.svg`
   // 実物の写真を登録した月は、その商品の写真をヒーローにする（見つからない・画像がないときはイラスト）
   const heroPhotoId = HERO_PHOTOS[month]
   const heroProduct = heroPhotoId ? products.find(p => p.id === heroPhotoId && p.imageUrl) : undefined
+  const heroScene = HERO_SCENES[month]
+  const heroCredit = (photoCredits as Record<string, { creator?: string; license?: string; source?: string }>)[heroScene.src]
 
   // 樹種ごとの件数はカテゴリページ（/products/category/[slug]）と同じ条件で数える
   const baseFilters = parseFilters({})
@@ -209,44 +200,37 @@ export default async function HomePage() {
       {/* ヒーロー（SP は写真が先） */}
       <section className="lg:mx-auto lg:grid lg:max-w-[1184px] lg:grid-cols-[minmax(0,1fr)_560px] lg:items-center lg:gap-16 lg:px-12 lg:pt-16">
         <figure className="lg:order-last">
-          {heroProduct ? (
-            // 実物の写真（hero-photos.ts で月ごとに確かめて登録したもの）。LCP のため先に読み込み、楽天側で縮小した画像を使う
-            <Link
-              href={`/products/${heroProduct.id}`}
-              prefetch={false}
-              aria-label={`${season.monthLabel}の一鉢：${heroProduct.displayName || heroProduct.name}を見る`}
-              className="relative block aspect-[4/3] overflow-hidden bg-paper-deep lg:aspect-[5/4]"
-            >
-              <ProductThumb
-                src={heroProduct.imageUrl}
-                alt={heroProduct.displayName || heroProduct.name}
-                sizes="(max-width: 1023px) 100vw, 560px"
-                size={800}
-                priority
-              />
-            </Link>
-          ) : (
-            <Link
-              href={`/products/category/${season.slug}`}
-              aria-label={`${season.monthLabel}の一鉢：${season.name}の盆栽を見る`}
-              className="relative block aspect-[16/9] overflow-hidden bg-paper-deep lg:aspect-[16/11]"
-            >
-              {/* 自前の軽い SVG イラスト（文字や広告表記のある商品画像は使わない） */}
-              <Image
-                src={heroImage}
-                alt=""
-                width={800}
-                height={500}
-                priority
-                unoptimized
-                sizes="(max-width: 1023px) 100vw, 560px"
-                className="h-full w-full object-cover"
-              />
+          {/* 大きな写真：月ごとに選んだ実物の盆栽写真（質のそろった写真で第一印象を決める）。LCP のため先に読み込む */}
+          <Link
+            href={`/products/category/${season.slug}`}
+            aria-label={`${season.monthLabel}の盆栽：${season.name}の盆栽を見る`}
+            className="relative block aspect-[4/3] overflow-hidden bg-paper-deep lg:aspect-[5/4]"
+          >
+            <Image src={heroScene.src} alt={heroScene.alt} fill priority sizes="(max-width: 1023px) 100vw, 560px" className="object-cover" />
+          </Link>
+          <figcaption className="flex items-start gap-3 px-4 pt-1.5 text-[11px] text-ink-muted lg:px-0">
+            <span className="hidden lg:inline">{season.monthLabel}の盆栽・{season.name}</span>
+            {heroCredit && (
+              <span className="ml-auto text-right">
+                写真：{heroCredit.source ? <a href={heroCredit.source} target="_blank" rel="noopener noreferrer" className="underline">{heroCredit.creator || '出典'}</a> : heroCredit.creator}
+                {heroCredit.license && ` / ${heroCredit.license}`}
+              </span>
+            )}
+          </figcaption>
+          {/* 今月の一鉢（買える商品を小さく添える） */}
+          {heroProduct && (
+            <Link href={`/products/${heroProduct.id}`} prefetch={false} className="group mx-4 mt-3 flex items-center gap-3 border border-line bg-paper p-2.5 hover:border-ink lg:mx-0">
+              <span className="relative h-16 w-16 flex-none overflow-hidden bg-paper-deep">
+                <ProductThumb src={heroProduct.imageUrl} alt="" sizes="64px" size={160} />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-[11px] tracking-[0.1em] text-gold-dark">{season.monthLabel}の一鉢</span>
+                <span className="mt-0.5 block truncate text-[14px] font-bold text-ink group-hover:text-gold-dark">{heroProduct.displayName || heroProduct.name}</span>
+                <span className="block text-[12.5px] text-ink-soft">{formatPrice(heroProduct.price)}</span>
+              </span>
+              <span className="flex-none pr-1 text-ink-muted" aria-hidden="true">›</span>
             </Link>
           )}
-          <figcaption className="mt-2.5 hidden text-xs text-ink-muted lg:block">
-            {season.monthLabel}の一鉢・{season.name}　{season.title}
-          </figcaption>
         </figure>
 
         <div className="px-4 pt-6 lg:px-0 lg:pt-0">
