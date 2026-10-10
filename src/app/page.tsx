@@ -172,10 +172,14 @@ export default async function HomePage() {
   const baseFilters = parseFilters({})
   const species = getHomeSpecies(month).map(s => {
     const items = filterProducts(products, { ...baseFilters, species: s.slug, type: 'tree' })
-    // 樹種の小さな写真：写真を選び直した商品を先に、その中でレビューの多いもの
-    const photo = items.filter(p => p.imageUrl).sort(byCuratedThenReviews)[0]
+    // 樹種の写真：文字やバナーのない写真の商品（なければ写真を選び直した商品）の中で、レビューの多いもの
+    const withImage = items.filter(p => p.imageUrl)
+    const photo = (withImage.some(hasCuratedImage) ? withImage.filter(hasCuratedImage) : withImage).sort(byCuratedThenReviews)[0]
     return { ...s, count: items.length, photo }
-  }).filter(s => s.count > 0) // 商品のない樹種は出さない（リンク先が空になるため）
+  })
+    .filter(s => s.count > 0) // 商品のない樹種は出さない（リンク先が空になるため）
+    // 今が見頃の樹種を先に
+    .sort((a, b) => Number(b.inSeason) - Number(a.inSeason))
 
   const shelf = getSeasonalShelf()
   const seasonal = pickSeasonal(trees, shelf, heroProduct?.id)
@@ -279,52 +283,33 @@ export default async function HomePage() {
       </section>
 
       <div className={CONTAINER}>
-        {/* 樹種から選ぶ */}
-        <section className="pt-12 lg:grid lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-16 lg:pt-24">
-          <div>
-            <h2 className="font-mincho text-xl font-bold tracking-[0.06em] text-ink lg:text-[26px]">樹種から選ぶ</h2>
-            <p className="mt-3.5 hidden text-sm leading-[2] text-ink-soft lg:block">
-              育てやすさ・置き場所・見頃は、ほとんど樹種で決まります。まず樹種を決めると、選ぶのがぐっと楽になります。
-            </p>
-            <p className="mb-2.5 mt-2 flex items-center gap-1.5 text-[11px] text-ink-muted lg:mb-0 lg:mt-4 lg:text-[11.5px]">
-              <span className="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true" />
-              今が見頃
-            </p>
+        {/* 樹種から選ぶ（写真のタイル。SP は2列、PC は4列。今が見頃の樹種を先に） */}
+        <section className="pt-12 lg:pt-24" aria-labelledby="home-species">
+          <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1">
+            <h2 id="home-species" className="font-mincho text-xl font-bold tracking-[0.06em] text-ink lg:text-[26px]">樹種から選ぶ</h2>
+            <span className="order-last w-full text-xs text-ink-muted lg:order-none lg:w-auto lg:text-[12.5px]">育てやすさや見頃は、ほとんど樹種で決まります</span>
+            <Link href="/products?type=tree" className="-my-3 ml-auto inline-flex min-h-11 items-center text-[13px] text-ink lg:my-0 lg:min-h-0">
+              <span className="border-b border-ink pb-0.5">すべての樹種</span>
+            </Link>
           </div>
-          <div>
-            <ul className="grid border-t border-line lg:grid-cols-2 lg:gap-x-12">
-              {species.map((s, i) => (
-                <li key={s.slug} className={`border-b border-line ${i >= 6 ? 'hidden lg:block' : ''}`}>
-                  <Link href={`/products/category/${s.slug}`} className="group flex items-center gap-3 py-3 lg:gap-4 lg:py-4">
-                    {/* 樹種の小さな写真（その樹種の商品のうち、写真を選び直したもの・レビューの多いもの） */}
-                    <span className="relative h-14 w-14 flex-none overflow-hidden bg-paper-deep lg:h-[72px] lg:w-[72px]">
-                      {s.photo && <ProductThumb src={s.photo.imageUrl} alt="" sizes="72px" size={160} />}
-                    </span>
-                    <span className="flex min-w-0 flex-1 flex-col lg:flex-row lg:items-baseline lg:gap-3">
-                      <span className="flex items-center gap-1.5 font-mincho text-[17px] font-bold tracking-[0.04em] text-ink group-hover:text-gold-dark lg:w-[104px] lg:flex-none lg:text-xl">
-                        {s.name}
-                        {s.inSeason && (
-                          <>
-                            <span className="h-1.5 w-1.5 flex-none rounded-full bg-gold" aria-hidden="true" />
-                            <span className="sr-only">（今が見頃）</span>
-                          </>
-                        )}
+          <ul className="mt-[18px] grid grid-cols-2 gap-x-3 gap-y-6 lg:mt-7 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-9">
+            {species.map(s => (
+              <li key={s.slug}>
+                <Link href={`/products/category/${s.slug}`} className="group block">
+                  <span className="relative block aspect-square overflow-hidden bg-paper-deep">
+                    {s.photo && (
+                      <span className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]">
+                        <ProductThumb src={s.photo.imageUrl} alt="" sizes="(max-width: 1023px) 46vw, 260px" size={480} />
                       </span>
-                      <span className="mt-0.5 min-w-0 flex-1 text-[11.5px] leading-[1.6] text-ink-soft lg:mt-0 lg:text-[12.5px]">
-                        {s.peak}<span className="lg:hidden">・</span><br className="hidden lg:inline" />{s.care}
-                      </span>
-                    </span>
-                    {s.count > 0 && <span className="flex-none text-[11px] text-ink-muted">{s.count.toLocaleString()}件</span>}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-1 lg:hidden">
-              <Link href="/products?type=tree" className="inline-flex min-h-11 items-center text-[13px] text-ink">
-                <span className="border-b border-ink pb-0.5">すべての樹種</span>
-              </Link>
-            </div>
-          </div>
+                    )}
+                    {s.inSeason && <span className="absolute left-2 top-2 bg-gold px-2 py-0.5 text-[10.5px] font-bold tracking-[0.1em] text-white lg:left-3 lg:top-3 lg:text-[11px]">今が見頃</span>}
+                  </span>
+                  <span className="mt-2.5 block font-mincho text-[17px] font-bold tracking-[0.06em] text-ink group-hover:text-gold-dark lg:mt-3 lg:text-xl">{s.name}</span>
+                  <span className="mt-0.5 block text-[12px] leading-[1.6] text-ink-soft lg:text-[13px]">{s.appeal}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </section>
 
         {/* 特集（写真のカードで大きく。今月の特集を先頭に。SP は1枚目を大きく、残りは横にスクロール） */}
