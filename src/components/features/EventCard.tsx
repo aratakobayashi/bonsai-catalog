@@ -53,7 +53,7 @@ export function EventCard({ event, className, layout = 'list', active = false, o
         )}
         <h3
           className={cn(
-            'font-mincho font-bold leading-snug tracking-[0.03em] group-hover:text-gold-dark',
+            'font-bold leading-snug tracking-[0.02em] group-hover:text-gold-dark',
             compact ? 'line-clamp-1 text-[14.5px]' : 'mt-1.5 line-clamp-2 text-[15.5px] lg:text-[17px]',
             active ? 'text-gold-dark' : past ? 'text-ink-soft' : 'text-ink'
           )}

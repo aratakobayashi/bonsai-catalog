@@ -5,7 +5,7 @@ import EventsPageClient from './EventsPageClient'
 import { getEvents } from '@/lib/events'
 import { EventListView } from '@/components/features/EventListView'
 import { EventFiltersPlaceholder } from '@/components/features/EventFilters'
-import { currentEventsInOrder, pickFeaturedEvents, whenCounts } from '@/components/events/event-when'
+import { currentEventsInOrder, pickFeaturedEvents, whenCounts, EVENTS_FIRST_PAGE } from '@/components/events/event-when'
 import { EventFeatured } from '@/components/events/EventFeatured'
 import type { Event } from '@/types'
 import { EventViewTabsView } from './EventViewTabs'
@@ -92,7 +92,7 @@ export default async function EventsPage() {
             <EventFiltersPlaceholder className="mt-5 lg:mt-9" trailing={<EventViewTabsView active="list" />} whenCounts={counts} count={upcoming.length} />
             {featured.length > 0 && <EventFeatured events={featured} className="mt-7 lg:mt-10" />}
             <div className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-6 lg:mt-8 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-14">
-              <EventListView events={upcoming} />
+              <EventListView events={upcoming} pageSize={EVENTS_FIRST_PAGE} />
             </div>
           </div>
         }>

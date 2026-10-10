@@ -147,3 +147,6 @@ export function currentEventsInOrder(events: Event[], today: Date = startOfToday
         : eventSortKey(a) - eventSortKey(b)
     })
 }
+
+// イベント一覧で最初に出す件数（残りは「もっと見る」。最初の表示を軽くするため）
+export const EVENTS_FIRST_PAGE = 10

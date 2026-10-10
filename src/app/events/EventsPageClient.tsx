@@ -28,6 +28,7 @@ import {
   pickFeaturedEvents,
   whenCounts,
   whenRangeText,
+  EVENTS_FIRST_PAGE,
   type EventWhen,
 } from '@/components/events/event-when'
 
@@ -308,6 +309,7 @@ export default function EventsPageClient({ initialEvents }: { initialEvents?: Ev
             <EventListView
               key={`${apiQuery}|${period}|${when}`}
               events={displayed}
+              pageSize={EVENTS_FIRST_PAGE}
               selectedId={selected?.id}
               onSelect={e => setSelectedId(e.id)}
               emptyText={emptyText}

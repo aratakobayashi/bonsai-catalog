@@ -24,8 +24,8 @@ export function EventFeatured({ events, className = '' }: { events: Event[]; cla
                   <EventBadge event={event} />
                 </div>
                 <p className="mt-2 text-[11.5px] text-ink-muted">{range.year}{range.days && range.days > 1 ? `・${range.days}日間` : ''}</p>
-                <p className="font-mincho text-[16px] font-bold leading-snug tracking-[0.02em] text-ink lg:text-[17px]">{range.main}</p>
-                <h3 className="mt-2 line-clamp-2 font-mincho text-[15px] font-bold leading-snug tracking-[0.03em] text-ink group-hover:text-gold-dark">
+                <p className="text-[16px] font-bold leading-snug text-ink lg:text-[17px]">{range.main}</p>
+                <h3 className="mt-2 line-clamp-2 text-[15px] font-bold leading-snug tracking-[0.02em] text-ink group-hover:text-gold-dark">
                   {event.title}
                 </h3>
                 <p className="mt-auto flex items-baseline gap-2 pt-3 text-[12px] text-ink-soft">
