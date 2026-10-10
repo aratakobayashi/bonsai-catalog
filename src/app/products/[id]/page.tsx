@@ -8,6 +8,7 @@ import { filterProducts, getCatalogProducts, normalizeProduct, parseFilters, typ
 import { searchRakutenItems } from '@/lib/rakuten'
 import { cleanProductName } from '@/lib/product-name'
 import { productHeading } from '@/lib/product-heading'
+import { soroeruHref, soroeruStateFor } from '@/lib/soroeru'
 import { SITE_URL } from '@/lib/site'
 import { formatPrice } from '@/lib/utils'
 import { getRelatedArticles } from '@/lib/article-helpers'
@@ -321,7 +322,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
         {pairs.length > 0 && (
           <section className="mt-12 lg:mt-20">
-            <SectionTitle>{isPart ? 'この鉢・道具と合わせたい盆栽' : 'あわせて揃えたい鉢・土・道具'}</SectionTitle>
+            <SectionTitle action={!isPart ? <Link href={soroeruHref(soroeruStateFor(product))} className="border-b border-ink pb-0.5 text-[13px] text-ink">合う鉢・土・道具をまとめて見る</Link> : undefined}>{isPart ? 'この鉢・道具と合わせたい盆栽' : 'あわせて揃えたい鉢・土・道具'}</SectionTitle>
             <div className={`mt-4 grid gap-x-3.5 gap-y-6 lg:mt-6 lg:gap-6 ${isPart ? 'grid-cols-2 lg:grid-cols-4' : 'grid-cols-3 lg:grid-cols-6'}`}>
               {pairs.map(p => <CatalogProductCard key={p.id} product={p} />)}
             </div>
