@@ -15,6 +15,8 @@ import { CatalogBrowser, buildCatalogTabs } from '@/components/catalog/CatalogBr
 import { CatalogEmptyState } from '@/components/catalog/CatalogFilters'
 import { CatalogLoadError } from '@/components/catalog/CatalogLoadError'
 import { SELECTIONS } from '@/lib/selections'
+import { SITE_TOOLS } from '@/components/layout/site-tools'
+import { CareIcon } from '@/components/catalog/CareIcon'
 import { CatalogSearchTracker } from '@/components/analytics/CatalogSearchTracker'
 
 interface ProductsPageProps {
@@ -93,6 +95,14 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           <p className="font-mincho text-lg font-bold tracking-[0.04em] text-ink lg:text-xl">「{filters.q}」の検索結果</p>
         ) : activeCount === 0 ? (
           <div>
+            <span className="text-[11.5px] tracking-[0.08em] text-ink-muted">質問に答えて選ぶ</span>
+            <div className="mt-2 mb-4 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {SITE_TOOLS.filter(t => t.group === 'choose').map(t => (
+                <Link key={t.href} href={t.href} className="inline-flex min-h-9 shrink-0 items-center gap-1.5 border border-line bg-paper px-3 text-xs font-bold text-ink hover:border-ink hover:text-ink">
+                  <CareIcon name={t.icon} className="h-3.5 w-3.5 text-gold-dark" />{t.label}
+                </Link>
+              ))}
+            </div>
             <div className="flex items-baseline justify-between">
               <span className="text-[11.5px] tracking-[0.08em] text-ink-muted">目的から探す</span>
               <Link href="/selection" className="border-b border-ink pb-0.5 text-xs text-ink">特集をすべて見る</Link>

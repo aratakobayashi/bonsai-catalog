@@ -542,3 +542,12 @@
     padding: 1em 1.3em;
   }
 }
+
+/* 本文の途中の「症状から調べる」「今月の手入れ」などへの案内（画像なし・左に金の線） */
+.article-body a.article-card-tool {
+  border-left: 3px solid #b8935a;
+  background: #fff;
+}
+.article-body a.article-card-tool .article-card-more {
+  line-height: 1.7;
+}

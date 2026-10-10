@@ -26,6 +26,7 @@ import { SelectionCard } from '@/components/selection/SelectionCard'
 import { selectionsForProduct } from '@/lib/selections'
 import { categoryLink, currentMonthJst, isPartProduct } from '@/lib/product-detail'
 import { ZUKAN_ENTRIES, matchZukanProducts } from '@/lib/zukan'
+import { groupOf } from '@/lib/care-calendar'
 import { isEvergreen, peakLabel } from '@/lib/seasons'
 
 interface ProductPageProps {
@@ -167,6 +168,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     .filter(item => item.title !== item.href.split('/').pop())
   const features = selectionsForProduct(product)
   // 商品名に出てくる樹形・品種名の図鑑（2つまで）
+  const careGroup = groupOf(product.speciesKey)
   const zukanLinks = isPart ? [] : ZUKAN_ENTRIES.filter(entry => matchZukanProducts(entry, [product]).length > 0).slice(0, 2)
   const careGuide = getCareGuide(product.productType, product.category)
   const checklist = getPurchaseChecklist(product.productType)
@@ -267,8 +269,14 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               {/* 届いたあと・今月の手入れ・名前の意味への案内 */}
               {!isPart && (
                 <div className="mt-6 flex flex-wrap gap-2">
-                  <Link href="/hajimete" className="inline-flex min-h-11 items-center gap-1.5 border border-line bg-paper px-3.5 text-[13px] text-ink hover:border-ink"><CareIcon name="care" className="h-4 w-4 text-gold-dark" />届いてから1か月の手入れ</Link>
-                  <Link href={`/teire/${currentMonthJst()}`} className="inline-flex min-h-11 items-center gap-1.5 border border-line bg-paper px-3.5 text-[13px] text-ink hover:border-ink"><CareIcon name="season" className="h-4 w-4 text-gold-dark" />{currentMonthJst()}月の手入れ</Link>
+                  <Link href={careGroup ? `/hajimete?shu=${careGroup === 'zouki' ? 'zoki' : careGroup}#list` : '/hajimete'} className="inline-flex min-h-11 items-center gap-1.5 border border-line bg-paper px-3.5 text-[13px] text-ink hover:border-ink"><CareIcon name="care" className="h-4 w-4 text-gold-dark" />届いてから1か月の手入れ</Link>
+                  <Link href={`/teire/${currentMonthJst()}${careGroup ? `#group-${careGroup}` : ''}`} className="inline-flex min-h-11 items-center gap-1.5 border border-line bg-paper px-3.5 text-[13px] text-ink hover:border-ink"><CareIcon name="season" className="h-4 w-4 text-gold-dark" />{currentMonthJst()}月の手入れ</Link>
+                  {careGroup && product.speciesKey && (
+                    <Link href={`/note?add=${product.speciesKey}`} className="inline-flex min-h-11 items-center gap-1.5 border border-line bg-paper px-3.5 text-[13px] text-ink hover:border-ink"><CareIcon name="outdoor" className="h-4 w-4 text-gold-dark" />盆栽ノートに登録</Link>
+                  )}
+                  {product.gift && (
+                    <Link href="/okurimono" className="inline-flex min-h-11 items-center gap-1.5 border border-line bg-paper px-3.5 text-[13px] text-ink hover:border-ink"><CareIcon name="fruit" className="h-4 w-4 text-gold-dark" />贈り物ナビで比べる</Link>
+                  )}
                   {zukanLinks.map(entry => (
                     <Link key={entry.slug} href={`/zukan/${entry.slug}`} className="inline-flex min-h-11 items-center gap-1.5 border border-line bg-paper px-3.5 text-[13px] text-ink hover:border-ink">「{entry.name}」とは</Link>
                   ))}

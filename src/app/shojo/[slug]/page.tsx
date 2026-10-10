@@ -12,6 +12,7 @@ import { ShojoIcon } from '@/components/shojo/ShojoIcon'
 import { getArticleOverride, thumbnailPath } from '@/lib/article-overrides'
 import { SITE_URL } from '@/lib/site'
 import { SHOJO, getShojo, shojoProducts } from '@/lib/shojo'
+import { RelatedTools } from '@/components/layout/RelatedTools'
 
 export const revalidate = 3600
 
@@ -199,6 +200,7 @@ export default async function ShojoDetailPage({ params }: PageProps) {
             もあわせてご覧ください。
           </p>
         </section>
+        <RelatedTools hrefs={['/teire', '/note', '/soroeru']} />
       </div>
     </>
   )

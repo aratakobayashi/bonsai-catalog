@@ -5,6 +5,7 @@ import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { CONTAINER, PageHeading, SectionTitle, chipClass } from '@/components/ui/design'
 import { SITE_URL } from '@/lib/site'
 import { JUKEI_ENTRIES, MEISHO_ENTRIES, ZUKAN_GROUPS, zukanImage } from '@/lib/zukan'
+import { RelatedTools } from '@/components/layout/RelatedTools'
 
 export const metadata: Metadata = {
   title: '盆栽の名前・樹形図鑑｜直幹・模様木・懸崖などの樹形と、出猩々・糸魚川真柏などよく見る名前 - 盆栽コレクション',
@@ -97,6 +98,7 @@ export default function ZukanIndexPage() {
             </Link>
           </div>
         </section>
+        <RelatedTools hrefs={['/kumiawase', '/shindan', '/teire']} />
       </div>
     </>
   )

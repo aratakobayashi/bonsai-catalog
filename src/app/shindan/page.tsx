@@ -13,6 +13,7 @@ import type { CatalogProduct } from '@/lib/catalog-model'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { CONTAINER, PageHeading, SectionTitle } from '@/components/ui/design'
+import { RelatedTools } from '@/components/layout/RelatedTools'
 
 interface ShindanPageProps {
   searchParams: Record<string, string | string[] | undefined>
@@ -248,6 +249,7 @@ export default async function ShindanPage({ searchParams }: ShindanPageProps) {
           </p>
         </section>
       )}
+      <RelatedTools hrefs={['/okurimono', '/kumiawase', '/soroeru']} />
     </div>
   )
 }

@@ -20,6 +20,8 @@ interface ArticleNextStepsProps {
   guidesHeading?: string
   // 特集・診断などの案内
   links: NextStepLink[]
+  // 記事の内容に合う「選ぶ・育てる」の道具
+  tools?: NextStepLink[]
   hasRakuten: boolean
 }
 
@@ -42,7 +44,7 @@ function LinkRows({ items }: { items: NextStepLink[] }) {
 }
 
 // 記事を読み終えたあとの案内（商品・同じ樹種の記事・特集・診断）。1か所にまとめて出す
-export function ArticleNextSteps({ products, productsHeading, productsMore, guides, guidesHeading, links, hasRakuten }: ArticleNextStepsProps) {
+export function ArticleNextSteps({ products, productsHeading, productsMore, guides, guidesHeading, links, tools = [], hasRakuten }: ArticleNextStepsProps) {
   return (
     <section aria-labelledby="next-steps" className="mt-16 border-t border-ink pt-8 lg:mt-20 lg:pt-10">
       <h2 id="next-steps" className="font-mincho text-[21px] font-bold tracking-[0.06em] text-ink lg:text-2xl">次にやること</h2>
@@ -81,6 +83,13 @@ export function ArticleNextSteps({ products, productsHeading, productsMore, guid
         <div className="mt-10">
           <h3 className="mb-4 text-[15px] font-bold text-ink">{guidesHeading ?? 'あわせて読みたい育て方'}</h3>
           <ArticleCardGrid items={guides} />
+        </div>
+      )}
+
+      {tools.length > 0 && (
+        <div className="mt-10">
+          <h3 className="mb-2 text-[15px] font-bold text-ink">この記事とあわせて使う</h3>
+          <LinkRows items={tools} />
         </div>
       )}
 

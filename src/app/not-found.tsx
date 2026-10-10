@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { CONTAINER } from '@/components/ui/design'
+import { RelatedTools } from '@/components/layout/RelatedTools'
 import { getShopCategory } from '@/lib/shop-categories'
 
 const DESTINATIONS = [
@@ -69,6 +70,9 @@ export default function NotFound() {
           </ul>
         </div>
       )}
+      <div className="mx-auto max-w-[624px]">
+        <RelatedTools hrefs={['/shindan', '/shojo', '/hajimete']} title="よく使われている道具" className="mt-12 lg:mt-16" stacked />
+      </div>
     </div>
   )
 }

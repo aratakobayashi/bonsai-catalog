@@ -16,6 +16,7 @@ import { isArticleListable } from '@/lib/content-policy'
 import { getShopCategory } from '@/lib/shop-categories'
 import { SITE_URL } from '@/lib/site'
 import { ZUKAN_ENTRIES, getZukanEntry, matchZukanProducts, zukanDescription, zukanImage, zukanProductsHref, type ZukanEntry } from '@/lib/zukan'
+import { RelatedTools } from '@/components/layout/RelatedTools'
 
 interface ZukanPageProps {
   params: { slug: string }
@@ -205,6 +206,7 @@ export default async function ZukanEntryPage({ params }: ZukanPageProps) {
             ))}
           </div>
         </section>
+        <RelatedTools hrefs={['/kumiawase', '/shindan', '/teire']} />
       </article>
     </>
   )

@@ -25,6 +25,7 @@ import {
   type OkurimonoState,
   type Option,
 } from '@/lib/okurimono'
+import { RelatedTools } from '@/components/layout/RelatedTools'
 
 export const revalidate = 3600
 
@@ -309,6 +310,7 @@ export default async function OkurimonoPage({ searchParams }: PageProps) {
               </li>
             </ul>
           </section>
+          <RelatedTools hrefs={['/kumiawase', '/hajimete', '/shindan']} />
         </div>
       </div>
     </>

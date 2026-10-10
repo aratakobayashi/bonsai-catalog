@@ -9,6 +9,7 @@ import { ArticleCardGrid } from '@/components/article/RelatedArticleRows'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { CONTAINER, NavyPanel, PageHeading, SectionTitle } from '@/components/ui/design'
 import { MonthStrip } from '@/components/teire/TeireParts'
+import { RelatedTools } from '@/components/layout/RelatedTools'
 
 // 「今月」は日本時間で決める。月が替わったら1時間以内に切り替わる
 export const revalidate = 3600
@@ -124,6 +125,7 @@ export default function TeireIndexPage() {
         title="育てている盆栽を登録すると、その樹の今月やることだけを表示します ›"
         className="mt-12 lg:mt-16"
       />
+      <RelatedTools hrefs={['/shojo', '/hajimete', '/zukan']} />
     </div>
   )
 }

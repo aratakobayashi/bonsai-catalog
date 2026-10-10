@@ -10,6 +10,8 @@ import { ShareButtons } from '@/components/features/ShareButtons'
 import { TableOfContents, MobileTableOfContents } from '@/components/features/TableOfContents'
 import { ArticleSummary } from '@/components/article/ArticleSummary'
 import { ArticleNextSteps, type NextStepLink } from '@/components/article/ArticleNextSteps'
+import { articleToolLinks, insertToolCard } from '@/lib/article-tools'
+import { jstMonth } from '@/lib/seasons'
 import { byCuratedThenReviews } from '@/components/home/curated'
 import { RelatedArticleRows, type ArticleCardItem } from '@/components/article/RelatedArticleRows'
 import { ArticleStructuredData, BreadcrumbStructuredData } from '@/components/seo/StructuredData'
@@ -172,7 +174,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     if (!target || slug === article.slug || !isArticleListable(slug)) return null
     return { title: getArticleOverride(slug)?.title ?? target.title, image: cardImage(slug, target.image) }
   }
-  const bodyHtml = processMarkdown(stripLeadingTitleHeading(article.content, article.title), { links: linkContext, articleCard })
+  // 内容に合う「選ぶ・育てる」の道具（いちばん合うものは本文の途中にもカードで出す）
+  const toolLinks = articleToolLinks({ slug: article.slug, title: article.title, speciesSlug, month: jstMonth() })
+  const bodyHtml = insertToolCard(processMarkdown(stripLeadingTitleHeading(article.content, article.title), { links: linkContext, articleCard }), toolLinks[0])
 
   // 目次を生成（大見出しだけを並べる。大見出しがない記事はすべての見出し）
   const titleKey = normalizeForMatch(article.title)
@@ -326,6 +330,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               guides={speciesGuides}
               guidesHeading={speciesLabel && !isSupply ? `${speciesLabel}の育て方をもっと読む` : undefined}
               links={nextLinks}
+              tools={toolLinks}
               hasRakuten={hasRakuten}
             />
 

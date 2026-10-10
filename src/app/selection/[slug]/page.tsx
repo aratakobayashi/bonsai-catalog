@@ -20,6 +20,7 @@ import { SelectionCard } from '@/components/selection/SelectionCard'
 import { getSelectionGuideLinks, isFeaturable, selectionCounts } from '@/components/selection/selection-meta'
 import { PRODUCT_TYPE_LABELS } from '@/lib/product-classify'
 import { CONIFER_SPECIES } from '@/lib/selections-extra'
+import { RelatedTools } from '@/components/layout/RelatedTools'
 
 interface SelectionPageProps {
   params: { slug: string }
@@ -106,6 +107,17 @@ function priceRangeBySize(products: CatalogProduct[]) {
     max: Math.max(...prices),
     count: prices.length,
   }))
+}
+
+// 特集ごとの「あわせて使える」（贈り物の特集は贈り物ナビ、道具の特集はそろえるリストなど）
+const SELECTION_TOOLS: Record<string, string[]> = {
+  'bonsai-gift': ['/okurimono', '/kumiawase', '/hajimete'],
+  'celebration-bonsai': ['/okurimono', '/kumiawase', '/hajimete'],
+  'new-year-bonsai': ['/okurimono', '/teire', '/hajimete'],
+  'starter-tools': ['/soroeru', '/hajimete', '/teire'],
+  'beginner-mini-bonsai': ['/hajimete', '/kumiawase', '/soroeru'],
+  'indoor-bonsai': ['/hajimete', '/shojo', '/note'],
+  'bonsai-under-3000': ['/okurimono', '/shindan', '/hajimete'],
 }
 
 export default async function SelectionPage({ params }: SelectionPageProps) {
@@ -453,6 +465,7 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
               </ul>
             </section>
           )}
+          <RelatedTools hrefs={SELECTION_TOOLS[selection.slug] ?? ['/shindan', '/kumiawase', '/hajimete']} />
         </div>
       </article>
     </>

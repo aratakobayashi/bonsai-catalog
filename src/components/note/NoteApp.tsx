@@ -2,7 +2,7 @@
 
 // 「わたしの盆栽ノート」本体。記録は localStorage だけに置き、サーバーには送らない
 import Link from 'next/link'
-import { useState, type FormEvent } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 import { careForSpecies, getCareGroup, getMonthCare, groupOf, repotWindow, speciesLabel } from '@/lib/care-calendar'
 import { NOTE_MAX, NOTE_MEMO_MAX, NOTE_NAME_MAX, useNoteTrees, type NoteTree, type NoteTreeInput } from '@/lib/note-storage'
 import { CareIcon } from '@/components/catalog/CareIcon'
@@ -320,6 +320,15 @@ export function NoteApp({ speciesGroups, guides }: NoteAppProps) {
   const { trees, add, update, remove, storageFailed, full } = useNoteTrees()
   // 'new'：追加のフォーム、id：その樹の編集
   const [editing, setEditing] = useState<string | null>(null)
+  // 商品ページなどから ?add=<樹種> で来たときは、その樹種を選んだ状態で登録フォームを開く
+  const [newInput, setNewInput] = useState<NoteTreeInput>(EMPTY_INPUT)
+  useEffect(() => {
+    const key = new URLSearchParams(window.location.search).get('add')
+    if (key && speciesGroups.some(group => group.options.some(option => option.key === key))) {
+      setNewInput({ ...EMPTY_INPUT, speciesKey: key })
+      setEditing('new')
+    }
+  }, [speciesGroups])
 
   if (trees === null) {
     return <div className="mt-8 h-40 border border-line bg-white" aria-busy="true" aria-label="読み込み中" />
@@ -360,13 +369,17 @@ export function NoteApp({ speciesGroups, guides }: NoteAppProps) {
           <h2 className="mb-3 font-mincho text-[19px] font-bold tracking-[0.06em] text-ink">盆栽を登録する</h2>
           <TreeForm
             speciesGroups={speciesGroups}
-            initial={EMPTY_INPUT}
+            initial={newInput}
             submitLabel="登録する"
             onSubmit={input => {
               add(input)
               setEditing(null)
+              setNewInput(EMPTY_INPUT)
             }}
-            onCancel={() => setEditing(null)}
+            onCancel={() => {
+              setEditing(null)
+              setNewInput(EMPTY_INPUT)
+            }}
           />
         </section>
       )}

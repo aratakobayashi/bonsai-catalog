@@ -8,6 +8,7 @@ import { getArticleOverride, thumbnailPath } from '@/lib/article-overrides'
 import { jstMonth } from '@/lib/seasons'
 import { SITE_URL } from '@/lib/site'
 import { ALL_CHECK_IDS, KINDS, STAGES, parseKind, seasonNote } from '@/lib/hajimete'
+import { RelatedTools } from '@/components/layout/RelatedTools'
 
 export const metadata: Metadata = {
   title: 'はじめての1か月ガイド｜盆栽が届いた日から1か月の世話をチェックリストで - 盆栽コレクション',
@@ -159,6 +160,7 @@ export default function HajimetePage({ searchParams }: PageProps) {
             </div>
           </section>
         )}
+        <RelatedTools hrefs={['/note', '/teire', '/shojo']} />
       </div>
     </>
   )

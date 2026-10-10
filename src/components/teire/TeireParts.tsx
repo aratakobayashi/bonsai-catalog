@@ -91,7 +91,7 @@ export function GroupCareCard({ group, care, guides }: { group: CareGroup; care:
           <CareIcon name={group.icon} className="h-[22px] w-[22px]" />
         </span>
         <div className="min-w-0">
-          <h3 id={`group-${group.key}`} className="font-mincho text-[18px] font-bold tracking-[0.06em] text-ink">{group.label}</h3>
+          <h3 id={`group-${group.key}`} className="scroll-mt-24 font-mincho text-[18px] font-bold tracking-[0.06em] text-ink">{group.label}</h3>
           <p className="mt-0.5 text-[12px] leading-relaxed text-ink-muted">{group.examples}</p>
         </div>
       </header>

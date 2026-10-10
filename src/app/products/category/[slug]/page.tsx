@@ -22,6 +22,8 @@ import { CatalogEmptyState } from '@/components/catalog/CatalogFilters'
 import { CatalogLoadError } from '@/components/catalog/CatalogLoadError'
 import { ChipLink } from '@/components/ui/design'
 import { selectionsForCategory } from '@/lib/selections'
+import { groupOf } from '@/lib/care-calendar'
+import { MEISHO_ENTRIES } from '@/lib/zukan'
 import { conditionLabels, speciesTraitOf } from '@/lib/catalog-menus'
 import { getCareGuide } from '@/lib/care-guides'
 import { isInSeasonNow, jstMonth, peakLabel, peakMonths } from '@/lib/seasons'
@@ -128,6 +130,10 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const title = category.group === 'part' || category.slug === 'kokedama' || category.slug.endsWith('mono') || category.slug === 'mini' ? category.name : `${category.name}の盆栽`
   const selectedId = typeof searchParams.p === 'string' ? searchParams.p : undefined
   const features = selectionsForCategory(category.slug)
+  // 育て方の道具（今月の手入れ・名前の意味・ノート）。樹種のカテゴリだけ
+  const careGroup = category.group === 'part' ? null : groupOf(category.slug)
+  const month = jstMonth()
+  const zukanEntries = careGroup ? MEISHO_ENTRIES.filter(entry => entry.species.some(sp => sp.category === category.slug)).slice(0, 2) : []
 
   const itemListJsonLd = {
     '@context': 'https://schema.org',
@@ -160,6 +166,16 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         <Link href={`/guides?search=${encodeURIComponent(category.name)}`} className="mt-2.5 inline-block border-b border-ink pb-0.5 text-[12.5px] text-ink hover:text-ink">
           {category.group === 'part' ? `${category.name}の選び方を読む` : `${category.name}の育て方を読む`}
         </Link>
+        {careGroup && (
+          <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1.5 text-xs">
+            <span className="text-[11px] text-ink-muted">育てる</span>
+            <Link href={`/teire/${month}#group-${careGroup}`} className="text-ink underline decoration-line underline-offset-4 hover:decoration-ink">{month}月の手入れ</Link>
+            {zukanEntries.map(entry => (
+              <Link key={entry.slug} href={`/zukan/${entry.slug}`} className="text-ink underline decoration-line underline-offset-4 hover:decoration-ink">「{entry.name}」とは</Link>
+            ))}
+            <Link href={`/note?add=${category.slug}`} className="text-ink underline decoration-line underline-offset-4 hover:decoration-ink">盆栽ノートに登録</Link>
+          </div>
+        )}
         {features.length > 0 && (
           <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1.5 text-xs">
             <span className="text-[11px] text-ink-muted">特集</span>

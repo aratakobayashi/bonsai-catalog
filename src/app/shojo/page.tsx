@@ -5,6 +5,7 @@ import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { ShojoIcon } from '@/components/shojo/ShojoIcon'
 import { SITE_URL } from '@/lib/site'
 import { SHOJO } from '@/lib/shojo'
+import { RelatedTools } from '@/components/layout/RelatedTools'
 
 export const metadata: Metadata = {
   title: '症状から調べる｜盆栽の葉が黄色い・しおれる・虫がいるときの原因と対処 - 盆栽コレクション',
@@ -68,6 +69,7 @@ export default function ShojoIndexPage() {
             ))}
           </ul>
         </section>
+        <RelatedTools hrefs={['/teire', '/note', '/soroeru']} />
       </div>
     </>
   )

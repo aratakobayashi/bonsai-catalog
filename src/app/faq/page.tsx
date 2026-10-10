@@ -6,6 +6,7 @@ import { FAQStructuredData } from '@/components/seo/StructuredData'
 import { generateStaticPageBreadcrumbs } from '@/lib/breadcrumb-utils'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { CONTAINER, PageHeading } from '@/components/ui/design'
+import { RelatedTools } from '@/components/layout/RelatedTools'
 import { useState } from 'react'
 
 // SEO metadata は layout.tsx で設定
@@ -198,6 +199,7 @@ export default function FAQPage() {
             でも詳しく解説しています。
           </p>
         </div>
+        <RelatedTools hrefs={['/shojo', '/hajimete', '/teire']} />
       </div>
     </>
   )

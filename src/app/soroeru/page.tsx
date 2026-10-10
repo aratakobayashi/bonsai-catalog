@@ -18,6 +18,7 @@ import {
   soroeruPicks,
   type SoroeruState,
 } from '@/lib/soroeru'
+import { RelatedTools } from '@/components/layout/RelatedTools'
 
 export const metadata: Metadata = {
   title: '盆栽の鉢・土・道具をそろえる｜樹の種類と大きさに合う号数・配合・道具の目安 - 盆栽コレクション',
@@ -170,6 +171,7 @@ export default async function SoroeruPage({ searchParams }: PageProps) {
             </ul>
           </section>
         </section>
+        <RelatedTools hrefs={['/kumiawase', '/teire', '/hajimete']} />
       </div>
     </>
   )

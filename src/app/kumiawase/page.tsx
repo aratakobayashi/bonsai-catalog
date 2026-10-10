@@ -26,6 +26,7 @@ import {
   type KumiState,
   type Step,
 } from '@/lib/kumiawase'
+import { RelatedTools } from '@/components/layout/RelatedTools'
 
 export const metadata: Metadata = {
   title: '組み合わせで選ぶ自分だけの一鉢｜樹・大きさ・鉢・仕上げから盆栽を探す - 盆栽コレクション',
@@ -389,6 +390,7 @@ export default async function KumiawasePage({ searchParams }: PageProps) {
             )}
           </div>
         </div>
+        <RelatedTools hrefs={['/soroeru', '/hajimete', '/okurimono']} />
       </div>
     </>
   )

@@ -5,6 +5,7 @@ import { speciesGuideMap } from '@/lib/teire-server'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { CONTAINER, PageHeading } from '@/components/ui/design'
 import { NoteApp, type SpeciesOptionGroup } from '@/components/note/NoteApp'
+import { RelatedTools } from '@/components/layout/RelatedTools'
 
 export const metadata: Metadata = {
   title: 'わたしの盆栽ノート｜育てている樹の今月やることが分かる - 盆栽コレクション',
@@ -34,6 +35,7 @@ export default function NotePage() {
         crumbs={[{ label: 'ホーム', href: '/' }, { label: 'わたしの盆栽ノート' }]}
       />
       <NoteApp speciesGroups={speciesGroups} guides={guides} />
+      <RelatedTools hrefs={['/teire', '/shojo', '/hajimete']} />
     </div>
   )
 }
