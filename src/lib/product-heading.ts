@@ -49,9 +49,18 @@ function varietyAfter(name: string, species: string, aliases: string[]): string 
   return next
 }
 
+// 鉢・道具など：一覧用の短い名前を、さらに見出しに収まる長さ（語の切れ目まで）にする
+function shortFallback(name: string, max = 30): string {
+  const text = name.replace(/…$/, '')
+  if (text.length <= max) return name
+  const cut = text.slice(0, max)
+  const space = cut.lastIndexOf(' ')
+  return `${(space > max * 0.5 ? cut.slice(0, space) : cut).trim()}…`
+}
+
 export function productHeading(product: Pick<CatalogProduct, 'originalName' | 'speciesLabel' | 'productType'>, fallback: string): string {
   const name = product.originalName || ''
-  if (product.productType !== 'tree' || !product.speciesLabel) return fallback
+  if (product.productType !== 'tree' || !product.speciesLabel) return shortFallback(fallback)
   // 「もみじ・楓」「実もの」のようにまとめた樹種名は、商品名に出てくる名前（もみじ・梅もどき など）にする
   let species = product.speciesLabel
   if (/・/.test(species) || species === '実もの') {
@@ -68,6 +77,8 @@ export function productHeading(product: Pick<CatalogProduct, 'originalName' | 's
     if (!m) continue
     const label = f.label(m)
     // 品種名に含まれる特徴（「八房」など）は重ねない
+    // 鉢の特徴は1つだけ（「益子焼の鉢・炭化焼の鉢」のように重ねない）
+    if (label.endsWith('の鉢') && features.some(f => f.endsWith('の鉢'))) continue
     if (!features.includes(label) && !(variety && variety.includes(label))) features.push(label)
     if (features.length >= 3) break
   }
