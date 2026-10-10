@@ -29,7 +29,7 @@ const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
 // 樹種名の前に付いた品種・産地の名前（「銀八房五葉松」「三河黒松」「斑入り真柏」など、前の語が4文字まで）
 function varietyName(name: string, species: string): string | null {
-  const re = new RegExp(`(?:^|[\\s　（(「：:*＊])([一-龥々ァ-ヶー]{1,4})${escapeRe(species)}`, 'g')
+  const re = new RegExp(`(?:^|[\\s　（(）)「」【】：:*＊])([一-龥々ァ-ヶー]{1,4})${escapeRe(species)}`, 'g')
   for (const m of Array.from(name.matchAll(re))) {
     const prefix = m[1]
     // 宣伝・分類の語は品種名にしない
@@ -60,11 +60,12 @@ function shortFallback(name: string, max = 30): string {
 
 export function productHeading(product: Pick<CatalogProduct, 'originalName' | 'speciesLabel' | 'productType'>, fallback: string): string {
   const name = product.originalName || ''
-  // 「肥料付き」の盆栽など、種類が肥料・道具として登録されている樹は盆栽として扱う
-  const treeLike = product.productType !== 'tree' && product.speciesLabel && /肥料付|肥料.{0,6}(プレゼント|サービス)|育て方説明書付/.test(name)
-  if ((product.productType !== 'tree' && !treeLike) || !product.speciesLabel) return partHeading(name, product.speciesLabel, product.productType) ?? shortFallback(fallback)
+  // 「肥料付き」の盆栽など、種類が肥料・道具として登録されている樹は盆栽として扱う（樹種は商品名から判定）
+  const treeLike = product.productType !== 'tree' && /盆栽/.test(name) && /肥料付|肥料.{0,6}(プレゼント|サービス)|育て方説明書付/.test(name)
+  const label = product.speciesLabel ?? (treeLike ? SPECIES_TRAITS.find(t => t.pattern.test(name))?.label ?? null : null)
+  if ((product.productType !== 'tree' && !treeLike) || !label) return partHeading(name, product.speciesLabel, product.productType) ?? shortFallback(fallback)
   // 「もみじ・楓」「実もの」のようにまとめた樹種名は、商品名に出てくる名前（もみじ・梅もどき など）にする
-  let species = product.speciesLabel
+  let species = label
   if (/・/.test(species) || species === '実もの') {
     const trait = SPECIES_TRAITS.find(t => t.label === species)
     const m = trait ? name.match(trait.pattern) : null
@@ -160,11 +161,13 @@ function partAttributes(name: string, label: string): string[] {
     const len = n.match(/(\d{3})\s*(?:mm|m\/m|ミリ)/)
     add(len ? `${len[1]}mm` : null)
   }
-  const volume = n.match(/(\d+(?:\.\d)?)\s*(L|リットル|ℓ)(?![a-zA-Z])/)
-  add(volume ? `${volume[1]}L` : null)
-  const weight = n.match(/(\d+(?:\.\d)?)\s*(kg|ｋｇ|g|ｇ)(?![a-zA-Z])/)
+  // 容量（「09L/2L/4L」のように複数あるときは範囲。「09L」は0.9L）
+  const volumes = Array.from(n.matchAll(/(?<![\d.])(\d+(?:\.\d)?)\s*(?:L|リットル|ℓ)(?![a-zA-Z])/g)).map(m => Number(/^0\d$/.test(m[1]) ? `0.${m[1][1]}` : m[1]))
+  const volume = volumes.length > 0
+  add(volumes.length > 1 ? `${Math.min(...volumes)}〜${Math.max(...volumes)}L` : volume ? `${volumes[0]}L` : null)
+  const weight = n.match(/(?<![\d.])(\d+(?:\.\d)?)\s*(kg|ｋｇ|g|ｇ)(?![a-zA-Z])/)
   if (!volume) add(weight ? `${weight[1]}${weight[2].replace('ｋｇ', 'kg').replace('ｇ', 'g')}` : null)
-  const count = n.match(/(\d+)\s*(個|袋|缶|枚|粒|本|点)(?:セット|入り?)/)
+  const count = n.match(/(\d+)\s*(個|袋|缶|枚|粒|本|点|種)(?:セット|入り?)/)
   add(count ? `${count[1]}${count[2]}${/入/.test(count[0]) ? '入り' : 'セット'}` : null)
   return attrs
 }
