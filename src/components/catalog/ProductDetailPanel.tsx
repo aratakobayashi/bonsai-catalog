@@ -11,6 +11,7 @@ import {
   shortPriceNote,
 } from '@/lib/product-detail'
 import type { CatalogProduct } from '@/lib/catalog-model'
+import { productHeading } from '@/lib/product-heading'
 import { Placeholder } from '@/components/ui/design'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { FavoriteButton } from './FavoriteButton'
@@ -93,7 +94,8 @@ export function ProductInfo({
   const rows = productRows(product).filter(row => !pageMode || (row.label !== '置き場所' && row.label !== '育てやすさ'))
   const species = categoryLink(product)?.label ?? product.speciesLabel
   const hasTraits = Boolean(product.place || product.level || product.speciesKey)
-  const title = product.displayName || product.name
+  // 商品ページの見出しは「品種・樹種の盆栽｜特徴」に整えた名前（src/lib/product-heading.ts）
+  const title = pageMode ? productHeading(product, product.displayName || product.name) : product.displayName || product.name
   const shopTitle = product.originalDisplayName || product.originalName
 
   return (

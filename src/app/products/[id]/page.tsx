@@ -7,6 +7,7 @@ import { supabaseServer } from '@/lib/supabase-server'
 import { filterProducts, getCatalogProducts, normalizeProduct, parseFilters, type CatalogProduct } from '@/lib/catalog'
 import { searchRakutenItems } from '@/lib/rakuten'
 import { cleanProductName } from '@/lib/product-name'
+import { productHeading } from '@/lib/product-heading'
 import { SITE_URL } from '@/lib/site'
 import { formatPrice } from '@/lib/utils'
 import { getRelatedArticles } from '@/lib/article-helpers'
@@ -101,7 +102,8 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const product = await getProduct(params.id)
   if (!product) return { title: '商品が見つかりません - 盆栽コレクション' }
 
-  const title = `${product.name.slice(0, 48)}｜価格・特徴・育て方 - 盆栽コレクション`
+  const heading = productHeading(product, product.name)
+  const title = `${heading.slice(0, 48)}｜価格・特徴・育て方 - 盆栽コレクション`
   const description = `${product.name.slice(0, 60)}の価格（${formatPrice(product.price)}〜）、サイズ、送料、販売ショップ、育て方の目安をまとめています。`
   return {
     title,
@@ -173,7 +175,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     ...(place ? [{ label: '置き場所', value: place }] : []),
     ...(peak ? [{ label: '見頃', value: peak }] : []),
   ]
-  const title = product.displayName || product.name
+  const title = productHeading(product, product.displayName || product.name)
   const aboutTitle = !isPart && species ? `${species}について` : careGuide?.title
   const guideLink = careGuide?.guideLink && { href: careGuide.guideLink.href, label: !isPart && species ? `${species}の育て方を読む` : careGuide.guideLink.label }
 
