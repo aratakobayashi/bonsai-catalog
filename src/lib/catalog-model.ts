@@ -155,7 +155,7 @@ function normalizeProductBase(row: any): CatalogProduct {
     levelClaim: beginnerClaim ? 'easy' : undefined,
     newYear: /正月|迎春|新年|松竹梅|お年賀/.test(name) || (trait !== null && NEW_YEAR_SPECIES.includes(trait.key)),
     celebration: /祝|長寿(?!梅)|還暦|古希|喜寿|米寿|敬老|開店|新築|誕生日|記念日/.test(name),
-    wrapping: /ラッピング|のし|熨斗|メッセージカード|ギフト包装/.test(name),
+    wrapping: /ラッピング|のし(?!おり)|熨斗|メッセージカード|ギフト包装/.test(name),
     saucer: /受け皿|受皿|水受け/.test(name),
     careGuide: /育て方|説明書|栽培方法|管理方法/.test(name),
   }
