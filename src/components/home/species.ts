@@ -11,6 +11,8 @@ interface HomeSpeciesDef {
   note?: string
   // タイルに出す見どころ（短い一言）
   appeal: string
+  // タイルの写真に使う商品（目で選んだもの。なければ自動で選ぶ）
+  photoId?: string
 }
 
 const DEFS: HomeSpeciesDef[] = [
@@ -20,8 +22,8 @@ const DEFS: HomeSpeciesDef[] = [
   { slug: 'kuromatsu', appeal: '力強い幹と濃い緑' },
   { slug: 'sakura', appeal: '春に咲く花' },
   { slug: 'himeringo', appeal: '春の花と秋の実' },
-  { slug: 'nanten', appeal: '冬の赤い実、縁起物' },
-  { slug: 'gajumaru', appeal: '室内で楽しめる' },
+  { slug: 'nanten', appeal: '冬の赤い実、縁起物', photoId: '841fddc5-70e7-4f91-87f7-e598ec027d02' },
+  { slug: 'gajumaru', appeal: '室内で楽しめる', photoId: '517b33ea-2596-495d-8900-e6c5bb2ae95b' },
 ]
 
 const LEVEL_LABEL: Record<Level, string> = { easy: 'やさしい', normal: 'ふつう' }
@@ -31,6 +33,7 @@ export interface HomeSpecies {
   slug: string
   name: string
   appeal: string
+  photoId?: string
   peak: string
   care: string
   inSeason: boolean
@@ -52,6 +55,7 @@ export function getHomeSpecies(month: number, products?: CatalogProduct[]): Home
       slug: def.slug,
       name: category.name,
       appeal: def.appeal,
+      photoId: def.photoId,
       peak: `${label}${def.note ?? ''}`,
       care: `${LEVEL_LABEL[trait.level]}・${PLACE_LABEL[trait.place]}`,
       inSeason: peakMonths(def.slug).includes(month),

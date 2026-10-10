@@ -174,7 +174,8 @@ export default async function HomePage() {
     const items = filterProducts(products, { ...baseFilters, species: s.slug, type: 'tree' })
     // 樹種の写真：文字やバナーのない写真の商品（なければ写真を選び直した商品）の中で、レビューの多いもの
     const withImage = items.filter(p => p.imageUrl)
-    const photo = (withImage.some(hasCuratedImage) ? withImage.filter(hasCuratedImage) : withImage).sort(byCuratedThenReviews)[0]
+    const pinned = s.photoId ? withImage.find(p => p.id === s.photoId) : undefined
+    const photo = pinned ?? (withImage.some(hasCuratedImage) ? withImage.filter(hasCuratedImage) : withImage).sort(byCuratedThenReviews)[0]
     return { ...s, count: items.length, photo }
   })
     .filter(s => s.count > 0) // 商品のない樹種は出さない（リンク先が空になるため）
