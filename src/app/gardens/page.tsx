@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { headers } from 'next/headers'
 import { supabaseServer } from '@/lib/supabase-server'
 import { isGardenPublished } from '@/lib/garden-verification'
 import type { Garden } from '@/types'
@@ -52,6 +53,8 @@ export const revalidate = 3600
 
 export default async function GardensPage() {
   const [gardens, products] = await Promise.all([getGardens(), getCatalogProducts().catch(() => [] as CatalogProduct[])])
+  // 商品の取得に失敗したとき（ビルド中の一時的な失敗など）は、案内のない一覧をキャッシュに残さないよう、このリクエストだけ動的にする
+  if (products.length === 0) headers()
   // 一覧の途中に出す、通販への案内（盆栽園を探しに来た人に、近くにない・すぐ欲しいときの選択肢として）
   const bridge = <GardenShopBridge products={pickBridgeProducts(products)} className="my-6 lg:my-8" />
 
