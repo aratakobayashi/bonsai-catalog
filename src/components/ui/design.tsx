@@ -1,4 +1,4 @@
-// リニューアルのデザイン部品（v2：生成り背景・墨の文字・明朝の見出し・線で区切る）。各画面で共通して使う
+// デザイン部品（v3：墨と金がテーマカラー。ページの見出しは墨色の帯、中身は生成りの背景に墨の文字・明朝の見出し・線で区切る）。各画面で共通して使う
 import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
