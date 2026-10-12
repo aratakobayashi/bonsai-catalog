@@ -3,6 +3,7 @@
 import type { Selection } from './selections'
 import type { CatalogProduct } from '@/lib/catalog-model'
 import { findSpeciesTrait } from '@/lib/species-traits'
+import { peakMonths } from '@/lib/seasons'
 
 const byReviews = (a: CatalogProduct, b: CatalogProduct) => b.reviewCount - a.reviewCount || a.price - b.price
 // 樹種ごとに1件ずつ交互に並べる（selections.ts の bySpecies と同じ。循環 import を避けるためここにも置く）
@@ -382,6 +383,164 @@ export const EXTRA_SELECTIONS: Selection[] = [
         { label: '盆栽鉢', href: '/products/category/hachi' },
         { label: '用土', href: '/products/category/tsuchi' },
         { label: '道具', href: '/products/category/dougu' },
+      ],
+    },
+  },
+{
+    slug: 'winter-bonsai',
+    title: '冬に楽しむ盆栽の選び方｜寒椿・南天・梅など冬が見頃の樹種と冬越しの管理 - 盆栽コレクション',
+    description: '冬に見頃を迎える盆栽の選び方をまとめました。冬に花を咲かせる寒椿、赤い実と紅葉の南天、つぼみがふくらむ梅、冬も緑の松柏類など冬が見どころの樹種と、凍結・寒風・水切れを防ぐ冬越しの管理、冬に見頃の盆栽・苔玉の比較表を掲載しています。',
+    h1: '冬に楽しむ盆栽の選び方',
+    eyebrow: '特集・冬',
+    shortTitle: '冬に楽しむ盆栽',
+    tagline: '寒椿・南天・梅など冬が見頃の樹',
+    thumbnail: '/images/selections/thumbs/winter-bonsai.jpg',
+    lead: '花の少ない冬にも、盆栽には見どころがあります。冬に咲く花、赤い実や色づいた葉、葉を落とした枝ぶり、変わらない松の緑。冬が見頃の樹種と、寒い時期の管理をまとめました。',
+    sections: [
+      {
+        heading: '冬に見頃を迎える樹種',
+        paragraphs: [
+          '冬の盆栽は、花・実・葉の色・枝ぶりのどれを楽しむかで選ぶ樹種が変わります。',
+        ],
+        points: [
+          '寒椿：11月下旬から2月ごろに紅色の花を咲かせる常緑の樹。花の少ない時期に咲く',
+          '南天：11月ごろから赤い実が色づき、寒さに当たると葉も赤くなる。縁起のよい樹として正月にも飾られる',
+          '梅：寒さの中でつぼみがふくらみ、1〜3月に花が咲く。寒さに当てることで花芽が育つ',
+          '松柏類（黒松・五葉松・真柏など）：冬も葉が緑のまま。正月の飾りにも向く',
+          '落葉樹（もみじ・欅など）：葉を落としたあとの細かな枝ぶりを楽しむ。「寒樹」と呼ばれる冬の見方',
+        ],
+      },
+      {
+        heading: '冬越しの管理',
+        paragraphs: [
+          '冬に傷む原因は、寒さそのものより、小さな鉢の土が凍ること、乾いた北風、水やりの忘れ、暖かい室内への取り込みすぎがほとんどです。',
+          '寒さに強い松柏類は屋外の棚のままで構いません。小さな鉢や花芽のついた花ものは、軒下などで霜と寒風を避けます。水やりは土が乾いたら、晴れた日の午前中に与えます。',
+        ],
+        aside: {
+          eyebrow: '室内に飾るとき',
+          title: '飾るのは数日、普段は屋外へ',
+          text: '屋外で育てる樹を暖かい室内に長く置くと、休眠が浅くなって弱ることがあります。来客や正月に飾るときは2〜3日にとどめ、また屋外に戻します。',
+        },
+      },
+    ],
+    listHeading: '冬に見頃の盆栽・苔玉（樹種の目安より）',
+    // 樹種の見頃に12〜2月が入るもの。寒椿・南天・千両は冬の花と実で選ぶ
+    filter: p => ['tsubaki', 'nanten', 'senryo'].includes(p.speciesKey ?? '') || peakMonths(p).some(m => m === 12 || m === 1 || m === 2),
+    productTypes: ['tree', 'kokedama'],
+    sort: byReviews,
+    interleaveBy: bySpecies,
+    limit: 24,
+    catalog: {
+      all: '/products?type=tree&season=winter',
+      chips: [
+        { label: '南天', href: '/products/category/nanten' },
+        { label: '梅', href: '/products/category/ume' },
+        { label: '松柏類', href: '/products?type=tree&species=cat-shohaku' },
+      ],
+    },
+  },
+  {
+    slug: 'christmas-bonsai',
+    title: 'クリスマスに飾る盆栽の選び方｜赤い実の南天・ツリーのような真柏・苔玉 - 盆栽コレクション',
+    description: 'クリスマスに飾る・贈る盆栽の選び方をまとめました。赤い実の南天や実もの、ツリーのような形の真柏・杜松、器ごと飾れる苔玉など冬に映える樹種と、室内に飾るときの日数の目安、贈るときに確かめたいことと、掲載中の盆栽・苔玉の比較表を掲載しています。',
+    h1: 'クリスマスに飾る盆栽の選び方',
+    eyebrow: '特集・クリスマス',
+    shortTitle: 'クリスマスに飾る盆栽',
+    tagline: '赤い実と緑で冬を飾る',
+    thumbnail: '/images/selections/thumbs/christmas-bonsai.jpg',
+    lead: '赤い実と常緑の葉は、クリスマスの飾りにもよく合います。小さなツリーの代わりに飾る盆栽や、贈り物にしやすい苔玉など、12月に映える一鉢の選び方をまとめました。',
+    sections: [
+      {
+        heading: 'クリスマスに映える樹種',
+        paragraphs: [
+          '赤い実と緑の組み合わせ、またはツリーのように先のとがった形の樹が、クリスマスの飾りに向いています。',
+        ],
+        points: [
+          '南天：11月ごろから赤い実が房になって色づく。縁起のよい樹なので、そのまま正月の飾りにもなる',
+          '姫りんご・ウメモドキなどの実もの：小さな赤い実が冬まで残る。鳥に食べられないよう軒下に置く',
+          '真柏・杜松：細かな葉が重なり、先のとがった形がツリーのように見える。冬も緑のまま',
+          '苔玉：器ごと飾れて、小さなオーナメントを添えやすい。受け皿の水はためたままにしない',
+        ],
+      },
+      {
+        heading: '室内に飾るときの目安',
+        paragraphs: [
+          '紹介している樹の多くは、本来は屋外で育てる植物です。室内に飾るのは2〜3日にとどめ、普段は屋外の明るい場所で管理します。暖房の風が直接当たる場所は乾きやすいので避けます。',
+        ],
+        aside: {
+          eyebrow: '贈るとき',
+          title: '届く日と置き場所を確かめる',
+          text: '12月は配送が混み合います。届けたい日に間に合うか、ラッピングやメッセージカードに対応しているか、贈る相手がベランダなど屋外に置けるかを確かめておくと安心です。',
+        },
+      },
+    ],
+    listHeading: 'クリスマスに飾りやすい盆栽・苔玉',
+    // 商品名にクリスマスとあるもの、赤い実の南天・千両・実もの、ツリーのような形の真柏・杜松・ヒノキ
+    filter: p =>
+      /クリスマス/.test(p.originalName) ||
+      ['nanten', 'senryo', 'shimpaku', 'toshou', 'hinoki'].includes(p.speciesKey ?? '') ||
+      (['himeringo', 'mimono'].includes(p.speciesKey ?? '') && /赤|実/.test(p.originalName)),
+    productTypes: ['tree', 'kokedama'],
+    sort: byReviews,
+    interleaveBy: bySpecies,
+    limit: 24,
+    catalog: {
+      all: '/products?type=tree&species=nanten',
+      chips: [
+        { label: '南天', href: '/products/category/nanten' },
+        { label: '真柏', href: '/products/category/shimpaku' },
+        { label: '苔玉', href: '/products?type=kokedama' },
+      ],
+    },
+  },
+  {
+    slug: 'premium-bonsai',
+    title: '1万円からの本格盆栽の選び方｜樹齢・樹形・鉢で選ぶ、贈り物にもなる一鉢 - 盆栽コレクション',
+    description: '1万円以上の本格的な盆栽の選び方をまとめました。樹齢や幹の太さ、樹形、鉢の産地など価格に表れる違い、現品かどうかやサイズ・送料など購入前に確かめたいこと、贈り物にするときの注意と、掲載中の1万円以上の盆栽の比較表を掲載しています。',
+    h1: '1万円からの本格盆栽の選び方',
+    eyebrow: '特集・本格',
+    shortTitle: '1万円からの本格盆栽',
+    tagline: '樹齢と樹形で選ぶ一鉢',
+    thumbnail: '/images/selections/thumbs/premium-bonsai.jpg',
+    lead: '贈り物や、長く付き合う一鉢を選ぶなら、樹齢を重ねて樹形の整った盆栽も選択肢になります。1万円以上の盆栽で、価格の違いがどこに表れるのか、購入前に何を確かめるとよいかをまとめました。',
+    sections: [
+      {
+        heading: '価格に表れる違い',
+        paragraphs: [
+          '同じ樹種でも、価格は主に樹の育った年月と、手入れで作られた形で変わります。',
+        ],
+        points: [
+          '樹齢と幹：年月をかけて育った樹は幹が太く、根元の張りや幹の肌に味わいが出る',
+          '樹形：枝の配りや幹の流れが整っているほど、手入れにかかった年月が長い',
+          '鉢：常滑焼・信楽焼など産地のある鉢や、樹に合わせて選ばれた鉢が使われていることが多い',
+          '現品：写真の樹がそのまま届く「現品」の商品が多い。届く姿を確かめてから選べる',
+        ],
+      },
+      {
+        heading: '購入前に確かめたいこと',
+        paragraphs: [
+          '写真が現品か見本か、樹高と鉢を含めたサイズ、送料や配送の方法を商品ページで確かめます。大きな鉢は重くなるため、置き場所まで運べるかも考えておきます。',
+          '樹形の整った盆栽は、形を保つための手入れ（芽摘みや剪定）が欠かせません。樹種ごとの育て方の記事もあわせてご覧ください。',
+        ],
+        aside: {
+          eyebrow: '贈るとき',
+          title: '育て方の説明が付くものを',
+          text: '贈る相手が盆栽を育てたことがない場合は、育て方の説明書が付く商品や、相談に応じる販売店のものを選ぶと安心です。',
+        },
+      },
+    ],
+    listHeading: '1万円以上の盆栽',
+    filter: p => p.price >= 10000 && isTreeProduct(p),
+    productTypes: ['tree'],
+    sort: byReviews,
+    interleaveBy: bySpecies,
+    limit: 24,
+    catalog: {
+      all: '/products?type=tree&min=10000',
+      chips: [
+        { label: '五葉松', href: '/products?type=tree&min=10000&species=goyomatsu' },
+        { label: '黒松', href: '/products?type=tree&min=10000&species=kuromatsu' },
+        { label: '真柏', href: '/products?type=tree&min=10000&species=shimpaku' },
       ],
     },
   },

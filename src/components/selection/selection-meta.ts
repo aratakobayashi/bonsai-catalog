@@ -20,8 +20,8 @@ export function isFeaturable(selection: Pick<Selection, 'slug'>, counts: Map<str
 
 // 月ごとに先に見せる特集（トップ・特集一覧の先頭。季節の行事や見頃に合わせる）。1月〜12月
 const SEASON_LEAD: string[][] = [
-  ['new-year-bonsai', 'evergreen-bonsai', 'fruit-bonsai'],
-  ['flowering-bonsai', 'new-year-bonsai', 'evergreen-bonsai'],
+  ['new-year-bonsai', 'winter-bonsai', 'premium-bonsai'],
+  ['winter-bonsai', 'flowering-bonsai', 'new-year-bonsai'],
   ['flowering-bonsai', 'starter-tools', 'beginner-mini-bonsai'],
   ['flowering-bonsai', 'beginner-mini-bonsai', 'starter-tools'],
   ['bonsai-gift', 'flowering-bonsai', 'beginner-mini-bonsai'],
@@ -30,8 +30,8 @@ const SEASON_LEAD: string[][] = [
   ['indoor-bonsai', 'bonsai-under-3000', 'celebration-bonsai'],
   ['celebration-bonsai', 'bonsai-gift', 'fruit-bonsai'],
   ['autumn-leaves-bonsai', 'fruit-bonsai', 'celebration-bonsai'],
-  ['autumn-leaves-bonsai', 'fruit-bonsai', 'new-year-bonsai'],
-  ['new-year-bonsai', 'fruit-bonsai', 'bonsai-gift'],
+  ['autumn-leaves-bonsai', 'christmas-bonsai', 'winter-bonsai'],
+  ['christmas-bonsai', 'new-year-bonsai', 'winter-bonsai'],
 ]
 
 // 今月の特集を先に、そのあとは定義の順に並べる
@@ -54,6 +54,9 @@ const SELECTION_GUIDES: Record<string, string[]> = {
   'evergreen-bonsai': ['article-6', 'article-10', 'article-20'],
   'celebration-bonsai': ['article-32', 'article-29', 'article-36', 'article-3'],
   'starter-tools': ['article-7', 'article-16', 'article-8'],
+  'winter-bonsai': ['bonsai-winter-care-failure-prevention', 'article-47', 'nanten-guide'],
+  'christmas-bonsai': ['nanten-guide', 'article-2', 'article-20'],
+  'premium-bonsai': ['article-6', 'article-20', 'bonsai-diplomacy-gift-etiquette'],
 }
 const COMMON_GUIDE = 'bonsai-watering-master-guide-2025'
 

@@ -118,6 +118,9 @@ const SELECTION_TOOLS: Record<string, string[]> = {
   'beginner-mini-bonsai': ['/hajimete', '/kumiawase', '/soroeru'],
   'indoor-bonsai': ['/hajimete', '/shojo', '/note'],
   'bonsai-under-3000': ['/okurimono', '/shindan', '/hajimete'],
+  'winter-bonsai': ['/teire', '/shojo', '/okurimono'],
+  'christmas-bonsai': ['/okurimono', '/kumiawase', '/hajimete'],
+  'premium-bonsai': ['/okurimono', '/zukan', '/teire'],
 }
 
 export default async function SelectionPage({ params }: SelectionPageProps) {
