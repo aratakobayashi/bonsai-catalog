@@ -24,6 +24,9 @@ export function pageTypeOf(pathname: string): string {
   if (pathname.startsWith('/guides/')) return 'article'
   if (pathname.startsWith('/gardens')) return 'garden'
   if (pathname.startsWith('/events')) return 'event'
+  // 選ぶ・育てるの機能（site-tools.ts）
+  const tool = pathname.match(/^\/(shindan|okurimono|kumiawase|soroeru|teire|shojo|hajimete|zukan|note|favorites)(\/|$)/)
+  if (tool) return `tool_${tool[1]}`
   return 'other'
 }
 
