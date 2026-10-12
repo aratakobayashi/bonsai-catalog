@@ -9,7 +9,7 @@ import {
   hasActiveFilters,
   nonEmptyCategorySlugs,
   optionCounts,
-  paginate,
+  paginateMore,
   parseFilters,
   type CatalogProduct,
 } from '@/lib/catalog'
@@ -119,7 +119,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
     return <CatalogLoadError title={category.name} retryHref={basePath} />
   }
   const products = filterProducts(all, filters)
-  const { items, page, totalPages, total } = paginate(products, filters.page)
+  const { items, page, totalPages, total } = paginateMore(products, filters.page)
   const prices = products.map(p => p.price).sort((a, b) => a - b)
   const median = prices.length ? prices[Math.floor(prices.length / 2)] : null
   const pageUrl = `${SITE_URL}${basePath}`

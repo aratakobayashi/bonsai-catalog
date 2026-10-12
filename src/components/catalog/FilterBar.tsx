@@ -33,7 +33,7 @@ export interface KeywordFormTarget {
   maxLength: number
 }
 
-function Dropdown({ menu, open, onToggle, onClose, alignRight = false }: { menu: FilterMenu; open: boolean; onToggle: () => void; onClose: () => void; alignRight?: boolean }) {
+export function Dropdown({ menu, open, onToggle, onClose, alignRight = false }: { menu: FilterMenu; open: boolean; onToggle: () => void; onClose: () => void; alignRight?: boolean }) {
   return (
     <div className="relative shrink-0">
       <button
@@ -207,6 +207,9 @@ interface FilterBarProps {
 }
 
 // 一覧の上の帯：樹種のタブ（横スクロール）と、PCは「条件」「並び順」、スマホは「条件」ボタン
+// 一覧の「もっと絞る」から、上のバーの条件（PCはパネル、スマホはシート）を開く
+export const OPEN_FILTERS_EVENT = 'bonsai:open-filters'
+
 export function FilterBar({ allTab, tabs, tabsLabel = '樹種', menus, sort, conditions, activeCount, total, clearHref, keywordForm, currentUrl }: FilterBarProps) {
   const router = useRouter()
   const [panelOpen, setPanelOpen] = useState(false)
@@ -228,6 +231,16 @@ export function FilterBar({ allTab, tabs, tabsLabel = '樹種', menus, sort, con
   const closeSheetState = useCallback(() => setSheetOpen(false), [])
   const { dismiss, isMarked, mark } = useHistoryDismiss(sheetOpen, closeSheetState, '__bonsaiFilterSheet')
   useFocusTrap(sheetRef, sheetOpen)
+
+  useEffect(() => {
+    const open = () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      if (isDesktop()) setPanelOpen(true)
+      else setSheetOpen(true)
+    }
+    window.addEventListener(OPEN_FILTERS_EVENT, open)
+    return () => window.removeEventListener(OPEN_FILTERS_EVENT, open)
+  }, [])
 
   // 選択中の樹種のタブが見えるように、横スクロールの位置を合わせる
   useEffect(() => {
@@ -539,4 +552,67 @@ export function ListSelectArea({ children, className = '', list }: { children: R
   }
   // リンク自身の処理より先に受け取るため、キャプチャで処理する
   return <div className={className} data-list={list} onClickCapture={onClick}>{children}</div>
+}
+
+// 一覧の上に常に出す、よく使う絞り込みのボタン（予算・大きさ・置き場所・用途）と、選んでいる条件の札
+export function QuickFilters({ menus, chips, clearHref, showClear = chips.length > 0 }: { menus: FilterMenu[]; chips: { label: string; href: string }[]; clearHref: string; showClear?: boolean }) {
+  const [open, setOpen] = useState<string | null>(null)
+  return (
+    <div className="min-w-0">
+      <div className="flex flex-wrap items-center gap-2">
+        {menus.map((menu, i) => {
+          const isOpen = open === menu.key
+          return (
+            <div key={menu.key} className="relative">
+              <button
+                type="button"
+                onClick={() => setOpen(isOpen ? null : menu.key)}
+                aria-expanded={isOpen}
+                className={`inline-flex min-h-10 items-center gap-1.5 border px-3 text-[13px] ${menu.current ? 'border-ink bg-ink text-white' : 'border-line bg-white text-ink hover:border-ink'}`}
+              >
+                {menu.current ?? menu.label}
+                <span aria-hidden="true" className={`text-[10px] ${menu.current ? 'text-white/70' : 'text-ink-muted'}`}>▼</span>
+              </button>
+              {isOpen && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setOpen(null)} aria-hidden="true" />
+                  <div className={`absolute ${i >= 2 ? 'right-0 lg:left-0 lg:right-auto' : 'left-0'} top-full z-50 mt-1.5 max-h-[60vh] w-56 overflow-y-auto border border-line bg-white py-1 shadow-[0_18px_40px_rgba(34,32,28,0.12)]`}>
+                    <div className="px-4 pb-1 pt-2 text-[11.5px] text-ink-muted">{menu.label}</div>
+                    {menu.groups.flatMap(g => g.options).map(option => (
+                      <Link
+                        key={option.href + option.label}
+                        href={option.href}
+                        scroll={false}
+                        onClick={() => setOpen(null)}
+                        aria-current={option.active ? 'true' : undefined}
+                        className={`flex min-h-11 items-center gap-2 border-b border-paper-deep px-4 py-2.5 text-[13.5px] last:border-b-0 hover:bg-paper ${option.active ? 'font-bold text-ink' : 'text-ink-soft'}`}
+                      >
+                        <span className="w-2.5 text-gold-dark" aria-hidden="true">{option.active ? '—' : ''}</span>
+                        {option.label}
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+          )
+        })}
+        {(
+          <button type="button" onClick={() => window.dispatchEvent(new Event(OPEN_FILTERS_EVENT))} className="inline-flex min-h-10 items-center gap-1.5 px-2 text-[13px] text-ink underline decoration-line underline-offset-4 hover:decoration-ink">
+            もっと絞る
+          </button>
+        )}
+      </div>
+      {showClear && (
+        <div className="mt-3 flex flex-wrap items-center gap-1.5">
+          {chips.map(chip => (
+            <Link key={chip.href + chip.label} href={chip.href} scroll={false} className="inline-flex min-h-9 items-center gap-1.5 bg-paper-deep px-2.5 text-[12.5px] text-ink hover:bg-line" aria-label={`${chip.label}の条件を外す`}>
+              {chip.label}<span aria-hidden="true" className="text-ink-muted">×</span>
+            </Link>
+          ))}
+          <Link href={clearHref} scroll={false} className="ml-1 inline-flex min-h-9 items-center text-[12.5px] text-ink-muted underline underline-offset-4 hover:text-ink">すべて解除</Link>
+        </div>
+      )}
+    </div>
+  )
 }

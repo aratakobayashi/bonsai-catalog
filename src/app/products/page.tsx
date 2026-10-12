@@ -6,7 +6,7 @@ import {
   getCatalogProducts,
   hasActiveFilters,
   optionCounts,
-  paginate,
+  paginateMore,
   parseFilters,
   type CatalogFilters,
   type CatalogProduct,
@@ -14,9 +14,8 @@ import {
 import { CatalogBrowser, buildCatalogTabs } from '@/components/catalog/CatalogBrowser'
 import { CatalogEmptyState } from '@/components/catalog/CatalogFilters'
 import { CatalogLoadError } from '@/components/catalog/CatalogLoadError'
-import { SELECTIONS } from '@/lib/selections'
 import { SITE_TOOLS } from '@/components/layout/site-tools'
-import { CatalogShelves, buildShelves } from '@/components/catalog/CatalogShelves'
+import { CatalogShelves, SpeciesTiles, buildShelves, buildSpeciesTiles } from '@/components/catalog/CatalogShelves'
 import { CareIcon } from '@/components/catalog/CareIcon'
 import { CatalogSearchTracker } from '@/components/analytics/CatalogSearchTracker'
 
@@ -65,15 +64,25 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
     console.error('一覧の商品データの取得に失敗しました:', error instanceof Error ? error.message : error)
     return <CatalogLoadError />
   }
-  const filtered = filterProducts(all, filters)
-  const { items, page, totalPages, total } = paginate(filtered, filters.page)
-  const selectedId = typeof searchParams.p === 'string' ? searchParams.p : undefined
-  const activeCount = activeFilterKeys(filters).filter(k => !k.startsWith('q')).length
+  // 「盆栽を探す」の既定は盆栽・苔玉の売り場（種類もキーワードも指定がないとき）。鉢・土・道具は ?type=parts の売り場
+  const store: 'bonsai' | 'parts' = filters.type === 'parts' ? 'parts' : 'bonsai'
+  const effective = !filters.type && !filters.q ? { ...filters, type: 'bonsai' } : filters
+  const filtered = filterProducts(all, effective)
+  const { items, page, totalPages, total } = paginateMore(filtered, filters.page)
+  const activeCount = activeFilterKeys(filters).filter(k => !k.startsWith('q') && !(store === 'parts' && k === 'type')).length
   const speciesTabs = buildCatalogTabs(all, filters, undefined, filters.species ? undefined : total)
 
   const emptyState = total === 0 ? <CatalogEmptyState products={all} filters={filters} /> : null
-  // 何も絞り込んでいない1ページ目は、全件の一覧の上に目的ごとの棚を並べる
-  const shelves = activeCount === 0 && !filters.q && page === 1 ? <CatalogShelves shelves={buildShelves(all)} /> : null
+  // 何も絞り込んでいない盆栽の売り場の1ページ目は、全件の一覧の上に目的ごとの棚と樹種のタイルを並べる
+  const browsing = store === 'bonsai' && activeCount === 0 && !filters.q && page === 1
+  const shelves = browsing ? (
+    <>
+      <CatalogShelves shelves={buildShelves(all)} />
+      <SpeciesTiles tiles={buildSpeciesTiles(all)} />
+      <h2 className="mb-4 font-mincho text-[18px] font-bold tracking-[0.05em] text-ink lg:text-[21px]">すべての盆栽・苔玉</h2>
+    </>
+  ) : null
+  const bandTitle = filters.q ? `「${filters.q}」の検索結果` : store === 'parts' ? '鉢・土・道具を探す' : '盆栽を探す'
 
   return (
     <>
@@ -82,48 +91,40 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         filterKeys={activeFilterKeys(filters).join(',')}
         resultCount={total}
       />
-      {activeCount > 0 && !filters.q && <h1 className="sr-only">盆栽・鉢・道具を探す（{all.length.toLocaleString()}件）</h1>}
       <CatalogBrowser
         filters={filters}
         items={items}
         total={total}
         page={page}
         totalPages={totalPages}
-        selectedId={selectedId}
         speciesTabs={speciesTabs}
         counts={optionCounts(all)}
         emptyState={emptyState}
         shelves={shelves}
         activeCount={activeCount}
-        intro={filters.q ? (
+        store={filters.q ? undefined : store}
+        clearHref={store === 'parts' ? '/products?type=parts' : '/products'}
+        intro={
           <div>
-            <p className="flex items-center gap-3 text-[11px] tracking-[0.22em] text-gold">検索<span className="h-px w-10 bg-gold" aria-hidden="true" /></p>
-            <h1 className="mt-2 font-mincho text-[22px] font-bold tracking-[0.06em] text-white lg:text-[28px]">「{filters.q}」の検索結果</h1>
+            <p className="flex items-center gap-3 text-[11px] tracking-[0.22em] text-gold">{filters.q ? '検索' : '盆栽コレクション'}<span className="h-px w-10 bg-gold" aria-hidden="true" /></p>
+            <h1 className="mt-2 font-mincho text-[24px] font-bold tracking-[0.08em] text-white lg:text-[32px]">{bandTitle}</h1>
+            {!filters.q && (
+              <p className="mt-2 text-[13px] leading-[1.8] text-white/75">
+                楽天市場の<strong className="mx-0.5 font-mincho text-[17px] font-bold text-gold">{total.toLocaleString()}</strong>件
+                {store === 'parts' ? 'の盆栽鉢・用土・道具・針金・肥料を、種類と価格で比べられます。' : 'の盆栽・苔玉を、樹種・大きさ・置き場所・予算で比べられます。'}
+              </p>
+            )}
+            {browsing && (
+              <div className="mt-4 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                {SITE_TOOLS.filter(t => t.group === 'choose').map(t => (
+                  <Link key={t.href} href={t.href} className="inline-flex min-h-10 shrink-0 items-center gap-1.5 border border-line bg-paper px-3 text-xs font-bold text-ink hover:border-ink hover:text-ink">
+                    <CareIcon name={t.icon} className="h-3.5 w-3.5 text-gold-dark" />{t.label}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
-        ) : activeCount === 0 ? (
-          <div>
-            <p className="flex items-center gap-3 text-[11px] tracking-[0.22em] text-gold">盆栽を探す<span className="h-px w-10 bg-gold" aria-hidden="true" /></p>
-            <h1 className="mt-2 font-mincho text-[24px] font-bold tracking-[0.08em] text-white lg:text-[32px]">盆栽・鉢・道具を探す</h1>
-            <p className="mb-5 mt-2 text-[13px] leading-[1.8] text-white/75">楽天市場の<strong className="mx-0.5 font-mincho text-[17px] font-bold text-gold">{all.filter(p => p.productType !== 'other').length.toLocaleString()}</strong>件を、樹種・大きさ・育てやすさ・価格で比べられます。</p>
-            <span className="text-[11.5px] tracking-[0.08em] text-ink-muted">質問に答えて選ぶ</span>
-            <div className="mt-2 mb-4 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {SITE_TOOLS.filter(t => t.group === 'choose').map(t => (
-                <Link key={t.href} href={t.href} className="inline-flex min-h-9 shrink-0 items-center gap-1.5 border border-line bg-paper px-3 text-xs font-bold text-ink hover:border-ink hover:text-ink">
-                  <CareIcon name={t.icon} className="h-3.5 w-3.5 text-gold-dark" />{t.label}
-                </Link>
-              ))}
-            </div>
-            <div className="flex items-baseline justify-between">
-              <span className="text-[11.5px] tracking-[0.08em] text-ink-muted">目的から探す</span>
-              <Link href="/selection" className="border-b border-ink pb-0.5 text-xs text-ink">特集をすべて見る</Link>
-            </div>
-            <div className="mt-3 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {SELECTIONS.map(s => (
-                <Link key={s.slug} href={`/selection/${s.slug}`} className="shrink-0 border border-line bg-white px-3 py-1.5 text-xs text-ink hover:border-ink hover:text-ink">{s.shortTitle}</Link>
-              ))}
-            </div>
-          </div>
-        ) : undefined}
+        }
       />
     </>
   )

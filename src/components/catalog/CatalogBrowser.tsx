@@ -8,19 +8,13 @@ import {
   filterProducts,
   type CatalogFilters,
 } from '@/lib/catalog'
-import { buildFilterMenus, buildSpeciesTabs, conditionLabels, type SpeciesTab } from '@/lib/catalog-menus'
+import { activeChips, buildFilterMenus, buildSpeciesTabs, conditionLabels, quickMenus, type SpeciesTab } from '@/lib/catalog-menus'
 import type { CatalogProduct } from '@/lib/catalog-model'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { CatalogProductCard } from './CatalogProductCard'
-import { CatalogPagination } from './CatalogFilters'
 import { CompareBar } from './CompareBar'
-import { FilterBar, ListSelectArea, SortSelect, type KeywordFormTarget } from './FilterBar'
-import { ProductImage, ProductInfo } from './ProductDetailPanel'
-
-function withSelected(url: string, id: string) {
-  return `${url}${url.includes('?') ? '&' : '?'}p=${id}`
-}
+import { FilterBar, QuickFilters, SortSelect, type KeywordFormTarget } from './FilterBar'
 
 export interface CatalogTabs {
   all: SpeciesTab
@@ -95,13 +89,17 @@ interface CatalogBrowserProps {
   intro?: ReactNode
   // 全件の一覧の上に並べる目的ごとの棚（何も絞り込んでいないときだけ）
   shelves?: ReactNode
+  // 売り場の切り替えを出す（/products だけ）。今の売り場
+  store?: 'bonsai' | 'parts'
+  // 「すべて解除」の行き先（既定は basePath）
+  clearHref?: string
   emptyState?: ReactNode
   activeCount: number
   footer?: ReactNode
 }
 
-// 商品一覧の画面（PCは左に商品のグリッド・右に詳細、スマホは2列のカード）
-export function CatalogBrowser({ filters, items, total, page, totalPages, selectedId, basePath = '/products', speciesTabs, counts, fixedCategory = false, intro, shelves, emptyState, activeCount, footer }: CatalogBrowserProps) {
+// 商品一覧の画面（墨色の見出しの帯 → 売り場の切り替え → 棚 → よく使う絞り込み → 商品のグリッド → もっと見る）
+export function CatalogBrowser({ filters, items, total, page, totalPages, selectedId, basePath = '/products', speciesTabs, counts, fixedCategory = false, intro, shelves, store, clearHref, emptyState, activeCount, footer }: CatalogBrowserProps) {
   // カテゴリページの条件・並び順はカテゴリのURLのまま切り替える（樹種・種類はページ側で固定するのでURLに入れない）
   const urlFilters: CatalogFilters = fixedCategory ? { ...filters, species: undefined, type: undefined } : filters
   const { menus, sort } = buildFilterMenus(urlFilters, basePath, counts)
@@ -113,7 +111,11 @@ export function CatalogBrowser({ filters, items, total, page, totalPages, select
   })
   const conditions = conditionLabels(filters, fixedCategory)
   const listUrl = buildCatalogUrl(urlFilters, { page }, basePath)
-  const selected = items.find(p => p.id === selectedId) ?? items[0]
+  const partsView = isPartType(filters.type) || (fixedCategory && Boolean(CATEGORY_PART_TYPES[basePath.split('/').pop() ?? '']))
+  const quick = quickMenus(urlFilters, basePath, partsView)
+  const chips = activeChips(urlFilters, basePath, fixedCategory, quick.map(m => m.key))
+  // 何かの条件で絞っているか（「すべて解除」を出すため。上のボタンの条件も含める）
+  const anyActive = chips.length > 0 || quick.some(m => m.current)
   // キーワード・価格の入力欄：今のページ（カテゴリページはカテゴリの URL）に、ほかの条件を保ったまま送る
   const keepUrl = buildCatalogUrl({ ...urlFilters, q: undefined, min: undefined, max: undefined }, {}, basePath)
   const keywordForm: KeywordFormTarget = {
@@ -141,72 +143,72 @@ export function CatalogBrowser({ filters, items, total, page, totalPages, select
         currentUrl={listUrl}
       />
 
-      {/* PC：左の一覧と右の詳細を、それぞれ独立してスクロールできるようにする（高さは画面からヘッダー56px・樹種のタブ56px＋線1pxを除いた分） */}
-      <div className="mx-auto max-w-[1280px] lg:grid lg:h-[calc(100vh-113px)] lg:grid-cols-[minmax(0,1fr)_380px] xl:grid-cols-[minmax(0,1fr)_420px]">
-        {/* 条件やページが変わったときだけ一覧の先頭に戻し、商品を選んだだけのときは位置を保つ */}
-        <section key={listUrl} className="flex min-w-0 flex-col lg:min-h-0 lg:overflow-y-auto" aria-label="商品の一覧">
-          <div className="flex-1 px-4 pb-10 pt-5 lg:pb-12 lg:pl-12 lg:pr-10 lg:pt-8">
-            {/* 見出し：一覧の列の上に、墨色の低い帯（各ページの冒頭と同じ色使い） */}
-            {intro && <div className="tone-dark -mx-4 -mt-5 mb-5 bg-sumi px-4 pb-6 pt-5 lg:-ml-12 lg:-mr-10 lg:-mt-8 lg:mb-8 lg:pb-8 lg:pl-12 lg:pr-10 lg:pt-8">{intro}</div>}
-            {shelves}
+      {/* 見出し：画面の端まで墨色の帯（各ページの冒頭と同じ色使い） */}
+      {intro && (
+        <div className="tone-dark bg-sumi">
+          <div className="mx-auto max-w-[1280px] px-4 pb-6 pt-5 lg:px-12 lg:pb-9 lg:pt-8">{intro}</div>
+        </div>
+      )}
 
-            <div className="mb-4 flex items-baseline gap-2.5 text-[11px] text-ink-muted lg:mb-6 lg:gap-3 lg:text-xs">
-              <span className="shrink-0"><span className="text-[13px] text-ink lg:text-[15px]">{total.toLocaleString()}</span> 件</span>
-              {totalPages > 1 && <span className="hidden shrink-0 lg:inline">{page} / {totalPages}ページ</span>}
-              {conditions.length > 0 && <span className="min-w-0 flex-1 truncate lg:hidden">{conditions.join('・')}</span>}
-              <div className="ml-auto shrink-0 lg:hidden"><SortSelect sort={sort} /></div>
-              <PrDisclosure compact className="ml-auto hidden text-right lg:block" />
-            </div>
-            <PrDisclosure compact className="-mt-2 mb-4 lg:hidden" />
-
-            {items.length === 0 ? (
-              <div className="py-6">{emptyState}</div>
-            ) : (
-              <ListSelectArea list="catalog" className="grid grid-cols-2 gap-x-3.5 gap-y-8 lg:gap-x-6 lg:gap-y-12 xl:grid-cols-3">
-                {items.map((product, index) => (
-                  <CatalogProductCard
-                    key={product.id}
-                    product={product}
-                    priority={index < 2}
-                    selected={product.id === selected?.id}
-                    selectHref={withSelected(listUrl, product.id)}
-                    sizes="(max-width: 1024px) 50vw, 260px"
-                  />
-                ))}
-              </ListSelectArea>
-            )}
-
-            {page < totalPages && (
+      <div className="mx-auto max-w-[1280px] px-4 pb-12 pt-5 lg:px-12 lg:pb-16 lg:pt-8">
+        {/* 売り場の切り替え（盆栽・苔玉／鉢・土・道具） */}
+        {store && (
+          <nav aria-label="売り場" className="mb-6 flex border-b border-line lg:mb-8">
+            {[
+              { key: 'bonsai', label: '盆栽・苔玉', href: '/products' },
+              { key: 'parts', label: '鉢・土・道具', href: '/products?type=parts' },
+            ].map(tab => (
               <Link
-                href={buildCatalogUrl(urlFilters, { page: page + 1 }, basePath)}
-                className="mt-10 flex h-12 items-center justify-center border border-ink text-sm tracking-[0.06em] text-ink hover:bg-white hover:text-ink"
+                key={tab.key}
+                href={tab.href}
+                aria-current={store === tab.key ? 'page' : undefined}
+                className={`-mb-px inline-flex min-h-12 items-center border-b-2 px-4 font-mincho text-[15px] font-bold tracking-[0.05em] lg:px-6 lg:text-[17px] ${store === tab.key ? 'border-ink text-ink' : 'border-transparent text-ink-muted hover:text-ink'}`}
               >
-                次のページ（{Math.min(PAGE_SIZE, total - page * PAGE_SIZE)}件）
+                {tab.label}
               </Link>
-            )}
-            <CatalogPagination filters={urlFilters} page={page} totalPages={totalPages} basePath={basePath} />
-            <p className="mt-8 text-[11px] leading-relaxed text-ink-muted">
-              価格・送料・在庫は取得時点の情報です。最新の情報は各ショップの商品ページでご確認ください。楽天市場の商品情報は{' '}
-              <a href="https://developers.rakuten.com/" target="_blank" rel="noopener noreferrer" className="underline">Supported by Rakuten Developers</a>。
-            </p>
-          </div>
-          <CompareBar />
-        </section>
+            ))}
+          </nav>
+        )}
 
-        {/* 選んだ商品が変わったら、詳細は先頭から表示する */}
-        <section key={selected?.id ?? 'none'} className="hidden border-l border-line bg-white lg:block lg:overflow-y-auto" aria-label="選択中の商品" data-place="list_panel">
-          {selected ? (
-            <>
-              <ProductImage product={selected} sizes="420px" size={500} priority={false} className="aspect-[7/5]" />
-              <div className="px-8 pb-8 pt-5">
-                <ProductInfo product={selected} />
-                <Link href={`/products/${selected.id}`} className="mt-6 inline-block border-b border-ink pb-0.5 text-[13px] text-ink hover:text-ink">
-                  この商品のページを開く
-                </Link>
-              </div>
-            </>
-          ) : null}
+        {shelves}
+
+        <section aria-label="商品の一覧" id="list" className="scroll-mt-32">
+          {/* よく使う絞り込み（常に表示）と、選んでいる条件の札 */}
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between lg:gap-6">
+            <QuickFilters menus={quick} chips={chips} clearHref={clearHref ?? basePath} showClear={anyActive} />
+            <div className="flex shrink-0 items-center gap-4 text-[12px] text-ink-muted">
+              <span><span className="text-[15px] text-ink">{total.toLocaleString()}</span> 件</span>
+              <SortSelect sort={sort} />
+            </div>
+          </div>
+          <PrDisclosure compact className="mb-5 mt-3 lg:mb-7" />
+
+          {items.length === 0 ? (
+            <div className="py-6">{emptyState}</div>
+          ) : (
+            <div data-list="catalog" className="grid grid-cols-2 gap-x-3.5 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-12 xl:grid-cols-5">
+              {items.map((product, index) => (
+                <CatalogProductCard key={product.id} product={product} priority={index < 2} sizes="(max-width: 639px) 46vw, (max-width: 1023px) 30vw, 230px" />
+              ))}
+            </div>
+          )}
+
+          {/* もっと見る：続きを下に足す（スクロールの位置は保つ） */}
+          {page < totalPages && (
+            <Link
+              href={buildCatalogUrl(urlFilters, { page: page + 1 }, basePath)}
+              scroll={false}
+              className="mx-auto mt-10 flex h-12 max-w-[420px] items-center justify-center border border-ink text-sm tracking-[0.06em] text-ink hover:bg-ink hover:text-white"
+            >
+              もっと見る（残り{(total - items.length).toLocaleString()}件）
+            </Link>
+          )}
+          <p className="mt-8 text-[11px] leading-relaxed text-ink-muted">
+            価格・送料・在庫は取得時点の情報です。最新の情報は各ショップの商品ページでご確認ください。楽天市場の商品情報は{' '}
+            <a href="https://developers.rakuten.com/" target="_blank" rel="noopener noreferrer" className="underline">Supported by Rakuten Developers</a>。
+          </p>
         </section>
+        <CompareBar />
       </div>
       {footer && <div className="mx-auto max-w-[1280px] border-t border-line px-4 py-8 lg:px-12">{footer}</div>}
     </>

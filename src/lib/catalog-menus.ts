@@ -180,3 +180,51 @@ export function buildSpeciesTabs(products: CatalogProduct[], filters: CatalogFil
     tabs,
   }
 }
+
+// ---- 選んでいる条件の札（押すとその条件だけ外す） ----
+
+export interface ActiveChip {
+  label: string
+  href: string
+}
+
+// skip：上のボタンに出ている条件（予算・大きさ・置き場所・用途）は札にしない
+export function activeChips(filters: CatalogFilters, basePath = '/products', fixedCategory = false, skip: string[] = []): ActiveChip[] {
+  const url = (overrides: Partial<CatalogFilters>) => buildCatalogUrl(filters, overrides, basePath)
+  const chips: (ActiveChip | null)[] = [
+    filters.q ? { label: `「${filters.q}」`, href: url({ q: undefined }) } : null,
+    !fixedCategory && filters.type && filters.type !== 'parts' ? { label: label(TYPE_OPTIONS, filters.type) ?? filters.type, href: url({ type: undefined }) } : null,
+    !fixedCategory && filters.species ? { label: label(SPECIES_OPTIONS, filters.species) ?? filters.species, href: url({ species: undefined }) } : null,
+    !skip.includes('price') && (filters.min || filters.max)
+      ? { label: PRICE_PRESETS.find(p => p.min === filters.min && p.max === filters.max)?.label ?? `${filters.min?.toLocaleString() ?? ''}〜${filters.max?.toLocaleString() ?? ''}円`, href: url({ min: undefined, max: undefined }) }
+      : null,
+    !skip.includes('size') && filters.size ? { label: label(SIZE_OPTIONS, filters.size)?.replace(/（.*）/, '') ?? filters.size, href: url({ size: undefined }) } : null,
+    !skip.includes('place') && filters.place ? { label: label(PLACE_OPTIONS, filters.place) ?? filters.place, href: url({ place: undefined }) } : null,
+    filters.enjoy ? { label: label(ENJOY_OPTIONS, filters.enjoy) ?? filters.enjoy, href: url({ enjoy: undefined }) } : null,
+    filters.season ? { label: `見ごろ：${label(SEASON_OPTIONS, filters.season)}`, href: url({ season: undefined }) } : null,
+    filters.level ? { label: label(LEVEL_OPTIONS, filters.level) ?? filters.level, href: url({ level: undefined }) } : null,
+    !skip.includes('use') && filters.use ? { label: label(USE_OPTIONS, filters.use) ?? filters.use, href: url({ use: undefined }) } : null,
+    ...filters.flags.map(f => ({ label: label(FLAG_OPTIONS, f) ?? f, href: url({ flags: filters.flags.filter(x => x !== f) }) })),
+  ]
+  return chips.filter((c): c is ActiveChip => Boolean(c))
+}
+
+// 一覧の上に常に出す、よく使う絞り込み（予算・大きさ・置き場所・用途）
+// 鉢・土・道具の売り場では予算だけ（置き場所・用途は盆栽のための条件）
+export function quickMenus(filters: CatalogFilters, basePath = '/products', parts = false): FilterMenu[] {
+  const { menus } = buildFilterMenus(filters, basePath)
+  const price = menus.find(m => m.key === 'price')!
+  const size = menus.find(m => m.key === 'size')!
+  const purpose = menus.find(m => m.key === 'purpose')!
+  const group = (title: string) => purpose.groups.find(g => g.title === title)
+  const place = group('置き場所')
+  const use = group('用途')
+  const short = (v?: string) => v?.replace(/（.*）/, '')
+  if (parts) return [{ ...price, label: '予算' }]
+  return [
+    { ...price, label: '予算' },
+    { ...size, label: '大きさ', current: short(size.current) },
+    ...(place ? [{ key: 'place', label: '置き場所', current: short(label(PLACE_OPTIONS, filters.place)), groups: [{ options: place.options }] }] : []),
+    ...(use ? [{ key: 'use', label: '用途', current: label(USE_OPTIONS, filters.use), groups: [{ options: use.options }] }] : []),
+  ]
+}

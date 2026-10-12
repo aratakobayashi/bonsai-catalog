@@ -338,8 +338,10 @@ export function filterProducts(products: CatalogProduct[], filters: CatalogFilte
   let result = products.filter(p => {
     if (!filters.type && (p.productType === 'other')) return false
     if (filters.type === 'parts' && !PART_TYPES.includes(p.productType)) return false
+    // 「盆栽を探す」の既定の売り場：盆栽・苔玉・キット（鉢・土・道具は別の売り場）
+    if (filters.type === 'bonsai' && !['tree', 'kokedama', 'kit'].includes(p.productType)) return false
     if (filters.type === 'kokedama' && !['kokedama', 'kit'].includes(p.productType)) return false
-    if (filters.type && !['parts', 'kokedama'].includes(filters.type) && p.productType !== filters.type) return false
+    if (filters.type && !['parts', 'kokedama', 'bonsai'].includes(filters.type) && p.productType !== filters.type) return false
     if (species && !species.match(p)) return false
     if (filters.size && p.sizeCategory !== filters.size) return false
     if (filters.shop && p.source !== filters.shop) return false
@@ -379,6 +381,13 @@ export function filterProducts(products: CatalogProduct[], filters: CatalogFilte
   // おすすめ順で樹種を絞っていないときは、同じ樹種が3件以上続かないようにする
   if (filters.sort === 'recommended' && !filters.species) result = spreadSpecies(result)
   return result
+}
+
+// 「もっと見る」：1ページ目から page ページ目までをまとめて返す（続きを下に足していく見せ方）
+export function paginateMore<T>(items: T[], page: number, pageSize = PAGE_SIZE) {
+  const totalPages = Math.max(1, Math.ceil(items.length / pageSize))
+  const current = Math.min(Math.max(1, page), totalPages)
+  return { items: items.slice(0, current * pageSize), page: current, totalPages, total: items.length }
 }
 
 export function paginate<T>(items: T[], page: number, pageSize = PAGE_SIZE) {
