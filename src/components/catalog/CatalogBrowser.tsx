@@ -93,13 +93,15 @@ interface CatalogBrowserProps {
   fixedCategory?: boolean
   // 一覧の上に出す説明（カテゴリページの樹種の説明など）
   intro?: ReactNode
+  // 全件の一覧の上に並べる目的ごとの棚（何も絞り込んでいないときだけ）
+  shelves?: ReactNode
   emptyState?: ReactNode
   activeCount: number
   footer?: ReactNode
 }
 
 // 商品一覧の画面（PCは左に商品のグリッド・右に詳細、スマホは2列のカード）
-export function CatalogBrowser({ filters, items, total, page, totalPages, selectedId, basePath = '/products', speciesTabs, counts, fixedCategory = false, intro, emptyState, activeCount, footer }: CatalogBrowserProps) {
+export function CatalogBrowser({ filters, items, total, page, totalPages, selectedId, basePath = '/products', speciesTabs, counts, fixedCategory = false, intro, shelves, emptyState, activeCount, footer }: CatalogBrowserProps) {
   // カテゴリページの条件・並び順はカテゴリのURLのまま切り替える（樹種・種類はページ側で固定するのでURLに入れない）
   const urlFilters: CatalogFilters = fixedCategory ? { ...filters, species: undefined, type: undefined } : filters
   const { menus, sort } = buildFilterMenus(urlFilters, basePath, counts)
@@ -146,6 +148,7 @@ export function CatalogBrowser({ filters, items, total, page, totalPages, select
           <div className="flex-1 px-4 pb-10 pt-5 lg:pb-12 lg:pl-12 lg:pr-10 lg:pt-8">
             {/* 見出し：一覧の列の上に、墨色の低い帯（各ページの冒頭と同じ色使い） */}
             {intro && <div className="tone-dark -mx-4 -mt-5 mb-5 bg-sumi px-4 pb-6 pt-5 lg:-ml-12 lg:-mr-10 lg:-mt-8 lg:mb-8 lg:pb-8 lg:pl-12 lg:pr-10 lg:pt-8">{intro}</div>}
+            {shelves}
 
             <div className="mb-4 flex items-baseline gap-2.5 text-[11px] text-ink-muted lg:mb-6 lg:gap-3 lg:text-xs">
               <span className="shrink-0"><span className="text-[13px] text-ink lg:text-[15px]">{total.toLocaleString()}</span> 件</span>

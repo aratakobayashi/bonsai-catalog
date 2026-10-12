@@ -412,3 +412,10 @@ export function potShowcase(products: CatalogProduct[]): { tree: TreeOption; ite
   }
   return null
 }
+
+// 商品写真を目で見て付けた鉢のラベル（商品カードの札などに使う）。写真に鉢が複数写るもの・鉢が見えないものは null
+export function potLabelOf(id: string): { color: ColorKey; shape: 'round' | 'oval' | 'square' | 'irregular' | 'none'; shallow: boolean; moss: boolean; stone: boolean } | null {
+  const label = POT_LABELS[id]
+  if (!label || label.multi || label.c === 'none') return null
+  return { color: label.c, shape: label.s, shallow: label.sh, moss: label.m, stone: label.st }
+}

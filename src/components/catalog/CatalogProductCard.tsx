@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { formatPrice } from '@/lib/utils'
 import type { CatalogProduct } from '@/lib/catalog-model'
+import { cardTags } from '@/lib/card-tags'
 import type { Season } from '@/lib/species-traits'
 import { currentSeasonJst, isInSeasonNow } from '@/lib/seasons'
 import { shippingLabel } from '@/lib/shipping'
@@ -62,6 +63,7 @@ export function CatalogProductCard({ product, priority = false, selected = false
   const ship = shippingLabel(product)
   const inSeason = isInSeasonNow(product)
   const title = product.displayName || product.name
+  const tags = cardTags(product)
   return (
     <div className="group relative flex flex-col gap-2.5 lg:gap-3" data-card={product.id}>
       <Link
@@ -77,6 +79,12 @@ export function CatalogProductCard({ product, priority = false, selected = false
         <div className="flex flex-col gap-1">
           {/* スマホの小さな文字は明朝の太字だと重いため、ゴシックにする（PCは明朝） */}
           <p className="line-clamp-2 text-[14px] font-medium leading-[1.5] group-hover:text-gold-dark lg:font-mincho lg:text-base lg:font-bold lg:tracking-[0.03em]">{title}</p>
+          {/* 見分けるための札（樹齢・鉢の色と形・苔付きなど。見出しにないものだけ） */}
+          {tags.length > 0 && (
+            <div className="flex flex-wrap gap-1">
+              {tags.map(tag => <span key={tag} className="border border-line bg-paper px-1.5 py-px text-[11px] leading-[1.6] text-ink-soft">{tag}</span>)}
+            </div>
+          )}
           <div className="flex items-baseline gap-1.5 lg:gap-2.5">
             <span className="text-[13.5px] lg:text-[15px]">{formatPrice(product.price)}</span>
             {ship && <span className="text-xs text-ink-muted">{ship}</span>}

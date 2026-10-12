@@ -16,6 +16,7 @@ import { CatalogEmptyState } from '@/components/catalog/CatalogFilters'
 import { CatalogLoadError } from '@/components/catalog/CatalogLoadError'
 import { SELECTIONS } from '@/lib/selections'
 import { SITE_TOOLS } from '@/components/layout/site-tools'
+import { CatalogShelves, buildShelves } from '@/components/catalog/CatalogShelves'
 import { CareIcon } from '@/components/catalog/CareIcon'
 import { CatalogSearchTracker } from '@/components/analytics/CatalogSearchTracker'
 
@@ -71,6 +72,8 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   const speciesTabs = buildCatalogTabs(all, filters, undefined, filters.species ? undefined : total)
 
   const emptyState = total === 0 ? <CatalogEmptyState products={all} filters={filters} /> : null
+  // 何も絞り込んでいない1ページ目は、全件の一覧の上に目的ごとの棚を並べる
+  const shelves = activeCount === 0 && !filters.q && page === 1 ? <CatalogShelves shelves={buildShelves(all)} /> : null
 
   return (
     <>
@@ -90,6 +93,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         speciesTabs={speciesTabs}
         counts={optionCounts(all)}
         emptyState={emptyState}
+        shelves={shelves}
         activeCount={activeCount}
         intro={filters.q ? (
           <div>
