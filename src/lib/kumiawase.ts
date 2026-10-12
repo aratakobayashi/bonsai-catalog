@@ -1,9 +1,11 @@
 // 「組み合わせで選ぶ（自分だけの一鉢）」の判定と並べ替え（/kumiawase）
 // 樹・大きさ・鉢の雰囲気・仕上げを順に選ぶと、植え付け済みで届く楽天の掲載商品から合うものを出す。
-// 鉢の色・形・仕上げは商品名の表記（鉢の焼き物名・色名・形の語、「苔付き」「石付き」など）から判定する。
+// 鉢の色・形・仕上げは商品名の表記（鉢の焼き物名・色名・形の語、「苔付き」「石付き」など）から判定し、
+// 商品写真を目で見て付けたラベル（src/data/kumiawase-pots.json）があれば、それも合わせて使う。
 // 判定の語は掲載中の商品名（2026年10月時点の楽天の盆栽・苔玉 約900件）を見て決めた
 import type { CatalogProduct } from '@/lib/catalog-model'
 import { byCuratedThenReviews, hasCuratedImage } from '@/components/home/curated'
+import potLabels from '@/data/kumiawase-pots.json'
 
 // ---------- 選択肢 ----------
 
@@ -54,7 +56,7 @@ export const COLOR_OPTIONS: { value: ColorKey; label: string; note: string; swat
 
 export type ShapeKey = 'round' | 'square' | 'shallow'
 export const SHAPE_OPTIONS: { value: ShapeKey; label: string; note: string }[] = [
-  { value: 'round', label: '丸', note: '丸鉢・花型・つぼ' },
+  { value: 'round', label: '丸', note: '丸鉢・楕円・つぼ' },
   { value: 'square', label: '四角', note: '角鉢・長方・六角' },
   { value: 'shallow', label: '浅め', note: '平鉢・水盤' },
 ]
@@ -143,12 +145,37 @@ export interface KumiTraits {
   finishes: FinishKey[]
 }
 
-export function kumiTraits(product: Pick<CatalogProduct, 'originalName' | 'productType'>): KumiTraits {
+// 商品写真を目で見て付けた鉢のラベル（c：色、s：形、sh：浅い鉢、m：苔、st：石付き）。写真に鉢が複数写るものは multi
+interface PotLabel {
+  c: ColorKey | 'none'
+  s: 'round' | 'oval' | 'square' | 'irregular' | 'none'
+  sh: boolean
+  m: boolean
+  st: boolean
+  multi: boolean
+}
+const POT_LABELS = potLabels as Record<string, PotLabel>
+
+const addUnique = <T,>(list: T[], value: T) => (list.includes(value) ? list : [...list, value])
+
+export function kumiTraits(product: Pick<CatalogProduct, 'id' | 'originalName' | 'productType'>): KumiTraits {
   const name = product.originalName || ''
-  const finishes = (Object.keys(FINISH_RULES) as FinishKey[]).filter(k => FINISH_RULES[k].test(name))
+  let finishes = (Object.keys(FINISH_RULES) as FinishKey[]).filter(k => FINISH_RULES[k].test(name))
   // 苔玉は苔で包まれているため、苔付きとして扱う
   if (product.productType === 'kokedama' && !finishes.includes('moss')) finishes.unshift('moss')
-  return { colors: potColors(name), shapes: potShapes(name), selectable: potSelectable(name), finishes }
+  let colors = potColors(name)
+  let shapes = potShapes(name)
+  const label = POT_LABELS[product.id]
+  if (label) {
+    // 写真の鉢の色・形を足す（商品名の表記と食い違うときは、写真に複数の鉢がなければ写真を優先）
+    if (label.c !== 'none') colors = label.multi ? addUnique(colors, label.c) : [label.c]
+    const shape: ShapeKey | null = label.s === 'round' || label.s === 'oval' ? 'round' : label.s === 'square' ? 'square' : null
+    if (shape) shapes = label.multi ? addUnique(shapes, shape) : [...shapes.filter(x => x === 'shallow'), shape]
+    if (label.sh) shapes = addUnique(shapes, 'shallow')
+    if (label.m) finishes = addUnique(finishes, 'moss')
+    if (label.st) finishes = addUnique(finishes, 'stone')
+  }
+  return { colors, shapes, selectable: potSelectable(name), finishes }
 }
 
 // 植え付け済みで届く盆栽・苔玉（楽天の掲載商品で、写真があるもの）

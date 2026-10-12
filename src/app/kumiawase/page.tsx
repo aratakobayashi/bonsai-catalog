@@ -270,7 +270,7 @@ export default async function KumiawasePage({ searchParams }: PageProps) {
 
             {state.step === 3 && tree && (
               <section>
-                <StepTitle no={3} title="鉢の雰囲気を選ぶ" lead="鉢の色と形を選んでください。商品名に書かれた焼き物名・色・形の言葉から判定しています。" />
+                <StepTitle no={3} title="鉢の雰囲気を選ぶ" lead="鉢の色と形を選んでください。商品写真の鉢と、商品名に書かれた焼き物名・色・形の言葉から判定しています。" />
                 {counts.selectable > 0 && (
                   <p className="mt-3 border-l-2 border-gold pl-3 text-[12.5px] leading-[1.8] text-ink-soft">
                     {tree.label}には、注文のときに鉢を選べる商品が{counts.selectable}件あります。結果では「鉢が選べる」と表示します。
@@ -313,7 +313,7 @@ export default async function KumiawasePage({ searchParams }: PageProps) {
                     <OptionLink href={go({ shape: null })} active={!state.shape} note="形を問わない">こだわらない</OptionLink>
                   </div>
                 </fieldset>
-                <p className="mt-4 text-[11.5px] leading-[1.8] text-ink-muted">鉢の色や形が商品名に書かれていない商品も多いため、件数は少なめに出ます。合う商品が少ないときは、条件をゆるめて近いものを出します。</p>
+                <p className="mt-4 text-[11.5px] leading-[1.8] text-ink-muted">写真によって鉢の色の見え方が変わるため、実物とは少し異なることがあります。合う商品が少ないときは、条件をゆるめて近いものを出します。</p>
                 <div className="mt-6 flex flex-wrap items-center gap-3">
                   <NextLink href={go({ step: 4 })}>次へ（仕上げを選ぶ）</NextLink>
                   <BackLink href={go({ step: 2 })} />
@@ -378,7 +378,7 @@ export default async function KumiawasePage({ searchParams }: PageProps) {
                   </ul>
                 )}
                 <p className="mt-6 text-[11.5px] leading-[1.8] text-ink-muted">
-                  鉢の色・形・仕上げは商品名の表記から判定しています。鉢を選べる商品は、選べる鉢の種類を販売ページでご確認ください。
+                  鉢の色・形・仕上げは、商品写真と商品名の表記から判定しています。届く鉢が写真と異なる場合もあるため、販売ページでご確認ください。鉢を選べる商品は、選べる鉢の種類を販売ページでご確認ください。
                 </p>
                 <div className="mt-6 flex flex-wrap items-center gap-3">
                   <NextLink href={go({ step: 4 })}>条件を変える</NextLink>
