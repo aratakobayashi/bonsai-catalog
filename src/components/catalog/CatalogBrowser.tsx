@@ -159,7 +159,7 @@ export function CatalogBrowser({ filters, items, total, page, totalPages, select
             {items.length === 0 ? (
               <div className="py-6">{emptyState}</div>
             ) : (
-              <ListSelectArea className="grid grid-cols-2 gap-x-3.5 gap-y-8 lg:gap-x-6 lg:gap-y-12 xl:grid-cols-3">
+              <ListSelectArea list="catalog" className="grid grid-cols-2 gap-x-3.5 gap-y-8 lg:gap-x-6 lg:gap-y-12 xl:grid-cols-3">
                 {items.map((product, index) => (
                   <CatalogProductCard
                     key={product.id}
@@ -191,7 +191,7 @@ export function CatalogBrowser({ filters, items, total, page, totalPages, select
         </section>
 
         {/* 選んだ商品が変わったら、詳細は先頭から表示する */}
-        <section key={selected?.id ?? 'none'} className="hidden border-l border-line bg-white lg:block lg:overflow-y-auto" aria-label="選択中の商品">
+        <section key={selected?.id ?? 'none'} className="hidden border-l border-line bg-white lg:block lg:overflow-y-auto" aria-label="選択中の商品" data-place="list_panel">
           {selected ? (
             <>
               <ProductImage product={selected} sizes="420px" size={500} priority={false} className="aspect-[7/5]" />

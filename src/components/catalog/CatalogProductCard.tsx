@@ -63,7 +63,7 @@ export function CatalogProductCard({ product, priority = false, selected = false
   const inSeason = isInSeasonNow(product)
   const title = product.displayName || product.name
   return (
-    <div className="group relative flex flex-col gap-2.5 lg:gap-3">
+    <div className="group relative flex flex-col gap-2.5 lg:gap-3" data-card={product.id}>
       <Link
         href={href ?? `/products/${product.id}`}
         prefetch={false}

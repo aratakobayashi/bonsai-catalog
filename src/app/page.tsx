@@ -396,7 +396,7 @@ export default async function HomePage() {
             </Link>
           </div>
           {seasonal.length > 0 ? (
-            <div className="mt-[18px] grid grid-cols-2 gap-x-3.5 gap-y-7 lg:mt-7 lg:grid-cols-4 lg:gap-6">
+            <div data-list="home_seasonal" className="mt-[18px] grid grid-cols-2 gap-x-3.5 gap-y-7 lg:mt-7 lg:grid-cols-4 lg:gap-6">
               {seasonal.map(product => (
                 <CatalogProductCard key={product.id} product={product} />
               ))}

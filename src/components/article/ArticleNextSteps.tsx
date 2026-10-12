@@ -58,7 +58,7 @@ export function ArticleNextSteps({ products, productsHeading, productsMore, guid
             </p>
           </div>
           {/* SP は横にスクロール、PC は3列 */}
-          <div className="-mx-4 mt-4 flex snap-x gap-3 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible lg:px-0 lg:pb-0">
+          <div data-list="article_next" className="-mx-4 mt-4 flex snap-x gap-3 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible lg:px-0 lg:pb-0">
             {products.map(product => (
               <div key={product.id} className="w-[44%] flex-none snap-start lg:w-auto">
                 <CatalogProductCard product={product} sizes="(max-width: 1023px) 44vw, 200px" />

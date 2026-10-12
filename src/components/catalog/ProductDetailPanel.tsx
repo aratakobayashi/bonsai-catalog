@@ -267,7 +267,7 @@ export function ProductBuyBar({ product }: { product: CatalogProduct }) {
   return (
     <>
       <style>{`@media (max-width: 1023.98px){body{padding-bottom:calc(${BUY_BAR_HEIGHT}px + env(safe-area-inset-bottom))}}`}</style>
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-line bg-paper pb-[env(safe-area-inset-bottom)] lg:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-line bg-paper pb-[env(safe-area-inset-bottom)] lg:hidden" data-place="buy_bar">
         <div className="flex items-center gap-3.5 px-4 py-3" style={{ height: BUY_BAR_HEIGHT - 1 }}>
           <div className="shrink-0">
             <div className="text-[19px] leading-tight text-ink">{formatPrice(product.price)}</div>

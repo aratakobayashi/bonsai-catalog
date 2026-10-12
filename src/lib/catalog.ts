@@ -18,6 +18,8 @@ import {
 import { keywordTypeIntent, matchesKeyword, parseKeyword } from '@/lib/search-normalize'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { AMAZON_ENABLED, isHiddenProductSource } from '@/lib/affiliate'
+import { jstMonth, peakMonths } from '@/lib/seasons'
+import { hasCuratedImage } from '@/components/home/curated'
 
 export const PRODUCTS_CACHE_TAG = 'products'
 // キーワードの最大文字数（一覧の検索と検索候補で共通）
@@ -303,10 +305,30 @@ export function hasActiveFilters(filters: CatalogFilters): boolean {
   )
 }
 
-// おすすめ順：レビュー件数と評価を重視し、手動で選んだ商品（Amazon）を少し優先する
-function recommendScore(p: CatalogProduct): number {
+// おすすめ順：レビュー件数と評価を土台に、今が見頃の樹種（来月見頃になる樹種も少し）と、文字のないきれいな写真の商品を先にする。
+// 手動で選んだ商品（Amazon）も少し優先する
+function recommendScore(p: CatalogProduct, month: number): number {
   const reviews = Math.log10(p.reviewCount + 1) * (p.reviewAverage || 3.5)
-  return reviews + (p.source === 'amazon' ? 2 : 0) + (p.productType === 'tree' ? 1 : 0)
+  const peak = peakMonths(p)
+  const next = (month % 12) + 1
+  const season = peak.includes(month) ? 3 : peak.includes(next) ? 1.5 : 0
+  return reviews + season + (hasCuratedImage(p) ? 1.5 : 0) + (p.source === 'amazon' ? 2 : 0) + (p.productType === 'tree' ? 1 : 0)
+}
+
+// 同じ樹種が並びすぎないよう、直近の window 件の中に同じ樹種が maxPerWindow 件を超えるときは後ろへ回す（並びの大きな順は保つ）
+export function spreadSpecies<T extends { speciesKey: string | null }>(items: T[], maxPerWindow = 2, window = 12): T[] {
+  const out: T[] = []
+  const waiting: T[] = []
+  const fits = (key: string | null) => !key || out.slice(-(window - 1)).filter(x => x.speciesKey === key).length < maxPerWindow
+  for (const item of items) {
+    // 待っている商品のうち、今なら置けるものを先に戻す
+    for (let i = 0; i < waiting.length; i++) {
+      if (fits(waiting[i].speciesKey)) out.push(...waiting.splice(i--, 1))
+    }
+    if (fits(item.speciesKey)) out.push(item)
+    else waiting.push(item)
+  }
+  return [...out, ...waiting]
 }
 
 export function filterProducts(products: CatalogProduct[], filters: CatalogFilters): CatalogProduct[] {
@@ -344,15 +366,18 @@ export function filterProducts(products: CatalogProduct[], filters: CatalogFilte
 
   // キーワードが種類を指している（「鉢」「はさみ」など）ときは、おすすめ順でその種類を先に並べる（鉢植えの盆栽より盆栽鉢を先に）
   const intent = filters.q && !filters.type ? keywordTypeIntent(keyword) : null
+  const month = jstMonth()
   const intentRank = (p: CatalogProduct) => (intent && intent.includes(p.productType) ? 0 : 1)
   const sorters: Record<SortValue, (a: CatalogProduct, b: CatalogProduct) => number> = {
-    recommended: (a, b) => intentRank(a) - intentRank(b) || recommendScore(b) - recommendScore(a),
+    recommended: (a, b) => intentRank(a) - intentRank(b) || recommendScore(b, month) - recommendScore(a, month),
     price_asc: (a, b) => a.price - b.price,
     price_desc: (a, b) => b.price - a.price,
     reviews: (a, b) => b.reviewCount - a.reviewCount,
     new: (a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''),
   }
   result = [...result].sort(sorters[filters.sort])
+  // おすすめ順で樹種を絞っていないときは、同じ樹種が3件以上続かないようにする
+  if (filters.sort === 'recommended' && !filters.species) result = spreadSpecies(result)
   return result
 }
 

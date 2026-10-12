@@ -217,7 +217,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
         <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-16 lg:pt-6">
           <ProductImage product={product} sizes="(max-width: 1024px) 100vw, 60vw" size={800} className="-mx-4 aspect-[4/3] lg:mx-0 lg:aspect-square" />
-          <div className="mt-3 lg:sticky lg:top-6 lg:mt-0 lg:self-start">
+          <div className="mt-3 lg:sticky lg:top-6 lg:mt-0 lg:self-start" data-place="product_page">
             <ProductInfo product={product} headingLevel="h1" showDescription pageMode />
           </div>
         </div>

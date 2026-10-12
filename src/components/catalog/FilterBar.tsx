@@ -528,7 +528,7 @@ export function SortSelect({ sort }: { sort: FilterMenu }) {
 
 // PCでは商品カードを押すと、ページを移動せず右の詳細を切り替える（スマホ・JavaScriptなしは商品ページへ）
 // 履歴は置き換える（戻るボタンで一覧の前のページに戻れるように）
-export function ListSelectArea({ children, className = '' }: { children: ReactNode; className?: string }) {
+export function ListSelectArea({ children, className = '', list }: { children: ReactNode; className?: string; list?: string }) {
   const router = useRouter()
   const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
@@ -538,5 +538,5 @@ export function ListSelectArea({ children, className = '' }: { children: ReactNo
     router.replace(anchor.dataset.selectHref!, { scroll: false })
   }
   // リンク自身の処理より先に受け取るため、キャプチャで処理する
-  return <div className={className} onClickCapture={onClick}>{children}</div>
+  return <div className={className} data-list={list} onClickCapture={onClick}>{children}</div>
 }
