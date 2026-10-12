@@ -252,10 +252,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       />
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
 
-      <div className={`${CONTAINER} pb-16 pt-6 lg:pb-24 lg:pt-6`}>
-        <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, ...crumbs]} className="hidden lg:block" />
-        <div className="lg:mt-10 lg:grid lg:grid-cols-[minmax(0,640px)_220px] lg:justify-center lg:gap-16 xl:gap-24">
-          <article className="min-w-0">
+      {/* 記事の冒頭：墨色の帯にカテゴリ・タイトル・要約・写真（本文は読みやすい明るい背景のまま。部品の色は .tone-dark で読み替える） */}
+      <div className="tone-dark bg-sumi text-white">
+        <div className={`${CONTAINER} pb-6 pt-6 lg:pb-10`}>
+          <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, ...crumbs]} className="hidden lg:block" />
+          <div className="lg:mt-8 lg:grid lg:grid-cols-[minmax(0,640px)_220px] lg:justify-center lg:gap-16 xl:gap-24">
+            <div className="min-w-0">
             {/* 記事ヘッダー：カテゴリ・タイトル・一言の要約・更新日と読む時間 */}
             <header>
               <p className="text-[12px] tracking-[0.1em] text-gold-dark">
@@ -304,6 +306,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               </p>
             )}
 
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={`${CONTAINER} pb-16 pt-4 lg:pb-24 lg:pt-6`}>
+        <div className="lg:grid lg:grid-cols-[minmax(0,640px)_220px] lg:justify-center lg:gap-16 xl:gap-24">
+          <article className="min-w-0">
             <PrDisclosure compact className="mt-3" />
 
             <ArticleSummary items={article.summary} />

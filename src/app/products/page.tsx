@@ -79,7 +79,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         filterKeys={activeFilterKeys(filters).join(',')}
         resultCount={total}
       />
-      <h1 className="sr-only">盆栽・鉢・道具を探す（{all.length.toLocaleString()}件）</h1>
+      {activeCount > 0 && !filters.q && <h1 className="sr-only">盆栽・鉢・道具を探す（{all.length.toLocaleString()}件）</h1>}
       <CatalogBrowser
         filters={filters}
         items={items}
@@ -92,9 +92,15 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         emptyState={emptyState}
         activeCount={activeCount}
         intro={filters.q ? (
-          <p className="font-mincho text-lg font-bold tracking-[0.04em] text-ink lg:text-xl">「{filters.q}」の検索結果</p>
+          <div>
+            <p className="flex items-center gap-3 text-[11px] tracking-[0.22em] text-gold">検索<span className="h-px w-10 bg-gold" aria-hidden="true" /></p>
+            <h1 className="mt-2 font-mincho text-[22px] font-bold tracking-[0.06em] text-white lg:text-[28px]">「{filters.q}」の検索結果</h1>
+          </div>
         ) : activeCount === 0 ? (
           <div>
+            <p className="flex items-center gap-3 text-[11px] tracking-[0.22em] text-gold">盆栽を探す<span className="h-px w-10 bg-gold" aria-hidden="true" /></p>
+            <h1 className="mt-2 font-mincho text-[24px] font-bold tracking-[0.08em] text-white lg:text-[32px]">盆栽・鉢・道具を探す</h1>
+            <p className="mb-5 mt-2 text-[13px] leading-[1.8] text-white/75">楽天市場の<strong className="mx-0.5 font-mincho text-[17px] font-bold text-gold">{all.filter(p => p.productType !== 'other').length.toLocaleString()}</strong>件を、樹種・大きさ・育てやすさ・価格で比べられます。</p>
             <span className="text-[11.5px] tracking-[0.08em] text-ink-muted">質問に答えて選ぶ</span>
             <div className="mt-2 mb-4 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {SITE_TOOLS.filter(t => t.group === 'choose').map(t => (

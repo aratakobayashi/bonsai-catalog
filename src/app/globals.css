@@ -115,3 +115,27 @@ input[type='search']::-webkit-search-cancel-button {
   content-visibility: auto;
   contain-intrinsic-size: auto 900px;
 }
+
+/* 墨色の帯の中（.tone-dark）では、明るい背景向けの色を暗い背景向けに読み替える。
+   商品ページの上部・記事の見出し・一覧の見出しなど、既存の部品をそのまま帯の中に置くため */
+.tone-dark { color: #fff; }
+.tone-dark .text-ink { color: #fff; }
+.tone-dark .text-ink-soft { color: rgba(255, 255, 255, 0.8); }
+.tone-dark .text-ink-muted { color: rgba(255, 255, 255, 0.6); }
+.tone-dark .text-gold-dark { color: #c9a46a; }
+.tone-dark .border-line,
+.tone-dark .border-paper-deep { border-color: rgba(255, 255, 255, 0.14); }
+.tone-dark .border-ink { border-color: rgba(255, 255, 255, 0.6); }
+.tone-dark .decoration-line { text-decoration-color: rgba(255, 255, 255, 0.3); }
+.tone-dark .bg-paper,
+.tone-dark .bg-white { background-color: rgba(255, 255, 255, 0.06); }
+.tone-dark .bg-paper-deep { background-color: rgba(255, 255, 255, 0.08); }
+.tone-dark .hover\:text-ink:hover,
+.tone-dark .hover\:text-gold-dark:hover { color: #c9a46a; }
+.tone-dark .hover\:border-ink:hover { border-color: #fff; }
+.tone-dark .hover\:decoration-ink:hover { text-decoration-color: #fff; }
+/* 墨色のボタン（販売ページを見るなど）は、帯の中では金のボタンにする */
+.tone-dark .bg-sumi { background-color: #b8935a; color: #22201c; }
+.tone-dark .bg-sumi * { color: #22201c; }
+.tone-dark .bg-sumi:hover,
+.tone-dark .hover\:bg-sumi-light:hover { background-color: #c9a46a; color: #22201c; }

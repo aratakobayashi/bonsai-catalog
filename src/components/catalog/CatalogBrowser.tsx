@@ -144,7 +144,8 @@ export function CatalogBrowser({ filters, items, total, page, totalPages, select
         {/* 条件やページが変わったときだけ一覧の先頭に戻し、商品を選んだだけのときは位置を保つ */}
         <section key={listUrl} className="flex min-w-0 flex-col lg:min-h-0 lg:overflow-y-auto" aria-label="商品の一覧">
           <div className="flex-1 px-4 pb-10 pt-5 lg:pb-12 lg:pl-12 lg:pr-10 lg:pt-8">
-            {intro && <div className="mb-5 border-b border-line pb-5 lg:mb-8 lg:pb-7">{intro}</div>}
+            {/* 見出し：一覧の列の上に、墨色の低い帯（各ページの冒頭と同じ色使い） */}
+            {intro && <div className="tone-dark -mx-4 -mt-5 mb-5 bg-sumi px-4 pb-6 pt-5 lg:-ml-12 lg:-mr-10 lg:-mt-8 lg:mb-8 lg:pb-8 lg:pl-12 lg:pr-10 lg:pt-8">{intro}</div>}
 
             <div className="mb-4 flex items-baseline gap-2.5 text-[11px] text-ink-muted lg:mb-6 lg:gap-3 lg:text-xs">
               <span className="shrink-0"><span className="text-[13px] text-ink lg:text-[15px]">{total.toLocaleString()}</span> 件</span>
