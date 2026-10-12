@@ -6,6 +6,7 @@ import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { CONTAINER, PageHeading } from '@/components/ui/design'
 import { NoteApp, type SpeciesOptionGroup } from '@/components/note/NoteApp'
 import { RelatedTools } from '@/components/layout/RelatedTools'
+import { heroPhoto } from '@/lib/hero-photo'
 
 export const metadata: Metadata = {
   title: 'わたしの盆栽ノート｜育てている樹の今月やることが分かる - 盆栽コレクション',
@@ -30,6 +31,8 @@ export default function NotePage() {
         ]}
       />
       <PageHeading
+        eyebrow="わたしの盆栽ノート"
+        photo={heroPhoto('/images/articles/photos/bonsai-experience-programs-complete-guide-2.jpg', '苔と道具の並ぶ作業台')}
         title="わたしの盆栽ノート"
         lead="育てている盆栽を登録しておくと、その樹の今月やることと、植え替えの時期の目安をまとめて表示します。"
         crumbs={[{ label: 'ホーム', href: '/' }, { label: 'わたしの盆栽ノート' }]}

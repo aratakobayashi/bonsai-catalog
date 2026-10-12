@@ -6,6 +6,7 @@ import { ShojoIcon } from '@/components/shojo/ShojoIcon'
 import { SITE_URL } from '@/lib/site'
 import { SHOJO } from '@/lib/shojo'
 import { RelatedTools } from '@/components/layout/RelatedTools'
+import { heroPhoto } from '@/lib/hero-photo'
 
 export const metadata: Metadata = {
   title: '症状から調べる｜盆栽の葉が黄色い・しおれる・虫がいるときの原因と対処 - 盆栽コレクション',
@@ -24,6 +25,8 @@ export default function ShojoIndexPage() {
       />
       <div className={`${CONTAINER} pb-14 lg:pb-20`}>
         <PageHeading
+        eyebrow="症状から調べる"
+        photo={heroPhoto('/images/articles/photos/article-10-2.jpg', '松の新芽の近景')}
           title="症状から調べる"
           lead="葉や土に出た症状を選ぶと、考えられる原因を多い順に、確かめ方と対処、今すぐやることと一緒に出します。"
           crumbs={[{ label: 'ホーム', href: '/' }, { label: '症状から調べる' }]}

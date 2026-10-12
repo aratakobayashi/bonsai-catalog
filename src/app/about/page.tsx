@@ -53,10 +53,11 @@ export default function AboutPage() {
     <div className={`${CONTAINER} pb-12`}>
       <div className="mx-auto max-w-[664px]">
         <PageHeading
+        eyebrow="このサイトについて"
           title="このサイトについて"
           crumbs={[{ label: 'ホーム', href: '/' }, { label: 'このサイトについて' }]}
           lead={
-            <span className="block text-[14px] leading-[2] text-ink-soft lg:text-[16px]">
+            <span className="block text-[14px] leading-[2] text-white/80 lg:text-[16px]">
               盆栽コレクションは、{SHOP_NAMES_AND}で販売されている盆栽・鉢・土・道具を横断して探せる比較・検索サイトです。育て方の記事や、全国の盆栽園・イベントの情報もまとめています。
             </span>
           }

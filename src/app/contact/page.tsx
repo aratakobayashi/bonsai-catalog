@@ -111,6 +111,7 @@ export default function ContactPage() {
     <div className={`${CONTAINER} pb-12`}>
       <div className="mx-auto max-w-[544px]">
         <PageHeading
+        eyebrow="お問い合わせ"
           title="お問い合わせ"
           crumbs={[{ label: 'ホーム', href: '/' }, { label: 'お問い合わせ' }]}
           lead={

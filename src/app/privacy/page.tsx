@@ -14,6 +14,7 @@ export default function PrivacyPage() {
     <div className={`${CONTAINER} pb-12`}>
       <div className="mx-auto max-w-[664px]">
       <PageHeading
+        eyebrow="プライバシーポリシー"
         title="プライバシーポリシー"
         lead="最終更新日: 2026年10月9日"
         crumbs={[{ label: 'ホーム', href: '/' }, { label: 'プライバシーポリシー' }]}

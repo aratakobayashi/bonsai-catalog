@@ -7,19 +7,13 @@ import { CARE_GROUPS, getMonthCare } from '@/lib/care-calendar'
 import { COLOR_OPTIONS, type ColorKey, type TreeOption } from '@/lib/kumiawase'
 import type { CatalogProduct } from '@/lib/catalog-model'
 import photoCredits from '@/data/photo-credits.json'
+import { seasonPhotoSrc } from '@/lib/hero-photo'
 
 // トップの「迷ったら、ここから」：墨色の帯に、実物の写真で3つの機能を大きく見せ、残りは写真のタイルで並べる。
 // 写真は無料で使える実物の盆栽写真（出典は src/data/photo-credits.json。帯の下にまとめて表示する）
 const MAIN = ['/shindan', '/kumiawase', '/teire']
 
 const SHINDAN_PHOTO = '/images/articles/photos/article-10-1.jpg'
-// 今月の手入れの写真（季節ごと）
-const SEASON_PHOTO: Record<number, string> = {
-  12: '/images/articles/photos/article-7-2.jpg', 1: '/images/articles/photos/article-7-2.jpg', 2: '/images/articles/photos/article-7-2.jpg',
-  3: '/images/articles/photos/article-46-1.jpg', 4: '/images/articles/photos/article-46-1.jpg', 5: '/images/articles/photos/article-46-1.jpg',
-  6: '/images/articles/photos/bonsai-diplomacy-gift-etiquette-2.jpg', 7: '/images/articles/photos/bonsai-diplomacy-gift-etiquette-2.jpg', 8: '/images/articles/photos/bonsai-diplomacy-gift-etiquette-2.jpg',
-  9: '/images/articles/photos/bonsai-exhibition-viewing-guide-1.jpg', 10: '/images/articles/photos/bonsai-exhibition-viewing-guide-1.jpg', 11: '/images/articles/photos/bonsai-exhibition-viewing-guide-1.jpg',
-}
 // そのほかの機能の写真
 const TOOL_PHOTO: Record<string, string> = {
   '/okurimono': '/images/selections/photos/bonsai-gift.jpg',
@@ -63,7 +57,7 @@ export function HomeTools({ month, readyCount, showcase }: { month: number; read
   const care = getMonthCare(month)
   const highlights = monthHighlights(month)
   const others = SITE_TOOLS.filter(t => !MAIN.includes(t.href))
-  const seasonPhoto = SEASON_PHOTO[month]
+  const seasonPhoto = seasonPhotoSrc(month)
   const usedPhotos = [SHINDAN_PHOTO, seasonPhoto, ...others.map(t => TOOL_PHOTO[t.href]).filter(Boolean)]
   const creditNames = Array.from(new Set(usedPhotos.map(src => CREDITS[src]).filter((c): c is Credit => Boolean(c?.creator)).map(c => `${c.creator}（${c.license}）`)))
 

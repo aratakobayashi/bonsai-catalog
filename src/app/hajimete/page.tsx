@@ -9,6 +9,7 @@ import { jstMonth } from '@/lib/seasons'
 import { SITE_URL } from '@/lib/site'
 import { ALL_CHECK_IDS, KINDS, STAGES, parseKind, seasonNote } from '@/lib/hajimete'
 import { RelatedTools } from '@/components/layout/RelatedTools'
+import { heroPhoto } from '@/lib/hero-photo'
 
 export const metadata: Metadata = {
   title: 'はじめての1か月ガイド｜盆栽が届いた日から1か月の世話をチェックリストで - 盆栽コレクション',
@@ -40,6 +41,8 @@ export default function HajimetePage({ searchParams }: PageProps) {
       />
       <div className={`${CONTAINER} pb-14 lg:pb-20`}>
         <PageHeading
+        eyebrow="はじめての1か月"
+        photo={heroPhoto('/images/selections/photos/beginner-mini-bonsai.jpg', '小さな盆栽')}
           title="はじめての1か月ガイド"
           lead="盆栽が届いた日から1か月の世話を、順にチェックしながら進められます。剪定や植え替えは、樹に慣れてからで間に合います。最初の1か月は、水やりと置き場所に慣れる期間です。"
           crumbs={[{ label: 'ホーム', href: '/' }, { label: 'はじめての1か月ガイド' }]}

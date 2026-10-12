@@ -10,6 +10,7 @@ import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { CONTAINER, NavyPanel, PageHeading, SectionTitle } from '@/components/ui/design'
 import { MonthStrip } from '@/components/teire/TeireParts'
 import { RelatedTools } from '@/components/layout/RelatedTools'
+import { heroPhoto, seasonPhotoSrc } from '@/lib/hero-photo'
 
 // 「今月」は日本時間で決める。月が替わったら1時間以内に切り替わる
 export const revalidate = 3600
@@ -33,6 +34,8 @@ export default function TeireIndexPage() {
         ]}
       />
       <PageHeading
+        eyebrow="今月の手入れ"
+        photo={heroPhoto(seasonPhotoSrc(month))}
         title="今月の盆栽の手入れ"
         lead="盆栽の手入れは、季節ごとにやることがほぼ決まっています。月を選ぶと、樹種グループごとの水やり・置き場所・肥料と、その月の作業が分かります。"
         crumbs={[{ label: 'ホーム', href: '/' }, { label: '今月の手入れ' }]}

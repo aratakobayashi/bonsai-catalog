@@ -13,6 +13,7 @@ import { getArticleOverride, thumbnailPath } from '@/lib/article-overrides'
 import { SITE_URL } from '@/lib/site'
 import { SHOJO, getShojo, shojoProducts } from '@/lib/shojo'
 import { RelatedTools } from '@/components/layout/RelatedTools'
+import { heroPhoto } from '@/lib/hero-photo'
 
 export const revalidate = 3600
 
@@ -74,6 +75,8 @@ export default async function ShojoDetailPage({ params }: PageProps) {
       />
       <div className={`${CONTAINER} pb-14 lg:pb-20`}>
         <PageHeading
+        eyebrow="症状から調べる"
+        photo={heroPhoto('/images/articles/photos/article-10-2.jpg', '松の新芽の近景')}
           title={
             <span className="flex items-start gap-3">
               <ShojoIcon name={shojo.icon} className="mt-1 h-8 w-8 text-ink-soft lg:h-10 lg:w-10" />

@@ -9,6 +9,7 @@ import { getCatalogProducts } from '@/lib/catalog'
 import { isFeaturable, orderSelectionsBySeason, selectionCounts } from '@/components/selection/selection-meta'
 import { SelectionThumb } from '@/components/selection/SelectionThumb'
 import { currentMonth } from '@/components/home/seasonal'
+import { heroPhoto } from '@/lib/hero-photo'
 
 // 掲載件数は商品データから数えるため、1時間ごとに再生成（ISR）
 // 商品データの取得が一時的に失敗したときの表示が長く残らないよう、10分ごとに作り直す
@@ -38,6 +39,8 @@ export default async function SelectionIndexPage() {
       />
       <div className={`${CONTAINER} pb-14 lg:pb-20`}>
         <PageHeading
+        eyebrow="特集"
+        photo={heroPhoto('/images/selections/photos/evergreen-bonsai.jpg', '濃い緑の葉を茂らせた松柏の盆栽')}
           title="目的から選ぶ特集"
           lead="置き場所・予算・季節・贈る相手など、よく探されている条件ごとに選び方と商品をまとめました。"
           crumbs={[{ label: 'ホーム', href: '/' }, { label: '特集' }]}

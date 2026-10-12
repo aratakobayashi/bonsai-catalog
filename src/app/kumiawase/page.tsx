@@ -27,6 +27,7 @@ import {
   type Step,
 } from '@/lib/kumiawase'
 import { RelatedTools } from '@/components/layout/RelatedTools'
+import { heroPhoto } from '@/lib/hero-photo'
 
 export const metadata: Metadata = {
   title: '組み合わせで選ぶ自分だけの一鉢｜樹・大きさ・鉢・仕上げから盆栽を探す - 盆栽コレクション',
@@ -132,6 +133,8 @@ export default async function KumiawasePage({ searchParams }: PageProps) {
       />
       <div className={`${CONTAINER} pb-14 lg:pb-20`}>
         <PageHeading
+        eyebrow="組み合わせで選ぶ"
+        photo={heroPhoto('/images/articles/photos/article-24-1.jpg', 'さまざまな色と形の盆栽鉢')}
           title="組み合わせで選ぶ、自分だけの一鉢"
           lead="樹・大きさ・鉢の雰囲気・仕上げを順に選ぶと、その組み合わせに近い盆栽を探します。どれも鉢に植わった状態で届く商品なので、植え付けの手間はかかりません。"
           crumbs={[{ label: 'ホーム', href: '/' }, { label: '組み合わせで選ぶ' }]}

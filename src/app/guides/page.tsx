@@ -9,6 +9,7 @@ import { getArticles, getCategories } from '@/lib/database/articles'
 import { ArticleList, guidesHref } from '@/components/features/ArticleList'
 import { ArticleSearchBox, ArticleSortSelect } from '@/components/features/ArticleFilters'
 import { CONTAINER, PageHeading } from '@/components/ui/design'
+import { heroPhoto } from '@/lib/hero-photo'
 
 const baseMetadata: Metadata = {
   title: '盆栽ガイド記事一覧 - 盆栽コレクション',
@@ -122,6 +123,8 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
   return (
     <div className={`${CONTAINER} pb-16 lg:pb-20`}>
       <PageHeading
+        eyebrow="育て方"
+        photo={heroPhoto('/images/articles/photos/article-20-1.jpg', '幹のうねりが見える真柏の盆栽')}
         title="育て方"
         lead="盆栽の育て方から選び方まで、専門的な知識をわかりやすく解説。"
         crumbs={[{ label: 'ホーム', href: '/' }, { label: '育て方' }]}

@@ -1,5 +1,6 @@
 'use client'
 
+import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { AFFILIATE_LINK_REL } from '@/lib/affiliate'
@@ -110,10 +111,13 @@ export function FavoritesView({ sharedIds }: { sharedIds: string[] }) {
   return (
     <>
       <PageHeading
+        eyebrow="気になる"
         title={shared ? '共有された気になる' : '気になる'}
         lead={shared ? '家族や友人から送られた「気になる」の盆栽です。並べて比べられます。' : '「気になる」に入れた盆栽を並べて比べられます。家族に送って相談することもできます。'}
         crumbs={[{ label: 'ホーム', href: '/' }, { label: '気になる' }]}
       />
+      {/* 販売ページへのボタンが並ぶため、PR表記は内容より先に出す */}
+      <PrDisclosure compact className="mt-4" />
 
       <div className="mt-6 flex flex-wrap items-baseline gap-x-5 gap-y-3 border-b border-line pb-4 text-[13px] lg:mt-8">
         <span className="text-ink-muted">

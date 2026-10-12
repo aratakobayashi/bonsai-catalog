@@ -1,4 +1,5 @@
 // リニューアルのデザイン部品（v2：生成り背景・墨の文字・明朝の見出し・線で区切る）。各画面で共通して使う
+import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
@@ -22,29 +23,50 @@ export function Breadcrumbs({ items, className = '' }: { items: Crumb[]; classNa
   )
 }
 
-// ページの見出し（パンくず＋明朝の大見出し＋説明文）
+// ページの見出し：墨色の帯（画面の端まで）にパンくず・金の小見出し・明朝の大見出し・説明文。
+// photo を渡すと、帯の右側に写真を敷いて左を墨色でぼかす（トップ・特集ページの冒頭と同じ色使い）。
+// aside（検索欄・表示の切り替えなど）は明るい背景向けの部品が多いため、帯のすぐ下に出す
 export function PageHeading({
   title,
   lead,
   crumbs,
   aside,
+  eyebrow,
+  photo,
 }: {
   title: ReactNode
   lead?: ReactNode
   crumbs?: Crumb[]
   aside?: ReactNode
+  eyebrow?: ReactNode
+  photo?: { src: string; alt: string; credit?: string }
 }) {
   return (
-    <div className="pt-6 lg:pt-12">
-      {crumbs && <Breadcrumbs items={crumbs} className="hidden lg:block" />}
-      <div className="mt-2 flex flex-col gap-4 lg:flex-row lg:items-end lg:gap-6">
-        <div className="min-w-0">
-          <h1 className="font-mincho text-[26px] font-bold leading-snug tracking-[0.06em] text-ink lg:text-[34px]">{title}</h1>
-          {lead && <p className="mt-3 text-sm leading-[1.9] text-ink-soft lg:text-[15px]">{lead}</p>}
+    <>
+      <div className="mx-[calc(50%-50vw)] bg-sumi text-white">
+        <div className="relative mx-auto max-w-[1184px] overflow-hidden">
+          {photo && (
+            <div className="absolute inset-0 lg:left-[38%]">
+              <Image src={photo.src} alt={photo.alt} fill priority sizes="(max-width: 1023px) 100vw, 740px" className="object-cover" />
+              <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(34,32,28,.97)_0%,rgba(34,32,28,.8)_45%,rgba(34,32,28,.55)_100%)] lg:bg-[linear-gradient(90deg,rgba(34,32,28,1)_0%,rgba(34,32,28,.7)_35%,rgba(34,32,28,.1)_100%)]" />
+            </div>
+          )}
+          <div className={`relative px-4 pb-7 pt-6 lg:px-12 lg:pt-8 ${photo ? 'min-h-[220px] lg:min-h-[300px] lg:pb-12' : 'lg:pb-11'}`}>
+            {crumbs && <Breadcrumbs items={crumbs} className="hidden !text-white/55 lg:block" />}
+            <div className={`${photo ? 'pt-16 sm:pt-20 lg:pt-14' : 'pt-1 lg:pt-8'} lg:max-w-[620px]`}>
+              <p className="flex items-center gap-3 text-[11px] tracking-[0.22em] text-gold lg:text-xs">
+                {eyebrow ?? '盆栽コレクション'}
+                <span className="h-px w-10 bg-gold" aria-hidden="true" />
+              </p>
+              <h1 className="mt-2.5 font-mincho text-[26px] font-bold leading-snug tracking-[0.08em] text-white [text-wrap:balance] lg:mt-3.5 lg:text-[38px]">{title}</h1>
+              {lead && <p className="mt-3 [&_a]:text-white [&_a]:underline [&_a]:decoration-white/40 text-[13.5px] leading-[1.9] text-white/75 lg:mt-4 lg:text-[15px] lg:leading-[2] lg:text-white/85">{lead}</p>}
+            </div>
+            {photo?.credit && <p className="mt-4 text-right text-[10.5px] text-white/45 lg:absolute lg:bottom-4 lg:right-6 lg:mt-0">写真：{photo.credit}</p>}
+          </div>
         </div>
-        {aside && <div className="lg:ml-auto lg:w-[360px]">{aside}</div>}
       </div>
-    </div>
+      {aside && <div className="mt-5 lg:flex lg:justify-end"><div className="lg:w-[360px]">{aside}</div></div>}
+    </>
   )
 }
 

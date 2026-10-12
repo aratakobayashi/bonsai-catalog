@@ -14,6 +14,7 @@ import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { CONTAINER, PageHeading, SectionTitle } from '@/components/ui/design'
 import { RelatedTools } from '@/components/layout/RelatedTools'
+import { heroPhoto } from '@/lib/hero-photo'
 
 interface ShindanPageProps {
   searchParams: Record<string, string | string[] | undefined>
@@ -161,6 +162,8 @@ export default async function ShindanPage({ searchParams }: ShindanPageProps) {
   return (
     <div className={`${CONTAINER} pb-12 lg:pb-20`}>
       <PageHeading
+        eyebrow="かんたん盆栽診断"
+        photo={heroPhoto('/images/articles/photos/article-10-1.jpg', '白い壁の前に置かれた黒松の盆栽')}
         title="かんたん盆栽診断"
         lead="4つの質問に答えると、あなたに合いそうな盆栽を探します。"
         crumbs={[{ label: 'ホーム', href: '/' }, { label: 'かんたん盆栽診断' }]}

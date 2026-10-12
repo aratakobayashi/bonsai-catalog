@@ -108,6 +108,7 @@ export default function FAQPage() {
       <div className={`${CONTAINER} pb-16 lg:pb-20`}>
         <div className="mx-auto max-w-[664px]">
           <PageHeading
+        eyebrow="よくある質問"
             title="よくある質問"
             crumbs={[{ label: 'ホーム', href: '/' }, { label: '育て方', href: '/guides' }, { label: 'よくある質問' }]}
           />

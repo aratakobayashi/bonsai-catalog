@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { CONTAINER } from '@/components/ui/design'
-import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { FavoritesView } from './FavoritesView'
 import { RelatedTools } from '@/components/layout/RelatedTools'
 
@@ -26,7 +25,6 @@ export default function FavoritesPage({ searchParams }: FavoritesPageProps) {
   return (
     <div className={`${CONTAINER} pb-16`}>
       {/* 販売ページへのボタンが並ぶため、PR表記は内容より先に出す */}
-      <PrDisclosure compact className="pt-4 lg:pt-6" />
       <FavoritesView sharedIds={parseIds(searchParams.ids)} />
       <RelatedTools hrefs={['/soroeru', '/note', '/okurimono']} />
     </div>

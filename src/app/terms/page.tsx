@@ -13,6 +13,7 @@ export default function TermsPage() {
     <div className={`${CONTAINER} pb-12`}>
       <div className="mx-auto max-w-[664px]">
       <PageHeading
+        eyebrow="利用規約"
         title="利用規約"
         lead="最終更新日: 2026年10月9日"
         crumbs={[{ label: 'ホーム', href: '/' }, { label: '利用規約' }]}

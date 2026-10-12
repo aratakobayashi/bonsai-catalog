@@ -19,6 +19,7 @@ import {
   type SoroeruState,
 } from '@/lib/soroeru'
 import { RelatedTools } from '@/components/layout/RelatedTools'
+import { heroPhoto } from '@/lib/hero-photo'
 
 export const metadata: Metadata = {
   title: '盆栽の鉢・土・道具をそろえる｜樹の種類と大きさに合う号数・配合・道具の目安 - 盆栽コレクション',
@@ -85,6 +86,8 @@ export default async function SoroeruPage({ searchParams }: PageProps) {
       />
       <div className={`${CONTAINER} pb-14 lg:pb-20`}>
         <PageHeading
+        eyebrow="鉢・土・道具"
+        photo={heroPhoto('/images/articles/photos/article-16-1.jpg', '重ねて並べた盆栽鉢')}
           title="鉢・土・道具をそろえる"
           lead="樹の種類と大きさ、目的を選ぶと、合う鉢の大きさ・土の配合・道具の目安と、掲載中の商品をまとめて出します。"
           crumbs={[{ label: 'ホーム', href: '/' }, { label: '鉢・土・道具をそろえる' }]}

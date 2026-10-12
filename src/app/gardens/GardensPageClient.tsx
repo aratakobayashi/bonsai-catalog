@@ -17,6 +17,7 @@ import {
   telHref,
 } from '@/components/gardens/GardenParts'
 import type { Garden } from '@/types'
+import { heroPhoto } from '@/lib/hero-photo'
 
 // 一覧で使う項目だけ（page.tsx で作る）。summary は定型文でない説明だけ
 export type GardenListItem = Pick<
@@ -320,13 +321,13 @@ export function GardensPageClient({ gardens }: { gardens: GardenListItem[] }) {
 
   return (
     <div className={`${CONTAINER} pb-14`}>
-      {/* SPは見出しの上に切り替え */}
-      <div className="pt-5 lg:hidden">{toggle}</div>
       <PageHeading
+        eyebrow="出かける"
+        photo={heroPhoto('/images/articles/photos/article-15-1.jpg', '棚に盆栽が並ぶ盆栽園')}
         crumbs={[{ label: 'ホーム', href: '/' }, { label: '出かける', href: '/gardens' }, { label: '盆栽園' }]}
         title="盆栽園を訪ねる"
         lead={`全国${gardens.length}の盆栽園を、現在地や都道府県から探せます。`}
-        aside={<div className="hidden lg:block">{toggle}</div>}
+        aside={toggle}
       />
 
       {/* 現在地・地図 */}

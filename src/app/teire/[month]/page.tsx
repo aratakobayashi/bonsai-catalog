@@ -17,6 +17,7 @@ import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { CONTAINER, NavyPanel, PageHeading, SectionTitle, chipClass } from '@/components/ui/design'
 import { GroupCareCard, MonthStrip, TaskRow } from '@/components/teire/TeireParts'
 import { RelatedTools } from '@/components/layout/RelatedTools'
+import { heroPhoto, seasonPhotoSrc } from '@/lib/hero-photo'
 
 interface TeireMonthPageProps {
   params: { month: string }
@@ -102,10 +103,12 @@ export default async function TeireMonthPage({ params }: TeireMonthPageProps) {
         ]}
       />
       <PageHeading
+        eyebrow="月ごとの手入れ"
+        photo={heroPhoto(seasonPhotoSrc(month))}
         title={`${month}月の盆栽の手入れ`}
         lead={
           <>
-            <span className="mr-2 inline-block border border-gold-dark px-1.5 text-[12px] font-bold leading-[20px] text-gold-dark">{care.phase}</span>
+            <span className="mr-2 inline-block border border-gold px-1.5 text-[12px] font-bold leading-[20px] text-gold">{care.phase}</span>
             {care.lead}
           </>
         }

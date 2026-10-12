@@ -10,6 +10,7 @@ import { EventFeatured } from '@/components/events/EventFeatured'
 import type { Event } from '@/types'
 import { EventViewTabsView } from './EventViewTabs'
 import { CONTAINER, PageHeading } from '@/components/ui/design'
+import { heroPhoto } from '@/lib/hero-photo'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/events' },
@@ -72,18 +73,18 @@ export default async function EventsPage() {
       />
 
       <div className={`${CONTAINER} pb-14`}>
-        {/* SPは見出しの上に切り替え */}
-        <div className="pt-5 lg:hidden">{toggle}</div>
         <PageHeading
+        eyebrow="出かける"
+        photo={heroPhoto('/images/articles/photos/bonsai-club-beginner-guide-2.jpg', '盆栽展の会場で作品を見る人')}
           crumbs={[{ label: 'ホーム', href: '/' }, { label: '出かける', href: '/gardens' }, { label: 'イベント' }]}
           title="盆栽イベント"
           lead={
             <>
-              <span className="text-xs text-ink-muted lg:hidden">全国の展示会・即売会を開催日順に</span>
+              <span className="lg:hidden">全国の展示会・即売会を開催日順に</span>
               <span className="hidden lg:inline">全国の展示会・即売会・ワークショップ・講習会を、開催日の順に。開催中・今週末・今月などですぐに絞り込めます。</span>
             </>
           }
-          aside={<div className="hidden lg:block">{toggle}</div>}
+          aside={toggle}
         />
 
         {/* 一覧を組み立てるまでの間も、サーバーで作ったこれからのイベントを表示する（表示を速くするため） */}
