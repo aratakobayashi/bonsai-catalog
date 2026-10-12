@@ -184,39 +184,55 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
       />
 
       <article className="pb-12 lg:pb-20">
-        {/* 見出し：特集の写真を大きく敷き、その上に特集名。SP はリードを写真の下に出す */}
-        <header>
+        {/* 見出し：墨色の帯に特集の写真を大きく敷き、その上に特集名（トップの「迷ったら、ここから」と同じ色使い）。SP はリードを写真の下に出す */}
+        <header className="bg-sumi text-white">
           <div className="lg:mx-auto lg:max-w-[1184px] lg:px-12">
-            <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: '特集', href: '/selection' }, { label: selection.shortTitle }]} className="hidden pt-6 lg:block" />
+            <Breadcrumbs items={[{ label: 'ホーム', href: '/' }, { label: '特集', href: '/selection' }, { label: selection.shortTitle }]} className="hidden pt-6 !text-white/55 lg:block" />
           </div>
-          <div className="relative h-[240px] overflow-hidden bg-ink sm:h-[300px] lg:mx-auto lg:mt-6 lg:h-[440px] lg:max-w-[1184px]">
-            <Image src={heroPhoto} alt="" fill priority sizes="(max-width: 1183px) 100vw, 1184px" className="object-cover" />
-            <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(18,16,13,.82)_0%,rgba(18,16,13,.35)_55%,rgba(18,16,13,.1)_100%)] lg:bg-[linear-gradient(90deg,rgba(18,16,13,.85)_0%,rgba(18,16,13,.55)_45%,rgba(18,16,13,.05)_85%)]" />
-            <div className="absolute inset-x-0 bottom-0 px-4 pb-5 lg:inset-y-0 lg:left-0 lg:flex lg:max-w-[620px] lg:flex-col lg:justify-center lg:px-14 lg:pb-0">
-              <p className="flex items-center gap-3 text-[11px] tracking-[0.24em] text-[#d6ba84] lg:text-xs">
+          <div className="relative h-[260px] overflow-hidden sm:h-[320px] lg:mx-auto lg:mt-5 lg:h-[460px] lg:max-w-[1088px]">
+            <Image src={heroPhoto} alt="" fill priority sizes="(max-width: 1087px) 100vw, 1088px" className="object-cover" />
+            <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(34,32,28,1)_0%,rgba(34,32,28,.55)_32%,rgba(34,32,28,0)_70%)] lg:bg-[linear-gradient(90deg,rgba(34,32,28,.92)_0%,rgba(34,32,28,.6)_42%,rgba(34,32,28,.05)_85%)]" />
+            <div className="absolute inset-x-0 bottom-0 px-4 pb-4 lg:inset-y-0 lg:left-0 lg:flex lg:max-w-[760px] lg:flex-col lg:justify-center lg:px-14 lg:pb-0">
+              <p className="flex items-center gap-3 text-[11px] tracking-[0.24em] text-gold lg:text-xs">
                 特集
-                <span className="h-px w-10 bg-[#d6ba84]" aria-hidden="true" />
+                <span className="h-px w-10 bg-gold" aria-hidden="true" />
               </p>
-              <h1 className="mt-2 font-mincho text-[23px] font-bold leading-[1.45] tracking-[0.08em] text-white lg:mt-4 lg:text-[38px]">{selection.h1}</h1>
-              <p className="mt-4 hidden text-[15px] leading-[2] text-white/85 lg:block">{selection.lead}</p>
+              <h1 className="mt-2 font-mincho text-[24px] font-bold leading-[1.45] tracking-[0.08em] text-white [text-wrap:balance] lg:mt-4 lg:text-[40px]">{selection.h1}</h1>
+              <p className="mt-4 hidden max-w-[560px] text-[15px] leading-[2] text-white/85 lg:block">{selection.lead}</p>
             </div>
           </div>
-          {heroCredit && (
-            <p className="mt-1.5 px-4 text-right text-[11px] text-ink-muted lg:mx-auto lg:max-w-[1184px]">
-              写真：
-              {heroCredit.source ? (
-                <a href={heroCredit.source} target="_blank" rel="noopener noreferrer" className="underline">{heroCredit.creator || '出典'}</a>
-              ) : (
-                heroCredit.creator
+          <div className="px-4 pb-6 lg:mx-auto lg:max-w-[1088px] lg:px-0 lg:pb-10">
+            <p className="text-[13px] leading-[1.9] text-white/75 lg:hidden">{selection.lead}</p>
+            {/* 掲載数と参考価格（金の数字で） */}
+            <div className="mt-4 flex flex-wrap items-end gap-x-8 gap-y-3 border-t border-white/15 pt-4 lg:mt-6 lg:pt-5">
+              <p className="flex items-baseline gap-2">
+                <span className="text-[11px] tracking-[0.16em] text-white/55">掲載</span>
+                <span className="font-mincho text-[26px] font-bold leading-none text-gold lg:text-[30px]">{products.length}</span>
+                <span className="text-[12px] text-white/70">件</span>
+              </p>
+              {priceAll && (
+                <p className="flex items-baseline gap-2">
+                  <span className="text-[11px] tracking-[0.16em] text-white/55">参考価格</span>
+                  <span className="font-mincho text-[20px] font-bold leading-none text-white lg:text-[22px]">{formatPrice(priceAll.min)}<span className="mx-1 text-white/50">〜</span>{formatPrice(priceAll.max)}</span>
+                </p>
               )}
-              {heroCredit.license && ` / ${heroCredit.license}`}
-            </p>
-          )}
-          <div className="px-4 lg:mx-auto lg:max-w-[1184px] lg:px-12">
-            <p className="mt-3 text-[13px] leading-[1.9] text-ink-soft lg:hidden">{selection.lead}</p>
-            <PrDisclosure className="mt-2.5 lg:mt-4" />
+              {heroCredit && (
+                <p className="ml-auto text-[10.5px] text-white/45">
+                  写真：
+                  {heroCredit.source ? (
+                    <a href={heroCredit.source} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">{heroCredit.creator || '出典'}</a>
+                  ) : (
+                    heroCredit.creator
+                  )}
+                  {heroCredit.license && ` / ${heroCredit.license}`}
+                </p>
+              )}
+            </div>
           </div>
         </header>
+        <div className="px-4 lg:mx-auto lg:max-w-[1184px] lg:px-12">
+          <PrDisclosure className="mt-3 lg:mt-4" />
+        </div>
 
         <div className={CONTAINER}>
           {/* 掲載商品（本文より先に見せる） */}
