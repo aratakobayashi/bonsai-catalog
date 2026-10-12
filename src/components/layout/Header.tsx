@@ -10,7 +10,7 @@ import { SearchOverlay } from './SearchOverlay'
 function Logo() {
   return (
     <Link href="/" className="flex shrink-0 items-center gap-2.5 text-white hover:text-white" aria-label="盆栽コレクション トップへ">
-      <span className="flex h-[22px] w-[22px] items-center justify-center bg-gold font-mincho text-xs font-bold" aria-hidden="true">盆</span>
+      <span className="flex h-[22px] w-[22px] items-center justify-center bg-gold font-mincho text-xs font-bold text-sumi" aria-hidden="true">盆</span>
       <span className="font-mincho text-base font-bold tracking-[0.12em] lg:text-[17px]">盆栽コレクション</span>
     </Link>
   )
@@ -51,7 +51,7 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-navy text-white">
+    <header className="sticky top-0 z-50 border-b border-gold/25 bg-sumi text-white">
       <div className="mx-auto flex h-14 max-w-[1280px] items-center gap-8 px-4 lg:px-12">
         <Logo />
 
@@ -59,7 +59,7 @@ export function Header() {
           href={SHOP_NAV.href}
           aria-current={shopActive ? 'page' : undefined}
           className={`hidden h-9 items-center border px-[18px] text-[13.5px] tracking-[0.08em] lg:flex ${
-            shopActive ? 'border-white bg-white font-bold text-navy hover:text-navy' : 'border-white/60 text-white hover:bg-white/10 hover:text-white'
+            shopActive ? 'border-gold bg-gold font-bold text-sumi hover:text-sumi' : 'border-white/60 text-white hover:bg-white/10 hover:text-white'
           }`}
         >
           {SHOP_NAV.label}
@@ -114,7 +114,7 @@ export function Header() {
           >
             気になる
             {favorites.length > 0 && (
-              <span className="flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-white px-1 text-[10.5px] font-normal text-navy">
+              <span className="flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-white px-1 text-[10.5px] font-normal text-sumi">
                 {favorites.length}<span className="sr-only">件</span>
               </span>
             )}

@@ -426,7 +426,7 @@ export function SearchOverlay({ open, onClose, variant, query: externalQuery, tr
     >
       <form
         role="search"
-        className="flex h-14 shrink-0 items-center gap-1 bg-navy pl-5 pr-2 text-white"
+        className="flex h-14 shrink-0 items-center gap-1 bg-sumi pl-5 pr-2 text-white"
         onSubmit={e => {
           e.preventDefault()
           search(ownQuery)

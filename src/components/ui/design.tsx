@@ -111,6 +111,6 @@ export function NavyPanel({ eyebrow, title, children, href, className = '' }: { 
       {children}
     </>
   )
-  const cls = `block bg-navy px-5 py-4 text-white hover:text-white ${className}`
-  return href ? <Link href={href} className={`${cls} hover:bg-navy-light`}>{inner}</Link> : <div className={cls}>{inner}</div>
+  const cls = `block bg-sumi px-5 py-4 text-white hover:text-white ${className}`
+  return href ? <Link href={href} className={`${cls} hover:bg-sumi-light`}>{inner}</Link> : <div className={cls}>{inner}</div>
 }

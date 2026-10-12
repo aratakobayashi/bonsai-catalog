@@ -86,7 +86,7 @@ export default async function ShojoDetailPage({ params }: PageProps) {
         {productGroups.length > 0 && <PrDisclosure compact className="mt-4" />}
 
         {/* 今すぐやること */}
-        <section aria-labelledby="now" className="mt-6 bg-navy px-5 py-5 text-white lg:mt-10 lg:px-7 lg:py-6">
+        <section aria-labelledby="now" className="mt-6 bg-sumi px-5 py-5 text-white lg:mt-10 lg:px-7 lg:py-6">
           <h2 id="now" className="font-mincho text-[18px] font-bold tracking-[0.05em] lg:text-[21px]">今すぐやること</h2>
           <ol className="mt-3 space-y-2.5 text-[14px] leading-[1.8]">
             {shojo.now.map((step, i) => (

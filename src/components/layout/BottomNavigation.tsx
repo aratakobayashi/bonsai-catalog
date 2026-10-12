@@ -30,7 +30,7 @@ export function BottomNavigation() {
                 href={item.href}
                 aria-current={active ? 'page' : undefined}
                 className={`flex h-full items-center justify-center text-[11.5px] ${
-                  active ? 'bg-navy font-bold text-white hover:text-white' : 'text-ink-soft'
+                  active ? 'bg-sumi font-bold text-white shadow-[inset_0_2px_0_#b8935a] hover:text-white' : 'text-ink-soft'
                 }`}
               >
                 {item.label}

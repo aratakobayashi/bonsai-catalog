@@ -207,7 +207,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       />
 
       {/* スマホ：一覧へ戻る */}
-      <div className="bg-navy px-4 text-[13.5px] text-white lg:hidden">
+      <div className="bg-sumi px-4 text-[13.5px] text-white lg:hidden">
         <Link href={listHref} className="-ml-1 inline-flex min-h-11 min-w-11 items-center px-1 text-white hover:text-white">‹ {catLink ? catLink.label : '一覧'}</Link>
       </div>
 

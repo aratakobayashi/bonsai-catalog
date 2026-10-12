@@ -15,7 +15,7 @@ function pinIcon(active: boolean) {
     iconSize: [size, size],
     iconAnchor: [size / 2, size],
     popupAnchor: [0, -size],
-    html: `<span style="display:block;width:${size}px;height:${size}px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:${active ? '#b8935a' : '#1a365d'};border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)"></span>`,
+    html: `<span style="display:block;width:${size}px;height:${size}px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:${active ? '#b8935a' : '#22201c'};border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)"></span>`,
   })
 }
 
@@ -117,9 +117,9 @@ export default function GardenMapInner({
               <Popup>
                 <div className="min-w-[160px]">
                   {p.area && <div className="text-[11px] text-ink-muted">{p.area}</div>}
-                  <div className="font-mincho text-[15px] font-bold text-navy">{p.name}</div>
+                  <div className="font-mincho text-[15px] font-bold text-ink">{p.name}</div>
                   {p.href && (
-                    <Link href={p.href} className="mt-1 inline-block text-xs font-bold text-navy underline">
+                    <Link href={p.href} className="mt-1 inline-block text-xs font-bold text-gold-dark underline">
                       詳しく見る →
                     </Link>
                   )}

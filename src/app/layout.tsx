@@ -54,6 +54,8 @@ export const metadata: Metadata = {
     width: 'device-width',
     initialScale: 1,
   },
+  // スマホのブラウザの上部の色（ヘッダーと同じ墨色）
+  themeColor: '#22201c',
 }
 
 export default function RootLayout({
