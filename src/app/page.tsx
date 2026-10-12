@@ -199,103 +199,108 @@ export default async function HomePage() {
 
   return (
     <div className="pb-12 lg:pb-20">
-      {/* ヒーロー（SP は写真が先） */}
-      <section className="lg:mx-auto lg:grid lg:max-w-[1184px] lg:grid-cols-[minmax(0,1fr)_560px] lg:items-center lg:gap-16 lg:px-12 lg:pt-16">
-        <figure className="lg:order-last">
-          {/* 大きな写真：月ごとに選んだ実物の盆栽写真（質のそろった写真で第一印象を決める）。LCP のため先に読み込む */}
-          <Link
-            href={`/products/category/${season.slug}`}
-            aria-label={`${season.monthLabel}の盆栽：${season.name}の盆栽を見る`}
-            className="relative block aspect-[4/3] overflow-hidden bg-paper-deep lg:aspect-[5/4]"
-          >
-            <Image src={heroScene.src} alt={heroScene.alt} fill priority sizes="(max-width: 1023px) 100vw, 560px" className="object-cover" />
-          </Link>
-          <figcaption className="flex items-start gap-3 px-4 pt-1.5 text-[11px] text-ink-muted lg:px-0">
-            <span className="hidden lg:inline">{season.monthLabel}の盆栽・{season.name}</span>
+      {/* ヒーロー：墨色の帯に月ごとの盆栽の写真を大きく敷き、その上に見出し・ボタン・検索（特集ページの冒頭と同じ色使い）。
+          SP は写真の下部に見出しを重ね、ボタンと検索は写真の下に続ける。写真は LCP のため先に読み込む */}
+      <section className="bg-sumi text-white" aria-label="盆栽コレクション">
+        <div className="relative lg:mx-auto lg:max-w-[1088px] lg:pt-8">
+          <div className="relative h-[330px] overflow-hidden sm:h-[420px] lg:h-[580px]">
+            <Image src={heroScene.src} alt={heroScene.alt} fill priority sizes="(max-width: 1087px) 100vw, 1088px" className="object-cover lg:object-[70%_50%]" />
+            <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(34,32,28,1)_0%,rgba(34,32,28,.6)_30%,rgba(34,32,28,0)_65%)] lg:bg-[linear-gradient(90deg,rgba(34,32,28,.94)_0%,rgba(34,32,28,.72)_38%,rgba(34,32,28,.08)_78%)]" />
+            {/* PC：今月の一鉢（買える商品を写真の右下に小さく重ねる） */}
+            {heroProduct && (
+              <Link href={`/products/${heroProduct.id}`} prefetch={false} className="group absolute bottom-6 right-6 hidden w-[340px] items-center gap-3 border border-white/15 bg-black/45 p-2.5 backdrop-blur-sm hover:border-gold lg:flex">
+                <span className="relative h-16 w-16 flex-none overflow-hidden bg-paper-deep">
+                  <ProductThumb src={heroProduct.imageUrl} alt="" sizes="64px" size={160} />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-[11px] tracking-[0.12em] text-gold">{season.monthLabel}の一鉢</span>
+                  <span className="mt-0.5 block truncate text-[14px] font-bold text-white">{heroProduct.displayName || heroProduct.name}</span>
+                  <span className="block text-[12.5px] text-white/70">{formatPrice(heroProduct.price)}</span>
+                </span>
+                <span className="flex-none pr-1 text-gold" aria-hidden="true">→</span>
+              </Link>
+            )}
+          </div>
+
+          <div className="relative -mt-[118px] px-4 pb-7 sm:-mt-[132px] lg:absolute lg:inset-y-0 lg:left-0 lg:mt-0 lg:flex lg:w-[600px] lg:flex-col lg:justify-center lg:px-14 lg:pb-0 lg:pt-8">
+            <p className="flex items-center gap-3 text-[11px] tracking-[0.22em] text-gold lg:text-xs">
+              楽天市場の盆栽を、まとめて比べる
+              <span className="hidden h-px w-10 bg-gold sm:block" aria-hidden="true" />
+            </p>
+            <h1 className="mt-2.5 font-mincho text-[29px] font-bold leading-[1.45] tracking-[0.08em] text-white lg:mt-4 lg:text-[46px] lg:leading-[1.4]">
+              はじめての一鉢を、<br />ゆっくり選ぶ。
+            </h1>
+            <p className="mt-3.5 text-[13px] leading-[1.9] text-white/75 lg:mt-5 lg:max-w-[440px] lg:text-[15px] lg:leading-[2] lg:text-white/85">
+              楽天市場の{total > 0 ? <strong className="mx-0.5 font-bold text-gold">{total.toLocaleString()}件</strong> : ''}の盆栽・鉢・道具を、樹種・大きさ・育てやすさ・価格で比べられます。
+            </p>
+            {/* 次の一歩：迷っている人は診断、決まっている人は一覧へ */}
+            <div className="mt-5 flex flex-wrap gap-2.5 lg:mt-7 lg:gap-3">
+              <Link href="/shindan" className="inline-flex min-h-12 flex-1 items-center justify-center bg-gold px-5 text-[14px] font-bold tracking-[0.06em] text-sumi hover:bg-white hover:text-sumi sm:flex-none lg:min-h-[52px] lg:px-7">
+                かんたん盆栽診断<span className="ml-1.5 hidden text-[11.5px] font-normal opacity-80 sm:inline">4つの質問</span>
+              </Link>
+              <Link href="/products?type=tree" className="inline-flex min-h-12 flex-1 items-center justify-center border border-white/60 px-5 text-[14px] tracking-[0.06em] text-white hover:border-white hover:bg-white hover:text-sumi sm:flex-none lg:min-h-[52px] lg:px-7">
+                盆栽を探す
+              </Link>
+            </div>
+            <form action="/products" method="get" role="search" className="mt-4 flex h-[46px] max-w-[440px] items-center gap-3 border-b border-white/40 focus-within:border-white lg:mt-7 lg:h-[50px]">
+              <label htmlFor="home-search" className="sr-only">盆栽を検索</label>
+              <input
+                id="home-search"
+                type="search"
+                name="q"
+                placeholder="樹種・商品名で探す（例：もみじ、五葉松）"
+                className="min-w-0 flex-1 bg-transparent text-sm text-white placeholder:text-white/55 focus:outline-none"
+              />
+              <button type="submit" className="-mr-2 flex h-11 min-w-11 flex-none items-center justify-center px-2 text-[13px] text-white/80 hover:text-white">探す</button>
+            </form>
+          </div>
+
+          {/* SP：今月の一鉢（写真の下） */}
+          {heroProduct && (
+            <Link href={`/products/${heroProduct.id}`} prefetch={false} className="group mx-4 flex items-center gap-3 border border-white/15 bg-black/30 p-2.5 hover:border-gold lg:hidden">
+              <span className="relative h-16 w-16 flex-none overflow-hidden bg-paper-deep">
+                <ProductThumb src={heroProduct.imageUrl} alt="" sizes="64px" size={160} />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-[11px] tracking-[0.12em] text-gold">{season.monthLabel}の一鉢</span>
+                <span className="mt-0.5 block truncate text-[14px] font-bold text-white">{heroProduct.displayName || heroProduct.name}</span>
+                <span className="block text-[12.5px] text-white/70">{formatPrice(heroProduct.price)}</span>
+              </span>
+              <span className="flex-none pr-1 text-gold" aria-hidden="true">→</span>
+            </Link>
+          )}
+
+          <p className="flex items-start gap-3 px-4 pb-5 pt-3 text-[10.5px] text-white/45 lg:px-0 lg:pb-8">
+            <Link href={`/products/category/${season.slug}`} className="text-white/60 underline decoration-white/25 underline-offset-4 hover:text-white">{season.monthLabel}の盆栽・{season.name}を見る</Link>
             {heroCredit && (
               <span className="ml-auto text-right">
-                写真：{heroCredit.source ? <a href={heroCredit.source} target="_blank" rel="noopener noreferrer" className="underline">{heroCredit.creator || '出典'}</a> : heroCredit.creator}
+                写真：{heroCredit.source ? <a href={heroCredit.source} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">{heroCredit.creator || '出典'}</a> : heroCredit.creator}
                 {heroCredit.license && ` / ${heroCredit.license}`}
               </span>
             )}
-          </figcaption>
-          {/* 今月の一鉢（買える商品を小さく添える。SP は見出し・ボタンを先に見せるため、目的の入口の下に出す） */}
-          {heroProduct && (
-            <Link href={`/products/${heroProduct.id}`} prefetch={false} className="group mt-3 hidden lg:flex items-center gap-3 border border-line bg-paper p-2.5 hover:border-ink lg:mx-0">
-              <span className="relative h-16 w-16 flex-none overflow-hidden bg-paper-deep">
-                <ProductThumb src={heroProduct.imageUrl} alt="" sizes="64px" size={160} />
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block text-[11px] tracking-[0.1em] text-gold-dark">{season.monthLabel}の一鉢</span>
-                <span className="mt-0.5 block truncate text-[14px] font-bold text-ink group-hover:text-gold-dark">{heroProduct.displayName || heroProduct.name}</span>
-                <span className="block text-[12.5px] text-ink-soft">{formatPrice(heroProduct.price)}</span>
-              </span>
-              <span className="flex-none pr-1 text-ink-muted" aria-hidden="true">›</span>
-            </Link>
-          )}
-        </figure>
-
-        <div className="px-4 pt-6 lg:px-0 lg:pt-0">
-          <p className="text-[11px] tracking-[0.18em] text-gold-dark lg:text-xs lg:tracking-[0.2em]">楽天市場の盆栽を、まとめて比べる</p>
-          <h1 className="mt-2 font-mincho text-[27px] font-bold leading-[1.45] tracking-[0.08em] text-ink lg:mt-3.5 lg:text-[42px]">
-            はじめての一鉢を、<br />ゆっくり選ぶ。
-          </h1>
-          <p className="mt-3 text-[13px] leading-[1.9] text-ink-soft lg:mt-[18px] lg:text-[15px] lg:leading-[2]">
-            楽天市場の{total > 0 ? `${total.toLocaleString()}件の` : ''}盆栽・鉢・道具を、樹種・大きさ・育てやすさ・価格で比べられます。
           </p>
-          {/* 次の一歩：迷っている人は診断、決まっている人は一覧へ */}
-          <div className="mt-5 flex flex-wrap gap-2.5 lg:mt-7 lg:gap-3">
-            <Link href="/shindan" className="inline-flex min-h-12 flex-1 items-center justify-center bg-gold-dark px-5 text-[14px] font-bold tracking-[0.06em] text-white hover:bg-ink hover:text-white sm:flex-none lg:min-h-[52px] lg:px-7">
-              かんたん盆栽診断<span className="ml-1.5 hidden text-[11.5px] font-normal opacity-90 sm:inline">4つの質問</span>
-            </Link>
-            <Link href="/products?type=tree" className="inline-flex min-h-12 flex-1 items-center justify-center border border-ink px-5 text-[14px] tracking-[0.06em] text-ink hover:bg-ink hover:text-paper sm:flex-none lg:min-h-[52px] lg:px-7">
-              盆栽を探す
-            </Link>
-          </div>
-          <form action="/products" method="get" role="search" className="mt-4 flex h-[46px] max-w-[440px] items-center gap-3 border-b border-ink lg:mt-7 lg:h-[50px]">
-            <label htmlFor="home-search" className="sr-only">盆栽を検索</label>
-            <input
-              id="home-search"
-              type="search"
-              name="q"
-              placeholder="樹種・商品名で探す（例：もみじ、五葉松）"
-              className="min-w-0 flex-1 bg-transparent text-sm text-ink placeholder:text-ink-muted focus:outline-none"
-            />
-            <button type="submit" className="-mr-2 flex h-11 min-w-11 flex-none items-center justify-center px-2 text-[13px] text-ink-soft hover:text-ink">探す</button>
-          </form>
-
-          {/* SP：検索のすぐ下に目的からの入口（下の「目的から選ぶ」と同じ特集） */}
-          {purposes.length > 0 && (
-            <nav aria-label="目的から選ぶ" className="mt-6 max-w-[440px] lg:mt-8">
-              <p className="text-[11px] tracking-[0.12em] text-ink-muted">目的から選ぶ</p>
-              <ul className="mt-1.5 grid grid-cols-2 border-t border-line">
-                {purposes.map(({ slug, label }, i) => (
-                  <li key={slug} className={`border-b border-line ${i % 2 === 0 ? 'border-r pr-3' : 'pl-3'}`}>
-                    <Link href={`/selection/${slug}`} className="flex min-h-11 items-center py-2 font-mincho text-[14px] font-bold text-ink">
-                      {label}
-                      <span className="ml-auto font-sans font-normal text-ink-muted" aria-hidden="true">›</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          )}
-          {/* SP：今月の一鉢 */}
-          {heroProduct && (
-            <Link href={`/products/${heroProduct.id}`} prefetch={false} className="group mt-6 flex lg:hidden items-center gap-3 border border-line bg-paper p-2.5 hover:border-ink lg:mx-0">
-              <span className="relative h-16 w-16 flex-none overflow-hidden bg-paper-deep">
-                <ProductThumb src={heroProduct.imageUrl} alt="" sizes="64px" size={160} />
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block text-[11px] tracking-[0.1em] text-gold-dark">{season.monthLabel}の一鉢</span>
-                <span className="mt-0.5 block truncate text-[14px] font-bold text-ink group-hover:text-gold-dark">{heroProduct.displayName || heroProduct.name}</span>
-                <span className="block text-[12.5px] text-ink-soft">{formatPrice(heroProduct.price)}</span>
-              </span>
-              <span className="flex-none pr-1 text-ink-muted" aria-hidden="true">›</span>
-            </Link>
-          )}
         </div>
       </section>
+
+      {/* 目的から選ぶ（墨色の帯どうしの間に、明るい紙色の帯を挟む） */}
+      {purposes.length > 0 && (
+        <nav aria-label="目的から選ぶ" className={`${CONTAINER} pt-8 lg:pt-12`}>
+          <p className="text-[11.5px] tracking-[0.14em] text-gold-dark">目的から選ぶ</p>
+          <ul className="mt-2 grid grid-cols-2 border-t border-line lg:grid-cols-4">
+            {purposes.map(({ slug, label, criteria }, i) => (
+              <li key={slug} className={`border-b border-line ${i % 2 === 0 ? 'border-r pr-3' : 'pl-3'} lg:border-r lg:px-5 lg:first:pl-0 lg:last:border-r-0`}>
+                <Link href={`/selection/${slug}`} className="group flex min-h-[52px] items-center py-2.5 lg:min-h-[64px]">
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-mincho text-[14.5px] font-bold text-ink group-hover:text-gold-dark lg:text-[16px]">{label}</span>
+                    <span className="mt-0.5 hidden text-[11.5px] text-ink-muted lg:block">{criteria}</span>
+                  </span>
+                  <span className="font-sans text-ink-muted" aria-hidden="true">›</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
 
       {/* 迷ったら、ここから（診断・組み合わせ・今月の手入れを、写真と中身の見えるカードで。ファーストビューのすぐ下） */}
       <HomeTools month={month} readyCount={readyPool(products).length} showcase={potShowcase(products)} />
