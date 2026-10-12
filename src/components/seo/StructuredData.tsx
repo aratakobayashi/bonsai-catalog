@@ -6,8 +6,8 @@ interface ArticleStructuredDataProps {
   baseUrl: string
 }
 
-// サイトのロゴ（public/ にラスター画像がないため、app/icon.svg から配信されるサイトアイコンを使う）
-export const SITE_LOGO_PATH = '/icon.svg'
+// サイトのロゴ（墨の角丸に金の「盆」。public/icons/icon-512.png）
+export const SITE_LOGO_PATH = '/icons/icon-512.png'
 
 const toAbsolute = (url: string, baseUrl: string) => (/^https?:\/\//.test(url) ? url : `${baseUrl}${url.startsWith('/') ? '' : '/'}${url}`)
 

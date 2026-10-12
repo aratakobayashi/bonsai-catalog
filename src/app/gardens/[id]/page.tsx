@@ -9,6 +9,8 @@ import { Garden, Article } from '@/types'
 import { normalizeProduct, type CatalogProduct } from '@/lib/catalog'
 import { CONTAINER, Breadcrumbs, Placeholder } from '@/components/ui/design'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
+import { GardenShopBridge, pickBridgeProducts } from '@/components/gardens/GardenShopBridge'
+import { getCatalogProducts } from '@/lib/catalog'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { GardenMap } from '@/components/gardens/GardenMap'
 import {
@@ -221,14 +223,17 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
   const matchedCategories = gardenShopCategories(specialties)
 
   // 関連データを並行取得
-  const [species, relatedArticles, nearbyGardens] = await Promise.all([
+  const [species, relatedArticles, nearbyGardens, allProducts] = await Promise.all([
     getSpeciesProducts(matchedCategories.map(c => c.slug)),
     getRelatedArticles(),
     getNearbyGardens(garden),
+    getCatalogProducts().catch(() => [] as CatalogProduct[]),
   ])
   const speciesProducts = species.products
   const shopCategories = matchedCategories.filter(c => species.availableSlugs.includes(c.slug))
   const hasProducts = speciesProducts.length > 0 && shopCategories.length > 0
+  // 取り扱い樹種の商品がない園は、はじめてでも育てやすい盆栽を通販の案内として出す
+  const bridgeProducts = hasProducts ? [] : pickBridgeProducts(allProducts)
 
   // パンくずリスト用データ
   const breadcrumbs = [
@@ -406,6 +411,34 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
           {photo && coords && <div className="mt-5">{mapBox('h-[240px]')}</div>}
         </Section>
 
+        {/* この園が扱う樹種の通販（樹種が一致するときだけ。広告を含む） */}
+        {shopCategories.length > 0 && (
+          <Section
+            title="取り扱い樹種を通販で見る"
+            note={`${garden.name}の取り扱い（${shopCategories.map(c => c.name).join('・')}）と同じ樹種の盆栽です。園の商品ではありません。`}
+          >
+            {hasProducts && <PrDisclosure compact className="mb-3" />}
+            <ul className="flex flex-wrap gap-2">
+              {shopCategories.map(c => (
+                <li key={c.slug}>
+                  <Link href={`/products/category/${c.slug}`} className="inline-flex min-h-11 items-center border border-line bg-white px-3.5 text-[13px] text-ink hover:border-ink lg:min-h-9">
+                    {c.name}の盆栽一覧 ›
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            {hasProducts && (
+              <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-4">
+                {speciesProducts.map(product => (
+                  <CatalogProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            )}
+          </Section>
+        )}
+        {/* 樹種の商品がない園：はじめてでも育てやすい盆栽を通販で（広告を含む） */}
+        {!hasProducts && <GardenShopBridge products={bridgeProducts} title={`${garden.name}に行く前に、通販でも選べます`} className="mt-10 lg:mt-14" />}
+
         {/* 近くの盆栽園（座標があれば距離の近い順） */}
         {nearbyGardens.length > 0 && (
           <Section
@@ -470,31 +503,6 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
           </Section>
         )}
 
-        {/* この園が扱う樹種の通販（樹種が一致するときだけ。広告を含む） */}
-        {shopCategories.length > 0 && (
-          <Section
-            title="取り扱い樹種を通販で見る"
-            note={`${garden.name}の取り扱い（${shopCategories.map(c => c.name).join('・')}）と同じ樹種の盆栽です。園の商品ではありません。`}
-          >
-            {hasProducts && <PrDisclosure compact className="mb-3" />}
-            <ul className="flex flex-wrap gap-2">
-              {shopCategories.map(c => (
-                <li key={c.slug}>
-                  <Link href={`/products/category/${c.slug}`} className="inline-flex min-h-11 items-center border border-line bg-white px-3.5 text-[13px] text-ink hover:border-ink lg:min-h-9">
-                    {c.name}の盆栽一覧 ›
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            {hasProducts && (
-              <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-4">
-                {speciesProducts.map(product => (
-                  <CatalogProductCard key={product.id} product={product} />
-                ))}
-              </div>
-            )}
-          </Section>
-        )}
       </div>
     </>
   )

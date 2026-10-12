@@ -20,7 +20,7 @@ import { formatDate } from '@/lib/date-utils'
 import { processMarkdown, extractTableOfContents } from '@/lib/markdown'
 import { detectArticleSpecies, fallbackSelectionSlug, normalizeForMatch, stripLeadingTitleHeading } from '@/lib/article-content'
 import { applyArticleOverride, canOptimizeImage, getArticleOverride, thumbnailPath } from '@/lib/article-overrides'
-import { getSelection, selectionsForCategory } from '@/lib/selections'
+import { getSelection, pickSelectionProducts, selectionsForCategory } from '@/lib/selections'
 import { categoryFilters, filterProducts, getCatalogProducts, normalizeProduct, type CatalogProduct } from '@/lib/catalog'
 import { getShopCategory } from '@/lib/shop-categories'
 import { SITE_URL, absoluteUrl } from '@/lib/site'
@@ -138,6 +138,14 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 }
 
 
+// 樹種が分かり、重ならないものを先に並べ、足りなければ残り（樹種が分からない飾り物などを含む）で埋める
+function diversifySpecies(list: CatalogProduct[], n: number): CatalogProduct[] {
+  const first: CatalogProduct[] = []
+  const rest: CatalogProduct[] = []
+  for (const p of list) (!p.speciesKey || first.some(x => x.speciesKey === p.speciesKey) ? rest : first).push(p)
+  return [...first, ...rest].slice(0, n)
+}
+
 export default async function ArticlePage({ params }: ArticlePageProps) {
   // 盆栽と無関係な記事（削除扱い）は記事一覧へ恒久リダイレクト
   if (isArticleHidden(params.slug)) {
@@ -188,7 +196,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const h2Headings = allHeadings.filter(item => item.level === 2)
   const tableOfContents = h2Headings.length > 0 ? h2Headings : allHeadings
 
-  const products = speciesSlug ? speciesProducts : relatedProductRows.map(normalizeProduct).slice(0, 3)
+  // タイトルから樹種が分からない総合的な記事（室内向きの選び方など）で特集があるときは、特集の商品を出す（いろいろな樹種から）
+  // 「椿の盆栽の育て方」「柿の盆栽」「椿の品種」のように、タイトルが樹の名前で始まる記事は樹種の記事として扱う
+  const speciesTitle = /^(?!盆栽|室内|初心者|はじめて|ミニ|多肉|山野草)[^｜|]{1,14}?(の盆栽|の品種)/.test(article.title)
+  const productSelection = !detected && !speciesTitle && !isSupply && article.selectionSlug ? getSelection(article.selectionSlug) ?? null : null
+  const selectionProducts = productSelection
+    ? diversifySpecies(pickSelectionProducts(productSelection, await getCatalogProducts().catch(() => [] as CatalogProduct[])).sort(byCuratedThenReviews), 6)
+    : []
+  const products = selectionProducts.length >= 3 ? selectionProducts : speciesSlug ? speciesProducts : relatedProductRows.map(normalizeProduct).slice(0, 3)
   const hasRakuten = products.some(product => product.source === 'rakuten')
 
   // 同じ樹種の育て方の記事（育て方・手入れの記事を先に）
@@ -325,8 +340,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             {/* 次にやること（商品・同じ樹種の記事・特集・診断） */}
             <ArticleNextSteps
               products={products}
-              productsHeading={productsNoun ? `${productsNoun}を見てみる` : undefined}
-              productsMore={speciesSlug && speciesLabel ? { href: `/products/category/${speciesSlug}`, label: `${productsNoun}をすべて見る` } : undefined}
+              productsHeading={selectionProducts.length >= 3 && productSelection ? `特集「${productSelection.shortTitle}」から` : productsNoun ? `${productsNoun}を見てみる` : undefined}
+              productsMore={selectionProducts.length >= 3 && productSelection ? { href: `/selection/${productSelection.slug}`, label: `「${productSelection.shortTitle}」の特集を見る` } : speciesSlug && speciesLabel ? { href: `/products/category/${speciesSlug}`, label: `${productsNoun}をすべて見る` } : undefined}
               guides={speciesGuides}
               guidesHeading={speciesLabel && !isSupply ? `${speciesLabel}の育て方をもっと読む` : undefined}
               links={nextLinks}

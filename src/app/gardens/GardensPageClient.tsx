@@ -1,5 +1,6 @@
 'use client'
 
+import type { ReactNode } from 'react'
 import { useState, useMemo, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { CONTAINER, PageHeading, Placeholder } from '@/components/ui/design'
@@ -106,7 +107,7 @@ function GardenRow({
   )
 }
 
-export function GardensPageClient({ gardens }: { gardens: GardenListItem[] }) {
+export function GardensPageClient({ gardens, shopBridge }: { gardens: GardenListItem[]; shopBridge?: ReactNode }) {
   const [region, setRegion] = useState<string>(ALL)
   const [prefecture, setPrefecture] = useState<string | null>(null)
   const [features, setFeatures] = useState<FeatureKey[]>([])
@@ -451,7 +452,9 @@ export function GardensPageClient({ gardens }: { gardens: GardenListItem[] }) {
             </div>
           ) : position ? (
             <div>
-              {filtered.slice(0, nearLimit).map(g => renderRow(g, true))}
+              {filtered.slice(0, Math.min(nearLimit, 6)).map(g => renderRow(g, true))}
+              {shopBridge}
+              {filtered.slice(6, nearLimit).map(g => renderRow(g, true))}
               {filtered.length > nearLimit && (
                 <button
                   type="button"
@@ -463,7 +466,7 @@ export function GardensPageClient({ gardens }: { gardens: GardenListItem[] }) {
               )}
             </div>
           ) : (
-            groups.map(group => {
+            groups.map((group, groupIndex) => {
               const collapsed = isCollapsed(group.name) && group.items.length > GROUP_LIMIT
               const items = collapsed ? group.items.slice(0, GROUP_LIMIT) : group.items
               return (
@@ -479,6 +482,8 @@ export function GardensPageClient({ gardens }: { gardens: GardenListItem[] }) {
                   )}
                   {prefecture && <h3 id={`pref-${group.name}`} className="sr-only">{group.name}</h3>}
                   {items.map(g => renderRow(g, false))}
+                  {/* 最初の都道府県（絞り込み中はその県）の後に、通販への案内 */}
+                  {groupIndex === 0 && shopBridge}
                   {collapsed && (
                     <a
                       href={prefectureHref(group.name)}

@@ -4,6 +4,9 @@ import { isGardenPublished } from '@/lib/garden-verification'
 import type { Garden } from '@/types'
 import { GardensPageClient, type GardenListItem } from './GardensPageClient'
 import { compareGardens, gardenSummary } from '@/components/gardens/GardenParts'
+import { getCatalogProducts } from '@/lib/catalog'
+import type { CatalogProduct } from '@/lib/catalog-model'
+import { GardenShopBridge, pickBridgeProducts } from '@/components/gardens/GardenShopBridge'
 
 export const metadata: Metadata = {
   title: '全国の盆栽園一覧｜都道府県・現在地から探す - 盆栽コレクション',
@@ -45,8 +48,12 @@ async function getGardens(): Promise<GardenListItem[]> {
     }))
 }
 
-export default async function GardensPage() {
-  const gardens = await getGardens()
+export const revalidate = 3600
 
-  return <GardensPageClient gardens={gardens} />
+export default async function GardensPage() {
+  const [gardens, products] = await Promise.all([getGardens(), getCatalogProducts().catch(() => [] as CatalogProduct[])])
+  // 一覧の途中に出す、通販への案内（盆栽園を探しに来た人に、近くにない・すぐ欲しいときの選択肢として）
+  const bridge = <GardenShopBridge products={pickBridgeProducts(products)} className="my-6 lg:my-8" />
+
+  return <GardensPageClient gardens={gardens} shopBridge={bridge} />
 }
