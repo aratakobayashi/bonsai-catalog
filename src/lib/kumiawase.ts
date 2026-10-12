@@ -391,3 +391,24 @@ export function availableOptions(products: CatalogProduct[]) {
     finishes: FINISH_OPTIONS.filter(o => all.finish[o.value] > 0),
   }
 }
+
+// トップの見本：同じ樹で鉢の色が違う商品を3つ（写真のきれいな商品から。写真に鉢が1つだけ写るもの）
+const SHOWCASE_TREES = ['momiji', 'goyomatsu', 'sakura', 'kuromatsu', 'shimpaku', 'nanten']
+export function potShowcase(products: CatalogProduct[]): { tree: TreeOption; items: { product: CatalogProduct; color: ColorKey }[] } | null {
+  const pool = readyPool(products)
+  for (const key of SHOWCASE_TREES) {
+    const tree = TREE_OPTIONS.find(t => t.key === key)!
+    const items: { product: CatalogProduct; color: ColorKey }[] = []
+    const candidates = pool
+      .filter(({ product }) => treeMatches(tree, product) && hasCuratedImage(product))
+      .sort((a, b) => byCuratedThenReviews(a.product, b.product))
+    for (const { product } of candidates) {
+      const label = POT_LABELS[product.id]
+      if (!label || label.multi || label.c === 'none') continue
+      if (items.some(i => i.color === label.c)) continue
+      items.push({ product, color: label.c })
+      if (items.length === 3) return { tree, items }
+    }
+  }
+  return null
+}

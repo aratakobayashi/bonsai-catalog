@@ -12,7 +12,7 @@ import { formatPrice } from '@/lib/utils'
 import { isFeaturable, orderSelectionsBySeason, selectionCounts } from '@/components/selection/selection-meta'
 import { SelectionCard } from '@/components/selection/SelectionCard'
 import { HomeTools } from '@/components/home/HomeTools'
-import { readyPool } from '@/lib/kumiawase'
+import { potShowcase, readyPool } from '@/lib/kumiawase'
 import { SelectionThumb } from '@/components/selection/SelectionThumb'
 import { ProductThumb } from '@/components/catalog/ProductThumb'
 import { Placeholder } from '@/components/ui/design'
@@ -297,9 +297,10 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* 迷ったら、ここから（診断・組み合わせ・今月の手入れを、写真と中身の見えるカードで。ファーストビューのすぐ下） */}
+      <HomeTools month={month} readyCount={readyPool(products).length} showcase={potShowcase(products)} />
+
       <div className={CONTAINER}>
-        {/* 迷ったら、ここから（診断・組み合わせ・今月の手入れを中身が見えるカードで。ファーストビューのすぐ下） */}
-        <HomeTools month={month} readyCount={readyPool(products).length} />
 
         {/* 樹種から選ぶ（写真のタイル。SP は2列、PC は4列。今が見頃の樹種を先に） */}
         <section className="pt-12 lg:pt-24" aria-labelledby="home-species">
