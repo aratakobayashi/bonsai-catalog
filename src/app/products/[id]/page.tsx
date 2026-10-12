@@ -206,25 +206,21 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         category={product.category}
       />
 
-      {/* 上部：墨色の帯に写真と商品の要点（各ページの冒頭と同じ色使い。部品の色は .tone-dark で読み替える） */}
-      <div className="tone-dark bg-sumi text-white">
-        {/* スマホ：一覧へ戻る */}
-        <div className="px-4 text-[13.5px] lg:hidden">
-          <Link href={listHref} className="-ml-1 inline-flex min-h-11 min-w-11 items-center px-1 text-white hover:text-white">‹ {catLink ? catLink.label : '一覧'}</Link>
-        </div>
-        <div className={`${CONTAINER} pb-7 lg:pb-14`}>
-          <Breadcrumbs items={crumbs} className="hidden pt-6 lg:block" />
-          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-16 lg:pt-6">
-            <ProductImage product={product} sizes="(max-width: 1024px) 100vw, 60vw" size={800} className="-mx-4 aspect-[4/3] lg:mx-0 lg:aspect-square" />
-            <div className="mt-4 lg:sticky lg:top-6 lg:mt-0 lg:self-start">
-              <ProductInfo product={product} headingLevel="h1" showDescription pageMode />
-            </div>
-          </div>
-        </div>
+      {/* スマホ：一覧へ戻る */}
+      <div className="bg-sumi px-4 text-[13.5px] text-white lg:hidden">
+        <Link href={listHref} className="-ml-1 inline-flex min-h-11 min-w-11 items-center px-1 text-white hover:text-white">‹ {catLink ? catLink.label : '一覧'}</Link>
       </div>
 
       {/* スマホの下の余白は、固定の購入バー（ProductBuyBar）が body に付ける */}
       <div className={`${CONTAINER} pb-12 lg:pb-20`}>
+        <Breadcrumbs items={crumbs} className="hidden pt-6 lg:block" />
+
+        <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-16 lg:pt-6">
+          <ProductImage product={product} sizes="(max-width: 1024px) 100vw, 60vw" size={800} className="-mx-4 aspect-[4/3] lg:mx-0 lg:aspect-square" />
+          <div className="mt-3 lg:sticky lg:top-6 lg:mt-0 lg:self-start">
+            <ProductInfo product={product} headingLevel="h1" showDescription pageMode />
+          </div>
+        </div>
 
         {aboutTitle && (
           <section className="mt-10 border-t border-line pt-6 lg:mt-20 lg:grid lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-16 lg:pt-14">
