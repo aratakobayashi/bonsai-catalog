@@ -14,6 +14,7 @@ import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { CatalogProductCard } from './CatalogProductCard'
 import { CompareBar } from './CompareBar'
+import { QuickViewHost } from './QuickView'
 import { FilterBar, QuickFilters, SortSelect, type KeywordFormTarget } from './FilterBar'
 
 export interface CatalogTabs {
@@ -38,14 +39,6 @@ export function buildCatalogTabs(products: CatalogProduct[], filters: CatalogFil
   const base: CatalogFilters = { ...filters, species: undefined, page: 1 }
   const linkFilters: CatalogFilters = { ...base, type: undefined }
   const count = (type: string) => filterProducts(products, { ...base, type }).length
-  const parts: SpeciesTab = {
-    key: 'parts',
-    label: '鉢・土・道具',
-    href: buildCatalogUrl(linkFilters, { type: 'parts' }, '/products'),
-    count: count('parts'),
-    active: !activeSlug && filters.type === 'parts',
-    inSeason: false,
-  }
   const categoryTabs: SpeciesTab[] = SHOP_CATEGORIES.filter(c => CATEGORY_PART_TYPES[c.slug]).map(c => {
     const type = CATEGORY_PART_TYPES[c.slug]
     return {
@@ -57,16 +50,17 @@ export function buildCatalogTabs(products: CatalogProduct[], filters: CatalogFil
       inSeason: false,
     }
   })
+  // 「すべて」は鉢・土・道具の売り場の全体（盆栽・苔玉の売り場には戻さない）
   return {
     all: {
       key: 'all',
       label: 'すべて',
-      href: buildCatalogUrl(linkFilters, {}, '/products'),
-      count: filterProducts(products, linkFilters).length,
-      active: false,
+      href: buildCatalogUrl(linkFilters, { type: 'parts' }, '/products'),
+      count: count('parts'),
+      active: !activeSlug && filters.type === 'parts',
       inSeason: false,
     },
-    tabs: [parts, ...categoryTabs].filter(t => t.count > 0 || t.active),
+    tabs: categoryTabs.filter(t => t.count > 0 || t.active),
     label: '鉢・土・道具',
   }
 }
@@ -77,7 +71,6 @@ interface CatalogBrowserProps {
   total: number
   page: number
   totalPages: number
-  selectedId?: string
   basePath?: string
   // 一覧の上のタブ（buildCatalogTabs の結果）
   speciesTabs: CatalogTabs
@@ -99,7 +92,7 @@ interface CatalogBrowserProps {
 }
 
 // 商品一覧の画面（墨色の見出しの帯 → 売り場の切り替え → 棚 → よく使う絞り込み → 商品のグリッド → もっと見る）
-export function CatalogBrowser({ filters, items, total, page, totalPages, selectedId, basePath = '/products', speciesTabs, counts, fixedCategory = false, intro, shelves, store, clearHref, emptyState, activeCount, footer }: CatalogBrowserProps) {
+export function CatalogBrowser({ filters, items, total, page, totalPages, basePath = '/products', speciesTabs, counts, fixedCategory = false, intro, shelves, store, clearHref, emptyState, activeCount, footer }: CatalogBrowserProps) {
   // カテゴリページの条件・並び順はカテゴリのURLのまま切り替える（樹種・種類はページ側で固定するのでURLに入れない）
   const urlFilters: CatalogFilters = fixedCategory ? { ...filters, species: undefined, type: undefined } : filters
   const { menus, sort } = buildFilterMenus(urlFilters, basePath, counts)
@@ -186,11 +179,13 @@ export function CatalogBrowser({ filters, items, total, page, totalPages, select
           {items.length === 0 ? (
             <div className="py-6">{emptyState}</div>
           ) : (
-            <div data-list="catalog" className="grid grid-cols-2 gap-x-3.5 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-12 xl:grid-cols-5">
-              {items.map((product, index) => (
-                <CatalogProductCard key={product.id} product={product} priority={index < 2} sizes="(max-width: 639px) 46vw, (max-width: 1023px) 30vw, 230px" />
-              ))}
-            </div>
+            <QuickViewHost products={items}>
+              <div data-list="catalog" className="grid grid-cols-2 gap-x-3.5 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-12 xl:grid-cols-5">
+                {items.map((product, index) => (
+                  <CatalogProductCard key={product.id} product={product} priority={index < 2} quickView sizes="(max-width: 639px) 46vw, (max-width: 1023px) 30vw, 230px" />
+                ))}
+              </div>
+            </QuickViewHost>
           )}
 
           {/* もっと見る：続きを下に足す（スクロールの位置は保つ） */}

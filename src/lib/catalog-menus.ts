@@ -147,6 +147,8 @@ export function buildSpeciesTabs(products: CatalogProduct[], filters: CatalogFil
   const base: CatalogFilters = { ...filters, species: undefined, page: 1 }
   // カテゴリページでは種類（樹木・苔玉）が固定なので、「すべて」に戻るときは外す
   const allFilters: CatalogFilters = activeSlug ? { ...base, type: undefined } : base
+  // /products は種類もキーワードも指定がないとき盆栽・苔玉だけを並べるので、件数もそれに合わせる
+  const allCountFilters: CatalogFilters = !allFilters.type && !allFilters.q ? { ...allFilters, type: 'bonsai' } : allFilters
   const linkFilters: CatalogFilters = { ...base, type: undefined }
   const treeBase = filterProducts(products, { ...base, type: 'tree' })
   const kokedamaBase = filterProducts(products, { ...base, type: 'kokedama' })
@@ -173,7 +175,7 @@ export function buildSpeciesTabs(products: CatalogProduct[], filters: CatalogFil
       key: 'all',
       label: 'すべて',
       href: buildCatalogUrl(allFilters, {}, '/products'),
-      count: knownAllCount ?? filterProducts(products, allFilters).length,
+      count: knownAllCount ?? filterProducts(products, allCountFilters).length,
       active: !activeSlug && !filters.species,
       inSeason: false,
     },

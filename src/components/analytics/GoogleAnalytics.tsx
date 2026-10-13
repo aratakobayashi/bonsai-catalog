@@ -60,23 +60,22 @@ function PageViewTracker() {
         shop: shopOf(anchor.href),
         content_group: pageTypeOf(window.location.pathname),
         link_url: anchor.href.slice(0, 200),
-        // どこのボタンか（一覧の右の詳細・商品ページ・スマホの購入バー）
+        // どこのボタンか（一覧の「さっと見る」・商品ページ・スマホの購入バー）
         click_place: anchor.closest<HTMLElement>('[data-place]')?.dataset.place ?? 'other',
-        ...(productMatch && { product_id: productMatch[1] }),
+        ...((productMatch || anchor.closest<HTMLElement>('[data-product]')) && { product_id: productMatch?.[1] ?? anchor.closest<HTMLElement>('[data-product]')?.dataset.product }),
       })
     }
-    // 商品カードのクリック（どの一覧の何番目か。一覧はページ番号も足して通しの順位にする）
+    // 商品カードのクリック（どの一覧の何番目か。一覧は「もっと見る」で前のページの分も並ぶので、並び順がそのまま通しの順位）
     const onCardClick = (event: MouseEvent) => {
       const anchor = (event.target as HTMLElement | null)?.closest('a')
       const card = anchor?.closest<HTMLElement>('[data-card]')
       if (!anchor || !card || /\bsponsored\b/.test(anchor.rel)) return
       const listEl = card.closest<HTMLElement>('[data-list]')
       const cards = Array.from((listEl ?? card.parentElement ?? document).querySelectorAll<HTMLElement>('[data-card]'))
-      const page = Number(new URLSearchParams(window.location.search).get('page') || '1') || 1
       const index = cards.indexOf(card) + 1
       gtag('event', 'product_card_click', {
         list_name: listEl?.dataset.list ?? pageTypeOf(window.location.pathname),
-        position: listEl?.dataset.list === 'catalog' ? (page - 1) * 24 + index : index,
+        position: index,
         product_id: card.dataset.card,
         content_group: pageTypeOf(window.location.pathname),
       })

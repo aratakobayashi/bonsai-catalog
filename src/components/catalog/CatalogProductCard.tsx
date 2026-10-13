@@ -56,10 +56,12 @@ interface CatalogProductCardProps {
   // PCの一覧で押したときに、右の詳細を切り替えるURL（ListSelectArea が使う）
   selectHref?: string
   sizes?: string
+  // PCで「さっと見る」のボタンを出す（QuickViewHost の中に置くとき）
+  quickView?: boolean
 }
 
 // 商品カード（グリッド表示）。画像の右下に「気になる」のハート
-export function CatalogProductCard({ product, priority = false, selected = false, href, selectHref, sizes = '(max-width: 1024px) 50vw, 25vw' }: CatalogProductCardProps) {
+export function CatalogProductCard({ product, priority = false, selected = false, href, selectHref, sizes = '(max-width: 1024px) 50vw, 25vw', quickView = false }: CatalogProductCardProps) {
   const ship = shippingLabel(product)
   const inSeason = isInSeasonNow(product)
   const title = product.displayName || product.name
@@ -109,6 +111,16 @@ export function CatalogProductCard({ product, priority = false, selected = false
       {/* ハートはリンクの外に置く（リンクの中にボタンを入れない） */}
       <div className="absolute right-0 top-0 aspect-[4/5] w-full pointer-events-none">
         <FavoriteButton productId={product.id} productName={title} variant="icon" className="pointer-events-auto absolute bottom-0.5 right-0.5 lg:bottom-1 lg:right-1" />
+        {quickView && (
+          <button
+            type="button"
+            data-quick-view={product.id}
+            aria-label={`${title}をさっと見る`}
+            className="pointer-events-auto absolute bottom-2 left-2 hidden h-9 items-center bg-paper/95 px-3 text-[12.5px] tracking-[0.04em] text-ink opacity-0 shadow-sm transition-opacity hover:bg-sumi hover:text-white focus-visible:opacity-100 group-hover:opacity-100 lg:inline-flex"
+          >
+            さっと見る
+          </button>
+        )}
       </div>
     </div>
   )

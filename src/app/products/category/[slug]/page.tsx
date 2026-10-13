@@ -128,7 +128,6 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const related = SHOP_CATEGORIES.filter(other => other.slug !== category.slug && nonEmpty.has(other.slug))
   const group = TREE_GROUP_BY_SLUG[category.slug] ?? (category.group === 'part' ? '鉢・土・道具' : null)
   const title = category.group === 'part' || category.slug === 'kokedama' || category.slug.endsWith('mono') || category.slug === 'mini' ? category.name : `${category.name}の盆栽`
-  const selectedId = typeof searchParams.p === 'string' ? searchParams.p : undefined
   const features = selectionsForCategory(category.slug)
   // 育て方の道具（今月の手入れ・名前の意味・ノート）。樹種のカテゴリだけ
   const careGroup = category.group === 'part' ? null : groupOf(category.slug)
@@ -206,7 +205,6 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         total={total}
         page={page}
         totalPages={totalPages}
-        selectedId={selectedId}
         basePath={basePath}
         speciesTabs={speciesTabs}
         counts={optionCounts(all)}
