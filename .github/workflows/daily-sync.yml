@@ -1,0 +1,57 @@
+# 毎日の楽天の商品同期と、サイトの作り直し（Cloudflare Pages）
+# 必要な Secrets（GitHub の Settings → Secrets and variables → Actions に登録する）：
+#   NEXT_PUBLIC_SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY … 商品を書き込む Supabase
+#   RAKUTEN_APP_ID / RAKUTEN_ACCESS_KEY / RAKUTEN_AFFILIATE_ID … 楽天の API
+#   CF_PAGES_DEPLOY_HOOK … Cloudflare Pages の「デプロイフック」の URL（呼ぶとサイトを作り直す）
+name: daily-sync
+
+on:
+  schedule:
+    # 毎日 4:00（日本時間）
+    - cron: '0 19 * * *'
+  workflow_dispatch:
+    inputs:
+      task:
+        description: '実行する作業（sync：楽天の同期と作り直し／rebuild：作り直しだけ／gardens・events：データの反映と作り直し）'
+        required: true
+        default: sync
+        type: choice
+        options: [sync, rebuild, gardens, events]
+
+concurrency:
+  group: daily-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+        if: ${{ github.event_name == 'schedule' || inputs.task != 'rebuild' }}
+      - name: 楽天の商品を同期する
+        if: ${{ github.event_name == 'schedule' || inputs.task == 'sync' }}
+        run: npm run sync:rakuten
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+          RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+          RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
+      - name: 盆栽園・イベントのデータを反映する
+        if: ${{ github.event_name == 'workflow_dispatch' && (inputs.task == 'gardens' || inputs.task == 'events') }}
+        run: npm run apply:data -- ${{ inputs.task }}
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      - name: サイトを作り直す（Cloudflare Pages のデプロイフック）
+        run: |
+          if [ -z "$HOOK" ]; then echo "CF_PAGES_DEPLOY_HOOK が未登録のため、作り直しを省きます"; exit 0; fi
+          curl -fsS -X POST "$HOOK" > /dev/null && echo "作り直しを依頼しました"
+        env:
+          HOOK: ${{ secrets.CF_PAGES_DEPLOY_HOOK }}

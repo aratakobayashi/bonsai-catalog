@@ -1,0 +1,4 @@
+# Cloudflare Pages の転送設定（旧URL → 今のURL）。クエリ文字列はそのまま引き継がれる
+/shop /products 301
+/shop/:slug /products/category/:slug 301
+/search /products 301

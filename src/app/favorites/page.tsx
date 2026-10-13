@@ -1,11 +1,9 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { CONTAINER } from '@/components/ui/design'
 import { FavoritesView } from './FavoritesView'
+import { SharedFavorites } from './SharedFavorites'
 import { RelatedTools } from '@/components/layout/RelatedTools'
-
-interface FavoritesPageProps {
-  searchParams: Record<string, string | string[] | undefined>
-}
 
 // ブラウザに保存した「気になる」の一覧なので、検索結果には出さない
 export const metadata: Metadata = {
@@ -15,17 +13,14 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 }
 
-// 共有されたURL（/favorites?ids=a,b）の id。形式が正しいものだけ、30件まで
-function parseIds(value: string | string[] | undefined): string[] {
-  const raw = Array.isArray(value) ? value.join(',') : value ?? ''
-  return Array.from(new Set(raw.split(',').map(v => v.trim()).filter(v => /^[\w-]{1,64}$/.test(v)))).slice(0, 30)
-}
-
-export default function FavoritesPage({ searchParams }: FavoritesPageProps) {
+export default function FavoritesPage() {
   return (
     <div className={`${CONTAINER} pb-16`}>
       {/* 販売ページへのボタンが並ぶため、PR表記は内容より先に出す */}
-      <FavoritesView sharedIds={parseIds(searchParams.ids)} />
+      {/* 共有されたURL（/favorites?ids=a,b）は、ブラウザで id を読む */}
+      <Suspense fallback={<FavoritesView sharedIds={[]} />}>
+        <SharedFavorites />
+      </Suspense>
       <RelatedTools hrefs={['/soroeru', '/note', '/okurimono']} />
     </div>
   )

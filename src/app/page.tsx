@@ -1,9 +1,9 @@
 import { applyArticleOverride } from '@/lib/article-overrides'
 import type { Metadata } from 'next'
-import { headers } from 'next/headers'
 import Link from 'next/link'
 import Image from 'next/image'
-import { filterProducts, getCatalogProducts, parseFilters, type CatalogProduct } from '@/lib/catalog'
+import { filterProducts, parseFilters, type CatalogProduct } from '@/lib/catalog'
+import { getCatalogProducts } from '@/lib/catalog-data'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { CONTAINER } from '@/components/ui/design'
@@ -150,9 +150,8 @@ export default async function HomePage() {
     safely('イベントの件数', getUpcomingEventsCount, 0),
   ])
 
-  // 商品データが取れなかったときは、その表示をキャッシュ（ISR）に残さない。
-  // headers() を呼ぶと、ビルド時はこのページを毎回表示時に作るページに切り替え、表示後の再生成では失敗扱い（前の表示を使い続ける）になる
-  if (products.length === 0) headers()
+  // 商品が取れなかったときはビルドを止める（空のページを公開しない。前の公開がそのまま残る）
+  if (products.length === 0) throw new Error('商品データを取得できませんでした')
 
   // 商品一覧（/products）の既定の表示と同じく「その他」を除いた件数
   const total = products.filter(p => p.productType !== 'other').length

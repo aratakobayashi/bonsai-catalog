@@ -5,8 +5,9 @@ import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { clearFavoriteNotice, useFavoriteNotice, useFavorites } from '@/lib/favorites'
 import type { CatalogProduct } from '@/lib/catalog-model'
+import { loadCatalog } from '@/lib/client/use-catalog'
 
-// 「気になる」の一覧・比較に使う商品の情報（/api/products/by-ids が返す形）
+// 「気になる」の一覧・比較に使う商品の情報（商品データ /data/catalog.json の一部の項目）
 export type CompactProduct = Pick<
   CatalogProduct,
   | 'id' | 'name' | 'displayName' | 'speciesKey' | 'placeClaim' | 'levelClaim' | 'price' | 'imageUrl' | 'source' | 'buyUrl' | 'shopName' | 'productType' | 'category'
@@ -26,15 +27,11 @@ export function useFavoriteProducts(ids: string[]) {
   useEffect(() => {
     const need = key ? key.split(',').filter(id => !productCache.has(id)) : []
     if (!need.length) return
-    fetch(`/api/products/by-ids?ids=${need.join(',')}`)
-      .then(res => {
-        if (!res.ok) throw new Error(String(res.status))
-        return res.json()
-      })
-      .then((data: { products: CompactProduct[]; checked?: boolean }) => {
-        const found = new Map(data.products.map(p => [p.id, p]))
-        // 商品データを読み込めなかった応答では、見つからない id を掲載終了（null）にしない
-        if (data.checked === false && data.products.length === 0) throw new Error('catalog unavailable')
+    // ビルド時に作った商品データ（/data/catalog.json）から探す
+    loadCatalog()
+      .then(all => {
+        if (all.length === 0) throw new Error('catalog unavailable')
+        const found = new Map(all.map(p => [p.id, p]))
         need.forEach(id => productCache.set(id, found.get(id) ?? null))
       })
       // 通信できないときは保存せず、次に表示したときにもう一度取得する

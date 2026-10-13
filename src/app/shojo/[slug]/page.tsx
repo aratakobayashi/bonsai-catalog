@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { getCatalogProducts } from '@/lib/catalog'
+import { getCatalogProducts } from '@/lib/catalog-data'
 import type { CatalogProduct } from '@/lib/catalog-model'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { ArticleCardGrid, type ArticleCardItem } from '@/components/article/RelatedArticleRows'
@@ -22,8 +22,10 @@ interface PageProps {
 }
 
 // ビルド時にまとめて商品を取ると失敗しやすいため、初回アクセス時に作る（存在しない slug・月は notFound）
+export const dynamicParams = false
+
 export function generateStaticParams() {
-  return []
+  return SHOJO.map(item => ({ slug: item.slug }))
 }
 
 export function generateMetadata({ params }: PageProps): Metadata {

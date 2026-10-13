@@ -10,7 +10,7 @@ import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { Breadcrumbs, CONTAINER, ChipLink, SectionTitle, chipClass } from '@/components/ui/design'
 import { getArticleOverride, thumbnailPath } from '@/lib/article-overrides'
-import { getCatalogProducts } from '@/lib/catalog'
+import { getCatalogProducts } from '@/lib/catalog-data'
 import type { CatalogProduct } from '@/lib/catalog-model'
 import { isArticleListable } from '@/lib/content-policy'
 import { getShopCategory } from '@/lib/shop-categories'
@@ -28,8 +28,10 @@ export const revalidate = 86400
 const PRODUCT_LIMIT = 8
 
 // ビルド時にまとめて商品を取ると失敗しやすいため、初回アクセス時に作る（存在しない slug・月は notFound）
+export const dynamicParams = false
+
 export function generateStaticParams() {
-  return []
+  return ZUKAN_ENTRIES.map(entry => ({ slug: entry.slug }))
 }
 
 const KIND_LABEL: Record<ZukanEntry['kind'], string> = { jukei: '樹形', meisho: '品種・名前' }

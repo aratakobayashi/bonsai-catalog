@@ -6,6 +6,20 @@ import { useEffect, useRef, useState, type ReactNode, type RefObject } from 'rea
 import { normalizeText } from '@/lib/search-normalize'
 import { formatPrice } from '@/lib/utils'
 import { useFocusTrap, useHistoryDismiss } from './dialog-utils'
+import { loadCatalog } from '@/lib/client/use-catalog'
+import { getFeaturedSpecies, getSearchSuggestions } from '@/lib/search-suggest'
+
+// 記事のタイトル（記事一覧のデータ /data/articles.json から）
+let titles: Promise<{ slug: string; title: string }[]> | null = null
+function loadArticleTitles() {
+  if (!titles) {
+    titles = fetch('/data/articles.json')
+      .then(res => (res.ok ? res.json() : { articles: [] }))
+      .then((data: { articles: { slug: string; title: string }[] }) => data.articles.map(a => ({ slug: a.slug, title: a.title })))
+    titles.catch(() => { titles = null })
+  }
+  return titles
+}
 
 const RECENT_KEY = 'bonsai-recent-searches'
 const PURPOSES = [
@@ -94,22 +108,22 @@ function useSuggestions(query: string, enabled: boolean) {
       setData(cached)
       return
     }
-    const controller = new AbortController()
+    let alive = true
     const timer = setTimeout(() => {
-      fetch(`/api/search-suggest?q=${encodeURIComponent(q)}`, { signal: controller.signal })
-        .then(res => (res.ok ? res.json() : null))
-        .then((json: Suggestions | null) => {
-          if (!json) return
+      Promise.all([loadCatalog(), loadArticleTitles()])
+        .then(([products, articles]) => {
+          if (!alive) return
+          const json = getSearchSuggestions(q, products, articles)
           cache.current.set(q, json)
           setData(json)
         })
         .catch(() => {
-          // 取り消し・通信エラー時は候補を出さない（「商品を探す」は使える）
+          // 読み込めないときは候補を出さない（「商品を探す」は使える）
         })
     }, 150)
     return () => {
+      alive = false
       clearTimeout(timer)
-      controller.abort()
     }
   }, [q, enabled])
 
@@ -122,12 +136,11 @@ function useFeaturedSpecies(enabled: boolean) {
   const [species, setSpecies] = useState<Species[]>([])
   useEffect(() => {
     if (!enabled || species.length) return
-    const controller = new AbortController()
-    fetch('/api/search-suggest', { signal: controller.signal })
-      .then(res => (res.ok ? res.json() : null))
-      .then(json => json?.species && setSpecies(json.species))
+    let alive = true
+    loadCatalog()
+      .then(products => { if (alive) setSpecies(getFeaturedSpecies(products)) })
       .catch(() => {})
-    return () => controller.abort()
+    return () => { alive = false }
   }, [enabled, species.length])
   return species
 }

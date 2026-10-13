@@ -4,6 +4,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // 全ページをビルド時に作り置きする（Cloudflare Pages に静的なファイルとして置く）。out/ に書き出す
+  output: 'export',
   // TypeScript設定 - scriptsディレクトリを除外
   typescript: {
     ignoreBuildErrors: false,
@@ -24,6 +26,8 @@ const nextConfig = {
   poweredByHeader: false,
   generateEtags: false,
   images: {
+    // 静的な書き出しでは画像の最適化サーバーがないため、そのまま配信する（楽天の画像は楽天側でサイズを指定している）
+    unoptimized: true,
     formats: ['image/avif', 'image/webp'], // AVIF優先で最高圧縮
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -73,18 +77,11 @@ const nextConfig = {
       },
     ],
   },
-  // 旧URL（楽天専用ページ・検索ページ）を統合後の一覧へ転送する。クエリ文字列はそのまま引き継がれる
-  async redirects() {
-    return [
-      { source: '/shop', destination: '/products', permanent: true },
-      { source: '/shop/:slug', destination: '/products/category/:slug', permanent: true },
-      { source: '/search', destination: '/products', permanent: true },
-    ]
-  },
+  // 旧URLの転送は public/_redirects（Cloudflare Pages の設定ファイル）に書く
   env: {
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   },
 }
 
-module.exports = withBundleAnalyzer(nextConfig)// Force deployment trigger 金  9 19 15:55:41 JST 2025
+module.exports = withBundleAnalyzer(nextConfig)

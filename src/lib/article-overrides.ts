@@ -189,29 +189,8 @@ export function applyArticleOverride<T extends Article>(article: T): T & Resolve
   }
 }
 
-// next.config.js の images.remotePatterns に入っているホスト（それ以外の外部画像は最適化せずにそのまま表示する）
-const OPTIMIZABLE_IMAGE_HOSTS = [
-  /^m\.media-amazon\.com$/,
-  /^images-na\.ssl-images-amazon\.com$/,
-  /\.amazonaws\.com$/,
-  /^via\.placeholder\.com$/,
-  /^images\.unsplash\.com$/,
-  /^res\.cloudinary\.com$/,
-]
-
-export function canOptimizeImage(src: string): boolean {
-  // SVG は画像の最適化の対象外（そのまま表示する）
-  if (/\.svg(\?|$)/i.test(src)) return false
-  if (src.startsWith('/')) return true
-  try {
-    const url = new URL(src)
-    if (url.protocol !== 'https:') return false
-    if (url.hostname === 'bonsai-guidebook.net') return url.pathname.startsWith('/wp-content/uploads/')
-    return OPTIMIZABLE_IMAGE_HOSTS.some(pattern => pattern.test(url.hostname))
-  } catch {
-    return false
-  }
-}
+// 画像を Next.js の画像の部品で表示してよいか（ブラウザでも使うため image-optimizable.ts に置く）
+export { canOptimizeImage } from '@/lib/image-optimizable'
 
 // 樹種（front matter の species）ごとの書き直した記事。育て方の記事を先に（商品ページの「◯◯の育て方」に使う）
 let speciesIndex: Map<string, string[]> | null = null

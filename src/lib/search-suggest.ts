@@ -1,13 +1,9 @@
-import { isArticleListable } from '@/lib/content-policy'
 // 検索候補（ヘッダーの検索欄・スマホの検索画面）：樹種 → 商品 → 育て方 の順に返す
-// 商品・記事はキャッシュ済みのデータから探し、DB への問い合わせを増やさない
-import { unstable_cache } from 'next/cache'
-import { KEYWORD_MAX_LENGTH, categoryCounts, filterProducts, getCatalogProducts, parseFilters, type CatalogProduct } from '@/lib/catalog'
+// 商品・記事は、ビルド時に作ったデータ（/data/catalog.json・/data/articles.json）からブラウザで探す
+import { KEYWORD_MAX_LENGTH, categoryCounts, filterProducts, parseFilters, type CatalogProduct } from '@/lib/catalog'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { peakLabel } from '@/lib/seasons'
 import { matchesKeyword, parseKeyword } from '@/lib/search-normalize'
-import { supabase } from '@/lib/supabase'
-import { getArticleOverride } from '@/lib/article-overrides'
 
 export interface SuggestSpecies {
   slug: string
@@ -58,44 +54,15 @@ function seasonText(slug: string): string {
 }
 
 // 商品一覧の変換結果を1分だけメモリに持つ（候補は入力ごとに呼ばれるため）
-let memo: { at: number; products: CatalogProduct[]; counts: Map<string, number> } | null = null
-
-async function getProductsWithCounts() {
-  if (memo && Date.now() - memo.at < 60_000) return memo
-  const products = await getCatalogProducts()
-  // 件数はカテゴリページ（/products/category/[slug]）と同じ条件で数える
+// 樹種ごとの商品数（検索候補の件数に使う）
+function treeCounts(products: CatalogProduct[]): Map<string, number> {
   const all = categoryCounts(products)
-  const counts = new Map(TREE_CATEGORIES.map(c => [c.slug, all[c.slug] ?? 0]))
-  memo = { at: Date.now(), products, counts }
-  return memo
+  return new Map(TREE_CATEGORIES.map(c => [c.slug, all[c.slug] ?? 0]))
 }
 
-// 公開中の記事のタイトルだけを取得して1時間キャッシュする
-const getArticleTitles = unstable_cache(
-  async (): Promise<{ slug: string; title: string }[]> => {
-    const { data, error } = await supabase
-      .from('articles')
-      .select('slug, title')
-      .eq('status', 'published')
-      .order('published_at', { ascending: false })
-      .limit(1000)
-    if (error) {
-      console.error('記事タイトルの取得エラー:', error.message)
-      return []
-    }
-    // 非公開扱い（テーマ外・noindex）の記事は候補に出さない
-    // 書き直した記事（src/content/articles）は新しいタイトルで探せるようにする
-    return ((data as { slug: string; title: string }[] | null) ?? [])
-      .filter(a => a.slug && a.title && isArticleListable(a.slug))
-      .map(a => ({ slug: a.slug, title: getArticleOverride(a.slug)?.title ?? a.title }))
-  },
-  ['search-suggest-article-titles-v3'],
-  { revalidate: 3600, tags: ['articles'] },
-)
-
-// 入力前の「樹種から」
-export async function getFeaturedSpecies(): Promise<SuggestSpecies[]> {
-  const { counts } = await getProductsWithCounts()
+// 入力前に出す樹種（商品がある樹種だけ）。商品データはブラウザで /data/catalog.json から読む
+export function getFeaturedSpecies(products: CatalogProduct[]): SuggestSpecies[] {
+  const counts = treeCounts(products)
   return FEATURED_SPECIES.flatMap(slug => {
     const category = TREE_CATEGORIES.find(c => c.slug === slug)
     const count = counts.get(slug) ?? 0
@@ -103,10 +70,11 @@ export async function getFeaturedSpecies(): Promise<SuggestSpecies[]> {
   })
 }
 
-export async function getSearchSuggestions(rawQuery: string): Promise<SuggestResponse> {
+// 入力中の検索候補。articles は記事一覧のデータ（/data/articles.json）のタイトル
+export function getSearchSuggestions(rawQuery: string, products: CatalogProduct[], articles: { slug: string; title: string }[]): SuggestResponse {
   const q = rawQuery.trim().slice(0, KEYWORD_MAX_LENGTH)
   const keyword = parseKeyword(q)
-  const [{ products, counts }, articles] = await Promise.all([getProductsWithCounts(), getArticleTitles().catch(() => [])])
+  const counts = treeCounts(products)
 
   const species = TREE_CATEGORIES.filter(c => (counts.get(c.slug) ?? 0) > 0 && matchesKeyword(keyword, `${c.name} ${READINGS[c.slug] ?? ''}`))
     .slice(0, 3)

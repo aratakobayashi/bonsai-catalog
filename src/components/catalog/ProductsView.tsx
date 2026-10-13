@@ -1,0 +1,101 @@
+import Link from 'next/link'
+import {
+  filterProducts,
+  optionCounts,
+  paginateMore,
+  parseFilters,
+  type CatalogFilters,
+  type CatalogProduct,
+} from '@/lib/catalog'
+import { CatalogBrowser, buildCatalogTabs } from '@/components/catalog/CatalogBrowser'
+import { CatalogEmptyState } from '@/components/catalog/CatalogFilters'
+import { SITE_TOOLS } from '@/components/layout/site-tools'
+import { CatalogShelves, SpeciesTiles, buildShelves, buildSpeciesTiles } from '@/components/catalog/CatalogShelves'
+import { CareIcon } from '@/components/catalog/CareIcon'
+import { CatalogSearchTracker } from '@/components/analytics/CatalogSearchTracker'
+
+// 商品一覧（/products）の中身。ビルド時は条件なしで、条件付きのURLではブラウザで同じ部品を描く（ProductsClient）
+function activeFilterKeys(filters: CatalogFilters): string[] {
+  const keys: string[] = []
+  if (filters.q) keys.push('q')
+  if (filters.type) keys.push(`type:${filters.type}`)
+  if (filters.species) keys.push(`species:${filters.species}`)
+  if (filters.size) keys.push(`size:${filters.size}`)
+  if (filters.shop) keys.push(`shop:${filters.shop}`)
+  if (filters.min || filters.max) keys.push('price')
+  if (filters.place) keys.push(`place:${filters.place}`)
+  if (filters.enjoy) keys.push(`enjoy:${filters.enjoy}`)
+  if (filters.season) keys.push(`season:${filters.season}`)
+  if (filters.level) keys.push(`level:${filters.level}`)
+  if (filters.use) keys.push(`use:${filters.use}`)
+  filters.flags.forEach(flag => keys.push(`flag:${flag}`))
+  return keys
+}
+
+export function ProductsView({ all, params }: { all: CatalogProduct[]; params: Record<string, string | string[] | undefined> }) {
+  const filters = parseFilters(params)
+  // 「盆栽を探す」の既定は盆栽・苔玉の売り場（種類もキーワードも指定がないとき）。鉢・土・道具は ?type=parts の売り場
+  const store: 'bonsai' | 'parts' = filters.type === 'parts' ? 'parts' : 'bonsai'
+  const effective = !filters.type && !filters.q ? { ...filters, type: 'bonsai' } : filters
+  const filtered = filterProducts(all, effective)
+  const { items, page, totalPages, total } = paginateMore(filtered, filters.page)
+  const activeCount = activeFilterKeys(filters).filter(k => !k.startsWith('q') && !(store === 'parts' && k === 'type')).length
+  const speciesTabs = buildCatalogTabs(all, filters, undefined, filters.species ? undefined : total)
+
+  const emptyState = total === 0 ? <CatalogEmptyState products={all} filters={filters} /> : null
+  // 何も絞り込んでいない盆栽の売り場の1ページ目は、全件の一覧の上に目的ごとの棚と樹種のタイルを並べる
+  const browsing = store === 'bonsai' && activeCount === 0 && !filters.q && page === 1
+  const shelves = browsing ? (
+    <>
+      <CatalogShelves shelves={buildShelves(all)} />
+      <SpeciesTiles tiles={buildSpeciesTiles(all)} />
+      <h2 className="mb-4 font-mincho text-[18px] font-bold tracking-[0.05em] text-ink lg:text-[21px]">すべての盆栽・苔玉</h2>
+    </>
+  ) : null
+  const bandTitle = filters.q ? `「${filters.q}」の検索結果` : store === 'parts' ? '鉢・土・道具を探す' : '盆栽を探す'
+
+  return (
+    <>
+      <CatalogSearchTracker
+        searchTerm={filters.q}
+        filterKeys={activeFilterKeys(filters).join(',')}
+        resultCount={total}
+      />
+      <CatalogBrowser
+        filters={filters}
+        items={items}
+        total={total}
+        page={page}
+        totalPages={totalPages}
+        speciesTabs={speciesTabs}
+        counts={optionCounts(all)}
+        emptyState={emptyState}
+        shelves={shelves}
+        activeCount={activeCount}
+        store={filters.q ? undefined : store}
+        clearHref={store === 'parts' ? '/products?type=parts' : '/products'}
+        intro={
+          <div>
+            <p className="flex items-center gap-3 text-[11px] tracking-[0.22em] text-gold">{filters.q ? '検索' : '盆栽コレクション'}<span className="h-px w-10 bg-gold" aria-hidden="true" /></p>
+            <h1 className="mt-2 font-mincho text-[24px] font-bold tracking-[0.08em] text-white lg:text-[32px]">{bandTitle}</h1>
+            {!filters.q && (
+              <p className="mt-2 text-[13px] leading-[1.8] text-white/75">
+                楽天市場の<strong className="mx-0.5 font-mincho text-[17px] font-bold text-gold">{total.toLocaleString()}</strong>件
+                {store === 'parts' ? 'の盆栽鉢・用土・道具・針金・肥料を、種類と価格で比べられます。' : 'の盆栽・苔玉を、樹種・大きさ・置き場所・予算で比べられます。'}
+              </p>
+            )}
+            {browsing && (
+              <div className="mt-4 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                {SITE_TOOLS.filter(t => t.group === 'choose').map(t => (
+                  <Link key={t.href} href={t.href} className="inline-flex min-h-10 shrink-0 items-center gap-1.5 border border-line bg-paper px-3 text-xs font-bold text-ink hover:border-ink hover:text-ink">
+                    <CareIcon name={t.icon} className="h-3.5 w-3.5 text-gold-dark" />{t.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        }
+      />
+    </>
+  )
+}

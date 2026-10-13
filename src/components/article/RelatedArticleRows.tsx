@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Placeholder } from '@/components/ui/design'
-import { canOptimizeImage } from '@/lib/article-overrides'
+import { canOptimizeImage } from '@/lib/image-optimizable'
 
 export interface ArticleCardItem {
   href: string

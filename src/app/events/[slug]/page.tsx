@@ -39,11 +39,13 @@ async function getEventDetail(slug: string) {
   }
 }
 
-// 初回アクセス時に生成してキャッシュし、6時間ごとに再生成（ISR）
-export const revalidate = 21600
+// ビルド時に、すべてのイベントのページを作り置きする
+export const dynamicParams = false
 
-export function generateStaticParams() {
-  return []
+export async function generateStaticParams() {
+  const { data, error } = await supabaseServer.from('events').select('slug').limit(5000)
+  if (error) throw new Error(`イベントの一覧の取得エラー: ${error.message}`)
+  return ((data || []) as { slug: string | null }[]).filter(row => row.slug).map(row => ({ slug: row.slug as string }))
 }
 
 export async function generateMetadata({ params }: EventDetailPageProps): Promise<Metadata> {

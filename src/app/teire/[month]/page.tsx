@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { getCatalogProducts } from '@/lib/catalog'
+import { getCatalogProducts } from '@/lib/catalog-data'
 import type { CatalogProduct } from '@/lib/catalog-model'
 import { CARE_GROUPS, getMonthCare, MONTH_NUMBERS } from '@/lib/care-calendar'
 import { SPECIES_PEAKS, jstMonth, seasonOfMonth } from '@/lib/seasons'
@@ -26,8 +26,10 @@ interface TeireMonthPageProps {
 export const revalidate = 21600
 
 // ビルド時にまとめて商品を取ると失敗しやすいため、初回アクセス時に作る（存在しない slug・月は notFound）
+export const dynamicParams = false
+
 export function generateStaticParams() {
-  return []
+  return Array.from({ length: 12 }, (_, i) => ({ month: String(i + 1) }))
 }
 
 function parseMonth(value: string): number | null {

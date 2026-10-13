@@ -1,3 +1,4 @@
+import { LOCAL_ARTICLES } from '@/lib/local-articles'
 import { Metadata } from 'next'
 import { cache } from 'react'
 import { notFound, permanentRedirect } from 'next/navigation'
@@ -21,7 +22,8 @@ import { processMarkdown, extractTableOfContents } from '@/lib/markdown'
 import { detectArticleSpecies, fallbackSelectionSlug, normalizeForMatch, stripLeadingTitleHeading } from '@/lib/article-content'
 import { applyArticleOverride, canOptimizeImage, getArticleOverride, thumbnailPath } from '@/lib/article-overrides'
 import { getSelection, pickSelectionProducts, selectionsForCategory } from '@/lib/selections'
-import { categoryFilters, filterProducts, getCatalogProducts, normalizeProduct, type CatalogProduct } from '@/lib/catalog'
+import { categoryFilters, filterProducts, normalizeProduct, type CatalogProduct } from '@/lib/catalog'
+import { getCatalogProducts } from '@/lib/catalog-data'
 import { getShopCategory } from '@/lib/shop-categories'
 import { SITE_URL, absoluteUrl } from '@/lib/site'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
@@ -92,10 +94,15 @@ function cardImage(slug: string, dbImage?: string | null): string | undefined {
 }
 
 // 初回アクセス時に生成してキャッシュし、1日ごとに再生成（ISR）
-export const revalidate = 86400
+// ビルド時に、すべての記事のページを作り置きする
+export const dynamicParams = false
 
-export function generateStaticParams() {
-  return []
+export async function generateStaticParams() {
+  const { data, error } = await supabaseServer.from('articles').select('slug').eq('status', 'published').limit(5000)
+  if (error) throw new Error(`記事の一覧の取得エラー: ${error.message}`)
+  const slugs = new Set([...((data || []) as { slug: string }[]).map(row => row.slug), ...Object.keys(LOCAL_ARTICLES)])
+  // 削除扱いの記事は作らず、_redirects で記事一覧へ転送する（src/app/redirects.txt/route.ts）
+  return Array.from(slugs).filter(slug => slug && !isArticleHidden(slug)).map(slug => ({ slug }))
 }
 
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {

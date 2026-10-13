@@ -10,7 +10,7 @@ import { normalizeProduct, type CatalogProduct } from '@/lib/catalog'
 import { CONTAINER, Breadcrumbs, Placeholder } from '@/components/ui/design'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { GardenShopBridge, pickBridgeProducts } from '@/components/gardens/GardenShopBridge'
-import { getCatalogProducts } from '@/lib/catalog'
+import { getCatalogProducts } from '@/lib/catalog-data'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { GardenMap } from '@/components/gardens/GardenMap'
 import {
@@ -146,11 +146,19 @@ function metaDescription(garden: Garden): string {
   return `${head}${body}${facts.length > 0 ? `${facts.join('・')}。` : ''}`
 }
 
-// 初回アクセス時に生成してキャッシュし、1日ごとに再生成（ISR）
-export const revalidate = 86400
+// ビルド時に、掲載中のすべての園のページを作り置きする
+export const dynamicParams = false
 
-export function generateStaticParams() {
-  return []
+export async function generateStaticParams() {
+  const ids: string[] = []
+  for (let from = 0; ; from += 1000) {
+    const { data, error } = await supabaseServer.from('gardens').select('id').order('id', { ascending: true }).range(from, from + 999)
+    if (error) throw new Error(`盆栽園の一覧の取得エラー: ${error.message}`)
+    ids.push(...((data || []) as { id: string }[]).map(row => row.id))
+    if (!data || data.length < 1000) break
+  }
+  // 掲載をやめた園は作らず、_redirects で盆栽園一覧へ転送する（src/app/redirects.txt/route.ts）
+  return ids.filter(id => !isGardenHiddenId(id)).map(id => ({ id }))
 }
 
 export async function generateMetadata({ params }: GardenPageProps): Promise<Metadata> {

@@ -1,11 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { notFound, permanentRedirect } from 'next/navigation'
-import { isHiddenProductSource } from '@/lib/affiliate'
+import { notFound } from 'next/navigation'
 import { getShopCategory } from '@/lib/shop-categories'
-import { supabaseServer } from '@/lib/supabase-server'
-import { filterProducts, getCatalogProducts, normalizeProduct, parseFilters, type CatalogProduct } from '@/lib/catalog'
-import { searchRakutenItems } from '@/lib/rakuten'
+import { filterProducts, parseFilters, type CatalogProduct } from '@/lib/catalog'
+import { getCatalogProducts, getProductExtras } from '@/lib/catalog-data'
 import { cleanProductName } from '@/lib/product-name'
 import { productHeading } from '@/lib/product-heading'
 import { soroeruHref, soroeruStateFor } from '@/lib/soroeru'
@@ -33,59 +31,32 @@ interface ProductPageProps {
   params: { id: string }
 }
 
-// 初回アクセス時に生成してキャッシュし、1日ごとに再生成（ISR）。商品データは毎日の同期のあとに作り直す
-export const revalidate = 86400
+// ビルド時に、掲載中のすべての商品のページを作り置きする（それ以外の id は 404）
+export const dynamicParams = false
 
-export function generateStaticParams() {
-  return []
+export async function generateStaticParams() {
+  const products = await getCatalogProducts()
+  return products.map(p => ({ id: p.id }))
 }
 
 interface ProductDetail extends CatalogProduct {
   description: string
   externalId: string | null
+  soldOut: boolean
 }
 
+// 一覧と同じ商品データ（毎日の同期で価格・レビューを更新）に、説明文などを足す
 async function getProduct(id: string): Promise<ProductDetail | null> {
-  if (!/^[0-9a-f-]{36}$/i.test(id)) return null
-  // 見つからない（PGRST116）ときだけ 404 にする。通信の失敗で 404 がキャッシュされないよう、それ以外はやり直してから例外にする
-  let { data, error } = await supabaseServer.from('products').select('*').eq('id', id).maybeSingle()
-  if (error) {
-    await new Promise(resolve => setTimeout(resolve, 600))
-    ;({ data, error } = await supabaseServer.from('products').select('*').eq('id', id).maybeSingle())
-    if (error) throw new Error(`商品の取得エラー: ${error.message}`)
-  }
-  if (!data) return null
-  const row = data as Record<string, unknown>
-  if (row.is_active === false) return null
-  const normalized = normalizeProduct(row)
-  // Amazon の掲載を止めている間は、商品ページを樹種のカテゴリ（不明なら商品一覧）へ転送する（検索結果に残る URL のため 404 にはしない）
-  if (isHiddenProductSource(row.source)) {
-    const speciesCategory = normalized.speciesKey ? getShopCategory(normalized.speciesKey) : undefined
-    permanentRedirect(categoryLink(normalized)?.href ?? (speciesCategory ? `/products/category/${speciesCategory.slug}` : '/products'))
-  }
+  const [products, extras] = await Promise.all([getCatalogProducts(), getProductExtras()])
+  const normalized = products.find(p => p.id === id)
+  if (!normalized) return null
+  const extra = extras.get(id)
   return {
     ...normalized,
     // 見出し用は一覧より長めに残す
     name: normalized.source === 'rakuten' ? cleanProductName(normalized.originalName, 60) : normalized.name,
-    description: typeof row.description === 'string' ? row.description : '',
-    externalId: typeof row.external_id === 'string' ? row.external_id : null,
-  }
-}
-
-// 楽天の商品は、表示時に最新の価格・レビューを取り直す（6時間キャッシュ）
-async function withLatestRakutenInfo(product: ProductDetail): Promise<ProductDetail & { soldOut: boolean }> {
-  if (product.source !== 'rakuten' || !product.externalId) return { ...product, soldOut: false }
-  const { items, error } = await searchRakutenItems({ itemCode: product.externalId, hits: 1 })
-  if (error) return { ...product, soldOut: false }
-  const latest = items[0]
-  if (!latest) return { ...product, soldOut: true }
-  return {
-    ...product,
-    price: latest.price,
-    reviewCount: latest.reviewCount,
-    reviewAverage: latest.reviewAverage,
-    freeShipping: latest.freeShipping,
-    buyUrl: latest.url || product.buyUrl,
+    description: extra?.description ?? '',
+    externalId: extra?.externalId ?? null,
     soldOut: false,
   }
 }
@@ -122,7 +93,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 export default async function ProductDetailPage({ params }: ProductPageProps) {
   const stored = await getProduct(params.id)
   if (!stored) notFound()
-  const latest = await withLatestRakutenInfo(stored)
+  const latest = stored
   const description = plainDescription(stored.description)
   const product = { ...latest, description: description ? `${description}${stored.description.length > 600 ? '…' : ''}` : '' }
 

@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/build/finish-export.mjs",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "migrate-wordpress": "tsx src/scripts/wordpress-migration.ts",
-    "create-article": "tsx src/scripts/create-beginner-article.ts"
+    "create-article": "tsx src/scripts/create-beginner-article.ts",
+    "sync:rakuten": "tsx scripts/daily/sync-rakuten.ts",
+    "apply:data": "tsx scripts/daily/apply-data.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.38.0",

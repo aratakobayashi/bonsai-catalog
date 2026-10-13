@@ -1,4 +1,3 @@
-import { headers } from 'next/headers'
 import { getArticleOverride } from '@/lib/article-overrides'
 import Image from 'next/image'
 import { byCuratedImage } from '@/components/home/curated'
@@ -9,7 +8,8 @@ import { notFound } from 'next/navigation'
 import { SELECTIONS, getSelection, pickSelectionProducts, selectionPhoto } from '@/lib/selections'
 import { formatPrice, getSizeCategoryLabel } from '@/lib/utils'
 import type { CatalogProduct } from '@/lib/catalog-model'
-import { LEVEL_OPTIONS, SPECIES_OPTIONS, getCatalogProducts } from '@/lib/catalog'
+import { LEVEL_OPTIONS, SPECIES_OPTIONS } from '@/lib/catalog'
+import { getCatalogProducts } from '@/lib/catalog-data'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { ProductThumb } from '@/components/catalog/ProductThumb'
 import { SITE_URL, absoluteUrl } from '@/lib/site'
@@ -28,11 +28,13 @@ interface SelectionPageProps {
 }
 
 // ビルド時に全特集の商品データを同時に取得すると接続が不安定になるため、初回アクセス時に生成する（ISR）
-// 6時間ごとに作り直す。商品データの取得に失敗したときは、その表示をキャッシュに残さない（下の headers()）
+// 6時間ごとに作り直す。商品データの取得に失敗したときは、その表示をキャッシュに残さない（ビルドを止める）
 export const revalidate = 21600
 
+export const dynamicParams = false
+
 export function generateStaticParams() {
-  return []
+  return SELECTIONS.map(selection => ({ slug: selection.slug }))
 }
 
 export function generateMetadata({ params }: SelectionPageProps): Metadata {
@@ -133,8 +135,8 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
     getCatalogProducts().catch(() => [] as CatalogProduct[]),
     getSelectionGuideLinks(selection.slug),
   ])
-  // 商品が取れなかったときは、作り直しを失敗扱いにして前の表示を使い続ける（トップページと同じ）
-  if (allProducts.length === 0) headers()
+  // 商品が取れなかったときはビルドを止める（空のページを公開しない。前の公開がそのまま残る）
+  if (allProducts.length === 0) throw new Error('商品データを取得できませんでした')
   // 書き直した記事（src/content/articles）は新しいタイトルで出す
   const guideLinks = guideRows.map(guide => ({ ...guide, title: getArticleOverride(guide.slug)?.title ?? guide.title }))
   const products = pickSelectionProducts(selection, allProducts)

@@ -1,4 +1,3 @@
-import { headers } from 'next/headers'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SELECTIONS } from '@/lib/selections'
@@ -6,14 +5,14 @@ import { CONTAINER, PageHeading } from '@/components/ui/design'
 import { SelectionCard } from '@/components/selection/SelectionCard'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { SITE_URL } from '@/lib/site'
-import { getCatalogProducts } from '@/lib/catalog'
+import { getCatalogProducts } from '@/lib/catalog-data'
 import { isFeaturable, orderSelectionsBySeason, selectionCounts } from '@/components/selection/selection-meta'
 import { SelectionThumb } from '@/components/selection/SelectionThumb'
 import { currentMonth } from '@/components/home/seasonal'
 import { heroPhoto } from '@/lib/hero-photo'
 
 // 掲載件数は商品データから数えるため、6時間ごとに再生成（ISR）
-// 商品データの取得に失敗したときは、その表示をキャッシュに残さない（下の headers()）
+// 商品データの取得に失敗したときは、その表示をキャッシュに残さない（ビルドを止める）
 export const revalidate = 21600
 
 export const metadata: Metadata = {
@@ -24,7 +23,8 @@ export const metadata: Metadata = {
 
 export default async function SelectionIndexPage() {
   const products = await getCatalogProducts().catch(() => [])
-  if (products.length === 0) headers()
+  // 商品が取れなかったときはビルドを止める（空のページを公開しない。前の公開がそのまま残る）
+  if (products.length === 0) throw new Error('商品データを取得できませんでした')
   const counts = selectionCounts(products)
   // 掲載商品が少ない特集は一覧の下に小さく並べる
   // 今月の特集を先頭に
