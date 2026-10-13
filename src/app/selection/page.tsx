@@ -1,3 +1,4 @@
+import { headers } from 'next/headers'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SELECTIONS } from '@/lib/selections'
@@ -11,9 +12,9 @@ import { SelectionThumb } from '@/components/selection/SelectionThumb'
 import { currentMonth } from '@/components/home/seasonal'
 import { heroPhoto } from '@/lib/hero-photo'
 
-// 掲載件数は商品データから数えるため、1時間ごとに再生成（ISR）
-// 商品データの取得が一時的に失敗したときの表示が長く残らないよう、10分ごとに作り直す
-export const revalidate = 600
+// 掲載件数は商品データから数えるため、6時間ごとに再生成（ISR）
+// 商品データの取得に失敗したときは、その表示をキャッシュに残さない（下の headers()）
+export const revalidate = 21600
 
 export const metadata: Metadata = {
   title: '盆栽の特集一覧｜室内・予算・季節・贈り物など目的から選ぶ - 盆栽コレクション',
@@ -22,7 +23,9 @@ export const metadata: Metadata = {
 }
 
 export default async function SelectionIndexPage() {
-  const counts = selectionCounts(await getCatalogProducts().catch(() => []))
+  const products = await getCatalogProducts().catch(() => [])
+  if (products.length === 0) headers()
+  const counts = selectionCounts(products)
   // 掲載商品が少ない特集は一覧の下に小さく並べる
   // 今月の特集を先頭に
   const month = currentMonth()

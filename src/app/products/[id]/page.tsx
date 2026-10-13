@@ -33,8 +33,8 @@ interface ProductPageProps {
   params: { id: string }
 }
 
-// 初回アクセス時に生成してキャッシュし、1時間ごとに再生成（ISR）
-export const revalidate = 3600
+// 初回アクセス時に生成してキャッシュし、1日ごとに再生成（ISR）。商品データは毎日の同期のあとに作り直す
+export const revalidate = 86400
 
 export function generateStaticParams() {
   return []

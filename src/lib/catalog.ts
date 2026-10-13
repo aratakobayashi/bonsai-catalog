@@ -108,7 +108,22 @@ async function getCachedProductRows(): Promise<any[]> {
   return rows.filter(row => row.is_active !== false && !isHiddenProductSource(row.source))
 }
 
-export async function getCatalogProducts(): Promise<CatalogProduct[]> {
+// 整えた商品データを、同じサーバーの中で10分間使い回す（ページを作るたびに約2,000件を整え直すと、サーバーの計算時間がかさむため）
+// 取得中の Promise も共有し、同時に来たリクエストで二重に取得しない。失敗したときは使い回さない
+const MEMO_TTL_MS = 10 * 60 * 1000
+let memo: { at: number; promise: Promise<CatalogProduct[]> } | null = null
+
+export function getCatalogProducts(): Promise<CatalogProduct[]> {
+  if (memo && Date.now() - memo.at < MEMO_TTL_MS) return memo.promise
+  const promise = loadCatalogProducts()
+  memo = { at: Date.now(), promise }
+  promise.catch(() => {
+    if (memo?.promise === promise) memo = null
+  })
+  return promise
+}
+
+async function loadCatalogProducts(): Promise<CatalogProduct[]> {
   // 通信が一時的に失敗した場合に備えて、間をあけて3回まで取得する
   // （デプロイ直後はキャッシュが空で取得が集中し、失敗しやすい。失敗したまま「準備中」の表示がキャッシュに残るのを防ぐ）
   let lastError: unknown

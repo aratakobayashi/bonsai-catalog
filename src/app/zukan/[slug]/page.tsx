@@ -22,8 +22,8 @@ interface ZukanPageProps {
   params: { slug: string }
 }
 
-// 商品は1時間ごとに作り直す（商品の取得に失敗したときは、商品の欄だけ空で出す）
-export const revalidate = 3600
+// 商品は1日ごとに作り直す（商品の取得に失敗したときは、商品の欄だけ空で出す）
+export const revalidate = 86400
 
 const PRODUCT_LIMIT = 8
 

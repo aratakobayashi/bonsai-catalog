@@ -49,7 +49,7 @@ async function getGardens(): Promise<GardenListItem[]> {
     }))
 }
 
-export const revalidate = 3600
+export const revalidate = 21600
 
 export default async function GardensPage() {
   const [gardens, products] = await Promise.all([getGardens(), getCatalogProducts().catch(() => [] as CatalogProduct[])])

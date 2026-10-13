@@ -1,3 +1,4 @@
+import { headers } from 'next/headers'
 import { getArticleOverride } from '@/lib/article-overrides'
 import Image from 'next/image'
 import { byCuratedImage } from '@/components/home/curated'
@@ -27,8 +28,8 @@ interface SelectionPageProps {
 }
 
 // ビルド時に全特集の商品データを同時に取得すると接続が不安定になるため、初回アクセス時に生成する（ISR）
-// 商品データの取得が一時的に失敗したときの表示が長く残らないよう、10分ごとに作り直す
-export const revalidate = 600
+// 6時間ごとに作り直す。商品データの取得に失敗したときは、その表示をキャッシュに残さない（下の headers()）
+export const revalidate = 21600
 
 export function generateStaticParams() {
   return []
@@ -132,6 +133,8 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
     getCatalogProducts().catch(() => [] as CatalogProduct[]),
     getSelectionGuideLinks(selection.slug),
   ])
+  // 商品が取れなかったときは、作り直しを失敗扱いにして前の表示を使い続ける（トップページと同じ）
+  if (allProducts.length === 0) headers()
   // 書き直した記事（src/content/articles）は新しいタイトルで出す
   const guideLinks = guideRows.map(guide => ({ ...guide, title: getArticleOverride(guide.slug)?.title ?? guide.title }))
   const products = pickSelectionProducts(selection, allProducts)

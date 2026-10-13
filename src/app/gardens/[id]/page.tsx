@@ -146,8 +146,8 @@ function metaDescription(garden: Garden): string {
   return `${head}${body}${facts.length > 0 ? `${facts.join('・')}。` : ''}`
 }
 
-// 初回アクセス時に生成してキャッシュし、1時間ごとに再生成（ISR）
-export const revalidate = 3600
+// 初回アクセス時に生成してキャッシュし、1日ごとに再生成（ISR）
+export const revalidate = 86400
 
 export function generateStaticParams() {
   return []

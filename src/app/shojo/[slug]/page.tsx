@@ -15,7 +15,7 @@ import { SHOJO, getShojo, shojoProducts } from '@/lib/shojo'
 import { RelatedTools } from '@/components/layout/RelatedTools'
 import { heroPhoto } from '@/lib/hero-photo'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 interface PageProps {
   params: { slug: string }

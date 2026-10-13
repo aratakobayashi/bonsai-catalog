@@ -39,8 +39,8 @@ async function getEventDetail(slug: string) {
   }
 }
 
-// 初回アクセス時に生成してキャッシュし、1時間ごとに再生成（ISR）
-export const revalidate = 3600
+// 初回アクセス時に生成してキャッシュし、6時間ごとに再生成（ISR）
+export const revalidate = 21600
 
 export function generateStaticParams() {
   return []

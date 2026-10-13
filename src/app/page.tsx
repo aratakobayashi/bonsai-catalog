@@ -29,8 +29,7 @@ import photoCredits from '@/data/photo-credits.json'
 import { byCuratedThenReviews, byReviews, hasCuratedImage } from '@/components/home/curated'
 
 // 1時間ごとに再生成（ISR）。ページを開いた直後のHTMLに商品・記事が入る
-// 商品データの取得が一時的に失敗したときの表示が長く残らないよう、10分ごとに作り直す
-export const revalidate = 600
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
