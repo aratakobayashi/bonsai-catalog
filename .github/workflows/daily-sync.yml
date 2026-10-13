@@ -36,7 +36,9 @@ jobs:
         if: ${{ github.event_name == 'schedule' || inputs.task != 'rebuild' }}
       - name: 楽天の商品を同期する
         if: ${{ github.event_name == 'schedule' || inputs.task == 'sync' }}
-        run: npm run sync:rakuten
+        run: |
+          if [ -z "$RAKUTEN_APP_ID" ] || [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then echo "楽天・Supabase の Secrets が未登録のため、同期を省きます"; exit 0; fi
+          npm run sync:rakuten
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
