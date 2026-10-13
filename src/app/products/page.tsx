@@ -23,14 +23,17 @@ interface ProductsPageProps {
   searchParams: Record<string, string | string[] | undefined>
 }
 
-const TITLE = `盆栽・鉢・道具を探す｜${SHOP_NAMES_AND}の盆栽を価格・樹種・サイズで比較 - 盆栽コレクション`
+const TITLE = `盆栽・苔玉を探す｜${SHOP_NAMES_AND}の盆栽を価格・樹種・サイズで比較 - 盆栽コレクション`
+const PARTS_TITLE = `盆栽の鉢・土・道具を探す｜${SHOP_NAMES_AND}の用品を価格で比較 - 盆栽コレクション`
 const DESCRIPTION = `${SHOP_NAMES_AND}の盆栽・苔玉・盆栽鉢・土・道具を、樹種・価格・サイズ・送料込・レビュー件数でまとめて絞り込み、比較できます。`
 
 // 絞り込み・ページ送りのURLは検索結果に出さず、一覧トップに正規化する
 export function generateMetadata({ searchParams }: ProductsPageProps): Metadata {
-  const filtered = hasActiveFilters(parseFilters(searchParams))
+  const parsed = parseFilters(searchParams)
+  const filtered = hasActiveFilters(parsed)
   return {
-    title: TITLE,
+    // 売り場（盆栽・苔玉／鉢・土・道具）ごとの名前
+    title: parsed.type === 'parts' ? PARTS_TITLE : TITLE,
     description: DESCRIPTION,
     alternates: { canonical: '/products' },
     ...(filtered && { robots: { index: false, follow: true } }),
