@@ -2,6 +2,7 @@ import { supabase, type DatabaseArticle, type DatabaseArticleCategory, type Data
 import type { Article, ArticleCategory, ArticleTag, ArticleListResponse, ArticleFilters } from '@/types'
 import { UNLISTED_ARTICLE_SLUGS } from '@/lib/content-policy'
 import { rankRelatedArticles, type ArticleLinkContext } from '@/lib/article-content'
+import { buildLocalArticle, isLocalArticle, localArticles } from '@/lib/local-articles'
 
 export interface ArticleQuery extends ArticleFilters {
   // 削除扱い・noindex の記事も含める（管理画面用）。公開側の一覧では使わない
@@ -177,22 +178,28 @@ export async function getArticles(filters: ArticleQuery = {}): Promise<ArticleLi
       query = query.order('published_at', { ascending: false })
     }
 
-    // ページネーション
+    // ページネーション。ファイルだけの記事（local-articles）は新しい記事として一覧の先頭に置き、データベースの分をその後ろにずらす
     const page = Math.max(1, Math.floor(filters.page || 1))
     const limit = filters.limit || 12
     const offset = (page - 1) * limit
-    query = query.range(offset, offset + limit - 1)
+    const locals = localArticles((categories as ArticleCategory[]) || [], { category: filters.category, search })
+    const pageLocals = locals.slice(offset, offset + limit)
+    const dbOffset = Math.max(0, offset - locals.length)
+    const dbLimit = limit - pageLocals.length
+    // dbLimit が 0 のときも件数は数えるため、1件だけ取って捨てる
+    query = query.range(dbOffset, dbOffset + Math.max(dbLimit, 1) - 1)
 
-    const { data, error, count } = await query
+    const { data: rows, error, count } = await query
 
     if (error) {
       console.error('記事取得エラー:', error)
       throw error
     }
 
-    const actualTotalCount = count || 0
+    const data = dbLimit > 0 ? rows : []
+    const actualTotalCount = (count || 0) + locals.length
 
-    if (!data || data.length === 0) {
+    if ((!data || data.length === 0) && pageLocals.length === 0) {
       return {
         articles: [],
         totalCount: actualTotalCount,
@@ -204,7 +211,7 @@ export async function getArticles(filters: ArticleQuery = {}): Promise<ArticleLi
     }
 
     // タグの取得
-    const allTagIds = (data as any[]).flatMap(article => article.tag_ids || [])
+    const allTagIds = ((data || []) as any[]).flatMap(article => article.tag_ids || [])
     const uniqueTagIds = [...new Set(allTagIds)]
 
     let tags: DatabaseArticleTag[] = []
@@ -217,10 +224,13 @@ export async function getArticles(filters: ArticleQuery = {}): Promise<ArticleLi
     }
 
     // データ変換
-    const articles = data.map((item: any) => {
-      const articleTags = tags.filter(tag => item.tag_ids?.includes(tag.id))
-      return transformDatabaseArticle(item, item.category, articleTags)
-    })
+    const articles = [
+      ...pageLocals,
+      ...(data || []).map((item: any) => {
+        const articleTags = tags.filter(tag => item.tag_ids?.includes(tag.id))
+        return transformDatabaseArticle(item, item.category, articleTags)
+      }),
+    ]
 
     const totalPages = Math.ceil(actualTotalCount / limit)
 
@@ -263,10 +273,13 @@ export async function getRelatedArticles(article: Article, limit = 4): Promise<A
 
     if (error || !data) return []
 
-    const candidates = (data as any[]).map(item => {
-      const tags = (item.tag_ids || []).map((id: string) => ({ id, name: '', slug: '' }))
-      return transformDatabaseArticle({ ...item, content: '' }, item.category, tags)
-    })
+    const candidates = [
+      ...localArticles(await getCategoriesWithCache()).filter(a => a.slug !== article.slug).map(a => ({ ...a, content: '' })),
+      ...(data as any[]).map(item => {
+        const tags = (item.tag_ids || []).map((id: string) => ({ id, name: '', slug: '' }))
+        return transformDatabaseArticle({ ...item, content: '' }, item.category, tags)
+      }),
+    ]
     return rankRelatedArticles(article, candidates, limit).map(related => ({ ...related, tags: [] }))
   } catch (error) {
     console.error('関連記事取得エラー:', error)
@@ -280,8 +293,11 @@ export async function getArticleLinkContext(): Promise<ArticleLinkContext> {
     supabase.from('articles').select('slug, title, featured_image_url').eq('status', 'published').limit(2000),
     supabase.from('events').select('slug').limit(5000),
   ])
-  const articles = ((articlesResult.data as { slug: string; title: string; featured_image_url: string | null }[] | null) || [])
-    .map(a => ({ slug: a.slug, title: a.title, image: a.featured_image_url }))
+  const articles = [
+    ...localArticles([]).map(a => ({ slug: a.slug, title: a.title, image: null as string | null })),
+    ...((articlesResult.data as { slug: string; title: string; featured_image_url: string | null }[] | null) || [])
+      .map(a => ({ slug: a.slug, title: a.title, image: a.featured_image_url })),
+  ]
   const events = eventsResult.error ? null : ((eventsResult.data as { slug: string | null }[] | null) || [])
   return {
     articles: articles.filter(a => a.slug),
@@ -303,6 +319,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
       .single()
 
     if (error || !data) {
+      if (isLocalArticle(slug)) return buildLocalArticle(slug, await getCategoriesWithCache())
       console.error('記事取得エラー:', error)
       return null
     }

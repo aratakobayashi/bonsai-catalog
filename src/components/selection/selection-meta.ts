@@ -30,8 +30,8 @@ const SEASON_LEAD: string[][] = [
   ['indoor-bonsai', 'bonsai-under-3000', 'celebration-bonsai'],
   ['celebration-bonsai', 'bonsai-gift', 'fruit-bonsai'],
   ['autumn-leaves-bonsai', 'fruit-bonsai', 'celebration-bonsai'],
-  ['autumn-leaves-bonsai', 'christmas-bonsai', 'winter-bonsai'],
-  ['christmas-bonsai', 'new-year-bonsai', 'winter-bonsai'],
+  ['oseibo-bonsai', 'christmas-bonsai', 'autumn-leaves-bonsai'],
+  ['christmas-bonsai', 'new-year-bonsai', 'oseibo-bonsai'],
 ]
 
 // 今月の特集を先に、そのあとは定義の順に並べる
@@ -43,7 +43,8 @@ export function orderSelectionsBySeason<T extends Pick<Selection, 'slug'>>(selec
 
 // 特集ページの最後に案内する育て方ガイド（docs/growth/content-audit.csv で「維持」などの記事から選んだ slug）
 const SELECTION_GUIDES: Record<string, string[]> = {
-  'new-year-bonsai': ['article-6', 'article-3', 'nanten-guide'],
+  'new-year-bonsai': ['new-year-bonsai-display', 'article-43', 'article-41'],
+  'oseibo-bonsai': ['oseibo-bonsai-gift', 'nanten-guide', 'article-42'],
   'beginner-mini-bonsai': ['article-11', 'article-4', 'beginner-tree-species-guide'],
   'bonsai-gift': ['article-26', 'article-32', 'article-37'],
   'indoor-bonsai': ['article-51', 'gajumaru-bonsai-guide', 'article-12'],
@@ -52,7 +53,7 @@ const SELECTION_GUIDES: Record<string, string[]> = {
   'flowering-bonsai': ['sakura-general-guide', 'azalea-guide', 'article-3'],
   'fruit-bonsai': ['article-2', 'nanten-guide', 'umemodoki-bonsai-guide'],
   'evergreen-bonsai': ['article-6', 'article-10', 'article-20'],
-  'celebration-bonsai': ['article-32', 'article-29', 'article-36', 'article-3'],
+  'celebration-bonsai': ['kanreki-gift-bonsai', 'retirement-gift-bonsai', 'article-32', 'article-29'],
   'starter-tools': ['article-7', 'article-16', 'article-8'],
   'winter-bonsai': ['bonsai-winter-care-failure-prevention', 'article-47', 'nanten-guide'],
   'christmas-bonsai': ['nanten-guide', 'article-2', 'article-20'],

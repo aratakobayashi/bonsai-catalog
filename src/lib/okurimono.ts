@@ -129,7 +129,7 @@ export const SCENE_GUIDES: Record<Scene, SceneGuide> = {
       '年齢を意識させる言い方を嫌う方もいます。カードには日ごろの感謝を中心に書きます',
       '施設で暮らしている方には、鉢植えを置けるかを先に施設に確かめます',
     ],
-    articles: ['article-32', 'article-37'],
+    articles: ['kanreki-gift-bonsai', 'article-32', 'article-37'],
     selections: ['celebration-bonsai', 'bonsai-gift'],
   },
   birthday: {
@@ -182,7 +182,7 @@ export const SCENE_GUIDES: Record<Scene, SceneGuide> = {
       '最終日に職場で手渡すと、持ち帰りの荷物になります。配送で自宅に届けるのが無難です',
       '「栄転」のように受け止め方が分からない言葉は使わず、「御餞別」「御礼」とします',
     ],
-    articles: ['article-36'],
+    articles: ['retirement-gift-bonsai', 'article-36'],
     selections: ['bonsai-gift', 'evergreen-bonsai'],
   },
   oseibo: {
@@ -192,7 +192,7 @@ export const SCENE_GUIDES: Record<Scene, SceneGuide> = {
       '年末は配送が混み合い、留守も増えます。受け取れる日時を確かめてから注文します',
       '冬に届く鉢は、寒さで土が凍らないよう、届いた日は玄関の中など冷え込まない場所に置いてもらいます',
     ],
-    articles: [],
+    articles: ['oseibo-bonsai-gift', 'new-year-bonsai-display'],
     selections: ['new-year-bonsai', 'bonsai-gift'],
   },
 }

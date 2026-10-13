@@ -72,6 +72,14 @@ export const SELECTIONS: Selection[] = [
           '松（五葉松・黒松）：一年中緑を保つ常緑樹。正月飾りの中心になる樹種',
           '梅（白梅・紅梅）：早春に咲く。名前の似た長寿梅はボケの仲間で、春と秋に花を楽しめる',
           '南天：赤い実が冬の彩りになる。縁起物として贈り物にも選ばれる',
+          '松竹梅の寄せ植え：松・竹（または笹）・梅を一つの鉢に植えたもの。一鉢で正月らしさが出る',
+        ],
+      },
+      {
+        heading: '飾る場所と、飾りはじめる日',
+        paragraphs: [
+          '玄関の靴箱の上や床の間、リビングの棚など、来客の目に入る場所が定番です。小さな盆栽は、下に敷板や小さな台を置くと、それだけで改まった飾りになります。',
+          '正月飾りは、12月28日ごろまでに飾りはじめるのが一般的です。29日は「苦」に通じるとして、31日は「一夜飾り」として避けられることがあります。片付けは松の内（地域により1月7日または15日）が目安です。',
         ],
       },
       {
@@ -82,7 +90,7 @@ export const SELECTIONS: Selection[] = [
         aside: {
           eyebrow: '注文の目安',
           title: '年末は配送が混み合います',
-          text: '正月に間に合わせたい場合は、各ショップの年末年始の発送スケジュールを確認し、早めに注文してください。',
+          text: '正月に間に合わせたい場合は、各ショップの年末年始の発送スケジュールを確認し、12月中旬までの注文を目安にしてください。年末の休業に入るショップもあります。',
         },
       },
       {
@@ -102,7 +110,7 @@ export const SELECTIONS: Selection[] = [
     sort: byReviews,
     // 松・梅・南天などを交互に並べる
     interleaveBy: bySpecies,
-    limit: 15,
+    limit: 24,
     catalog: {
       all: '/products?type=tree&use=new_year',
       chips: [
@@ -276,7 +284,7 @@ const CATEGORY_SELECTIONS: Record<string, string[]> = {
   sakura: ['flowering-bonsai', 'bonsai-gift'],
   ume: ['winter-bonsai', 'flowering-bonsai', 'new-year-bonsai'],
   satsuki: ['flowering-bonsai'],
-  nanten: ['winter-bonsai', 'christmas-bonsai', 'new-year-bonsai'],
+  nanten: ['new-year-bonsai', 'oseibo-bonsai', 'winter-bonsai'],
   himeringo: ['fruit-bonsai', 'flowering-bonsai'],
   mimono: ['fruit-bonsai', 'christmas-bonsai'],
   tsubaki: ['winter-bonsai', 'flowering-bonsai'],

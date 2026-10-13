@@ -120,6 +120,7 @@ const SELECTION_TOOLS: Record<string, string[]> = {
   'bonsai-under-3000': ['/okurimono', '/shindan', '/hajimete'],
   'winter-bonsai': ['/teire', '/shojo', '/okurimono'],
   'christmas-bonsai': ['/okurimono', '/kumiawase', '/hajimete'],
+  'oseibo-bonsai': ['/okurimono', '/teire', '/hajimete'],
   'premium-bonsai': ['/okurimono', '/zukan', '/teire'],
 }
 
