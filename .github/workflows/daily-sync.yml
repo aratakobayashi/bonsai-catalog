@@ -1,4 +1,4 @@
-# 毎日の楽天の商品同期と、サイトの作り直し（Cloudflare Pages）
+# 楽天の商品同期（5日に1回）と、サイトの作り直し（Cloudflare Pages）
 # 必要な Secrets（GitHub の Settings → Secrets and variables → Actions に登録する）：
 #   NEXT_PUBLIC_SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY … 商品を書き込む Supabase
 #   RAKUTEN_APP_ID / RAKUTEN_ACCESS_KEY / RAKUTEN_AFFILIATE_ID … 楽天の API
@@ -7,8 +7,8 @@ name: daily-sync
 
 on:
   schedule:
-    # 毎日 4:00（日本時間）
-    - cron: '0 19 * * *'
+    # 5日に1回（毎月1・6・11・16・21・26・31日）の 4:00（日本時間）
+    - cron: '0 19 */5 * *'
   workflow_dispatch:
     inputs:
       task:
