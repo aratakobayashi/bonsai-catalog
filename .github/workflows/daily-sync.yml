@@ -7,7 +7,7 @@ name: daily-sync
 
 on:
   schedule:
-    # 5日に1回（毎月1・6・11・16・21・26・31日）の 4:00（日本時間）
+    # 5日に1回。UTC の毎月1・6・11・16・21・26・31日 19:00＝日本時間の翌日 4:00
     - cron: '0 19 */5 * *'
   workflow_dispatch:
     inputs:
