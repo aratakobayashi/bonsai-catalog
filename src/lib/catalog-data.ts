@@ -1,10 +1,8 @@
 // 商品データの取得（サーバー・ビルド時専用）。絞り込みなどの計算は catalog.ts
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { unstable_cache } from 'next/cache'
 import { supabaseServer } from '@/lib/supabase-server'
 import { normalizeProduct, type CatalogProduct } from '@/lib/catalog-model'
 import { isHiddenProductSource } from '@/lib/affiliate'
-import { PRODUCTS_CACHE_TAG } from '@/lib/catalog'
 
 const LIST_COLUMNS = [
   'id', 'name', 'price', 'image_url', 'source', 'amazon_url', 'rakuten_url', 'shop_name', 'product_type',
@@ -14,8 +12,8 @@ const LIST_COLUMNS = [
 ].join(', ')
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// Supabase は1回に最大1,000行までしか返さず、Next.js のデータキャッシュは1件2MBまでなので、
-// 商品は800行ずつに分けて取得・キャッシュする（1行は約1KB）
+// Supabase は1回に最大1,000行までしか返さないため、
+// 商品は800行ずつに分けて取得する（1行は約1KB）
 const CHUNK_SIZE = 800
 const MAX_CHUNKS = 15
 
@@ -62,10 +60,9 @@ async function fetchChunk(index: number): Promise<any[]> {
 
 // DB の行データを3時間キャッシュし（同期の直後には破棄される）、表示用の形への変換は毎回行う。
 // 変換処理（商品名の整理など）を変えたときに、古いキャッシュの表示が残らないようにするため
-const getCachedChunk = unstable_cache(fetchChunk, ['catalog-product-rows-v2'], {
-  revalidate: 10800,
-  tags: [PRODUCTS_CACHE_TAG],
-})
+// 作り置き（静的な書き出し）のビルドでは、Next.js のデータキャッシュを使わずに毎回取得する
+// （キャッシュの読み書きでビルドのプロセス間の通信が切れることがあるため。同じプロセスの中では getCatalogProducts が10分使い回す）
+const getCachedChunk = fetchChunk
 
 async function getCachedProductRows(): Promise<any[]> {
   const rows: any[] = []

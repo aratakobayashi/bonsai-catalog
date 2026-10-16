@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/build/finish-export.mjs",
+    "build": "next build && node scripts/build/finish-export.mjs && node scripts/build/make-image-variants.mjs",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
@@ -52,6 +52,7 @@
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.1.0",
     "postcss": "^8.4.32",
+    "sharp": "^0.33.5",
     "tailwindcss": "^3.4.0",
     "tsx": "^4.20.5",
     "typescript": "^5.3.3"

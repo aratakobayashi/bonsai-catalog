@@ -26,8 +26,9 @@ const nextConfig = {
   poweredByHeader: false,
   generateEtags: false,
   images: {
-    // 静的な書き出しでは画像の最適化サーバーがないため、そのまま配信する（楽天の画像は楽天側でサイズを指定している）
-    unoptimized: true,
+    // 静的な書き出しでは画像の最適化サーバーがないため、ビルド時に作った小さい版の WebP を使う（楽天の画像は楽天側でサイズを指定している）
+    loader: 'custom',
+    loaderFile: './src/lib/image-loader.js',
     formats: ['image/avif', 'image/webp'], // AVIF優先で最高圧縮
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
