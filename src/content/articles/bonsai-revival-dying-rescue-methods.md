@@ -8,6 +8,7 @@ summary:
   - 原因別にその日のうちにできる応急処置
   - 回復を待つ間にやってはいけないこと
   - 持ち直したあとの1〜2か月の管理
+selection: beginner-mini-bonsai
 photo: /images/articles/photos/bonsai-revival-dying-rescue-methods-1.jpg
 thumbTitle: 枯れそうな盆栽の／確かめ方と応急処置
 thumbLabel: トラブル対処

@@ -11,6 +11,7 @@ import { ShareButtons } from '@/components/features/ShareButtons'
 import { TableOfContents, MobileTableOfContents } from '@/components/features/TableOfContents'
 import { ArticleSummary } from '@/components/article/ArticleSummary'
 import { ArticleNextSteps, type NextStepLink } from '@/components/article/ArticleNextSteps'
+import { ArticleProductStrip } from '@/components/article/ArticleProductStrip'
 import { articleToolLinks, insertToolCard } from '@/lib/article-tools'
 import { jstMonth } from '@/lib/seasons'
 import { byCuratedThenReviews } from '@/components/home/curated'
@@ -212,6 +213,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     : []
   const products = selectionProducts.length >= 3 ? selectionProducts : speciesSlug ? speciesProducts : relatedProductRows.map(normalizeProduct).slice(0, 3)
   const hasRakuten = products.some(product => product.source === 'rakuten')
+  const productsHeading = selectionProducts.length >= 3 && productSelection ? `特集「${productSelection.shortTitle}」から` : productsNoun ? `${productsNoun}を見てみる` : undefined
+  const productsMore = selectionProducts.length >= 3 && productSelection ? { href: `/selection/${productSelection.slug}`, label: `「${productSelection.shortTitle}」の特集を見る` } : speciesSlug && speciesLabel ? { href: `/products/category/${speciesSlug}`, label: `${productsNoun}をすべて見る` } : undefined
+  // 本文の前半に商品の帯を入れる位置：3つ目の大見出しの前（大見出しが2つなら2つ目の前）。樹種・特集の商品が3件以上あるときだけ
+  const h2Positions = [...bodyHtml.matchAll(/<h2[\s>]/g)].map(m => m.index ?? -1).filter(i => i >= 0)
+  const stripAt = productsHeading && products.length >= 3 ? (h2Positions.length >= 3 ? h2Positions[2] : h2Positions.length === 2 ? h2Positions[1] : -1) : -1
+  const bodyParts = stripAt > 0 ? [bodyHtml.slice(0, stripAt), bodyHtml.slice(stripAt)] : [bodyHtml]
 
   // 同じ樹種の育て方の記事（育て方・手入れの記事を先に）
   const speciesGuides: ArticleCardItem[] = speciesSlug && linkContext
@@ -338,17 +345,22 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             )}
 
             {/* 記事本文 */}
-            <div
-              id="article-body"
-              className="article-body mt-10 lg:mt-12"
-              dangerouslySetInnerHTML={{ __html: bodyHtml }}
-            />
+            {/* 記事本文（前半のあとに、樹種・特集の商品の帯） */}
+            <div id="article-body" className="mt-10 lg:mt-12">
+              <div className="article-body" dangerouslySetInnerHTML={{ __html: bodyParts[0] }} />
+              {bodyParts.length > 1 && productsHeading && (
+                <>
+                  <ArticleProductStrip products={products} heading={productsHeading} more={productsMore} />
+                  <div className="article-body" dangerouslySetInnerHTML={{ __html: bodyParts[1] }} />
+                </>
+              )}
+            </div>
 
             {/* 次にやること（商品・同じ樹種の記事・特集・診断） */}
             <ArticleNextSteps
               products={products}
-              productsHeading={selectionProducts.length >= 3 && productSelection ? `特集「${productSelection.shortTitle}」から` : productsNoun ? `${productsNoun}を見てみる` : undefined}
-              productsMore={selectionProducts.length >= 3 && productSelection ? { href: `/selection/${productSelection.slug}`, label: `「${productSelection.shortTitle}」の特集を見る` } : speciesSlug && speciesLabel ? { href: `/products/category/${speciesSlug}`, label: `${productsNoun}をすべて見る` } : undefined}
+              productsHeading={productsHeading}
+              productsMore={productsMore}
               guides={speciesGuides}
               guidesHeading={speciesLabel && !isSupply ? `${speciesLabel}の育て方をもっと読む` : undefined}
               links={nextLinks}
