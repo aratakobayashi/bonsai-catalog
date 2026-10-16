@@ -45,18 +45,18 @@ export function orderSelectionsBySeason<T extends Pick<Selection, 'slug'>>(selec
 const SELECTION_GUIDES: Record<string, string[]> = {
   'new-year-bonsai': ['new-year-bonsai-display', 'article-43', 'article-41'],
   'oseibo-bonsai': ['oseibo-bonsai-gift', 'nanten-guide', 'article-42'],
-  'beginner-mini-bonsai': ['article-11', 'article-4', 'beginner-tree-species-guide'],
-  'bonsai-gift': ['article-26', 'article-32', 'article-37'],
-  'indoor-bonsai': ['article-51', 'gajumaru-bonsai-guide', 'article-12'],
+  'beginner-mini-bonsai': ['article-11', 'article-4', 'bonsai-kit-guide'],
+  'bonsai-gift': ['gift-bonsai-guide', 'article-26', 'article-37'],
+  'indoor-bonsai': ['article-51', 'kokedama-guide', 'gajumaru-bonsai-guide'],
   'bonsai-under-3000': ['article-4', 'budget-guide'],
   'autumn-leaves-bonsai': ['article-1', 'autumn-maple-bonsai-guide', 'maple-varieties-guide'],
   'flowering-bonsai': ['sakura-general-guide', 'azalea-guide', 'article-3'],
   'fruit-bonsai': ['article-2', 'nanten-guide', 'umemodoki-bonsai-guide'],
   'evergreen-bonsai': ['article-6', 'article-10', 'article-20'],
   'celebration-bonsai': ['kanreki-gift-bonsai', 'retirement-gift-bonsai', 'article-32', 'article-29'],
-  'starter-tools': ['article-7', 'article-16', 'article-8'],
+  'starter-tools': ['bonsai-pot-guide', 'article-16', 'article-7'],
   'winter-bonsai': ['bonsai-winter-care-failure-prevention', 'article-47', 'nanten-guide'],
-  'christmas-bonsai': ['nanten-guide', 'article-2', 'article-20'],
+  'christmas-bonsai': ['christmas-bonsai-guide', 'nanten-guide', 'article-2'],
   'premium-bonsai': ['article-6', 'article-20', 'bonsai-diplomacy-gift-etiquette'],
 }
 const COMMON_GUIDE = 'bonsai-watering-master-guide-2025'

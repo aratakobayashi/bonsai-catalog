@@ -40,8 +40,6 @@ thumbLabel: 盆栽ギフト
 
 盆栽をすでに育てている方には、**松**など、樹齢を重ねて樹形の整った一鉢を選ぶと、長く手元に残る記念の品になります。
 
-![黒松の盆栽。太い幹と、整えられた枝ぶり](/images/articles/photos/retirement-gift-bonsai-1.jpg)
-*写真：Drew Avery / CC BY 2.0*
 
 はじめての方に向く樹種は、こちらでも詳しく紹介しています。
 
