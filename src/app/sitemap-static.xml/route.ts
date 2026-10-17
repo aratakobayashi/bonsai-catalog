@@ -3,6 +3,8 @@ import { SELECTIONS } from '@/lib/selections'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { ZUKAN_ENTRIES } from '@/lib/zukan'
 import { SHOJO } from '@/lib/shojo'
+import { getGardenList } from '@/lib/gardens-list'
+import { prefectureSlug } from '@/lib/prefectures'
 import { baseUrl, SITEMAP_CONFIG, createSitemapResponse, generateXmlHeader, generateXmlFooter, generateUrlElement } from '@/lib/sitemap-utils'
 
 export const revalidate = 3600
@@ -10,6 +12,8 @@ export const revalidate = 3600
 export async function GET() {
   try {
     const config = SITEMAP_CONFIG.static
+    // 盆栽園のある都道府県のまとめページ（/gardens/area/〇〇）
+    const areaSlugs = Array.from(new Set((await getGardenList()).map(g => (g.prefecture ? prefectureSlug(g.prefecture) : undefined)).filter((s): s is string => Boolean(s))))
 
     const staticPages = [
       {
@@ -97,6 +101,12 @@ export async function GET() {
         changeFreq: 'weekly',
         priority: 0.8
       },
+      ...areaSlugs.map(slug => ({
+        url: `${baseUrl}/gardens/area/${slug}`,
+        lastMod: new Date().toISOString().split('T')[0],
+        changeFreq: 'weekly',
+        priority: 0.7
+      })),
       {
         url: `${baseUrl}/about`,
         lastMod: new Date('2026-06-15').toISOString().split('T')[0],

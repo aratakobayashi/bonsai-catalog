@@ -1,3 +1,4 @@
+import { prefectureAreaHref, prefectureSlug } from '@/lib/prefectures'
 import { Metadata } from 'next'
 import { notFound, permanentRedirect } from 'next/navigation'
 import { GARDEN_VERIFIED_AT, getGardenSources, isGardenHiddenId, isGardenPublished } from '@/lib/garden-verification'
@@ -247,7 +248,8 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
   const breadcrumbs = [
     { name: 'ホーム', url: 'https://www.bonsai-collection.com/', position: 1 },
     { name: '盆栽園一覧', url: 'https://www.bonsai-collection.com/gardens', position: 2 },
-    { name: garden.name, url: `https://www.bonsai-collection.com/gardens/${garden.id}`, position: 3 }
+    ...(garden.prefecture && prefectureSlug(garden.prefecture) ? [{ name: `${garden.prefecture}の盆栽園`, url: `https://www.bonsai-collection.com${prefectureAreaHref(garden.prefecture)}`, position: 3 }] : []),
+    { name: garden.name, url: `https://www.bonsai-collection.com/gardens/${garden.id}`, position: garden.prefecture && prefectureSlug(garden.prefecture) ? 4 : 3 }
   ]
 
   const region = gardenRegion(garden)
@@ -257,7 +259,8 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
     ? [{ id: garden.id, name: garden.name, lat: garden.latitude!, lng: garden.longitude!, area: gardenArea(garden) }]
     : []
   const mapUrl = mapAppUrl(garden)
-  const prefectureListHref = `/gardens?prefecture=${encodeURIComponent(garden.prefecture || '')}`
+  // 都道府県のまとめページ（/gardens/area/〇〇）
+  const prefectureListHref = prefectureAreaHref(garden.prefecture)
   const facts = gardenFacts(garden)
 
   const socials = [

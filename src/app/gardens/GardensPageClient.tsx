@@ -19,6 +19,7 @@ import {
 } from '@/components/gardens/GardenParts'
 import type { Garden } from '@/types'
 import { heroPhoto } from '@/lib/hero-photo'
+import { prefectureAreaHref, prefectureSlug } from '@/lib/prefectures'
 
 // 一覧で使う項目だけ（page.tsx で作る）。summary は定型文でない説明だけ
 export type GardenListItem = Pick<
@@ -478,6 +479,11 @@ export function GardensPageClient({ gardens, shopBridge }: { gardens: GardenList
                         {group.name}
                       </h3>
                       <span className="text-[12px] text-ink-muted">{group.items.length}件</span>
+                      {prefectureSlug(group.name) && (
+                        <Link href={prefectureAreaHref(group.name)} className="ml-auto text-[12px] text-ink underline decoration-line underline-offset-4 hover:decoration-ink">
+                          {group.name}のまとめ ›
+                        </Link>
+                      )}
                     </div>
                   )}
                   {prefecture && <h3 id={`pref-${group.name}`} className="sr-only">{group.name}</h3>}
