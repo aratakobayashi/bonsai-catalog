@@ -99,7 +99,7 @@ export const SCENE_GUIDES: Record<Scene, SceneGuide> = {
       '大きすぎる樹は重くて移動しにくく、手のひらに乗るほど小さな鉢は夏に1日2回以上の水やりが要ることがあります',
       '「お部屋に飾ってね」と添えると、屋外向きの樹を室内に置き続けてしまうことがあります。屋外で育てる樹であることを伝えます',
     ],
-    articles: ['article-26'],
+    articles: ['article-26', 'bonsai-gift-for-women'],
     selections: ['bonsai-gift', 'flowering-bonsai'],
   },
   father: {
@@ -109,7 +109,7 @@ export const SCENE_GUIDES: Record<Scene, SceneGuide> = {
       '松柏類はどれも屋外の日なたで育てる樹です。日の当たる置き場所を用意できるかを先に確かめます',
       '室内に飾るのは2〜3日までにして、屋外に戻すよう伝えます',
     ],
-    articles: ['article-27'],
+    articles: ['article-27', 'bonsai-gift-for-men'],
     selections: ['bonsai-gift', 'evergreen-bonsai'],
   },
   keiro: {
@@ -161,7 +161,7 @@ export const SCENE_GUIDES: Record<Scene, SceneGuide> = {
       '店内に置くなら、松やもみじなど屋外向きの樹は弱りやすくなります。室内で育てやすい樹か、店先に置ける樹かを先に考えます',
       '店先や受付に置いても邪魔にならない大きさにします',
     ],
-    articles: [],
+    articles: ['opening-gift-bonsai'],
     selections: ['celebration-bonsai', 'bonsai-gift'],
   },
   promotion: {
