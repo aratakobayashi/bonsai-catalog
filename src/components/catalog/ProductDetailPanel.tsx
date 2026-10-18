@@ -21,7 +21,7 @@ import { FavoriteButton } from './FavoriteButton'
 import { ProductThumb } from './ProductThumb'
 
 // ショップの商品ページへのボタン（墨・四角）。広告リンクのクリックは GA の共通処理で rel="sponsored" から記録する
-// ショップ名はボタンの下に小さく添え（ShopCaption）、ボタン自体は「販売ページを見る」にする
+// ショップ名はボタンの下に小さく添え（ShopCaption）、ボタンは「楽天市場で見る」のようにショップ名で行き先を示す
 export function ShopButton({ product, className = '', size = 'lg' }: { product: CatalogProduct; className?: string; size?: 'lg' | 'md' }) {
   if (!product.buyUrl) return null
   return (
@@ -32,7 +32,7 @@ export function ShopButton({ product, className = '', size = 'lg' }: { product: 
       aria-label={`${SHOP_LABELS[product.source]}の販売ページを見る（新しいタブで開きます）`}
       className={`flex items-center justify-center gap-3 bg-sumi tracking-[0.08em] text-white hover:bg-sumi-light hover:text-white ${size === 'lg' ? 'h-[50px] text-sm' : 'h-12 text-sm'} ${className}`}
     >
-      販売ページを見る <span aria-hidden="true">↗</span>
+      {SHOP_LABELS[product.source]}で見る <span aria-hidden="true">↗</span>
     </a>
   )
 }

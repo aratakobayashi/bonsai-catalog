@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { AFFILIATE_LINK_REL } from '@/lib/affiliate'
 import { formatPrice } from '@/lib/utils'
 import type { CatalogProduct } from '@/lib/catalog-model'
 import { cardTags } from '@/lib/card-tags'
@@ -58,16 +59,18 @@ interface CatalogProductCardProps {
   sizes?: string
   // PCで「さっと見る」のボタンを出す（QuickViewHost の中に置くとき）
   quickView?: boolean
+  // カードの下に、ショップの商品ページへ直接行くボタンを出す（記事・特集など、読み物の中の商品）。値は GA の click_place
+  buyPlace?: string
 }
 
 // 商品カード（グリッド表示）。画像の右下に「気になる」のハート
-export function CatalogProductCard({ product, priority = false, selected = false, href, selectHref, sizes = '(max-width: 1024px) 50vw, 25vw', quickView = false }: CatalogProductCardProps) {
+export function CatalogProductCard({ product, priority = false, selected = false, href, selectHref, sizes = '(max-width: 1024px) 50vw, 25vw', quickView = false, buyPlace }: CatalogProductCardProps) {
   const ship = shippingLabel(product)
   const inSeason = isInSeasonNow(product)
   const title = product.displayName || product.name
   const tags = cardTags(product)
   return (
-    <div className="group relative flex flex-col gap-2.5 lg:gap-3" data-card={product.id}>
+    <div className={`group relative flex flex-col gap-2.5 lg:gap-3 ${buyPlace ? 'h-full' : ''}`} data-card={product.id}>
       <Link
         href={href ?? `/products/${product.id}`}
         prefetch={false}
@@ -108,6 +111,20 @@ export function CatalogProductCard({ product, priority = false, selected = false
           )}
         </div>
       </Link>
+      {/* ショップへ直接（読み物の中のカードだけ。商品ページを経ずに1回で販売ページへ） */}
+      {buyPlace && product.buyUrl && (
+        <a
+          href={product.buyUrl}
+          target="_blank"
+          rel={AFFILIATE_LINK_REL}
+          data-place={buyPlace}
+          data-product={product.id}
+          aria-label={`${title}を${SOURCE_LABELS[product.source]}で見る（新しいタブで開きます）`}
+          className="mt-auto flex h-10 items-center justify-center gap-1.5 border border-ink text-[12.5px] tracking-[0.04em] text-ink hover:bg-ink hover:text-white lg:text-[13px]"
+        >
+          {SOURCE_LABELS[product.source]}で見る <span aria-hidden="true">↗</span>
+        </a>
+      )}
       {/* ハートはリンクの外に置く（リンクの中にボタンを入れない） */}
       <div className="absolute right-0 top-0 aspect-[4/5] w-full pointer-events-none">
         <FavoriteButton productId={product.id} productName={title} variant="icon" className="pointer-events-auto absolute bottom-0.5 right-0.5 lg:bottom-1 lg:right-1" />

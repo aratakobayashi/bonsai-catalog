@@ -15,7 +15,7 @@ export function ArticleProductStrip({ products, heading, more }: { products: Cat
       <div data-list="article_inline" className="-mx-4 mt-4 flex snap-x scroll-px-4 gap-3 overflow-x-auto px-4 pb-1 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-5 lg:overflow-visible lg:px-0">
         {products.slice(0, 4).map(product => (
           <div key={product.id} className="w-[42%] flex-none snap-start lg:w-auto">
-            <CatalogProductCard product={product} sizes="(max-width: 1023px) 42vw, 160px" />
+            <CatalogProductCard product={product} buyPlace="article_inline" sizes="(max-width: 1023px) 42vw, 160px" />
           </div>
         ))}
       </div>

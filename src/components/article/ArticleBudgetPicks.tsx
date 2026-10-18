@@ -43,7 +43,7 @@ export function ArticleBudgetPicks({ bands, more }: { bands: BudgetBand[]; more?
             <div className="-mx-4 mt-3 flex snap-x scroll-px-4 gap-3 overflow-x-auto px-4 pb-1 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-5 lg:overflow-visible lg:px-0">
               {band.products.map(product => (
                 <div key={product.id} className="w-[42%] flex-none snap-start lg:w-auto">
-                  <CatalogProductCard product={product} sizes="(max-width: 1023px) 42vw, 220px" />
+                  <CatalogProductCard product={product} buyPlace="article_budget" sizes="(max-width: 1023px) 42vw, 220px" />
                 </div>
               ))}
             </div>
