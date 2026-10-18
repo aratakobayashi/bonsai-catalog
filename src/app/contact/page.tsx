@@ -8,6 +8,7 @@ import { CONTAINER, PageHeading } from '@/components/ui/design'
 // お問い合わせの種類。盆栽園・イベント詳細の「修正を依頼」からは ?type=correction&page=<対象ページ> で開く
 const INQUIRY_TYPES = [
   { value: 'site', label: 'サイトについて' },
+  { value: 'garden', label: '盆栽園の方：掲載情報の追加・修正' },
   { value: 'correction', label: '掲載情報の修正（盆栽園・イベント）' },
   { value: 'photo', label: '写真の提供' },
   { value: 'ad', label: '広告・取材' },
@@ -18,11 +19,28 @@ type InquiryType = (typeof INQUIRY_TYPES)[number]['value']
 
 const MESSAGE_PLACEHOLDERS: Record<InquiryType, string> = {
   site: 'お問い合わせ内容をお書きください',
+  garden: '追加・修正したい内容をお書きください',
   correction: '修正が必要な箇所と、正しい情報をお書きください',
   photo: '提供いただける写真の内容と、掲載の条件があればお書きください',
   ad: 'ご依頼の内容をお書きください',
   other: 'お問い合わせ内容をお書きください',
 }
+
+// 盆栽園の方からの連絡（/gardens/owners から開く）は、書いてほしい項目をあらかじめ入れておく
+const GARDEN_TEMPLATE = [
+  '園の名前：',
+  '所在地（都道府県・市区町村）：',
+  'ご担当者さまのお名前・お立場：',
+  '',
+  '■ 追加・修正したい内容（分かるものだけで構いません）',
+  '営業時間・定休日：',
+  '体験教室・ワークショップ：',
+  '通販サイト・オンラインショップのURL：',
+  'Instagram などのURL：',
+  'そのほか：',
+  '',
+  '写真をご提供いただける場合は、その旨をお書きください。返信のメールでお送りいただく方法をご案内します。',
+].join('\n')
 
 // 下線だけの入力欄（本文欄は枠で囲む）
 const inputClass =
@@ -66,6 +84,7 @@ export default function ContactPage() {
       ...prev,
       type: INQUIRY_TYPES.some(t => t.value === type) ? (type as InquiryType) : prev.type,
       page: page ? page.slice(0, 200) : prev.page,
+      message: type === 'garden' && !prev.message ? GARDEN_TEMPLATE : prev.message,
     }))
   }, [])
 

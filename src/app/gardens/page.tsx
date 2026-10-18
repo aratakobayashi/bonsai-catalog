@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import { GardensPageClient } from './GardensPageClient'
 import { getGardenList } from '@/lib/gardens-list'
 import { GardenAreaLinks } from '@/components/gardens/GardenAreaLinks'
@@ -25,7 +26,12 @@ export default async function GardensPage() {
     <>
       <GardensPageClient gardens={gardens} shopBridge={bridge} />
       {/* 都道府県ごとのまとめページへ（検索から地域名で探す人の入口） */}
-      <GardenAreaLinks gardens={gardens} className="mx-auto max-w-[1280px] px-4 pb-16 lg:px-12" />
+      <GardenAreaLinks gardens={gardens} className="mx-auto max-w-[1280px] px-4 pb-8 lg:px-12" />
+      {/* 盆栽園の方への案内（掲載情報の追加・修正） */}
+      <p className="mx-auto max-w-[1280px] px-4 pb-16 text-[13px] text-ink-muted lg:px-12">
+        盆栽園・盆栽店の方へ：
+        <Link href="/gardens/owners" className="border-b border-ink-muted text-ink hover:text-gold-dark">掲載情報の追加・修正（無料）</Link>
+      </p>
     </>
   )
 }

@@ -108,6 +108,12 @@ export async function GET() {
         priority: 0.7
       })),
       {
+        url: `${baseUrl}/gardens/owners`,
+        lastMod: '2026-10-18',
+        changeFreq: 'monthly',
+        priority: 0.4
+      },
+      {
         url: `${baseUrl}/about`,
         lastMod: new Date('2026-06-15').toISOString().split('T')[0],
         changeFreq: 'monthly',

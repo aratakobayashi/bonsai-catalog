@@ -1,4 +1,5 @@
 import { prefectureAreaHref, prefectureSlug } from '@/lib/prefectures'
+import { gardenShop, verifiedOnlineSales } from '@/lib/garden-shops'
 import { Metadata } from 'next'
 import { notFound, permanentRedirect } from 'next/navigation'
 import { GARDEN_VERIFIED_AT, getGardenSources, isGardenHiddenId, isGardenPublished } from '@/lib/garden-verification'
@@ -56,7 +57,8 @@ async function getGarden(id: string): Promise<Garden | null> {
     return null
   }
 
-  return data as unknown as Garden
+  const garden = data as unknown as Garden
+  return { ...garden, online_sales: verifiedOnlineSales(garden.id, garden.online_sales) }
 }
 
 // 園の取り扱い（specialties）のうち、通販のカテゴリ（/products/category/[slug]）と名前が一致するもの
@@ -262,6 +264,7 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
   // 都道府県のまとめページ（/gardens/area/〇〇）
   const prefectureListHref = prefectureAreaHref(garden.prefecture)
   const facts = gardenFacts(garden)
+  const shop = gardenShop(garden.id)
 
   const socials = [
     garden.social_instagram && { label: 'Instagram', href: garden.social_instagram },
@@ -335,6 +338,11 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
                   公式サイトを見る <span aria-hidden="true">↗</span>
                 </a>
               )}
+              {shop && (
+                <a href={shop.url} target="_blank" rel="noopener noreferrer" data-garden-shop={garden.id} className={`${secondaryButton} col-span-2 sm:col-span-1`}>
+                  この園の通販サイト <span aria-hidden="true">↗</span>
+                </a>
+              )}
               {garden.phone && (
                 <a href={telHref(garden.phone)} className={secondaryButton} aria-label={`電話する（${garden.phone}）`}>
                   電話する
@@ -377,7 +385,9 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
             <>
               訪問前に{garden.website_url ? '公式サイトで' : ''}最新情報をご確認ください。
               <br />
-              <Link href="/contact" className="border-b border-ink-muted hover:text-gold-dark">情報の修正を依頼する</Link>
+              <Link href={`/contact?type=correction&page=${encodeURIComponent(`/gardens/${garden.id}`)}`} className="border-b border-ink-muted hover:text-gold-dark">情報の修正を依頼する</Link>
+              <span className="mx-2 text-ink-muted/60">／</span>
+              <Link href="/gardens/owners" className="border-b border-ink-muted hover:text-gold-dark">この園の方へ</Link>
             </>
           }
         >
@@ -397,7 +407,13 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
             <InfoRow label="定休日">{garden.closed_days && garden.closed_days.length > 0 ? garden.closed_days.join('、') : confirmText}</InfoRow>
             {specialties.length > 0 && <InfoRow label="取り扱い">{specialties.join('、')}</InfoRow>}
             {garden.experience_programs && <InfoRow label="体験・教室">あり</InfoRow>}
-            {garden.online_sales && <InfoRow label="購入">オンライン購入可</InfoRow>}
+            {shop ? (
+              <InfoRow label="通販">
+                <a href={shop.url} target="_blank" rel="noopener noreferrer" data-garden-shop={garden.id} className={linkClass}>{shop.type}で購入できます ↗</a>
+              </InfoRow>
+            ) : (
+              garden.online_sales && <InfoRow label="購入">オンライン購入可</InfoRow>
+            )}
             {garden.access_info && <InfoRow label="アクセス"><span className="whitespace-pre-wrap">{garden.access_info}</span></InfoRow>}
             {garden.parking_info && <InfoRow label="駐車場">{garden.parking_info}</InfoRow>}
             {garden.established_year && <InfoRow label="創業">{garden.established_year}年</InfoRow>}

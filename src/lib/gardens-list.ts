@@ -1,5 +1,6 @@
 // 盆栽園の一覧（盆栽園一覧と、都道府県ごとのまとめページで共通）。ビルド時に取得する
 import { supabaseServer } from '@/lib/supabase-server'
+import { verifiedOnlineSales } from '@/lib/garden-shops'
 import { isGardenPublished } from '@/lib/garden-verification'
 import type { Garden } from '@/types'
 import type { GardenListItem } from '@/app/gardens/GardensPageClient'
@@ -34,7 +35,7 @@ async function loadGardenList(): Promise<GardenListItem[]> {
       longitude: typeof g.longitude === 'number' ? g.longitude : undefined,
       phone: g.phone || undefined,
       website_url: g.website_url || undefined,
-      online_sales: Boolean(g.online_sales),
+      online_sales: verifiedOnlineSales(g.id, g.online_sales),
       experience_programs: Boolean(g.experience_programs),
     }))
 }
