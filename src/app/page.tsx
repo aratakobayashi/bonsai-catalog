@@ -7,6 +7,7 @@ import { getCatalogProducts } from '@/lib/catalog-data'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { CONTAINER } from '@/components/ui/design'
+import GiftSeasonBanner from '@/components/gift/GiftSeasonBanner'
 import { SELECTIONS, getSelection, pickSelectionProducts, type Selection } from '@/lib/selections'
 import { formatPrice } from '@/lib/utils'
 import { isFeaturable, orderSelectionsBySeason, selectionCounts } from '@/components/selection/selection-meta'
@@ -279,6 +280,9 @@ export default async function HomePage() {
           </p>
         </div>
       </section>
+
+      {/* いまの時期の贈り物（お歳暮・クリスマス・母の日など。時期でないときは出さない） */}
+      <GiftSeasonBanner placement="home" className={`${CONTAINER} pt-8 lg:pt-12`} />
 
       {/* 目的から選ぶ（墨色の帯どうしの間に、明るい紙色の帯を挟む） */}
       {purposes.length > 0 && (

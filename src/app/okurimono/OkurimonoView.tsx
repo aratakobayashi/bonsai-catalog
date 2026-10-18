@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import GiftSeasonBanner from '@/components/gift/GiftSeasonBanner'
 import Link from 'next/link'
 import photoCredits from '@/data/photo-credits.json'
 import type { CatalogProduct } from '@/lib/catalog-model'
@@ -120,6 +121,9 @@ export function OkurimonoView({ params, products, articleMeta }: { params: Recor
         </header>
 
         <div className={CONTAINER}>
+          {/* いまの時期の贈り物 */}
+          <GiftSeasonBanner placement="okurimono" className="mt-6 lg:mt-10" />
+
           {/* 選ぶ（リンクで切り替える。JavaScript がなくても動く） */}
           <nav aria-label="条件を選ぶ" className="mt-6 border-t border-ink lg:mt-12">
             <Choice title="1. 誰に" name="who" options={WHO_OPTIONS} state={state} />

@@ -1,5 +1,6 @@
-// next build（output: 'export'）のあとの仕上げ：転送の一覧（out/redirects.txt）を out/_redirects に足す
-import { appendFileSync, existsSync, readFileSync, rmSync } from 'fs'
+// next build（output: 'export'）のあとの仕上げ：転送の一覧（out/redirects.txt）を out/_redirects に足し、SNS 用の表示（OGP）を整える
+import { appendFileSync, existsSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'fs'
+import path from 'path'
 
 const generated = 'out/redirects.txt'
 if (!existsSync('out/_redirects') || !existsSync(generated)) {
@@ -10,3 +11,55 @@ const lines = readFileSync(generated, 'utf8').trim()
 appendFileSync('out/_redirects', `\n# 掲載をやめた園・削除扱いの記事（src/app/redirects.txt/route.ts から作る）\n${lines}\n`)
 rmSync(generated)
 console.log(`_redirects: ${lines.split('\n').length} 件を追加`)
+
+// SNS で共有されたときの表示（OGP）を整える
+// ・ページ側で openGraph を書いていないページは、サイト共通の og:title・og:description のままになるので、ページの <title> と説明文に置き換える
+// ・og:image がないページには、共通の画像（public/images/og-default.jpg）を入れる
+// ・og:url がないページには canonical の URL を入れる
+const SITE = 'https://www.bonsai-collection.com'
+const SITE_OG_TITLE = '盆栽コレクション｜初心者向け盆栽の選び方・育て方と通販ガイド'
+const SITE_TW_TITLE = '盆栽コレクション - 美しい盆栽を見つける'
+const DEFAULT_IMAGE = `${SITE}/images/og-default.jpg`
+
+function htmlFiles(dir) {
+  return readdirSync(dir).flatMap(name => {
+    const p = path.join(dir, name)
+    return statSync(p).isDirectory() ? htmlFiles(p) : p.endsWith('.html') ? [p] : []
+  })
+}
+
+const meta = (attr, key) => new RegExp(`<meta ${attr}="${key.replace(/:/g, '\\:')}" content="([^"]*)"\\s*/?>`)
+let fixedTitle = 0, addedImage = 0
+for (const file of htmlFiles('out')) {
+  const original = readFileSync(file, 'utf8')
+  let html = original
+  if (!html.includes('</head>')) continue
+  const title = html.match(/<title>([^<]*)<\/title>/)?.[1]
+  const desc = html.match(meta('name', 'description'))?.[1]
+  const canonical = html.match(/<link rel="canonical" href="([^"]*)"\s*\/?>/)?.[1]
+  const add = []
+
+  const ogTitle = html.match(meta('property', 'og:title'))
+  if (title && ogTitle && ogTitle[1] === SITE_OG_TITLE && title !== SITE_OG_TITLE) {
+    html = html.replace(ogTitle[0], `<meta property="og:title" content="${title}"/>`)
+    const ogDesc = html.match(meta('property', 'og:description'))
+    if (desc && ogDesc) html = html.replace(ogDesc[0], `<meta property="og:description" content="${desc}"/>`)
+    const twTitle = html.match(meta('name', 'twitter:title'))
+    if (twTitle && twTitle[1] === SITE_TW_TITLE) html = html.replace(twTitle[0], `<meta name="twitter:title" content="${title}"/>`)
+    const twDesc = html.match(meta('name', 'twitter:description'))
+    if (desc && twDesc) html = html.replace(twDesc[0], `<meta name="twitter:description" content="${desc}"/>`)
+    fixedTitle++
+  }
+  if (canonical && !meta('property', 'og:url').test(html)) add.push(`<meta property="og:url" content="${canonical}"/>`)
+  if (!meta('property', 'og:image').test(html)) {
+    add.push(`<meta property="og:image" content="${DEFAULT_IMAGE}"/>`, '<meta property="og:image:width" content="1200"/>', '<meta property="og:image:height" content="630"/>')
+    if (!meta('name', 'twitter:image').test(html)) add.push(`<meta name="twitter:image" content="${DEFAULT_IMAGE}"/>`)
+    addedImage++
+  }
+  if (add.length) {
+    const end = html.indexOf('</head>')
+    html = html.slice(0, end) + add.join('') + html.slice(end)
+  }
+  if (html !== original) writeFileSync(file, html)
+}
+console.log(`OGP: タイトルを直したページ ${fixedTitle} 件、共通の画像を入れたページ ${addedImage} 件`)

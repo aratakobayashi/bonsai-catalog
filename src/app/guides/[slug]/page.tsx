@@ -23,6 +23,7 @@ import { processMarkdown, extractTableOfContents } from '@/lib/markdown'
 import { detectArticleSpecies, fallbackSelectionSlug, normalizeForMatch, stripLeadingTitleHeading } from '@/lib/article-content'
 import { applyArticleOverride, canOptimizeImage, getArticleOverride, thumbnailPath } from '@/lib/article-overrides'
 import { getSelection, pickSelectionProducts, selectionsForCategory } from '@/lib/selections'
+import { ArticleBudgetPicks, budgetBands } from '@/components/article/ArticleBudgetPicks'
 import { categoryFilters, filterProducts, normalizeProduct, type CatalogProduct } from '@/lib/catalog'
 import { getCatalogProducts } from '@/lib/catalog-data'
 import { getShopCategory } from '@/lib/shop-categories'
@@ -96,6 +97,9 @@ function cardImage(slug: string, dbImage?: string | null): string | undefined {
 
 // 初回アクセス時に生成してキャッシュし、1日ごとに再生成（ISR）
 // ビルド時に、すべての記事のページを作り置きする
+// 贈り物向けの特集（記事の最後に「予算から選ぶ」を出す）
+const GIFT_SELECTIONS = new Set(['bonsai-gift', 'celebration-bonsai', 'oseibo-bonsai', 'christmas-bonsai', 'new-year-bonsai'])
+
 export const dynamicParams = false
 
 export async function generateStaticParams() {
@@ -213,6 +217,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     : []
   const products = selectionProducts.length >= 3 ? selectionProducts : speciesSlug ? speciesProducts : relatedProductRows.map(normalizeProduct).slice(0, 3)
   const hasRakuten = products.some(product => product.source === 'rakuten')
+  // 贈り物の記事（特集が贈り物向けで、樹種の育て方の記事でないもの）は、最後に予算の帯ごとの商品を出す
+  const giftSelection = !speciesTitle && !isSupply && article.selectionSlug && GIFT_SELECTIONS.has(article.selectionSlug) ? getSelection(article.selectionSlug) ?? null : null
+  const budgetPicks = giftSelection
+    ? budgetBands(pickSelectionProducts(giftSelection, await getCatalogProducts().catch(() => [] as CatalogProduct[])).sort(byCuratedThenReviews), new Set(products.slice(0, 4).map(p => p.id)))
+    : []
   const productsHeading = selectionProducts.length >= 3 && productSelection ? `特集「${productSelection.shortTitle}」から` : productsNoun ? `${productsNoun}を見てみる` : undefined
   const productsMore = selectionProducts.length >= 3 && productSelection ? { href: `/selection/${productSelection.slug}`, label: `「${productSelection.shortTitle}」の特集を見る` } : speciesSlug && speciesLabel ? { href: `/products/category/${speciesSlug}`, label: `${productsNoun}をすべて見る` } : undefined
   // 本文の前半に商品の帯を入れる位置：3つ目の大見出しの前（大見出しが2つなら2つ目の前）。樹種・特集の商品が3件以上あるときだけ
@@ -355,6 +364,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 </>
               )}
             </div>
+
+            {/* 贈り物の記事：予算から選ぶ */}
+            {giftSelection && <ArticleBudgetPicks bands={budgetPicks} more={{ href: `/selection/${giftSelection.slug}`, label: `「${giftSelection.shortTitle}」の特集を見る` }} />}
 
             {/* 次にやること（商品・同じ樹種の記事・特集・診断） */}
             <ArticleNextSteps

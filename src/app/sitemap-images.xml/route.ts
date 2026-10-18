@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
-import { isHiddenProductSource } from '@/lib/affiliate'
+import { getArticles } from '@/lib/database/articles'
+import { isArticleIndexable } from '@/lib/content-policy'
+import { getArticleOverride, thumbnailPath } from '@/lib/article-overrides'
 
 const baseUrl = 'https://www.bonsai-collection.com'
 
@@ -14,63 +15,48 @@ function escapeXml(text: string): string {
     .replace(/'/g, '&apos;')
 }
 
+const absolute = (src: string) => (src.startsWith('/') ? `${baseUrl}${src}` : src)
+
 export const revalidate = 3600
 
+// 画像サイトマップ：検索結果に出す記事の画像（サムネイル・記事の写真・図解）
+// 楽天から自動取得した商品の詳細ページは noindex のため、商品画像は含めない
 export async function GET() {
-  try {
-    // 商品画像を取得
-    // 検索結果に出す商品（楽天の自動取得分以外）の画像のみ
-    const { data: rows } = await supabase
-      .from('products')
-      .select('*')
-      .not('image_url', 'is', null)
-    const products = (rows || []).filter((p: any) => p.source !== 'rakuten' && p.is_active !== false && !isHiddenProductSource(p.source))
-
-    let xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
+  let xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">`
 
-    // 商品画像をXMLに追加
-    if (products && products.length > 0) {
-      (products as Array<{id: string, name: string, image_url: string, updated_at: string}>).forEach(product => {
-        const escapedName = escapeXml(product.name)
-        xmlContent += `
-  <url>
-    <loc>${baseUrl}/products/${product.id}</loc>
-    <image:image>
-      <image:loc>${escapeXml(product.image_url.startsWith('/') ? `${baseUrl}${product.image_url}` : product.image_url)}</image:loc>
-      <image:title>${escapedName}</image:title>
-      <image:caption>盆栽「${escapedName}」の商品画像</image:caption>
-    </image:image>
-  </url>`
-      })
+  const { articles } = await getArticles({ page: 1, limit: 1000 })
+  for (const article of articles.filter(a => isArticleIndexable(a.slug))) {
+    const override = getArticleOverride(article.slug)
+    const images = new Map<string, string>()
+    const thumb = thumbnailPath(article.slug)
+    if (thumb) images.set(thumb, article.title)
+    if (override?.photo) images.set(override.photo, article.title)
+    // 本文の画像（写真・図解）。説明文（alt）をキャプションにする
+    for (const m of (override?.content ?? '').matchAll(/!\[([^\]]*)\]\((\/images\/[^)\s]+)\)/g)) {
+      if (!images.has(m[2])) images.set(m[2], m[1] || article.title)
     }
+    if (images.size === 0) continue
 
     xmlContent += `
-</urlset>`
-
-    return new NextResponse(xmlContent, {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/xml',
-        'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400'
-      }
-    })
-
-  } catch (error) {
-    console.error('画像サイトマップ生成エラー:', error)
-
-    // エラー時は最小限のXMLを返す
-    const errorXml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-</urlset>`
-
-    return new NextResponse(errorXml, {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/xml'
-      }
-    })
+  <url>
+    <loc>${baseUrl}/guides/${article.slug}</loc>${Array.from(images, ([src, caption]) => `
+    <image:image>
+      <image:loc>${escapeXml(absolute(src))}</image:loc>
+      <image:caption>${escapeXml(caption)}</image:caption>
+    </image:image>`).join('')}
+  </url>`
   }
+
+  xmlContent += `
+</urlset>`
+
+  return new NextResponse(xmlContent, {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/xml',
+      'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400'
+    }
+  })
 }
