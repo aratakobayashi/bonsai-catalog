@@ -154,6 +154,147 @@ const DIAGRAMS = {
   <div class="item card"><b>添え</b><span>下草（山野草の鉢）や小さな置物。主木より小さく低く</span></div>
   <div class="item card"><b>掛け軸</b><span>季節の景色を補います。なくても主木と添えで十分</span></div>
 </div>`),
+  // 盆栽を贈る前に確かめたい5つのこと
+  'gift-check-five': () => checklist('盆栽を贈る前に確かめたい5つのこと', '5つがそろえば、贈ったあとも長く楽しんでもらえます', [
+    ['置き場所', '日の当たるベランダや庭、玄関先があるか'],
+    ['世話', '土が乾いたら水をやれるか。家を長く空けないか'],
+    ['大きさと重さ', '置き場所に収まり、持ち運べる重さか'],
+    ['好み', '花・実・紅葉・緑のどれが好きそうか'],
+    ['届く日', '相手が受け取れる日に届けられるか'],
+  ], '※ 屋外に置き場所がない方には、室内で育てやすい樹や苔玉を選びます。'),
+
+  // 女性へのプレゼントに選ばれる樹の見ごろ
+  'gift-women-season': () => monthChart('贈りやすい花もの・実ものの見ごろ', '数字は月。贈る時期に合わせて選びます', [
+    ['梅', [[1, 3, 'f']]],
+    ['桜', [[3, 4, 'f']]],
+    ['長寿梅', [[3, 5, 'f'], [9, 10, 'f2']]],
+    ['姫りんご', [[4, 4, 'f'], [9, 11, 'm']]],
+    ['サツキ', [[5, 6, 'f']]],
+    ['南天など', [[10, 12, 'm'], [1, 2, 'm']]],
+  ], '※ 見ごろは目安です。長寿梅の秋の花は、咲かない年もあります。'),
+
+  // 置き場所で決める盆栽の大きさ（男性へのプレゼント）
+  'gift-size-by-place': () => {
+    const tree = (x, h, pot) => {
+      const top = 300 - h
+      return `<path d="M${x} 300 C${x - 4} ${300 - h * .45} ${x + 8} ${300 - h * .7} ${x} ${top + 20}" stroke="${C.soil}" stroke-width="${pot / 9}" fill="none" stroke-linecap="round"/>
+      <ellipse cx="${x - pot * .32}" cy="${top + h * .42}" rx="${pot * .34}" ry="${h * .12}" fill="${C.green}"/><ellipse cx="${x + pot * .3}" cy="${top + h * .3}" rx="${pot * .32}" ry="${h * .11}" fill="${C.green}"/><ellipse cx="${x}" cy="${top + h * .12}" rx="${pot * .42}" ry="${h * .15}" fill="${C.green}"/>
+      <path d="M${x - pot / 2} 300 H${x + pot / 2} L${x + pot / 2 - 8} ${300 + pot * .22} H${x - pot / 2 + 8} Z" fill="${C.pot}"/>`
+    }
+    return base(`<h1>置き場所で決める盆栽の大きさ</h1>
+<p class="lead">贈る前に、相手の家に屋外の置き場所があるかを確かめます</p>
+<style>.fig{display:block;margin-top:24px}.legend{margin-top:16px;display:flex;flex-direction:column;gap:10px}.item{padding:14px 20px}.item b{display:block;font-size:22px;line-height:1.4}.item span{display:block;font-size:20px;color:${C.sub};line-height:1.5;margin-top:4px}</style>
+<svg class="fig card" viewBox="0 0 648 380" width="648" height="380" font-family="Noto Sans JP">
+  <line x1="20" y1="300" x2="628" y2="300" stroke="#e6dfd2" stroke-width="2"/>
+  ${tree(118, 210, 150)}${tree(330, 140, 110)}
+  <path d="M530 300 C526 270 512 262 518 240" stroke="${C.soil}" stroke-width="16" fill="none" stroke-linecap="round"/><path d="M518 300 C510 286 500 282 494 280 M540 300 C548 288 556 284 562 282" stroke="${C.soil}" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="522" cy="214" rx="56" ry="36" fill="#6f9a52"/>
+  <path d="M482 300 H578 L572 322 H488 Z" fill="#c9b9a0"/>
+  <g font-size="22" font-weight="700" fill="${C.ink}" text-anchor="middle"><text x="118" y="356">高さ25〜40cm</text><text x="330" y="356">高さ15〜25cm</text><text x="530" y="356">室内向きの樹</text></g>
+</svg>
+<div class="legend">
+  <div class="item card"><b>庭・広いベランダ</b><span>存在感のある小品〜中品盆栽</span></div>
+  <div class="item card"><b>マンションのベランダ</b><span>小品盆栽。手すりの内側に置ける大きさ</span></div>
+  <div class="item card"><b>屋外に置き場所がない</b><span>ガジュマルなどの室内向きの樹や苔玉</span></div>
+</div>`)
+  },
+
+  // 開店祝い：置き場所で選ぶ樹
+  'opening-gift-place': () => base(`<h1>開店祝いは「どこに置くか」で選ぶ</h1>
+<p class="lead">盆栽の多くは屋外の樹。置き場所に合う樹を選びます</p>
+<style>.two{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px}.pane{padding:20px 18px;text-align:center}.pane svg{display:block;margin:0 auto 10px}.pane b{display:block;font-size:26px;line-height:1.4}.pane .t{display:block;margin-top:10px;font-size:22px;line-height:1.55;color:${C.sub};text-align:left}.tag{display:inline-block;margin-top:12px;background:#eef3ea;color:#3f5c2e;border-radius:12px;padding:6px 14px;font-size:22px;font-weight:700}
+.avoid{margin-top:16px;padding:18px 22px}.avoid b{font-size:24px;color:#a2463e}.avoid ul{margin:8px 0 0;padding-left:1.2em;font-size:22px;line-height:1.7;color:${C.sub}}</style>
+<div class="two">
+  <div class="pane card"><svg width="200" height="130" viewBox="0 0 200 130"><rect x="30" y="10" width="140" height="100" fill="#f3f7fb" stroke="${C.sub}" stroke-width="4"/><line x1="100" y1="10" x2="100" y2="110" stroke="${C.sub}" stroke-width="3"/><path d="M40 10 q14 50 0 100 h22 q14 -50 0 -100z M108 10 q14 50 0 100 h22 q14 -50 0 -100z" fill="#fff" stroke="#e3ddd2" stroke-width="2"/><circle cx="160" cy="26" r="12" fill="#f0c95a"/></svg>
+    <b>窓のある明るい店内・受付</b><span class="tag">ガジュマル・苔玉</span><span class="t">室内で育てやすい樹を選びます。受け皿付きだと安心</span></div>
+  <div class="pane card"><svg width="200" height="130" viewBox="0 0 200 130"><path d="M20 30 H180 L168 56 H32 Z" fill="${C.gold}"/><path d="M32 56 q12 10 24 0 q12 10 24 0 q12 10 24 0 q12 10 24 0 q12 10 24 0" fill="none" stroke="${C.gold}" stroke-width="4"/><rect x="40" y="62" width="120" height="58" fill="#f6f1e8" stroke="${C.sub}" stroke-width="3"/><rect x="84" y="74" width="32" height="46" fill="#e6dccb" stroke="${C.sub}" stroke-width="3"/></svg>
+    <b>入口の軒下・店先</b><span class="tag">真柏・松・長寿梅</span><span class="t">日が当たり、雨風をある程度しのげれば屋外の樹も育ちます</span></div>
+</div>
+<div class="avoid card"><b>避けておくと安心なこと</b><ul><li>真っ赤な鉢や包装（火事を連想させるとされる）</li><li>冬に葉を落とした姿の樹（枯れたと受け取られることも）</li><li>毎日の手入れが欠かせない樹</li></ul></div>`),
+
+  // 長寿祝いの年齢と色
+  'kanreki-age-colors': () => {
+    const items = [['還暦', '60歳', '#c8433a', '赤', '#fff'], ['古希', '70歳', '#7d5a9e', '紫', '#fff'], ['喜寿', '77歳', '#7d5a9e', '紫', '#fff'], ['傘寿', '80歳', '#d9a43a', '黄・金茶', C.ink], ['米寿', '88歳', '#d9a43a', '黄・金茶', C.ink], ['白寿', '99歳', '#ffffff', '白', C.ink]]
+    return base(`<h1>長寿祝いの年齢とお祝いの色</h1>
+<p class="lead">色は、鉢や花の色で取り入れると選びやすくなります</p>
+<style>.grid{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.it{padding:20px 10px 18px;text-align:center}.dot{width:104px;height:104px;margin:0 auto;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:3px solid #e3dccf}.dot b{font-size:30px;line-height:1.2}.dot span{font-size:20px}.it .c{display:block;margin-top:12px;font-size:23px;font-weight:700}
+.hint{margin-top:16px;padding:16px 22px;font-size:22px;line-height:1.7;color:${C.sub}}.hint b{color:${C.ink}}</style>
+<div class="grid">${items.map(([n, a, bg, c, fg]) => `<div class="it card"><div class="dot" style="background:${bg};color:${fg}"><b>${n}</b><span>${a}</span></div><span class="c">${c}</span></div>`).join('')}</div>
+<div class="hint card"><b>例：</b>還暦には赤い花の長寿梅や朱色の鉢、白寿には白梅や白い鉢</div>
+<p class="note">※ お祝いの色は、地域や家によって違う考え方もあります。</p>`)
+  },
+
+  // 退職祝い：手渡すか、届けるか
+  'retirement-handover': () => base(`<h1>送別会で手渡すか、自宅に届けるか</h1>
+<p class="lead">渡し方で、選ぶ大きさと準備が変わります</p>
+<style>.two{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px}.pane{padding:20px 18px}.pane h2{margin:0;font-size:27px;text-align:center}.size{margin:12px 0 14px;text-align:center;background:#f5efe4;border-radius:12px;padding:8px;font-size:22px;font-weight:700}.pane ol{margin:0;padding:0;list-style:none;counter-reset:s}.pane li{position:relative;padding:0 0 14px 44px;font-size:21px;line-height:1.55;color:${C.sub}}.pane li b{display:block;color:${C.ink};font-size:22px}.pane li:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:2px;width:32px;height:32px;border-radius:50%;background:${C.gold};color:#fff;font-weight:700;font-size:19px;display:flex;align-items:center;justify-content:center}</style>
+<div class="two">
+  <div class="pane card"><h2>手渡す</h2><div class="size">高さ20cmほどまで</div><ol>
+    <li><b>2〜3週間前</b>樹と予算を決めて注文。連名もまとめる</li>
+    <li><b>前日まで</b>箱から出して、明るい場所で休ませる</li>
+    <li><b>当日</b>水やりは控えめに。箱ごと手提げ袋へ</li></ol></div>
+  <div class="pane card"><h2>自宅に届ける</h2><div class="size">大きさは自由</div><ol>
+    <li><b>注文前</b>受け取れる日を本人や家族に確かめる</li>
+    <li><b>注文時</b>配達日を指定する</li>
+    <li><b>届いたら</b>すぐ箱から出し、明るい日陰で休ませてから水を</li></ol></div>
+</div>
+<p class="note">※ 電車で帰る方も多いので、手渡しなら持ち帰りやすい大きさと重さにします。</p>`),
+
+  // お歳暮の盆栽を届けるまでの流れ
+  'oseibo-schedule': () => flow('お歳暮の盆栽を届けるまでの流れ', '12月は配送が混み合うので、早めに動きます', [
+    ['11月中旬〜下旬', '選ぶ', '贈る相手と樹を決め、予算の範囲で商品を選ぶ'],
+    ['12月上旬', '注文する', '受け取れる日を確かめてから、配達日を指定する'],
+    ['12月20日ごろまで', '届ける', '年末に休業するショップもあるので発送予定を確認'],
+  ], `<div class="late card"><b>間に合わなかったとき</b><div class="row"><span>年明け〜松の内</span><em>「御年賀」</em></div><div class="row"><span>松の内〜立春（2月4日ごろ）</span><em>「寒中御見舞」</em></div></div>`, '※ 松の内は地域により1月7日または15日までです。'),
+
+  // クリスマスの盆栽を室内に飾る日数
+  'christmas-indoor-days': () => dayStrip('クリスマスに室内へ飾るのは2〜3日', '当日を中心に飾り、ほかの日は屋外の明るい軒下に戻します', [
+    ['12/22', 'out'], ['12/23', 'in'], ['12/24', 'in'], ['12/25', 'in'], ['12/26', 'out'], ['12/27', 'out'],
+  ], { in: ['室内', '#cf4f5c', '#fff'], out: ['屋外', '#e8efe2', '#3f5c2e'] }, `<div class="after card"><b>そのあとは</b>オーナメントを外して、南天や真柏をそのまま正月の飾りに</div>`, '※ 屋外に戻すときは、日中の暖かい時間にすると樹の負担が少なくなります。'),
+
+  // 正月飾りを飾る日と片付ける日
+  'new-year-display-dates': () => dayStrip('盆栽を正月に飾る日の目安', '28日ごろまでに飾り、松の内を目安に片付けます', [
+    ['12/27', 'ok'], ['12/28', 'best'], ['12/29', 'avoid'], ['12/30', 'ok'], ['12/31', 'avoid'],
+  ], { best: ['よい日', '#b8935a', '#fff'], ok: ['飾れる', '#e8efe2', '#3f5c2e'], avoid: ['避ける家も', '#f3e3e0', '#a2463e'] }, `<div class="after card"><b>12/28</b>「八」が末広がりで縁起がよいとされる<br><b>12/29</b>「苦」に通じるとして避けることがある<br><b>12/31</b>「一夜飾り」として避けることがある<br><b>片付け</b>松の内（1月7日または15日）が目安</div>`, '※ 習わしは家や地域によって違います。樹のためには、室内に置く日数を短くします。'),
+
+  // 種から育てる盆栽の成長の目安
+  'kit-growth-timeline': () => flow('種から盆栽らしくなるまでの目安', '何年もかけて、少しずつ形を作っていきます', [
+    ['数週間〜数か月', '発芽', '種類によって早さに大きな差がある'],
+    ['1年目', '苗を育てる', '真夏の水切れと冬の凍結を防いで、冬越しさせる'],
+    ['2〜3年目', '植え替え', '1本ずつ鉢に植え替え、幹を太らせる'],
+    ['3〜5年目以降', '形を作る', '剪定や針金かけで樹形を整えていく'],
+  ], '', '※ 育ち方は樹の種類や環境で大きく変わります。毎年同じ時期に写真を撮ると成長がよく分かります。'),
+}
+
+// 番号付きの確認リスト
+const checklist = (title, lead, items, note) => base(`<h1>${title}</h1><p class="lead">${lead}</p>
+<style>.list{margin-top:24px;display:flex;flex-direction:column;gap:12px}.li{display:flex;gap:16px;align-items:center;padding:16px 20px}.li b{display:block;font-size:26px;line-height:1.4}.li span.t{display:block;font-size:22px;color:${C.sub};line-height:1.5}</style>
+<div class="list">${items.map(([h, t], i) => `<div class="li card"><span class="k" style="background:${C.gold}">${i + 1}</span><div><b>${h}</b><span class="t">${t}</span></div></div>`).join('')}</div>
+<p class="note">${note}</p>`)
+
+// 時期つきの縦の流れ
+const flow = (title, lead, steps, extra, note) => base(`<h1>${title}</h1><p class="lead">${lead}</p>
+<style>.flow{margin-top:24px;display:flex;flex-direction:column}.st{display:grid;grid-template-columns:200px 1fr;gap:16px;align-items:center;padding:16px 20px}.when{background:#f5efe4;border-radius:12px;padding:10px 8px;text-align:center;font-size:21px;font-weight:700;color:#7a5a2c;line-height:1.35}.st b{display:block;font-size:27px;line-height:1.35}.st span{display:block;font-size:21px;color:${C.sub};line-height:1.5;margin-top:2px}.down{width:0;height:0;margin:6px auto;border-left:14px solid transparent;border-right:14px solid transparent;border-top:14px solid ${C.gold}}
+.late{margin-top:16px;padding:16px 22px}.late b{display:block;font-size:24px;margin-bottom:6px}.late .row{display:flex;justify-content:space-between;font-size:22px;line-height:1.8;color:${C.sub}}.late em{font-style:normal;font-weight:700;color:${C.ink}}</style>
+<div class="flow">${steps.map(([w, h, t], i) => `${i ? '<div class="down"></div>' : ''}<div class="st card"><div class="when">${w}</div><div><b>${h}</b><span>${t}</span></div></div>`).join('')}</div>${extra}
+<p class="note">${note}</p>`)
+
+// 日付の帯
+const dayStrip = (title, lead, days, kinds, extra, note) => base(`<h1>${title}</h1><p class="lead">${lead}</p>
+<style>.strip{margin-top:24px;padding:18px 14px;display:grid;grid-template-columns:repeat(${days.length},1fr);gap:8px}.d{border-radius:14px;padding:14px 4px;text-align:center}.d b{display:block;font-size:24px}.d span{display:block;margin-top:6px;font-size:19px;font-weight:700;line-height:1.3}
+.after{margin-top:16px;padding:16px 22px;font-size:22px;line-height:1.8;color:${C.sub}}.after b{color:${C.ink};margin-right:10px}</style>
+<div class="strip card">${days.map(([d, k]) => `<div class="d" style="background:${kinds[k][1]};color:${kinds[k][2]}"><b>${d}</b><span>${kinds[k][0]}</span></div>`).join('')}</div>${extra}
+<p class="note">${note}</p>`)
+
+// 12か月の見ごろ表（f:花 f2:咲くことがある花 m:実）
+const monthChart = (title, lead, rows, note) => {
+  const col = 40, color = { f: '#ec9fb4', f2: '#f6d3dd', m: '#cf4f5c' }
+  return base(`<h1>${title}</h1><p class="lead">${lead}</p>
+<style>.mc{margin-top:24px;padding:14px 16px 10px}.r{display:grid;grid-template-columns:120px ${col * 12}px;align-items:center;height:60px;border-top:2px solid #f0eadf}.r.h{height:40px;border-top:0;font-size:19px;color:${C.sub};font-weight:500}.n{font-size:23px;font-weight:700}.tr{position:relative;height:100%;display:grid;grid-template-columns:repeat(12,${col}px)}.tr span{border-left:2px dashed #ece5d8}.h .tr span{border:0;text-align:center;line-height:40px}.b{position:absolute;top:14px;bottom:14px;border-radius:16px}
+.lg{display:flex;gap:22px;margin-top:14px;font-size:21px;color:${C.sub}}.lg i{display:inline-block;width:30px;height:18px;border-radius:9px;margin-right:8px;vertical-align:-2px}</style>
+<div class="mc card"><div class="r h"><div></div><div class="tr">${Array.from({ length: 12 }, (_, i) => `<span>${i + 1}</span>`).join('')}</div></div>
+${rows.map(([n, bars]) => `<div class="r"><div class="n">${n}</div><div class="tr">${Array.from({ length: 12 }, () => '<span></span>').join('')}${bars.map(([s, e, k]) => `<div class="b" style="left:${(s - 1) * col + 3}px;width:${(e - s + 1) * col - 6}px;background:${color[k]}"></div>`).join('')}</div></div>`).join('')}</div>
+<div class="lg"><span><i style="background:${color.f}"></i>花</span><span><i style="background:${color.f2}"></i>咲くことがある花</span><span><i style="background:${color.m}"></i>実</span></div>
+<p class="note">${note}</p>`)
 }
 
 const names = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(DIAGRAMS)
