@@ -1,5 +1,5 @@
 import { prefectureAreaHref, prefectureSlug } from '@/lib/prefectures'
-import { gardenShop, verifiedOnlineSales } from '@/lib/garden-shops'
+import { gardenShop, liveWebsite, shopLabel, verifiedOnlineSales } from '@/lib/garden-shops'
 import { Metadata } from 'next'
 import { notFound, permanentRedirect } from 'next/navigation'
 import { GARDEN_VERIFIED_AT, getGardenSources, isGardenHiddenId, isGardenPublished } from '@/lib/garden-verification'
@@ -58,7 +58,7 @@ async function getGarden(id: string): Promise<Garden | null> {
   }
 
   const garden = data as unknown as Garden
-  return { ...garden, online_sales: verifiedOnlineSales(garden.id, garden.online_sales) }
+  return { ...garden, website_url: liveWebsite(garden.id, garden.website_url), online_sales: verifiedOnlineSales(garden.id, garden.online_sales) }
 }
 
 // 園の取り扱い（specialties）のうち、通販のカテゴリ（/products/category/[slug]）と名前が一致するもの
@@ -409,7 +409,7 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
             {garden.experience_programs && <InfoRow label="体験・教室">あり</InfoRow>}
             {shop ? (
               <InfoRow label="通販">
-                <a href={shop.url} target="_blank" rel="noopener noreferrer" data-garden-shop={garden.id} className={linkClass}>{shop.type}で購入できます ↗</a>
+                <a href={shop.url} target="_blank" rel="noopener noreferrer" data-garden-shop={garden.id} className={linkClass}>{shopLabel(shop)} ↗</a>
               </InfoRow>
             ) : (
               garden.online_sales && <InfoRow label="購入">オンライン購入可</InfoRow>

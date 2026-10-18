@@ -7,6 +7,8 @@ interface ShopEntry {
   url: string | null
   type?: string | null
   checkedAt: string
+  // 公式サイトが表示されない（ドメインが切れているなど）
+  websiteDead?: boolean
 }
 
 export interface GardenShop {
@@ -25,4 +27,15 @@ export function gardenShop(id: string): GardenShop | null {
 export function verifiedOnlineSales(id: string, fallback: boolean | null | undefined): boolean {
   const entry = SHOPS[id]
   return entry ? Boolean(entry.url) : Boolean(fallback)
+}
+
+// 公式サイトが表示されなくなった園は、リンクを出さない
+export function liveWebsite(id: string, url: string | null | undefined): string | undefined {
+  return url && !SHOPS[id]?.websiteDead ? url : undefined
+}
+
+// 園のページに出すリンクの文言（「楽天市場のショップを見る」など）
+export function shopLabel(shop: GardenShop): string {
+  const m = shop.type.match(/^自社通販(（.+）)?$/)
+  return m ? `公式の通販サイト${m[1] ?? ''}を見る` : `${shop.type}のショップを見る`
 }
