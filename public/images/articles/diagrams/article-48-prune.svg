@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 510" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>ニレケヤキの切り戻し：伸びた枝を2〜3節残して切ると、その下から小枝が出る</title>
   <defs>
     <ellipse id="lf" cx="13" cy="0" rx="13" ry="6.5"/>
   </defs>
-  <rect width="800" height="470" fill="#faf9f6"/>
+  <rect width="800" height="510" fill="#faf7f0"/>
 
   <!-- ① 伸びる -->
-  <rect x="20" y="20" width="244" height="430" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
-  <text x="142" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">① 枝が伸びる</text>
+  <rect x="20" y="20" width="244" height="430" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+  <text x="142" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#2c2a26">① 枝が伸びる</text>
   <path d="M60 390 Q100 380 120 340 Q150 270 150 110" stroke="#6f5439" stroke-width="5" fill="none" stroke-linecap="round"/>
   <g fill="#5b7f4a">
     <use href="#lf" transform="translate(126 320) rotate(-150)"/><use href="#lf" transform="translate(131 300) rotate(-20)"/>
@@ -19,7 +19,7 @@
 
   <!-- ② 切る -->
   <rect x="278" y="20" width="244" height="430" rx="14" fill="#fff" stroke="#b8935a" stroke-width="3"/>
-  <text x="400" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">② 2〜3節で切る</text>
+  <text x="400" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#2c2a26">② 2〜3節で切る</text>
   <path d="M318 390 Q358 380 378 340 Q404 280 406 250" stroke="#6f5439" stroke-width="5" fill="none" stroke-linecap="round"/>
   <path d="M406 250 Q408 200 408 110" stroke="#6f5439" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.25"/>
   <g fill="#5b7f4a">
@@ -32,11 +32,11 @@
   </g>
   <line x1="350" y1="248" x2="462" y2="248" stroke="#b8935a" stroke-width="4" stroke-dasharray="10 6"/>
   <text x="470" y="256" font-size="22" font-weight="700" fill="#b8935a">切る</text>
-  <text x="400" y="428" text-anchor="middle" font-size="22" fill="#1a365d">芽の少し上で切る</text>
+  <text x="400" y="428" text-anchor="middle" font-size="22" fill="#2c2a26">芽の少し上で切る</text>
 
   <!-- ③ 小枝 -->
-  <rect x="536" y="20" width="244" height="430" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
-  <text x="658" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#22201c">③ 小枝が増える</text>
+  <rect x="536" y="20" width="244" height="430" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+  <text x="658" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="#2c2a26">③ 小枝が増える</text>
   <path d="M576 390 Q616 380 636 340 Q662 280 664 250" stroke="#6f5439" stroke-width="5" fill="none" stroke-linecap="round"/>
   <g stroke="#6f5439" stroke-width="3.5" fill="none" stroke-linecap="round">
     <path d="M664 252 Q690 220 712 196"/><path d="M660 262 Q630 230 612 206"/><path d="M646 312 Q690 300 716 286"/>
@@ -48,4 +48,4 @@
     <use href="#lf" transform="translate(716 286) rotate(-20)"/><use href="#lf" transform="translate(690 300) rotate(-110)"/>
   </g>
   <text x="658" y="428" text-anchor="middle" font-size="22" fill="#6b655b">枝先が細かくなる</text>
-</svg>
+<text x="776" y="494" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

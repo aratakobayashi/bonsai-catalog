@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>盆栽は樹の上の方と枝先ほど勢いが強く、下の枝や内側の枝は弱くなりやすい。強い所は早めに摘み、弱い所はしばらく伸ばす</title>
-  <rect width="800" height="480" fill="#faf9f6"/>
-  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">樹の上と枝先ほど強く伸びる</text>
+  <rect width="800" height="520" fill="#faf7f0"/>
+  <text x="24" y="44" font-size="30" font-weight="700" fill="#2c2a26">樹の上と枝先ほど強く伸びる</text>
   <rect x="146" y="384" width="228" height="9" rx="3" fill="#6f5439"/>
   <path d="M150 392 h220 l-10 66 h-200 z" fill="#8b6b4a"/>
   <path d="M252 386 q-10 -80 8 -150 q10 -50 0 -110" stroke="#6f5439" stroke-width="20" fill="none" stroke-linecap="round"/>
@@ -17,11 +17,11 @@
   <line x1="418" y1="192" x2="456" y2="182" stroke="#b4573a" stroke-width="4" stroke-linecap="round"/>
   <path d="M446 192 L456 182 L442 179" fill="none" stroke="#b4573a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
   <rect x="500" y="90" width="280" height="150" rx="14" fill="#fff" stroke="#b4573a" stroke-width="3"/>
-  <text x="640" y="134" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">上・枝先</text>
+  <text x="640" y="134" font-size="25" text-anchor="middle" font-weight="700" fill="#2c2a26">上・枝先</text>
   <text x="640" y="172" font-size="22" text-anchor="middle" fill="#b4573a">勢いが強い</text>
-  <text x="640" y="208" font-size="22" text-anchor="middle" fill="#22201c">早めに摘む</text>
+  <text x="640" y="208" font-size="22" text-anchor="middle" fill="#2c2a26">早めに摘む</text>
   <rect x="500" y="262" width="280" height="150" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
-  <text x="640" y="306" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">下・内側</text>
+  <text x="640" y="306" font-size="25" text-anchor="middle" font-weight="700" fill="#2c2a26">下・内側</text>
   <text x="640" y="344" font-size="22" text-anchor="middle" fill="#5b7f4a">勢いが弱い</text>
-  <text x="640" y="380" font-size="22" text-anchor="middle" fill="#22201c">しばらく伸ばす</text>
-</svg>
+  <text x="640" y="380" font-size="22" text-anchor="middle" fill="#2c2a26">しばらく伸ばす</text>
+<text x="776" y="504" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

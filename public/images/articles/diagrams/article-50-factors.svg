@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>盆栽の値段を左右するところ。幹の太さと太り方、根張り、枝の数と配置、鉢、そして仕立てにかかった年数と樹種</title>
-  <rect width="800" height="500" fill="#faf9f6"/>
-  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">値段を左右するところ</text>
+  <rect width="800" height="540" fill="#faf7f0"/>
+  <text x="24" y="44" font-size="30" font-weight="700" fill="#2c2a26">値段を左右するところ</text>
 
   <!-- 樹 -->
   <g fill="#5b7f4a">
@@ -18,13 +18,13 @@
   <rect x="160" y="378" width="260" height="12" rx="4" fill="#6f5439"/>
 
   <!-- 引き出し線 -->
-  <g stroke="#1a365d" stroke-width="2.5" fill="#1a365d">
+  <g stroke="#b8935a" stroke-width="2.5" fill="#b8935a">
     <line x1="306" y1="320" x2="470" y2="320"/><circle cx="306" cy="320" r="5"/>
     <line x1="330" y1="380" x2="470" y2="388"/><circle cx="330" cy="380" r="5"/>
     <line x1="372" y1="222" x2="470" y2="200"/><circle cx="372" cy="222" r="5"/>
     <line x1="400" y1="420" x2="470" y2="448"/><circle cx="400" cy="420" r="5"/>
   </g>
-  <g font-size="24" font-weight="700" fill="#22201c">
+  <g font-size="24" font-weight="700" fill="#2c2a26">
     <text x="480" y="208">枝の数と配置</text>
     <text x="480" y="328">幹の太さ・太り方</text>
     <text x="480" y="396">根張り</text>
@@ -36,6 +36,6 @@
     <text x="518" y="456">作家物や古い鉢は高め</text>
   </g>
   <rect x="470" y="84" width="310" height="72" rx="12" fill="#f3f0ea"/>
-  <text x="625" y="114" text-anchor="middle" font-size="22" fill="#22201c">見えない要素：</text>
-  <text x="625" y="144" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">育てた年数と樹種</text>
-</svg>
+  <text x="625" y="114" text-anchor="middle" font-size="22" fill="#2c2a26">見えない要素：</text>
+  <text x="625" y="144" text-anchor="middle" font-size="22" font-weight="700" fill="#2c2a26">育てた年数と樹種</text>
+<text x="776" y="524" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

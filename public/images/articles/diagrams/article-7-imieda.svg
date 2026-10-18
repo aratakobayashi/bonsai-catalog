@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>剪定で元から切ることが多い枝。真上に伸びる立ち枝、下を向く下がり枝、幹のほうへ戻る逆さ枝、ほかの枝と交差する交差枝、同じ高さから何本も出る車枝、勢いよく長く伸びる徒長枝</title>
-  <rect width="800" height="500" fill="#faf9f6"/>
-  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">切ることが多い枝</text>
+  <rect width="800" height="540" fill="#faf7f0"/>
+  <text x="24" y="44" font-size="30" font-weight="700" fill="#2c2a26">切ることが多い枝</text>
 
   <!-- 幹と良い枝 -->
   <g stroke="#6f5439" stroke-linecap="round" fill="none">
@@ -34,7 +34,7 @@
     <line x1="360" y1="320" x2="520" y2="290"/>
     <line x1="400" y1="70" x2="520" y2="110"/>
   </g>
-  <g font-size="24" font-weight="700" fill="#22201c">
+  <g font-size="24" font-weight="700" fill="#2c2a26">
     <text x="20" y="276">立ち枝</text>
     <text x="20" y="410">逆さ枝</text>
     <text x="530" y="118">徒長枝</text>
@@ -51,5 +51,5 @@
     <text x="530" y="398">下を向く</text>
   </g>
   <rect x="530" y="430" width="250" height="50" rx="10" fill="#f3f0ea"/>
-  <text x="655" y="463" text-anchor="middle" font-size="22" fill="#22201c"><tspan fill="#b4573a" font-weight="700">赤</tspan>：元から切る候補</text>
-</svg>
+  <text x="655" y="463" text-anchor="middle" font-size="22" fill="#2c2a26"><tspan fill="#b4573a" font-weight="700">赤</tspan>：元から切る候補</text>
+<text x="776" y="524" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

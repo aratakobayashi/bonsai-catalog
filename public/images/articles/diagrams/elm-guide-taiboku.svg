@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>大木らしく見える3つの条件</title>
-  <rect width="800" height="500" fill="#faf9f6"/>
-  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">大木らしく見える3つの条件</text>
+  <rect width="800" height="540" fill="#faf7f0"/>
+  <text x="24" y="44" font-size="30" font-weight="700" fill="#2c2a26">大木らしく見える3つの条件</text>
 
   <!-- 樹冠 -->
   <path d="M90 250 Q100 120 250 96 Q400 120 410 250 Z" fill="#5b7f4a" fill-opacity="0.25"/>
@@ -23,7 +23,7 @@
   <rect x="120" y="414" width="260" height="34" rx="4" fill="#8b6b4a"/>
 
   <!-- ラベル -->
-  <g fill="#1a365d" font-size="26" font-weight="700">
+  <g fill="#b8935a" font-size="26" font-weight="700">
     <circle cx="470" cy="150" r="20" fill="#b8935a"/><text x="470" y="159" text-anchor="middle" fill="#fff" font-size="24">3</text>
     <circle cx="470" cy="270" r="20" fill="#b8935a"/><text x="470" y="279" text-anchor="middle" fill="#fff" font-size="24">2</text>
     <circle cx="470" cy="390" r="20" fill="#b8935a"/><text x="470" y="399" text-anchor="middle" fill="#fff" font-size="24">1</text>
@@ -33,7 +33,7 @@
     <line x1="290" y1="300" x2="448" y2="270"/>
     <line x1="350" y1="408" x2="448" y2="390"/>
   </g>
-  <g font-size="26" font-weight="700" fill="#22201c">
+  <g font-size="26" font-weight="700" fill="#2c2a26">
     <text x="502" y="146">枝の細かさ</text>
     <text x="502" y="266">幹の細り方</text>
     <text x="502" y="386">根張り</text>
@@ -43,4 +43,4 @@
     <text x="502" y="298">根元が太く、上へ細る</text>
     <text x="502" y="418">四方に太い根が張る</text>
   </g>
-</svg>
+<text x="776" y="524" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>舎利とジンの見分け方</title>
-  <rect width="800" height="480" fill="#faf9f6"/>
-  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">舎利とジン</text>
-  <rect x="20" y="70" width="460" height="390" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect width="800" height="520" fill="#faf7f0"/>
+  <text x="24" y="46" font-size="30" font-weight="700" fill="#2c2a26">舎利とジン</text>
+  <rect x="20" y="70" width="460" height="390" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
   <!-- pot -->
   <path d="M120 400 h240 l-18 36 h-204 z" fill="#8b6b4a"/>
   <!-- trunk living (brown) and shari (white) -->
@@ -21,7 +21,7 @@
     <line x1="232" y1="96" x2="520" y2="110"/>
     <line x1="316" y1="194" x2="520" y2="200"/>
   </g>
-  <g font-size="24" font-weight="700" fill="#22201c">
+  <g font-size="24" font-weight="700" fill="#2c2a26">
     <text x="530" y="118">ジン（幹先）</text>
     <text x="530" y="208">ジン（枝）</text>
     <text x="530" y="308">舎利（幹）</text>
@@ -32,4 +32,4 @@
     <text x="530" y="336">幹の一部が白い</text>
     <text x="530" y="364">生きた部分と並ぶ</text>
   </g>
-</svg>
+<text x="776" y="504" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

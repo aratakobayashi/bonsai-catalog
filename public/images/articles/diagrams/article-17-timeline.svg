@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 640" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 680" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>盆栽の歴史の年表</title>
-  <rect width="800" height="640" fill="#faf9f6"/>
-  <text x="20" y="46" font-size="30" font-weight="700" fill="#1a365d">盆栽の歩み（おもな出来事）</text>
-  <line x1="190" y1="80" x2="190" y2="620" stroke="#ebe7df" stroke-width="6"/>
+  <rect width="800" height="680" fill="#faf7f0"/>
+  <text x="24" y="46" font-size="30" font-weight="700" fill="#2c2a26">盆栽の歩み（おもな出来事）</text>
+  <line x1="190" y1="80" x2="190" y2="620" stroke="#d9d1c3" stroke-width="6"/>
   <g fill="#b8935a">
     <circle cx="190" cy="104" r="11"/><circle cx="190" cy="168" r="11"/><circle cx="190" cy="232" r="11"/>
     <circle cx="190" cy="296" r="11"/><circle cx="190" cy="360" r="11"/><circle cx="190" cy="424" r="11"/>
     <circle cx="190" cy="488" r="11"/><circle cx="190" cy="552" r="11"/>
   </g>
-  <g font-size="23" font-weight="700" fill="#1a365d" text-anchor="end">
+  <g font-size="23" font-weight="700" fill="#b8935a" text-anchor="end">
     <text x="170" y="112">唐の時代</text>
     <text x="170" y="176">鎌倉時代</text>
     <text x="170" y="240">室町時代</text>
@@ -18,7 +18,7 @@
     <text x="170" y="496">1934年</text>
     <text x="170" y="560">1989年</text>
   </g>
-  <g font-size="23" fill="#22201c">
+  <g font-size="23" fill="#2c2a26">
     <text x="214" y="112">中国の壁画に鉢植えの景色が描かれる</text>
     <text x="214" y="176">絵巻に鉢植えの樹が描かれる</text>
     <text x="214" y="240">能『鉢木』で鉢の木が語られる</text>
@@ -29,4 +29,4 @@
     <text x="214" y="560">第1回世界盆栽大会（大宮）</text>
   </g>
   <text x="20" y="612" font-size="22" fill="#6b655b">年代の細部には諸説があります</text>
-</svg>
+<text x="776" y="664" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

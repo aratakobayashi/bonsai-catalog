@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>買う前に見る5つの点</title>
-  <rect width="800" height="500" fill="#faf9f6"/>
-  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">買う前に見る5つの点</text>
+  <rect width="800" height="540" fill="#faf7f0"/>
+  <text x="24" y="46" font-size="30" font-weight="700" fill="#2c2a26">買う前に見る5つの点</text>
   <g transform="translate(-80,0)">
   <path d="M250 380 h220 l-18 70 h-184 z" fill="#8b6b4a"/>
   <rect x="244" y="372" width="232" height="12" rx="3" fill="#6f5439"/>
@@ -13,16 +13,16 @@
   <ellipse cx="370" cy="150" rx="72" ry="40" fill="#5b7f4a"/>
   </g>
   <!-- labels -->
-  <g font-size="23" fill="#22201c">
-    <circle cx="520" cy="120" r="18" fill="#1a365d"/><text x="520" y="128" text-anchor="middle" fill="#faf9f6" font-weight="700">1</text>
+  <g font-size="23" fill="#2c2a26">
+    <circle cx="520" cy="120" r="18" fill="#b8935a"/><text x="520" y="128" text-anchor="middle" fill="#faf7f0" font-weight="700">1</text>
     <text x="548" y="128">葉の色・つや</text>
-    <circle cx="520" cy="200" r="18" fill="#1a365d"/><text x="520" y="208" text-anchor="middle" fill="#faf9f6" font-weight="700">2</text>
+    <circle cx="520" cy="200" r="18" fill="#b8935a"/><text x="520" y="208" text-anchor="middle" fill="#faf7f0" font-weight="700">2</text>
     <text x="548" y="208">枝先が枯れていない</text>
-    <circle cx="520" cy="280" r="18" fill="#1a365d"/><text x="520" y="288" text-anchor="middle" fill="#faf9f6" font-weight="700">3</text>
+    <circle cx="520" cy="280" r="18" fill="#b8935a"/><text x="520" y="288" text-anchor="middle" fill="#faf7f0" font-weight="700">3</text>
     <text x="548" y="288">幹に傷・虫がない</text>
-    <circle cx="520" cy="360" r="18" fill="#1a365d"/><text x="520" y="368" text-anchor="middle" fill="#faf9f6" font-weight="700">4</text>
+    <circle cx="520" cy="360" r="18" fill="#b8935a"/><text x="520" y="368" text-anchor="middle" fill="#faf7f0" font-weight="700">4</text>
     <text x="548" y="368">根元がぐらつかない</text>
-    <circle cx="520" cy="440" r="18" fill="#1a365d"/><text x="520" y="448" text-anchor="middle" fill="#faf9f6" font-weight="700">5</text>
+    <circle cx="520" cy="440" r="18" fill="#b8935a"/><text x="520" y="448" text-anchor="middle" fill="#faf7f0" font-weight="700">5</text>
     <text x="548" y="448">土が乾ききっていない</text>
   </g>
   <g stroke="#6b655b" stroke-width="2">
@@ -33,4 +33,4 @@
     <line x1="500" y1="440" x2="375" y2="410"/>
   </g>
   <text x="30" y="480" font-size="22" fill="#6b655b">ネットでは写真と説明で確かめる</text>
-</svg>
+<text x="776" y="524" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

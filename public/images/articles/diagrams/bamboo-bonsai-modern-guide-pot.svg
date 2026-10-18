@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>竹の鉢の中の地下茎と株分けの位置</title>
-  <rect width="800" height="500" fill="#faf9f6"/>
-  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">鉢の中で地下茎が回る</text>
+  <rect width="800" height="540" fill="#faf7f0"/>
+  <text x="24" y="46" font-size="30" font-weight="700" fill="#2c2a26">鉢の中で地下茎が回る</text>
   <!-- 鉢 -->
   <path d="M90 250 h540 l-30 150 h-480 z" fill="#8b6b4a"/>
   <rect x="84" y="240" width="552" height="16" rx="4" fill="#6f5439"/>
@@ -27,9 +27,9 @@
   <!-- 新しいタケノコ -->
   <path d="M290 326 l12 -50 l12 50 z" fill="#8b6b4a"/>
   <!-- 株分けの線 -->
-  <line x1="345" y1="96" x2="345" y2="414" stroke="#1a365d" stroke-width="4" stroke-dasharray="12 8"/>
+  <line x1="345" y1="96" x2="345" y2="414" stroke="#b8935a" stroke-width="4" stroke-dasharray="12 8"/>
   <!-- ラベル -->
-  <g font-size="22" fill="#22201c">
+  <g font-size="22" fill="#2c2a26">
     <text x="660" y="190">古い稈</text>
     <line x1="656" y1="184" x2="552" y2="200" stroke="#6b655b" stroke-width="2"/>
     <text x="660" y="300">タケノコ</text>
@@ -37,6 +37,6 @@
     <text x="660" y="356">地下茎</text>
     <line x1="656" y1="350" x2="590" y2="344" stroke="#6b655b" stroke-width="2"/>
   </g>
-  <rect x="20" y="430" width="760" height="56" rx="14" fill="#1a365d"/>
-  <text x="400" y="466" text-anchor="middle" font-size="25" font-weight="700" fill="#faf9f6">株分けは芽のついた地下茎ごと、点線のように分ける</text>
-</svg>
+  <rect x="20" y="430" width="760" height="56" rx="14" fill="#a07a42"/>
+  <text x="400" y="466" text-anchor="middle" font-size="25" font-weight="700" fill="#faf7f0">株分けは芽のついた地下茎ごと、点線のように分ける</text>
+<text x="776" y="524" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

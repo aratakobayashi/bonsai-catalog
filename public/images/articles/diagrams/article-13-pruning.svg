@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 510" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>梅の花後の剪定</title>
-  <rect width="800" height="470" fill="#faf9f6"/>
-  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">花が終わったら、2〜3芽残して切る</text>
-  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+  <rect width="800" height="510" fill="#faf7f0"/>
+  <text x="24" y="46" font-size="30" font-weight="700" fill="#2c2a26">花が終わったら、2〜3芽残して切る</text>
+  <g fill="#fff" stroke="#d9d1c3" stroke-width="2">
     <rect x="20" y="70" width="370" height="300" rx="14"/>
     <rect x="410" y="70" width="370" height="300" rx="14"/>
   </g>
-  <text x="205" y="110" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">花が終わった枝</text>
-  <text x="595" y="110" text-anchor="middle" font-size="24" font-weight="700" fill="#22201c">春〜夏に伸びる枝</text>
+  <text x="205" y="110" text-anchor="middle" font-size="24" font-weight="700" fill="#2c2a26">花が終わった枝</text>
+  <text x="595" y="110" text-anchor="middle" font-size="24" font-weight="700" fill="#2c2a26">春〜夏に伸びる枝</text>
   <!-- left: branch -->
   <path d="M60 330 L150 290 L340 170" fill="none" stroke="#8b6b4a" stroke-width="10" stroke-linecap="round"/>
   <g fill="#c98a96">
@@ -29,6 +29,6 @@
   </g>
   <g fill="#5b7f4a"><ellipse cx="640" cy="160" rx="14" ry="8"/><ellipse cx="730" cy="190" rx="14" ry="8"/><ellipse cx="700" cy="210" rx="12" ry="7"/></g>
   <text x="595" y="350" text-anchor="middle" font-size="22" fill="#6b655b">夏に花芽ができる</text>
-  <rect x="20" y="390" width="760" height="62" rx="14" fill="#1a365d"/>
-  <text x="400" y="430" text-anchor="middle" font-size="25" font-weight="700" fill="#faf9f6">7月以降は強く切らない（花芽を落とさない）</text>
-</svg>
+  <rect x="20" y="390" width="760" height="62" rx="14" fill="#a07a42"/>
+  <text x="400" y="430" text-anchor="middle" font-size="25" font-weight="700" fill="#faf7f0">7月以降は強く切らない（花芽を落とさない）</text>
+<text x="776" y="494" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

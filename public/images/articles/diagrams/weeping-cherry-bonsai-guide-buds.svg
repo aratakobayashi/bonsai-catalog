@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>桜の花芽と葉芽の見分け方：丸くふっくらしたのが花芽、細くとがったのが葉芽</title>
-  <rect width="800" height="440" fill="#faf9f6"/>
-  <text x="400" y="46" text-anchor="middle" font-size="28" font-weight="700" fill="#1a365d">冬の枝で見る、花芽と葉芽</text>
+  <rect width="800" height="480" fill="#faf7f0"/>
+  <text x="24" y="46" font-size="28" font-weight="700" fill="#2c2a26">冬の枝で見る、花芽と葉芽</text>
 
   <!-- 枝 -->
   <path d="M60 250 C 220 236, 520 236, 740 220" stroke="#6f5439" stroke-width="10" fill="none" stroke-linecap="round"/>
@@ -20,16 +20,16 @@
   <!-- ラベル -->
   <rect x="80" y="290" width="300" height="120" rx="14" fill="#fff" stroke="#c77d92" stroke-width="3"/>
   <ellipse cx="124" cy="350" rx="16" ry="20" fill="#8b6b4a"/>
-  <text x="156" y="336" font-size="25" font-weight="700" fill="#22201c">花芽</text>
-  <text x="156" y="372" font-size="22" fill="#22201c">丸くふっくら</text>
+  <text x="156" y="336" font-size="25" font-weight="700" fill="#2c2a26">花芽</text>
+  <text x="156" y="372" font-size="22" fill="#2c2a26">丸くふっくら</text>
   <text x="156" y="398" font-size="22" fill="#6b655b">数個ずつ集まる</text>
 
   <rect x="420" y="290" width="300" height="120" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
   <path d="M460 368 C 452 352, 456 334, 464 320 C 472 334, 474 352, 468 368 Z" fill="#5b7f4a"/>
-  <text x="496" y="336" font-size="25" font-weight="700" fill="#22201c">葉芽</text>
-  <text x="496" y="372" font-size="22" fill="#22201c">細くとがる</text>
+  <text x="496" y="336" font-size="25" font-weight="700" fill="#2c2a26">葉芽</text>
+  <text x="496" y="372" font-size="22" fill="#2c2a26">細くとがる</text>
   <text x="496" y="398" font-size="22" fill="#6b655b">枝先や単独でつく</text>
 
   <line x1="218" y1="236" x2="200" y2="290" stroke="#c77d92" stroke-width="2" stroke-dasharray="6 5"/>
   <line x1="322" y1="240" x2="470" y2="290" stroke="#5b7f4a" stroke-width="2" stroke-dasharray="6 5"/>
-</svg>
+<text x="776" y="464" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

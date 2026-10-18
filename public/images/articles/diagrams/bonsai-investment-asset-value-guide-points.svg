@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 510" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>盆栽の値打ちを見るときの見どころ（樹冠、枝順、幹、立ち上がり、根張り、鉢）</title>
-  <rect width="800" height="470" fill="#faf9f6"/>
-  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">見られるところ</text>
+  <rect width="800" height="510" fill="#faf7f0"/>
+  <text x="24" y="44" font-size="30" font-weight="700" fill="#2c2a26">見られるところ</text>
   <path d="M70 392 h300 l-22 52 h-256 z" fill="#8b6b4a"/>
   <rect x="62" y="384" width="316" height="14" rx="4" fill="#6f5439"/>
   <path d="M150 386 q40 -16 70 -40 q30 24 72 40 z" fill="#6f5439"/>
@@ -15,20 +15,20 @@
   <ellipse cx="232" cy="112" rx="66" ry="30" fill="#5b7f4a"/>
   <circle cx="232" cy="96" r="6" fill="#b8935a"/>
   <path d="M232 96 L470 110 H490" stroke="#b8935a" stroke-width="2.5" fill="none"/>
-  <text x="500" y="118" font-size="24" font-weight="700" fill="#22201c">樹冠・枝の配り</text>
+  <text x="500" y="118" font-size="24" font-weight="700" fill="#2c2a26">樹冠・枝の配り</text>
   <circle cx="322" cy="186" r="6" fill="#b8935a"/>
   <path d="M322 186 L470 170 H490" stroke="#b8935a" stroke-width="2.5" fill="none"/>
-  <text x="500" y="178" font-size="24" font-weight="700" fill="#22201c">枝順（下ほど太い）</text>
+  <text x="500" y="178" font-size="24" font-weight="700" fill="#2c2a26">枝順（下ほど太い）</text>
   <circle cx="228" cy="300" r="6" fill="#b8935a"/>
   <path d="M228 300 L470 230 H490" stroke="#b8935a" stroke-width="2.5" fill="none"/>
-  <text x="500" y="238" font-size="24" font-weight="700" fill="#22201c">幹の模様・肌</text>
+  <text x="500" y="238" font-size="24" font-weight="700" fill="#2c2a26">幹の模様・肌</text>
   <circle cx="214" cy="352" r="6" fill="#b8935a"/>
   <path d="M214 352 L470 290 H490" stroke="#b8935a" stroke-width="2.5" fill="none"/>
-  <text x="500" y="298" font-size="24" font-weight="700" fill="#22201c">立ち上がり</text>
+  <text x="500" y="298" font-size="24" font-weight="700" fill="#2c2a26">立ち上がり</text>
   <circle cx="276" cy="384" r="6" fill="#b8935a"/>
   <path d="M276 384 L470 350 H490" stroke="#b8935a" stroke-width="2.5" fill="none"/>
-  <text x="500" y="358" font-size="24" font-weight="700" fill="#22201c">根張り</text>
+  <text x="500" y="358" font-size="24" font-weight="700" fill="#2c2a26">根張り</text>
   <circle cx="360" cy="420" r="6" fill="#b8935a"/>
   <path d="M360 420 L470 410 H490" stroke="#b8935a" stroke-width="2.5" fill="none"/>
-  <text x="500" y="418" font-size="24" font-weight="700" fill="#22201c">鉢との釣り合い</text>
-</svg>
+  <text x="500" y="418" font-size="24" font-weight="700" fill="#2c2a26">鉢との釣り合い</text>
+<text x="776" y="494" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

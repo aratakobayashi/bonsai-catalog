@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 508" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 548" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>真柏のジンとシャリ。ジンは枯れて白くなった枝、シャリは幹の樹皮がはがれた部分、水を吸う樹皮は葉につながる生きた部分</title>
-  <rect width="800" height="508" fill="#faf9f6"/>
-  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">ジンとシャリ、水を吸う樹皮</text>
-  <rect x="20" y="68" width="760" height="420" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect width="800" height="548" fill="#faf7f0"/>
+  <text x="24" y="44" font-size="30" font-weight="700" fill="#2c2a26">ジンとシャリ、水を吸う樹皮</text>
+  <rect x="20" y="68" width="760" height="420" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
   <rect x="144.0" y="394" width="232" height="9" rx="3" fill="#8b6b4a"/>
   <path d="M150.0 400 L370.0 400 L345.8 440 L174.2 440 Z" fill="#8b6b4a"/>
   <path d="M220 396 C200 330 280 300 250 240 C230 200 260 160 300 140" stroke="#6f5439" stroke-width="34" fill="none" stroke-linecap="round"/>
@@ -14,16 +14,16 @@
   <path d="M250 240 C210 220 190 190 170 160 M185 182 L160 186" stroke="#e9e4da" stroke-width="9" fill="none" stroke-linecap="round"/>
   <path d="M300 140 L320 100" stroke="#b9ae9c" stroke-width="12" stroke-linecap="round"/>
   <path d="M300 140 L320 100" stroke="#e9e4da" stroke-width="8" stroke-linecap="round"/>
-  <circle cx="170" cy="160" r="7" fill="#1a365d"/>
-  <path d="M170 160 L468 122" stroke="#1a365d" stroke-width="2.5"/>
-  <text x="480" y="130" font-size="24" font-weight="700" fill="#1a365d">ジン</text>
+  <circle cx="170" cy="160" r="7" fill="#b8935a"/>
+  <path d="M170 160 L468 122" stroke="#b8935a" stroke-width="2.5"/>
+  <text x="480" y="130" font-size="24" font-weight="700" fill="#2c2a26">ジン</text>
   <text x="480" y="162" font-size="22" fill="#6b655b">枯れて白くなった枝</text>
-  <circle cx="236" cy="300" r="7" fill="#1a365d"/>
-  <path d="M236 300 L468 242" stroke="#1a365d" stroke-width="2.5"/>
-  <text x="480" y="250" font-size="24" font-weight="700" fill="#1a365d">シャリ</text>
+  <circle cx="236" cy="300" r="7" fill="#b8935a"/>
+  <path d="M236 300 L468 242" stroke="#b8935a" stroke-width="2.5"/>
+  <text x="480" y="250" font-size="24" font-weight="700" fill="#2c2a26">シャリ</text>
   <text x="480" y="282" font-size="22" fill="#6b655b">幹の樹皮がはがれた部分</text>
-  <circle cx="262" cy="330" r="7" fill="#1a365d"/>
-  <path d="M262 330 L468 362" stroke="#1a365d" stroke-width="2.5"/>
-  <text x="480" y="370" font-size="24" font-weight="700" fill="#1a365d">水を吸う樹皮</text>
+  <circle cx="262" cy="330" r="7" fill="#b8935a"/>
+  <path d="M262 330 L468 362" stroke="#b8935a" stroke-width="2.5"/>
+  <text x="480" y="370" font-size="24" font-weight="700" fill="#2c2a26">水を吸う樹皮</text>
   <text x="480" y="402" font-size="22" fill="#6b655b">葉につながる生きた部分</text>
-</svg>
+<text x="776" y="532" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

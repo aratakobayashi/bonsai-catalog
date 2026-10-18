@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>山野草の寄せ植えの組み立て：主役・添え・足元の三つの高さ</title>
-  <rect width="800" height="480" fill="#faf9f6"/>
-  <text x="400" y="46" text-anchor="middle" font-size="28" font-weight="700" fill="#1a365d">寄せ植えは「高・中・低」の三つで組む</text>
+  <rect width="800" height="520" fill="#faf7f0"/>
+  <text x="24" y="46" font-size="28" font-weight="700" fill="#2c2a26">寄せ植えは「高・中・低」の三つで組む</text>
 
   <!-- 鉢 -->
   <path d="M120 350 h560 l-30 56 h-500 z" fill="#8b6b4a"/>
@@ -24,7 +24,7 @@
     <ellipse cx="400" cy="296" rx="30" ry="12" transform="rotate(25 400 296)"/>
     <ellipse cx="384" cy="282" rx="26" ry="11" transform="rotate(-70 384 282)"/>
   </g>
-  <g fill="#faf9f6" stroke="#b8935a" stroke-width="2"><circle cx="390" cy="258" r="8"/></g>
+  <g fill="#faf7f0" stroke="#b8935a" stroke-width="2"><circle cx="390" cy="258" r="8"/></g>
   <!-- 足元（苔・低い草） -->
   <g fill="#7d9a68">
     <ellipse cx="170" cy="338" rx="40" ry="10"/><ellipse cx="320" cy="330" rx="46" ry="10"/>
@@ -33,14 +33,14 @@
 
   <!-- ラベル -->
   <g font-size="22">
-    <line x1="300" y1="110" x2="520" y2="110" stroke="#ebe7df" stroke-width="2"/>
-    <text x="530" y="104" font-weight="700" fill="#22201c" font-size="24">高：主役</text>
+    <line x1="300" y1="110" x2="520" y2="110" stroke="#d9d1c3" stroke-width="2"/>
+    <text x="530" y="104" font-weight="700" fill="#2c2a26" font-size="24">高：主役</text>
     <text x="530" y="134" fill="#6b655b">花や葉に季節が出る草</text>
-    <line x1="416" y1="270" x2="520" y2="200" stroke="#ebe7df" stroke-width="2"/>
-    <text x="530" y="196" font-weight="700" fill="#22201c" font-size="24">中：添え</text>
+    <line x1="416" y1="270" x2="520" y2="200" stroke="#d9d1c3" stroke-width="2"/>
+    <text x="530" y="196" font-weight="700" fill="#2c2a26" font-size="24">中：添え</text>
     <text x="530" y="226" fill="#6b655b">葉の形が違う草</text>
-    <line x1="560" y1="326" x2="600" y2="282" stroke="#ebe7df" stroke-width="2"/>
-    <text x="530" y="278" font-weight="700" fill="#22201c" font-size="24">低：足元</text>
+    <line x1="560" y1="326" x2="600" y2="282" stroke="#d9d1c3" stroke-width="2"/>
+    <text x="530" y="278" font-weight="700" fill="#2c2a26" font-size="24">低：足元</text>
     <text x="40" y="450" fill="#6b655b">主役は中心からずらし、低い草と苔で土を覆います</text>
   </g>
-</svg>
+<text x="776" y="504" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

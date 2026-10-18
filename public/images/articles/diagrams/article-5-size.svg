@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 510" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>盆栽の大きさの呼び分けの目安。豆盆栽は樹高10cmほどまでで手のひらに乗る大きさ、ミニ盆栽・小品盆栽は20cm前後まで、それより大きいものは中品以上</title>
-  <rect width="800" height="470" fill="#faf9f6"/>
-  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">大きさの呼び分け</text>
+  <rect width="800" height="510" fill="#faf7f0"/>
+  <text x="24" y="44" font-size="30" font-weight="700" fill="#2c2a26">大きさの呼び分け</text>
   <text x="780" y="44" text-anchor="end" font-size="22" fill="#6b655b">樹高の目安</text>
 
   <!-- 目盛り -->
-  <line x1="70" y1="380" x2="780" y2="380" stroke="#22201c" stroke-width="2.5"/>
-  <g stroke="#ebe7df" stroke-width="2" stroke-dasharray="6 6">
+  <line x1="70" y1="380" x2="780" y2="380" stroke="#2c2a26" stroke-width="2.5"/>
+  <g stroke="#d9d1c3" stroke-width="2" stroke-dasharray="6 6">
     <line x1="70" y1="300" x2="780" y2="300"/><line x1="70" y1="220" x2="780" y2="220"/><line x1="70" y1="140" x2="780" y2="140"/>
   </g>
   <g font-size="22" fill="#6b655b" text-anchor="end">
@@ -31,11 +31,11 @@
   <ellipse cx="664" cy="150" rx="48" ry="22" fill="#5b7f4a"/>
 
   <g text-anchor="middle">
-    <text x="200" y="418" font-size="26" font-weight="700" fill="#22201c">豆盆栽</text>
+    <text x="200" y="418" font-size="26" font-weight="700" fill="#2c2a26">豆盆栽</text>
     <text x="200" y="450" font-size="22" fill="#5b7f4a">〜10cmほど</text>
-    <text x="420" y="418" font-size="26" font-weight="700" fill="#22201c">ミニ・小品</text>
+    <text x="420" y="418" font-size="26" font-weight="700" fill="#2c2a26">ミニ・小品</text>
     <text x="420" y="450" font-size="22" fill="#5b7f4a">〜20cm前後</text>
-    <text x="665" y="418" font-size="26" font-weight="700" fill="#22201c">中品以上</text>
+    <text x="665" y="418" font-size="26" font-weight="700" fill="#2c2a26">中品以上</text>
     <text x="665" y="450" font-size="22" fill="#5b7f4a">それより大きい</text>
   </g>
-</svg>
+<text x="776" y="494" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

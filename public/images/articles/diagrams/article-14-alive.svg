@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>枝が生きているかの確かめ方</title>
-  <rect width="800" height="420" fill="#faf9f6"/>
-  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">枝が生きているかを確かめる</text>
-  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+  <rect width="800" height="460" fill="#faf7f0"/>
+  <text x="24" y="46" font-size="30" font-weight="700" fill="#2c2a26">枝が生きているかを確かめる</text>
+  <g fill="#fff" stroke="#d9d1c3" stroke-width="2">
     <rect x="20" y="70" width="240" height="320" rx="14"/>
     <rect x="280" y="70" width="240" height="320" rx="14"/>
     <rect x="540" y="70" width="240" height="320" rx="14"/>
   </g>
-  <g font-size="24" font-weight="700" fill="#22201c" text-anchor="middle">
+  <g font-size="24" font-weight="700" fill="#2c2a26" text-anchor="middle">
     <text x="140" y="112">皮を少し削る</text>
     <text x="400" y="112">緑色なら</text>
     <text x="660" y="112">茶色で乾く</text>
@@ -15,8 +15,8 @@
   <!-- branch 1 with nail -->
   <rect x="50" y="200" width="180" height="26" rx="13" fill="#8b6b4a"/>
   <rect x="120" y="202" width="34" height="22" rx="8" fill="#9bbf6a"/>
-  <path d="M150 150 q20 10 6 50" fill="none" stroke="#22201c" stroke-width="4"/>
-  <ellipse cx="156" cy="200" rx="8" ry="5" fill="#f3e3d0" stroke="#22201c" stroke-width="2"/>
+  <path d="M150 150 q20 10 6 50" fill="none" stroke="#2c2a26" stroke-width="4"/>
+  <ellipse cx="156" cy="200" rx="8" ry="5" fill="#f3e3d0" stroke="#2c2a26" stroke-width="2"/>
   <text x="140" y="290" text-anchor="middle" font-size="22" fill="#6b655b">爪で数mm</text>
   <text x="140" y="326" text-anchor="middle" font-size="22" fill="#6b655b">枝先から順に</text>
   <!-- green -->
@@ -29,4 +29,4 @@
   <rect x="642" y="202" width="36" height="22" rx="8" fill="#c9b48f"/>
   <text x="660" y="290" text-anchor="middle" font-size="22" fill="#b4573a">その先は枯れ</text>
   <text x="660" y="326" text-anchor="middle" font-size="22" fill="#b4573a">元のほうを確かめる</text>
-</svg>
+<text x="776" y="444" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

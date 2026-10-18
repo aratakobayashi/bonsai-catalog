@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 430" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>画像診断の結果を使うときの流れ</title>
-  <rect width="800" height="430" fill="#faf9f6"/>
-  <text x="400" y="46" text-anchor="middle" font-size="30" font-weight="700" fill="#1a365d">診断の結果は「候補」として使う</text>
-  <g fill="#fff" stroke="#ebe7df" stroke-width="2">
+  <rect width="800" height="470" fill="#faf7f0"/>
+  <text x="24" y="46" font-size="30" font-weight="700" fill="#2c2a26">診断の結果は「候補」として使う</text>
+  <g fill="#fff" stroke="#d9d1c3" stroke-width="2">
     <rect x="20" y="80" width="170" height="190" rx="14"/>
     <rect x="215" y="80" width="170" height="190" rx="14"/>
     <rect x="410" y="80" width="170" height="190" rx="14" stroke="#5b7f4a" stroke-width="3"/>
@@ -13,7 +13,7 @@
     <path d="M387 175 l18 0 l-6 -8 m6 8 l-6 8" stroke="#b8935a" stroke-width="4" fill="none"/>
     <path d="M582 175 l18 0 l-6 -8 m6 8 l-6 8" stroke="#b8935a" stroke-width="4" fill="none"/>
   </g>
-  <g font-size="25" font-weight="700" fill="#22201c" text-anchor="middle">
+  <g font-size="25" font-weight="700" fill="#2c2a26" text-anchor="middle">
     <text x="105" y="140">撮る</text><text x="300" y="140">候補を見る</text><text x="495" y="140">実物で確認</text><text x="692" y="140">対処する</text>
   </g>
   <g font-size="22" fill="#6b655b" text-anchor="middle">
@@ -22,7 +22,7 @@
     <text x="495" y="196">土・葉の裏</text><text x="495" y="230">虫の有無</text>
     <text x="692" y="196">置き場所や</text><text x="692" y="230">水から見直す</text>
   </g>
-  <rect x="20" y="296" width="760" height="114" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
-  <text x="400" y="340" text-anchor="middle" font-size="24" font-weight="700" fill="#1a365d">1週間後に、同じ場所・同じ向きで撮り直す</text>
+  <rect x="20" y="296" width="760" height="114" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+  <text x="400" y="340" text-anchor="middle" font-size="24" font-weight="700" fill="#2c2a26">1週間後に、同じ場所・同じ向きで撮り直す</text>
   <text x="400" y="380" text-anchor="middle" font-size="22" fill="#6b655b">分からないときは、写真を持って盆栽園に相談する</text>
-</svg>
+<text x="776" y="454" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>柚子の花がつく枝：前の年に伸びた枝の先から出る春の枝に咲く</title>
-  <rect width="800" height="480" fill="#faf9f6"/>
-  <text x="400" y="46" text-anchor="middle" font-size="28" font-weight="700" fill="#1a365d">花は「去年伸びた枝」の先のほうから咲く</text>
+  <rect width="800" height="520" fill="#faf7f0"/>
+  <text x="24" y="46" font-size="28" font-weight="700" fill="#2c2a26">花は「去年伸びた枝」の先のほうから咲く</text>
 
   <!-- 古い枝 -->
   <path d="M80 400 C 200 380, 300 340, 380 300" stroke="#6f5439" stroke-width="12" fill="none" stroke-linecap="round"/>
@@ -27,10 +27,10 @@
 
   <!-- ラベル -->
   <g font-size="22">
-    <text x="120" y="356" font-weight="700" fill="#22201c" font-size="24">古い枝</text>
+    <text x="120" y="356" font-weight="700" fill="#2c2a26" font-size="24">古い枝</text>
     <text x="420" y="330" font-weight="700" fill="#5b7f4a" font-size="24">去年伸びた枝</text>
-    <text x="680" y="150" font-weight="700" fill="#22201c" font-size="24">春の枝</text>
+    <text x="680" y="150" font-weight="700" fill="#2c2a26" font-size="24">春の枝</text>
     <text x="680" y="178" fill="#6b655b">5月に花</text>
     <text x="40" y="436" fill="#b4573a">点線のように去年の枝を元から切ると、その枝の花はなくなります</text>
   </g>
-</svg>
+<text x="776" y="504" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

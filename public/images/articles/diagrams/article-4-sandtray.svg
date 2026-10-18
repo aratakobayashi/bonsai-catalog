@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 455" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 495" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>夏のミニ盆栽は湿らせた砂を敷いたトレーの上に並べると乾きがゆっくりになる。水やりは鉢ごとに底から流れるまで与える</title>
-  <rect width="800" height="455" fill="#faf9f6"/>
-  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">夏は湿らせた砂の上に並べる</text>
+  <rect width="800" height="495" fill="#faf7f0"/>
+  <text x="24" y="44" font-size="30" font-weight="700" fill="#2c2a26">夏は湿らせた砂の上に並べる</text>
   <rect x="80" y="240" width="640" height="70" rx="8" fill="#fff" stroke="#6b655b" stroke-width="4"/>
   <rect x="86" y="258" width="628" height="48" fill="#d9c7a3"/>
   <circle cx="100.0" cy="272" r="2.5" fill="#b59d72"/>
@@ -64,6 +64,6 @@
   <ellipse cx="582.48" cy="162.3" rx="27.28" ry="16.12" fill="#5b7f4a"/>
   <text x="400" y="350" text-anchor="middle" font-size="22" font-weight="700" fill="#8b6b4a">湿らせた川砂など</text>
   <path d="M400 328 L400 300" stroke="#8b6b4a" stroke-width="2.5"/>
-  <text x="400" y="392" text-anchor="middle" font-size="22" fill="#22201c">鉢の底が砂に触れ、乾きがゆっくりになる</text>
-  <text x="400" y="428" text-anchor="middle" font-size="22" font-weight="700" fill="#1a365d">水やりは鉢ごとに、底から流れるまで</text>
-</svg>
+  <text x="400" y="392" text-anchor="middle" font-size="22" fill="#2c2a26">鉢の底が砂に触れ、乾きがゆっくりになる</text>
+  <text x="400" y="428" text-anchor="middle" font-size="22" font-weight="700" fill="#2c2a26">水やりは鉢ごとに、底から流れるまで</text>
+<text x="776" y="479" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

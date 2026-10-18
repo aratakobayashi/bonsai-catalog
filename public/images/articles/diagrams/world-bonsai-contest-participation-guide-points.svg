@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>展示や審査で見られる盆栽の部分：根張り・立ち上がり・枝・葉・鉢・全体の調和</title>
-  <rect width="800" height="500" fill="#faf9f6"/>
+  <rect width="800" height="540" fill="#faf7f0"/>
 
   <!-- 樹 -->
   <g fill="#5b7f4a">
@@ -16,10 +16,10 @@
   <!-- 鉢と卓 -->
   <path d="M150 384 h300 l-18 50 h-264 z" fill="#8b6b4a"/>
   <rect x="144" y="376" width="312" height="14" rx="4" fill="#6f5439"/>
-  <rect x="120" y="446" width="360" height="14" rx="4" fill="#22201c"/>
+  <rect x="120" y="446" width="360" height="14" rx="4" fill="#2c2a26"/>
 
   <!-- ラベル -->
-  <g font-size="24" font-weight="700" fill="#22201c">
+  <g font-size="24" font-weight="700" fill="#2c2a26">
     <circle cx="490" cy="80" r="16" fill="#b8935a"/><text x="490" y="88" text-anchor="middle" fill="#fff" font-size="20">1</text>
     <text x="516" y="88">全体の姿と調和</text>
     <circle cx="490" cy="150" r="16" fill="#b8935a"/><text x="490" y="158" text-anchor="middle" fill="#fff" font-size="20">2</text>
@@ -41,4 +41,4 @@
     <line x1="342" y1="374" x2="472" y2="362"/>
     <line x1="450" y1="420" x2="472" y2="428"/>
   </g>
-</svg>
+<text x="776" y="524" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

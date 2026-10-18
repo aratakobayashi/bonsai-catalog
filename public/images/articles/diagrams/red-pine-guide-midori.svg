@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 424" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 464" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>赤松のみどり摘み。春に伸びたみどり（新芽）を、長さをそろえるように摘むと、枝先が分かれて短い葉がそろう</title>
-  <rect width="800" height="424" fill="#faf9f6"/>
-  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">みどり摘みの流れ</text>
-  <rect x="20.0" y="68" width="242.7" height="336" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect width="800" height="464" fill="#faf7f0"/>
+  <text x="24" y="44" font-size="30" font-weight="700" fill="#2c2a26">みどり摘みの流れ</text>
+  <rect x="20.0" y="68" width="242.7" height="336" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
   <path d="M81.33333333333331 292 q40 -20 60 -60" stroke="#a5583a" stroke-width="9" fill="none" stroke-linecap="round"/>
   <line x1="141.33333333333331" y1="232" x2="82" y2="225" stroke="#6f9a5a" stroke-width="3" stroke-linecap="round"/>
   <line x1="141.33333333333331" y1="232" x2="93" y2="208" stroke="#6f9a5a" stroke-width="3" stroke-linecap="round"/>
@@ -14,7 +14,7 @@
   <rect x="134.33333333333331" y="112" width="14" height="110" rx="7" fill="#9fbf7a"/>
   <rect x="111.33333333333331" y="162" width="12" height="64" rx="6" fill="#9fbf7a" transform="rotate(-20 117.33333333333331 226)"/>
   <rect x="159.33333333333331" y="162" width="12" height="64" rx="6" fill="#9fbf7a" transform="rotate(20 165.33333333333331 226)"/>
-  <text x="141" y="342" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">①みどりが伸びる</text>
+  <text x="141" y="342" font-size="25" text-anchor="middle" font-weight="700" fill="#2c2a26">①みどりが伸びる</text>
   <text x="141" y="380" font-size="22" text-anchor="middle" fill="#5b7f4a">4〜5月</text>
   <rect x="278.7" y="68" width="242.7" height="336" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
   <path d="M339.99999999999994 292 q40 -20 60 -60" stroke="#a5583a" stroke-width="9" fill="none" stroke-linecap="round"/>
@@ -30,9 +30,9 @@
   <rect x="392.99999999999994" y="182" width="14" height="40" rx="7" fill="#9fbf7a"/>
   <rect x="369.99999999999994" y="188" width="12" height="40" rx="6" fill="#9fbf7a" transform="rotate(-20 375.99999999999994 226)"/>
   <rect x="417.99999999999994" y="188" width="12" height="40" rx="6" fill="#9fbf7a" transform="rotate(20 423.99999999999994 226)"/>
-  <text x="400" y="342" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">②長さをそろえる</text>
+  <text x="400" y="342" font-size="25" text-anchor="middle" font-weight="700" fill="#2c2a26">②長さをそろえる</text>
   <text x="400" y="380" font-size="22" text-anchor="middle" fill="#5b7f4a">強いみどりほど短く</text>
-  <rect x="537.3" y="68" width="242.7" height="336" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect x="537.3" y="68" width="242.7" height="336" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
   <path d="M598.6666666666666 292 q40 -20 60 -60" stroke="#a5583a" stroke-width="9" fill="none" stroke-linecap="round"/>
   <line x1="658.6666666666666" y1="232" x2="600" y2="225" stroke="#6f9a5a" stroke-width="3" stroke-linecap="round"/>
   <line x1="658.6666666666666" y1="232" x2="611" y2="208" stroke="#6f9a5a" stroke-width="3" stroke-linecap="round"/>
@@ -59,6 +59,6 @@
   <line x1="692.6666666666666" y1="174" x2="693" y2="144" stroke="#6f9a5a" stroke-width="3" stroke-linecap="round"/>
   <line x1="692.6666666666666" y1="174" x2="708" y2="148" stroke="#6f9a5a" stroke-width="3" stroke-linecap="round"/>
   <line x1="692.6666666666666" y1="174" x2="719" y2="159" stroke="#6f9a5a" stroke-width="3" stroke-linecap="round"/>
-  <text x="659" y="342" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">③枝先が分かれる</text>
+  <text x="659" y="342" font-size="25" text-anchor="middle" font-weight="700" fill="#2c2a26">③枝先が分かれる</text>
   <text x="659" y="380" font-size="22" text-anchor="middle" fill="#5b7f4a">葉が短くそろう</text>
-</svg>
+<text x="776" y="448" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

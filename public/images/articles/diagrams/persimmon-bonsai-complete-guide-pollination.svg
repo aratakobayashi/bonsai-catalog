@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 418" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 458" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>老鴉柿は雌木と雄木が別。雌木だけでは実がつきにくく、花の時期に雄木を近くに置くと実がつきやすい</title>
-  <rect width="800" height="418" fill="#faf9f6"/>
-  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">老鴉柿（ロウヤガキ）は雌木と雄木が別</text>
-  <rect x="20.0" y="72" width="372.0" height="326" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
+  <rect width="800" height="458" fill="#faf7f0"/>
+  <text x="24" y="44" font-size="30" font-weight="700" fill="#2c2a26">老鴉柿（ロウヤガキ）は雌木と雄木が別</text>
+  <rect x="20.0" y="72" width="372.0" height="326" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
   <rect x="158" y="246" width="96" height="9" rx="3" fill="#6f5439"/>
   <path d="M162 254 h88 l-10 26 h-68 z" fill="#8b6b4a"/>
   <path d="M200 248 q-3 -32 8 -56 q10 -19 -2 -38" stroke="#6f5439" stroke-width="10" fill="none" stroke-linecap="round"/>
@@ -10,7 +10,7 @@
   <ellipse cx="233" cy="166" rx="30" ry="18" fill="#5b7f4a"/>
   <ellipse cx="206" cy="140" rx="32" ry="19" fill="#5b7f4a"/>
   <path d="M128 317 l20 20 M148 317 l-20 20" stroke="#b4573a" stroke-width="4" stroke-linecap="round"/>
-  <text x="206" y="336" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">雌木だけ</text>
+  <text x="206" y="336" font-size="25" text-anchor="middle" font-weight="700" fill="#2c2a26">雌木だけ</text>
   <text x="206" y="374" font-size="22" text-anchor="middle" fill="#8b6b4a">実がつきにくい</text>
   <rect x="408.0" y="72" width="372.0" height="326" rx="14" fill="#fff" stroke="#5b7f4a" stroke-width="3"/>
   <rect x="472" y="236" width="85" height="9" rx="3" fill="#6f5439"/>
@@ -33,9 +33,9 @@
   <ellipse cx="674" cy="144" rx="28" ry="17" fill="#7f9a6c"/>
   <line x1="634" y1="136" x2="558" y2="136" stroke="#b8935a" stroke-width="3.5" stroke-linecap="round"/>
   <path d="M570 129 L558 136 L570 143" fill="none" stroke="#b8935a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="514.0" y="296" font-size="22" text-anchor="middle" font-weight="700" fill="#22201c">雌木</text>
-  <text x="674.0" y="296" font-size="22" text-anchor="middle" font-weight="700" fill="#22201c">雄木</text>
+  <text x="514.0" y="296" font-size="22" text-anchor="middle" font-weight="700" fill="#2c2a26">雌木</text>
+  <text x="674.0" y="296" font-size="22" text-anchor="middle" font-weight="700" fill="#2c2a26">雄木</text>
   <circle cx="501" cy="327" r="11" fill="none" stroke="#5b7f4a" stroke-width="4"/>
-  <text x="594" y="336" font-size="25" text-anchor="middle" font-weight="700" fill="#22201c">雄木を近くに</text>
+  <text x="594" y="336" font-size="25" text-anchor="middle" font-weight="700" fill="#2c2a26">雄木を近くに</text>
   <text x="594" y="374" font-size="22" text-anchor="middle" fill="#5b7f4a">花の時期に並べる</text>
-</svg>
+<text x="776" y="442" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

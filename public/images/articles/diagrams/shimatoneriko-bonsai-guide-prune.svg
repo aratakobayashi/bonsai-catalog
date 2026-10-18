@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>シマトネリコの切り戻し。長く伸びた枝は、残したい葉の付け根（節）の少し上で切る</title>
-  <rect width="800" height="460" fill="#faf9f6"/>
-  <text x="20" y="44" font-size="30" font-weight="700" fill="#1a365d">伸びた枝の切り戻し</text>
+  <rect width="800" height="500" fill="#faf7f0"/>
+  <text x="24" y="44" font-size="30" font-weight="700" fill="#2c2a26">伸びた枝の切り戻し</text>
   <polyline points="120,440 160,370 196,320 240,262 280,216 330,184" stroke="#6f5439" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   <polyline points="330,184 400,152 470,128 540,112" stroke="#c9b9a6" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   <line x1="312" y1="160" x2="348" y2="210" stroke="#b4573a" stroke-width="5" stroke-dasharray="8 6" stroke-linecap="round"/>
@@ -54,9 +54,9 @@
   <ellipse cx="592" cy="126" rx="10" ry="5" fill="#8fae78" transform="rotate(40 592 126)"/>
   <ellipse cx="618" cy="116" rx="11" ry="5" fill="#8fae78"/>
   </g>
-  <rect x="470" y="230" width="300" height="190" rx="14" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
-  <text x="620" y="274" font-size="22" text-anchor="middle" fill="#22201c">残したい節の</text>
-  <text x="620" y="306" font-size="22" text-anchor="middle" fill="#22201c">少し上で切る</text>
+  <rect x="470" y="230" width="300" height="190" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+  <text x="620" y="274" font-size="22" text-anchor="middle" fill="#2c2a26">残したい節の</text>
+  <text x="620" y="306" font-size="22" text-anchor="middle" fill="#2c2a26">少し上で切る</text>
   <text x="620" y="352" font-size="22" text-anchor="middle" font-weight="700" fill="#5b7f4a">残す枝：濃い色</text>
   <text x="620" y="390" font-size="22" text-anchor="middle" fill="#6b655b">切る枝：薄い色</text>
-</svg>
+<text x="776" y="484" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>

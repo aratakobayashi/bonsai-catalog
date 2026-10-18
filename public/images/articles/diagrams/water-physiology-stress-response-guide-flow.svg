@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" data-restyled="1" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
   <title>盆栽の中の水の流れ：根から吸い、幹を通って、葉から出ていく</title>
-  <rect width="800" height="500" fill="#faf9f6"/>
+  <rect width="800" height="540" fill="#faf7f0"/>
 
   <!-- 樹 -->
   <ellipse cx="300" cy="150" rx="170" ry="74" fill="#5b7f4a"/>
@@ -22,34 +22,34 @@
   </g>
 
   <!-- 上向きの矢印（水の流れ） -->
-  <g stroke="#1a365d" stroke-width="5" fill="none" stroke-linecap="round">
+  <g stroke="#b8935a" stroke-width="5" fill="none" stroke-linecap="round">
     <path d="M302 400 V 230"/>
   </g>
-  <path d="M290 238 l12 -22 l12 22 z" fill="#1a365d"/>
+  <path d="M290 238 l12 -22 l12 22 z" fill="#b8935a"/>
   <!-- 蒸散 -->
-  <g stroke="#1a365d" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="6 6">
+  <g stroke="#b8935a" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="6 6">
     <path d="M220 96 C 214 76, 226 66, 220 46"/><path d="M300 76 C 294 56, 306 46, 300 26"/><path d="M380 96 C 374 76, 386 66, 380 46"/>
   </g>
 
   <!-- 説明 -->
-  <g font-size="22" fill="#22201c">
-    <rect x="520" y="40" width="260" height="110" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
-    <text x="540" y="80" font-weight="700" fill="#1a365d" font-size="24">③ 葉から出る</text>
+  <g font-size="22" fill="#2c2a26">
+    <rect x="520" y="40" width="260" height="110" rx="12" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <text x="540" y="80" font-weight="700" fill="#2c2a26" font-size="24">③ 葉から出る</text>
     <text x="540" y="114">晴れて風がある日ほど</text>
     <text x="540" y="140">多く出ていく</text>
 
-    <rect x="520" y="176" width="260" height="110" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
-    <text x="540" y="216" font-weight="700" fill="#1a365d" font-size="24">② 幹・枝を上る</text>
+    <rect x="520" y="176" width="260" height="110" rx="12" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <text x="540" y="216" font-weight="700" fill="#2c2a26" font-size="24">② 幹・枝を上る</text>
     <text x="540" y="250">葉から出た分だけ</text>
     <text x="540" y="276">引き上げられる</text>
 
-    <rect x="520" y="312" width="260" height="140" rx="12" fill="#fff" stroke="#ebe7df" stroke-width="2"/>
-    <text x="540" y="352" font-weight="700" fill="#1a365d" font-size="24">① 根が吸う</text>
+    <rect x="520" y="312" width="260" height="140" rx="12" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <text x="540" y="352" font-weight="700" fill="#2c2a26" font-size="24">① 根が吸う</text>
     <text x="540" y="386">水と一緒に、土の</text>
     <text x="540" y="412">すき間の空気も必要</text>
     <text x="540" y="438" fill="#6b655b">（白い丸）</text>
   </g>
-  <line x1="470" y1="96" x2="518" y2="96" stroke="#ebe7df" stroke-width="2"/>
-  <line x1="330" y1="231" x2="518" y2="231" stroke="#ebe7df" stroke-width="2"/>
-  <line x1="450" y1="380" x2="518" y2="380" stroke="#ebe7df" stroke-width="2"/>
-</svg>
+  <line x1="470" y1="96" x2="518" y2="96" stroke="#d9d1c3" stroke-width="2"/>
+  <line x1="330" y1="231" x2="518" y2="231" stroke="#d9d1c3" stroke-width="2"/>
+  <line x1="450" y1="380" x2="518" y2="380" stroke="#d9d1c3" stroke-width="2"/>
+<text x="776" y="524" font-size="18" font-weight="500" fill="#b8935a" text-anchor="end" letter-spacing="2">盆栽コレクション</text></svg>
