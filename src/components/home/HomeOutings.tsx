@@ -10,7 +10,7 @@ import { UpcomingTrim } from './UpcomingTrim'
 const VISIBLE = 4
 
 // トップの「出かける」：近く開かれる盆栽展・イベントと、地域から探す盆栽園
-// 画像や地図は使わない（トップの表示を重くしない）。終わったイベントは見ている日の日付で隠す（UpcomingTrim）
+// 画像や地図は使わない（トップの表示を重くしない）。画面の下にあるので、近くまでスクロールするまで描画を省く（content-visibility）。終わったイベントは見ている日の日付で隠す（UpcomingTrim）
 export function HomeOutings({ events, gardens, eventCount }: { events: Event[]; gardens: { prefecture?: string | null }[]; eventCount: number }) {
   const counts = new Map<string, number>()
   gardens.forEach(g => { if (g.prefecture && prefectureSlug(g.prefecture)) counts.set(g.prefecture, (counts.get(g.prefecture) ?? 0) + 1) })
@@ -21,7 +21,7 @@ export function HomeOutings({ events, gardens, eventCount }: { events: Event[]; 
   if (events.length === 0 && regions.length === 0) return null
 
   return (
-    <section className="pt-12 lg:pt-24" aria-labelledby="home-outings">
+    <section className="pt-12 [contain-intrinsic-size:auto_1100px] [content-visibility:auto] lg:pt-24 lg:[contain-intrinsic-size:auto_640px]" aria-labelledby="home-outings">
       <p className="flex items-center gap-3 text-[11px] tracking-[0.2em] text-gold-dark">
         出かける<span className="h-px w-8 bg-gold" aria-hidden="true" />
       </p>

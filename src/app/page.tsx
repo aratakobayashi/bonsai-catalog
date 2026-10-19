@@ -143,7 +143,7 @@ export default async function HomePage() {
     safely('記事', () => getCareArticles(season.slug), [] as Article[]),
     safely('盆栽園', getGardenList, [] as GardenListItem[]),
     safely('イベントの件数', getUpcomingEventsCount, 0),
-    safely('イベント', () => getHomeEvents(6), [] as Event[]),
+    safely('イベント', () => getHomeEvents(5), [] as Event[]),
   ])
 
   // 商品が取れなかったときはビルドを止める（空のページを公開しない。前の公開がそのまま残る）
