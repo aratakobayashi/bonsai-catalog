@@ -19,10 +19,12 @@ import { ProductThumb } from '@/components/catalog/ProductThumb'
 import { Placeholder } from '@/components/ui/design'
 import { getArticleBySlug } from '@/lib/database/articles'
 import { isArticleIndexable } from '@/lib/content-policy'
-import type { Article } from '@/types'
+import type { Article, Event } from '@/types'
 import { supabaseServer } from '@/lib/supabase-server'
-import { isGardenPublished } from '@/lib/garden-verification'
-import { getUpcomingEventsCount } from '@/lib/events'
+import { getHomeEvents, getUpcomingEventsCount } from '@/lib/events'
+import { getGardenList } from '@/lib/gardens-list'
+import type { GardenListItem } from '@/app/gardens/GardensPageClient'
+import { HomeOutings } from '@/components/home/HomeOutings'
 import { currentMonth, getSeasonalPick, getSeasonalShelf, type SeasonalShelf } from '@/components/home/seasonal'
 import { getHomeSpecies } from '@/components/home/species'
 import { HERO_PHOTOS, HERO_SCENES } from '@/components/home/hero-photos'
@@ -133,22 +135,15 @@ async function safely<T>(label: string, task: () => Promise<T>, fallback: T): Pr
   }
 }
 
-async function getGardenCount(): Promise<number> {
-  const { data, error } = await supabaseServer.from('gardens').select('id')
-  if (error) {
-    console.error('盆栽園データの取得エラー:', error)
-    return 0
-  }
-  return ((data || []) as { id: string }[]).filter(garden => isGardenPublished(garden)).length
-}
 
 export default async function HomePage() {
   const season = getSeasonalPick()
-  const [products, careArticles, gardenCount, eventCount] = await Promise.all([
+  const [products, careArticles, gardens, eventCount, homeEvents] = await Promise.all([
     safely('商品', getCatalogProducts, [] as CatalogProduct[]),
     safely('記事', () => getCareArticles(season.slug), [] as Article[]),
-    safely('盆栽園の件数', getGardenCount, 0),
+    safely('盆栽園', getGardenList, [] as GardenListItem[]),
     safely('イベントの件数', getUpcomingEventsCount, 0),
+    safely('イベント', () => getHomeEvents(8), [] as Event[]),
   ])
 
   // 商品が取れなかったときはビルドを止める（空のページを公開しない。前の公開がそのまま残る）
@@ -439,6 +434,9 @@ export default async function HomePage() {
           </section>
         )}
 
+        {/* 出かける（近く開かれる盆栽展と、地域から探す盆栽園。商品の欄のあと） */}
+        <HomeOutings events={homeEvents} gardens={gardens} eventCount={eventCount} />
+
         {/* 育て方を読む（PC は3列、SP は左に小さな画像の行。/guides の一覧と同じ見せ方） */}
         <section className="pt-12 lg:pt-24">
           <div className="flex items-baseline">
@@ -479,16 +477,6 @@ export default async function HomePage() {
           )}
         </section>
 
-        {/* 出かける（盆栽園・イベント） */}
-        <p className="mt-12 border-t border-line pt-5 text-[13px] leading-[1.9] text-ink-soft lg:mt-16">
-          <span className="mr-3 font-mincho font-bold text-ink">出かける</span>
-          <Link href="/gardens" className="mr-4 border-b border-ink pb-0.5 text-ink">
-            全国の盆栽園{gardenCount > 0 && `（${gardenCount.toLocaleString()}件）`}
-          </Link>
-          <Link href="/events" className="border-b border-ink pb-0.5 text-ink">
-            盆栽展・イベント{eventCount > 0 && `（開催予定${eventCount.toLocaleString()}件）`}
-          </Link>
-        </p>
       </div>
     </div>
   )

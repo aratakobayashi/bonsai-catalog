@@ -1,5 +1,6 @@
 import { supabaseServer } from './supabase-server'
 import { Event, EventType, EventSearchParams } from '@/types'
+import { isTentativeEvent } from './event-display'
 
 export interface EventQueryParams {
   month?: string        // 2025-11
@@ -263,4 +264,22 @@ export async function getEventsByMonth(year: number, month: number) {
     console.error('Error fetching events by month:', error)
     throw error
   }
+}
+/**
+ * トップの「出かける」に出す、これからのイベント（終わっていないものを開始日の近い順）
+ * 日程の決まったものを先に、足りなければ日程未発表（例年の時期）のものを足す
+ */
+export async function getHomeEvents(limit = 8): Promise<Event[]> {
+  const today = new Date().toISOString().split('T')[0]
+  const { data, error } = await supabaseServer
+    .from('events')
+    .select('*')
+    .gte('end_date', today)
+    .order('start_date', { ascending: true })
+    .limit(60)
+  if (error) throw error
+  const rows = (data || []) as Event[]
+  const confirmed = rows.filter(e => !isTentativeEvent(e))
+  const tentative = rows.filter(e => isTentativeEvent(e))
+  return [...confirmed, ...tentative].slice(0, limit)
 }
