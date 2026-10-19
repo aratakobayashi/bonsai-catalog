@@ -1,5 +1,5 @@
 // next build（output: 'export'）のあとの仕上げ：転送の一覧（out/redirects.txt）を out/_redirects に足し、SNS 用の表示（OGP）を整える
-import { appendFileSync, existsSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'fs'
+import { existsSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'fs'
 import path from 'path'
 
 const generated = 'out/redirects.txt'
@@ -8,7 +8,15 @@ if (!existsSync('out/_redirects') || !existsSync(generated)) {
   process.exit(1)
 }
 const lines = readFileSync(generated, 'utf8').trim()
-appendFileSync('out/_redirects', `\n# 掲載をやめた園・削除扱いの記事（src/app/redirects.txt/route.ts から作る）\n${lines}\n`)
+// Cloudflare Pages は、:slug や * を含む転送（動的）より後ろの行をすべて動的として数え、動的は100件までしか効かない。
+// そのため固定の転送を先に、動的な転送を最後に並べ直す
+const isDynamic = line => /[:*]/.test(line.split(/\s+/)[0] ?? '')
+const base = readFileSync('out/_redirects', 'utf8').split('\n')
+const dynamicLines = base.filter(line => line.trim() && !line.startsWith('#') && isDynamic(line))
+writeFileSync(
+  'out/_redirects',
+  `${base.filter(line => !dynamicLines.includes(line)).join('\n').trimEnd()}\n\n# 掲載をやめた園・削除扱いの記事（src/app/redirects.txt/route.ts から作る）\n${lines}\n\n# 動的な転送（固定の転送より後ろに置く）\n${dynamicLines.join('\n')}\n`,
+)
 rmSync(generated)
 console.log(`_redirects: ${lines.split('\n').length} 件を追加`)
 
