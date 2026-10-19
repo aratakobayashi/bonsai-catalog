@@ -45,8 +45,6 @@ export function HomeOutings({ events, gardens, eventCount }: { events: Event[]; 
       aria-labelledby="home-outings"
       className="relative -mx-4 mt-12 overflow-hidden bg-sumi px-4 pb-8 pt-9 text-white [contain-intrinsic-size:auto_1200px] [content-visibility:auto] lg:mx-0 lg:mt-24 lg:px-12 lg:pb-12 lg:pt-14 lg:[contain-intrinsic-size:auto_720px]"
     >
-      <Image src={PHOTO.src} alt="" fill sizes="(max-width: 1023px) 100vw, 1184px" className="object-cover opacity-45" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,16,13,.35)_0%,rgba(18,16,13,.82)_40%,rgba(18,16,13,.92)_100%)]" aria-hidden="true" />
 
       <div className="relative">
         <p className="flex items-center gap-3 text-[11px] tracking-[0.24em] text-[#d6ba84]">
@@ -140,7 +138,6 @@ export function HomeOutings({ events, gardens, eventCount }: { events: Event[]; 
           )}
         </div>
 
-        {PHOTO.credit && <p className="mt-6 text-right text-[10.5px] text-white/45">写真：{PHOTO.credit}</p>}
       </div>
     </section>
   )
