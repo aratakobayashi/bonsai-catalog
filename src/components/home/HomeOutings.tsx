@@ -74,8 +74,8 @@ export function HomeOutings({ events, gardens, eventCount }: { events: Event[]; 
                   <dt className="text-[11.5px] tracking-[0.04em] text-ink-muted sm:w-[84px] sm:flex-none sm:pt-1.5">{region}</dt>
                   <dd className="flex min-w-0 flex-1 flex-wrap gap-x-3.5">
                     {prefectures.map(p => (
-                      <Link key={p} href={prefectureAreaHref(p)} className="inline-flex min-h-9 items-center text-[13.5px] text-ink hover:text-gold-dark hover:underline">
-                        {p.replace(/[都府県]$/, '')}<span className="ml-0.5 text-[11px] text-ink-muted">{counts.get(p)}</span>
+                      <Link key={p} href={prefectureAreaHref(p)} className="inline-flex min-h-9 items-center text-[13.5px] text-ink hover:text-gold-dark">
+                        {`${p.replace(/[都府県]$/, '')} ${counts.get(p)}`}
                       </Link>
                     ))}
                   </dd>
