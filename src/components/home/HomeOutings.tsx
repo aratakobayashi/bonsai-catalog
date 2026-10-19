@@ -28,7 +28,7 @@ export function HomeOutings({ events, gardens, eventCount }: { events: Event[]; 
       <h2 id="home-outings" className="mt-1.5 font-mincho text-xl font-bold tracking-[0.06em] text-ink lg:text-[26px]">盆栽展と盆栽園</h2>
       <p className="mt-1.5 text-xs text-ink-muted lg:text-[12.5px]">実物を見て選ぶなら、近くの盆栽展や盆栽園へ</p>
 
-      <div className="mt-5 grid gap-8 lg:mt-7 lg:grid-cols-[1.15fr_1fr] lg:gap-12">
+      <div className="mt-5 grid grid-cols-[minmax(0,1fr)] gap-8 lg:mt-7 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-12">
         {/* 近く開かれる盆栽展・イベント */}
         {events.length > 0 && (
           <div>
@@ -50,7 +50,7 @@ export function HomeOutings({ events, gardens, eventCount }: { events: Event[]; 
                         <span data-badge hidden className="inline-flex items-center bg-sumi px-1.5 text-[11px] font-bold leading-[1.7] text-white" />
                         <span className="text-[11.5px] text-ink-muted">{eventPlaceText(event)}・{eventPriceShort(event)}</span>
                       </span>
-                      <span className="mt-0.5 block font-mincho text-[15px] font-bold leading-[1.5] text-ink group-hover:text-gold-dark lg:text-[16px]">{event.title}</span>
+                      <span className="mt-0.5 block break-words font-mincho text-[15px] font-bold leading-[1.5] text-ink [word-break:normal] [overflow-wrap:anywhere] group-hover:text-gold-dark lg:text-[16px]">{event.title}</span>
                       {event.venue_name && <span className="mt-0.5 block truncate text-[12px] text-ink-soft">{event.venue_name}</span>}
                     </span>
                     <span className="self-center font-sans text-ink-muted" aria-hidden="true">›</span>
@@ -70,9 +70,9 @@ export function HomeOutings({ events, gardens, eventCount }: { events: Event[]; 
             <p className="font-mincho text-[16px] font-bold text-ink lg:text-[17px]">盆栽園を地域から探す</p>
             <dl className="mt-2 border-t border-line">
               {regions.map(({ region, prefectures }) => (
-                <div key={region} className="flex gap-3 border-b border-line py-2.5">
-                  <dt className="w-[72px] flex-none pt-1.5 text-[11.5px] tracking-[0.04em] text-ink-muted lg:w-[84px]">{region}</dt>
-                  <dd className="flex min-w-0 flex-wrap gap-x-3">
+                <div key={region} className="border-b border-line py-2.5 sm:flex sm:gap-3">
+                  <dt className="text-[11.5px] tracking-[0.04em] text-ink-muted sm:w-[84px] sm:flex-none sm:pt-1.5">{region}</dt>
+                  <dd className="flex min-w-0 flex-1 flex-wrap gap-x-3.5">
                     {prefectures.map(p => (
                       <Link key={p} href={prefectureAreaHref(p)} className="inline-flex min-h-9 items-center text-[13.5px] text-ink hover:text-gold-dark hover:underline">
                         {p.replace(/[都府県]$/, '')}<span className="ml-0.5 text-[11px] text-ink-muted">{counts.get(p)}</span>
