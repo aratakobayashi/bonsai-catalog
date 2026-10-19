@@ -1,5 +1,5 @@
 {
- "verifiedAt": "2026-10-08",
+ "verifiedAt": "2026-10-19",
  "deleteIds": [
   "29b660bd-c83e-4e10-8ea3-efbfbd85633f",
   "40776332-27f1-44ef-b6d7-3c0b899c823f",
@@ -1686,6 +1686,1370 @@
    "official_url": "https://www.kaboku.or.jp/satsuki/",
    "description": "鹿沼市花木センターを主会場に開かれるさつきの祭典で、全国の愛好家が育てたさつき約300点が並ぶ大展示会が中心となる。相談会やワークショップも行われる。",
    "related_product_tags": []
+  },
+  {
+   "title": "八戸盆栽クラブ秋季盆栽展",
+   "slug": "hachinohe-bonsai-club-autumn-2026",
+   "start_date": "2026-10-29",
+   "end_date": "2026-11-01",
+   "prefecture": "青森県",
+   "venue_name": "八食センター 催事ホール",
+   "address": "青森県八戸市大字河原木字神才22-2",
+   "lat": 40.526157,
+   "lng": 141.452332,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料",
+   "organizer_name": "八戸盆栽クラブ",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e5%85%ab%e6%88%b8%e7%9b%86%e6%a0%bd%e3%82%af%e3%83%a9%e3%83%96%e7%a7%8b%e5%ad%a3%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e9%9d%92%e6%a3%ae%e7%9c%8c%ef%bc%89/",
+   "description": "八戸盆栽クラブによる秋の盆栽展。八食センター催事ホールで4日間開催される（最終日は16時まで）。",
+   "related_product_tags": []
+  },
+  {
+   "title": "華正園 第4回盆栽自在展",
+   "slug": "kaseien-bonsai-jizai-ten-2026",
+   "start_date": "2026-11-01",
+   "end_date": "2026-11-03",
+   "prefecture": "宮城県",
+   "venue_name": "華正園内展示場 自在庵",
+   "address": "宮城県仙台市泉区小角字上在家前",
+   "lat": 38.332977,
+   "lng": 140.80928,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "華正園",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e8%8f%af%e6%ad%a3%e5%9c%92%e3%80%80%e7%ac%ac%ef%bc%94%e5%9b%9e%e7%9b%86%e6%a0%bd%e8%87%aa%e5%9c%a8%e5%b1%95%ef%bc%88%e5%ae%ae%e5%9f%8e%e7%9c%8c%ef%bc%89/",
+   "description": "仙台市泉区の盆栽園・華正園が園内展示場「自在庵」で開く盆栽展。即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "秋の福島小品盆栽展",
+   "slug": "fukushima-shohin-bonsai-autumn-2026",
+   "start_date": "2026-10-31",
+   "end_date": "2026-11-01",
+   "prefecture": "福島県",
+   "venue_name": "福島県教育会館",
+   "address": "福島県福島市上浜町10-38",
+   "lat": 37.753036,
+   "lng": 140.475052,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "福島小品盆栽会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%a7%8b%e3%81%ae%e7%a6%8f%e5%b3%b6%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e7%a6%8f%e5%b3%b6%e7%9c%8c%ef%bc%89/",
+   "description": "福島小品盆栽会による秋の小品盆栽展。即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第43回一宮小品盆栽展",
+   "slug": "ichinomiya-shohin-bonsai-ten-2026",
+   "start_date": "2026-10-31",
+   "end_date": "2026-11-01",
+   "prefecture": "愛知県",
+   "venue_name": "一宮スポーツ文化センター 2階",
+   "address": "愛知県一宮市真清田1-2-30",
+   "lat": 35.308121,
+   "lng": 136.800659,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料",
+   "organizer_name": "一宮小品盆栽会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac43%e5%9b%9e%e4%b8%80%e5%ae%ae%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+   "description": "一宮小品盆栽会の第43回展示会。31日は13時から、1日は9時から16時まで。入場無料、即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第19回たちばな会盆栽展",
+   "slug": "tachibanakai-bonsai-ten-2026",
+   "start_date": "2026-10-30",
+   "end_date": "2026-11-01",
+   "prefecture": "静岡県",
+   "venue_name": "都市山村交流センター 安倍ごころ",
+   "address": "静岡県静岡市葵区牛妻",
+   "lat": 35.069588,
+   "lng": 138.38121,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "たちばな会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac19%e5%9b%9e%e3%81%9f%e3%81%a1%e3%81%b0%e3%81%aa%e4%bc%9a%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e9%9d%99%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+   "description": "静岡市葵区の都市山村交流センター安倍ごころで開かれる、たちばな会の第19回盆栽展。即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "埼玉川口老鴉柿愛好会展示会",
+   "slug": "kawaguchi-rouyagaki-ten-2026",
+   "start_date": "2026-10-31",
+   "end_date": "2026-11-01",
+   "prefecture": "埼玉県",
+   "venue_name": "川口グリーンセンター 園芸広場",
+   "address": "埼玉県川口市新井宿700",
+   "lat": 35.845146,
+   "lng": 139.726974,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "埼玉川口老鴉柿愛好会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e5%9f%bc%e7%8e%89%e5%b7%9d%e5%8f%a3%e8%80%81%e9%b4%89%e6%9f%bf%e6%84%9b%e5%a5%bd%e4%bc%9a%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e5%9f%bc%e7%8e%89%e7%9c%8c%ef%bc%89/",
+   "description": "実ものとして人気の老鴉柿盆栽を集めた愛好会の展示会。即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "羽生雨竹亭 秋の観照会",
+   "slug": "hanyu-uchikutei-autumn-kanshokai-2026",
+   "start_date": "2026-11-01",
+   "end_date": "2026-11-05",
+   "prefecture": "埼玉県",
+   "venue_name": "羽生本店 雨竹亭",
+   "address": "埼玉県羽生市北荻島",
+   "lat": 36.167282,
+   "lng": 139.58136,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料",
+   "organizer_name": "雨竹亭",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%be%bd%e7%94%9f%e9%9b%a8%e7%ab%b9%e4%ba%ad%e3%80%80%e7%a7%8b%e3%81%ae%e8%a6%b3%e7%85%a7%e4%bc%9a%ef%bc%88%e5%9f%bc%e7%8e%89%e7%9c%8c%ef%bc%89/",
+   "description": "盆栽園・雨竹亭の羽生本店で開かれる秋の観照会。入場無料。",
+   "related_product_tags": []
+  },
+  {
+   "title": "羽生雨竹亭盆栽教室 生徒作品秋季展",
+   "slug": "hanyu-uchikutei-student-autumn-ten-2026",
+   "start_date": "2026-11-07",
+   "end_date": "2026-11-08",
+   "prefecture": "埼玉県",
+   "venue_name": "羽生本店 雨竹亭 庭園内展示室",
+   "address": "埼玉県羽生市北荻島",
+   "lat": 36.167282,
+   "lng": 139.58136,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "雨竹亭",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%be%bd%e7%94%9f%e9%9b%a8%e7%ab%b9%e4%ba%ad%e7%9b%86%e6%a0%bd%e6%95%99%e5%ae%a4%e3%80%80%e7%94%9f%e5%be%92%e4%bd%9c%e5%93%81%e7%a7%8b%e5%ad%a3%e5%b1%95%ef%bc%88%e5%9f%bc%e7%8e%89%e7%9c%8c/",
+   "description": "雨竹亭の盆栽教室に通う生徒が仕立てた盆栽を展示する秋季作品展。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第5回竹彫刻と盆栽二人展",
+   "slug": "tsuyama-take-chokoku-bonsai-futari-ten-2026",
+   "start_date": "2026-11-01",
+   "end_date": "2026-11-03",
+   "prefecture": "岡山県",
+   "venue_name": "くらや 2階アートホール",
+   "address": "岡山県津山市沼",
+   "lat": 35.077168,
+   "lng": 134.012527,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料",
+   "organizer_name": null,
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac%ef%bc%95%e5%9b%9e%e7%ab%b9%e5%bd%ab%e5%88%bb%e3%81%a8%e7%9b%86%e6%a0%bd%e4%ba%8c%e4%ba%ba%e5%b1%95%ef%bc%88%e5%b2%a1%e5%b1%b1%e7%9c%8c%ef%bc%89/",
+   "description": "大森博文氏の盆栽と小林博道氏の竹彫刻によるコラボ展。入場無料、即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第17回老鴉柿盆栽展",
+   "slug": "aigi-rouyagaki-bonsai-ten-2026",
+   "start_date": "2026-11-01",
+   "end_date": "2026-11-03",
+   "prefecture": "岐阜県",
+   "venue_name": "太田宿中山道会館",
+   "address": "岐阜県美濃加茂市太田本町3-3-31",
+   "lat": 35.438179,
+   "lng": 137.01326,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "愛岐老鴉柿同好会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac17%e5%9b%9e%e8%80%81%e9%b4%89%e6%9f%bf%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%b2%90%e9%98%9c%e7%9c%8c%ef%bc%89/",
+   "description": "愛岐老鴉柿同好会による老鴉柿盆栽展。松柏・雑木・山野草の展示もあり、即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第31回鹿沼園芸フェア",
+   "slug": "kanuma-engei-fair-2026",
+   "start_date": "2026-10-31",
+   "end_date": "2026-11-08",
+   "prefecture": "栃木県",
+   "venue_name": "鹿沼市花木センター",
+   "address": "栃木県鹿沼市茂呂2002-1",
+   "lat": 36.543232,
+   "lng": 139.783752,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "鹿沼園芸フェア実行委員会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac31%e5%9b%9e%e9%b9%bf%e6%b2%bc%e5%9c%92%e8%8a%b8%e3%83%95%e3%82%a7%e3%82%a2%ef%bc%88%e6%a0%83%e6%9c%a8%e7%9c%8c%ef%bc%89/",
+   "description": "鹿沼市花木センターで開かれる園芸フェア。期間中に植木市、秋季さつき銘品展、日本盆栽協会鹿沼支部展などが日替わりで開催される。",
+   "related_product_tags": []
+  },
+  {
+   "title": "小田原盆栽愛好会 第117回盆栽展",
+   "slug": "odawara-bonsai-aikokai-117-2026",
+   "start_date": "2026-11-03",
+   "end_date": "2026-11-08",
+   "prefecture": "神奈川県",
+   "venue_name": "小田原フラワーガーデン",
+   "address": "神奈川県小田原市久野3798-5",
+   "lat": 35.280819,
+   "lng": 139.129044,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料",
+   "organizer_name": "小田原盆栽愛好会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e5%b0%8f%e7%94%b0%e5%8e%9f%e7%9b%86%e6%a0%bd%e6%84%9b%e5%a5%bd%e4%bc%9a%e3%80%80%e7%ac%ac%ef%bc%91%ef%bc%91%ef%bc%97%e5%9b%9e%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e7%a5%9e%e5%a5%88%e5%b7%9d/",
+   "description": "小田原盆栽愛好会の第117回盆栽展。約15席を展示し、入場無料、即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第13回老鴉柿展",
+   "slug": "sagamihara-rouyagaki-ten-2026",
+   "start_date": "2026-11-03",
+   "end_date": "2026-11-08",
+   "prefecture": "神奈川県",
+   "venue_name": "県立相模原公園 サカタのタネグリーンハウス",
+   "address": "神奈川県相模原市南区下溝3277",
+   "lat": 35.531422,
+   "lng": 139.385513,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "相模原老鴉柿を育てる会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac13%e5%9b%9e%e8%80%81%e9%b4%89%e6%9f%bf%e5%b1%95%ef%bc%88%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%ef%bc%89/",
+   "description": "相模原老鴉柿を育てる会による老鴉柿盆栽の展示会。即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第17回浜松老鴉柿展",
+   "slug": "hamamatsu-rouyagaki-ten-2026",
+   "start_date": "2026-11-06",
+   "end_date": "2026-11-08",
+   "prefecture": "静岡県",
+   "venue_name": "はままつフラワーパーク",
+   "address": "静岡県浜松市中央区舘山寺町195",
+   "lat": 34.763638,
+   "lng": 137.63237,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": "別途はままつフラワーパーク入園料が必要な場合あり",
+   "organizer_name": "浜松老鴉柿愛好会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac17%e5%9b%9e%e6%b5%9c%e6%9d%be%e8%80%81%e9%b4%89%e6%9f%bf%e5%b1%95%ef%bc%88%e9%9d%99%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+   "description": "はままつフラワーパークで開かれる浜松老鴉柿愛好会の展示会。即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "盆栽見本市（新津フラワーランド）",
+   "slug": "niitsu-flowerland-bonsai-mihonichi-2026",
+   "start_date": "2026-11-06",
+   "end_date": "2026-11-15",
+   "prefecture": "新潟県",
+   "venue_name": "新津フラワーランド",
+   "address": "新潟県新潟市秋葉区古津",
+   "lat": 37.769344,
+   "lng": 139.110336,
+   "types": [
+    "exhibition",
+    "sale",
+    "workshop"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "にいつ花の里協同組合（新津フラワーランド）",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%9b%86%e6%a0%bd%e8%a6%8b%e6%9c%ac%e5%b8%82%ef%bc%88%e6%96%b0%e6%bd%9f%e7%9c%8c%ef%bc%89/",
+   "description": "新津フラワーランドで開かれる盆栽の見本市。8日・14日・15日に初心者向け盆栽講習会を開催。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第100回秋季小品盆栽展",
+   "slug": "gunma-shohin-tenori-100-2026",
+   "start_date": "2026-11-07",
+   "end_date": "2026-11-08",
+   "prefecture": "群馬県",
+   "venue_name": "道の駅ららん藤岡 花の交流館 多目的スペース",
+   "address": "群馬県藤岡市中1060-5",
+   "lat": 36.274063,
+   "lng": 139.068375,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "群馬小品手のり盆栽会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac%ef%bc%91%ef%bc%90%ef%bc%90%e5%9b%9e%e7%a7%8b%e5%ad%a3%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e7%be%a4%e9%a6%ac%e7%9c%8c%ef%bc%89/",
+   "description": "群馬小品手のり盆栽会の第100回となる秋季小品盆栽展。即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第31回秋季盆栽展（上州愛樹会）",
+   "slug": "joshu-aijukai-autumn-2026",
+   "start_date": "2026-11-14",
+   "end_date": "2026-11-15",
+   "prefecture": "群馬県",
+   "venue_name": "道の駅ららん藤岡 花の交流館 多目的スペース",
+   "address": "群馬県藤岡市中1060-5",
+   "lat": 36.274063,
+   "lng": 139.068375,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "上州愛樹会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac31%e5%9b%9e%e7%a7%8b%e5%ad%a3%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e7%be%a4%e9%a6%ac%e7%9c%8c%ef%bc%89/",
+   "description": "上州愛樹会の第31回秋季盆栽展。30席を展示し、即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "秋の小品盆栽展（鴻巣盆草会）",
+   "slug": "konosu-bonsokai-shohin-autumn-2026",
+   "start_date": "2026-11-07",
+   "end_date": "2026-11-08",
+   "prefecture": "埼玉県",
+   "venue_name": "鴻巣市本町コミュニティセンター 1階ギャラリー",
+   "address": "埼玉県鴻巣市本町",
+   "lat": 36.06089,
+   "lng": 139.51033,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "鴻巣盆草会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%a7%8b%e3%81%ae%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%9f%bc%e7%8e%89%e7%9c%8c%ef%bc%89/",
+   "description": "鴻巣盆草会の秋の小品盆栽展。即売あり、小鉢作家・小岩井潔（風香窯）の特別展示即売会を同時開催。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第53回秋の横浜小品盆栽展",
+   "slug": "yokohama-shohin-issakai-autumn-2026",
+   "start_date": "2026-11-07",
+   "end_date": "2026-11-08",
+   "prefecture": "神奈川県",
+   "venue_name": "港北区民文化センター ミズキーホール（新綱島スクエア4階）",
+   "address": "神奈川県横浜市港北区綱島東",
+   "lat": 35.535587,
+   "lng": 139.637436,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料",
+   "organizer_name": "横浜小品盆栽 一砂会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac53%e5%9b%9e%e7%a7%8b%e3%81%ae%e6%a8%aa%e6%b5%9c%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%ef%bc%89/",
+   "description": "横浜小品盆栽 一砂会による第53回秋の小品盆栽展。入場無料、即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "盆栽展示会（京都盆栽クラブ）",
+   "slug": "yukuhashi-miyako-bonsai-club-2026",
+   "start_date": "2026-11-07",
+   "end_date": "2026-11-08",
+   "prefecture": "福岡県",
+   "venue_name": "サンワークゆくはし 多目的ホール",
+   "address": "福岡県行橋市今井",
+   "lat": 33.726639,
+   "lng": 131.001968,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "京都（みやこ）盆栽クラブ",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%9b%86%e6%a0%bd%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e7%a6%8f%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+   "description": "小品から大型の盆栽、山野草、水石など20〜30席を展示。来場者全員に鑑賞記念品を進呈。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第56回西三河支部盆栽展",
+   "slug": "nishimikawa-shibu-bonsai-ten-2026",
+   "start_date": "2026-11-10",
+   "end_date": "2026-11-11",
+   "prefecture": "愛知県",
+   "venue_name": "西尾信用金庫本店 1階会議室",
+   "address": "愛知県西尾市寄住町",
+   "lat": 34.867706,
+   "lng": 137.064194,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "日本盆栽協会西三河支部",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac56%e5%9b%9e%e8%a5%bf%e4%b8%89%e6%b2%b3%e6%94%af%e9%83%a8%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+   "description": "日本盆栽協会西三河支部の第56回盆栽展。約30席を展示し、即売・相談コーナーあり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第5回喜楽小品盆栽・山野草展",
+   "slug": "toyota-kiraku-shohin-sanyaso-2026",
+   "start_date": "2026-11-14",
+   "end_date": "2026-11-15",
+   "prefecture": "愛知県",
+   "venue_name": "豊田市産業文化センター 喜楽亭 2階",
+   "address": "愛知県豊田市小坂本町1-25",
+   "lat": 35.086746,
+   "lng": 137.151306,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "喜楽小品盆栽会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac%ef%bc%95%e5%9b%9e%e5%96%9c%e6%a5%bd%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e3%83%bb%e5%b1%b1%e9%87%8e%e8%8d%89%e5%b1%95%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+   "description": "文化財「喜楽亭」の座敷飾りでミニ〜中品盆栽や山野草を展示する。",
+   "related_product_tags": []
+  },
+  {
+   "title": "春風会 秋の盆栽展示会",
+   "slug": "anjo-shunpukai-autumn-2026",
+   "start_date": "2026-11-14",
+   "end_date": "2026-11-15",
+   "prefecture": "愛知県",
+   "venue_name": "アンフォーレ安城 1階エントランス",
+   "address": "愛知県安城市御幸本町12-1",
+   "lat": 34.959217,
+   "lng": 137.084869,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "春風会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e6%98%a5%e9%a2%a8%e4%bc%9a%e7%a7%8b%e3%81%ae%e7%9b%86%e6%a0%bd%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+   "description": "ミニ・小品盆栽20〜30席を展示する春風会の秋の展示会。",
+   "related_product_tags": []
+  },
+  {
+   "title": "東濃支部秋季展示会",
+   "slug": "tono-shibu-autumn-2026",
+   "start_date": "2026-11-14",
+   "end_date": "2026-11-15",
+   "prefecture": "岐阜県",
+   "venue_name": "日本ライン花木センター 展示室",
+   "address": "岐阜県可児市土田4567",
+   "lat": 35.421627,
+   "lng": 137.009644,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "日本盆栽協会東濃支部",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e6%9d%b1%e6%bf%83%e6%94%af%e9%83%a8%e7%a7%8b%e5%ad%a3%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e5%b2%90%e9%98%9c%e7%9c%8c%ef%bc%89/",
+   "description": "日本盆栽協会東濃支部による秋季の盆栽展示会。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第10回翼樹展",
+   "slug": "yokuju-ten-2026",
+   "start_date": "2026-11-21",
+   "end_date": "2026-11-23",
+   "prefecture": "栃木県",
+   "venue_name": "鹿沼市花木センター さつき温室",
+   "address": "栃木県鹿沼市茂呂2002-1",
+   "lat": 36.543232,
+   "lng": 139.783752,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "翼樹会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac10%e5%9b%9e%e7%bf%bc%e6%a8%b9%e5%b1%95%ef%bc%88%e6%a0%83%e6%9c%a8%e7%9c%8c%ef%bc%89/",
+   "description": "さつき盆栽の翼樹会による第10回展示会。今回のみ会場を鹿沼市花木センターに変更、即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "老爺柿展示即売会（足柄老爺柿愛好会）",
+   "slug": "kaisei-rouyagaki-sokubaikai-2026",
+   "start_date": "2026-11-21",
+   "end_date": "2026-11-22",
+   "prefecture": "神奈川県",
+   "venue_name": "あしがり郷 瀬戸屋敷",
+   "address": "神奈川県足柄上郡開成町金井島1336",
+   "lat": 35.34293,
+   "lng": 139.115387,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "足柄老爺柿愛好会（天目会）",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e8%80%81%e7%88%ba%e6%9f%bf%e5%b1%95%e7%a4%ba%e5%8d%b3%e5%a3%b2%e4%bc%9a%ef%bc%88%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%ef%bc%89/",
+   "description": "開成町の古民家「瀬戸屋敷」で開かれる老爺柿盆栽の展示即売会。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第15回秋季銘品展（広島県さつき盆栽会）",
+   "slug": "hiroshima-satsuki-autumn-meihin-2026",
+   "start_date": "2026-11-21",
+   "end_date": "2026-11-23",
+   "prefecture": "広島県",
+   "venue_name": "フジグラン東広島 1階ときめき広場",
+   "address": "広島県東広島市西条町御薗宇",
+   "lat": 34.408062,
+   "lng": 132.755798,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "広島県さつき盆栽会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac15%e5%9b%9e%e7%a7%8b%e5%ad%a3%e9%8a%98%e5%93%81%e5%b1%95%ef%bc%88%e5%ba%83%e5%b3%b6%e7%9c%8c%ef%bc%89/",
+   "description": "広島県さつき盆栽会による秋のさつき盆栽銘品展。相談コーナーあり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "稲敷盆栽会秋季盆栽展",
+   "slug": "inashiki-bonsai-autumn-2026",
+   "start_date": "2026-11-27",
+   "end_date": "2026-11-29",
+   "prefecture": "茨城県",
+   "venue_name": "稲敷市鳩崎コミュニティセンター",
+   "address": "茨城県稲敷市鳩崎",
+   "lat": 35.996338,
+   "lng": 140.344147,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "稲敷盆栽会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%a8%b2%e6%95%b7%e7%9b%86%e6%a0%bd%e4%bc%9a%e7%a7%8b%e5%ad%a3%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e8%8c%a8%e5%9f%8e%e7%9c%8c%ef%bc%89/",
+   "description": "盆栽と創作山野草を展示する稲敷盆栽会の秋季展。チャリティ即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "秋季盆栽展（日本盆栽協会つくば支部）",
+   "slug": "tsukuba-shibu-autumn-bonsai-2026",
+   "start_date": "2026-11-28",
+   "end_date": "2026-11-29",
+   "prefecture": "茨城県",
+   "venue_name": "市民ホールやたべ",
+   "address": "茨城県つくば市谷田部4711",
+   "lat": 36.035011,
+   "lng": 140.073898,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料",
+   "organizer_name": "日本盆栽協会つくば支部",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%a7%8b%e5%ad%a3%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e8%8c%a8%e5%9f%8e%e7%9c%8c%ef%bc%89/",
+   "description": "日本盆栽協会つくば支部の秋季盆栽展。20席を展示し、入場無料、即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第25回安行東盆栽祭り",
+   "slug": "angyo-higashi-bonsai-matsuri-2026",
+   "start_date": "2026-11-28",
+   "end_date": "2026-11-29",
+   "prefecture": "埼玉県",
+   "venue_name": "安行東盆栽園",
+   "address": "埼玉県川口市安行吉蔵",
+   "lat": 35.849945,
+   "lng": 139.769821,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "安行東盆栽園",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac25%e5%9b%9e%e5%ae%89%e8%a1%8c%e6%9d%b1%e7%9b%86%e6%a0%bd%e7%a5%ad%e3%82%8a%ef%bc%88%e5%9f%bc%e7%8e%89%e7%9c%8c%ef%bc%89/",
+   "description": "植木の里・安行の盆栽園で開かれる恒例の盆栽祭り。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第21回湘風小品盆栽展",
+   "slug": "shofu-shohin-bonsai-ten-2026",
+   "start_date": "2026-11-28",
+   "end_date": "2026-11-29",
+   "prefecture": "神奈川県",
+   "venue_name": "湘風園内展示会場",
+   "address": "神奈川県平塚市横内",
+   "lat": 35.372265,
+   "lng": 139.350311,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "湘風小品盆栽会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac21%e5%9b%9e%e6%b9%98%e9%a2%a8%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%ef%bc%89/",
+   "description": "全日本小品盆栽協会認定団体・湘風小品盆栽会の第21回展。会員による即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "皐月・山野草展（喜宝園）",
+   "slug": "kihoen-satsuki-sanyaso-autumn-2026",
+   "start_date": "2026-11-06",
+   "end_date": "2026-11-08",
+   "prefecture": "埼玉県",
+   "venue_name": "喜宝園展示会場",
+   "address": "埼玉県所沢市下安松",
+   "lat": 35.787865,
+   "lng": 139.504532,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "喜宝園",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%9a%90%e6%9c%88%e3%83%bb%e5%b1%b1%e9%87%8e%e8%8d%89%e5%b1%95%ef%bc%88%e5%9f%bc%e7%8e%89%e7%9c%8c%ef%bc%89/",
+   "description": "所沢市の喜宝園で開かれる皐月盆栽と山野草の秋の展示会。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第35回無窮展〈銘品盆栽展〉",
+   "slug": "mukyu-ten-2026",
+   "start_date": "2026-12-18",
+   "end_date": "2026-12-20",
+   "prefecture": "三重県",
+   "venue_name": "四日市市文化会館 第一展示室",
+   "address": "三重県四日市市安島2-5-3",
+   "lat": 34.969582,
+   "lng": 136.612274,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料",
+   "organizer_name": "玉芳会Ｏ２くらぶ",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac35%e5%9b%9e%e7%84%a1%e7%aa%ae%e5%b1%95%e3%80%88%e9%8a%98%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%e3%80%89%ef%bc%88%e4%b8%89%e9%87%8d%e7%9c%8c%ef%bc%89/",
+   "description": "四日市市文化会館で開かれる銘品盆栽展。入場無料、即売あり。",
+   "related_product_tags": []
+  },
+  {
+   "title": "小品盆栽フェア 第41回北陸雅展",
+   "slug": "hokuriku-miyabi-ten-2026",
+   "start_date": "2026-12-19",
+   "end_date": "2026-12-20",
+   "prefecture": "石川県",
+   "venue_name": "白山市 市民工房うるわし",
+   "address": "石川県白山市殿町310",
+   "lat": 36.526016,
+   "lng": 136.567123,
+   "types": [
+    "exhibition",
+    "sale",
+    "workshop",
+    "lecture"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料",
+   "organizer_name": "公益社団法人全日本小品盆栽協会",
+   "official_url": "https://shohin-bonsai.or.jp/bonsai-faire/",
+   "description": "富山・石川・福井の愛好者が出展する北陸最大の小品盆栽フェア。入場無料、即売あり、会期中に講習会やワークショップを実施。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第57回秋季盆栽展（高砂市）",
+   "slug": "takasago-autumn-bonsai-ten-2026",
+   "start_date": "2026-11-14",
+   "end_date": "2026-11-15",
+   "prefecture": "兵庫県",
+   "venue_name": "市ノ池公園 みどりの相談所 多目的研修室",
+   "address": "兵庫県高砂市阿弥陀町地徳301",
+   "lat": 34.806854,
+   "lng": 134.777435,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料",
+   "organizer_name": "高砂盆栽協会",
+   "official_url": "https://www.city.takasago.lg.jp/soshikikarasagasu/bunkashinkouka/bunka_geijutsu/1/5911.html",
+   "description": "高砂盆栽協会会員による盆栽の展示・即売会。入場無料（15日は15時30分まで）。",
+   "related_product_tags": []
+  },
+  {
+   "title": "子ども向けワークショップ―はじめての盆栽づくり（11月）",
+   "slug": "omiya-bonsai-museum-kids-workshop-nov-2026",
+   "start_date": "2026-11-15",
+   "end_date": "2026-11-15",
+   "prefecture": "埼玉県",
+   "venue_name": "さいたま市大宮盆栽美術館 2階講座室",
+   "address": "埼玉県さいたま市北区土呂町2-24-3",
+   "lat": 35.928982,
+   "lng": 139.633408,
+   "types": [
+    "workshop"
+   ],
+   "price_type": "paid",
+   "price_note": "3,000円（材料費込み・事前申込制、定員10組）",
+   "organizer_name": "さいたま市大宮盆栽美術館",
+   "official_url": "https://www.bonsai-art-museum.jp/ja/event/event-10778/",
+   "description": "小中学生と保護者を対象に、真柏の苗木で小さな盆栽をつくるワークショップ（10時〜11時30分）。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第76回長浜盆梅展",
+   "slug": "nagahama-bonbai-ten-2027",
+   "start_date": "2027-01-10",
+   "end_date": "2027-03-10",
+   "prefecture": "滋賀県",
+   "venue_name": "慶雲館",
+   "address": "滋賀県長浜市港町2-5",
+   "lat": 35.37635,
+   "lng": 136.265976,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "paid",
+   "price_note": "大人900円・小中学生400円（2026年実績）",
+   "organizer_name": "公益社団法人長浜観光協会",
+   "official_url": "https://koubo.jp/press-release/prtimes/c113572_r3",
+   "description": "1952年に始まった日本最大級の盆梅展。明治期建築の慶雲館座敷に、所蔵約300鉢から入れ替えながら約90鉢の梅盆栽を展示する。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第43回伊吹盆梅展",
+   "slug": "ibuki-bonbai-ten-2027",
+   "start_date": "2027-01-16",
+   "end_date": "2027-03-07",
+   "prefecture": "滋賀県",
+   "venue_name": "伊吹薬草の里文化センター",
+   "address": "滋賀県米原市春照37",
+   "lat": 35.382195,
+   "lng": 136.383163,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": null,
+   "official_url": "https://iko-yo.net/events/547391",
+   "description": "地元の盆栽愛好会が育てた梅盆栽を展示する冬の恒例展。2026年は第42回が1月17日〜3月8日に開かれた。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第24回大和郡山盆梅展",
+   "slug": "yamatokoriyama-bonbai-ten-2027",
+   "start_date": "2027-02-06",
+   "end_date": "2027-03-10",
+   "prefecture": "奈良県",
+   "venue_name": "郡山城跡（追手門・追手東隅櫓ほか）",
+   "address": "奈良県大和郡山市城内町",
+   "lat": 34.651169,
+   "lng": 135.778763,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "paid",
+   "price_note": "一般700円・60歳以上600円・小学生以下無料（2026年実績）",
+   "organizer_name": "大和郡山盆梅展実行委員会",
+   "official_url": "https://tabi-mag.jp/yamatokoriyama-bonnbai/",
+   "description": "市内の愛好家が育てた盆梅約120鉢を郡山城跡の櫓などに展示する早春の催し。",
+   "related_product_tags": []
+  },
+  {
+   "title": "盆梅展（菅原天満宮）",
+   "slug": "sugawara-tenmangu-bonbai-ten-2027",
+   "start_date": "2027-02-01",
+   "end_date": "2027-03-01",
+   "prefecture": "奈良県",
+   "venue_name": "菅原天満宮",
+   "address": "奈良県奈良市菅原東1-15-1",
+   "lat": 34.68539,
+   "lng": 135.778549,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "菅原天満宮",
+   "official_url": "https://narashikanko.or.jp/event/detail_10172.html",
+   "description": "日本最古の天満宮とされる菅原天満宮で毎年開かれる盆梅展。古木・巨木や黄金梅など約130品種300鉢が並ぶ。",
+   "related_product_tags": []
+  },
+  {
+   "title": "道明寺天満宮 盆梅展",
+   "slug": "domyoji-tenmangu-bonbai-ten-2027",
+   "start_date": "2027-01-25",
+   "end_date": "2027-03-01",
+   "prefecture": "大阪府",
+   "venue_name": "道明寺天満宮",
+   "address": "大阪府藤井寺市道明寺1丁目16-40",
+   "lat": 34.567795,
+   "lng": 135.617264,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": "盆梅展は観覧無料（梅園は有料）",
+   "organizer_name": "藤井寺市梅の会（展示）",
+   "official_url": "https://www.walkerplus.com/event/ar0727e577181/",
+   "description": "藤井寺市梅の会が育てた約80鉢の盆梅を展示し、即売も行う。梅まつりに合わせた恒例行事。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第36回大府盆梅展",
+   "slug": "obu-bonbai-ten-2027",
+   "start_date": "2027-02-07",
+   "end_date": "2027-02-14",
+   "prefecture": "愛知県",
+   "venue_name": "大倉公園",
+   "address": "愛知県大府市桃山町5-74",
+   "lat": 35.013107,
+   "lng": 136.965271,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料（呈茶は1日券500円・2026年実績）",
+   "organizer_name": "大府市観光協会（問合せ先）",
+   "official_url": "https://aichinow.pref.aichi.jp/events/detail/3159/",
+   "description": "樹齢約300年の盆梅などを展示する大府市の冬の恒例行事。呈茶や演奏なども行われる。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第7回亀崎盆梅展",
+   "slug": "kamezaki-bonbai-ten-2027",
+   "start_date": "2027-02-18",
+   "end_date": "2027-02-23",
+   "prefecture": "愛知県",
+   "venue_name": "立川美術館分館 作右衛門屋敷",
+   "address": "愛知県半田市亀崎町6-81",
+   "lat": 34.914242,
+   "lng": 136.964371,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "paid",
+   "price_note": "大人500円・小中学生200円（2026年実績）",
+   "organizer_name": "立川美術館",
+   "official_url": "https://aichinow.pref.aichi.jp/events/detail/3649/",
+   "description": "半田市亀崎の古民家・作右衛門屋敷で開かれる盆梅展。2026年に第6回が開催された。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第23回たにぐみ盆梅展",
+   "slug": "tanigumi-bonbai-ten-2027",
+   "start_date": "2027-02-13",
+   "end_date": "2027-03-14",
+   "prefecture": "岐阜県",
+   "venue_name": "旧谷汲観光資料館",
+   "address": "岐阜県揖斐郡揖斐川町谷汲徳積316",
+   "lat": 35.526878,
+   "lng": 136.620285,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "paid",
+   "price_note": "大人400円・中学生以下無料（2026年実績）",
+   "organizer_name": "揖斐川町観光協会（問合せ先）",
+   "official_url": "https://www.kankou-gifu.jp/event/detail_6449.html",
+   "description": "谷汲山華厳寺の門前で毎年開かれる盆梅展。2026年は第22回が2月14日〜3月15日に開催された。",
+   "related_product_tags": []
+  },
+  {
+   "title": "盆梅展（大阪府立花の文化園）",
+   "slug": "hana-no-bunkaen-bonbai-ten-2027",
+   "start_date": "2027-02-11",
+   "end_date": "2027-03-07",
+   "prefecture": "大阪府",
+   "venue_name": "大阪府立花の文化園 イベントホール",
+   "address": "大阪府河内長野市高向2292-1",
+   "lat": 34.434673,
+   "lng": 135.554016,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "paid",
+   "price_note": "入園料 大人580円・高校生290円・中学生以下無料",
+   "organizer_name": "大阪府立花の文化園",
+   "official_url": "https://iko-yo.net/facilities/1636/news/118941",
+   "description": "府立植物園のイベントホールに梅の盆栽を並べる早春の展示。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第23回玉名盆梅展",
+   "slug": "tamana-bonbai-ten-2027",
+   "start_date": "2027-02-05",
+   "end_date": "2027-03-01",
+   "prefecture": "熊本県",
+   "venue_name": "蓮華院誕生寺奥之院",
+   "address": "熊本県玉名市築地1512-77",
+   "lat": 32.961197,
+   "lng": 130.523849,
+   "types": [
+    "exhibition",
+    "workshop"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": null,
+   "official_url": "https://kumamoto-odekake.com/event/1136/",
+   "description": "蓮華院誕生寺奥之院で毎年開かれる盆梅展。会期中に盆栽講習会や苔玉教室も行われる。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第47回京都盆栽展",
+   "slug": "kyoto-bonsai-ten-spring-2027",
+   "start_date": "2027-04-02",
+   "end_date": "2027-04-05",
+   "prefecture": "京都府",
+   "venue_name": "京都府立植物園 植物園会館1階展示室",
+   "address": "京都府京都市左京区下鴨半木町",
+   "lat": 35.048355,
+   "lng": 135.764236,
+   "types": [
+    "exhibition",
+    "lecture"
+   ],
+   "price_type": "paid",
+   "price_note": "入園料 一般500円・65歳以上と高校生250円・中学生以下無料（2025年実績）",
+   "organizer_name": "京都府立植物園・京都盆栽会",
+   "official_url": "https://museumforum.pref.kyoto.lg.jp/uploads/kyoto-botanical-gardens_3-bonsai_2504.pdf",
+   "description": "京都盆栽会と植物園が共催する春の盆栽展。会期中に盆栽・水石・鉢の「何でも相談会」も開かれる。",
+   "related_product_tags": []
+  },
+  {
+   "title": "盆栽作品展（日本盆栽協会西播支部）",
+   "slug": "himeji-seiban-bonsai-sakuhin-ten-2027",
+   "start_date": "2027-03-06",
+   "end_date": "2027-03-08",
+   "prefecture": "兵庫県",
+   "venue_name": "手柄山交流ステーション3階",
+   "address": "兵庫県姫路市西延末440",
+   "lat": 34.822617,
+   "lng": 134.673264,
+   "types": [
+    "exhibition",
+    "lecture"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料",
+   "organizer_name": "日本盆栽協会西播支部・姫路市緑の相談所",
+   "official_url": "https://himeji-machishin.jp/lib/files/libimg1740963723.pdf",
+   "description": "大型盆栽を中心に約30席を展示する早春の盆栽展。会期中に「盆栽の育て方・鑑賞の仕方」講習会がある。",
+   "related_product_tags": []
+  },
+  {
+   "title": "春季盆栽展（姫路盆栽愛好会）",
+   "slug": "himeji-shunki-bonsai-ten-2027",
+   "start_date": "2027-04-03",
+   "end_date": "2027-04-04",
+   "prefecture": "兵庫県",
+   "venue_name": "手柄山交流ステーション3階",
+   "address": "兵庫県姫路市西延末440",
+   "lat": 34.822617,
+   "lng": 134.673264,
+   "types": [
+    "exhibition",
+    "lecture"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料",
+   "organizer_name": "姫路盆栽愛好会・姫路市緑の相談所",
+   "official_url": "https://himeji-machishin.jp/lib/files/libimg1743475688.pdf",
+   "description": "小品盆栽を中心に約30席を席飾りで展示する春の盆栽展。会期中に盆栽の手入れ講習会がある。",
+   "related_product_tags": []
+  },
+  {
+   "title": "弥生の盆栽展",
+   "slug": "ibaraki-botanical-yayoi-bonsai-ten-2027",
+   "start_date": "2027-03-26",
+   "end_date": "2027-03-28",
+   "prefecture": "茨城県",
+   "venue_name": "茨城県植物園（THE BOTANICAL RESORT 林音）展示室",
+   "address": "茨城県那珂市戸4369-1",
+   "lat": 36.46529,
+   "lng": 140.424347,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": "観覧無料（植物園入園料別途）",
+   "organizer_name": "日本盆栽協会 茨城県支部連合会",
+   "official_url": "https://www.ibaraki-shokubutuen.jp/archives/19147",
+   "description": "日本盆栽協会茨城県支部連合会による盆栽約25点の展示。",
+   "related_product_tags": []
+  },
+  {
+   "title": "季節の盆栽展",
+   "slug": "ibaraki-botanical-kisetsu-bonsai-ten-2027",
+   "start_date": "2027-05-28",
+   "end_date": "2027-05-30",
+   "prefecture": "茨城県",
+   "venue_name": "茨城県植物園（THE BOTANICAL RESORT 林音）展示室",
+   "address": "茨城県那珂市戸4369-1",
+   "lat": 36.46529,
+   "lng": 140.424347,
+   "types": [
+    "exhibition",
+    "sale",
+    "lecture"
+   ],
+   "price_type": "free",
+   "price_note": "観覧無料（植物園入園料別途）",
+   "organizer_name": "樹風会",
+   "official_url": "https://www.ibaraki-shokubutuen.jp/archives/19206",
+   "description": "愛好家の盆栽約30席の展示と即売、日本盆栽協会講師による盆栽技術講習会を行う。",
+   "related_product_tags": []
+  },
+  {
+   "title": "日本宝樹展〔春季〕",
+   "slug": "nihon-hoju-ten-spring-2027",
+   "start_date": "2027-05-09",
+   "end_date": "2027-05-14",
+   "prefecture": "栃木県",
+   "venue_name": "日光東照宮",
+   "address": "栃木県日光市山内2301",
+   "lat": 36.759941,
+   "lng": 139.597214,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "日本宝樹会",
+   "official_url": "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_kanto/",
+   "description": "日光東照宮を会場に開かれるさつき盆栽の展示会（春季）。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第79回さつきフェスティバル",
+   "slug": "ueno-satsuki-festival-2027",
+   "start_date": "2027-05-12",
+   "end_date": "2027-05-16",
+   "prefecture": "東京都",
+   "venue_name": "上野グリーンクラブ・上野恩賜公園竹の台広場",
+   "address": "東京都台東区上野公園",
+   "lat": 35.715328,
+   "lng": 139.773544,
+   "types": [
+    "exhibition",
+    "sale",
+    "workshop"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料",
+   "organizer_name": "一般社団法人日本皐月協会",
+   "official_url": "https://kaibutsu-blog.com/satsuki-festival-2026-ueno/",
+   "description": "日本皐月協会が主催する恒例のさつき展。審査を経た銘花・銘木約100点の展示、初心者向け講習会、さつきの販売がある。",
+   "related_product_tags": []
+  },
+  {
+   "title": "板橋さつきフェスティバル",
+   "slug": "itabashi-satsuki-festival-2027",
+   "start_date": "2027-05-09",
+   "end_date": "2027-05-13",
+   "prefecture": "東京都",
+   "venue_name": "板橋区役所1階イベントスクエア",
+   "address": "東京都板橋区板橋二丁目66番1号",
+   "lat": 35.750694,
+   "lng": 139.709503,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料",
+   "organizer_name": "板橋区・JA東京あおば（展示：城北さつき会）",
+   "official_url": "https://www.city.itabashi.tokyo.jp/kusei/kouhou/houdou/1039102/1039312.html",
+   "description": "区とJA東京あおばが毎年開く催しで、愛好家のさつき盆栽の展示のほか、さつき・草花・区内産野菜の即売がある。",
+   "related_product_tags": []
+  },
+  {
+   "title": "さつき展（東京皐月会・日本皐月協会多摩支部）",
+   "slug": "jindai-satsuki-ten-2027",
+   "start_date": "2027-05-18",
+   "end_date": "2027-05-23",
+   "prefecture": "東京都",
+   "venue_name": "東京都立神代植物公園",
+   "address": "東京都調布市深大寺元町5-31-10",
+   "lat": 35.670731,
+   "lng": 139.549225,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "東京皐月会・日本皐月協会多摩支部",
+   "official_url": "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_kanto/",
+   "description": "神代植物公園で毎年5月下旬に開かれるさつき盆栽の展示会。",
+   "related_product_tags": []
+  },
+  {
+   "title": "さつき展（平塚さつき会）",
+   "slug": "hiratsuka-satsuki-ten-2027",
+   "start_date": "2027-05-21",
+   "end_date": "2027-05-23",
+   "prefecture": "神奈川県",
+   "venue_name": "花菜ガーデン",
+   "address": "神奈川県平塚市寺田縄496-1",
+   "lat": 35.357536,
+   "lng": 139.309372,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "平塚さつき会",
+   "official_url": "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_kanto/",
+   "description": "平塚さつき会がかながわ花の名所「花菜ガーデン」で開くさつき盆栽の花季展。",
+   "related_product_tags": []
+  },
+  {
+   "title": "さつき盆栽展（三溪園）",
+   "slug": "sankeien-satsuki-bonsai-ten-2027",
+   "start_date": "2027-05-23",
+   "end_date": "2027-05-30",
+   "prefecture": "神奈川県",
+   "venue_name": "三溪園 外苑中央広場",
+   "address": "神奈川県横浜市中区本牧三之谷58-1",
+   "lat": 35.417664,
+   "lng": 139.658508,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": "観覧無料（三溪園入園料 大人900円が別途必要）",
+   "organizer_name": "公益財団法人三溪園保勝会・横浜三溪園皐月会",
+   "official_url": "https://kanagawa-kankou.or.jp/event/7730",
+   "description": "横浜三溪園皐月会と共催で約40点のさつき盆栽を展示し、手入れ相談や盆栽販売、苗木の無料配布も行う。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第62回堺さつき展",
+   "slug": "sakai-satsuki-ten-2027",
+   "start_date": "2027-05-15",
+   "end_date": "2027-05-23",
+   "prefecture": "大阪府",
+   "venue_name": "堺市都市緑化センター（大仙公園内）",
+   "address": "大阪府堺市堺区東上野芝町1-4-3",
+   "lat": 34.555233,
+   "lng": 135.483276,
+   "types": [
+    "exhibition",
+    "lecture"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料",
+   "organizer_name": "堺皐月会",
+   "official_url": "https://www.city.sakai.lg.jp/kurashi/koen/midori_enjoy/event/sakai_event/abcde.html",
+   "description": "1966年から毎年開かれているさつき展。堺皐月会会員の約70点を展示し、栽培・植え替えの無料相談コーナーも設ける。",
+   "related_product_tags": []
+  },
+  {
+   "title": "春の岡山さつき展",
+   "slug": "okayama-haru-satsuki-ten-2027",
+   "start_date": "2027-05-24",
+   "end_date": "2027-05-26",
+   "prefecture": "岡山県",
+   "venue_name": "岡山市役所本庁舎1階市民ホール",
+   "address": "岡山県岡山市北区大供一丁目1番1号",
+   "lat": 34.655331,
+   "lng": 133.919464,
+   "types": [
+    "exhibition",
+    "sale",
+    "lecture"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "岡山さつき会・岡山市",
+   "official_url": "https://www.city.okayama.jp/kankou/0000049158.html",
+   "description": "岡山さつき会会員のさつき盆栽約50点と入賞作品を展示し、栽培相談コーナーを設ける。",
+   "related_product_tags": []
+  },
+  {
+   "title": "さつき展（井原駅）",
+   "slug": "ibara-station-satsuki-ten-2027",
+   "start_date": "2027-05-15",
+   "end_date": "2027-05-21",
+   "prefecture": "岡山県",
+   "venue_name": "井原鉄道井原駅構内（シンボルタワー内）",
+   "address": "岡山県井原市七日市町943-3",
+   "lat": 34.59317,
+   "lng": 133.469772,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "井原市観光協会（問合せ先）",
+   "official_url": "https://www.okayama-kanko.jp/event/detail_100839.html",
+   "description": "毎年恒例で数十鉢のさつきが井原駅構内に並び、作者が会場で説明する。",
+   "related_product_tags": []
+  },
+  {
+   "title": "さつき・盆栽展（富山県中央植物園）",
+   "slug": "toyama-botanical-satsuki-bonsai-ten-2027",
+   "start_date": "2027-05-28",
+   "end_date": "2027-05-30",
+   "prefecture": "富山県",
+   "venue_name": "富山県中央植物園 サンライトホール",
+   "address": "富山県富山市婦中町上轡田42",
+   "lat": 36.659801,
+   "lng": 137.181427,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "富山県中央植物園・富山皐月会・日本盆栽協会富山支部",
+   "official_url": "https://www.bgtym.org/event/12794/",
+   "description": "富山皐月会・日本盆栽協会富山支部と植物園が共催するさつきと盆栽の展示会。",
+   "related_product_tags": []
+  },
+  {
+   "title": "さつき花季展（豊平公園）",
+   "slug": "toyohira-park-satsuki-kaki-ten-2027",
+   "start_date": "2027-05-27",
+   "end_date": "2027-05-30",
+   "prefecture": "北海道",
+   "venue_name": "豊平公園 緑のセンター2階",
+   "address": "北海道札幌市豊平区豊平5条13丁目",
+   "lat": 43.043159,
+   "lng": 141.378464,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "札幌さつき会",
+   "official_url": "https://www.sapporo-park.or.jp/toyohira/2026/05/27/%E3%80%8C%E3%81%95%E3%81%A4%E3%81%8D%E8%8A%B1%E5%AD%A3%E5%B1%95%E3%80%8D%E3%81%8C%E5%A7%8B%E3%81%BE%E3%82%8A%E3%81%BE%E3%81%99/",
+   "description": "札幌さつき会のさつき盆栽や松柏類・山野草など100点余りを展示し、会員による相談とさつき苗の販売もある。",
+   "related_product_tags": []
+  },
+  {
+   "title": "さつき展（半田さつき会）",
+   "slug": "handa-satsuki-ten-2027",
+   "start_date": "2027-05-17",
+   "end_date": "2027-05-19",
+   "prefecture": "愛知県",
+   "venue_name": "半田市役所 市民ロビー",
+   "address": "愛知県半田市東洋町二丁目1番地",
+   "lat": 34.892094,
+   "lng": 136.937881,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "半田さつき会",
+   "official_url": "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_chubu/",
+   "description": "半田さつき会が市役所市民ロビーで開くさつき盆栽の花季展。",
+   "related_product_tags": []
+  },
+  {
+   "title": "さつき展（山形皐月会）",
+   "slug": "yamagata-satsuki-ten-2027",
+   "start_date": "2027-06-04",
+   "end_date": "2027-06-06",
+   "prefecture": "山形県",
+   "venue_name": "悠創の丘 悠創館展示室",
+   "address": "山形県山形市上桜田366",
+   "lat": 38.216969,
+   "lng": 140.348282,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "山形皐月会",
+   "official_url": "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_hokkaido_tohoku/",
+   "description": "山形皐月会が悠創の丘で開くさつき盆栽の花季展。",
+   "related_product_tags": []
+  },
+  {
+   "title": "さつき展（日本皐月協会福島県中央支部・相双地区皐月愛好会）",
+   "slug": "minamisoma-satsuki-ten-2027",
+   "start_date": "2027-06-04",
+   "end_date": "2027-06-06",
+   "prefecture": "福島県",
+   "venue_name": "道の駅南相馬",
+   "address": "福島県南相馬市原町区高見町2丁目30番地1",
+   "lat": 37.635448,
+   "lng": 140.983368,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "日本皐月協会福島県中央支部・相双地区皐月愛好会",
+   "official_url": "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_hokkaido_tohoku/",
+   "description": "相双地区の愛好会が道の駅南相馬で開くさつき盆栽の花季展。",
+   "related_product_tags": []
+  },
+  {
+   "title": "さつき展（妙高さつき会）",
+   "slug": "myoko-satsuki-ten-2027",
+   "start_date": "2027-06-05",
+   "end_date": "2027-06-06",
+   "prefecture": "新潟県",
+   "venue_name": "道の駅あらい くびき野情報館ギャラリー",
+   "address": "新潟県妙高市大字猪野山58番地1",
+   "lat": 37.027691,
+   "lng": 138.227737,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "妙高さつき会",
+   "official_url": "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_chubu/",
+   "description": "妙高さつき会が道の駅あらいで開くさつき盆栽の花季展。",
+   "related_product_tags": []
   }
  ],
  "meta": {
@@ -2330,6 +3694,598 @@
     "https://www.bonsai.co.jp/event/%e2%97%8f%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e3%83%95%e3%82%a7%e3%82%a2%e3%80%80%e7%ac%ac39%e5%9b%9e%e4%b9%9d%e5%b7%9e%e9%9b%85%e5%b1%95%ef%bc%88%e7%a6%8f%e5%b2%a1%e7%9c%8c%ef%bc%89/",
     "https://shohin-bonsai.or.jp/event/the-next-shohinbonsai-miyabi-ten-exhibition-to-be-held-in-2026-2027/",
     "https://www.bonsai.co.jp/event/event_category/kyusyu/"
+   ]
+  },
+  "hachinohe-bonsai-club-autumn-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e5%85%ab%e6%88%b8%e7%9b%86%e6%a0%bd%e3%82%af%e3%83%a9%e3%83%96%e7%a7%8b%e5%ad%a3%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e9%9d%92%e6%a3%ae%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tohoku/"
+   ]
+  },
+  "kaseien-bonsai-jizai-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e8%8f%af%e6%ad%a3%e5%9c%92%e3%80%80%e7%ac%ac%ef%bc%94%e5%9b%9e%e7%9b%86%e6%a0%bd%e8%87%aa%e5%9c%a8%e5%b1%95%ef%bc%88%e5%ae%ae%e5%9f%8e%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tohoku/"
+   ]
+  },
+  "fukushima-shohin-bonsai-autumn-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%a7%8b%e3%81%ae%e7%a6%8f%e5%b3%b6%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e7%a6%8f%e5%b3%b6%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tohoku/"
+   ]
+  },
+  "ichinomiya-shohin-bonsai-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac43%e5%9b%9e%e4%b8%80%e5%ae%ae%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tokai/"
+   ]
+  },
+  "tachibanakai-bonsai-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac19%e5%9b%9e%e3%81%9f%e3%81%a1%e3%81%b0%e3%81%aa%e4%bc%9a%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e9%9d%99%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tokai/"
+   ]
+  },
+  "kawaguchi-rouyagaki-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e5%9f%bc%e7%8e%89%e5%b7%9d%e5%8f%a3%e8%80%81%e9%b4%89%e6%9f%bf%e6%84%9b%e5%a5%bd%e4%bc%9a%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e5%9f%bc%e7%8e%89%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/",
+    "https://bonsai-yarou.com/events/"
+   ]
+  },
+  "hanyu-uchikutei-autumn-kanshokai-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%be%bd%e7%94%9f%e9%9b%a8%e7%ab%b9%e4%ba%ad%e3%80%80%e7%a7%8b%e3%81%ae%e8%a6%b3%e7%85%a7%e4%bc%9a%ef%bc%88%e5%9f%bc%e7%8e%89%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "hanyu-uchikutei-student-autumn-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%be%bd%e7%94%9f%e9%9b%a8%e7%ab%b9%e4%ba%ad%e7%9b%86%e6%a0%bd%e6%95%99%e5%ae%a4%e3%80%80%e7%94%9f%e5%be%92%e4%bd%9c%e5%93%81%e7%a7%8b%e5%ad%a3%e5%b1%95%ef%bc%88%e5%9f%bc%e7%8e%89%e7%9c%8c/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "tsuyama-take-chokoku-bonsai-futari-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac%ef%bc%95%e5%9b%9e%e7%ab%b9%e5%bd%ab%e5%88%bb%e3%81%a8%e7%9b%86%e6%a0%bd%e4%ba%8c%e4%ba%ba%e5%b1%95%ef%bc%88%e5%b2%a1%e5%b1%b1%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/chugoku/"
+   ]
+  },
+  "aigi-rouyagaki-bonsai-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac17%e5%9b%9e%e8%80%81%e9%b4%89%e6%9f%bf%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%b2%90%e9%98%9c%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tokai/"
+   ]
+  },
+  "kanuma-engei-fair-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac31%e5%9b%9e%e9%b9%bf%e6%b2%bc%e5%9c%92%e8%8a%b8%e3%83%95%e3%82%a7%e3%82%a2%ef%bc%88%e6%a0%83%e6%9c%a8%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/",
+    "https://bonsai-yarou.com/events/"
+   ]
+  },
+  "odawara-bonsai-aikokai-117-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e5%b0%8f%e7%94%b0%e5%8e%9f%e7%9b%86%e6%a0%bd%e6%84%9b%e5%a5%bd%e4%bc%9a%e3%80%80%e7%ac%ac%ef%bc%91%ef%bc%91%ef%bc%97%e5%9b%9e%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e7%a5%9e%e5%a5%88%e5%b7%9d/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "sagamihara-rouyagaki-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac13%e5%9b%9e%e8%80%81%e9%b4%89%e6%9f%bf%e5%b1%95%ef%bc%88%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "hamamatsu-rouyagaki-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac17%e5%9b%9e%e6%b5%9c%e6%9d%be%e8%80%81%e9%b4%89%e6%9f%bf%e5%b1%95%ef%bc%88%e9%9d%99%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tokai/"
+   ]
+  },
+  "niitsu-flowerland-bonsai-mihonichi-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%9b%86%e6%a0%bd%e8%a6%8b%e6%9c%ac%e5%b8%82%ef%bc%88%e6%96%b0%e6%bd%9f%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/shinetsu/"
+   ]
+  },
+  "gunma-shohin-tenori-100-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac%ef%bc%91%ef%bc%90%ef%bc%90%e5%9b%9e%e7%a7%8b%e5%ad%a3%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e7%be%a4%e9%a6%ac%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "joshu-aijukai-autumn-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac31%e5%9b%9e%e7%a7%8b%e5%ad%a3%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e7%be%a4%e9%a6%ac%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "konosu-bonsokai-shohin-autumn-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%a7%8b%e3%81%ae%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%9f%bc%e7%8e%89%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "yokohama-shohin-issakai-autumn-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac53%e5%9b%9e%e7%a7%8b%e3%81%ae%e6%a8%aa%e6%b5%9c%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "yukuhashi-miyako-bonsai-club-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%9b%86%e6%a0%bd%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e7%a6%8f%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kyusyu/"
+   ]
+  },
+  "nishimikawa-shibu-bonsai-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac56%e5%9b%9e%e8%a5%bf%e4%b8%89%e6%b2%b3%e6%94%af%e9%83%a8%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tokai/"
+   ]
+  },
+  "toyota-kiraku-shohin-sanyaso-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac%ef%bc%95%e5%9b%9e%e5%96%9c%e6%a5%bd%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e3%83%bb%e5%b1%b1%e9%87%8e%e8%8d%89%e5%b1%95%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tokai/"
+   ]
+  },
+  "anjo-shunpukai-autumn-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e6%98%a5%e9%a2%a8%e4%bc%9a%e7%a7%8b%e3%81%ae%e7%9b%86%e6%a0%bd%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tokai/"
+   ]
+  },
+  "tono-shibu-autumn-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e6%9d%b1%e6%bf%83%e6%94%af%e9%83%a8%e7%a7%8b%e5%ad%a3%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e5%b2%90%e9%98%9c%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tokai/"
+   ]
+  },
+  "yokuju-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac10%e5%9b%9e%e7%bf%bc%e6%a8%b9%e5%b1%95%ef%bc%88%e6%a0%83%e6%9c%a8%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "kaisei-rouyagaki-sokubaikai-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e8%80%81%e7%88%ba%e6%9f%bf%e5%b1%95%e7%a4%ba%e5%8d%b3%e5%a3%b2%e4%bc%9a%ef%bc%88%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "hiroshima-satsuki-autumn-meihin-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac15%e5%9b%9e%e7%a7%8b%e5%ad%a3%e9%8a%98%e5%93%81%e5%b1%95%ef%bc%88%e5%ba%83%e5%b3%b6%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/chugoku/"
+   ]
+  },
+  "inashiki-bonsai-autumn-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%a8%b2%e6%95%b7%e7%9b%86%e6%a0%bd%e4%bc%9a%e7%a7%8b%e5%ad%a3%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e8%8c%a8%e5%9f%8e%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "tsukuba-shibu-autumn-bonsai-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%a7%8b%e5%ad%a3%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e8%8c%a8%e5%9f%8e%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "angyo-higashi-bonsai-matsuri-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac25%e5%9b%9e%e5%ae%89%e8%a1%8c%e6%9d%b1%e7%9b%86%e6%a0%bd%e7%a5%ad%e3%82%8a%ef%bc%88%e5%9f%bc%e7%8e%89%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "shofu-shohin-bonsai-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac21%e5%9b%9e%e6%b9%98%e9%a2%a8%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "kihoen-satsuki-sanyaso-autumn-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%9a%90%e6%9c%88%e3%83%bb%e5%b1%b1%e9%87%8e%e8%8d%89%e5%b1%95%ef%bc%88%e5%9f%bc%e7%8e%89%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "mukyu-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac35%e5%9b%9e%e7%84%a1%e7%aa%ae%e5%b1%95%e3%80%88%e9%8a%98%e5%93%81%e7%9b%86%e6%a0%bd%e5%b1%95%e3%80%89%ef%bc%88%e4%b8%89%e9%87%8d%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tokai/"
+   ]
+  },
+  "hokuriku-miyabi-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e3%83%95%e3%82%a7%e3%82%a2%e3%80%80%e7%ac%ac41%e5%9b%9e%e5%8c%97%e9%99%b8%e9%9b%85%e5%b1%95%ef%bc%88%e7%9f%b3%e5%b7%9d%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/hokuriku/",
+    "https://shohin-bonsai.or.jp/bonsai-faire/"
+   ]
+  },
+  "takasago-autumn-bonsai-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.city.takasago.lg.jp/soshikikarasagasu/bunkashinkouka/bunka_geijutsu/1/5911.html",
+    "https://harimap.com/takasago-autumn-bonsai/"
+   ]
+  },
+  "omiya-bonsai-museum-kids-workshop-nov-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.bonsai-art-museum.jp/ja/event/event-10778/"
+   ]
+  },
+  "nagahama-bonbai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年1月10日〜3月10日（2019年・2026年とも同日程）",
+   "priceKnown": true,
+   "sources": [
+    "https://koubo.jp/press-release/prtimes/c113572_r3"
+   ]
+  },
+  "ibuki-bonbai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年1月中旬〜3月上旬（2026年は1月17日〜3月8日）",
+   "priceKnown": false,
+   "sources": [
+    "https://iko-yo.net/events/547391"
+   ]
+  },
+  "yamatokoriyama-bonbai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年2月上旬〜3月10日頃（2025年2月1日〜3月9日、2026年2月7日〜3月10日）",
+   "priceKnown": true,
+   "sources": [
+    "https://tabi-mag.jp/yamatokoriyama-bonnbai/",
+    "https://www.travel.co.jp/guide/article/8022/"
+   ]
+  },
+  "sugawara-tenmangu-bonbai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "毎年2月上旬〜3月上旬（2026年は2月1日〜3月1日）",
+   "priceKnown": false,
+   "sources": [
+    "https://narashikanko.or.jp/event/detail_10172.html"
+   ]
+  },
+  "domyoji-tenmangu-bonbai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年1月25日〜3月初旬（2026年は1月25日〜3月1日）",
+   "priceKnown": true,
+   "sources": [
+    "https://www.walkerplus.com/event/ar0727e577181/",
+    "https://tabi-mag.jp/domyojitenmangu-ume/"
+   ]
+  },
+  "obu-bonbai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年2月上旬〜中旬の約1週間（2026年は2月8日〜15日）",
+   "priceKnown": true,
+   "sources": [
+    "https://aichinow.pref.aichi.jp/events/detail/3159/"
+   ]
+  },
+  "kamezaki-bonbai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年2月中旬〜下旬（2026年は2月19日〜24日）",
+   "priceKnown": true,
+   "sources": [
+    "https://aichinow.pref.aichi.jp/events/detail/3649/"
+   ]
+  },
+  "tanigumi-bonbai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年2月中旬〜3月中旬（2026年は2月14日〜3月15日）",
+   "priceKnown": true,
+   "sources": [
+    "https://www.kankou-gifu.jp/event/detail_6449.html"
+   ]
+  },
+  "hana-no-bunkaen-bonbai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年2月上旬〜3月上旬（2025年2月4日〜3月9日、2026年2月11日〜3月8日）",
+   "priceKnown": true,
+   "sources": [
+    "https://iko-yo.net/facilities/1636/news/118941",
+    "https://www.pref.osaka.lg.jp/moyo/o120090/000008.html"
+   ]
+  },
+  "tamana-bonbai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年2月上旬〜3月1日頃（2026年は2月5日〜3月1日）",
+   "priceKnown": false,
+   "sources": [
+    "https://kumamoto-odekake.com/event/1136/"
+   ]
+  },
+  "kyoto-bonsai-ten-spring-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年3月末〜4月上旬の金〜月曜（2025年第45回は4月4日〜7日）",
+   "priceKnown": true,
+   "sources": [
+    "https://museumforum.pref.kyoto.lg.jp/uploads/kyoto-botanical-gardens_3-bonsai_2504.pdf",
+    "https://www.pref.kyoto.jp/plant/documents/2024bonsaiten.pdf"
+   ]
+  },
+  "himeji-seiban-bonsai-sakuhin-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年3月第1土曜からの3日間（2024年3月2日〜4日、2025年3月1日〜3日）",
+   "priceKnown": true,
+   "sources": [
+    "https://himeji-machishin.jp/lib/files/libimg1740963723.pdf",
+    "https://himeji-machishin.jp/lib/files/libimg1709425960.pdf"
+   ]
+  },
+  "himeji-shunki-bonsai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年4月第1土日（2024年4月6日〜7日、2025年4月5日〜6日）",
+   "priceKnown": true,
+   "sources": [
+    "https://himeji-machishin.jp/lib/files/libimg1743475688.pdf",
+    "https://himeji-machishin.jp/lib/files/libimg1712112042.pdf"
+   ]
+  },
+  "ibaraki-botanical-yayoi-bonsai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年3月下旬の金〜日曜（2026年は3月27日〜29日）",
+   "priceKnown": false,
+   "sources": [
+    "https://www.ibaraki-shokubutuen.jp/archives/19147"
+   ]
+  },
+  "ibaraki-botanical-kisetsu-bonsai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年5月下旬（2024年5月23日〜26日、2026年5月29日〜31日）",
+   "priceKnown": true,
+   "sources": [
+    "https://www.ibaraki-shokubutuen.jp/archives/19206",
+    "https://www.ibaraki-shokubutuen.jp/archives/14817"
+   ]
+  },
+  "nihon-hoju-ten-spring-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年5月9日〜14日（2025年・2026年とも同日程）",
+   "priceKnown": false,
+   "sources": [
+    "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_kanto/",
+    "https://satsukibonsai-4s.jp/event/2025_spring/2025_spring_kanto/"
+   ]
+  },
+  "ueno-satsuki-festival-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年5月中旬の5日間前後（2025年5月15日〜18日、2026年5月13日〜17日）",
+   "priceKnown": true,
+   "sources": [
+    "https://kaibutsu-blog.com/satsuki-festival-2026-ueno/",
+    "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_kanto/",
+    "https://satsukibonsai-4s.jp/event/2025_spring/2025_spring_kanto/"
+   ]
+  },
+  "itabashi-satsuki-festival-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年5月中旬の平日を含む4〜5日間（2022年5月16日〜19日、2026年5月10日〜14日）",
+   "priceKnown": true,
+   "sources": [
+    "https://www.city.itabashi.tokyo.jp/kusei/kouhou/houdou/1039102/1039312.html",
+    "https://rurubu.jp/andmore/spot/20002106",
+    "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_kanto/"
+   ]
+  },
+  "jindai-satsuki-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年5月下旬の火〜日曜（2025年5月20日〜25日、2026年5月19日〜24日）",
+   "priceKnown": false,
+   "sources": [
+    "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_kanto/",
+    "https://satsukibonsai-4s.jp/event/2025_spring/2025_spring_kanto/"
+   ]
+  },
+  "hiratsuka-satsuki-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年5月下旬の金〜日曜（2025年5月23日〜25日、2026年5月22日〜24日）",
+   "priceKnown": false,
+   "sources": [
+    "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_kanto/",
+    "https://satsukibonsai-4s.jp/event/2025_spring/2025_spring_kanto/"
+   ]
+  },
+  "sankeien-satsuki-bonsai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年5月下旬の日曜〜翌日曜（2024年5月19日〜26日、2025年5月18日〜25日、2026年5月24日〜31日）",
+   "priceKnown": true,
+   "sources": [
+    "https://kanagawa-kankou.or.jp/event/7730",
+    "https://www.sankeien.or.jp/wordpress2022/wp-content/uploads/2025/04/02163601_wed_dfa99.pdf",
+    "https://www.sankeien.or.jp/wordpress2022/wp-content/uploads/2024/05/18085857_sat_96354.pdf"
+   ]
+  },
+  "sakai-satsuki-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年5月中旬〜下旬の約9日間（2025年5月18日〜26日、2026年5月16日〜24日）",
+   "priceKnown": true,
+   "sources": [
+    "https://www.city.sakai.lg.jp/kurashi/koen/midori_enjoy/event/sakai_event/abcde.html",
+    "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_kinki_chugoku/",
+    "https://satsukibonsai-4s.jp/event/2025_spring/2025_spring_kinki_chugoku/"
+   ]
+  },
+  "okayama-haru-satsuki-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年5月下旬の月〜水曜（2026年は5月25日〜27日）",
+   "priceKnown": false,
+   "sources": [
+    "https://www.city.okayama.jp/kankou/0000049158.html",
+    "https://www.city.okayama.jp/shisei/cmsfiles/contents/0000072/72148/20250519_satsuki.pdf"
+   ]
+  },
+  "ibara-station-satsuki-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年5月中旬の約1週間（2026年は5月16日〜22日）",
+   "priceKnown": false,
+   "sources": [
+    "https://www.okayama-kanko.jp/event/detail_100839.html"
+   ]
+  },
+  "toyama-botanical-satsuki-bonsai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年5月末〜6月初めの金〜日曜（2024年5月31日〜6月2日、2025年5月30日〜6月1日、2026年5月29日〜31日）",
+   "priceKnown": false,
+   "sources": [
+    "https://www.bgtym.org/event/12794/",
+    "https://www.bgtym.org/event/10951/",
+    "https://www.bgtym.org/event/9014/"
+   ]
+  },
+  "toyohira-park-satsuki-kaki-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年5月下旬の木〜日曜（2026年は5月28日〜31日）",
+   "priceKnown": false,
+   "sources": [
+    "https://www.sapporo-park.or.jp/toyohira/2026/05/27/%E3%80%8C%E3%81%95%E3%81%A4%E3%81%8D%E8%8A%B1%E5%AD%A3%E5%B1%95%E3%80%8D%E3%81%8C%E5%A7%8B%E3%81%BE%E3%82%8A%E3%81%BE%E3%81%99/",
+    "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_hokkaido_tohoku/"
+   ]
+  },
+  "handa-satsuki-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年5月中旬〜下旬の月〜水曜（2025年5月19日〜21日、2026年5月18日〜20日）",
+   "priceKnown": false,
+   "sources": [
+    "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_chubu/",
+    "https://satsukibonsai-4s.jp/event/2025_spring/2025_spring_chubu/"
+   ]
+  },
+  "yamagata-satsuki-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年6月上旬の金〜日曜（2025年6月6日〜8日、2026年6月5日〜7日）",
+   "priceKnown": false,
+   "sources": [
+    "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_hokkaido_tohoku/",
+    "https://satsukibonsai-4s.jp/event/2025_spring/2025_spring_hokkaido_tohoku/"
+   ]
+  },
+  "minamisoma-satsuki-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年6月上旬の金〜日曜（2025年6月6日〜8日、2026年6月5日〜7日）",
+   "priceKnown": false,
+   "sources": [
+    "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_hokkaido_tohoku/",
+    "https://satsukibonsai-4s.jp/event/2025_spring/2025_spring_hokkaido_tohoku/"
+   ]
+  },
+  "myoko-satsuki-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年5月末〜6月上旬の土日（2025年5月31日〜6月1日、2026年6月6日〜7日）",
+   "priceKnown": false,
+   "sources": [
+    "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_chubu/",
+    "https://satsukibonsai-4s.jp/event/2025_spring/2025_spring_chubu/"
    ]
   }
  }
