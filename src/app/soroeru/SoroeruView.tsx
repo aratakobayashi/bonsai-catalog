@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { AmazonSearchLink } from '@/components/catalog/AmazonSearchLink'
 import type { CatalogProduct } from '@/lib/catalog-model'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { AddAllButton } from '@/components/soroeru/AddAllButton'
@@ -127,11 +128,13 @@ export function SoroeruView({ params, products }: { params: Record<string, strin
               <section className="pt-10 lg:pt-14">
                 <SectionTitle action={<Link href="/products?type=pot" className="border-b border-ink pb-0.5 text-[13px] text-ink">鉢をすべて見る</Link>}>鉢（{guide.pot.range}）</SectionTitle>
                 <ProductRow products={picks.pots} />
+                <AmazonSearchLink keyword={guide.amazon.pot} place="soroeru_amazon" className="mt-2" />
               </section>
               <section className="pt-10 lg:pt-14">
                 <SectionTitle action={<Link href="/products?type=soil" className="border-b border-ink pb-0.5 text-[13px] text-ink">土をすべて見る</Link>}>土</SectionTitle>
                 <p className="mt-2 text-[13px] text-ink-soft">{guide.soil.mix}（{guide.soil.grain}）</p>
                 <ProductRow products={picks.soils} />
+                <AmazonSearchLink keyword={guide.amazon.soil} place="soroeru_amazon" className="mt-2" />
               </section>
             </>
           )}
@@ -142,6 +145,7 @@ export function SoroeruView({ params, products }: { params: Record<string, strin
               <div key={tool.label} className="mt-6 border-t border-line pt-4 lg:mt-8">
                 <h3 className="text-[15px] font-bold text-ink">{tool.label}<span className="ml-2 text-[12px] font-normal text-ink-muted">{tool.note}</span></h3>
                 <ProductRow products={tool.products} />
+                <AmazonSearchLink keyword={tool.amazon} place="soroeru_amazon" className="mt-2" />
               </div>
             ))}
           </section>

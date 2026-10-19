@@ -9,6 +9,11 @@
 // フッターとプライバシーポリシーの Amazon アソシエイトの表記など）は、すべてこの値で切り替わる。
 export const AMAZON_ENABLED = false
 
+// Amazon の検索結果へのリンク（価格・画像を出さない文字のリンク）。道具・土・鉢など、楽天の掲載だけでは選びにくいものに添える。
+// 商品データ（上の AMAZON_ENABLED）とは別に切り替える。どちらかが true なら、フッターなどに Amazon アソシエイトの表記を出す
+export const AMAZON_LINKS_ENABLED = true
+export const AMAZON_ASSOCIATE_ACTIVE = AMAZON_ENABLED || AMAZON_LINKS_ENABLED
+
 // ページの文言で使うショップ名（Amazon を止めている間は楽天市場だけ）
 export const SHOP_NAMES = AMAZON_ENABLED ? '楽天市場・Amazon' : '楽天市場'
 export const SHOP_NAMES_AND = AMAZON_ENABLED ? '楽天市場とAmazon' : '楽天市場'
@@ -40,8 +45,10 @@ export const PRICE_NOTE = '参考価格（掲載時点）。最新の価格・�
 export const PR_DISCLOSURE_TEXT =
   '本ページはプロモーション（広告）を含みます。商品リンクから購入された場合、当サイトに紹介料が支払われることがあります。'
 
-// Amazon アソシエイトのトラッキングID（src/lib/amazon.ts と同じ値）
-const AMAZON_ASSOCIATE_TAG = process.env.NEXT_PUBLIC_AMAZON_ASSOCIATE_ID || 'oshikatsucoll-22'
+// Amazon アソシエイトのトラッキングID（当サイト用。src/lib/amazon.ts と同じ値）
+export const AMAZON_ASSOCIATE_TAG = process.env.NEXT_PUBLIC_AMAZON_ASSOCIATE_ID || 'bonsaicollect-22'
+// 当サイト用ではないタグ（以前の記事に残っているもの）。リンクに付いていたら当サイト用に差し替える
+const FOREIGN_AMAZON_TAGS = new Set(['oshikatsucoll-22', 'arata55507-22'])
 
 const AMAZON_HOST_PATTERN = /(^|\.)amazon\.co\.jp$/i
 
@@ -62,7 +69,8 @@ export function toAmazonAffiliateUrl(url: string): string | null {
   }
   parsed.protocol = 'https:'
   parsed.hostname = 'www.amazon.co.jp'
-  if (!parsed.searchParams.get('tag')) parsed.searchParams.set('tag', AMAZON_ASSOCIATE_TAG)
+  const tag = parsed.searchParams.get('tag')
+  if (!tag || FOREIGN_AMAZON_TAGS.has(tag)) parsed.searchParams.set('tag', AMAZON_ASSOCIATE_TAG)
   return parsed.toString()
 }
 

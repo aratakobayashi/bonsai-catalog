@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { AMAZON_ENABLED } from '@/lib/affiliate'
+import { AMAZON_ASSOCIATE_ACTIVE } from '@/lib/affiliate'
 import { SITE_TOOLS } from './site-tools'
 
 const LINKS = [
@@ -19,7 +19,7 @@ export function Footer() {
           <span className="flex h-[22px] w-[22px] items-center justify-center bg-gold text-xs text-sumi" aria-hidden="true">盆</span>盆栽コレクション
         </Link>
         <p className="max-w-[420px] text-xs leading-[1.9] text-white/60">
-          当サイトはプロモーション（広告）を含みます。{AMAZON_ENABLED && 'Amazonのアソシエイトとして、盆栽コレクションは適格販売により収入を得ています。'}
+          当サイトはプロモーション（広告）を含みます。{AMAZON_ASSOCIATE_ACTIVE && 'Amazonのアソシエイトとして、盆栽コレクションは適格販売により収入を得ています。'}
           価格は取得時点の情報です。楽天市場の商品情報は Supported by Rakuten Developers。
         </p>
         {/* 選ぶ・育てる道具 */}

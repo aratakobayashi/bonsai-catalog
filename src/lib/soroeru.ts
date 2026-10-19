@@ -81,31 +81,34 @@ const SOIL: Record<TreeGroup, { mix: string; why: string; kinds: RegExp }> = {
 export interface Guide {
   pot: { range: string; note: string }
   soil: { mix: string; grain: string; why: string }
-  tools: { label: string; note: string; pattern: RegExp; type: CatalogProduct['productType'] }[]
+  tools: { label: string; note: string; pattern: RegExp; type: CatalogProduct['productType']; amazon: string }[]
+  // Amazon で探すときの検索語
+  amazon: { pot: string; soil: string }
 }
 
 export function soroeruGuide(state: SoroeruState): Guide {
   const [lo, hi] = POT_RANGE[state.size]
   const tools: Guide['tools'] = [
-    { label: '盆栽ばさみ', note: '枝や葉を切る基本の道具。最初の1本', pattern: /鋏|ばさみ|はさみ|ハサミ/, type: 'tool' },
-    { label: 'ピンセット', note: '芽摘み・草取り・苔の手入れに', pattern: /ピンセット/, type: 'tool' },
+    { label: '盆栽ばさみ', note: '枝や葉を切る基本の道具。最初の1本', pattern: /鋏|ばさみ|はさみ|ハサミ/, type: 'tool', amazon: '盆栽 はさみ' },
+    { label: 'ピンセット', note: '芽摘み・草取り・苔の手入れに', pattern: /ピンセット/, type: 'tool', amazon: '盆栽 ピンセット' },
   ]
   if (state.purpose === 'repot') {
     tools.push(
-      { label: '土入れ', note: '根のすき間に土を入れる', pattern: /土入れ|土すくい|スコップ/, type: 'tool' },
-      { label: '根かき・竹串', note: '古い土を落として根をほぐす', pattern: /根かき|根掻き|根捌き/, type: 'tool' },
-      { label: 'アルミ線（1.5〜2mm）', note: '鉢底網と樹を鉢に固定する', pattern: /アルミ線|アルミ.{0,4}針金/, type: 'wire' },
+      { label: '土入れ', note: '根のすき間に土を入れる', pattern: /土入れ|土すくい|スコップ/, type: 'tool', amazon: '盆栽 土入れ' },
+      { label: '根かき・竹串', note: '古い土を落として根をほぐす', pattern: /根かき|根掻き|根捌き/, type: 'tool', amazon: '盆栽 根かき' },
+      { label: 'アルミ線（1.5〜2mm）', note: '鉢底網と樹を鉢に固定する', pattern: /アルミ線|アルミ.{0,4}針金/, type: 'wire', amazon: '盆栽 アルミ線' },
     )
   } else {
     tools.push(
-      { label: 'じょうろ', note: '細かい水が出る、はす口付きのもの', pattern: /じょうろ|ジョウロ|如雨露/, type: 'tool' },
-      { label: '置き肥', note: '春と秋に土の上に置く固形の肥料', pattern: /玉肥|置き肥|固形|油かす|油粕/, type: 'fertilizer' },
+      { label: 'じょうろ', note: '細かい水が出る、はす口付きのもの', pattern: /じょうろ|ジョウロ|如雨露/, type: 'tool', amazon: '盆栽 じょうろ' },
+      { label: '置き肥', note: '春と秋に土の上に置く固形の肥料', pattern: /玉肥|置き肥|固形|油かす|油粕/, type: 'fertilizer', amazon: '盆栽 置き肥' },
     )
   }
   return {
     pot: { range: `${lo}〜${hi}号`, note: '鉢の幅は、樹高のおよそ2/3〜同じくらいが目安です（1号＝直径約3cm）' },
     soil: { mix: SOIL[state.group].mix, grain: GRAIN[state.size], why: SOIL[state.group].why },
     tools,
+    amazon: { pot: `盆栽鉢 ${lo}号`, soil: '盆栽 用土' },
   }
 }
 
@@ -130,7 +133,7 @@ const best = (list: CatalogProduct[], n: number) =>
 export interface SoroeruPicks {
   pots: CatalogProduct[]
   soils: CatalogProduct[]
-  tools: { label: string; note: string; products: CatalogProduct[] }[]
+  tools: { label: string; note: string; amazon: string; products: CatalogProduct[] }[]
 }
 
 export function soroeruPicks(state: SoroeruState, guide: Guide, products: CatalogProduct[]): SoroeruPicks {
@@ -141,6 +144,7 @@ export function soroeruPicks(state: SoroeruState, guide: Guide, products: Catalo
   const tools = guide.tools.map(tool => ({
     label: tool.label,
     note: tool.note,
+    amazon: tool.amazon,
     products: best(products.filter(p => p.productType === tool.type && tool.pattern.test(p.originalName)), 2),
   }))
   return { pots, soils, tools }

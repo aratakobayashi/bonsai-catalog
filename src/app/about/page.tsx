@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { AMAZON_ENABLED, SHOP_NAMES_AND } from '@/lib/affiliate'
+import { AMAZON_ASSOCIATE_ACTIVE, AMAZON_ENABLED, SHOP_NAMES_AND } from '@/lib/affiliate'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import { CONTAINER, PageHeading } from '@/components/ui/design'
@@ -82,7 +82,7 @@ export default function AboutPage() {
             rows={[
               {
                 label: '広告について',
-                body: `本サイトはプロモーション（広告）を含みます。商品リンクから購入された場合、当サイトに紹介料が支払われることがあります。${AMAZON_ENABLED ? 'Amazonのアソシエイトとして、盆栽コレクションは適格販売により収入を得ています。' : ''}紹介料によって購入価格が変わることはありません。`,
+                body: `本サイトはプロモーション（広告）を含みます。商品リンクから購入された場合、当サイトに紹介料が支払われることがあります。${AMAZON_ASSOCIATE_ACTIVE ? 'Amazonのアソシエイトとして、盆栽コレクションは適格販売により収入を得ています。' : ''}紹介料によって購入価格が変わることはありません。`,
               },
               {
                 label: '価格について',

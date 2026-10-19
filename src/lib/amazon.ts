@@ -2,7 +2,7 @@
  * Amazon Affiliate & Product API utilities
  */
 
-export const AMAZON_ASSOCIATE_ID = process.env.NEXT_PUBLIC_AMAZON_ASSOCIATE_ID || 'oshikatsucoll-22';
+export const AMAZON_ASSOCIATE_ID = process.env.NEXT_PUBLIC_AMAZON_ASSOCIATE_ID || 'bonsaicollect-22';
 
 /**
  * Amazon商品URLにアフィリエイトタグを追加
