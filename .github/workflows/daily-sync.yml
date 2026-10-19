@@ -25,7 +25,7 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -52,8 +52,26 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
       - name: サイトを作り直す（Cloudflare Pages のデプロイフック）
+        id: hook
         run: |
           if [ -z "$HOOK" ]; then echo "CF_PAGES_DEPLOY_HOOK が未登録のため、作り直しを省きます"; exit 0; fi
-          curl -fsS -X POST "$HOOK" > /dev/null && echo "作り直しを依頼しました"
+          # 作り直す前の公開中のサイトの作成時刻（公開されたかを確かめるため）
+          before=$(curl -fsS "$SITE/build-info.json?t=$(date +%s)" | jq -r .builtAt 2>/dev/null || echo none)
+          echo "before=$before" >> "$GITHUB_OUTPUT"
+          curl -fsS -X POST "$HOOK" > /dev/null && echo "作り直しを依頼しました（いま公開中：$before）"
         env:
           HOOK: ${{ secrets.CF_PAGES_DEPLOY_HOOK }}
+          SITE: https://www.bonsai-collection.com
+      - name: 公開されたかを確かめる（最大60分待つ。公開されなければ失敗にする）
+        if: ${{ steps.hook.outputs.before != '' }}
+        run: |
+          for i in $(seq 1 120); do
+            now=$(curl -fsS "$SITE/build-info.json?t=$(date +%s)" | jq -r .builtAt 2>/dev/null || echo none)
+            if [ "$now" != "$BEFORE" ] && [ "$now" != "none" ]; then echo "公開されました：$now"; exit 0; fi
+            sleep 30
+          done
+          echo "::error::60分たっても新しいサイトが公開されませんでした。Cloudflare Pages のデプロイ一覧を確認してください"
+          exit 1
+        env:
+          SITE: https://www.bonsai-collection.com
+          BEFORE: ${{ steps.hook.outputs.before }}

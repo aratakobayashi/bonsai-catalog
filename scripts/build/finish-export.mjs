@@ -63,3 +63,7 @@ for (const file of htmlFiles('out')) {
   if (html !== original) writeFileSync(file, html)
 }
 console.log(`OGP: タイトルを直したページ ${fixedTitle} 件、共通の画像を入れたページ ${addedImage} 件`)
+
+// いつ作ったサイトかを書き出す（GitHub Actions の作り直しのあと、公開されたかをこのファイルで確かめる）
+writeFileSync('out/build-info.json', JSON.stringify({ builtAt: new Date().toISOString(), commit: process.env.CF_PAGES_COMMIT_SHA || null }))
+console.log('build-info.json を書き出しました')
