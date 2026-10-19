@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-08",
+  "verifiedAt": "2026-10-19",
   "hiddenIds": [
     "02730e03-63d8-4530-876b-a353e256a4d4",
     "03265286-c823-40dd-9650-e27aaf242cb7",
@@ -143,30 +143,42 @@
     "fa96de24-e49e-4dc6-a969-d7e81462a0d5",
     "fc9f4072-151e-463f-8acc-e20935740398",
     "fe68bd0f-0a04-4c35-b721-ae89c2963247",
-    "ffc6d15a-d3a2-4fde-b556-dfed23b8919a"
+    "ffc6d15a-d3a2-4fde-b556-dfed23b8919a",
+    "1463d7db-74d7-44cf-ac4c-78f8696dc8e9",
+    "3000a4b6-0a10-4896-9ff2-b3a9d09c14db",
+    "7e5804c7-8401-4db8-95aa-d2af1886d157",
+    "ec3d6511-e87f-4fef-bf93-225b4275ace8",
+    "26615151-2a0d-4016-aabd-a6a91d7e24d5",
+    "e72b0605-065d-4a70-9223-54a868d8fef3"
   ],
   "sourcesById": {
     "c461d493-c16b-4b45-9a26-e3e15624e3c4": [
-      "https://kojuen.webu.jp/"
+      "https://kojuen.webu.jp/",
+      "https://kojuen.webu.jp/aboutus.html",
+      "https://kojuen.webu.jp/class.html",
+      "https://bonsaikumiai.jp/member/kansai/kojuen/",
+      "https://www.bonsai.co.jp/stores/%E4%BA%AC%E9%83%BD%E3%83%BB%E5%BA%83%E6%A8%B9%E5%9C%92/"
     ],
     "1463d7db-74d7-44cf-ac4c-78f8696dc8e9": [
       "https://engei-itoya.com/"
     ],
     "b2974592-38df-4f4b-907b-e5fe1df60620": [
-      "https://bonsai-fukushimaen.net/"
+      "https://bonsai-fukushimaen.net/",
+      "https://bonsaikumiai.jp/member/chiba/fukushimaen/",
+      "https://shohin-bonsai.ne.jp/member/member-2743/"
     ],
     "58e02c92-8918-4212-9560-c56e31606724": [
       "https://minorinosato-togane.com/sisetsu/ryokuka",
       "https://minorinosato-togane.com/sisetsu/guide"
     ],
     "8f99da6b-ee77-4c5f-86a9-92b0f5c7f99d": [
-      "https://kinarino.jp/cat7/11306",
-      "https://www.city.saitama.lg.jp/006/014/010/001/012/018/p087271_d/fil/29.pdf",
-      "https://www.city.saitama.lg.jp/004/005/001/005/001/004/p120216.html"
+      "https://www.city.saitama.lg.jp/004/005/001/005/001/004/p120216.html",
+      "https://kinarino.jp/cat7/11306"
     ],
     "7cb38263-35fd-4fdb-b0a5-9c31227d6ebc": [
       "https://kawaguchibonsaimura.com/",
-      "https://kawaguchibonsaimura.com/real-store-introduction/"
+      "https://kawaguchibonsaimura.com/real-store-introduction/",
+      "https://www.instagram.com/reel/DFto77SyPTk/"
     ],
     "3000a4b6-0a10-4896-9ff2-b3a9d09c14db": [
       "https://www.jurian.or.jp/",
@@ -174,58 +186,64 @@
     ],
     "e695fdf3-4e1c-4b6b-b20b-59e17cba279a": [
       "https://www.seikouen.cc/",
-      "https://www.seikouen.cc/company.html"
+      "https://www.seikouen.cc/company.html",
+      "https://omiyabonsaimura.com/navi01/bonsaien_seikouen.html"
     ],
     "75779219-963c-49eb-942a-c2f6caa3c7a1": [
-      "https://kinarino.jp/cat7/11306",
-      "https://www.city.saitama.lg.jp/006/014/010/001/012/018/p087271_d/fil/29.pdf"
+      "https://www.fuyoen.co.jp/",
+      "https://visitsaitamacity.jp/spots/32"
     ],
     "eb263d7a-701b-4b4b-9b01-776a8ea2cdf4": [
-      "https://kinarino.jp/cat7/11306",
-      "https://www.city.saitama.lg.jp/006/014/010/001/012/018/p087271_d/fil/29.pdf",
+      "https://omiyabonsai.jp/ja/gardens/",
+      "https://bonsaikumiai.jp/member/saitamachuo/manseien/",
       "https://www.city.saitama.lg.jp/004/005/001/005/001/004/p120203.html"
     ],
     "60842140-ce64-4848-a55c-5457a8703d33": [
-      "https://www.city.saitama.lg.jp/006/014/008/003/012/001/p096970.html",
-      "https://kinarino.jp/cat7/11306",
-      "https://www.city.saitama.lg.jp/006/014/010/001/012/018/p087271_d/fil/29.pdf"
+      "https://bonsaitojuen.com/",
+      "http://bonsaitojuen.com/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9/",
+      "https://bonsaitojuen.com/bonsaiclass/",
+      "https://bonsaikumiai.jp/member/saitamachuo/tojuen/"
     ],
     "7e5804c7-8401-4db8-95aa-d2af1886d157": [
       "https://www.uechuu.com/",
       "https://www.uechuu.com/company.html"
     ],
     "77a2d6e0-8b2a-455e-af37-7d4cd89257c7": [
-      "https://bonsaiempire.com/inspiration/bonsai-japan/fujikawa-koukaen",
-      "https://bonsaibark.com/2013/06/07/study-bonsai-in-the-old-country/"
+      "https://fujikawakoukaen.com/",
+      "https://bonsaikumiai.jp/member/kansai/fujikawakokaen/",
+      "https://www.bonsaiempire.jp/inspiration/bonsai-nippon/fujikawa-koukaen"
     ],
     "d59a502e-61cb-427e-ac93-bb4da4dfc5f6": [
-      "http://www.yoshoen.com/"
+      "http://www.yoshoen.com/",
+      "http://www.yoshoen.com/class.html",
+      "https://store.shopping.yahoo.co.jp/y-bonsai/"
     ],
     "5a3bdecf-5c77-4552-b619-2ec61541d095": [
       "https://www.sakata-togashihakuyoen.com/",
-      "https://www.sakata-togashihakuyoen.com/company"
+      "https://www.sakata-togashihakuyoen.com/company",
+      "https://www.instagram.com/togashihakuyoen/"
     ],
     "c5abd99b-808b-48fd-b5f2-8353385ac719": [
-      "https://kaboku.jp/"
+      "https://kaboku.jp/",
+      "https://store.shopping.yahoo.co.jp/kaboku/search.html"
     ],
     "1da87f61-d5cc-456c-827b-8a2ef675b68a": [
       "https://greenscape.co.jp/",
       "https://greenscape.co.jp/storage/about/"
     ],
     "d432d4bf-908e-4952-86c5-b8c5798a1225": [
-      "https://bonsaikumiai.jp/",
       "https://bonsaikumiai.jp/greenclub",
       "https://prtimes.jp/main/html/rd/p/000000004.000186662.html"
     ],
     "20702388-f8b8-408e-8d6e-dd158031b048": [
-      "https://kunio-kobayashi.com/",
       "https://kunio-kobayashi.com/access.html",
       "https://kunio-kobayashi.com/school.html",
-      "https://www.tv-tokyo.co.jp/adomachi/backnumber/20180714/137380.html"
+      "https://www.instagram.com/p/DUsfHxYkVBD/"
     ],
     "bd12fb51-7998-4576-952d-081c242d4905": [
-      "https://itp.ne.jp/zenkoku/tokyo/setagayaku/ie-jutaku/ekusuteria/",
-      "https://local-media.heteml.net/?p=8719"
+      "https://www.koufuuen.net/",
+      "https://bonsai-coop-tk.jimdofree.com/%E6%9D%B1%E4%BA%AC%E3%81%AE%E7%9B%86%E6%A0%BD%E5%B1%8B%E3%81%95%E3%82%93/%E9%A6%99%E9%A2%A8%E5%9C%92/",
+      "https://kitakanto-bonsai.com/member/kkb58/"
     ],
     "b642b59f-2c76-4084-8bc4-7a7908d52f57": [
       "https://utunomiya-kaboku.com/",
@@ -233,8 +251,8 @@
     ],
     "a38daf6e-445f-481b-a9a8-55ea631428e3": [
       "https://www.moccasou.com/",
-      "https://www.moccasou.com/about/",
-      "https://www.moccasou.com/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9-%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B/"
+      "https://www.moccasou.com/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9-%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B/",
+      "https://www.moccasou.com/%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88/"
     ],
     "d890f754-cf36-4724-bdd0-ee07b95b4a88": [
       "https://bonsaiyamatoen.com/",
@@ -246,30 +264,39 @@
       "https://www.tokiwa-web.com/company/"
     ],
     "f3418bb6-eef6-47a7-8c54-905ed1d6d3cb": [
+      "https://ja.wikipedia.org/wiki/%E6%B5%9C%E5%8C%97%E5%96%B6%E8%BE%B2%E7%B7%91%E8%8A%B1%E6%9C%A8%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC",
       "https://iko-yo.net/facilities/54597",
-      "https://ja.wikipedia.org/wiki/%E6%B5%9C%E5%8C%97%E5%96%B6%E8%BE%B2%E7%B7%91%E8%8A%B1%E6%9C%A8%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC"
+      "https://www.at-s.com/spot/article/137348",
+      "https://bonsai-ikuma.com/",
+      "https://shizuoka-kanko.com/hamamatsu-ryokkaboku-center/"
     ],
     "a23957ee-4154-4d59-9bb8-f18ee1c8ca26": [
       "https://chinshoen.jp/",
-      "https://chinshoen.jp/about/"
+      "https://www.instagram.com/nakanishi_chinshoen/"
     ],
     "b59cb7db-2804-4486-b2ac-483fea1d792d": [
-      "https://takamatsubonsai-takumi.com/"
+      "https://takamatsubonsai-takumi.com/",
+      "https://takamatsubonsai-takumi.com/company/",
+      "https://bonsai-journey.jp/"
     ],
     "1f54a5e8-d50a-438f-aecd-67b9f2499903": [
       "https://takamatsu-bonsai.com/",
+      "https://takamatsu-bonsai.com/notice/news/entry-98.html",
+      "https://takamatsu-bonsai.com/link/",
       "https://www.art-takamatsu.com/jp/spot/entry-665.html",
       "https://www.my-kagawa.jp/point/3664/"
     ],
     "23771875-d4a4-48b8-a777-6cd1c52dba16": [
-      "https://www.kinashi-bonsai.com/"
+      "https://www.kinashi-bonsai.com/",
+      "https://www.kinashi-bonsai.com/news/?id=2",
+      "https://www.my-kagawa.jp/point/257/"
     ]
   },
   "sourcesByKey": {
     "松雪園|埼玉県": [
       "https://bonsaikumiai.jp/member/saitamachuo/shosetsuen/",
-      "https://www.city.saitama.lg.jp/006/014/010/001/012/022/p119576_d/fil/02-03.pdf",
-      "https://www.mlit.go.jp/tagengo-db/R1-01354.html"
+      "https://www.mlit.go.jp/tagengo-db/R1-01354.html",
+      "http://www.saitama-dentousangyou.com/29/index.html"
     ],
     "盆栽大野|埼玉県": [
       "https://bonsaikumiai.jp/member/saitamachuo/bonsaioono/",
@@ -280,12 +307,12 @@
       "https://www.bonsai-uchikutei.com/access.html",
       "https://www.bonsai-uchikutei.com/school.html",
       "https://www.bonsai-uchikutei.com/company.html",
-      "https://bonsaikumiai.jp/member/saitamachuo/esukyubu/",
       "https://kitakanto-bonsai.com/member/kkb51/"
     ],
     "さいたま市大宮盆栽美術館|埼玉県": [
       "https://www.bonsai-art-museum.jp/ja/access/",
-      "https://www.city.saitama.lg.jp/006/014/010/001/012/022/p119576_d/fil/02-03.pdf"
+      "https://www.bonsai-art-museum.jp/ja/",
+      "https://www.instagram.com/omiyabonsaiartmuseum/"
     ],
     "和光園|埼玉県": [
       "https://bonsaikumiai.jp/member/saitamaminami/wakoen/",
@@ -293,17 +320,21 @@
     ],
     "銀座 雨竹庵|東京都": [
       "https://www.bonsai-uchikutei.com/access.html",
-      "https://www.bonsai-uchikutei.com/company.html"
+      "https://www.bonsai-uchikutei.com/company.html",
+      "https://www.instagram.com/uchiku_bonsai_suiseki/"
     ],
     "松葉屋|東京都": [
-      "https://bonsaikumiai.jp/member/saitamaminami/%e6%9d%be%e8%91%89%e5%b1%8b/"
+      "https://bonsaikumiai.jp/member/saitamaminami/%E6%9D%BE%E8%91%89%E5%B1%8B/",
+      "https://www.marunouchi.com/tenants/20031/",
+      "https://prtimes.jp/main/html/rd/p/000000007.000120492.html"
     ],
     "蒼松園|東京都": [
-      "https://bonsaikumiai.jp/member/tokyo/soshoen/"
+      "https://bonsaikumiai.jp/member/tokyo/soshoen/",
+      "https://bonsai-coop-tk.jimdofree.com/"
     ],
     "湘風園|神奈川県": [
-      "http://www.bonsai-shofuen.com",
-      "http://www.bonsai-shofuen.com/kyoushitsu.html",
+      "https://bonsai-shofuen.com/",
+      "https://bonsai-shofuen.com/kyoushitsu.html",
       "https://bonsaikumiai.jp/member/kanagawa/shofuen/"
     ],
     "松月園|神奈川県": [
@@ -311,28 +342,32 @@
       "https://kitakanto-bonsai.com/member/kkb44/"
     ],
     "ちはる園|神奈川県": [
-      "https://bonsaikumiai.jp/member/kanagawa/chiharuen/"
+      "https://bonsaikumiai.jp/member/kanagawa/chiharuen/",
+      "https://shohin-bonsai.ne.jp/member/member-2749/"
     ],
     "真嶋園|千葉県": [
       "https://bonsaikumiai.jp/member/chiba/mashimaen/"
     ],
     "薫風苑|千葉県": [
-      "https://bonsaikumiai.jp/member/chiba/kumpuen/"
+      "https://bonsaikumiai.jp/member/chiba/kumpuen/",
+      "https://www.bonsai.co.jp/stores/%E8%96%AB%E9%A2%A8%E8%8B%91/"
     ],
     "仁広園|千葉県": [
-      "https://bonsaikumiai.jp/member/chiba/jinkoen/"
+      "https://bonsaikumiai.jp/member/chiba/jinkoen/",
+      "https://bonsaikumiai.jp/member/"
     ],
     "Tree House Bonsai|茨城県": [
       "https://visit.ibarakiguide.jp/en/?p=43170",
       "https://treehousebonsai.com/",
-      "https://bonsaikumiai.jp/member/ibaraki/tree-house-bonsai/",
-      "https://kitakanto-bonsai.com/member/kkb53/"
+      "https://bonsaikumiai.jp/member/ibaraki/tree-house-bonsai/"
     ],
     "永楽園|茨城県": [
-      "https://bonsaikumiai.jp/member/ibaraki/eirakuen/"
+      "https://bonsaikumiai.jp/member/ibaraki/eirakuen/",
+      "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
     ],
     "城北園芸|茨城県": [
-      "https://kitakanto-bonsai.com/member/kkb55/"
+      "https://kitakanto-bonsai.com/member/kkb55/",
+      "https://kitakanto-bonsai.com/group/omoigawa/"
     ],
     "宇賀屋ガーデン|栃木県": [
       "https://ugaya-garden.com/",
@@ -357,12 +392,13 @@
       "https://kitakanto-bonsai.com/member/kkb64/"
     ],
     "五蓉園|栃木県": [
+      "https://kitakanto-bonsai.com/member/kkb62/",
       "https://bonsaikumiai.jp/member/tochigi/goyoen/",
-      "https://bonsaikumiai.jp/member/tochigi/goyoen-2/",
-      "https://kitakanto-bonsai.com/member/kkb62/"
+      "https://bonsaikumiai.jp/member/tochigi/goyoen-2/"
     ],
     "辻万葉園|栃木県": [
-      "https://kitakanto-bonsai.com/member/kkb31/"
+      "https://kitakanto-bonsai.com/member/kkb31/",
+      "https://kitakanto-bonsai.com/group/utsunomiya_kanuma/"
     ],
     "福樹園|群馬県": [
       "https://bonsaifukujyuen.simdif.com/",
@@ -387,126 +423,171 @@
       "https://bonsaikumiai.jp/member/koshin/shokoen-4/"
     ],
     "片桐盆栽|長野県": [
-      "https://bonsaikumiai.jp/member/koshin/katagiribonsai/"
+      "https://bonsaikumiai.jp/member/koshin/katagiribonsai/",
+      "https://www.bonsai.co.jp/stores/2414-2/"
     ],
     "秋山盆栽園|山梨県": [
       "http://www.akiyama-en.com/",
       "https://bonsaikumiai.jp/member/koshin/akiyamaen/"
     ],
     "泰樹園|山梨県": [
-      "https://bonsaikumiai.jp/member/koshin/taijuen/"
+      "https://bonsaikumiai.jp/member/koshin/taijuen/",
+      "https://www.chuo-city-shokoukai.com/members/100"
     ],
     "小品盆栽 あずま園|山梨県": [
-      "https://bonsaikumiai.jp/member/koshin/shohinbonsai-azumaen/"
+      "https://bonsaikumiai.jp/member/koshin/shohinbonsai-azumaen/",
+      "https://shohin-bonsai.ne.jp/member/member-2760/",
+      "https://www.bonsai.co.jp/stores/%E5%B0%8F%E5%93%81%E7%9B%86%E6%A0%BD%E3%81%82%E3%81%9A%E3%81%BE%E5%9C%92/"
     ],
     "梢風園|新潟県": [
-      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/shofuen-2/"
+      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/shofuen-2/",
+      "https://shimpaku.geo-itoigawa.com/experience/"
     ],
     "清花園（金沢）|石川県": [
-      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/seikaen-2/"
+      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/seikaen-2/",
+      "https://shohin-bonsai.ne.jp/member/member-2788/",
+      "http://www.bonsainavi.com/detail/91/"
     ],
     "盆栽樹楽|石川県": [
-      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/bonsaikiraku/"
+      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/bonsaikiraku/",
+      "https://www.bonsai.co.jp/stores/%E7%9B%86%E6%A0%BD-%E6%A8%B9%E6%A5%BD/"
     ],
     "福井萬松園|福井県": [
-      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/fukuibanshoen/"
+      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/fukuibanshoen/",
+      "http://mohichido.komochijima.com/Entry/13/"
     ],
     "多賀城盆栽園|宮城県": [
-      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/tagajobonsaien/"
+      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/tagajobonsaien/",
+      "https://uchikutei.officeblog.jp/archives/1073480062.html"
     ],
     "桃阳園|岩手県": [
-      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/toyoen-2/"
+      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/toyoen-2/",
+      "https://www.instagram.com/p/DASVPbOSPgI/",
+      "https://ameblo.jp/midcentury-bonsai/entry-12950022984.html"
     ],
     "清花園（山形）|山形県": [
       "https://bonsaikumiai.jp/member/honbu_kojinkaiin/seikaen/",
       "https://kitakanto-bonsai.com/member/kkb39/"
     ],
     "峯松園|福島県": [
-      "https://kitakanto-bonsai.com/member/kkb07/"
+      "https://kitakanto-bonsai.com/member/kkb07/",
+      "https://www.facebook.com/p/%E5%B3%AF%E6%9D%BE%E5%9C%92-100066599096424/"
     ],
     "萬樹園|東京都": [
-      "https://bonsaikumiai.jp/member/tokyo/%e8%90%ac%e6%a8%b9%e5%9c%92/"
+      "https://bonsaikumiai.jp/member/tokyo/%e8%90%ac%e6%a8%b9%e5%9c%92/",
+      "https://bonsai-coop-tk.jimdofree.com/%E6%9D%B1%E4%BA%AC%E3%81%AE%E7%9B%86%E6%A0%BD%E5%B1%8B%E3%81%95%E3%82%93/%E8%90%AC%E6%A8%B9%E5%9C%92/"
     ],
     "精華園|東京都": [
-      "https://bonsaikumiai.jp/member/tokyo/seikaen-3/"
+      "https://bonsaikumiai.jp/member/tokyo/seikaen-3/",
+      "https://bonsai-coop-tk.jimdofree.com/%E6%9D%B1%E4%BA%AC%E3%81%AE%E7%9B%86%E6%A0%BD%E5%B1%8B%E3%81%95%E3%82%93/%E7%B2%BE%E8%8F%AF%E5%9C%92/",
+      "https://botanical-zone.tokyo/bonsaiseikaen/"
     ],
     "一楽園|東京都": [
-      "https://bonsaikumiai.jp/member/tokyo/ichirakuen/"
+      "https://bonsaikumiai.jp/member/tokyo/ichirakuen/",
+      "https://bonsai-coop-tk.jimdofree.com/%E6%9D%B1%E4%BA%AC%E3%81%AE%E7%9B%86%E6%A0%BD%E5%B1%8B%E3%81%95%E3%82%93/%E4%B8%80%E6%A5%BD%E5%9C%92/"
     ],
     "榎本皐月園|東京都": [
-      "https://bonsaikumiai.jp/member/tokyo/enomotosatsukien/"
+      "https://bonsaikumiai.jp/member/tokyo/enomotosatsukien/",
+      "https://bonsai-coop-tk.jimdofree.com/%E6%9D%B1%E4%BA%AC%E3%81%AE%E7%9B%86%E6%A0%BD%E5%B1%8B%E3%81%95%E3%82%93/%E6%A6%8E%E6%9C%AC%E7%9A%90%E6%9C%88%E5%9C%92/",
+      "https://www.bonsai.co.jp/stores/%E6%A6%8E%E6%9C%AC%E7%9A%90%E6%9C%88%E5%9C%92/"
     ],
     "BONSAI IKUMA（盆栽いくま）|静岡県": [
-      "https://bonsai-ikuma.com/"
+      "https://bonsai-ikuma.com/",
+      "https://bonsaiikuma.base.shop/"
     ],
     "雅祥園|静岡県": [
       "https://www.gashouen.com/%E5%9C%92%E3%81%AE%E6%83%85%E5%A0%B1/",
-      "https://bonsaikumiai.jp/member/shizuoka/"
+      "https://bonsaikumiai.jp/member/shizuoka/",
+      "https://digital.izu-np.co.jp/news/education/102448"
     ],
     "伊豆盆栽|静岡県": [
-      "https://izubonsai.jimdofree.com/"
+      "https://izubonsai.jimdofree.com/",
+      "https://www.instagram.com/izubonsai/"
     ],
     "苔聖園|静岡県": [
       "https://www.bonsai.co.jp/stores/stores_category/tokai/shizuoka/",
-      "https://bonsaikumiai.jp/member/shizuoka/"
+      "https://bonsaikumiai.jp/member/shizuoka/",
+      "https://www.bonsai.co.jp/stores/%E8%8B%94%E8%81%96%E5%9C%92/",
+      "https://www.instagram.com/taishoen_/"
     ],
     "渡伸苑|静岡県": [
-      "https://bonsaikumiai.jp/member/shizuoka/",
-      "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+      "https://bonsaikumiai.jp/member/shizuoka/watashinen/",
+      "https://map.yahoo.co.jp/v3/place/o5HAHQCKdtE",
+      "https://www.bonsai.co.jp/event/%E2%97%8F%E7%AC%AC47%E5%9B%9E%E6%9D%B1%E9%A7%BF%E6%B2%B3%E6%94%AF%E9%83%A8%E7%9B%86%E6%A0%BD%E5%B1%95%EF%BC%88%E9%9D%99%E5%B2%A1%E7%9C%8C%EF%BC%89/"
     ],
     "大樹園|愛知県": [
       "https://bonsai-daijuen.com/",
-      "https://bonsaikumiai.jp/member/nagoya/"
+      "https://bonsaikumiai.jp/member/nagoya/",
+      "https://www.instagram.com/daijuen96/"
     ],
     "愛知園|愛知県": [
       "https://bonsaiaichien.com/contact/",
-      "https://bonsaikumiai.jp/member/nagoya/"
+      "https://bonsaiaichien.com/%e6%a5%ad%e5%8b%99%e3%80%80services/",
+      "https://bonsaiaichien.com/history/",
+      "https://bonsaikumiai.jp/member/nagoya/aichien/"
     ],
     "尾張實華園|愛知県": [
-      "https://www.bonsai.co.jp/stores/stores_category/tokai/aichi/"
+      "https://www.bonsai.co.jp/stores/stores_category/tokai/aichi/",
+      "https://shohin-bonsai.ne.jp/member/member-2637/",
+      "https://www.youtube.com/watch?v=FB--2E3_GOI"
     ],
     "直井昭楽園|岐阜県": [
       "http://naoi-shourakuen.com/",
       "http://naoi-shourakuen.com/?page_id=34",
-      "https://www.bonsai.co.jp/stores/stores_category/tokai/gifu/"
+      "https://www.bonsai.co.jp/stores/stores_category/tokai/gifu/",
+      "https://www.asaichi.net/shop/info_no61.html"
     ],
     "盆栽はニわ|三重県": [
-      "https://haniwa-bonsai.com/"
+      "https://haniwa-bonsai.com/",
+      "https://haniwa-bonsai.com/rental/"
     ],
     "玉芳園|三重県": [
+      "https://bonsaikumiai.jp/member/nagoya/gyokuhoen/",
       "https://bonsaikumiai.jp/member/nagoya/",
-      "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+      "https://www.jpnumber.com/numberinfo_059_329_2069.html"
     ],
     "無名庵|滋賀県": [
-      "https://www.bonsai.co.jp/stores/stores_category/kinki/shiga/"
+      "https://www.bonsai.co.jp/stores/stores_category/kinki/shiga/",
+      "https://shohin-bonsai.ne.jp/member/member-2800/"
     ],
     "芳春院盆栽庭園|京都府": [
-      "https://www.bonsai.co.jp/stores/stores_category/kinki/kyoto/"
+      "https://www.bonsai.co.jp/stores/stores_category/kinki/kyoto/",
+      "https://www.jalan.net/event/evt_354263/",
+      "https://oniwa.garden/daitokuji-hoshuin-bonsai/"
     ],
     "梅原英光園|京都府": [
+      "https://www.umeharaeikoen.com/",
+      "https://www.umeharaeikoen.com/access/",
+      "https://www.umeharaeikoen.com/classroom/",
       "https://www.bonsai.co.jp/stores/stores_category/kinki/kyoto/"
     ],
     "三浦培樹園|大阪府": [
-      "http://baijuen.com",
-      "https://www.bonsai.co.jp/stores/stores_category/kinki/osaka/",
-      "https://bonsaikumiai.jp/member/kansai/"
+      "https://baijuen.com/",
+      "https://baijuen.com/pages/services",
+      "https://www.bonsai.co.jp/stores/stores_category/kinki/osaka/"
     ],
     "百舌鳥園|大阪府": [
       "https://www.bonsai.co.jp/stores/stores_category/kinki/osaka/",
-      "https://bonsaikumiai.jp/member/kansai/"
+      "https://bonsaikumiai.jp/member/kansai/mozuen/",
+      "https://www.instagram.com/p/DTVH9dmE67V/"
     ],
     "盆栽翠松園|兵庫県": [
       "https://www.bonsai-suishoen.jp/",
-      "https://bonsaikumiai.jp/member/kansai/"
+      "https://reserve.bonsai-suishoen.jp/",
+      "https://bonsaikumiai.jp/member/kansai/",
+      "http://www.kobe-np.co.jp/news/richa/202403/0017442342.shtml"
     ],
     "BONSAI Labo|兵庫県": [
       "https://bonsai-labo-rin.com/",
-      "https://bonsai-labo-rin.com/access/",
+      "https://bonsai-labo-rin.com/access-contact/",
+      "https://bonsai-labo-rin.com/workshops/",
+      "https://bonsailabo.official.ec/",
       "https://www.bonsai.co.jp/stores/stores_category/kinki/hyogo/"
     ],
     "しらさぎ園|兵庫県": [
       "https://www.bonsai.co.jp/stores/stores_category/kinki/hyogo/",
-      "https://bonsaikumiai.jp/member/kansai/"
+      "https://bonsaikumiai.jp/member/kansai/shirasagien/",
+      "https://www.instagram.com/p/DY-sqaXEolO/"
     ],
     "大柏園|奈良県": [
       "https://taihakuen.wixsite.com/bonsai",
@@ -515,35 +596,37 @@
     ],
     "清雅園|岡山県": [
       "https://r.goope.jp/sr-33-3336310037/",
-      "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+      "https://www.setouchi.org/company/com/post_107.html"
     ],
     "春秋園|岡山県": [
       "https://bonsaikumiai.jp/member/honbu_kojinkaiin/",
       "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
     ],
     "草光園|広島県": [
+      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/",
       "https://www.bonsai.co.jp/stores/stores_category/chugoku/hiroshima/",
-      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/"
+      "https://www.instagram.com/soukouennn/"
     ],
     "暁霞園|山口県": [
-      "https://www.bonsai.co.jp/stores/stores_category/chugoku/yamaguchi/",
-      "https://bonsaikumiai.jp/member/kyushu/"
+      "https://bonsaikumiai.jp/member/kyushu/",
+      "https://www.bonsai.co.jp/stores/stores_category/chugoku/yamaguchi/"
     ],
     "埴生園|徳島県": [
-      "https://www.bonsai.co.jp/stores/stores_category/shikoku/tokushima/"
+      "https://www.bonsai.co.jp/stores/stores_category/shikoku/tokushima/",
+      "https://www.bonsai.co.jp/stores/%E5%9F%B4%E7%94%9F%E5%9C%92/",
+      "https://www.youtube.com/shorts/N7h6JpKgESI"
     ],
     "神高松寿園|香川県": [
       "https://www.kinashi-bonsai.com/shojuen/",
       "https://www.kinashi-bonsai.com/shojuen/access/",
       "https://www.kinashi-bonsai.com/shojuen/order/",
-      "https://www.kinashi-bonsai.com/greenguid/",
-      "https://bonsaikumiai.jp/member/kinashi/"
+      "https://bonsaikumiai.jp/member/kinashi/",
+      "https://bonsai.shikoku-np.co.jp/map/kandaka.html"
     ],
     "小西松楽園|香川県": [
       "https://www.kinashi-bonsai.com/konishi/",
       "https://www.kinashi-bonsai.com/konishi/access/",
-      "https://www.kinashi-bonsai.com/greenguid/",
-      "https://bonsaikumiai.jp/member/kinashi/"
+      "https://www.kinashi-bonsai.com/greenguid/"
     ],
     "花澤明春園|香川県": [
       "http://www.hanazawa-bonsai.com/gyoumu/",
@@ -552,13 +635,17 @@
       "https://www.kinashi-bonsai.com/greenguid/"
     ],
     "一樹園|香川県": [
-      "https://www.bonsai.co.jp/stores/stores_category/shikoku/kagawa/"
+      "https://www.bonsai.co.jp/stores/stores_category/shikoku/kagawa/",
+      "https://www.rakuten.co.jp/ichijuen/"
     ],
     "盆栽 熊谷園|愛媛県": [
-      "https://www.bonsai.co.jp/stores/stores_category/shikoku/ehime/"
+      "https://www.bonsai.co.jp/stores/stores_category/shikoku/ehime/",
+      "https://www.bonsai.co.jp/stores/%E7%9B%86%E6%A0%BD%E3%80%80%E7%86%8A%E8%B0%B7%E5%9C%92/",
+      "http://www.sc-bussan.jp/menber/28.htm"
     ],
     "お座敷盆梅 梅花園|福岡県": [
-      "https://www.crossroadfukuoka.jp/spot/12831"
+      "https://www.crossroadfukuoka.jp/spot/12831",
+      "https://www.crossroadfukuoka.jp/event/16973"
     ],
     "塚本宗松園|福岡県": [
       "https://www.bonsai.co.jp/stores/stores_category/kyusyu/fukuoka/",
@@ -569,29 +656,38 @@
       "https://bonsaikumiai.jp/member/kyushu/"
     ],
     "昭緑園|長崎県": [
-      "https://bonsaikumiai.jp/member/kyushu/",
-      "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+      "https://bonsaikumiai.jp/member/kyushu/shoryokuen/",
+      "https://www.facebook.com/syouryokuen/",
+      "https://www.ekiten.jp/shop_2018012/"
     ],
     "雅松園|熊本県": [
       "https://www.bonsai.co.jp/stores/stores_category/kyusyu/kumamoto/",
-      "https://bonsaikumiai.jp/member/kyushu/"
+      "https://bonsaikumiai.jp/member/kyushu/",
+      "https://www.instagram.com/gasyoen_bonsai/"
     ],
     "野元珍松園|宮崎県": [
       "https://bonsaikumiai.jp/member/kyushu/",
-      "https://www.bonsaiempire.jp/locations/bonsai-trees-for-sale"
+      "https://bonsaikumiai.jp/member/kyushu/nomotochinshoen/",
+      "https://shohin-bonsai.ne.jp/member/member-2835/",
+      "https://www.mapion.co.jp/phonebook/M26025/45201/24530023225/"
     ],
     "盆栽総合専門店 岩崎農園|鹿児島県": [
       "https://bonsaiiwasaki.crayonsite.net/"
     ],
     "ナスカさつき園|鹿児島県": [
-      "http://www.nazka-satsukien.com/"
+      "http://www.nazka-satsukien.com/",
+      "https://www.navitime.co.jp/poi?spot=00011-080928450",
+      "https://x.com/nazka_satsukien"
     ],
     "屋良盆栽園|沖縄県": [
-      "https://yarabonnsaien.jimdofree.com/"
+      "https://yarabonnsaien.jimdofree.com/",
+      "https://www.okinawatimes.co.jp/articles/-/989855"
     ],
     "宜野湾文化苑|沖縄県": [
+      "https://ginowanbonsai.com/",
+      "https://ginowanbonsai.com/terms/",
       "https://ginowanbunkaen.jimdofree.com/%E4%BC%9A%E7%A4%BE%E6%83%85%E5%A0%B1/",
-      "https://navioki.com/bonsaihanbai/"
+      "https://www.instagram.com/ginowan_bonsai/"
     ],
     "常盤園|北海道": [
       "https://1128.hajimeyoo.com/kaisya.html",
@@ -600,45 +696,49 @@
     ],
     "廣瀬清香園|北海道": [
       "https://tanagokoro-h.org/tenji/",
-      "https://lovegreen.net/spot/p171865/"
+      "https://lovegreen.net/spot/p171865/",
+      "https://x.com/HiroseSeikaen",
+      "https://www.youtube.com/@Bonsai_channel"
     ],
     "東松島市真柏盆栽美術館もろや|宮城県": [
       "https://shimpaku.jp/",
-      "https://shimpaku.jp/yamadori-bonsai/",
-      "https://www.bonsai.co.jp/stores/stores_category/tohoku/miyagi/"
+      "https://shimpaku.jp/yamadori-bonsai/"
     ],
     "ぼんさいや「あべ」|福島県": [
       "https://www.city.fukushima.fukushima.jp/soshiki/5/1019/3/4743.html",
       "https://www.f-kankou.jp/pickup/11827",
-      "https://peach-bornsai.wixsite.com/kukanyubi/contact"
+      "https://peach-bornsai.wixsite.com/kukanyubi/contact",
+      "https://peach-bornsai.wixsite.com/kukanyubi/news"
     ],
     "福島植物園|福島県": [
-      "https://fukusyoku.jp/about",
-      "https://fukusyoku.jp/goods-item6"
+      "https://fukusyoku.jp/",
+      "https://fukusyoku.jp/about/",
+      "https://fukusyoku.jp/goods-item6/"
     ],
     "ぼんさい屋とき|新潟県": [
-      "https://www.bonsaiyatoki.com/about",
+      "https://cocomo-mag.jp/spot/bonsaiyatoki/",
       "https://www.bonsaiyatoki.com/online",
-      "https://cocomo-mag.jp/spot/bonsaiyatoki/"
+      "https://bonsaiyatoki.shopselect.net/"
     ],
     "姫川園|新潟県": [
-      "https://shimpaku.geo-itoigawa.com/experience/",
       "http://himekawaen.qee.jp/",
-      "https://bonsai-yarou.com/map/himekawaen-itoigawa/"
+      "https://shimpaku.geo-itoigawa.com/experience/"
     ],
     "片岡ガーデン|新潟県": [
       "https://shimpaku.geo-itoigawa.com/experience/",
-      "https://bonsai-yarou.com/map/kataoka-garden-itoigawa/"
+      "https://shimpaku.geo-itoigawa.com/project/",
+      "https://www.ekiten.jp/shop_1702071/"
     ],
     "みくに園 三國湊店|福井県": [
       "https://minato.bonsai-mikunien.com/",
-      "https://minato.bonsai-mikunien.com/access",
-      "http://shop.bonsai-mikunien.com/"
+      "https://minato.bonsai-mikunien.com/access/",
+      "https://shop.bonsai-mikunien.com/"
     ],
     "BONSAI緑風園|滋賀県": [
       "https://bonsai-ryokufuen.com/",
-      "https://jp.mercari.com/shops/profile/sRm6R2avet58zWpHev6nvf",
-      "https://bonsai-yarou.com/map/bonsai-ryokufuen/"
+      "https://bonsai-ryokufuen.com/about/",
+      "https://mercari-shops.com/shops/sRm6R2avet58zWpHev6nvf",
+      "https://www.instagram.com/p/C05Kr9VymUk/"
     ],
     "盆栽正芳園|奈良県": [
       "https://seihouen.crayonsite.net/",
@@ -648,6 +748,7 @@
     "盆栽TAIYO|和歌山県": [
       "https://www.bonsaitaiyo.com/",
       "https://www.bonsaitaiyo.com/contact-4",
+      "https://www.bonsaitaiyo.com/%E7%9B%86%E6%A0%BDtaiyo%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6",
       "https://bonsaitaiyo.theshop.jp/"
     ],
     "西川盆栽園|長野県": [
@@ -660,22 +761,31 @@
       "https://www.maff.go.jp/j/shokusan/export/gfp/attach/pdf/240807-33.pdf"
     ],
     "石鎚園|愛媛県": [
+      "http://www.sc-bussan.jp/menber/7.htm",
       "https://shohin-bonsai.ne.jp/member/member-2814/",
-      "http://www.sc-bussan.jp/menber/7.htm"
+      "https://ehimesansan-next.com/petitsanmaga/bonnsai",
+      "https://www.jalan.net/kankou/spt_guide000000230167/activity/l0000686D7/"
     ],
     "伊予路園|愛媛県": [
-      "https://shohin-bonsai.ne.jp/member/member-2815/"
+      "https://shohin-bonsai.ne.jp/member/member-2815/",
+      "http://iyoji-en.com/",
+      "http://iyoji-en.com/hyouki.html",
+      "https://www.instagram.com/iyojien/"
     ],
     "株式会社樂屋|愛媛県": [
-      "https://shohin-bonsai.ne.jp/member/member-2816/"
+      "https://shohin-bonsai.ne.jp/member/member-2816/",
+      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/rakuya/",
+      "https://auctions.yahoo.co.jp/seller/8wHrsGcR3YsGbz73KpcKoXoLLDXGY"
     ],
     "明樹園|岡山県": [
-      "https://shohin-bonsai.ne.jp/member/member-2822/"
+      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/meijuen/",
+      "https://shohin-bonsai.ne.jp/member/member-2822/",
+      "https://www.instagram.com/meijuen8888/"
     ],
     "庭能花園|広島県": [
       "https://niwayoshikaen.com/",
       "https://jumful.net/place/HS-00022",
-      "https://www.chugoku-np.co.jp/articles/-/623457"
+      "https://iraw.rcc.jp/topics/articles/29970"
     ],
     "阿波庭縁|徳島県": [
       "https://nihonteien4.wixsite.com/awateien/about",
@@ -685,12 +795,14 @@
     "松田盆栽園|大分県": [
       "https://map.yahoo.co.jp/v3/place/8LMYRZCxKJA",
       "https://www.bonsainavi.com/detail/81/",
-      "https://tosonline.jp/newsp/20211018/00000019.html"
+      "https://tosonline.jp/newsp/20211018/00000019.html",
+      "https://www.instagram.com/matudabonsaien/"
     ],
     "盆栽処 恵松園|長崎県": [
       "https://www.instagram.com/sasebo_bonsai_gardener/",
       "https://www.instagram.com/nagasaki.bonsai.art/",
-      "https://bonsai-yarou.com/map/nakawaki-keishoen/"
+      "https://www.navitime.co.jp/poi?spot=00011-90247370",
+      "https://www.youtube.com/@bonsai_sasebo"
     ],
     "三原庭園|長崎県": [
       "https://www.miharagarden.com/",
@@ -700,32 +812,33 @@
     "盆栽 樹心園|熊本県": [
       "https://kigokoroen.jp/",
       "https://spice.kumanichi.com/serialization/suteki-bito/199020/",
-      "https://bonsaikumiai.jp/member/kyushu/"
+      "https://www.instagram.com/bonsai_cafe_kigokoroen/"
     ],
     "ROZI BONSAI|熊本県": [
       "https://higojournal.com/archives/roji-bonsai.html",
       "https://kumataiwan.com/2026/07/09/rozi-bonsai/",
-      "https://rozibonsai.base.shop/law"
+      "https://rozibonsai.base.shop/law",
+      "https://www.instagram.com/rozibonsai/"
     ],
     "福富盆栽園|宮崎県": [
       "https://nobeokan.jp/fukutomibonsai/",
-      "https://www.instagram.com/fukutomibonsaien/",
-      "https://bonsai-yarou.com/map/fukutomi-bonsaien/"
+      "https://www.instagram.com/fukutomibonsaien/"
     ],
     "讃松園|宮崎県": [
-      "https://www.youtube.com/watch?v=WFnuSs_pJ6Y",
       "https://kurukaramura.com/669.html",
+      "https://www.youtube.com/watch?v=WFnuSs_pJ6Y",
+      "https://map.yahoo.co.jp/v3/place/ttkzoH6MO8A",
       "https://shohin-bonsai.ne.jp/member/member-2834/"
     ],
     "盆栽 英彦園|福岡県": [
       "http://www.ehikoen.net/",
-      "https://shohin-bonsai.ne.jp/member/member-2828/",
-      "https://www.bonsainavi.com/detail/78/"
+      "https://shohin-bonsai.ne.jp/member/member-2828/"
     ],
     "千寿園|福岡県": [
       "https://kurume-ryokkacenter.com/shop/46/",
-      "https://bonsaikumiai.jp/member/kyushu/",
-      "https://www.bonsai.co.jp/stores/stores_category/kyusyu/"
+      "https://bonsaikumiai.jp/member/kyushu/senjuen/",
+      "https://www.bonsai.co.jp/stores/%E5%8D%83%E5%AF%BF%E5%9C%92/",
+      "https://www.instagram.com/bonsai_senjuen/"
     ],
     "盆栽界隈|福岡県": [
       "https://sasatto.jp/article/entry-7648.html",
@@ -734,18 +847,20 @@
     ],
     "盆景 清峰庵|福岡県": [
       "https://bonsai-seihouan.jp/",
-      "https://bonsai-seihouan.jp/information/",
-      "https://shohin-bonsai.ne.jp/member/member-2830/"
+      "https://bonsai-seihouan.jp/info/%e7%9b%86%e6%a0%bd%e6%95%99%e5%ae%a4/",
+      "https://shohin-bonsai.ne.jp/member/member-2830/",
+      "https://www.instagram.com/seihouan/"
     ],
     "盆栽八松緑園 美山粋月庵|鹿児島県": [
-      "https://www.kagoshimanoie.com/tour/15436/",
       "https://www.instagram.com/yamatsu_ryokuen/",
-      "https://bonsai-yarou.com/map/hashimatsu-ryokuen/"
+      "https://www.instagram.com/p/DPL-YsJCc2J/",
+      "https://www.kagoshimanoie.com/tour/15436/",
+      "https://www.instagram.com/p/C9gq-vxSvrb/"
     ],
     "文化盆栽園|沖縄県": [
       "https://ameblo.jp/arakaki-arakaki/entry-12422962625.html",
-      "https://www.threads.com/@bunkabonsaien?hl=ja",
-      "https://bonsai-yarou.com/map/bunka-bonsaien/"
+      "https://ameblo.jp/arakaki-arakaki/theme-10070163103.html",
+      "https://www.threads.com/@bunkabonsaien?hl=ja"
     ],
     "丸吉工芸|沖縄県": [
       "https://maruyoshi.okinawa/",
@@ -753,21 +868,16 @@
       "https://map.yahoo.co.jp/v3/place/HL4i7kVi2eI"
     ],
     "盆栽ギャラリー豊葉園|青森県": [
-      "https://map.yahoo.co.jp/place/RPEoJPWWuyA",
       "https://www.city.hachinohe.aomori.jp/section/public_transport/leaflet-plan/docs/bus-sanpo/bussannpo-yawata.pdf",
-      "https://oniwa-madoguchi.com/gyousya/shop/engei/id20659/",
-      "https://botanique.jp/shop/shp02000227/map",
       "https://www.ekiten.jp/shop_2336952/",
-      "https://www.hachinohe-paint.com/blog/diary/blog-9400/",
-      "https://kawamote.jugem.jp/?eid=11"
+      "https://botanique.jp/shop/shp02000227/map"
     ],
     "晴香園|富山県": [
-      "https://www.seikohen.com/",
-      "https://www.seikohen.com/news/2025/12/90390/",
       "https://www.seikohen.com/tour/",
-      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/seikoen/",
-      "https://www.bonsai.co.jp/stores/stores_category/hokuriku/toyama/",
-      "https://www.chunichi.co.jp/article/192061"
+      "https://www.seikohen.com/news/2025/12/90390/",
+      "https://www.chunichi.co.jp/article/192061",
+      "https://shohin-bonsai.ne.jp/member/member-2786/",
+      "https://bonsaikumiai.jp/member/honbu_kojinkaiin/seikoen/"
     ]
   }
 }
