@@ -455,9 +455,9 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
               ))}
             </ul>
             {hasProducts && (
-              <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-4">
+              <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-4" data-list="garden_species">
                 {speciesProducts.map(product => (
-                  <CatalogProductCard key={product.id} product={product} />
+                  <CatalogProductCard key={product.id} product={product} buyPlace="garden_species" />
                 ))}
               </div>
             )}

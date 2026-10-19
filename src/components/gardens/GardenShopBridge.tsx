@@ -38,7 +38,7 @@ export function GardenShopBridge({ products, title = '近くに盆栽園がな�
       <p className="mt-1.5 text-[12.5px] leading-[1.8] text-ink-soft">楽天市場の掲載商品から、はじめてでも育てやすい盆栽を選びました。盆栽園の商品ではありません。</p>
       <PrDisclosure compact className="mt-2" />
       <div className="mt-4 grid grid-cols-2 gap-x-3.5 gap-y-6 md:grid-cols-4 lg:gap-5" data-list="garden_bridge">
-        {products.map(product => <CatalogProductCard key={product.id} product={product} sizes="(max-width: 767px) 46vw, 200px" />)}
+        {products.map(product => <CatalogProductCard key={product.id} product={product} buyPlace="garden_bridge" sizes="(max-width: 767px) 46vw, 200px" />)}
       </div>
       <ul className="mt-5 grid grid-cols-2 gap-2 xl:grid-cols-4">
         {LINKS.map(l => (

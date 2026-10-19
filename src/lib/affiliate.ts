@@ -16,6 +16,11 @@ export const SHOP_NAMES_AND = AMAZON_ENABLED ? '楽天市場とAmazon' : '楽天
 // 広告リンクには rel="sponsored" を付ける（Google のリンク属性ガイドライン）
 export const AFFILIATE_LINK_REL = 'sponsored noopener noreferrer'
 
+// 販売ページへのボタンの文言。盆栽は一点ものが多く価格も変わるため、行き先の名前ではなく「確かめられること」を書く
+// （ショップ名はボタンの下の注記や aria-label で示す）
+export const BUY_LABEL = '在庫と価格を見る'
+export const BUY_LABEL_DETAIL = '在庫・送料を確認する'
+
 const AFFILIATE_HOST_PATTERN =
   /(^|\.)(amazon\.co\.jp|amzn\.to|amzn\.asia|a8\.net|rakuten\.co\.jp|valuecommerce\.com|moshimo\.com|accesstrade\.net|afi-b\.com)$/i
 

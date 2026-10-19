@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { AFFILIATE_LINK_REL } from '@/lib/affiliate'
+import { AFFILIATE_LINK_REL, BUY_LABEL } from '@/lib/affiliate'
 import { formatPrice } from '@/lib/utils'
 import type { CatalogProduct } from '@/lib/catalog-model'
 import { cardTags } from '@/lib/card-tags'
@@ -119,10 +119,10 @@ export function CatalogProductCard({ product, priority = false, selected = false
           rel={AFFILIATE_LINK_REL}
           data-place={buyPlace}
           data-product={product.id}
-          aria-label={`${title}を${SOURCE_LABELS[product.source]}で見る（新しいタブで開きます）`}
+          aria-label={`${title}の${BUY_LABEL.replace('見る', '')}${SOURCE_LABELS[product.source]}で見る（新しいタブで開きます）`}
           className="mt-auto flex h-10 items-center justify-center gap-1.5 border border-ink text-[12.5px] tracking-[0.04em] text-ink hover:bg-ink hover:text-white lg:text-[13px]"
         >
-          {SOURCE_LABELS[product.source]}で見る <span aria-hidden="true">↗</span>
+          {BUY_LABEL} <span aria-hidden="true">↗</span>
         </a>
       )}
       {/* ハートはリンクの外に置く（リンクの中にボタンを入れない） */}
