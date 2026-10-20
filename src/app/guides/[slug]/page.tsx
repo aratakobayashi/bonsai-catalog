@@ -1,4 +1,6 @@
 import { LOCAL_ARTICLES } from '@/lib/local-articles'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { amazonPicksForArticle } from '@/lib/amazon-picks'
 import { Metadata } from 'next'
 import { cache } from 'react'
 import { notFound, permanentRedirect } from 'next/navigation'
@@ -367,6 +369,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
             {/* 贈り物の記事：予算から選ぶ */}
             {giftSelection && <ArticleBudgetPicks bands={budgetPicks} more={{ href: `/selection/${giftSelection.slug}`, label: `「${giftSelection.shortTitle}」の特集を見る` }} />}
+
+            <AmazonPicks set={amazonPicksForArticle(article.slug, Boolean(giftSelection))} place="article_amazon" className="mt-12 lg:mt-16" />
 
             {/* 次にやること（商品・同じ樹種の記事・特集・診断） */}
             <ArticleNextSteps

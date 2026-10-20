@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { amazonPicksForMonth } from '@/lib/amazon-picks'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getCatalogProducts } from '@/lib/catalog-data'
@@ -190,6 +192,8 @@ export default async function TeireMonthPage({ params }: TeireMonthPageProps) {
           <p className="mt-4 text-[12px] leading-relaxed text-ink-muted">価格・在庫は各ショップの商品ページでご確認ください。</p>
         </section>
       )}
+
+      <AmazonPicks set={amazonPicksForMonth(month)} place="teire_amazon" className="mt-12 lg:mt-16" />
 
       {/* 関連する記事 */}
       {articles.length > 0 && (

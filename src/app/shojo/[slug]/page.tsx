@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { amazonPicksForShojo } from '@/lib/amazon-picks'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getCatalogProducts } from '@/lib/catalog-data'
@@ -190,6 +192,8 @@ export default async function ShojoDetailPage({ params }: PageProps) {
             </p>
           </section>
         )}
+
+        <AmazonPicks set={amazonPicksForShojo(shojo.slug)} place="shojo_amazon" className="mt-10 lg:mt-14" />
 
         {/* ほかの症状 */}
         <section className="pt-10 lg:pt-14">

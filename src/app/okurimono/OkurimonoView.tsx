@@ -1,4 +1,6 @@
 import Image from 'next/image'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { GIFT_AMAZON_PICKS } from '@/lib/amazon-picks'
 import GiftSeasonBanner from '@/components/gift/GiftSeasonBanner'
 import Link from 'next/link'
 import photoCredits from '@/data/photo-credits.json'
@@ -165,6 +167,8 @@ export function OkurimonoView({ params, products, articleMeta }: { params: Recor
               樹種の向き・育てやすさは一般的な目安で、ラッピング・のしの対応は商品名の表記から判定しています。価格・在庫・のしの種類・お届け日の指定は、各ショップの商品ページでご確認ください。
             </p>
           </section>
+
+          <AmazonPicks set={GIFT_AMAZON_PICKS} place="okurimono_amazon" className="mt-12 lg:mt-16" />
 
           {/* 場面ごとの決まりごと */}
           <section className="mt-12 border border-line bg-white px-5 py-6 lg:mt-20 lg:px-10 lg:py-9" aria-labelledby="okurimono-manners">
