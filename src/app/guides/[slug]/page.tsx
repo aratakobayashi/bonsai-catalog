@@ -370,6 +370,17 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             {/* 贈り物の記事：予算から選ぶ */}
             {giftSelection && <ArticleBudgetPicks bands={budgetPicks} more={{ href: `/selection/${giftSelection.slug}`, label: `「${giftSelection.shortTitle}」の特集を見る` }} />}
 
+            {/* 樹種の記事：その樹種の一覧（価格の目安・大きさ別の価格）へ */}
+            {speciesSlug && speciesLabel && !isSupply && (
+              <Link href={`/products/category/${speciesSlug}`} className="mt-12 flex min-h-[56px] items-center gap-3 border border-ink bg-white px-4 py-3 text-ink hover:border-gold-dark hover:text-gold-dark lg:mt-16">
+                <span className="min-w-0 flex-1">
+                  <span className="block font-mincho text-[15.5px] font-bold">{/盆栽|苔玉|もの$/.test(speciesLabel) ? speciesLabel : `${speciesLabel}の盆栽`}の値段・相場を見る</span>
+                  <span className="block text-[12px] text-ink-muted">価格の目安・大きさ別の価格と、掲載中の商品</span>
+                </span>
+                <span aria-hidden="true">›</span>
+              </Link>
+            )}
+
             <AmazonPicks set={amazonPicksForArticle(article.slug, Boolean(giftSelection))} place="article_amazon" className="mt-12 lg:mt-16" />
 
             {/* 次にやること（商品・同じ樹種の記事・特集・診断） */}

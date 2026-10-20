@@ -215,6 +215,14 @@ export default function EventDetailClient({
             <InfoRows event={event} />
           </section>
 
+          {/* 秋冬（11月〜2月）の盆栽展は、まとめのページへ */}
+          {event.end_date.slice(0, 10) >= '2026-11-01' && event.start_date.slice(0, 10) <= '2027-02-28' && (
+            <Link href="/events/autumn-winter-2026" className="mt-10 flex min-h-[52px] items-center gap-3 border border-line bg-white px-4 py-3 text-[14px] text-ink hover:border-ink">
+              <span className="min-w-0 flex-1">この冬に開かれるほかの盆栽展を見る（2026年 秋冬の盆栽展カレンダー）</span>
+              <span aria-hidden="true">›</span>
+            </Link>
+          )}
+
           {/* 関連記事（開催案内・レポート・まとめ） */}
           {eventArticles.length > 0 && (
             <section className="mt-12">

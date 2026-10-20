@@ -1,6 +1,8 @@
 import eventData from '@/data/event-updates.json'
 import { SELECTIONS } from '@/lib/selections'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
+import { bandPages } from '@/lib/price-bands'
+import { getCatalogProducts } from '@/lib/catalog-data'
 import { ZUKAN_ENTRIES } from '@/lib/zukan'
 import { SHOJO } from '@/lib/shojo'
 import { getGardenList } from '@/lib/gardens-list'
@@ -40,11 +42,23 @@ export async function GET() {
         changeFreq: 'daily',
         priority: 0.8
       })),
+      ...bandPages(await getCatalogProducts()).map(page => ({
+        url: `${baseUrl}/products/category/${page.slug}/${page.band}`,
+        lastMod: new Date().toISOString().split('T')[0],
+        changeFreq: 'weekly',
+        priority: 0.7
+      })),
       {
         url: `${baseUrl}/events`,
         lastMod: new Date().toISOString().split('T')[0],
         changeFreq: 'weekly',
         priority: 0.7
+      },
+      {
+        url: `${baseUrl}/events/autumn-winter-2026`,
+        lastMod: new Date().toISOString().split('T')[0],
+        changeFreq: 'weekly',
+        priority: 0.8
       },
       ...(eventData.inserts as { slug: string }[]).map(event => ({
         url: `${baseUrl}/events/${event.slug}`,

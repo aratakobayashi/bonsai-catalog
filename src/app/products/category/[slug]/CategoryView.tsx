@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import { AmazonSearchLink } from '@/components/catalog/AmazonSearchLink'
+import { CategoryPriceGuide } from '@/components/catalog/CategoryPriceGuide'
+import { BAND_MIN_ITEMS, PRICE_BANDS, bandProducts } from '@/lib/price-bands'
 import {
   categoryFilters,
   filterProducts,
@@ -180,15 +182,25 @@ export function CategoryView({ all, category, params }: { all: CatalogProduct[];
         intro={intro}
         activeCount={conditionLabels(filters, true).length}
         emptyState={total === 0 ? <CatalogEmptyState products={all} filters={filters} basePath={basePath} category={{ slug: category.slug, name: category.name }} /> : null}
-        footer={related.length > 0 && (
+        footer={(
           <section>
-            <AmazonSearchLink keyword={amazonKeyword} label={`Amazonでも「${amazonKeyword}」を探す`} place="category_amazon" className="mb-6" />
+            <AmazonSearchLink keyword={amazonKeyword} label={`Amazonでも「${amazonKeyword}」を探す`} place="category_amazon" className="mb-8" />
+            <CategoryPriceGuide
+              products={filterProducts(all, categoryFilters(category.slug))}
+              name={category.name}
+              isTree={category.group === 'tree' && category.slug !== 'kokedama' && category.slug !== 'mini' && !category.slug.endsWith('mono')}
+              peak={category.group === 'tree' ? peakLabel(category.slug) : null}
+              basePath={basePath}
+              bands={PRICE_BANDS.filter(b => bandProducts(all, category.slug, b).length >= BAND_MIN_ITEMS && category.group === 'tree')}
+            />
+            {related.length > 0 && <div className="mt-10">
             <h2 className="font-mincho text-lg font-bold tracking-[0.06em] text-ink">ほかのカテゴリ</h2>
             <div className="mt-3 flex flex-wrap gap-2">
               {related.map(other => (
                 <ChipLink key={other.slug} href={`/products/category/${other.slug}`}>{other.name}</ChipLink>
               ))}
             </div>
+            </div>}
           </section>
         )}
       />

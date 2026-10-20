@@ -86,6 +86,9 @@ export function HomeOutings({ events, gardens, eventCount }: { events: Event[]; 
               <Link href="/events" className="mt-4 inline-flex min-h-11 items-center border-b border-white/60 text-[13.5px] text-white hover:border-[#d6ba84] hover:text-[#d6ba84]">
                 イベントをすべて見る{eventCount > 0 && `（開催予定${eventCount.toLocaleString()}件）`} ›
               </Link>
+              <Link href="/events/autumn-winter-2026" className="ml-5 mt-4 inline-flex min-h-11 items-center border-b border-white/60 text-[13.5px] text-white hover:border-[#d6ba84] hover:text-[#d6ba84]">
+                秋冬の盆栽展カレンダー ›
+              </Link>
             </div>
           )}
 

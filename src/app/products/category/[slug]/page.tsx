@@ -22,7 +22,9 @@ export function generateMetadata({ params }: CategoryPageProps): Metadata {
   const category = getShopCategory(params.slug)
   if (!category) return {}
   return {
-    title: `${category.name}の通販・価格比較｜${SHOP_NAMES}の人気商品 - 盆栽コレクション`,
+    title: category.group === 'tree' && !/盆栽|苔玉|もの$/.test(category.name)
+      ? `${category.name}の盆栽の値段・相場と通販｜価格帯・大きさ別に比較 - 盆栽コレクション`
+      : `${category.name}の通販・価格比較｜${SHOP_NAMES}の人気商品 - 盆栽コレクション`,
     description: `${category.name}を${SHOP_NAMES_AND}の商品から比較。価格帯・送料込・レビュー件数で選べます。${category.intro}`.slice(0, 160),
     alternates: { canonical: `/products/category/${category.slug}` },
   }

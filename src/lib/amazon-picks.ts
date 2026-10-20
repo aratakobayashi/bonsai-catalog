@@ -40,6 +40,7 @@ const P = {
   light: { label: '植物育成ライト', keyword: '植物育成ライト LED' },
   stand: { label: '盆栽の飾り台・敷板', keyword: '盆栽 飾り台' },
   kokedamaKit: { label: '苔玉キット', keyword: '苔玉 キット' },
+  moss: { label: '盆栽用の苔（ハイゴケ・スナゴケ）', keyword: '盆栽 苔 ハイゴケ' },
   bonsaiKit: { label: '盆栽の栽培キット', keyword: '盆栽 栽培キット' },
   toolSet: { label: '盆栽の道具セット', keyword: '盆栽 道具セット' },
 } satisfies Record<string, AmazonPick>
@@ -91,6 +92,10 @@ const ARTICLE_PICKS: Record<string, AmazonPick[]> = {
   'indoor-photosynthesis-optimization-guide': [P.light],
   'bonsai-indoor-cultivation-success-guide': [P.light, P.mist],
   'kokedama-guide': [P.kokedamaKit, P.mist],
+  'bonsai-disease-guide': [P.fungicide, P.scissors, P.mist],
+  'bonsai-moss-guide': [P.moss, P.mist, P.tweezers],
+  'bonsai-scissors-guide': [P.scissors, { label: '芽切りばさみ', keyword: '盆栽 芽切りばさみ' }, { label: '又枝切り', keyword: '盆栽 又枝切り' }, P.sealant],
+  'bonsai-wire-guide': [P.wire, { label: '銅線（松柏向け）', keyword: '盆栽 銅線' }, P.wireCutter],
   'bonsai-display-guide': [P.stand],
   'senior-friendly-bonsai-guide': [P.scissors, P.joro],
   'children-bonsai-education-brain-development': [P.bonsaiKit, P.kokedamaKit],
