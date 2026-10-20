@@ -1,4 +1,5 @@
-import { AFFILIATE_LINK_REL, BUY_LABEL_DETAIL } from '@/lib/affiliate'
+import { AFFILIATE_LINK_REL, BUY_LABEL_DETAIL, amazonKeyword } from '@/lib/affiliate'
+import { AmazonSearchLink } from './AmazonSearchLink'
 import { formatPrice } from '@/lib/utils'
 import {
   SHOP_LABELS,
@@ -189,6 +190,13 @@ export function ProductInfo({
         <p className="mt-1 text-[11px] leading-[1.7] text-ink-muted">{priceNote(product)}</p>
       </div>
       <p className="mt-2 text-[11px] leading-[1.7] text-ink-muted lg:hidden">{priceNote(product)}</p>
+      <AmazonSearchLink
+        keyword={amazonKeyword({ type: product.productType, species: product.speciesLabel })}
+        label={`Amazonでも「${amazonKeyword({ type: product.productType, species: product.speciesLabel })}」を探す`}
+        place="product_amazon"
+        block
+        className="mt-4"
+      />
       {product.soldOut && <p className="mt-2 text-[13px] text-ink">現在、販売されていない可能性があります。</p>}
 
       <dl className="mt-[18px] border-t border-line lg:mt-7">

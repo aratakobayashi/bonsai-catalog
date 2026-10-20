@@ -178,7 +178,7 @@ export default async function ZukanEntryPage({ params }: ZukanPageProps) {
           <Link href={listHref} className="mt-4 inline-flex min-h-11 items-center text-[13.5px] text-ink hover:text-gold-dark">
             <span className="border-b border-ink pb-0.5">「{entry.query}」で商品一覧を探す ›</span>
           </Link>
-          <AmazonSearchLink keyword={`${entry.name} 盆栽`} label={`Amazonでも「${entry.name} 盆栽」を探す`} place="zukan_amazon" />
+          <AmazonSearchLink keyword={`${entry.name} 盆栽`} label={`Amazonでも「${entry.name} 盆栽」を探す`} place="zukan_amazon" className="mt-3" />
         </section>
 
         {/* 関連記事 */}

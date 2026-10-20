@@ -80,6 +80,28 @@ export function amazonSearchUrl(keyword: string): string {
   return `https://www.amazon.co.jp/s?${params.toString()}`
 }
 
+// 商品の種類・樹種から、Amazon で探すときの検索語を決める（樹種の表示名「もみじ・楓」は最初の語だけ使う）
+const AMAZON_TYPE_KEYWORDS: Record<string, string> = {
+  tree: '盆栽',
+  bonsai: '盆栽',
+  kokedama: '苔玉',
+  kit: '盆栽 栽培キット',
+  pot: '盆栽鉢',
+  soil: '盆栽 用土',
+  tool: '盆栽 道具',
+  parts: '盆栽 道具',
+  wire: '盆栽 針金',
+  fertilizer: '盆栽 肥料',
+  seed: '盆栽 種',
+}
+const PLANT_KEYWORD_TYPES = new Set(['tree', 'bonsai', 'kokedama', 'kit', 'seed'])
+export function amazonKeyword({ type, species }: { type?: string | null; species?: string | null }): string {
+  const name = species?.split('・')[0].trim()
+  const t = type || 'tree'
+  if (name && PLANT_KEYWORD_TYPES.has(t)) return t === 'kokedama' ? `${name} 苔玉` : `${name} 盆栽`
+  return AMAZON_TYPE_KEYWORDS[t] ?? '盆栽'
+}
+
 // 公開サイトに出さない商品か（DB の source 列の値で判定。normalizeProduct と同じく楽天以外は Amazon 扱い）
 export function isHiddenProductSource(source: unknown): boolean {
   return !AMAZON_ENABLED && source !== 'rakuten'

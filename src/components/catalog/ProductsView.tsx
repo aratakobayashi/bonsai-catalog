@@ -1,10 +1,12 @@
 import { AmazonSearchLink } from '@/components/catalog/AmazonSearchLink'
+import { amazonKeyword } from '@/lib/affiliate'
 import Link from 'next/link'
 import {
   filterProducts,
   optionCounts,
   paginateMore,
   parseFilters,
+  SPECIES_OPTIONS,
   type CatalogFilters,
   type CatalogProduct,
 } from '@/lib/catalog'
@@ -33,15 +35,6 @@ function activeFilterKeys(filters: CatalogFilters): string[] {
   return keys
 }
 
-const AMAZON_PART_KEYWORDS: Record<string, string> = {
-  parts: '盆栽 道具',
-  pot: '盆栽鉢',
-  soil: '盆栽 用土',
-  tool: '盆栽 道具',
-  wire: '盆栽 針金',
-  fertilizer: '盆栽 肥料',
-}
-
 export function ProductsView({ all, params }: { all: CatalogProduct[]; params: Record<string, string | string[] | undefined> }) {
   const filters = parseFilters(params)
   // 「盆栽を探す」の既定は盆栽・苔玉の売り場（種類もキーワードも指定がないとき）。鉢・土・道具は ?type=parts の売り場
@@ -63,7 +56,7 @@ export function ProductsView({ all, params }: { all: CatalogProduct[]; params: R
     </>
   ) : null
   // 鉢・土・道具の売り場では、楽天の掲載に加えて Amazon の検索結果も案内する
-  const amazonKeyword = !filters.q ? AMAZON_PART_KEYWORDS[filters.type ?? ''] : undefined
+  const amazonQuery = filters.q || amazonKeyword({ type: filters.type, species: SPECIES_OPTIONS.find(o => o.value === filters.species)?.label })
   const bandTitle = filters.q ? `「${filters.q}」の検索結果` : store === 'parts' ? '鉢・土・道具を探す' : '盆栽を探す'
 
   return (
@@ -86,7 +79,7 @@ export function ProductsView({ all, params }: { all: CatalogProduct[]; params: R
         activeCount={activeCount}
         store={filters.q ? undefined : store}
         clearHref={store === 'parts' ? '/products?type=parts' : '/products'}
-        footer={amazonKeyword ? <AmazonSearchLink keyword={amazonKeyword} label={`Amazonでも「${amazonKeyword}」を探す`} place="parts_amazon" /> : undefined}
+        footer={<AmazonSearchLink keyword={amazonQuery} label={`Amazonでも「${amazonQuery}」を探す`} place={store === 'parts' ? 'parts_amazon' : 'products_amazon'} />}
         intro={
           <div>
             <p className="flex items-center gap-3 text-[11px] tracking-[0.22em] text-gold">{filters.q ? '検索' : '盆栽コレクション'}<span className="h-px w-10 bg-gold" aria-hidden="true" /></p>
