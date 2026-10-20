@@ -1,4 +1,6 @@
 import { prefectureAreaHref, prefectureSlug } from '@/lib/prefectures'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { GARDEN_AMAZON_PICKS } from '@/lib/amazon-picks'
 import { gardenShop, liveWebsite, shopLabel, verifiedOnlineSales } from '@/lib/garden-shops'
 import { Metadata } from 'next'
 import { notFound, permanentRedirect } from 'next/navigation'
@@ -465,6 +467,9 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
         )}
         {/* 樹種の商品がない園：はじめてでも育てやすい盆栽を通販で（広告を含む） */}
         {!hasProducts && <GardenShopBridge products={bridgeProducts} title={`${garden.name}に行く前に、通販でも選べます`} className="mt-10 lg:mt-14" />}
+
+        {/* 園で選んだ樹の手入れに使うもの（Amazon の検索結果への文字のリンク） */}
+        <AmazonPicks set={GARDEN_AMAZON_PICKS} place="garden_amazon" className="mt-10 lg:mt-14" />
 
         {/* 近くの盆栽園（座標があれば距離の近い順） */}
         {nearbyGardens.length > 0 && (

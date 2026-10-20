@@ -109,6 +109,13 @@ export function amazonPicksForArticle(slug: string, isGift: boolean): AmazonPick
   return isGift ? GIFT_AMAZON_PICKS : null
 }
 
+// 盆栽園のページ：園で選んだ樹を持ち帰ったあとの手入れに
+export const GARDEN_AMAZON_PICKS: AmazonPickSet = {
+  heading: '園で選んだ樹の手入れに（Amazon）',
+  note: '持ち帰ったあとの水やり・植え替えに使うものです。園の商品ではありません。',
+  picks: [P.joro, P.scissors, P.soil, P.net],
+}
+
 // 今月の手入れ（/teire/[month]）
 const MONTH_PICKS: Record<number, AmazonPick[]> = {
   1: [P.frost, P.sealant, P.scissors],

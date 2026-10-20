@@ -1,4 +1,6 @@
 import { applyArticleOverride } from '@/lib/article-overrides'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { amazonPicksForMonth } from '@/lib/amazon-picks'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -433,6 +435,9 @@ export default async function HomePage() {
             </ul>
           </section>
         )}
+
+        {/* 今月の作業で使う道具・用品（Amazon の検索結果への文字のリンク） */}
+        <AmazonPicks set={amazonPicksForMonth(month)} place="home_amazon" className="mt-12 lg:mt-24" />
 
         {/* 出かける（近く開かれる盆栽展と、地域から探す盆栽園。商品の欄のあと） */}
         <HomeOutings events={homeEvents} gardens={gardens} eventCount={eventCount} />

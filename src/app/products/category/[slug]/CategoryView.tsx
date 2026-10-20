@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { AmazonSearchLink } from '@/components/catalog/AmazonSearchLink'
 import {
   categoryFilters,
   filterProducts,
@@ -154,6 +155,8 @@ export function CategoryView({ all, category, params }: { all: CatalogProduct[];
   )
   const speciesTabs = buildCatalogTabs(all, filters, category.slug)
 
+  // 樹種のカテゴリは「〇〇 盆栽」、鉢・土・道具などはカテゴリ名のまま Amazon を検索する
+  const amazonKeyword = /盆栽|鉢|土|道具|肥料|針金|苔玉/.test(category.name) ? category.name : `${category.name} 盆栽`
   return (
     <>
       <BreadcrumbStructuredData
@@ -179,6 +182,7 @@ export function CategoryView({ all, category, params }: { all: CatalogProduct[];
         emptyState={total === 0 ? <CatalogEmptyState products={all} filters={filters} basePath={basePath} category={{ slug: category.slug, name: category.name }} /> : null}
         footer={related.length > 0 && (
           <section>
+            <AmazonSearchLink keyword={amazonKeyword} label={`Amazonでも「${amazonKeyword}」を探す`} place="category_amazon" className="mb-6" />
             <h2 className="font-mincho text-lg font-bold tracking-[0.06em] text-ink">ほかのカテゴリ</h2>
             <div className="mt-3 flex flex-wrap gap-2">
               {related.map(other => (
