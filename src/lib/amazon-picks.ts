@@ -137,6 +137,18 @@ const MONTH_PICKS: Record<number, AmazonPick[]> = {
   12: [P.frost, P.stand, P.scissors],
 }
 
+// トップに出す月の案内。11〜12月は、手入れの用品に加えて贈り物（道具セット・キット）を前に出す（年末の買い物の時期のため）
+const HOME_MONTH_PICKS: Record<number, AmazonPick[]> = {
+  11: [P.frost, P.toolSet, P.kokedamaKit, P.wire],
+  12: [P.toolSet, P.kokedamaKit, P.stand, P.frost],
+}
+
+export function amazonPicksForHome(month: number): AmazonPickSet | null {
+  const picks = HOME_MONTH_PICKS[month]
+  if (!picks) return amazonPicksForMonth(month)
+  return { heading: `${month}月の手入れと贈り物に（Amazon）`, note: DELIVERY_NOTE, picks }
+}
+
 export function amazonPicksForMonth(month: number): AmazonPickSet | null {
   const picks = MONTH_PICKS[month]
   return picks ? { heading: `${month}月の作業で使うもの（Amazon）`, note: DELIVERY_NOTE, picks } : null

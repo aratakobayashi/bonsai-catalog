@@ -1,7 +1,7 @@
 'use client'
 
 import Script from 'next/script'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { Suspense, useEffect } from 'react'
 
 // 測定IDはページに埋め込まれる公開情報。環境変数があればそちらを優先する
@@ -37,10 +37,11 @@ function shopOf(href: string): string {
   return 'other'
 }
 
-// ページ表示を送る（画面遷移のたびに、ページの種類つきで1回だけ送る）
+// ページ表示を送る（ページが変わったときに、ページの種類つきで1回だけ送る）
+// 同じページの中で条件だけ変わったとき（「組み合わせで選ぶ」の段階、一覧の絞り込みなど）は数えない。
+// 1人が条件を選ぶたびに表示回数が増え、実際より多く見えてしまうため
 function PageViewTracker() {
   const pathname = usePathname()
-  const searchParams = useSearchParams()
 
   useEffect(() => {
     gtag('event', 'page_view', {
@@ -48,7 +49,7 @@ function PageViewTracker() {
       page_title: document.title,
       content_group: pageTypeOf(pathname),
     })
-  }, [pathname, searchParams])
+  }, [pathname])
 
   // 広告リンク（rel="sponsored"）のクリックをまとめて記録する
   useEffect(() => {
@@ -97,7 +98,9 @@ export function GoogleAnalytics() {
     <>
       <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="lazyOnload" />
       <Script id="ga4-init" strategy="afterInteractive">
-        {`window.dataLayer = window.dataLayer || [];
+        {`// 自動操作のブラウザ（navigator.webdriver）や、名乗っているボット・計測ツールは数えない（GA 公式の無効化フラグ）
+if (navigator.webdriver || /HeadlessChrome|bot|crawler|spider|Lighthouse|PageSpeed/i.test(navigator.userAgent)) { window['ga-disable-${GA_ID}'] = true; }
+window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 window.gtag = gtag;
 gtag('js', new Date());

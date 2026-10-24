@@ -1,4 +1,6 @@
 import { LOCAL_ARTICLES } from '@/lib/local-articles'
+import { priceStats } from '@/components/catalog/CategoryPriceGuide'
+import { formatPrice } from '@/lib/utils'
 import { AmazonPicks } from '@/components/catalog/AmazonPicks'
 import { amazonPicksForArticle } from '@/lib/amazon-picks'
 import { Metadata } from 'next'
@@ -225,6 +227,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     ? budgetBands(pickSelectionProducts(giftSelection, await getCatalogProducts().catch(() => [] as CatalogProduct[])).sort(byCuratedThenReviews), new Set(products.slice(0, 4).map(p => p.id)))
     : []
   const productsHeading = selectionProducts.length >= 3 && productSelection ? `特集「${productSelection.shortTitle}」から` : productsNoun ? `${productsNoun}を見てみる` : undefined
+  // 樹種の一覧の件数と価格の目安（記事の冒頭の入り口に出す）
+  const speciesStats = speciesSlug && !isSupply ? priceStats(filterProducts(await getCatalogProducts(), categoryFilters(speciesSlug))) : null
+  const speciesSubject = speciesLabel ? (/盆栽|苔玉|もの$/.test(speciesLabel) ? speciesLabel : `${speciesLabel}の盆栽`) : ''
   const productsMore = selectionProducts.length >= 3 && productSelection ? { href: `/selection/${productSelection.slug}`, label: `「${productSelection.shortTitle}」の特集を見る` } : speciesSlug && speciesLabel ? { href: `/products/category/${speciesSlug}`, label: `${productsNoun}をすべて見る` } : undefined
   // 本文の前半に商品の帯を入れる位置：3つ目の大見出しの前（大見出しが2つなら2つ目の前）。樹種・特集の商品が3件以上あるときだけ
   const h2Positions = [...bodyHtml.matchAll(/<h2[\s>]/g)].map(m => m.index ?? -1).filter(i => i >= 0)
@@ -347,6 +352,15 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <PrDisclosure compact className="mt-3" />
 
             <ArticleSummary items={article.summary} />
+
+            {/* 樹種の記事：読み始めの位置にも、その樹種の一覧への短い入り口（掲載件数と価格の目安つき） */}
+            {speciesSlug && speciesLabel && !isSupply && speciesStats && (
+              <Link href={`/products/category/${speciesSlug}`} className="mt-5 flex min-h-11 items-center gap-2 border-b border-line pb-2 text-[13px] text-ink hover:text-gold-dark">
+                <span className="text-[11px] text-ink-muted">PR</span>
+                <span className="min-w-0 flex-1">{speciesSubject}を通販で見る（掲載{speciesStats.count}件・中央値{formatPrice(speciesStats.median)}）</span>
+                <span aria-hidden="true">›</span>
+              </Link>
+            )}
 
             {/* SP：目次（開閉できる） */}
             {tableOfContents.length > 0 && (
