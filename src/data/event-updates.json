@@ -1,5 +1,5 @@
 {
- "verifiedAt": "2026-10-19",
+ "verifiedAt": "2026-11-06",
  "deleteIds": [
   "29b660bd-c83e-4e10-8ea3-efbfbd85633f",
   "40776332-27f1-44ef-b6d7-3c0b899c823f",
@@ -1438,12 +1438,12 @@
    "related_product_tags": []
   },
   {
-   "title": "銘風盆栽展",
+   "title": "第96回銘風盆栽展",
    "slug": "meifu-bonsai-ten-2027",
-   "start_date": "2027-01-01",
-   "end_date": "2027-01-01",
+   "start_date": "2027-01-08",
+   "end_date": "2027-01-10",
    "prefecture": "愛知県",
-   "venue_name": "名古屋市中小企業振興会館（吹上ホール）",
+   "venue_name": "名古屋市中小企業振興会館（吹上ホール）第2ファッション展示場",
    "address": "名古屋市千種区吹上2-6-3",
    "lat": 35.159298,
    "lng": 136.930328,
@@ -1454,7 +1454,7 @@
    "price_type": "paid",
    "price_note": "2026年1月開催時は入場料1,000円",
    "organizer_name": "中部盆栽組合",
-   "official_url": "https://aichinow.pref.aichi.jp/events/detail/1976/",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac96%e5%9b%9e%e9%8a%98%e9%a2%a8%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
    "description": "中部盆栽組合が主催する歴史の長い盆栽展で、全国から選ばれた盆栽や水石が並び、即売も行われる。",
    "related_product_tags": []
   },
@@ -2450,9 +2450,9 @@
     "exhibition"
    ],
    "price_type": "paid",
-   "price_note": "大人900円・小中学生400円（2026年実績）",
+   "price_note": "大人1,000円・小中学生500円",
    "organizer_name": "公益社団法人長浜観光協会",
-   "official_url": "https://koubo.jp/press-release/prtimes/c113572_r3",
+   "official_url": "https://kitabiwako.jp/ja/event/event_51298",
    "description": "1952年に始まった日本最大級の盆梅展。明治期建築の慶雲館座敷に、所蔵約300鉢から入れ替えながら約90鉢の梅盆栽を展示する。",
    "related_product_tags": []
   },
@@ -2479,8 +2479,8 @@
   {
    "title": "第24回大和郡山盆梅展",
    "slug": "yamatokoriyama-bonbai-ten-2027",
-   "start_date": "2027-02-06",
-   "end_date": "2027-03-10",
+   "start_date": "2027-02-05",
+   "end_date": "2027-03-09",
    "prefecture": "奈良県",
    "venue_name": "郡山城跡（追手門・追手東隅櫓ほか）",
    "address": "奈良県大和郡山市城内町",
@@ -2492,7 +2492,7 @@
    "price_type": "paid",
    "price_note": "一般700円・60歳以上600円・小学生以下無料（2026年実績）",
    "organizer_name": "大和郡山盆梅展実行委員会",
-   "official_url": "https://tabi-mag.jp/yamatokoriyama-bonnbai/",
+   "official_url": "https://www.city.yamatokoriyama.lg.jp/soshiki/chiikishinkoka/event/2/18148.html",
    "description": "市内の愛好家が育てた盆梅約120鉢を郡山城跡の櫓などに展示する早春の催し。",
    "related_product_tags": []
   },
@@ -3050,6 +3050,817 @@
    "official_url": "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_chubu/",
    "description": "妙高さつき会が道の駅あらいで開くさつき盆栽の花季展。",
    "related_product_tags": []
+  },
+  {
+   "title": "第29回創樹盆遊会展示即売会",
+   "slug": "soju-bonyukai-tenji-sokubaikai-2026",
+   "start_date": "2026-11-07",
+   "end_date": "2026-11-08",
+   "prefecture": "栃木県",
+   "venue_name": "和洋園 特設会場",
+   "address": "栃木県矢板市倉掛810-2",
+   "lat": 36.786022,
+   "lng": 139.879944,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "創樹盆遊会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac29%e5%9b%9e%e5%89%b5%e6%a8%b9%e7%9b%86%e9%81%8a%e4%bc%9a%e5%b1%95%e7%a4%ba%e5%8d%b3%e5%a3%b2%e4%bc%9a%ef%bc%88%e6%a0%83%e6%9c%a8%e7%9c%8c%ef%bc%89/",
+   "description": "矢板市の盆栽園・和洋園の特設会場で開かれる創樹盆遊会の展示即売会。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第31回秋の盆栽展（関宿緑友会）",
+   "slug": "sekiyado-ryokuyukai-aki-bonsai-ten-2026",
+   "start_date": "2026-11-21",
+   "end_date": "2026-11-22",
+   "prefecture": "千葉県",
+   "venue_name": "関宿中央公民館",
+   "address": "千葉県野田市東宝珠花253-1",
+   "lat": 36.024933,
+   "lng": 139.821106,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "関宿緑友会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac31%e5%9b%9e%e7%a7%8b%e3%81%ae%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%8d%83%e8%91%89%e7%9c%8c%ef%bc%89/",
+   "description": "関宿緑友会が野田市の関宿中央公民館で開く秋の盆栽展。",
+   "related_product_tags": []
+  },
+  {
+   "title": "秋季 季の風展",
+   "slug": "toki-no-kaze-ten-autumn-2026",
+   "start_date": "2026-11-28",
+   "end_date": "2026-11-29",
+   "prefecture": "東京都",
+   "venue_name": "三鷹台地区公会堂",
+   "address": "東京都三鷹市井の頭2-21-18",
+   "lat": 35.691444,
+   "lng": 139.584625,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "小品盆栽 季の風",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%a7%8b%e5%ad%a3%e3%80%80%e5%ad%a3%e3%81%ae%e9%a2%a8%e5%b1%95%ef%bc%88%e6%9d%b1%e4%ba%ac%e9%83%bd%ef%bc%89/",
+   "description": "三鷹市の小品盆栽店「季の風」が近くの地区公会堂で開く展示会で、店舗では即売も行われる。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第53回全国小品盆栽名品展",
+   "slug": "zenkoku-shohin-bonsai-meihin-ten-2027",
+   "start_date": "2027-01-10",
+   "end_date": "2027-01-11",
+   "prefecture": "東京都",
+   "venue_name": "上野グリーンクラブ 1階展示場",
+   "address": "東京都台東区上野公園3-42",
+   "lat": 35.715405,
+   "lng": 139.767838,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": "入場無料",
+   "organizer_name": "日本小品盆栽協会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac53%e5%9b%9e%e5%85%a8%e5%9b%bd%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%90%8d%e5%93%81%e5%b1%95%ef%bc%88%e6%9d%b1%e4%ba%ac%e9%83%bd%ef%bc%89/",
+   "description": "日本小品盆栽協会が新春の上野グリーンクラブで開く小品盆栽展で、約30席200余点の展示と即売がある。",
+   "related_product_tags": []
+  },
+  {
+   "title": "趣味の盆栽展・秋（第104回趣味の盆栽展）",
+   "slug": "jindai-shumi-no-bonsai-ten-autumn-2026",
+   "start_date": "2026-11-03",
+   "end_date": "2026-11-08",
+   "prefecture": "東京都",
+   "venue_name": "神代植物公園 植物会館展示室",
+   "address": "東京都調布市深大寺元町5-31-10",
+   "lat": 35.670731,
+   "lng": 139.549225,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "paid",
+   "price_note": "神代植物公園の入園料（一般500円、65歳以上250円、中学生200円）が必要",
+   "organizer_name": "調布市盆栽生産組合",
+   "official_url": "https://www.tokyo-park.or.jp/event_search/assets/2026%E5%B9%B4%E5%BA%A6%E7%A2%BA%E5%AE%9A%E7%89%88%E5%B1%95%E7%A4%BA%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%EF%BC%BF%E7%99%BD%E9%BB%92.pdf",
+   "description": "調布市盆栽生産組合が神代植物公園の植物会館で開く秋の盆栽展。",
+   "related_product_tags": []
+  },
+  {
+   "title": "早春の盆栽展（神代植物公園）",
+   "slug": "jindai-soshun-bonsai-ten-2027",
+   "start_date": "2027-01-19",
+   "end_date": "2027-01-24",
+   "prefecture": "東京都",
+   "venue_name": "神代植物公園 植物会館展示室",
+   "address": "東京都調布市深大寺元町5-31-10",
+   "lat": 35.670731,
+   "lng": 139.549225,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "paid",
+   "price_note": "神代植物公園の入園料（一般500円、65歳以上250円、中学生200円）が必要",
+   "organizer_name": "むさしの盆栽同好会・深大寺盆栽愛好会 芳樹会",
+   "official_url": "https://www.tokyo-park.or.jp/event_search/assets/2026%E5%B9%B4%E5%BA%A6%E7%A2%BA%E5%AE%9A%E7%89%88%E5%B1%95%E7%A4%BA%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%EF%BC%BF%E7%99%BD%E9%BB%92.pdf",
+   "description": "むさしの盆栽同好会と深大寺盆栽愛好会芳樹会が神代植物公園で開く早春の盆栽展。",
+   "related_product_tags": []
+  },
+  {
+   "title": "趣味の盆栽展・春（第105回趣味の盆栽展）",
+   "slug": "jindai-shumi-no-bonsai-ten-spring-2027",
+   "start_date": "2027-03-09",
+   "end_date": "2027-03-14",
+   "prefecture": "東京都",
+   "venue_name": "神代植物公園 植物会館展示室",
+   "address": "東京都調布市深大寺元町5-31-10",
+   "lat": 35.670731,
+   "lng": 139.549225,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "paid",
+   "price_note": "神代植物公園の入園料（一般500円、65歳以上250円、中学生200円）が必要",
+   "organizer_name": "調布市盆栽生産組合",
+   "official_url": "https://www.tokyo-park.or.jp/event_search/assets/2026%E5%B9%B4%E5%BA%A6%E7%A2%BA%E5%AE%9A%E7%89%88%E5%B1%95%E7%A4%BA%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%EF%BC%BF%E7%99%BD%E9%BB%92.pdf",
+   "description": "調布市盆栽生産組合が神代植物公園の植物会館で開く春の盆栽展。",
+   "related_product_tags": []
+  },
+  {
+   "title": "紅葉展（川口緑化センター）",
+   "slug": "kawaguchi-jurian-koyo-ten-2026",
+   "start_date": "2026-11-06",
+   "end_date": "2026-11-08",
+   "prefecture": "埼玉県",
+   "venue_name": "川口緑化センター 樹里安 1階アトリウム・展示ホール",
+   "address": "埼玉県川口市安行領家844-2",
+   "lat": 35.847507,
+   "lng": 139.765182,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "伝統園芸展実行委員会",
+   "official_url": "https://www.jurian.or.jp/event/article/?id=1480",
+   "description": "植木の里・安行の川口緑化センターで、盆栽や盆栽鉢、山野草が展示・販売される。",
+   "related_product_tags": []
+  },
+  {
+   "title": "新春 盆栽・鉢物展（川口緑化センター）",
+   "slug": "kawaguchi-jurian-shinshun-bonsai-hachimono-ten-2026",
+   "start_date": "2026-12-04",
+   "end_date": "2026-12-06",
+   "prefecture": "埼玉県",
+   "venue_name": "川口緑化センター 樹里安 1階アトリウム・展示ホール",
+   "address": "埼玉県川口市安行領家844-2",
+   "lat": 35.847507,
+   "lng": 139.765182,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "川口販売会",
+   "official_url": "https://www.jurian.or.jp/event/article/?id=1530",
+   "description": "川口緑化センターで山野草や盆栽、鉢物が展示・販売される年末の催し。",
+   "related_product_tags": []
+  },
+  {
+   "title": "立春 盆栽展（川口緑化センター）",
+   "slug": "kawaguchi-jurian-risshun-bonsai-ten-2027",
+   "start_date": "2027-01-22",
+   "end_date": "2027-01-24",
+   "prefecture": "埼玉県",
+   "venue_name": "川口緑化センター 樹里安 1階アトリウム・展示ホール",
+   "address": "埼玉県川口市安行領家844-2",
+   "lat": 35.847507,
+   "lng": 139.765182,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "安行新緑会",
+   "official_url": "https://www.jurian.or.jp/event/article/?id=1573",
+   "description": "安行新緑会が川口緑化センターで開く盆栽・鉢物の展示販売会。",
+   "related_product_tags": []
+  },
+  {
+   "title": "長く楽しめる盆栽！誰でもできる簡単なお手入れ講習会",
+   "slug": "kawaguchi-jurian-bonsai-teire-koshukai-2027",
+   "start_date": "2027-02-20",
+   "end_date": "2027-02-20",
+   "prefecture": "埼玉県",
+   "venue_name": "川口緑化センター 樹里安 5階ラウンジ",
+   "address": "埼玉県川口市安行領家844-2",
+   "lat": 35.847507,
+   "lng": 139.765182,
+   "types": [
+    "workshop"
+   ],
+   "price_type": "paid",
+   "price_note": "参加費3,500円（定員16名・要事前申込、受付は2027年1月18日から）",
+   "organizer_name": "川口園芸商協同組合",
+   "official_url": "https://www.jurian.or.jp/event/article/?id=1493",
+   "description": "盆栽の手入れ方法とその後の管理を学ぶ講習会で、14時から川口緑化センターで行われる。",
+   "related_product_tags": []
+  },
+  {
+   "title": "春の盆栽展（川口緑化センター）",
+   "slug": "kawaguchi-jurian-haru-no-bonsai-ten-2027",
+   "start_date": "2027-03-12",
+   "end_date": "2027-03-14",
+   "prefecture": "埼玉県",
+   "venue_name": "川口緑化センター 樹里安 1階アトリウム・展示ホール",
+   "address": "埼玉県川口市安行領家844-2",
+   "lat": 35.847507,
+   "lng": 139.765182,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "安行新緑会",
+   "official_url": "https://www.jurian.or.jp/event/article/?id=1576",
+   "description": "安行新緑会が川口緑化センターで開く春の盆栽展で、盆栽や盆栽鉢、山野草が展示・販売される。",
+   "related_product_tags": []
+  },
+  {
+   "title": "【季節の展示】盆栽展〈四季〉―11月・深まる色",
+   "slug": "omiya-bonsai-museum-shiki-november-2026",
+   "start_date": "2026-10-30",
+   "end_date": "2026-11-25",
+   "prefecture": "埼玉県",
+   "venue_name": "さいたま市大宮盆栽美術館 コレクションギャラリー・盆栽庭園",
+   "address": "埼玉県さいたま市北区土呂町2-24-3",
+   "lat": 35.928982,
+   "lng": 139.633408,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "paid",
+   "price_note": "美術館観覧料 一般310円",
+   "organizer_name": "さいたま市大宮盆栽美術館",
+   "official_url": "https://www.city.saitama.lg.jp/004/005/004/006/003/p134726.html",
+   "description": "紅葉が進むもみじやかえで、けやきなど広葉樹の盆栽を中心に、晩秋の見ごろの盆栽を紹介する季節展示。",
+   "related_product_tags": []
+  },
+  {
+   "title": "【季節の展示】盆栽展〈四季〉―12月・寒樹の美",
+   "slug": "omiya-bonsai-museum-shiki-december-2026",
+   "start_date": "2026-11-27",
+   "end_date": "2026-12-28",
+   "prefecture": "埼玉県",
+   "venue_name": "さいたま市大宮盆栽美術館 コレクションギャラリー・盆栽庭園",
+   "address": "埼玉県さいたま市北区土呂町2-24-3",
+   "lat": 35.928982,
+   "lng": 139.633408,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "paid",
+   "price_note": "美術館観覧料 一般310円",
+   "organizer_name": "さいたま市大宮盆栽美術館",
+   "official_url": "https://www.city.saitama.lg.jp/004/005/004/006/003/p134726.html",
+   "description": "落葉後の繊細な枝先を見せる広葉樹の「寒樹」の姿を中心に紹介する季節展示。",
+   "related_product_tags": []
+  },
+  {
+   "title": "【季節の展示】盆栽展〈四季〉―1月・緑を寿ぐ",
+   "slug": "omiya-bonsai-museum-shiki-january-2027",
+   "start_date": "2027-01-04",
+   "end_date": "2027-01-13",
+   "prefecture": "埼玉県",
+   "venue_name": "さいたま市大宮盆栽美術館 コレクションギャラリー・盆栽庭園",
+   "address": "埼玉県さいたま市北区土呂町2-24-3",
+   "lat": 35.928982,
+   "lng": 139.633408,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "paid",
+   "price_note": "美術館観覧料 一般310円",
+   "organizer_name": "さいたま市大宮盆栽美術館",
+   "official_url": "https://www.city.saitama.lg.jp/004/005/004/006/003/p134726.html",
+   "description": "松や杉、檜など常緑の松柏盆栽で新年の座敷飾りを紹介する季節展示で、1月14日からは施設修繕のため美術館が休館する。",
+   "related_product_tags": []
+  },
+  {
+   "title": "【季節の展示】盆栽展〈四季〉―2月・凛と咲く",
+   "slug": "omiya-bonsai-museum-shiki-february-2027",
+   "start_date": "2027-02-08",
+   "end_date": "2027-02-24",
+   "prefecture": "埼玉県",
+   "venue_name": "さいたま市大宮盆栽美術館 コレクションギャラリー・盆栽庭園",
+   "address": "埼玉県さいたま市北区土呂町2-24-3",
+   "lat": 35.928982,
+   "lng": 139.633408,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "paid",
+   "price_note": "美術館観覧料 一般310円",
+   "organizer_name": "さいたま市大宮盆栽美術館",
+   "official_url": "https://www.city.saitama.lg.jp/004/005/004/006/003/p134726.html",
+   "description": "白梅や紅梅、椿の盆栽が週ごとに見頃を迎える早春の季節展示で、臨時休館明けの2月8日から観覧できる。",
+   "related_product_tags": []
+  },
+  {
+   "title": "【季節の展示】盆栽展〈四季〉―3月・花告げる春",
+   "slug": "omiya-bonsai-museum-shiki-march-2027",
+   "start_date": "2027-02-26",
+   "end_date": "2027-03-31",
+   "prefecture": "埼玉県",
+   "venue_name": "さいたま市大宮盆栽美術館 コレクションギャラリー・盆栽庭園",
+   "address": "埼玉県さいたま市北区土呂町2-24-3",
+   "lat": 35.928982,
+   "lng": 139.633408,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "paid",
+   "price_note": "美術館観覧料 一般310円",
+   "organizer_name": "さいたま市大宮盆栽美術館",
+   "official_url": "https://www.city.saitama.lg.jp/004/005/004/006/003/p134726.html",
+   "description": "寒桜など桜の盆栽を常緑の松柏とともに紹介する春の季節展示。",
+   "related_product_tags": []
+  },
+  {
+   "title": "子ども向けワークショップ―はじめての盆栽づくり（2月）",
+   "slug": "omiya-bonsai-museum-kids-workshop-feb-2027",
+   "start_date": "2027-02-21",
+   "end_date": "2027-02-21",
+   "prefecture": "埼玉県",
+   "venue_name": "さいたま市大宮盆栽美術館 2階講座室",
+   "address": "埼玉県さいたま市北区土呂町2-24-3",
+   "lat": 35.928982,
+   "lng": 139.633408,
+   "types": [
+    "workshop"
+   ],
+   "price_type": "paid",
+   "price_note": "3,000円（材料費込み・事前申込制、定員10組）",
+   "organizer_name": "さいたま市大宮盆栽美術館",
+   "official_url": "https://www.city.saitama.lg.jp/004/005/004/006/003/p134724.html",
+   "description": "小中学生と保護者を対象に、真柏の苗木で小さな盆栽をつくるワークショップ（10時〜11時30分）。",
+   "related_product_tags": []
+  },
+  {
+   "title": "子ども向けワークショップ―はじめての盆栽づくり（3月）",
+   "slug": "omiya-bonsai-museum-kids-workshop-mar-2027",
+   "start_date": "2027-03-21",
+   "end_date": "2027-03-21",
+   "prefecture": "埼玉県",
+   "venue_name": "さいたま市大宮盆栽美術館 2階講座室",
+   "address": "埼玉県さいたま市北区土呂町2-24-3",
+   "lat": 35.928982,
+   "lng": 139.633408,
+   "types": [
+    "workshop"
+   ],
+   "price_type": "paid",
+   "price_note": "3,000円（材料費込み・事前申込制、定員10組）",
+   "organizer_name": "さいたま市大宮盆栽美術館",
+   "official_url": "https://www.city.saitama.lg.jp/004/005/004/006/003/p134724.html",
+   "description": "小中学生と保護者を対象に、真柏の苗木で小さな盆栽をつくるワークショップ（10時〜11時30分）。",
+   "related_product_tags": []
+  },
+  {
+   "title": "盆栽実技（11月・針金掛け 雑木盆栽）",
+   "slug": "omiya-bonsai-museum-jitsugi-nov-2026",
+   "start_date": "2026-11-28",
+   "end_date": "2026-11-28",
+   "prefecture": "埼玉県",
+   "venue_name": "さいたま市大宮盆栽美術館 2階講座室",
+   "address": "埼玉県さいたま市北区土呂町2-24-3",
+   "lat": 35.928982,
+   "lng": 139.633408,
+   "types": [
+    "lecture"
+   ],
+   "price_type": "free",
+   "price_note": "参加費無料（先着順・約30席）",
+   "organizer_name": "さいたま市大宮盆栽美術館",
+   "official_url": "https://www.city.saitama.lg.jp/004/005/004/006/003/p134722.html",
+   "description": "大宮盆栽村の盆栽職人が雑木盆栽の針金掛けを実演・解説する講座（13時30分〜14時30分）。",
+   "related_product_tags": []
+  },
+  {
+   "title": "盆栽実技（12月・針金掛け 松柏盆栽）",
+   "slug": "omiya-bonsai-museum-jitsugi-dec-2026",
+   "start_date": "2026-12-26",
+   "end_date": "2026-12-26",
+   "prefecture": "埼玉県",
+   "venue_name": "さいたま市大宮盆栽美術館 2階講座室",
+   "address": "埼玉県さいたま市北区土呂町2-24-3",
+   "lat": 35.928982,
+   "lng": 139.633408,
+   "types": [
+    "lecture"
+   ],
+   "price_type": "free",
+   "price_note": "参加費無料（先着順・約30席）",
+   "organizer_name": "さいたま市大宮盆栽美術館",
+   "official_url": "https://www.city.saitama.lg.jp/004/005/004/006/003/p134722.html",
+   "description": "大宮盆栽村の盆栽職人が松柏盆栽の針金掛けを実演・解説する講座（13時30分〜14時30分）。",
+   "related_product_tags": []
+  },
+  {
+   "title": "盆栽教室2026「お正月に飾る寄せ植えづくり」",
+   "slug": "showa-kinen-bonsai-kyoshitsu-oshogatsu-2026",
+   "start_date": "2026-12-05",
+   "end_date": "2026-12-05",
+   "prefecture": "東京都",
+   "venue_name": "国営昭和記念公園 花みどり文化センター 研修室",
+   "address": "東京都立川市緑町3173",
+   "lat": 35.707981,
+   "lng": 139.397079,
+   "types": [
+    "workshop"
+   ],
+   "price_type": "paid",
+   "price_note": "参加費4,500円（定員12名・抽選制、受付は11月25日まで）",
+   "organizer_name": "国営昭和記念公園",
+   "official_url": "https://www.showakinen-koen.jp/event/75670/",
+   "description": "公園の盆栽苑スタッフの指導で、お正月に飾る松竹梅の寄せ植えをつくる教室（10時〜12時）。",
+   "related_product_tags": []
+  },
+  {
+   "title": "立春盆栽大市（上野グリーンクラブ）",
+   "slug": "risshun-bonsai-oichi-ueno-2027",
+   "start_date": "2027-02-07",
+   "end_date": "2027-02-17",
+   "prefecture": "東京都",
+   "venue_name": "上野グリーンクラブ",
+   "address": "東京都台東区上野公園3-42",
+   "lat": 35.715405,
+   "lng": 139.767838,
+   "types": [
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "上野グリーンクラブ",
+   "official_url": "http://ugreenclub.blog76.fc2.com/blog-entry-182.html",
+   "description": "国風盆栽展の会期にあわせて上野グリーンクラブで開かれる盆栽の大即売会で、全国の盆栽業者が出店する。",
+   "related_product_tags": []
+  },
+  {
+   "title": "観梅会盆栽展（三溪園）",
+   "slug": "sankeien-kanbaikai-bonsai-ten-2027",
+   "start_date": "2027-02-07",
+   "end_date": "2027-02-14",
+   "prefecture": "神奈川県",
+   "venue_name": "三溪園 中央広場",
+   "address": "神奈川県横浜市中区本牧三之谷58-1",
+   "lat": 35.417664,
+   "lng": 139.658508,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "paid",
+   "price_note": "観梅会は無料だが三溪園の入園料が必要",
+   "organizer_name": "横浜三溪園皐月会（協力）",
+   "official_url": "https://www.sankeien.or.jp/event/9834/",
+   "description": "三溪園の観梅会にあわせて、梅を中心とした盆栽約40点が中央広場に展示される。",
+   "related_product_tags": []
+  },
+  {
+   "title": "浜名湖支部盆栽展",
+   "slug": "hamanako-shibu-bonsai-ten-2026",
+   "start_date": "2026-11-28",
+   "end_date": "2026-11-29",
+   "prefecture": "静岡県",
+   "venue_name": "湖西市西部地域センター",
+   "address": "静岡県湖西市駅南2-4-1",
+   "lat": 34.721939,
+   "lng": 137.487167,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "（一社）日本盆栽協会浜名湖支部",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e6%b5%9c%e5%90%8d%e6%b9%96%e6%94%af%e9%83%a8%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e9%9d%99%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+   "description": "日本盆栽協会浜名湖支部が湖西市西部地域センターで開く盆栽展。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第47回東駿河支部盆栽展",
+   "slug": "higashi-suruga-shibu-bonsai-ten-2027",
+   "start_date": "2027-01-04",
+   "end_date": "2027-01-05",
+   "prefecture": "静岡県",
+   "venue_name": "盆栽渡伸苑",
+   "address": "静岡県駿東郡長泉町納米里139-1",
+   "lat": 35.147739,
+   "lng": 138.896194,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "（一社）日本盆栽協会東駿河支部",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac47%e5%9b%9e%e6%9d%b1%e9%a7%bf%e6%b2%b3%e6%94%af%e9%83%a8%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e9%9d%99%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+   "description": "日本盆栽協会東駿河支部が長泉町の盆栽園・渡伸苑で開く新春の盆栽展で、即売もある。",
+   "related_product_tags": []
+  },
+  {
+   "title": "樹八会 盆栽展示会",
+   "slug": "juhachikai-bonsai-tenjikai-2027",
+   "start_date": "2027-02-27",
+   "end_date": "2027-02-28",
+   "prefecture": "愛知県",
+   "venue_name": "真福寺 菩提樹館",
+   "address": "愛知県岡崎市真福寺町薬師山6",
+   "lat": 35.007729,
+   "lng": 137.185867,
+   "types": [
+    "exhibition",
+    "sale"
+   ],
+   "price_type": "paid",
+   "price_note": "菩提樹館の入館料370円",
+   "organizer_name": "樹八会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e6%a8%b9%e5%85%ab%e4%bc%9a%e3%80%80%e7%9b%86%e6%a0%bd%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+   "description": "樹八会が岡崎市の真福寺菩提樹館で開く盆栽展示会で、即売もある。",
+   "related_product_tags": []
+  },
+  {
+   "title": "新春展（ライン盆栽会）",
+   "slug": "line-bonsaikai-shinshun-ten-2027",
+   "start_date": "2027-01-02",
+   "end_date": "2027-01-04",
+   "prefecture": "岐阜県",
+   "venue_name": "日本ライン花木センター イベントホール",
+   "address": "岐阜県可児市土田4567",
+   "lat": 35.421627,
+   "lng": 137.009644,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "ライン盆栽会",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e6%96%b0%e6%98%a5%e5%b1%95%ef%bc%88%e5%b2%90%e9%98%9c%e7%9c%8c%ef%bc%89/",
+   "description": "ライン盆栽会が可児市の日本ライン花木センターで開く新春の展示会で、松柏やさつき、雑木の盆栽が並ぶ。",
+   "related_product_tags": []
+  },
+  {
+   "title": "梅花展（高岡盆栽愛好会）",
+   "slug": "takaoka-baika-ten-2027",
+   "start_date": "2027-02-12",
+   "end_date": "2027-02-14",
+   "prefecture": "富山県",
+   "venue_name": "高岡おとぎの森館 フラワールーム",
+   "address": "富山県高岡市佐野1342",
+   "lat": 36.725101,
+   "lng": 136.999924,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": "入園・駐車場とも無料",
+   "organizer_name": "高岡盆栽愛好会",
+   "official_url": "https://terfel.net/wp-content/uploads/%E4%BB%A4%E5%92%8C8%E5%B9%B4%E5%BA%A6%E5%82%AC%E3%81%97%E7%89%A9%E6%A1%88%E5%86%85%E6%94%B9%E5%AE%9A1.pdf",
+   "description": "高岡盆栽愛好会が高岡おとぎの森館で開く梅の盆栽の展示会。",
+   "related_product_tags": []
+  },
+  {
+   "title": "雄神盆草展（2027年3月）",
+   "slug": "takaoka-ogami-bonso-ten-spring-2027",
+   "start_date": "2027-03-26",
+   "end_date": "2027-03-28",
+   "prefecture": "富山県",
+   "venue_name": "高岡おとぎの森館 フラワールーム",
+   "address": "富山県高岡市佐野1342",
+   "lat": 36.725101,
+   "lng": 136.999924,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": "入園・駐車場とも無料",
+   "organizer_name": "雄神盆草会",
+   "official_url": "https://terfel.net/wp-content/uploads/%E4%BB%A4%E5%92%8C8%E5%B9%B4%E5%BA%A6%E5%82%AC%E3%81%97%E7%89%A9%E6%A1%88%E5%86%85%E6%94%B9%E5%AE%9A1.pdf",
+   "description": "雄神盆草会が高岡おとぎの森館で開く盆草（草物盆栽）の展示会。",
+   "related_product_tags": []
+  },
+  {
+   "title": "盆栽・山野草フリーマーケット（新津フラワーランド）",
+   "slug": "niitsu-bonsai-sanyaso-flea-market-2026",
+   "start_date": "2026-11-14",
+   "end_date": "2026-11-23",
+   "prefecture": "新潟県",
+   "venue_name": "新津フラワーランド",
+   "address": "新潟県新潟市秋葉区古津891-1",
+   "lat": 37.765278,
+   "lng": 139.112442,
+   "types": [
+    "sale"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "新津フラワーランド",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%9b%86%e6%a0%bd%e3%83%bb%e5%b1%b1%e9%87%8e%e8%8d%89%e3%83%95%e3%83%aa%e3%83%bc%e3%83%9e%e3%83%bc%e3%82%b1%e3%83%83%e3%83%88%ef%bc%88%e6%96%b0%e6%bd%9f%e7%9c%8c%ef%bc%89/",
+   "description": "新津フラワーランドで盆栽や山野草が販売されるフリーマーケット。",
+   "related_product_tags": []
+  },
+  {
+   "title": "ミニ盆梅づくり体験（長浜盆梅展）",
+   "slug": "nagahama-mini-bonbai-zukuri-2027",
+   "start_date": "2027-01-13",
+   "end_date": "2027-02-10",
+   "prefecture": "滋賀県",
+   "venue_name": "慶雲館",
+   "address": "滋賀県長浜市港町2-5",
+   "lat": 35.37635,
+   "lng": 136.265976,
+   "types": [
+    "workshop"
+   ],
+   "price_type": "paid",
+   "price_note": "6,000円（ミニ盆梅・鉢・材料込み、入館料別途、各回最大4名・事前申込優先）",
+   "organizer_name": "長浜米原観光協会",
+   "official_url": "https://kitabiwako.jp/ja/event/event_51399",
+   "description": "長浜盆梅展の会期中に慶雲館で行われる体験で、盆梅の管理人の指導でミニ盆梅を植え替えて仕立てる（開催日は期間中の指定日）。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第25回 緑和会盆栽展",
+   "slug": "wakayama-ryokuwakai-bonsai-ten-25-2026",
+   "start_date": "2026-12-12",
+   "end_date": "2026-12-13",
+   "prefecture": "和歌山県",
+   "venue_name": "和歌山県植物公園緑花センター",
+   "address": "和歌山県岩出市東坂本672",
+   "lat": 34.284557,
+   "lng": 135.328018,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "緑和会",
+   "official_url": "http://www.w-botanicalgarden.jp/tmpfile/event20260204.pdf",
+   "description": "盆栽同好会の緑和会が和歌山県植物公園緑花センターで開く冬の盆栽展。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第26回 緑和会盆栽展",
+   "slug": "wakayama-ryokuwakai-bonsai-ten-26-2027",
+   "start_date": "2027-02-20",
+   "end_date": "2027-02-21",
+   "prefecture": "和歌山県",
+   "venue_name": "和歌山県植物公園緑花センター",
+   "address": "和歌山県岩出市東坂本672",
+   "lat": 34.284557,
+   "lng": 135.328018,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "緑和会",
+   "official_url": "http://www.w-botanicalgarden.jp/tmpfile/event20260204.pdf",
+   "description": "盆栽同好会の緑和会が和歌山県植物公園緑花センターで開く早春の盆栽展。",
+   "related_product_tags": []
+  },
+  {
+   "title": "梅の盆栽展（冠山総合公園）",
+   "slug": "kanmuriyama-ume-no-bonsai-ten-2027",
+   "start_date": "2027-02-06",
+   "end_date": "2027-02-08",
+   "prefecture": "山口県",
+   "venue_name": "冠山総合公園",
+   "address": "山口県光市室積村6288",
+   "lat": 33.953445,
+   "lng": 131.961548,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "光市・冠山総合公園・光市花卉緑化協会（共催）",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e6%a2%85%e3%81%ae%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%b1%b1%e5%8f%a3%e7%9c%8c%ef%bc%89/",
+   "description": "梅の名所として知られる光市の冠山総合公園で開かれる梅の盆栽の展示会。",
+   "related_product_tags": []
+  },
+  {
+   "title": "遅咲き梅と小品盆栽（冠山総合公園）",
+   "slug": "kanmuriyama-osozaki-ume-shohin-bonsai-2027",
+   "start_date": "2027-02-13",
+   "end_date": "2027-02-14",
+   "prefecture": "山口県",
+   "venue_name": "冠山総合公園",
+   "address": "山口県光市室積村6288",
+   "lat": 33.953445,
+   "lng": 131.961548,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "光市・冠山総合公園・光園芸連絡会（共催）",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e9%81%85%e5%92%b2%e3%81%8d%e6%a2%85%e3%81%a8%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%ef%bc%88%e5%b1%b1%e5%8f%a3%e7%9c%8c%ef%bc%89/",
+   "description": "冠山総合公園で遅咲きの梅の盆栽と小品盆栽を展示する催し。",
+   "related_product_tags": []
+  },
+  {
+   "title": "新春小品盆栽展（広島市植物公園）",
+   "slug": "hiroshima-bot-shinshun-shohin-bonsai-ten-2027",
+   "start_date": "2027-01-04",
+   "end_date": "2027-01-06",
+   "prefecture": "広島県",
+   "venue_name": "広島市植物公園 展示資料館1階展示室",
+   "address": "広島県広島市佐伯区倉重3-495",
+   "lat": 34.392982,
+   "lng": 132.346436,
+   "types": [
+    "exhibition",
+    "sale",
+    "lecture"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "広島市植物公園・広島小品盆栽会（共催）",
+   "official_url": "http://www.hiroshima-bot.jp/shokubutsu/wp-content/uploads/2025/12/20251217_sinsyunsyouhinbonsaiten.pdf",
+   "description": "広島小品盆栽会と共催で、松竹梅など新春らしい小品盆栽約20席を展示し、臨時売店や実演会も行われる。",
+   "related_product_tags": []
+  },
+  {
+   "title": "南楽園秋の盆栽展",
+   "slug": "nanrakuen-aki-no-bonsai-ten-2026",
+   "start_date": "2026-10-31",
+   "end_date": "2026-11-15",
+   "prefecture": "愛媛県",
+   "venue_name": "日本庭園 南楽園 中央芝生広場",
+   "address": "愛媛県宇和島市津島町近家甲1813",
+   "lat": 33.135345,
+   "lng": 132.508789,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "paid",
+   "price_note": "南楽園の入園料が必要",
+   "organizer_name": "日本庭園 南楽園（協力：日本盆栽協会松山支部）",
+   "official_url": "https://www.nanreku.jp/site/nanrakuen/8524.html",
+   "description": "四国最大級の日本庭園・南楽園の「秋のいやしの南楽園」の催しとして、愛好家の盆栽が園内に展示される。",
+   "related_product_tags": []
+  },
+  {
+   "title": "第52回日豊支部盆栽展",
+   "slug": "nippo-shibu-bonsai-ten-2026",
+   "start_date": "2026-11-14",
+   "end_date": "2026-11-15",
+   "prefecture": "福岡県",
+   "venue_name": "白石長楽園",
+   "address": "福岡県京都郡みやこ町惣社729-2",
+   "lat": 33.686237,
+   "lng": 130.981506,
+   "types": [
+    "exhibition"
+   ],
+   "price_type": "free",
+   "price_note": null,
+   "organizer_name": "（一社）日本盆栽協会日豊支部",
+   "official_url": "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac52%e5%9b%9e%e6%97%a5%e8%b1%8a%e6%94%af%e9%83%a8%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e7%a6%8f%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+   "description": "日本盆栽協会日豊支部がみやこ町の盆栽園・白石長楽園で開く盆栽展。",
+   "related_product_tags": []
+  },
+  {
+   "title": "プチ盆栽づくり２（福岡市植物園）",
+   "slug": "fukuoka-botanical-petit-bonsai-zukuri-2026",
+   "start_date": "2026-12-10",
+   "end_date": "2026-12-10",
+   "prefecture": "福岡県",
+   "venue_name": "福岡市植物園 ボタニカルライフスクエア",
+   "address": "福岡県福岡市中央区小笹5-1-1",
+   "lat": 33.571068,
+   "lng": 130.390381,
+   "types": [
+    "workshop"
+   ],
+   "price_type": "paid",
+   "price_note": "材料費3,000円（入園料・駐車料別、定員20名・抽選、11月26日締切）",
+   "organizer_name": "福岡市植物園",
+   "official_url": "https://botanical-garden.city.fukuoka.lg.jp/events/detail/1775",
+   "description": "手のひら盆栽教室櫻苑主宰の講師が、ミニ盆栽のつくり方と管理方法を教える講座（13時30分〜15時30分）。",
+   "related_product_tags": []
   }
  ],
  "meta": {
@@ -3469,10 +4280,12 @@
    ]
   },
   "meifu-bonsai-ten-2027": {
-   "dateStatus": "tentative",
-   "usualPeriod": "例年1月上旬",
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
    "priceKnown": true,
    "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac96%e5%9b%9e%e9%8a%98%e9%a2%a8%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tokai/",
     "https://aichinow.pref.aichi.jp/events/detail/1976/"
    ]
   },
@@ -4023,11 +4836,13 @@
    ]
   },
   "nagahama-bonbai-ten-2027": {
-   "dateStatus": "tentative",
-   "usualPeriod": "例年1月10日〜3月10日（2019年・2026年とも同日程）",
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
    "priceKnown": true,
    "sources": [
-    "https://koubo.jp/press-release/prtimes/c113572_r3"
+    "https://kitabiwako.jp/ja/event/event_51298",
+    "https://bonbai.jp/",
+    "https://kitabiwako.jp/wp_sys/wp-content/uploads/2026/09/4fd8c420954316d1a2ae8e7c6cb0db6a-2.pdf"
    ]
   },
   "ibuki-bonbai-ten-2027": {
@@ -4039,12 +4854,12 @@
    ]
   },
   "yamatokoriyama-bonbai-ten-2027": {
-   "dateStatus": "tentative",
-   "usualPeriod": "例年2月上旬〜3月10日頃（2025年2月1日〜3月9日、2026年2月7日〜3月10日）",
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
    "priceKnown": true,
    "sources": [
-    "https://tabi-mag.jp/yamatokoriyama-bonnbai/",
-    "https://www.travel.co.jp/guide/article/8022/"
+    "https://www.city.yamatokoriyama.lg.jp/soshiki/chiikishinkoka/event/2/18148.html",
+    "https://tabi-mag.jp/yamatokoriyama-bonnbai/"
    ]
   },
   "sugawara-tenmangu-bonbai-ten-2027": {
@@ -4286,6 +5101,355 @@
    "sources": [
     "https://satsukibonsai-4s.jp/event/event-1259/2026_spring_chubu/",
     "https://satsukibonsai-4s.jp/event/2025_spring/2025_spring_chubu/"
+   ]
+  },
+  "soju-bonyukai-tenji-sokubaikai-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac29%e5%9b%9e%e5%89%b5%e6%a8%b9%e7%9b%86%e9%81%8a%e4%bc%9a%e5%b1%95%e7%a4%ba%e5%8d%b3%e5%a3%b2%e4%bc%9a%ef%bc%88%e6%a0%83%e6%9c%a8%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "sekiyado-ryokuyukai-aki-bonsai-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac31%e5%9b%9e%e7%a7%8b%e3%81%ae%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%8d%83%e8%91%89%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "toki-no-kaze-ten-autumn-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%a7%8b%e5%ad%a3%e3%80%80%e5%ad%a3%e3%81%ae%e9%a2%a8%e5%b1%95%ef%bc%88%e6%9d%b1%e4%ba%ac%e9%83%bd%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/"
+   ]
+  },
+  "zenkoku-shohin-bonsai-meihin-ten-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac53%e5%9b%9e%e5%85%a8%e5%9b%bd%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%e5%90%8d%e5%93%81%e5%b1%95%ef%bc%88%e6%9d%b1%e4%ba%ac%e9%83%bd%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kanto/",
+    "http://ugreenclub.blog76.fc2.com/blog-entry-182.html"
+   ]
+  },
+  "jindai-shumi-no-bonsai-ten-autumn-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.tokyo-park.or.jp/event_search/assets/2026%E5%B9%B4%E5%BA%A6%E7%A2%BA%E5%AE%9A%E7%89%88%E5%B1%95%E7%A4%BA%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%EF%BC%BF%E7%99%BD%E9%BB%92.pdf",
+    "https://www.tokyo-park.or.jp/park/jindai/index.html"
+   ]
+  },
+  "jindai-soshun-bonsai-ten-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.tokyo-park.or.jp/event_search/assets/2026%E5%B9%B4%E5%BA%A6%E7%A2%BA%E5%AE%9A%E7%89%88%E5%B1%95%E7%A4%BA%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%EF%BC%BF%E7%99%BD%E9%BB%92.pdf",
+    "https://www.tokyo-park.or.jp/park/jindai/index.html"
+   ]
+  },
+  "jindai-shumi-no-bonsai-ten-spring-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.tokyo-park.or.jp/event_search/assets/2026%E5%B9%B4%E5%BA%A6%E7%A2%BA%E5%AE%9A%E7%89%88%E5%B1%95%E7%A4%BA%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%EF%BC%BF%E7%99%BD%E9%BB%92.pdf",
+    "https://www.tokyo-park.or.jp/park/jindai/index.html"
+   ]
+  },
+  "kawaguchi-jurian-koyo-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.jurian.or.jp/event/article/?id=1480",
+    "https://www.jurian.or.jp/event/"
+   ]
+  },
+  "kawaguchi-jurian-shinshun-bonsai-hachimono-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.jurian.or.jp/event/article/?id=1530",
+    "https://www.jurian.or.jp/event/"
+   ]
+  },
+  "kawaguchi-jurian-risshun-bonsai-ten-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.jurian.or.jp/event/article/?id=1573",
+    "https://www.jurian.or.jp/event/"
+   ]
+  },
+  "kawaguchi-jurian-bonsai-teire-koshukai-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.jurian.or.jp/event/article/?id=1493",
+    "https://www.jurian.or.jp/event/"
+   ]
+  },
+  "kawaguchi-jurian-haru-no-bonsai-ten-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.jurian.or.jp/event/article/?id=1576",
+    "https://www.jurian.or.jp/event/"
+   ]
+  },
+  "omiya-bonsai-museum-shiki-november-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.city.saitama.lg.jp/004/005/004/006/003/p134726.html"
+   ]
+  },
+  "omiya-bonsai-museum-shiki-december-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.city.saitama.lg.jp/004/005/004/006/003/p134726.html"
+   ]
+  },
+  "omiya-bonsai-museum-shiki-january-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.city.saitama.lg.jp/004/005/004/006/003/p134726.html",
+    "https://www.city.saitama.lg.jp/006/014/008/003/015/007/p134264.html"
+   ]
+  },
+  "omiya-bonsai-museum-shiki-february-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.city.saitama.lg.jp/004/005/004/006/003/p134726.html",
+    "https://www.city.saitama.lg.jp/006/014/008/003/015/007/p134264.html"
+   ]
+  },
+  "omiya-bonsai-museum-shiki-march-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.city.saitama.lg.jp/004/005/004/006/003/p134726.html"
+   ]
+  },
+  "omiya-bonsai-museum-kids-workshop-feb-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.city.saitama.lg.jp/004/005/004/006/003/p134724.html"
+   ]
+  },
+  "omiya-bonsai-museum-kids-workshop-mar-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.city.saitama.lg.jp/004/005/004/006/003/p134724.html"
+   ]
+  },
+  "omiya-bonsai-museum-jitsugi-nov-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.city.saitama.lg.jp/004/005/004/006/003/p134722.html"
+   ]
+  },
+  "omiya-bonsai-museum-jitsugi-dec-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.city.saitama.lg.jp/004/005/004/006/003/p134722.html"
+   ]
+  },
+  "showa-kinen-bonsai-kyoshitsu-oshogatsu-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.showakinen-koen.jp/event/75670/"
+   ]
+  },
+  "risshun-bonsai-oichi-ueno-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年2月の国風盆栽展会期中（2026年は2月7日プレオープン、2月8日〜18日）",
+   "priceKnown": false,
+   "sources": [
+    "http://ugreenclub.blog76.fc2.com/blog-entry-182.html"
+   ]
+  },
+  "sankeien-kanbaikai-bonsai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年2月中旬の約1週間（2026年は2月8日〜15日、観梅会期間中）",
+   "priceKnown": true,
+   "sources": [
+    "https://www.sankeien.or.jp/event/9834/",
+    "https://www.sankeien.or.jp/wordpress2022/wp-content/uploads/2026/01/27124447_tue_38f52.pdf"
+   ]
+  },
+  "hamanako-shibu-bonsai-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e6%b5%9c%e5%90%8d%e6%b9%96%e6%94%af%e9%83%a8%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e9%9d%99%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tokai/"
+   ]
+  },
+  "higashi-suruga-shibu-bonsai-ten-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac47%e5%9b%9e%e6%9d%b1%e9%a7%bf%e6%b2%b3%e6%94%af%e9%83%a8%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e9%9d%99%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tokai/"
+   ]
+  },
+  "juhachikai-bonsai-tenjikai-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e6%a8%b9%e5%85%ab%e4%bc%9a%e3%80%80%e7%9b%86%e6%a0%bd%e5%b1%95%e7%a4%ba%e4%bc%9a%ef%bc%88%e6%84%9b%e7%9f%a5%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tokai/"
+   ]
+  },
+  "line-bonsaikai-shinshun-ten-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e6%96%b0%e6%98%a5%e5%b1%95%ef%bc%88%e5%b2%90%e9%98%9c%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/tokai/"
+   ]
+  },
+  "takaoka-baika-ten-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://terfel.net/wp-content/uploads/%E4%BB%A4%E5%92%8C8%E5%B9%B4%E5%BA%A6%E5%82%AC%E3%81%97%E7%89%A9%E6%A1%88%E5%86%85%E6%94%B9%E5%AE%9A1.pdf",
+    "https://www.instagram.com/p/DUr_MCakuNQ/"
+   ]
+  },
+  "takaoka-ogami-bonso-ten-spring-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://terfel.net/wp-content/uploads/%E4%BB%A4%E5%92%8C8%E5%B9%B4%E5%BA%A6%E5%82%AC%E3%81%97%E7%89%A9%E6%A1%88%E5%86%85%E6%94%B9%E5%AE%9A1.pdf"
+   ]
+  },
+  "niitsu-bonsai-sanyaso-flea-market-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%9b%86%e6%a0%bd%e3%83%bb%e5%b1%b1%e9%87%8e%e8%8d%89%e3%83%95%e3%83%aa%e3%83%bc%e3%83%9e%e3%83%bc%e3%82%b1%e3%83%83%e3%83%88%ef%bc%88%e6%96%b0%e6%bd%9f%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/shinetsu/"
+   ]
+  },
+  "nagahama-mini-bonbai-zukuri-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://kitabiwako.jp/ja/event/event_51399",
+    "https://kitabiwako.jp/ja/event?event_month=2027-01"
+   ]
+  },
+  "wakayama-ryokuwakai-bonsai-ten-25-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "http://www.w-botanicalgarden.jp/tmpfile/event20260204.pdf",
+    "https://nextmeet.app/e/OJ49uOPIUnrNNNbrpl8c"
+   ]
+  },
+  "wakayama-ryokuwakai-bonsai-ten-26-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "http://www.w-botanicalgarden.jp/tmpfile/event20260204.pdf"
+   ]
+  },
+  "kanmuriyama-ume-no-bonsai-ten-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e6%a2%85%e3%81%ae%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e5%b1%b1%e5%8f%a3%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/chugoku/"
+   ]
+  },
+  "kanmuriyama-osozaki-ume-shohin-bonsai-2027": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e9%81%85%e5%92%b2%e3%81%8d%e6%a2%85%e3%81%a8%e5%b0%8f%e5%93%81%e7%9b%86%e6%a0%bd%ef%bc%88%e5%b1%b1%e5%8f%a3%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/chugoku/"
+   ]
+  },
+  "hiroshima-bot-shinshun-shohin-bonsai-ten-2027": {
+   "dateStatus": "tentative",
+   "usualPeriod": "例年1月上旬の3日間（2026年は1月4日〜6日）",
+   "priceKnown": false,
+   "sources": [
+    "http://www.hiroshima-bot.jp/shokubutsu/wp-content/uploads/2025/12/20251217_sinsyunsyouhinbonsaiten.pdf",
+    "https://epo-cg.jp/blog/2601hiroshima-bot/"
+   ]
+  },
+  "nanrakuen-aki-no-bonsai-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://www.nanreku.jp/site/nanrakuen/8524.html",
+    "https://www.nanreku.jp/site/nanrakuen/syokai.html"
+   ]
+  },
+  "nippo-shibu-bonsai-ten-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": false,
+   "sources": [
+    "https://www.bonsai.co.jp/event/%e2%97%8f%e7%ac%ac52%e5%9b%9e%e6%97%a5%e8%b1%8a%e6%94%af%e9%83%a8%e7%9b%86%e6%a0%bd%e5%b1%95%ef%bc%88%e7%a6%8f%e5%b2%a1%e7%9c%8c%ef%bc%89/",
+    "https://www.bonsai.co.jp/event/event_category/kyusyu/"
+   ]
+  },
+  "fukuoka-botanical-petit-bonsai-zukuri-2026": {
+   "dateStatus": "confirmed",
+   "usualPeriod": null,
+   "priceKnown": true,
+   "sources": [
+    "https://botanical-garden.city.fukuoka.lg.jp/events/detail/1775"
    ]
   }
  }
