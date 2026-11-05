@@ -1,4 +1,6 @@
 import { getArticleOverride } from '@/lib/article-overrides'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { amazonPicksForSelection } from '@/lib/amazon-picks'
 import Image from 'next/image'
 import { byCuratedImage } from '@/components/home/curated'
 import photoCredits from '@/data/photo-credits.json'
@@ -440,6 +442,9 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
               </p>
             </section>
           )}
+
+          {/* 特集に合う道具・用品（Amazon の検索結果への文字のリンク） */}
+          <AmazonPicks set={amazonPicksForSelection(selection.slug)} place="selection_amazon" className="mt-12 lg:mt-24" />
 
           {/* 次に読む・迷ったとき */}
           <section className="pt-12 lg:pt-24">

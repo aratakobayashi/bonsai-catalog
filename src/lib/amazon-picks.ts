@@ -153,3 +153,23 @@ export function amazonPicksForMonth(month: number): AmazonPickSet | null {
   const picks = MONTH_PICKS[month]
   return picks ? { heading: `${month}月の作業で使うもの（Amazon）`, note: DELIVERY_NOTE, picks } : null
 }
+
+// 特集（/selection/[slug]）：特集の盆栽と一緒に使う用品。贈り物の特集は、急ぎのときの道具・キット
+const SELECTION_PICKS: Record<string, AmazonPick[]> = {
+  'indoor-bonsai': [P.light, P.mist, P.joro, P.stand],
+  'beginner-mini-bonsai': [P.scissors, P.joro, P.tweezers, P.okigoe],
+  'bonsai-under-3000': [P.scissors, P.joro, P.toolSet],
+  'starter-tools': [P.toolSet, P.scissors, P.wire, P.tsuchiire, P.soil],
+  'winter-bonsai': [P.frost, P.light, P.mist],
+  'evergreen-bonsai': [P.scissors, P.wire, P.okigoe],
+  'autumn-leaves-bonsai': [P.scissors, P.okigoe, P.joro],
+  'flowering-bonsai': [P.okigoe, P.scissors, P.insecticide],
+  'fruit-bonsai': [P.okigoe, P.scissors, P.insecticide],
+}
+const GIFT_SELECTION_SLUGS = new Set(['bonsai-gift', 'celebration-bonsai', 'oseibo-bonsai', 'christmas-bonsai', 'new-year-bonsai', 'premium-bonsai'])
+
+export function amazonPicksForSelection(slug: string): AmazonPickSet | null {
+  if (GIFT_SELECTION_SLUGS.has(slug)) return GIFT_AMAZON_PICKS
+  const picks = SELECTION_PICKS[slug]
+  return picks ? { heading: 'あわせて使う道具・用品（Amazon）', note: DELIVERY_NOTE, picks } : null
+}
