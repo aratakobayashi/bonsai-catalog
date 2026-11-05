@@ -162,6 +162,13 @@ function diversifySpecies(list: CatalogProduct[], n: number): CatalogProduct[] {
   return [...first, ...rest].slice(0, n)
 }
 
+const TOP_ENTRY: Record<string, { href: string; label: string }> = {
+  'article-25': { href: '/selection/indoor-bonsai', label: '室内で育てやすい盆栽を見る（特集・樹種ごとに比較）' },
+  'indoor-bonsai-winter-care': { href: '/selection/indoor-bonsai', label: '室内で育てやすい盆栽を見る（特集・樹種ごとに比較）' },
+  'indoor-bonsai-watering': { href: '/selection/indoor-bonsai', label: '室内で育てやすい盆栽を見る（特集・樹種ごとに比較）' },
+  'bonsai-indoor-cultivation-success-guide': { href: '/selection/indoor-bonsai', label: '室内で育てやすい盆栽を見る（特集・樹種ごとに比較）' },
+}
+
 export default async function ArticlePage({ params }: ArticlePageProps) {
   // 盆栽と無関係な記事（削除扱い）は記事一覧へ恒久リダイレクト
   if (isArticleHidden(params.slug)) {
@@ -227,6 +234,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     ? budgetBands(pickSelectionProducts(giftSelection, await getCatalogProducts().catch(() => [] as CatalogProduct[])).sort(byCuratedThenReviews), new Set(products.slice(0, 4).map(p => p.id)))
     : []
   const productsHeading = selectionProducts.length >= 3 && productSelection ? `特集「${productSelection.shortTitle}」から` : productsNoun ? `${productsNoun}を見てみる` : undefined
+  // 記事の冒頭の入り口を、樹種の一覧ではなく特集にする記事（樹種より話題が広い記事。例：室内で育てやすい盆栽）
+  const topEntry = TOP_ENTRY[article.slug] ?? null
   // 樹種の一覧の件数と価格の目安（記事の冒頭の入り口に出す）
   const speciesStats = speciesSlug && !isSupply ? priceStats(filterProducts(await getCatalogProducts(), categoryFilters(speciesSlug))) : null
   const speciesSubject = speciesLabel ? (/盆栽|苔玉|もの$/.test(speciesLabel) ? speciesLabel : `${speciesLabel}の盆栽`) : ''
@@ -354,7 +363,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <ArticleSummary items={article.summary} />
 
             {/* 樹種の記事：読み始めの位置にも、その樹種の一覧への短い入り口（掲載件数と価格の目安つき） */}
-            {speciesSlug && speciesLabel && !isSupply && speciesStats && (
+            {topEntry ? (
+              <Link href={topEntry.href} className="mt-5 flex min-h-11 items-center gap-2 border-b border-line pb-2 text-[13px] text-ink hover:text-gold-dark">
+                <span className="text-[11px] text-ink-muted">PR</span>
+                <span className="min-w-0 flex-1">{topEntry.label}</span>
+                <span aria-hidden="true">›</span>
+              </Link>
+            ) : speciesSlug && speciesLabel && !isSupply && speciesStats && (
               <Link href={`/products/category/${speciesSlug}`} className="mt-5 flex min-h-11 items-center gap-2 border-b border-line pb-2 text-[13px] text-ink hover:text-gold-dark">
                 <span className="text-[11px] text-ink-muted">PR</span>
                 <span className="min-w-0 flex-1">{speciesSubject}を通販で見る（掲載{speciesStats.count}件・中央値{formatPrice(speciesStats.median)}）</span>
