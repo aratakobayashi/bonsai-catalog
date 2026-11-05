@@ -1,0 +1,22 @@
+# Amazon の Creators API が使えるかを確かめる（手動で実行する。キーはログに出さない）
+# 必要な Secrets：AMAZON_CREATORS_CREDENTIAL_ID / AMAZON_CREATORS_CREDENTIAL_SECRET / AMAZON_CREATORS_CREDENTIAL_VERSION
+name: amazon-check
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Creators API を試す
+        run: node scripts/daily/amazon-check.mjs
+        env:
+          AMAZON_CREATORS_CREDENTIAL_ID: ${{ secrets.AMAZON_CREATORS_CREDENTIAL_ID }}
+          AMAZON_CREATORS_CREDENTIAL_SECRET: ${{ secrets.AMAZON_CREATORS_CREDENTIAL_SECRET }}
+          AMAZON_CREATORS_CREDENTIAL_VERSION: ${{ secrets.AMAZON_CREATORS_CREDENTIAL_VERSION }}
