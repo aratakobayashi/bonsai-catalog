@@ -2,6 +2,7 @@ import eventData from '@/data/event-updates.json'
 import { SELECTIONS } from '@/lib/selections'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { bandPages } from '@/lib/price-bands'
+import { OSUSUME_THEMES } from '@/lib/osusume'
 import { getCatalogProducts } from '@/lib/catalog-data'
 import { ZUKAN_ENTRIES } from '@/lib/zukan'
 import { SHOJO } from '@/lib/shojo'
@@ -67,7 +68,7 @@ export async function GET() {
         priority: 0.6
       })),
       // 選ぶ・育てる道具
-      ...['/okurimono', '/kumiawase', '/nedan', '/soroeru', '/teire', '/shojo', '/hajimete', '/zukan', '/note'].map(path => ({
+      ...['/okurimono', '/kumiawase', '/nedan', '/osusume', ...OSUSUME_THEMES.map(t => `/osusume/${t.slug}`), '/soroeru', '/teire', '/shojo', '/hajimete', '/zukan', '/note'].map(path => ({
         url: `${baseUrl}${path}`,
         lastMod: new Date().toISOString().split('T')[0],
         changeFreq: 'weekly',

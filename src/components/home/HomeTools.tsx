@@ -17,6 +17,8 @@ const SHINDAN_PHOTO = '/images/articles/photos/article-10-1.jpg'
 // そのほかの機能の写真
 const TOOL_PHOTO: Record<string, string> = {
   '/okurimono': '/images/selections/photos/bonsai-gift.jpg',
+  '/osusume': '/images/selections/photos/celebration-bonsai.jpg',
+  '/nedan': '/images/selections/photos/bonsai-under-3000.jpg',
   '/soroeru': '/images/articles/photos/article-16-1.jpg',
   '/shojo': '/images/articles/photos/article-10-2.jpg',
   '/hajimete': '/images/selections/photos/beginner-mini-bonsai.jpg',
@@ -161,11 +163,11 @@ export function HomeTools({ month, readyCount, showcase }: { month: number; read
         </div>
 
         {/* そのほかの機能：写真のタイル */}
-        <ul className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:mt-6 lg:grid-cols-6 lg:gap-4">
+        <ul className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-4 lg:mt-6 lg:gap-4">
           {others.map(t => (
             <li key={t.href} className="min-w-0">
-              <Link href={t.href} className="group relative block aspect-square overflow-hidden bg-sumi-light sm:aspect-[4/3] lg:aspect-[3/4]">
-                {TOOL_PHOTO[t.href] && <Image src={TOOL_PHOTO[t.href]} alt="" fill sizes="(max-width: 639px) 46vw, (max-width: 1023px) 30vw, 180px" className="object-cover opacity-80 transition duration-500 group-hover:scale-[1.04] group-hover:opacity-100" />}
+              <Link href={t.href} className="group relative block aspect-square overflow-hidden bg-sumi-light sm:aspect-[4/3]">
+                {TOOL_PHOTO[t.href] && <Image src={TOOL_PHOTO[t.href]} alt="" fill sizes="(max-width: 639px) 46vw, (max-width: 1023px) 23vw, 270px" className="object-cover opacity-80 transition duration-500 group-hover:scale-[1.04] group-hover:opacity-100" />}
                 <span className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/0" />
                 <span className="absolute inset-x-0 bottom-0 p-3 lg:p-3.5">
                   <CareIcon name={t.icon} className="h-5 w-5 text-gold" />
