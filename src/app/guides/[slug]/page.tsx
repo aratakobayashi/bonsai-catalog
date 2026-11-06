@@ -364,11 +364,19 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
             {/* 樹種の記事：読み始めの位置にも、その樹種の一覧への短い入り口（掲載件数と価格の目安つき） */}
             {topEntry ? (
-              <Link href={topEntry.href} className="mt-5 flex min-h-11 items-center gap-2 border-b border-line pb-2 text-[13px] text-ink hover:text-gold-dark">
-                <span className="text-[11px] text-ink-muted">PR</span>
-                <span className="min-w-0 flex-1">{topEntry.label}</span>
-                <span aria-hidden="true">›</span>
-              </Link>
+              <>
+                <Link href={topEntry.href} className="mt-5 flex min-h-11 items-center gap-2 border-b border-line pb-2 text-[13px] text-ink hover:text-gold-dark">
+                  <span className="text-[11px] text-ink-muted">PR</span>
+                  <span className="min-w-0 flex-1">{topEntry.label}</span>
+                  <span aria-hidden="true">›</span>
+                </Link>
+                {topEntry.href === '/selection/indoor-bonsai' && (
+                  <Link href="/shitsunai" className="flex min-h-11 items-center gap-2 border-b border-line pb-2 text-[13px] text-ink hover:text-gold-dark">
+                    <span className="min-w-0 flex-1">樹種ごとに見る：室内で育てられる盆栽の早見表</span>
+                    <span aria-hidden="true">›</span>
+                  </Link>
+                )}
+              </>
             ) : speciesSlug && speciesLabel && !isSupply && speciesStats && (
               <Link href={`/products/category/${speciesSlug}`} className="mt-5 flex min-h-11 items-center gap-2 border-b border-line pb-2 text-[13px] text-ink hover:text-gold-dark">
                 <span className="text-[11px] text-ink-muted">PR</span>

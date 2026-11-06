@@ -60,6 +60,7 @@ function SpeciesTraits({ slug, trait, group }: { slug: string; trait: SpeciesTra
             <dd className="leading-relaxed text-ink">
               {f.v}
               {f.k === '見頃' && inSeason && <span className="ml-2 text-[11px] text-gold-dark">今が見頃</span>}
+              {f.k === '置き場所' && <Link href="/shitsunai" className="ml-2 text-[11px] text-ink-muted underline decoration-line underline-offset-2 hover:text-ink">室内に置ける？</Link>}
             </dd>
           </div>
         ))}
