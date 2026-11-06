@@ -45,7 +45,7 @@ export function OsusumeRow({ item, rank, place, priority = false }: { item: Osus
           <p className="mt-2 text-[11px] text-ink-muted">{SOURCE_LABELS[product.source] ?? ''}{product.shopName ? `・${product.shopName}` : ''}</p>
         </div>
         {/* ボタン（SP は下に横幅いっぱい） */}
-        <div className="col-span-3 mt-3 flex items-center gap-2 lg:col-span-1 lg:mt-0 lg:flex-col lg:items-stretch lg:justify-center">
+        <div className="col-span-3 mt-3 flex items-center gap-2 lg:col-span-1 lg:mt-0 lg:flex-col lg:items-stretch lg:justify-start lg:pt-1">
           {product.buyUrl && (
             <a
               href={product.buyUrl}
@@ -54,12 +54,12 @@ export function OsusumeRow({ item, rank, place, priority = false }: { item: Osus
               data-place={place}
               data-product={product.id}
               aria-label={`${title}の在庫と価格を${SOURCE_LABELS[product.source] ?? 'ショップ'}で見る（新しいタブで開きます）`}
-              className="flex h-11 flex-1 items-center justify-center gap-1.5 bg-sumi text-[13px] tracking-[0.04em] text-white hover:bg-sumi-light hover:text-white"
+              className="flex h-11 flex-1 items-center justify-center gap-1.5 bg-sumi lg:flex-none text-[13px] tracking-[0.04em] text-white hover:bg-sumi-light hover:text-white"
             >
               {BUY_LABEL} <span aria-hidden="true">↗</span>
             </a>
           )}
-          <Link href={`/products/${product.id}`} prefetch={false} className="flex h-11 flex-none items-center justify-center border border-line bg-white px-4 text-[13px] text-ink hover:border-ink lg:flex-1">
+          <Link href={`/products/${product.id}`} prefetch={false} className="flex h-11 flex-none items-center justify-center border border-line bg-white px-4 text-[13px] text-ink hover:border-ink">
             詳しく見る
           </Link>
           <FavoriteButton productId={product.id} productName={title} variant="icon" className="lg:hidden" />

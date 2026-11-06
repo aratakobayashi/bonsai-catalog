@@ -22,7 +22,10 @@ export const metadata: Metadata = {
 
 export default async function OsusumeIndexPage() {
   const all = await getCatalogProducts()
-  const themes = OSUSUME_THEMES.map(theme => ({ theme, top: rankOsusume(all, theme, 3) }))
+  const themes = OSUSUME_THEMES.map(theme => {
+    const ranked = rankOsusume(all, theme, 20)
+    return { theme, top: ranked.slice(0, 3), total: ranked.length }
+  })
   const updated = priceStats(all)?.asOf ?? null
 
   return (
@@ -43,7 +46,7 @@ export default async function OsusumeIndexPage() {
       <PrDisclosure className="mt-5" />
 
       <div className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-5 lg:mt-8 lg:grid-cols-2 lg:gap-6">
-        {themes.map(({ theme, top }) => (
+        {themes.map(({ theme, top, total }) => (
           <section key={theme.slug} aria-labelledby={`t-${theme.slug}`} className="border border-line bg-white">
             <div className="px-4 pb-3 pt-4 lg:px-6 lg:pt-5">
               <h2 id={`t-${theme.slug}`} className="font-mincho text-[19px] font-bold tracking-[0.04em] text-ink lg:text-[21px]">{theme.title}</h2>
@@ -64,7 +67,7 @@ export default async function OsusumeIndexPage() {
               ))}
             </ol>
             <Link href={`/osusume/${theme.slug}`} className="mt-4 flex min-h-[52px] items-center justify-between border-t border-line px-4 text-[13.5px] text-ink hover:text-gold-dark lg:px-6">
-              {theme.label}のおすすめ20選を見る<span aria-hidden="true">›</span>
+              {theme.label}のおすすめ{total}選を見る<span aria-hidden="true">›</span>
             </Link>
           </section>
         ))}

@@ -17,6 +17,8 @@ export interface OsusumeTheme {
   filter: (p: CatalogProduct) => boolean
   // この特集で点数に足す要素（育てやすさ・室内向きなど）
   bonus?: (p: CatalogProduct) => number
+  // 1つの樹種から選ぶ上限（室内向きのように樹種が少ない特集は多めにする）。既定は3
+  maxPerSpecies?: number
 }
 
 const PLANT = (p: CatalogProduct) => (p.productType === 'tree' || p.productType === 'kokedama') && !isSeedlingOrMaterial(p) && p.price > 0
@@ -40,7 +42,8 @@ export const OSUSUME_THEMES: OsusumeTheme[] = [
     metaTitle: '室内で育てやすい盆栽のおすすめ｜レビューで選んだ部屋に置ける一鉢 - 盆栽コレクション',
     description: '室内で育てやすい盆栽のおすすめを、掲載中の盆栽から樹種の性質（室内に置きやすいか）とレビューの評価・件数で選びました。窓辺に置くときの注意と、点数の付け方も紹介します。',
     lead: '寒さに弱く、明るい室内で管理する樹種の盆栽から、レビューの評価が高く件数も多い順に選びました。',
-    filter: p => PLANT(p) && p.place === 'indoor',
+    filter: p => PLANT(p) && (p.place === 'indoor' || (p.place === null && p.placeClaim === 'indoor')),
+    maxPerSpecies: 8,
     bonus: p => (p.saucer ? 0.1 : 0),
   },
   {
@@ -81,7 +84,7 @@ export const OSUSUME_METHOD = [
   'レビューの件数が多いほど、少しずつ点数を足します（多くの人に選ばれていることの目安）。',
   '写真で樹の様子がよく分かる商品と、送料込みの商品に、少しだけ点数を足します。',
   '特集ごとに、樹種の育てやすさ・室内向きか・ラッピング対応などの条件を加えます。',
-  '同じ店の商品・同じ樹種の商品ばかりにならないよう、1つの店から2点、1つの樹種から3点までにしています。',
+  '同じ店の商品・同じ樹種の商品ばかりにならないよう、1つの店から2点、1つの樹種から3点まで（室内向けは樹種が少ないため8点まで）にしています。',
   '販売店からお金をもらって順位を上げることはしていません。商品リンクは広告（アフィリエイト）です。',
 ]
 
@@ -115,7 +118,7 @@ export function rankOsusume(products: CatalogProduct[], theme: OsusumeTheme, lim
     const shop = item.product.shopName || item.product.source
     const species = item.product.speciesKey ?? 'other'
     const nameKey = (item.product.displayName || item.product.name).replace(/\s/g, '').slice(0, 14)
-    if ((perShop.get(shop) ?? 0) >= 2 || (perSpecies.get(species) ?? 0) >= 3 || seenNames.has(nameKey)) continue
+    if ((perShop.get(shop) ?? 0) >= 2 || (perSpecies.get(species) ?? 0) >= (theme.maxPerSpecies ?? 3) || seenNames.has(nameKey)) continue
     perShop.set(shop, (perShop.get(shop) ?? 0) + 1)
     perSpecies.set(species, (perSpecies.get(species) ?? 0) + 1)
     seenNames.add(nameKey)
@@ -128,8 +131,8 @@ export function rankOsusume(products: CatalogProduct[], theme: OsusumeTheme, lim
 // 選んだ理由（カードに出す短い言葉）
 function reasonsOf(p: CatalogProduct, theme: OsusumeTheme): string[] {
   const reasons: string[] = []
-  if (p.reviewAverage >= 4.5 && p.reviewCount >= 30) reasons.push(`★${p.reviewAverage.toFixed(1)}・${p.reviewCount.toLocaleString()}件のレビュー`)
-  else if (p.reviewCount >= 10) reasons.push(`レビュー${p.reviewCount.toLocaleString()}件`)
+  if (p.reviewCount >= 200) reasons.push('レビューがとても多い')
+  else if (p.reviewAverage >= 4.5 && p.reviewCount >= 20) reasons.push('レビューの評価が高い')
   if (theme.slug !== 'indoor' && p.level === 'easy') reasons.push('育てやすい樹種')
   if (p.place === 'indoor') reasons.push('室内に置きやすい')
   if (p.freeShipping) reasons.push('送料込み')
