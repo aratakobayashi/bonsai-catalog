@@ -150,6 +150,8 @@ export function CategoryPriceGuide({
         </div>
       )}
 
+      <Link href="/nedan" className="mt-4 inline-flex min-h-11 items-center border-b border-ink text-[13px] text-ink hover:text-gold-dark">ほかの樹種の値段と比べる（盆栽の値段・相場） ›</Link>
+
       <h3 className="mt-7 text-[14px] font-bold text-ink">よくある質問</h3>
       <dl className="mt-2 border-t border-line">
         {faq.map(f => (

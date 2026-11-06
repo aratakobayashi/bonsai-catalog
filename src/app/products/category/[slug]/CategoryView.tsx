@@ -27,7 +27,7 @@ import { isInSeasonNow, jstMonth, peakLabel, peakMonths } from '@/lib/seasons'
 import { ENJOY_OPTIONS, LEVEL_OPTIONS, PLACE_OPTIONS, type SpeciesTrait } from '@/lib/species-traits'
 
 
-const TREE_GROUP_BY_SLUG: Record<string, string> = {
+export const TREE_GROUP_BY_SLUG: Record<string, string> = {
   goyomatsu: '松柏類', kuromatsu: '松柏類', akamatsu: '松柏類', shimpaku: '松柏類',
   momiji: '雑木類', keyaki: '雑木類', sansho: '雑木類',
   sakura: '花もの', ume: '花もの', satsuki: '花もの',

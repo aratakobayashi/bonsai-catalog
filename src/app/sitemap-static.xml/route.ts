@@ -67,7 +67,7 @@ export async function GET() {
         priority: 0.6
       })),
       // 選ぶ・育てる道具
-      ...['/okurimono', '/kumiawase', '/soroeru', '/teire', '/shojo', '/hajimete', '/zukan', '/note'].map(path => ({
+      ...['/okurimono', '/kumiawase', '/nedan', '/soroeru', '/teire', '/shojo', '/hajimete', '/zukan', '/note'].map(path => ({
         url: `${baseUrl}${path}`,
         lastMod: new Date().toISOString().split('T')[0],
         changeFreq: 'weekly',
