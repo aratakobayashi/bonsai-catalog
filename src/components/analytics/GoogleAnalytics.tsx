@@ -81,11 +81,31 @@ function PageViewTracker() {
         content_group: pageTypeOf(window.location.pathname),
       })
     }
+    // 盆栽園のページの、園への問い合わせ・来園につながるボタン（公式サイト・通販・電話・地図）。広告リンクは onClick で数える
+    // 園ごとの送客数を集計し、掲載の価値を園に示す材料にする
+    const onGardenClick = (event: MouseEvent) => {
+      const gardenMatch = window.location.pathname.match(/^\/gardens\/([0-9a-f-]{36})\/?$/)
+      const anchor = (event.target as HTMLElement | null)?.closest('a')
+      if (!gardenMatch || !anchor || /\bsponsored\b/.test(anchor.rel)) return
+      const href = anchor.getAttribute('href') ?? ''
+      let linkType: string | null = null
+      if (href.startsWith('tel:')) linkType = 'phone'
+      else if (anchor.dataset.gardenShop) linkType = 'shop'
+      else if (/^https?:/.test(href)) {
+        const host = new URL(href).hostname
+        if (host === window.location.hostname) return
+        linkType = /(^|\.)(google\.[a-z.]+|apple\.com)$/.test(host) && /map/i.test(href) ? 'map' : 'website'
+      }
+      if (!linkType) return
+      gtag('event', 'garden_click', { link_type: linkType, garden_id: gardenMatch[1], link_url: href.slice(0, 200) })
+    }
     document.addEventListener('click', onClick, { capture: true })
     document.addEventListener('click', onCardClick, { capture: true })
+    document.addEventListener('click', onGardenClick, { capture: true })
     return () => {
       document.removeEventListener('click', onClick, { capture: true })
       document.removeEventListener('click', onCardClick, { capture: true })
+      document.removeEventListener('click', onGardenClick, { capture: true })
     }
   }, [])
 
