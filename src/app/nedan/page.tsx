@@ -20,7 +20,7 @@ import { CONTAINER, PageHeading, SectionTitle } from '@/components/ui/design'
 
 export const metadata: Metadata = {
   title: '盆栽の値段・相場｜樹種ごとの価格帯と、大きさ・予算で選ぶときの目安 - 盆栽コレクション',
-  description: '盆栽の値段はいくらくらい？掲載中の約2,000件の盆栽から、黒松・真柏・もみじ・桜など樹種ごとの価格の中央値とよくある価格帯、ミニ・小品・中品の大きさ別の価格、3,000円以下・1万円以上など予算ごとに選べる樹種をまとめました。値段が変わる理由と、はじめての一鉢・贈り物の予算の考え方も紹介します。',
+  description: '盆栽の値段はいくらくらい？掲載中の盆栽（楽天市場）から、黒松・真柏・もみじ・桜など樹種ごとの価格の中央値とよくある価格帯、ミニ・小品・中品の大きさ別の価格、3,000円以下・1万円以上など予算ごとに選べる樹種をまとめました。値段が変わる理由と、はじめての一鉢・贈り物の予算の考え方も紹介します。',
   alternates: { canonical: '/nedan' },
 }
 
@@ -147,9 +147,9 @@ export default async function NedanPage() {
         <section aria-labelledby="by-size" className="pt-12 lg:pt-16">
           <SectionTitle><span id="by-size">大きさ別の値段</span></SectionTitle>
           <p className="mt-2 max-w-[760px] text-[13.5px] leading-[1.9] text-ink-soft">同じ樹種でも、大きさで値段は大きく変わります。置き場所と予算に合わせて、まず大きさを決めると選びやすくなります。</p>
-          <ul className="mt-4 grid grid-cols-[minmax(0,1fr)] gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
             {overall.bySize.map(s => (
-              <li key={s.label} className="border border-line bg-white px-4 py-4">
+              <li key={s.label} className="border border-line bg-white px-3.5 py-3.5 lg:px-4 lg:py-4">
                 <p className="text-[13px] font-bold text-ink">{s.label}</p>
                 <p className="mt-2 font-mincho text-[22px] font-bold text-ink">{formatPrice(s.median)}</p>
                 <p className="text-[11px] text-ink-muted">中央値・{s.count.toLocaleString()}件</p>
@@ -176,7 +176,7 @@ export default async function NedanPage() {
                   <div className="mt-1.5 flex flex-wrap gap-2">
                     {species.map(s => (
                       <Link key={s.slug} href={`/products/category/${s.slug}/${band.slug}`} className="inline-flex min-h-10 items-center border border-line bg-paper px-3 text-[13px] text-ink hover:border-ink">
-                        {s.name}<span className="ml-1.5 text-[11px] text-ink-muted">{s.count}</span>
+                        {s.name}<span className="ml-1.5 text-[11px] text-ink-muted">{s.count}件</span>
                       </Link>
                     ))}
                   </div>

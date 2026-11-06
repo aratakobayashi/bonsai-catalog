@@ -37,7 +37,7 @@ export function priceStats(products: CatalogProduct[]): PriceStats | null {
   const prices = priced.map(p => p.price).sort((a, b) => a - b)
   const bySize = SIZE_OPTIONS.map(option => {
     const list = priced.filter(p => p.sizeCategory === option.value).map(p => p.price).sort((a, b) => a - b)
-    return { label: option.label, count: list.length, median: list.length ? quantile(list, 0.5) : 0 }
+    return { label: option.label, count: list.length, median: list.length ? round100(quantile(list, 0.5)) : 0 }
   }).filter(s => s.count >= 3)
   const synced = priced.map(p => p.lastSyncedAt).filter((d): d is string => Boolean(d)).sort()
   const last = synced[synced.length - 1]
