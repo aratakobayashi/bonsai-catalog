@@ -33,6 +33,7 @@ export function PageHeading({
   aside,
   eyebrow,
   photo,
+  creditLabel = '写真：',
 }: {
   title: ReactNode
   lead?: ReactNode
@@ -40,6 +41,8 @@ export function PageHeading({
   aside?: ReactNode
   eyebrow?: ReactNode
   photo?: { src: string; alt: string; credit?: string }
+  // 写真のクレジットの前置き（英語のページでは 'Photo: '）
+  creditLabel?: string
 }) {
   return (
     <>
@@ -61,7 +64,7 @@ export function PageHeading({
               <h1 className="mt-2.5 font-mincho text-[26px] font-bold leading-snug tracking-[0.08em] text-white [text-wrap:balance] lg:mt-3.5 lg:text-[38px]">{title}</h1>
               {lead && <p className="mt-3 [&_a]:text-white [&_a]:underline [&_a]:decoration-white/40 text-[13.5px] leading-[1.9] text-white/75 lg:mt-4 lg:text-[15px] lg:leading-[2] lg:text-white/85">{lead}</p>}
             </div>
-            {photo?.credit && <p className="mt-4 text-right text-[10.5px] text-white/45 lg:absolute lg:bottom-4 lg:right-6 lg:mt-0">写真：{photo.credit}</p>}
+            {photo?.credit && <p className="mt-4 text-right text-[10.5px] text-white/45 lg:absolute lg:bottom-4 lg:right-6 lg:mt-0">{creditLabel}{photo.credit}</p>}
           </div>
         </div>
       </div>

@@ -41,6 +41,7 @@ export default function ExhibitionsPage() {
   return (
     <div lang="en" className={`${CONTAINER} pb-16 lg:pb-24`}>
       <PageHeading
+        creditLabel="Photo: "
         eyebrow="Season 2026–2027"
         photo={heroPhoto('/images/articles/photos/bonsai-club-beginner-guide-2.jpg', 'Bonsai exhibition hall')}
         title="Bonsai exhibitions in Japan"

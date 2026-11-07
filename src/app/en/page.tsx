@@ -16,6 +16,7 @@ export default function EnglishHome() {
   return (
     <div lang="en" className={`${CONTAINER} pb-16 lg:pb-24`}>
       <PageHeading
+        creditLabel="Photo: "
         eyebrow="Bonsai in Japan"
         photo={heroPhoto('/images/articles/photos/bonsai-club-beginner-guide-2.jpg', 'Visitors looking at bonsai at an exhibition in Japan')}
         title="Where to see bonsai in Japan"

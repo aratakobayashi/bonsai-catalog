@@ -23,6 +23,7 @@ export default function OmiyaPage() {
   return (
     <div lang="en" className={`${CONTAINER} pb-16 lg:pb-24`}>
       <PageHeading
+        creditLabel="Photo: "
         eyebrow="Saitama · near Tokyo"
         photo={heroPhoto('/images/articles/photos/bonsai-exhibition-viewing-guide-1.jpg', 'Bonsai on display')}
         title="Omiya Bonsai Village"
