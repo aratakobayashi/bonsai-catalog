@@ -9,6 +9,7 @@ const LINKS = [
   { href: '/contact', label: 'お問い合わせ' },
   { href: '/privacy', label: 'プライバシーポリシー' },
   { href: '/terms', label: '利用規約' },
+  { href: '/en', label: 'English（訪日客向けガイド）' },
 ]
 
 export function Footer() {
