@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { LangSwitch } from './LangSwitch'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useFavorites } from '@/lib/favorites'
@@ -103,10 +104,12 @@ export function Header() {
           >
             気になる{favorites.length > 0 && <span className="ml-1">{favorites.length}</span>}
           </Link>
+          <LangSwitch to="en" className="-ml-1 h-8 w-10" />
         </nav>
 
         {/* スマホ：気になる・検索（押しやすいよう 44px 四方以上） */}
         <div className="-mr-2 ml-auto flex items-center lg:hidden">
+          <LangSwitch to="en" className="mr-1 h-8 w-10" />
           <Link
             href="/favorites"
             aria-current={favActive ? 'page' : undefined}

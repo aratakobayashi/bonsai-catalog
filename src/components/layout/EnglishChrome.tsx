@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { LangSwitch } from './LangSwitch'
 
 // 訪日客向けの英語のページ（/en）のヘッダーとフッター。日本語のページへは「日本語」から戻れる
 const NAV = [
@@ -20,7 +21,7 @@ export function EnglishHeader() {
             <Link key={n.href} href={n.href} className="text-white/85 hover:text-white">{n.label}</Link>
           ))}
         </nav>
-        <Link href="/" lang="ja" className="ml-auto inline-flex min-h-9 items-center border border-white/40 px-3 text-[12.5px] text-white hover:border-white hover:text-white lg:ml-2">日本語</Link>
+        <LangSwitch to="ja" className="ml-auto h-9 px-3 lg:ml-2" />
       </div>
       <nav aria-label="Main" className="flex gap-5 overflow-x-auto border-t border-white/10 px-4 py-2 text-[12.5px] [scrollbar-width:none] lg:hidden [&::-webkit-scrollbar]:hidden">
         {NAV.map(n => (
