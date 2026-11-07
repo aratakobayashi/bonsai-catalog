@@ -56,6 +56,12 @@ export async function GET() {
         priority: 0.7
       },
       {
+        url: `${baseUrl}/events/this-weekend`,
+        lastMod: new Date().toISOString().split('T')[0],
+        changeFreq: 'daily',
+        priority: 0.8
+      },
+      {
         url: `${baseUrl}/events/autumn-winter-2026`,
         lastMod: new Date().toISOString().split('T')[0],
         changeFreq: 'weekly',

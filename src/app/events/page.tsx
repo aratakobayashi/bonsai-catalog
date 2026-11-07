@@ -87,7 +87,12 @@ export default async function EventsPage() {
           aside={toggle}
         />
 
-        <Link href="/events/autumn-winter-2026" className="mt-5 flex min-h-[52px] items-center gap-3 border border-ink bg-white px-4 py-3 text-ink hover:border-gold-dark hover:text-gold-dark lg:mt-7">
+        <Link href="/events/this-weekend" className="mt-5 flex min-h-[52px] items-center gap-3 border border-ink bg-sumi px-4 py-3 text-white hover:bg-sumi-light hover:text-white lg:mt-7">
+          <span className="text-[11px] tracking-[0.12em] text-[#d6ba84]">今週末</span>
+          <span className="min-w-0 flex-1 font-mincho text-[15px] font-bold">今週末・近くで開かれる盆栽展を探す（現在地から近い順）</span>
+          <span aria-hidden="true">›</span>
+        </Link>
+        <Link href="/events/autumn-winter-2026" className="mt-2 flex min-h-[52px] items-center gap-3 border border-ink bg-white px-4 py-3 text-ink hover:border-gold-dark hover:text-gold-dark">
           <span className="text-[11px] tracking-[0.12em] text-gold-dark">特集</span>
           <span className="min-w-0 flex-1 font-mincho text-[15px] font-bold">2026年 秋冬の盆栽展カレンダー（11月〜2月・大観展／雅風展／国風展）</span>
           <span aria-hidden="true">›</span>
