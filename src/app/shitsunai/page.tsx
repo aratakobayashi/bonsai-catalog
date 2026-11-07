@@ -93,7 +93,14 @@ export default function ShitsunaiPage() {
           <SectionTitle><span id={`h-${g.kind}`}>{g.label}</span></SectionTitle>
           <p className="mt-2 max-w-[760px] text-[13.5px] leading-[1.9] text-ink-soft">{g.lead}</p>
 
-          <table className="mt-4 hidden w-full border-collapse text-left lg:table">
+          <table className="mt-4 hidden w-full table-fixed border-collapse text-left lg:table">
+            <colgroup>
+              <col className="w-[220px]" />
+              <col className="w-[170px]" />
+              <col />
+              <col className="w-[260px]" />
+              <col className="w-[110px]" />
+            </colgroup>
             <thead>
               <tr className="border-b border-ink text-[12px] text-ink-muted">
                 <th scope="col" className="w-[200px] py-2.5 pr-4 font-normal">樹種</th>

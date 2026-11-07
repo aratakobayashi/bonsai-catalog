@@ -27,7 +27,7 @@ const OUT_WINTER = '屋外（凍結・寒風を避けて軒下などへ）'
 export const INDOOR_GUIDE: IndoorEntry[] = [
   { key: 'gajumaru', label: 'ガジュマル', category: 'gajumaru', kind: 'indoor', stay: '一年中', winter: '5℃を下回らない明るい室内', light: 'レースカーテン越しの明るい窓辺', note: '夜の窓際は冷えるので、冬は窓から少し離す' },
   { key: 'ficus', label: 'フィカス（ベンジャミンなど）', kind: 'indoor', stay: '一年中', winter: '5℃を下回らない明るい室内', light: 'レースカーテン越しの明るい窓辺', note: '置き場所を急に変えると葉を落としやすい' },
-  { key: 'olive', label: 'オリーブ', category: 'olive', kind: 'winter', stay: '数日（寒冷地は冬の間）', winter: '多くの地域は軒下。寒冷地は暖房のない明るい部屋', light: '屋外の日なた', note: '日光が足りないと枝が間のびしやすい' },
+  { key: 'olive', label: 'オリーブ', category: 'olive', kind: 'winter', stay: '寒冷地は冬の間', winter: '多くの地域は軒下。寒冷地は暖房のない明るい部屋', light: '屋外の日なた', note: '日光が足りないと枝が間のびしやすい' },
   { key: 'goyomatsu', label: '五葉松', category: 'goyomatsu', kind: 'display', stay: '2〜3日まで', winter: OUT_WINTER, light: '屋外の日なた・風通しのよい場所' },
   { key: 'kuromatsu', label: '黒松', category: 'kuromatsu', kind: 'display', stay: '2〜3日まで', winter: OUT_WINTER, light: '屋外の日なた' },
   { key: 'akamatsu', label: '赤松', category: 'akamatsu', kind: 'display', stay: '2〜3日まで', winter: OUT_WINTER, light: '屋外の日なた' },
