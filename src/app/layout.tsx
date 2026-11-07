@@ -3,6 +3,8 @@ import './globals.css'
 import '@/styles/editor.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { ForLocale, HtmlLang } from '@/components/layout/ForLocale'
+import { EnglishFooter, EnglishHeader } from '@/components/layout/EnglishChrome'
 import { BottomNavigation } from '@/components/layout/BottomNavigation'
 import { FavoritesDock } from '@/components/catalog/CompareBar'
 import { WebSiteStructuredData, OrganizationStructuredData } from '@/components/seo/StructuredData'
@@ -82,16 +84,18 @@ export default function RootLayout({
         <OrganizationStructuredData baseUrl="https://www.bonsai-collection.com" />
         <div className="min-h-screen flex flex-col">
           <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[70] focus:bg-sumi focus:px-4 focus:py-3 focus:text-sm focus:text-white">
-            本文へスキップ
+            <ForLocale ja="本文へスキップ" en="Skip to content" />
           </a>
-          <Header />
+          <HtmlLang />
+          {/* 英語のページ（/en）では、英語のヘッダー・フッターに切り替える */}
+          <ForLocale ja={<Header />} en={<EnglishHeader />} />
           {/* 下部タブは画面に固定して表示する。読み込みの途中で表示がずれないよう、本文より先に置く */}
-          <BottomNavigation />
+          <ForLocale ja={<BottomNavigation />} />
           <main id="main" className="flex-1 overflow-x-clip pb-16 lg:pb-0">
             {children}
           </main>
-          <Footer />
-          <FavoritesDock />
+          <ForLocale ja={<Footer />} en={<EnglishFooter />} />
+          <ForLocale ja={<FavoritesDock />} />
           <Toaster 
             position="bottom-right"
             toastOptions={{
