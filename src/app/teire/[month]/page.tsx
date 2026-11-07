@@ -19,6 +19,7 @@ import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { CONTAINER, NavyPanel, PageHeading, SectionTitle, chipClass } from '@/components/ui/design'
 import { GroupCareCard, MonthStrip, TaskRow } from '@/components/teire/TeireParts'
 import { RelatedTools } from '@/components/layout/RelatedTools'
+import { CareCalendarSubscribe } from '@/components/teire/CareCalendarSubscribe'
 import { heroPhoto, seasonPhotoSrc } from '@/lib/hero-photo'
 
 interface TeireMonthPageProps {
@@ -222,6 +223,8 @@ export default async function TeireMonthPage({ params }: TeireMonthPageProps) {
         title="育てている盆栽を登録すると、その樹の今月やることだけを表示します ›"
         className="mt-4"
       />
+      <CareCalendarSubscribe className="mt-12 lg:mt-16" />
+
       <RelatedTools hrefs={['/shojo', '/hajimete', '/zukan']} />
     </div>
   )

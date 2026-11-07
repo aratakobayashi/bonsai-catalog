@@ -84,6 +84,12 @@ function PageViewTracker() {
     // 盆栽園のページの、園への問い合わせ・来園につながるボタン（公式サイト・通販・電話・地図）。広告リンクは onClick で数える
     // 園ごとの送客数を集計し、掲載の価値を園に示す材料にする
     const onGardenClick = (event: MouseEvent) => {
+      // 手入れカレンダーの登録（どのグループを、どの方法で）
+      const calendar = (event.target as HTMLElement | null)?.closest<HTMLElement>('a[data-calendar]')?.dataset.calendar
+      if (calendar) {
+        gtag('event', 'calendar_subscribe', { target: calendar, content_group: pageTypeOf(window.location.pathname) })
+        return
+      }
       const gardenMatch = window.location.pathname.match(/^\/gardens\/([0-9a-f-]{36})\/?$/)
       const anchor = (event.target as HTMLElement | null)?.closest('a')
       if (!gardenMatch || !anchor || /\bsponsored\b/.test(anchor.rel)) return
