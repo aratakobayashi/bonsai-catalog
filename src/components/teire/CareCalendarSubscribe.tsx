@@ -9,7 +9,7 @@ export function CareCalendarSubscribe({ className = '' }: { className?: string }
     <section aria-labelledby="care-calendar" className={`border border-line bg-white ${className}`}>
       <div className="border-b border-line px-4 py-5 lg:px-6">
         <p className="flex items-center gap-2 text-[12px] tracking-[0.08em] text-gold-dark"><CareIcon name="season" className="h-4 w-4" />毎月、忘れずに</p>
-        <h2 id="care-calendar" className="mt-1.5 font-mincho text-[20px] font-bold tracking-[0.05em] text-ink lg:text-[23px]">手入れの予定をカレンダーに入れる</h2>
+        <h2 id="care-calendar" className="mt-1.5 font-mincho text-[18px] font-bold tracking-[0.03em] text-ink sm:text-[20px] lg:text-[23px]">手入れの予定をカレンダーに入れる</h2>
         <p className="mt-2 max-w-[720px] text-[13px] leading-[1.9] text-ink-soft">
           育てている樹のグループを選ぶと、毎月1日に「今月の手入れ」がカレンダーの予定として届きます。登録は無料で、メールアドレスなどの入力もいりません。やめたいときは、カレンダーアプリから削除できます。
         </p>
