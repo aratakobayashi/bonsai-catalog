@@ -11,6 +11,11 @@ export function hasCuratedImage(product: Pick<CatalogProduct, 'id' | 'imageUrl'>
   return Boolean(product.imageUrl) && LABELS[product.id] === 'clean'
 }
 
+// 目で確かめて「目立つ文字・バナー入り」と判定した写真か（一覧や棚では後ろに回す）
+export function hasTextImage(product: Pick<CatalogProduct, 'id'>): boolean {
+  return LABELS[product.id] === 'text'
+}
+
 // 写真のきれいさ（clean 2 > minor 1 > text・未確認 0）
 function imageScore(product: Pick<CatalogProduct, 'id' | 'imageUrl'>): number {
   if (!product.imageUrl) return -1

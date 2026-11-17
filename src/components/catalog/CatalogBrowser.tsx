@@ -139,14 +139,14 @@ export function CatalogBrowser({ filters, items, total, page, totalPages, basePa
       {/* 見出し：画面の端まで墨色の帯（各ページの冒頭と同じ色使い） */}
       {intro && (
         <div className="tone-dark bg-sumi">
-          <div className="mx-auto max-w-[1280px] px-4 pb-6 pt-5 lg:px-12 lg:pb-9 lg:pt-8">{intro}</div>
+          <div className="mx-auto max-w-[1280px] px-4 pb-4 pt-4 lg:px-12 lg:pb-9 lg:pt-8">{intro}</div>
         </div>
       )}
 
-      <div className="mx-auto max-w-[1280px] px-4 pb-12 pt-5 lg:px-12 lg:pb-16 lg:pt-8">
+      <div className="mx-auto max-w-[1280px] px-4 pb-12 pt-3 lg:px-12 lg:pb-16 lg:pt-8">
         {/* 売り場の切り替え（盆栽・苔玉／鉢・土・道具） */}
         {store && (
-          <nav aria-label="売り場" className="mb-6 flex border-b border-line lg:mb-8">
+          <nav aria-label="売り場" className="mb-4 flex border-b border-line lg:mb-8">
             {[
               { key: 'bonsai', label: '盆栽・苔玉', href: '/products' },
               { key: 'parts', label: '鉢・土・道具', href: '/products?type=parts' },
@@ -155,7 +155,7 @@ export function CatalogBrowser({ filters, items, total, page, totalPages, basePa
                 key={tab.key}
                 href={tab.href}
                 aria-current={store === tab.key ? 'page' : undefined}
-                className={`-mb-px inline-flex min-h-12 items-center border-b-2 px-4 font-mincho text-[15px] font-bold tracking-[0.05em] lg:px-6 lg:text-[17px] ${store === tab.key ? 'border-ink text-ink' : 'border-transparent text-ink-muted hover:text-ink'}`}
+                className={`-mb-px inline-flex min-h-11 items-center border-b-2 px-4 font-mincho text-[15px] font-bold tracking-[0.05em] lg:px-6 lg:text-[17px] ${store === tab.key ? 'border-ink text-ink' : 'border-transparent text-ink-muted hover:text-ink'}`}
               >
                 {tab.label}
               </Link>

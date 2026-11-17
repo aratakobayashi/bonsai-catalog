@@ -82,16 +82,18 @@ export function ProductsView({ all, params }: { all: CatalogProduct[]; params: R
         footer={<AmazonSearchLink keyword={amazonQuery} label={`Amazonでも「${amazonQuery}」を探す`} place={store === 'parts' ? 'parts_amazon' : 'products_amazon'} />}
         intro={
           <div>
-            <p className="flex items-center gap-3 text-[11px] tracking-[0.22em] text-gold">{filters.q ? '検索' : '盆栽コレクション'}<span className="h-px w-10 bg-gold" aria-hidden="true" /></p>
-            <h1 className="mt-2 font-mincho text-[24px] font-bold tracking-[0.08em] text-white lg:text-[32px]">{bandTitle}</h1>
+            <p className="hidden items-center gap-3 text-[11px] tracking-[0.22em] text-gold lg:flex">{filters.q ? '検索' : '盆栽コレクション'}<span className="h-px w-10 bg-gold" aria-hidden="true" /></p>
+            <h1 className="font-mincho lg:mt-2 text-[24px] font-bold tracking-[0.08em] text-white lg:text-[32px]">{bandTitle}</h1>
             {!filters.q && (
-              <p className="mt-2 text-[13px] leading-[1.8] text-white/75">
-                楽天市場の<strong className="mx-0.5 font-mincho text-[17px] font-bold text-gold">{total.toLocaleString()}</strong>件
-                {store === 'parts' ? 'の盆栽鉢・用土・道具・針金・肥料を、種類と価格で比べられます。' : 'の盆栽・苔玉を、樹種・大きさ・置き場所・予算で比べられます。'}
+              <p className="mt-1 text-[12.5px] leading-[1.8] text-white/75 lg:mt-2 lg:text-[13px]">
+                楽天市場の<strong className="mx-0.5 font-mincho text-[16px] font-bold text-gold lg:text-[17px]">{total.toLocaleString()}</strong>件
+                {/* スマホは1行に収めて、商品を早く見せる */}
+                <span className="lg:hidden">{store === 'parts' ? 'の鉢・土・道具を比べられます。' : 'の盆栽・苔玉を比べられます。'}</span>
+                <span className="hidden lg:inline">{store === 'parts' ? 'の盆栽鉢・用土・道具・針金・肥料を、種類と価格で比べられます。' : 'の盆栽・苔玉を、樹種・大きさ・置き場所・予算で比べられます。'}</span>
               </p>
             )}
             {browsing && (
-              <div className="mt-4 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="mt-3 flex gap-2 overflow-x-auto pb-1 lg:mt-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {SITE_TOOLS.filter(t => t.group === 'choose').map(t => (
                   <Link key={t.href} href={t.href} className="inline-flex min-h-10 shrink-0 items-center gap-1.5 border border-line bg-paper px-3 text-xs font-bold text-ink hover:border-ink hover:text-ink">
                     <CareIcon name={t.icon} className="h-3.5 w-3.5 text-gold-dark" />{t.label}

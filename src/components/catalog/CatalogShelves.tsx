@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
-import { byCuratedThenReviews, hasCuratedImage } from '@/components/home/curated'
+import { byCuratedThenReviews, hasCuratedImage, hasTextImage } from '@/components/home/curated'
 import type { CatalogProduct } from '@/lib/catalog-model'
 import { spreadSpecies } from '@/lib/catalog'
 import { currentSeasonJst, jstMonth, peakMonths } from '@/lib/seasons'
@@ -19,12 +19,17 @@ export interface Shelf {
 // 樹種の分かる、完成した盆栽・苔玉だけ（苗・素材や飾り物は棚に出さない）
 const isTree = (p: CatalogProduct) => (p.productType === 'tree' || p.productType === 'kokedama') && Boolean(p.speciesKey) && !isSeedlingOrMaterial(p)
 
+// 棚に出してよいレビューか：★4.0以上でレビュー5件以上を「信頼できる」とし、★3.5未満は棚に出さない
+const trusted = (p: CatalogProduct) => p.reviewCount >= 5 && p.reviewAverage >= 4
+const lowRated = (p: CatalogProduct) => p.reviewCount > 0 && p.reviewAverage > 0 && p.reviewAverage < 3.5
+
 function pick(products: CatalogProduct[], test: (p: CatalogProduct) => boolean, used: Set<string>, n = 8): CatalogProduct[] {
-  const list = products.filter(p => p.imageUrl && !used.has(p.id) && isTree(p) && test(p))
-  // 写真のきれいな商品を先に、その中ではレビューの多い順。樹種が重ならないように散らす
-  const curated = list.filter(hasCuratedImage).sort(byCuratedThenReviews)
-  const rest = list.filter(p => !hasCuratedImage(p)).sort(byCuratedThenReviews)
-  const picked = spreadSpecies([...curated, ...rest], 1, n).slice(0, n)
+  const list = products.filter(p => p.imageUrl && !used.has(p.id) && isTree(p) && test(p) && !lowRated(p))
+  // ①レビューが信頼でき、写真もきれいな商品 ②レビューが信頼できる商品 ③そのほか の順。文字入りの写真は最後に回す
+  // それぞれの中では、写真のきれいな順・レビューの多い順。樹種が重ならないように散らす
+  const tier = (p: CatalogProduct) => (trusted(p) ? 0 : 2) + (hasCuratedImage(p) ? 0 : 1) + (hasTextImage(p) ? 4 : 0)
+  const ordered = [...list].sort((a, b) => tier(a) - tier(b) || byCuratedThenReviews(a, b))
+  const picked = spreadSpecies(ordered, 1, n).slice(0, n)
   // 同じ商品をほかの棚に重ねて出さない
   picked.forEach(p => used.add(p.id))
   return picked

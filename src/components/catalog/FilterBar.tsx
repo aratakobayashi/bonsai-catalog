@@ -422,7 +422,7 @@ export function FilterBar({ allTab, tabs, tabsLabel = '樹種', menus, sort, con
           aria-haspopup="dialog"
           className="hidden max-w-[330px] shrink-0 items-baseline gap-2 whitespace-nowrap text-[13px] lg:flex"
         >
-          <span className="text-ink-muted">条件</span>
+          <span className="flex items-center gap-1.5 self-center text-ink-muted"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" aria-hidden="true" className="h-4 w-4"><path d="M4 7h10M18 7h2M4 17h4M12 17h8" /><circle cx="16" cy="7" r="2" /><circle cx="10" cy="17" r="2" /></svg>絞り込み</span>
           <span className={`overflow-hidden text-ellipsis border-b pb-px ${conditions.length ? 'border-ink text-ink' : 'border-line text-ink-muted'}`}>{conditionText}</span>
           <span className="text-[9px] text-ink-muted" aria-hidden="true">{panelOpen ? '▲' : '▼'}</span>
         </button>
@@ -438,7 +438,8 @@ export function FilterBar({ allTab, tabs, tabsLabel = '樹種', menus, sort, con
           aria-haspopup="dialog"
           className="flex shrink-0 items-center gap-1.5 border-l border-line bg-paper px-4 text-[13px] text-ink lg:hidden"
         >
-          条件
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" aria-hidden="true" className="h-4 w-4 text-ink-muted"><path d="M4 7h10M18 7h2M4 17h4M12 17h8" /><circle cx="16" cy="7" r="2" /><circle cx="10" cy="17" r="2" /></svg>
+          絞り込み
           {activeCount > 0 && (
             <span className="flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-sumi px-1 text-[10.5px] text-white">
               {activeCount}<span className="sr-only">件の条件を指定中</span>
@@ -482,7 +483,7 @@ export function FilterBar({ allTab, tabs, tabsLabel = '樹種', menus, sort, con
           >
             <div className="flex h-[52px] shrink-0 items-center border-b border-line pl-5 pr-2">
               <span id="filter-sheet-title" className="font-mincho text-[17px] font-bold">
-                <span className="lg:hidden">条件</span>
+                <span className="lg:hidden">絞り込み</span>
                 <span className="hidden lg:inline">キーワード・価格</span>
               </span>
               <button type="button" onClick={dismiss} className="ml-auto flex h-11 min-w-11 items-center justify-center px-3 text-[13px]">閉じる</button>
@@ -598,8 +599,10 @@ export function QuickFilters({ menus, chips, clearHref, showClear = chips.length
           )
         })}
         {(
-          <button type="button" onClick={() => window.dispatchEvent(new Event(OPEN_FILTERS_EVENT))} className="inline-flex min-h-10 items-center gap-1.5 px-2 text-[13px] text-ink underline decoration-line underline-offset-4 hover:decoration-ink">
-            もっと絞る
+          <button type="button" onClick={() => window.dispatchEvent(new Event(OPEN_FILTERS_EVENT))} className="inline-flex min-h-10 items-center gap-1.5 border border-line bg-white px-3 text-[13px] text-ink hover:border-ink">
+            {/* 上のバーの「絞り込み」と同じ条件を開く（同じ言葉とアイコンにそろえる） */}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" aria-hidden="true" className="h-4 w-4 text-ink-muted"><path d="M4 7h10M18 7h2M4 17h4M12 17h8" /><circle cx="16" cy="7" r="2" /><circle cx="10" cy="17" r="2" /></svg>
+            ほかの条件で絞り込む
           </button>
         )}
       </div>

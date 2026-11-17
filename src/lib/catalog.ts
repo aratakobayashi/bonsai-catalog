@@ -18,7 +18,7 @@ import { keywordTypeIntent, matchesKeyword, parseKeyword } from '@/lib/search-no
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
 import { AMAZON_ENABLED, isHiddenProductSource } from '@/lib/affiliate'
 import { jstMonth, peakMonths } from '@/lib/seasons'
-import { hasCuratedImage } from '@/components/home/curated'
+import { hasCuratedImage, hasTextImage } from '@/components/home/curated'
 
 export const PRODUCTS_CACHE_TAG = 'products'
 // キーワードの最大文字数（一覧の検索と検索候補で共通）
@@ -213,7 +213,9 @@ function recommendScore(p: CatalogProduct, month: number): number {
   const peak = peakMonths(p)
   const next = (month % 12) + 1
   const season = peak.includes(month) ? 3 : peak.includes(next) ? 1.5 : 0
-  return reviews + season + (hasCuratedImage(p) ? 1.5 : 0) + (p.source === 'amazon' ? 2 : 0) + (p.productType === 'tree' ? 1 : 0)
+  // 文字・バナー入りの写真と、評価の低い商品（★3.5未満）は後ろへ（一覧の上のほうの見た目と信頼感のため）
+  const lowRated = p.reviewCount >= 3 && p.reviewAverage > 0 && p.reviewAverage < 3.5
+  return reviews + season + (hasCuratedImage(p) ? 1.5 : 0) - (hasTextImage(p) ? 1.5 : 0) - (lowRated ? 2 : 0) + (p.source === 'amazon' ? 2 : 0) + (p.productType === 'tree' ? 1 : 0)
 }
 
 // 同じ樹種が並びすぎないよう、直近の window 件の中に同じ樹種が maxPerWindow 件を超えるときは後ろへ回す（並びの大きな順は保つ）
