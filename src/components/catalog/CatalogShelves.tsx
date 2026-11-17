@@ -53,11 +53,13 @@ export function buildShelves(products: CatalogProduct[]): Shelf[] {
 export function CatalogShelves({ shelves }: { shelves: Shelf[] }) {
   if (shelves.length === 0) return null
   // スマホは横スクロールにせず、上の2つの棚だけを2列×2段で見せる。残りの棚は写真つきの入口カードにまとめる
-  const entries = shelves.slice(2)
+  const SP_GRID = ['in_season', 'under_4000']
+  const gridKeys = new Set(shelves.some(s => SP_GRID.includes(s.key)) ? shelves.filter(s => SP_GRID.includes(s.key)).map(s => s.key) : shelves.slice(0, 2).map(s => s.key))
+  const entries = shelves.filter(s => !gridKeys.has(s.key))
   return (
     <div className="mb-5 space-y-9 lg:mb-6 lg:space-y-12">
-      {shelves.map((shelf, i) => (
-        <section key={shelf.key} aria-labelledby={`shelf-${shelf.key}`} className={i >= 2 ? 'hidden lg:block' : undefined}>
+      {shelves.map(shelf => (
+        <section key={shelf.key} aria-labelledby={`shelf-${shelf.key}`} className={gridKeys.has(shelf.key) ? undefined : 'hidden lg:block'}>
           <div className="flex items-baseline gap-3">
             <div className="min-w-0">
               <h2 id={`shelf-${shelf.key}`} className="font-mincho text-[18px] font-bold tracking-[0.05em] text-ink lg:text-[21px]">{shelf.title}</h2>
