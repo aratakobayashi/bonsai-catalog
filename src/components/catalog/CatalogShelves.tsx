@@ -29,7 +29,9 @@ function pick(products: CatalogProduct[], test: (p: CatalogProduct) => boolean, 
   // それぞれの中では、写真のきれいな順・レビューの多い順。樹種が重ならないように散らす
   const tier = (p: CatalogProduct) => (trusted(p) ? 0 : 2) + (hasCuratedImage(p) ? 0 : 1) + (hasTextImage(p) ? 4 : 0)
   const ordered = [...list].sort((a, b) => tier(a) - tier(b) || byCuratedThenReviews(a, b))
-  const picked = spreadSpecies(ordered, 1, n).slice(0, n)
+  // 信頼できるレビューの商品が6件以上あれば、それだけで棚を作る（8件に満たなくても、評価の弱い商品で埋めない）
+  const good = ordered.filter(trusted)
+  const picked = spreadSpecies(good.length >= 6 ? good : ordered, 1, n).slice(0, n)
   // 同じ商品をほかの棚に重ねて出さない
   picked.forEach(p => used.add(p.id))
   return picked
