@@ -7,7 +7,7 @@ import { currentSeasonJst, jstMonth, peakMonths } from '@/lib/seasons'
 import { isSeedlingOrMaterial } from '@/lib/selections'
 import { getHomeSpecies } from '@/components/home/species'
 
-// 商品一覧で何も絞り込んでいないときに、全件の一覧の上に並べる「棚」（目的ごとに8件、横にスクロール）
+// 商品一覧で何も絞り込んでいないときに、全件の一覧の上に並べる「棚」（目的ごとに8件。PCは横スクロール、スマホは2列×2段）
 export interface Shelf {
   key: string
   title: string
@@ -52,34 +52,65 @@ export function buildShelves(products: CatalogProduct[]): Shelf[] {
 
 export function CatalogShelves({ shelves }: { shelves: Shelf[] }) {
   if (shelves.length === 0) return null
+  // スマホは横スクロールにせず、上の2つの棚だけを2列×2段で見せる。残りの棚は写真つきの入口カードにまとめる
+  const entries = shelves.slice(2)
   return (
     <div className="mb-5 space-y-9 lg:mb-6 lg:space-y-12">
-      {shelves.map(shelf => (
-        <section key={shelf.key} aria-labelledby={`shelf-${shelf.key}`}>
+      {shelves.map((shelf, i) => (
+        <section key={shelf.key} aria-labelledby={`shelf-${shelf.key}`} className={i >= 2 ? 'hidden lg:block' : undefined}>
           <div className="flex items-baseline gap-3">
             <div className="min-w-0">
               <h2 id={`shelf-${shelf.key}`} className="font-mincho text-[18px] font-bold tracking-[0.05em] text-ink lg:text-[21px]">{shelf.title}</h2>
               <p className="mt-0.5 text-[12px] text-ink-muted">{shelf.note}</p>
             </div>
-            <Link href={shelf.href} className="-my-2 ml-auto inline-flex min-h-11 shrink-0 items-center text-[13px] text-ink">
+            <Link href={shelf.href} className="-my-2 ml-auto hidden min-h-11 shrink-0 items-center text-[13px] text-ink lg:inline-flex">
               <span className="border-b border-ink pb-0.5">すべて見る</span>
             </Link>
           </div>
-          {/* 横にスクロール（PCは4列ずつ見える幅） */}
-          <div data-list={`shelf:${shelf.key}`} className="-mx-4 mt-4 flex snap-x gap-3 overflow-x-auto px-4 pb-2 lg:-mx-0 lg:gap-5 lg:px-0">
-            {shelf.products.map(product => (
-              <div key={product.id} className="w-[42%] flex-none snap-start sm:w-[28%] lg:w-[calc((100%-80px)/5)] xl:w-[calc((100%-100px)/6)]">
-                <CatalogProductCard product={product} sizes="(max-width: 639px) 42vw, 200px" />
+          {/* スマホは2列×2段、PCは横に並べてスクロール */}
+          <div data-list={`shelf:${shelf.key}`} className="mt-4 grid grid-cols-2 gap-x-3.5 gap-y-6 lg:flex lg:snap-x lg:gap-5 lg:overflow-x-auto lg:pb-2">
+            {shelf.products.map((product, j) => (
+              <div key={product.id} className={`min-w-0 lg:w-[calc((100%-80px)/5)] lg:flex-none lg:snap-start xl:w-[calc((100%-100px)/6)] ${j >= 4 ? 'hidden lg:block' : ''}`}>
+                <CatalogProductCard product={product} sizes="(max-width: 1023px) 46vw, 200px" />
               </div>
             ))}
           </div>
+          <Link href={shelf.href} className="mt-5 flex min-h-12 items-center justify-center gap-1.5 border border-ink text-[14px] font-bold text-ink lg:hidden">
+            {shelf.title}をすべて見る<span aria-hidden="true">›</span>
+          </Link>
         </section>
       ))}
+      {entries.length > 0 && (
+        <nav aria-label="目的から探す" className="lg:hidden">
+          <ul className="grid grid-cols-[minmax(0,1fr)] gap-2.5">
+            {entries.map(shelf => {
+              const photo = shelf.products[0]
+              return (
+                <li key={shelf.key}>
+                  <Link href={shelf.href} data-list={`shelf_entry:${shelf.key}`} className="flex min-h-[76px] items-center gap-3 border border-line bg-white p-2 pr-3">
+                    <span className="block h-[60px] w-[60px] flex-none overflow-hidden bg-paper-deep">
+                      {photo?.imageUrl && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={photo.imageUrl.replace(/_ex=\d+x\d+/, '_ex=128x128')} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />
+                      )}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block font-mincho text-[15px] font-bold text-ink">{shelf.title}</span>
+                      <span className="block truncate text-[12px] text-ink-muted">{shelf.note}</span>
+                    </span>
+                    <span className="text-[18px] text-ink-muted" aria-hidden="true">›</span>
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
+      )}
     </div>
   )
 }
 
-// ---- 樹種のタイル（棚の下、全件の一覧の上。写真つきで横にスクロール） ----
+// ---- 樹種のタイル（棚の下、全件の一覧の上。スマホ4列、PC8列） ----
 
 export interface SpeciesTile {
   slug: string
@@ -110,9 +141,9 @@ export function SpeciesTiles({ tiles }: { tiles: SpeciesTile[] }) {
         <h2 id="species-tiles" className="font-mincho text-[18px] font-bold tracking-[0.05em] text-ink lg:text-[21px]">樹種から選ぶ</h2>
         <p className="text-[12px] text-ink-muted">育てやすさや見頃は、ほとんど樹種で決まります</p>
       </div>
-      <ul className="-mx-4 mt-4 flex snap-x gap-3 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-8 lg:gap-4 lg:overflow-visible lg:px-0">
+      <ul className="mt-4 grid grid-cols-4 gap-x-2.5 gap-y-4 lg:grid-cols-8 lg:gap-4">
         {tiles.map(t => (
-          <li key={t.slug} className="w-[96px] flex-none snap-start lg:w-auto">
+          <li key={t.slug} className="min-w-0">
             <Link href={`/products/category/${t.slug}`} className="group block">
               <span className="relative block aspect-square overflow-hidden bg-paper-deep">
                 {t.photo?.imageUrl && (
@@ -121,7 +152,7 @@ export function SpeciesTiles({ tiles }: { tiles: SpeciesTile[] }) {
                 )}
                 {t.inSeason && <span className="absolute left-1 top-1 bg-gold px-1.5 py-px text-[10px] font-bold text-sumi">見頃</span>}
               </span>
-              <span className="mt-1.5 block truncate font-mincho text-[14px] font-bold text-ink group-hover:text-gold-dark">{t.name}</span>
+              <span className="mt-1.5 block truncate font-mincho text-[13px] font-bold text-ink lg:text-[14px] group-hover:text-gold-dark">{t.name}</span>
               <span className="block text-[11px] text-ink-muted">{t.count}件</span>
             </Link>
           </li>
