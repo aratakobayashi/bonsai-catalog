@@ -210,7 +210,7 @@ export default async function ZukanEntryPage({ params }: ZukanPageProps) {
             ))}
           </div>
         </section>
-        <RelatedTools hrefs={['/kumiawase', '/shindan', '/teire']} />
+        <RelatedTools hrefs={['/kumiawase', '/osusume', '/teire']} />
       </article>
     </>
   )

@@ -240,7 +240,7 @@ export default async function NedanPage() {
         <AmazonSearchLink keyword="盆栽" label="Amazonでも盆栽の価格を見る" place="nedan_amazon" className="mt-6" />
       </section>
 
-      <RelatedTools hrefs={['/shindan', '/okurimono', '/hajimete']} />
+      <RelatedTools hrefs={['/osusume', '/shindan', '/okurimono']} />
     </div>
   )
 }

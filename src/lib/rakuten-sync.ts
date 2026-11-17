@@ -19,6 +19,13 @@ const REQUESTS_PER_CATEGORY: { sort: RakutenSort; page: number }[] = [
   { sort: 'standard', page: 3 },
   { sort: '-updateTimestamp', page: 1 },
 ]
+// 追加の検索（shop-categories の extraSearches）は、おすすめ順の1ページだけ取る
+const EXTRA_REQUEST: { sort: RakutenSort; page: number } = { sort: 'standard', page: 1 }
+// ジャンルを絞らない検索で残す商品：商品名に「盆栽」か「苔玉」があり、大きな鉢植え・種・造花ではないもの
+const BONSAI_NAME = /盆栽|苔玉|こけだま|コケダマ/
+const NOT_BONSAI_NAME = /(?:[7-9]|1[0-9])号|大型|大鉢|種子|の種|造花|フェイク|人工観葉/
+export const keepAnyGenreItem = (name: string) => BONSAI_NAME.test(name) && !NOT_BONSAI_NAME.test(name)
+
 // 楽天APIの上限（1秒1回程度）を超えないよう間隔をあける
 const REQUEST_INTERVAL_MS = 1100
 // この日数のあいだ同期で見つからなかった商品は販売終了などとみなして非表示にする
@@ -118,13 +125,18 @@ export async function syncRakutenProducts(): Promise<SyncSummary> {
 
     const rows: ReturnType<typeof toRow>[] = []
     let skipStandard = false
-    for (const { sort, page } of REQUESTS_PER_CATEGORY) {
-      if (skipStandard && sort === 'standard') continue
+    const requests = [
+      ...REQUESTS_PER_CATEGORY.map(r => ({ ...r, keyword: category.keyword, anyGenre: false })),
+      ...(category.extraSearches ?? []).map(x => ({ ...EXTRA_REQUEST, keyword: x.keyword, anyGenre: Boolean(x.anyGenre) })),
+    ]
+    for (const { sort, page, keyword, anyGenre } of requests) {
+      const isMain = keyword === category.keyword && !anyGenre
+      if (skipStandard && isMain && sort === 'standard') continue
       if (requestCount > 0) await sleep(REQUEST_INTERVAL_MS)
       requestCount++
       const { items, error } = await searchRakutenItems({
-        keyword: category.keyword,
-        genreId: category.group === 'tree' ? BONSAI_GENRE_ID : undefined,
+        keyword,
+        genreId: category.group === 'tree' && !anyGenre ? BONSAI_GENRE_ID : undefined,
         sort,
         page,
         hits: 30,
@@ -132,13 +144,14 @@ export async function syncRakutenProducts(): Promise<SyncSummary> {
       })
       if (error) {
         failedRequests++
-        errors.push(`${category.slug}/${sort}/p${page}: ${error}`)
+        errors.push(`${category.slug}/${keyword}/${sort}/p${page}: ${error}`)
         continue
       }
       const now = new Date().toISOString()
       // おすすめ順の途中で商品が尽きたら、それ以降のページは取得しない
-      const exhausted = sort === 'standard' && items.length < 30
+      const exhausted = isMain && sort === 'standard' && items.length < 30
       items.forEach(item => {
+        if (anyGenre && !keepAnyGenreItem(item.name)) return
         // 同じ商品が複数カテゴリに出た場合は、先に処理したカテゴリを優先
         if (!seen.has(item.code)) {
           seen.add(item.code)

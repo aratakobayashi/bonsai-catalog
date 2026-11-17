@@ -101,7 +101,7 @@ export default function ZukanIndexPage() {
             </Link>
           </div>
         </section>
-        <RelatedTools hrefs={['/kumiawase', '/shindan', '/teire']} />
+        <RelatedTools hrefs={['/kumiawase', '/osusume', '/teire']} />
       </div>
     </>
   )

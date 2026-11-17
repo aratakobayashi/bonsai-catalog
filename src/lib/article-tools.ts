@@ -59,6 +59,11 @@ export function articleToolLinks({ slug, title, speciesSlug, month }: { slug: st
     push({ href: '/shojo', label: '症状から調べる', title: '盆栽の調子が悪いときは、症状から原因を調べる', note: '葉が黄色い・しおれる・虫がついたなど12の症状', strong: true })
   }
 
+  // 室内で育てる・冬越し
+  if (has(/室内|部屋|インテリア|観葉|ガジュマル|フィカス|冬越し|冬の管理|寒さ/, title)) {
+    push({ href: '/shitsunai', label: '室内で育てられる？', title: '樹種ごとに、室内に置ける期間と冬の置き場所を早見表で', note: 'ガジュマル・松・もみじなど、樹種ごとに', strong: true })
+  }
+
   // 贈り物
   if (has(/贈|ギフト|プレゼント|敬老|父の日|母の日|お祝い|祝い|お歳暮|開店|還暦|長寿(?!梅)/, title)) {
     push({ href: '/okurimono', label: '贈り物ナビ', title: '誰に・どんな場面で・予算から、贈る盆栽を3鉢に絞る', note: '敬老の日・誕生日・開店祝いなど10の場面', strong: true })
@@ -71,6 +76,14 @@ export function articleToolLinks({ slug, title, speciesSlug, month }: { slug: st
     push({ href: `/zukan/${z.slug}`, label: '名前・樹形図鑑', title: `「${z.name}」とは`, note: z.summary, strong: true })
   } else if (zukan?.length || has(/樹形|品種|種類|名前|用語|英語/, title)) {
     push({ href: '/zukan', label: '名前・樹形図鑑', title: '懸崖・文人木・出猩々など、盆栽の名前と樹形の意味', note: '図と、その樹形の掲載商品', strong: true })
+  }
+
+  // 値段・選び方
+  if (has(/値段|価格|相場|予算|[0-9０-９,]+円|安い|高い|費用/, title)) {
+    push({ href: '/nedan', label: '盆栽の値段・相場', title: '樹種ごとの価格帯と、予算・大きさの目安', note: '楽天市場の掲載商品から集計', strong: true })
+  }
+  if (has(/おすすめ|選び方|人気|ランキング|初心者向け|通販|購入|買い方/, title)) {
+    push({ href: '/osusume', label: '盆栽のおすすめ', title: '初心者・室内・予算別に、レビューで選んだ一鉢', note: 'レビューの件数と評価で選んでいます', strong: true })
   }
 
   // はじめて

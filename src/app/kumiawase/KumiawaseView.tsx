@@ -382,7 +382,7 @@ export function KumiawaseView({ params, products }: { params: Record<string, str
             )}
           </div>
         </div>
-        <RelatedTools hrefs={['/soroeru', '/hajimete', '/okurimono']} />
+        <RelatedTools hrefs={['/soroeru', '/nedan', '/okurimono']} />
       </div>
     </>
   )

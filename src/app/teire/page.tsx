@@ -131,7 +131,7 @@ export default function TeireIndexPage() {
       />
       <CareCalendarSubscribe className="mt-12 lg:mt-16" />
 
-      <RelatedTools hrefs={['/shojo', '/hajimete', '/zukan']} />
+      <RelatedTools hrefs={['/shojo', '/shitsunai', '/hajimete']} />
     </div>
   )
 }

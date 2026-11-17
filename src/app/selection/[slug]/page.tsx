@@ -116,17 +116,17 @@ function priceRangeBySize(products: CatalogProduct[]) {
 
 // 特集ごとの「あわせて使える」（贈り物の特集は贈り物ナビ、道具の特集はそろえるリストなど）
 const SELECTION_TOOLS: Record<string, string[]> = {
-  'bonsai-gift': ['/okurimono', '/kumiawase', '/hajimete'],
+  'bonsai-gift': ['/okurimono', '/osusume', '/nedan'],
   'celebration-bonsai': ['/okurimono', '/kumiawase', '/hajimete'],
   'new-year-bonsai': ['/okurimono', '/teire', '/hajimete'],
   'starter-tools': ['/soroeru', '/hajimete', '/teire'],
-  'beginner-mini-bonsai': ['/hajimete', '/kumiawase', '/soroeru'],
-  'indoor-bonsai': ['/hajimete', '/shojo', '/note'],
-  'bonsai-under-3000': ['/okurimono', '/shindan', '/hajimete'],
-  'winter-bonsai': ['/teire', '/shojo', '/okurimono'],
+  'beginner-mini-bonsai': ['/hajimete', '/osusume', '/soroeru'],
+  'indoor-bonsai': ['/shitsunai', '/osusume', '/hajimete'],
+  'bonsai-under-3000': ['/nedan', '/osusume', '/shindan'],
+  'winter-bonsai': ['/teire', '/shitsunai', '/okurimono'],
   'christmas-bonsai': ['/okurimono', '/kumiawase', '/hajimete'],
   'oseibo-bonsai': ['/okurimono', '/teire', '/hajimete'],
-  'premium-bonsai': ['/okurimono', '/zukan', '/teire'],
+  'premium-bonsai': ['/nedan', '/okurimono', '/zukan'],
 }
 
 export default async function SelectionPage({ params }: SelectionPageProps) {

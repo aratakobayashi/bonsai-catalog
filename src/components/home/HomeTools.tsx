@@ -12,6 +12,8 @@ import { seasonPhotoSrc } from '@/lib/hero-photo'
 // トップの「迷ったら、ここから」：墨色の帯に、実物の写真で3つの機能を大きく見せ、残りは写真のタイルで並べる。
 // 写真は無料で使える実物の盆栽写真（出典は src/data/photo-credits.json。帯の下にまとめて表示する）
 const MAIN = ['/shindan', '/kumiawase', '/teire']
+// 写真のタイルは4列×2段に収める（ノートはフッター・育て方の一覧から）
+const HIDE_ON_HOME = ['/note']
 
 const SHINDAN_PHOTO = '/images/articles/photos/article-10-1.jpg'
 // そのほかの機能の写真
@@ -19,6 +21,7 @@ const TOOL_PHOTO: Record<string, string> = {
   '/okurimono': '/images/selections/photos/bonsai-gift.jpg',
   '/osusume': '/images/selections/photos/celebration-bonsai.jpg',
   '/nedan': '/images/selections/photos/bonsai-under-3000.jpg',
+  '/shitsunai': '/images/selections/photos/indoor-bonsai.jpg',
   '/soroeru': '/images/articles/photos/article-16-1.jpg',
   '/shojo': '/images/articles/photos/article-10-2.jpg',
   '/hajimete': '/images/selections/photos/beginner-mini-bonsai.jpg',
@@ -58,7 +61,7 @@ export interface PotShowcase {
 export function HomeTools({ month, readyCount, showcase }: { month: number; readyCount: number; showcase: PotShowcase | null }) {
   const care = getMonthCare(month)
   const highlights = monthHighlights(month)
-  const others = SITE_TOOLS.filter(t => !MAIN.includes(t.href))
+  const others = SITE_TOOLS.filter(t => !MAIN.includes(t.href) && !HIDE_ON_HOME.includes(t.href))
   const seasonPhoto = seasonPhotoSrc(month)
   const usedPhotos = [SHINDAN_PHOTO, seasonPhoto, ...others.map(t => TOOL_PHOTO[t.href]).filter(Boolean)]
   const creditNames = Array.from(new Set(usedPhotos.map(src => CREDITS[src]).filter((c): c is Credit => Boolean(c?.creator)).map(c => `${c.creator}（${c.license}）`)))

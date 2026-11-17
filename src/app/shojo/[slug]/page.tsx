@@ -209,7 +209,7 @@ export default async function ShojoDetailPage({ params }: PageProps) {
             もあわせてご覧ください。
           </p>
         </section>
-        <RelatedTools hrefs={['/teire', '/note', '/soroeru']} />
+        <RelatedTools hrefs={['/teire', '/shitsunai', '/soroeru']} />
       </div>
     </>
   )

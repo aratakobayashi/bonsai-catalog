@@ -1,11 +1,13 @@
 // 贈り物の時期（トップと贈り物ナビの「いまの時期の贈り物」に使う）
 // show〜end（日本時間の月日）のあいだ表示する。年をまたぐものは show が end より後ろになる。
-// サイトは5日ごとに作り直すので、ビルドした日の日付で決まる
+// ビルドした日の日付で決まる。切り替わる日は .github/workflows/daily-sync.yml の SWITCH_DAYS でサイトを作り直す（日付を変えたらそちらも直す）
 export interface GiftSeason {
   key: string
   label: string
   // いつまでに何をするかの目安（1行）
   deadline: string
+  // 締め切りが近づいたら差し替える1行（from の月日から）
+  late?: { from: [number, number]; deadline: string }
   show: [number, number]
   end: [number, number]
   guide: string
@@ -44,18 +46,21 @@ export const GIFT_SEASONS: GiftSeason[] = [
   },
   {
     key: 'oseibo', label: 'お歳暮', deadline: '12月上旬に注文し、20日ごろまでに届ける',
+    late: { from: [12, 11], deadline: '20日ごろまでに届くかは、各ショップのお届け日を確かめて注文' },
     show: [10, 15], end: [12, 20], guide: 'oseibo-bonsai-gift', guideLabel: 'お歳暮の選び方',
     selection: 'oseibo-bonsai', selectionLabel: 'お歳暮に贈る盆栽', scene: 'oseibo',
     photo: '/images/selections/photos/oseibo-bonsai.jpg',
   },
   {
     key: 'christmas', label: 'クリスマス', deadline: '配送が混む12月は、上旬までに注文',
+    late: { from: [12, 15], deadline: '24日に間に合うかは、各ショップのお届け日を確かめて注文' },
     show: [11, 10], end: [12, 24], guide: 'christmas-bonsai-guide', guideLabel: 'クリスマスの贈り方・飾り方',
     selection: 'christmas-bonsai', selectionLabel: 'クリスマスに飾る盆栽',
     photo: '/images/selections/photos/christmas-bonsai.jpg',
   },
   {
     key: 'newyear', label: '正月飾り', deadline: '28日ごろまでに飾りはじめ、松の内まで',
+    late: { from: [1, 1], deadline: '松の内（7日ごろ）まで飾り、片付けたら屋外の元の場所へ' },
     show: [12, 1], end: [1, 7], guide: 'new-year-bonsai-display', guideLabel: '正月の飾り方',
     selection: 'new-year-bonsai', selectionLabel: '正月に飾る盆栽',
     photo: '/images/selections/photos/new-year-bonsai.jpg',
@@ -83,4 +88,6 @@ export function activeGiftSeasons(date = new Date(), limit = 2): GiftSeason[] {
   })
     .sort((a, b) => untilEnd(a) - untilEnd(b))
     .slice(0, limit)
+    // 締め切りが近い時期は、案内の1行を差し替える（late.from は show〜end のあいだの日付）
+    .map(s => (s.late && today >= ord(s.late.from) && today <= ord(s.end) ? { ...s, deadline: s.late.deadline } : s))
 }

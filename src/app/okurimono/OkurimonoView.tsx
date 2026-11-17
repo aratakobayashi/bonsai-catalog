@@ -298,7 +298,7 @@ export function OkurimonoView({ params, products, articleMeta }: { params: Recor
               </li>
             </ul>
           </section>
-          <RelatedTools hrefs={['/kumiawase', '/hajimete', '/shindan']} />
+          <RelatedTools hrefs={['/osusume', '/nedan', '/kumiawase']} />
         </div>
       </div>
     </>

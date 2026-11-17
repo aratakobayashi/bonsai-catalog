@@ -17,6 +17,7 @@ export const SITE_TOOLS: SiteTool[] = [
   { href: '/kumiawase', label: '組み合わせで選ぶ', note: '樹・鉢・仕上げを選んで自分だけの一鉢', icon: 'bonsai', group: 'choose', photo: '/images/selections/photos/evergreen-bonsai.jpg', credit: 'sarahstierch / CC BY 2.0' },
   { href: '/osusume', label: '盆栽のおすすめ', note: '初心者・室内・予算別に、レビューで選んだ一鉢', icon: 'star', group: 'choose', photo: '/images/selections/photos/celebration-bonsai.jpg', credit: 'Tatiana12 / CC BY 2.0' },
   { href: '/nedan', label: '盆栽の値段・相場', note: '樹種ごとの価格帯と、予算・大きさの目安', icon: 'yen', group: 'choose', photo: '/images/selections/photos/bonsai-under-3000.jpg', credit: 'gergelyhideg / CC BY 2.0' },
+  { href: '/shitsunai', label: '室内で育てられる？', note: '樹種ごとの置き場所と冬の管理の早見表', icon: 'indoor', group: 'choose', photo: '/images/selections/photos/indoor-bonsai.jpg', credit: 'gergelyhideg / CC BY 2.0' },
   { href: '/soroeru', label: '鉢・土・道具をそろえる', note: '大きさに合う号数と土の配合', icon: 'scissors', group: 'choose', photo: '/images/articles/photos/article-16-1.jpg', credit: 'The Greenery Nursery / CC BY 2.0' },
   { href: '/teire', label: '今月の手入れ', note: '樹種別の水やり・置き場所・作業', icon: 'season', group: 'grow', photo: '/images/articles/photos/article-7-2.jpg', credit: 'ambabheg / CC BY 2.0' },
   { href: '/shojo', label: '症状から調べる', note: '葉が黄色い・しおれるなどの原因と対処', icon: 'search', group: 'grow', photo: '/images/articles/photos/article-10-2.jpg', credit: 'ncole458 / CC BY 2.0' },

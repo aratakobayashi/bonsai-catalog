@@ -238,7 +238,7 @@ export function ShindanView({ params, products }: { params: Record<string, strin
           </p>
         </section>
       )}
-      <RelatedTools hrefs={['/okurimono', '/kumiawase', '/soroeru']} />
+      <RelatedTools hrefs={['/osusume', '/nedan', '/okurimono']} />
     </div>
   )
 }

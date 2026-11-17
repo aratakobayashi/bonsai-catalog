@@ -200,7 +200,7 @@ export default function FAQPage() {
             でも詳しく解説しています。
           </p>
         </div>
-        <RelatedTools hrefs={['/shojo', '/hajimete', '/teire']} />
+        <RelatedTools hrefs={['/osusume', '/shitsunai', '/shojo']} />
       </div>
     </>
   )

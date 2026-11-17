@@ -9,8 +9,16 @@ export interface ShopCategory {
   name: string
   keyword: string
   ngKeyword?: string
+  // 追加の検索（同じカテゴリとして保存する）。室内向けの樹種のように、楽天の「盆栽」ジャンルの外に多く出ている商品を拾う
+  extraSearches?: ExtraSearch[]
   description: string
   intro: string
+}
+
+export interface ExtraSearch {
+  keyword: string
+  // true のとき楽天の「盆栽」ジャンルに絞らない（観葉植物のジャンルに出ている盆栽も拾う）。その場合は商品名に「盆栽」「苔玉」があるものだけ残す
+  anyGenre?: boolean
 }
 
 export const SHOP_CATEGORIES: ShopCategory[] = [
@@ -147,6 +155,14 @@ export const SHOP_CATEGORIES: ShopCategory[] = [
     group: 'tree',
     name: 'ガジュマル',
     keyword: 'ガジュマル 盆栽',
+    // ガジュマル・フィカスの盆栽は「観葉植物」のジャンルに出ていることが多いため、ジャンルを絞らずにも探す
+    extraSearches: [
+      { keyword: 'ガジュマル 盆栽', anyGenre: true },
+      { keyword: 'ガジュマル 苔玉', anyGenre: true },
+      { keyword: 'ガジュマル ミニ盆栽', anyGenre: true },
+      { keyword: 'フィカス 盆栽', anyGenre: true },
+      { keyword: 'ベンジャミン 盆栽', anyGenre: true },
+    ],
     description: '楽天市場で買えるガジュマルの盆栽を、価格・ショップ・レビュー件数で比較できます。',
     intro: 'ガジュマルは、太くふくらんだ根や幹が特徴の常緑樹です。寒さに弱いため、冬は室内の明るい場所で管理します。',
   },

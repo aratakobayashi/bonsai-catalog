@@ -72,7 +72,7 @@ export default function ShojoIndexPage() {
             ))}
           </ul>
         </section>
-        <RelatedTools hrefs={['/teire', '/note', '/soroeru']} />
+        <RelatedTools hrefs={['/teire', '/shitsunai', '/soroeru']} />
       </div>
     </>
   )

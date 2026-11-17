@@ -245,6 +245,8 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                   {careGroup && product.speciesKey && (
                     <Link href={`/note?add=${product.speciesKey}`} className="inline-flex min-h-11 items-center gap-1.5 border border-line bg-paper px-3.5 text-[13px] text-ink hover:border-ink"><CareIcon name="outdoor" className="h-4 w-4 text-gold-dark" />盆栽ノートに登録</Link>
                   )}
+                  <Link href="/shitsunai" className="inline-flex min-h-11 items-center gap-1.5 border border-line bg-paper px-3.5 text-[13px] text-ink hover:border-ink"><CareIcon name="indoor" className="h-4 w-4 text-gold-dark" />{product.speciesLabel ? `${product.speciesLabel}は室内で育てられる？` : '室内で育てられる？'}</Link>
+                  <Link href="/nedan#by-species" className="inline-flex min-h-11 items-center gap-1.5 border border-line bg-paper px-3.5 text-[13px] text-ink hover:border-ink"><CareIcon name="yen" className="h-4 w-4 text-gold-dark" />盆栽の値段の相場</Link>
                   {product.gift && (
                     <Link href="/okurimono" className="inline-flex min-h-11 items-center gap-1.5 border border-line bg-paper px-3.5 text-[13px] text-ink hover:border-ink"><CareIcon name="fruit" className="h-4 w-4 text-gold-dark" />贈り物ナビで比べる</Link>
                   )}

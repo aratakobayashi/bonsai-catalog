@@ -21,7 +21,7 @@ export default function FavoritesPage() {
       <Suspense fallback={<FavoritesView sharedIds={[]} />}>
         <SharedFavorites />
       </Suspense>
-      <RelatedTools hrefs={['/soroeru', '/note', '/okurimono']} />
+      <RelatedTools hrefs={['/soroeru', '/nedan', '/okurimono']} />
     </div>
   )
 }
