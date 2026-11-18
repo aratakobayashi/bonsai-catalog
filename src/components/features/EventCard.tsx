@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Event } from '@/types'
 import { cn } from '@/lib/utils'
 import { isTentativeEvent } from '@/lib/event-display'
+import { eventHref } from '@/lib/event-url'
 import {
   EventBadge,
   EventDateBlock,
@@ -32,7 +33,7 @@ export function EventCard({ event, className, layout = 'list', active = false, o
 
   return (
     <Link
-      href={`/events/${event.slug}`}
+      href={eventHref(event.slug)}
       onMouseEnter={onHover ? () => onHover(event) : undefined}
       onFocus={onHover ? () => onHover(event) : undefined}
       aria-current={active ? 'true' : undefined}

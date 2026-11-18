@@ -1,7 +1,7 @@
 import eventData from '@/data/event-updates.json'
 import { SELECTIONS } from '@/lib/selections'
 import { SHOP_CATEGORIES } from '@/lib/shop-categories'
-import { bandPages } from '@/lib/price-bands'
+import { indexableBandPages } from '@/lib/price-bands'
 import { OSUSUME_THEMES } from '@/lib/osusume'
 import { getCatalogProducts } from '@/lib/catalog-data'
 import { ZUKAN_ENTRIES } from '@/lib/zukan'
@@ -9,6 +9,7 @@ import { SHOJO } from '@/lib/shojo'
 import { getGardenList } from '@/lib/gardens-list'
 import { prefectureSlug } from '@/lib/prefectures'
 import { baseUrl, SITEMAP_CONFIG, createSitemapResponse, generateXmlHeader, generateXmlFooter, generateUrlElement } from '@/lib/sitemap-utils'
+import { eventHref } from '@/lib/event-url'
 
 export const revalidate = 3600
 
@@ -43,7 +44,7 @@ export async function GET() {
         changeFreq: 'daily',
         priority: 0.8
       })),
-      ...bandPages(await getCatalogProducts()).map(page => ({
+      ...indexableBandPages(await getCatalogProducts()).map(page => ({
         url: `${baseUrl}/products/category/${page.slug}/${page.band}`,
         lastMod: new Date().toISOString().split('T')[0],
         changeFreq: 'weekly',
@@ -68,13 +69,13 @@ export async function GET() {
         priority: 0.8
       },
       ...(eventData.inserts as { slug: string }[]).map(event => ({
-        url: `${baseUrl}/events/${event.slug}`,
+        url: `${baseUrl}${eventHref(event.slug)}`,
         lastMod: eventData.verifiedAt || new Date().toISOString().split('T')[0],
         changeFreq: 'weekly',
         priority: 0.6
       })),
       // 選ぶ・育てる道具
-      ...['/okurimono', '/kumiawase', '/nedan', '/shitsunai', '/en', '/en/omiya-bonsai-village', '/en/exhibitions', '/osusume', ...OSUSUME_THEMES.map(t => `/osusume/${t.slug}`), '/soroeru', '/teire', '/shojo', '/hajimete', '/zukan', '/note'].map(path => ({
+      ...['/okurimono', '/kumiawase', '/nedan', '/shitsunai', '/gardens/omiya-bonsai-village', '/en', '/en/omiya-bonsai-village', '/en/exhibitions', '/osusume', ...OSUSUME_THEMES.map(t => `/osusume/${t.slug}`), '/soroeru', '/teire', '/shojo', '/hajimete', '/zukan', '/note'].map(path => ({
         url: `${baseUrl}${path}`,
         lastMod: new Date().toISOString().split('T')[0],
         changeFreq: 'weekly',

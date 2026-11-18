@@ -23,6 +23,9 @@ export const PRICE_BANDS: PriceBand[] = [
 // 固定のページを作る最低件数（少ないと一覧として役に立たないため）
 export const BAND_MIN_ITEMS = 8
 
+// 検索エンジンに載せる最低件数。これより少ないページは作るが noindex にし、サイトマップにも入れない（一覧として薄いため）
+export const BAND_INDEX_MIN_ITEMS = 12
+
 // 樹種のカテゴリだけ（鉢・土・道具は除く）
 export const bandCategories = (): ShopCategory[] => SHOP_CATEGORIES.filter(c => c.group === 'tree')
 
@@ -39,5 +42,12 @@ export const getPriceBand = (slug: string) => PRICE_BANDS.find(b => b.slug === s
 export function bandPages(all: CatalogProduct[]): { slug: string; band: string }[] {
   return bandCategories().flatMap(category =>
     PRICE_BANDS.filter(band => bandProducts(all, category.slug, band).length >= BAND_MIN_ITEMS).map(band => ({ slug: category.slug, band: band.slug })),
+  )
+}
+
+// 検索エンジンに載せる組み合わせ（サイトマップ用）
+export function indexableBandPages(all: CatalogProduct[]): { slug: string; band: string }[] {
+  return bandCategories().flatMap(category =>
+    PRICE_BANDS.filter(band => bandProducts(all, category.slug, band).length >= BAND_INDEX_MIN_ITEMS).map(band => ({ slug: category.slug, band: band.slug })),
   )
 }

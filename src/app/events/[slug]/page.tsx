@@ -9,6 +9,7 @@ import { EVENT_ARTICLE_TOPICS, getTopicArticles } from '@/app/gardens/related-ar
 import { SITE_URL } from '@/lib/site'
 import { getEventMeta, isTentativeEvent } from '@/lib/event-display'
 import { eventPeriodText } from '@/components/features/EventShared'
+import { eventHref, eventUrlSlug } from '@/lib/event-url'
 
 interface EventDetailPageProps {
   params: { slug: string }
@@ -45,7 +46,9 @@ export const dynamicParams = false
 export async function generateStaticParams() {
   const { data, error } = await supabaseServer.from('events').select('slug').limit(5000)
   if (error) throw new Error(`イベントの一覧の取得エラー: ${error.message}`)
-  return ((data || []) as { slug: string | null }[]).filter(row => row.slug).map(row => ({ slug: row.slug as string }))
+  // URL は年を外した slug（src/lib/event-url.ts）。同じURLになる回は1ページにまとめる
+  const slugs = ((data || []) as { slug: string | null }[]).filter(row => row.slug).map(row => eventUrlSlug(row.slug as string))
+  return Array.from(new Set(slugs)).map(slug => ({ slug }))
 }
 
 export async function generateMetadata({ params }: EventDetailPageProps): Promise<Metadata> {
@@ -75,7 +78,7 @@ export async function generateMetadata({ params }: EventDetailPageProps): Promis
   return {
     title,
     description: description.slice(0, 160),
-    alternates: { canonical: `/events/${event.slug}` },
+    alternates: { canonical: eventHref(event.slug) },
     // 公式情報で確認したイベントだけを検索結果に出す
     ...(!getEventMeta(event.slug) && { robots: { index: false, follow: true } }),
     keywords: [
@@ -152,7 +155,7 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
       "priceCurrency": "JPY",
       "availability": "https://schema.org/InStock"
     },
-    "url": `${SITE_URL}/events/${event.slug}`
+    "url": `${SITE_URL}${eventHref(event.slug)}`
   }
 
   if (event.address) {

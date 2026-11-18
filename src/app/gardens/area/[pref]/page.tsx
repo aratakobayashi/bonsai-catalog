@@ -13,6 +13,7 @@ import { GardenAreaLinks } from '@/components/gardens/GardenAreaLinks'
 import { GardenShopBridge, pickBridgeProducts } from '@/components/gardens/GardenShopBridge'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { AreaMap } from './AreaMap'
+import { eventHref } from '@/lib/event-url'
 
 const SITE = 'https://www.bonsai-collection.com'
 
@@ -109,6 +110,17 @@ export default async function GardenAreaPage({ params }: PageProps) {
           lead={`${prefecture}で、盆栽を見たり買ったりできる盆栽園・盆栽店を${gardens.length}件まとめました。${experience > 0 ? `体験・教室のある園が${experience}件、` : ''}${online > 0 ? `オンラインで購入できる園が${online}件あります。` : ''}`}
         />
 
+        {/* 埼玉県：大宮盆栽村のガイドへ */}
+        {prefecture === '埼玉県' && (
+          <Link href="/gardens/omiya-bonsai-village" className="mt-8 flex min-h-[64px] items-center gap-3 border border-ink bg-white px-4 py-3 text-ink hover:border-gold-dark hover:text-gold-dark lg:mt-10">
+            <span className="min-w-0 flex-1">
+              <span className="block font-mincho text-[16px] font-bold">大宮盆栽村の楽しみ方</span>
+              <span className="block text-[12.5px] text-ink-muted">行き方・盆栽美術館・6つの盆栽園と大盆栽まつり</span>
+            </span>
+            <span aria-hidden="true">›</span>
+          </Link>
+        )}
+
         <div className="mt-8 grid gap-8 lg:mt-12 lg:grid-cols-[minmax(0,1fr)_420px] lg:gap-12">
           {/* 園の一覧 */}
           <section aria-labelledby="area-list">
@@ -151,7 +163,7 @@ export default async function GardenAreaPage({ params }: PageProps) {
             <ul className="mt-4 grid gap-2 sm:grid-cols-2">
               {events.map(e => (
                 <li key={e.slug}>
-                  <Link href={`/events/${e.slug}`} className="flex min-h-[56px] flex-col justify-center border border-line bg-white px-4 py-2.5 hover:border-ink">
+                  <Link href={eventHref(e.slug ?? "")} className="flex min-h-[56px] flex-col justify-center border border-line bg-white px-4 py-2.5 hover:border-ink">
                     <span className="text-[12px] text-gold-dark">{formatDate(e.start_date)}{e.end_date !== e.start_date ? `〜${formatDate(e.end_date)}` : ''}</span>
                     <span className="font-bold leading-snug text-ink">{e.title}</span>
                     {e.venue_name && <span className="text-[12px] text-ink-muted">{e.venue_name}</span>}

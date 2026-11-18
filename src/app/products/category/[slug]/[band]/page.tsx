@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getCatalogProducts } from '@/lib/catalog-data'
 import { getShopCategory } from '@/lib/shop-categories'
-import { PRICE_BANDS, bandPages, bandProducts, getPriceBand } from '@/lib/price-bands'
+import { BAND_INDEX_MIN_ITEMS, PRICE_BANDS, bandPages, bandProducts, getPriceBand } from '@/lib/price-bands'
 import { SIZE_OPTIONS } from '@/lib/catalog'
 import { SITE_URL } from '@/lib/site'
 import { formatPrice } from '@/lib/utils'
@@ -27,12 +27,15 @@ export async function generateStaticParams() {
 
 const subjectOf = (name: string) => (/盆栽|苔玉|もの$/.test(name) ? name : `${name}の盆栽`)
 
-export function generateMetadata({ params }: Props): Metadata {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category = getShopCategory(params.slug)
   const band = getPriceBand(params.band)
   if (!category || !band) return {}
   const subject = subjectOf(category.name)
+  // 商品が少ない組み合わせは、ページは残して検索エンジンには載せない
+  const count = bandProducts(await getCatalogProducts(), category.slug, band).length
   return {
+    ...(count < BAND_INDEX_MIN_ITEMS && { robots: { index: false, follow: true } }),
     title: `${band.label}の${subject}｜価格帯で選ぶ通販の一覧 - 盆栽コレクション`,
     description: `${band.label}で買える${subject}を、楽天市場の掲載商品からまとめました。この価格帯で選べる大きさ・鉢の傾向と、大きさ別の価格、選ぶときに確かめたい点を掲載しています。`,
     alternates: { canonical: `/products/category/${category.slug}/${band.slug}` },

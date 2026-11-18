@@ -1,6 +1,7 @@
 import { supabaseServer } from './supabase-server'
 import { Event, EventType, EventSearchParams } from '@/types'
 import { isTentativeEvent } from './event-display'
+import { eventUrlSlug, pickEventEdition } from '@/lib/event-url'
 
 export interface EventQueryParams {
   month?: string        // 2025-11
@@ -151,14 +152,15 @@ export async function getEvents(params: EventQueryParams = {}) {
 export async function getEventBySlug(slug: string) {
   try {
     // イベント詳細取得
-    const { data: event, error: eventError } = await supabaseServer
+    // URL の slug は年を外したもの（src/lib/event-url.ts）。年つきの slug の回をまとめて取り、ページに出す回を選ぶ
+    const { data: rows, error: eventError } = await supabaseServer
       .from('events')
       .select(`
         *,
         garden:gardens(id, name, prefecture, address, phone, website_url)
       `)
-      .eq('slug', slug)
-      .single()
+      .or(`slug.eq.${slug},slug.like.${slug}-20__`)
+    const event = eventError ? null : pickEventEdition(((rows || []) as any[]).filter(r => eventUrlSlug(r.slug) === eventUrlSlug(slug)))
 
     if (eventError || !event) {
       return null

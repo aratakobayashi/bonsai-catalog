@@ -6,7 +6,7 @@ import { EN_CHECKED, EnExternal, EnFacts, EnNextLinks, EnNote, EnSection } from 
 export const metadata: Metadata = {
   title: 'Omiya Bonsai Village Guide — Getting There, Museum and Gardens | Bonsai Collection',
   description: 'How to visit Omiya Bonsai Village in Saitama, 35 minutes from Tokyo: trains from Tokyo, the Omiya Bonsai Art Museum (hours, fees and the January 2027 closure), the six bonsai gardens, the Great Bonsai Festival in May, and garden etiquette.',
-  alternates: { canonical: '/en/omiya-bonsai-village' },
+  alternates: { canonical: '/en/omiya-bonsai-village', languages: { en: '/en/omiya-bonsai-village', ja: '/gardens/omiya-bonsai-village' } },
   openGraph: { locale: 'en_US', type: 'article', title: 'Omiya Bonsai Village Guide', url: 'https://www.bonsai-collection.com/en/omiya-bonsai-village' },
 }
 

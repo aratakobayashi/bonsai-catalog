@@ -8,6 +8,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { EventCard } from './EventCard'
 import { isTentativeEvent } from '@/lib/event-display'
 import { parseEventDate } from './EventShared'
+import { eventHref } from '@/lib/event-url'
 
 interface EventCalendarProps {
   events: Event[]
@@ -137,7 +138,7 @@ export function EventCalendar({ events, className }: EventCalendarProps) {
                     {dayEvents.slice(0, 2).map(event => (
                       <Link
                         key={event.id}
-                        href={`/events/${event.slug}`}
+                        href={eventHref(event.slug)}
                         className="pointer-events-auto hidden truncate px-1 py-px text-[11px] text-gold-dark hover:underline sm:block"
                         title={event.title}
                       >

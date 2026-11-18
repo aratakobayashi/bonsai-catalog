@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { Event } from '@/types'
 import { EventBadge, eventPlaceText, eventPriceShort, eventRangeParts, parseEventDate } from '@/components/features/EventShared'
+import { eventHref } from '@/lib/event-url'
 
 const WEEKDAYS = ['日', '月', '火', '水', '木', '金', '土']
 
@@ -25,7 +26,7 @@ export function EventFeatured({ events, className = '' }: { events: Event[]; cla
           const multi = event.start_date.slice(0, 10) !== event.end_date.slice(0, 10)
           return (
             <li key={event.id} className="w-[80%] flex-none snap-start sm:w-[46%] lg:w-auto">
-              <Link href={`/events/${event.slug}`} className="group flex h-full bg-paper text-ink transition-colors hover:bg-white">
+              <Link href={eventHref(event.slug)} className="group flex h-full bg-paper text-ink transition-colors hover:bg-white">
                 {/* 左：日付（暦のように大きく） */}
                 <span className="flex w-[72px] flex-none flex-col items-center justify-center border-r border-dashed border-line px-1 py-4 text-center">
                   <span className="text-[11px] tracking-[0.06em] text-gold-dark">

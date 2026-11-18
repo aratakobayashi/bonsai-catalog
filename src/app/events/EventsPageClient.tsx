@@ -19,6 +19,7 @@ import {
 import { eventPriceText } from '@/lib/event-display'
 import EventViewTabs, { parseEventView } from './EventViewTabs'
 import { EventFeatured } from '@/components/events/EventFeatured'
+import { eventHref } from '@/lib/event-url'
 import {
   WHEN_OPTIONS,
   currentEventsInOrder,
@@ -68,7 +69,7 @@ function EventPreview({ event }: { event: Event }) {
           ))}
         </dl>
         <div className="mt-5 flex gap-2.5">
-          <Link href={`/events/${event.slug}`} className="flex h-12 flex-1 items-center justify-center bg-sumi text-sm tracking-[0.04em] text-white hover:bg-sumi-light hover:text-white">
+          <Link href={eventHref(event.slug)} className="flex h-12 flex-1 items-center justify-center bg-sumi text-sm tracking-[0.04em] text-white hover:bg-sumi-light hover:text-white">
             詳しく見る
           </Link>
           {calendarUrl && (

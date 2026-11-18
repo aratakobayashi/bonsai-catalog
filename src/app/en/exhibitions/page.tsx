@@ -15,19 +15,19 @@ const SHOWS = [
     when: 'November 20–23, 2026', city: 'Kyoto', name: 'Nippon Bonsai Taikan-ten', ja: '日本盆栽大観展',
     venue: 'Miyako Messe (Kyoto International Exhibition Hall)', fee: '¥1,500',
     body: 'Japan’s largest autumn bonsai exhibition, with masterpiece trees and a large sales area for bonsai, pots and tools.',
-    jaHref: '/events/taikan-ten-2026',
+    jaHref: '/events/taikan-ten',
   },
   {
     when: 'January 8–10, 2027', city: 'Kyoto', name: 'Gafu-ten (52nd)', ja: '雅風展',
     venue: 'Miyako Messe', fee: '¥1,200 (18 and under free)',
     body: 'The national exhibition of shohin (small) bonsai, shown in traditional multi-tree display stands.',
-    jaHref: '/events/gafu-ten-2027',
+    jaHref: '/events/gafu-ten',
   },
   {
     when: 'February 2027 (two periods)', city: 'Tokyo', name: 'Kokufu Bonsai Exhibition (101st)', ja: '国風盆栽展',
     venue: 'Tokyo Metropolitan Art Museum, Ueno Park', fee: 'Please check the official announcement',
     body: 'Held for over 100 years, the most prestigious bonsai exhibition in Japan. The display changes between the first and second periods.',
-    jaHref: '/events/kokufu-bonsai-ten-2027',
+    jaHref: '/events/kokufu-bonsai-ten',
   },
   {
     when: 'May 3–5 (every year)', city: 'Saitama', name: 'Great Bonsai Festival', ja: '大盆栽まつり',

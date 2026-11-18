@@ -7,6 +7,7 @@ import { prefectureSlug } from '@/lib/prefectures'
 import { PrefectureTileMap } from '@/components/gardens/PrefectureTileMap'
 import { heroPhoto } from '@/lib/hero-photo'
 import { UpcomingTrim } from './UpcomingTrim'
+import { eventHref } from '@/lib/event-url'
 
 const VISIBLE = 4
 const PHOTO = heroPhoto('/images/articles/photos/article-15-1.jpg', '')
@@ -58,7 +59,7 @@ export function HomeOutings({ events, gardens, eventCount }: { events: Event[]; 
                       hidden={i >= VISIBLE}
                       className="w-[80%] flex-none snap-start sm:w-[46%] lg:w-auto"
                     >
-                      <Link href={`/events/${event.slug}`} className="group flex h-full bg-paper text-ink transition-colors hover:bg-white">
+                      <Link href={eventHref(event.slug)} className="group flex h-full bg-paper text-ink transition-colors hover:bg-white">
                         {/* 左：日付（暦のように大きく） */}
                         <span className="flex w-[74px] flex-none flex-col items-center justify-center border-r border-dashed border-line px-1 py-4 text-center">
                           <span className="text-[11px] tracking-[0.1em] text-gold-dark">{tentative ? '例年' : `${start.getMonth() + 1}月`}</span>

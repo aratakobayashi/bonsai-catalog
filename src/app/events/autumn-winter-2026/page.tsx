@@ -9,6 +9,7 @@ import { CONTAINER, PageHeading, SectionTitle } from '@/components/ui/design'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { SITE_URL } from '@/lib/site'
 import { heroPhoto } from '@/lib/hero-photo'
+import { eventHref } from '@/lib/event-url'
 
 // 秋冬（11月〜2月）の盆栽展カレンダー。「盆栽展 2026」「大観展 日程」などで探す人向けのまとめ
 // 掲載中のイベント（DB）から期間で抜き出し、月ごとに並べる。主な展示（大観展・雅風展・国風展・盆梅展）は先に案内する
@@ -88,7 +89,7 @@ export default async function AutumnWinterEventsPage() {
             name: '2026年 秋冬の盆栽展',
             url: pageUrl,
             numberOfItems: events.length,
-            itemListElement: events.map((e, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE_URL}/events/${e.slug}`, name: e.title })),
+            itemListElement: events.map((e, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE_URL}${eventHref(e.slug)}`, name: e.title })),
           }),
         }}
       />
@@ -132,7 +133,7 @@ export default async function AutumnWinterEventsPage() {
                 const range = eventRangeParts(event)
                 return (
                   <li key={event.slug}>
-                    <Link href={`/events/${event.slug}`} className="group block h-full bg-paper p-4 text-ink hover:bg-white lg:p-5">
+                    <Link href={eventHref(event.slug)} className="group block h-full bg-paper p-4 text-ink hover:bg-white lg:p-5">
                       <span className="block text-[12px] tracking-[0.04em] text-gold-dark">
                         {isTentativeEvent(event) ? `例年${parseEventDate(event.start_date).getMonth() + 1}月ごろ（日程は未発表）` : `${range.year}${range.main}`}
                       </span>
