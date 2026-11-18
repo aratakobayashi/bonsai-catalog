@@ -43,7 +43,7 @@ const FAQ = [
 // 大宮盆栽村の盆栽展（slug が omiya- で始まるもの）のうち、まだ終わっていないもの
 async function omiyaEvents(): Promise<Event[]> {
   const today = new Date().toISOString().slice(0, 10)
-  const { data, error } = await supabaseServer.from('events').select('*').like('slug', 'omiya-%').gte('end_date', today).order('start_date', { ascending: true }).limit(8)
+  const { data, error } = await supabaseServer.from('events').select('*').like('slug', 'omiya-%').gte('end_date', today).order('start_date', { ascending: true }).limit(12)
   if (error) throw new Error(`イベントの取得エラー: ${error.message}`)
   return (data || []) as Event[]
 }
