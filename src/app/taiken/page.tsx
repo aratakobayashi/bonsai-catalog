@@ -23,12 +23,17 @@ const FAQ = [
   { q: '体験に向いた季節はありますか？', a: '植え付けの体験は一年中開かれていることが多いものの、樹への負担が少ないのは気温の穏やかな春と秋です。真夏は持ち帰りの途中で弱りやすいので、車内の暑さに気をつけます。' },
 ]
 
-// これからの体験・講座のイベント（ワークショップ・講演）。types は JSON の配列（src/lib/events.ts の typesFilter と同じ書き方）
+// これからの体験・講座のイベント（ワークショップ・講演）。種類での絞り込みは取得したあとに行う（列の形式に左右されないように）
+// 取れなかったときは、この欄を出さないだけにする（ページ全体は作る）
 async function upcomingWorkshops(): Promise<Event[]> {
   const today = new Date().toISOString().slice(0, 10)
-  const { data, error } = await supabaseServer.from('events').select('*').or('types.cs.["workshop"],types.cs.["lecture"]').gte('end_date', today).order('start_date', { ascending: true }).limit(10)
-  if (error) throw new Error(`イベントの取得エラー: ${error.message}`)
-  return (data || []) as Event[]
+  const { data, error } = await supabaseServer.from('events').select('*').gte('end_date', today).order('start_date', { ascending: true }).limit(500)
+  if (error) {
+    console.warn(`体験・講座のイベントを取得できませんでした: ${error.message}`)
+    return []
+  }
+  const isWorkshop = (e: Event) => Array.isArray(e.types) && e.types.some(t => t === 'workshop' || t === 'lecture')
+  return ((data || []) as Event[]).filter(isWorkshop).slice(0, 10)
 }
 
 export async function generateMetadata(): Promise<Metadata> {
