@@ -176,7 +176,9 @@ export function applyArticleOverride<T extends Article>(article: T): T & Resolve
     updatedAt: new Date(updatedAt).getTime() >= new Date(article.publishedAt).getTime() ? updatedAt : article.updatedAt,
     featuredImage: (() => {
       const url = thumbnailPath(article.slug) ?? override.image
-      return url ? { url, alt: title, width: 1200, height: 630 } : article.featuredImage
+      if (url) return { url, alt: title, width: 1200, height: 630 }
+      // サムネイルを作り忘れた記事（scripts/thumbs/render.mjs）でも、一覧が写真なしにならないよう記事の写真を使う
+      return article.featuredImage ?? (override.photo ? { url: override.photo, alt: title } : undefined)
     })(),
     heroPhoto: override.photo,
     photoCredit: override.photo ? (photoCredits as Record<string, PhotoCredit>)[override.photo] : undefined,

@@ -53,9 +53,11 @@ const slugs = process.argv.slice(2).length
   ? process.argv.slice(2)
   : readdirSync(ARTICLES).filter(f => f.endsWith('.md')).map(f => f.replace(/\.md$/, ''))
 
+// 作業環境の Chromium（/opt/pw-browsers/chromium。古い環境では chromium-*/chrome-linux/chrome）
 const pw = '/opt/pw-browsers'
-const chrome = readdirSync(pw).filter(d => d.startsWith('chromium-')).sort().pop()
-const browser = await chromium.launch({ executablePath: `${pw}/${chrome}/chrome-linux/chrome` })
+const legacy = readdirSync(pw).filter(d => d.startsWith('chromium-')).sort().pop()
+const executablePath = existsSync(`${pw}/chromium`) ? `${pw}/chromium` : `${pw}/${legacy}/chrome-linux/chrome`
+const browser = await chromium.launch({ executablePath })
 const page = await browser.newPage({ viewport: { width: 1200, height: 630 } })
 mkdirSync(OUT, { recursive: true })
 for (const slug of slugs) {
