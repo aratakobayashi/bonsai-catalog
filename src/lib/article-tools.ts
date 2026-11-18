@@ -64,6 +64,11 @@ export function articleToolLinks({ slug, title, speciesSlug, month }: { slug: st
     push({ href: '/shitsunai', label: '室内で育てられる？', title: '樹種ごとに、室内に置ける期間と冬の置き場所を早見表で', note: 'ガジュマル・松・もみじなど、樹種ごとに', strong: true })
   }
 
+  // 体験・教室
+  if (has(/体験|教室|ワークショップ|習う|習い/, title)) {
+    push({ href: '/taiken', label: '盆栽体験・盆栽教室を探す', title: '全国の体験・教室のある盆栽園を、地域と内容から探す', note: 'ミニ盆栽づくり・苔玉・続けて通う教室', strong: true })
+  }
+
   // 盆栽園・盆栽展を訪ねる（関東・大宮）
   if (has(/大宮|盆栽村|盆栽美術館|盆栽園の訪ね方|関東/, title)) {
     push({ href: '/gardens/omiya-bonsai-village', label: '大宮盆栽村の楽しみ方', title: '行き方・盆栽美術館・6つの盆栽園と大盆栽まつり', note: '東京駅から約35分。見学のマナーも', strong: true })

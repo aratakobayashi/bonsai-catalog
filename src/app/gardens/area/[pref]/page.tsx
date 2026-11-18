@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { regionOf } from '@/lib/taiken'
 import { notFound } from 'next/navigation'
 import { supabaseServer } from '@/lib/supabase-server'
 import { getGardenList } from '@/lib/gardens-list'
@@ -109,6 +110,13 @@ export default async function GardenAreaPage({ params }: PageProps) {
           title={`${prefecture}の盆栽園・盆栽店`}
           lead={`${prefecture}で、盆栽を見たり買ったりできる盆栽園・盆栽店を${gardens.length}件まとめました。${experience > 0 ? `体験・教室のある園が${experience}件、` : ''}${online > 0 ? `オンラインで購入できる園が${online}件あります。` : ''}`}
         />
+
+        {/* 体験・教室のある園がある県：全国の体験・教室のページ（その地方）へ */}
+        {experience > 0 && (
+          <Link href={`/taiken#${regionOf(prefecture)?.key ?? ''}`} className="mt-6 inline-flex min-h-11 items-center gap-1.5 border-b border-ink text-[13.5px] text-ink hover:text-gold-dark lg:mt-8">
+            {prefecture}と近くの県の盆栽体験・教室を探す<span aria-hidden="true">›</span>
+          </Link>
+        )}
 
         {/* 埼玉県：大宮盆栽村のガイドへ */}
         {prefecture === '埼玉県' && (

@@ -202,7 +202,7 @@ export default async function OmiyaBonsaiVillagePage() {
         <p className="mt-5 text-[12px] leading-[1.8] text-ink-muted">2026年11月に確認した情報です。開館時間・料金・日程は変わることがあるため、出かける前に公式サイトで確かめてください。出典：さいたま市、大宮盆栽村（omiyabonsai.jp）、観光庁。<Link href="/en/omiya-bonsai-village" lang="en" className="ml-1 border-b border-line">English</Link></p>
       </section>
 
-      <RelatedTools hrefs={['/teire', '/osusume', '/hajimete']} />
+      <RelatedTools hrefs={['/taiken', '/teire', '/hajimete']} />
     </div>
   )
 }

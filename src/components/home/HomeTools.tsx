@@ -13,7 +13,7 @@ import { seasonPhotoSrc } from '@/lib/hero-photo'
 // 写真は無料で使える実物の盆栽写真（出典は src/data/photo-credits.json。帯の下にまとめて表示する）
 const MAIN = ['/shindan', '/kumiawase', '/teire']
 // 写真のタイルは4列×2段に収める（ノートはフッター・育て方の一覧から）
-const HIDE_ON_HOME = ['/note']
+const HIDE_ON_HOME = ['/note', '/taiken']
 
 const SHINDAN_PHOTO = '/images/articles/photos/article-10-1.jpg'
 // そのほかの機能の写真

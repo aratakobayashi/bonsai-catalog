@@ -19,6 +19,7 @@ export const SITE_TOOLS: SiteTool[] = [
   { href: '/nedan', label: '盆栽の値段・相場', note: '樹種ごとの価格帯と、予算・大きさの目安', icon: 'yen', group: 'choose', photo: '/images/selections/photos/bonsai-under-3000.jpg', credit: 'gergelyhideg / CC BY 2.0' },
   { href: '/shitsunai', label: '室内で育てられる？', note: '樹種ごとの置き場所と冬の管理の早見表', icon: 'indoor', group: 'choose', photo: '/images/selections/photos/indoor-bonsai.jpg', credit: 'gergelyhideg / CC BY 2.0' },
   { href: '/soroeru', label: '鉢・土・道具をそろえる', note: '大きさに合う号数と土の配合', icon: 'scissors', group: 'choose', photo: '/images/articles/photos/article-16-1.jpg', credit: 'The Greenery Nursery / CC BY 2.0' },
+  { href: '/taiken', label: '盆栽体験・教室', note: '全国の体験・教室を地域と内容から探す', icon: 'bonsai', group: 'grow', photo: '/images/articles/photos/bonsai-experience-programs-complete-guide-1.jpg', credit: 'Concord / CC BY 4.0' },
   { href: '/teire', label: '今月の手入れ', note: '樹種別の水やり・置き場所・作業', icon: 'season', group: 'grow', photo: '/images/articles/photos/article-7-2.jpg', credit: 'ambabheg / CC BY 2.0' },
   { href: '/shojo', label: '症状から調べる', note: '葉が黄色い・しおれるなどの原因と対処', icon: 'search', group: 'grow', photo: '/images/articles/photos/article-10-2.jpg', credit: 'ncole458 / CC BY 2.0' },
   { href: '/hajimete', label: 'はじめての1か月', note: '届いた日からのチェックリスト', icon: 'check', group: 'grow', photo: '/images/selections/photos/beginner-mini-bonsai.jpg', credit: 'Ryan Somma / CC BY 2.0' },

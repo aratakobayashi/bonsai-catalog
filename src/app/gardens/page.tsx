@@ -25,6 +25,21 @@ export default async function GardensPage() {
   return (
     <>
       <GardensPageClient gardens={gardens} shopBridge={bridge} />
+      {/* 体験・教室と、大宮盆栽村のガイドへ */}
+      <div className="mx-auto grid max-w-[1280px] grid-cols-[minmax(0,1fr)] gap-3 px-4 pb-8 sm:grid-cols-2 lg:px-12">
+        {[
+          { href: '/taiken', title: '盆栽体験・盆栽教室を探す', note: 'ミニ盆栽づくり・苔玉・続けて通う教室を地域から' },
+          { href: '/gardens/omiya-bonsai-village', title: '大宮盆栽村の楽しみ方', note: '行き方・盆栽美術館・6つの盆栽園と大盆栽まつり' },
+        ].map(l => (
+          <Link key={l.href} href={l.href} className="flex min-h-[64px] items-center gap-3 border border-ink bg-white px-4 py-3 text-ink hover:border-gold-dark hover:text-gold-dark">
+            <span className="min-w-0 flex-1">
+              <span className="block font-mincho text-[16px] font-bold">{l.title}</span>
+              <span className="block text-[12.5px] text-ink-muted">{l.note}</span>
+            </span>
+            <span aria-hidden="true">›</span>
+          </Link>
+        ))}
+      </div>
       {/* 都道府県ごとのまとめページへ（検索から地域名で探す人の入口） */}
       <GardenAreaLinks gardens={gardens} className="mx-auto max-w-[1280px] px-4 pb-8 lg:px-12" />
       {/* 盆栽園の方への案内（掲載情報の追加・修正） */}
