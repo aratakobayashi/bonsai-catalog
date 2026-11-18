@@ -91,8 +91,8 @@ export default async function TaikenPage() {
       <div className="mt-8 grid grid-cols-3 border-y border-line lg:mt-10">
         {[
           { n: places.length, label: '体験・教室のある園' },
-          { n: count('oneday'), label: '1回で参加できる体験' },
-          { n: count('class'), label: '続けて通う教室' },
+          { n: count('oneday'), label: '1回の体験' },
+          { n: count('class'), label: '通う教室' },
         ].map(s => (
           <div key={s.label} className="border-r border-line px-2 py-4 text-center last:border-r-0">
             <p className="font-mincho text-[26px] font-bold leading-none text-ink lg:text-[34px]">{s.n}<span className="ml-0.5 text-[13px]">{s.label === '体験・教室のある園' ? 'か所' : '園'}</span></p>

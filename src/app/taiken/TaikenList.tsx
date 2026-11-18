@@ -6,10 +6,11 @@ import { TAIKEN_KINDS, TAIKEN_REGIONS, type TaikenKind, type TaikenPlace } from 
 
 // 体験・教室のある盆栽園を、地域ごとに並べる。内容（1回の体験・教室・苔玉など）で絞り込める
 // 最初の表示（サーバーで作るHTML）ではすべての園を出す（検索エンジンにもすべて見えるように）
+// 地域の中は、探されやすい都道府県の順（関東なら東京→埼玉→神奈川…、関西なら京都→大阪…。TAIKEN_REGIONS の並び）
 export function TaikenList({ places }: { places: TaikenPlace[] }) {
   const [kind, setKind] = useState<TaikenKind | null>(null)
   const shown = kind ? places.filter(p => p.kinds.includes(kind)) : places
-  const regions = TAIKEN_REGIONS.map(r => ({ ...r, places: shown.filter(p => r.prefectures.includes(p.prefecture)) }))
+  const regions = TAIKEN_REGIONS.map(r => ({ ...r, places: shown.filter(p => r.prefectures.includes(p.prefecture)).sort((a, b) => r.prefectures.indexOf(a.prefecture) - r.prefectures.indexOf(b.prefecture)) }))
 
   return (
     <div>
