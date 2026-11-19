@@ -177,7 +177,8 @@ function partHeading(name: string, species: string | null, type: string): string
   // キット：品名が見つからないとき（「もみじ ハケメ丸鉢 … キット」など）は、樹種の栽培キットとする
   const isKitOnly = type === 'kit' && (!item || /鉢/.test(item.label(name, species)))
   if (!item && !isKitOnly) return null
-  const label = isKitOnly ? `${species ?? '盆栽'}の盆栽 栽培キット` : item!.label(name, species)
+  // 樹種が分からないキットは「盆栽の栽培キット」（「盆栽の盆栽」にしない）。苔玉のキットは「苔玉キット」
+  const label = isKitOnly ? (/苔玉/.test(name) ? '苔玉キット' : species ? `${species}の盆栽 栽培キット` : '盆栽の栽培キット') : item!.label(name, species)
   // 「盆栽道具セット｜4点セット」は「盆栽道具セット（4点）」にまとめる
   let attrs = partAttributes(name, label)
   let base = label
