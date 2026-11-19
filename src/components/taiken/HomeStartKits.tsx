@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
-import { byCuratedThenReviews } from '@/components/home/curated'
+import { byCuratedThenReviews, hasTextImage } from '@/components/home/curated'
 import type { CatalogProduct } from '@/lib/catalog-model'
 
 // 体験・教室のページ（/taiken）の「家で始める」：近くに教室がない人・まず家で試したい人に、
@@ -34,7 +34,7 @@ export const KIT_GROUPS = [
 ] as const
 
 export function pickKits(all: CatalogProduct[], limit = 4) {
-  return KIT_GROUPS.map(g => ({ ...g, products: all.filter(p => usable(p) && g.test(p)).sort(byCuratedThenReviews).slice(0, limit) })).filter(g => g.products.length >= 2)
+  return KIT_GROUPS.map(g => ({ ...g, products: all.filter(p => usable(p) && g.test(p)).sort((a, b) => Number(hasTextImage(a)) - Number(hasTextImage(b)) || byCuratedThenReviews(a, b)).slice(0, limit) })).filter(g => g.products.length >= 2)
 }
 
 export function HomeStartKits({ groups }: { groups: ReturnType<typeof pickKits> }) {
@@ -47,7 +47,10 @@ export function HomeStartKits({ groups }: { groups: ReturnType<typeof pickKits> 
       {groups.map(g => (
         <div key={g.key} className="mt-8">
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-line pb-2">
-            <h3 className="font-mincho text-[18px] font-bold text-ink">{g.title}<span className="ml-2 text-[12.5px] font-normal text-ink-muted">{g.note}</span></h3>
+            <div className="min-w-0">
+              <h3 className="font-mincho text-[18px] font-bold text-ink">{g.title}</h3>
+              <p className="mt-0.5 text-[12.5px] text-ink-muted">{g.note}</p>
+            </div>
             <Link href={g.more.href} className="text-[13px] text-ink underline decoration-line underline-offset-4 hover:text-gold-dark">{g.more.label} ›</Link>
           </div>
           <ul className="mt-4 grid grid-cols-2 gap-x-3.5 gap-y-6 lg:grid-cols-4 lg:gap-5">
