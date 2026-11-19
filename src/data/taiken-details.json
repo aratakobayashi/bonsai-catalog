@@ -1,1 +1,513 @@
-{ "checkedAt": "2026-11-19", "places": {} }
+{
+ "checkedAt": "2026-11-19",
+ "places": {
+  "76f9c85a-dd7d-4872-a2b2-8122937c3f07": {
+   "programs": [
+    {
+     "title": "Bonsai Masterclass in Japan（Seasonal School / Seasonal Intensives）",
+     "type": "course",
+     "content": "Adam Jones指導の7日間連続ワークショップ。毎日講義＋終日実技（針金かけ・剪定・デザイン等）、少人数制（各回5名まで）",
+     "price": "$2,500（ワークショップ料金。航空券・夕食・個人的費用は含まず。ホテル宿泊・送迎・昼食込み）",
+     "priceMin": null,
+     "duration": "7日間連続",
+     "schedule": "年4回開催（Seasonal Intensives 2027 受付中、具体的日程の記載なし）",
+     "takeHome": null,
+     "kids": null,
+     "english": true,
+     "booking": "応募フォームから申込（審査・受理後に支払い）",
+     "sourceUrl": "https://treehousebonsai.com/pages/bonsai-masterclass-japan-application"
+    },
+    {
+     "title": "Individual Intensives: 1 to 3 months",
+     "type": "private",
+     "content": "Adam Jonesの個人指導のもと1〜3か月滞在し、植え替え・水管理・剪定・樹形づくり等を実地で学ぶ",
+     "price": "From $5,000（宿泊費は含まず。昼食弁当・アパレル1点・輸出手続き30%割引付き）",
+     "priceMin": null,
+     "duration": "1〜3か月（最低1か月）",
+     "schedule": "要相談（問い合わせ）",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "Contact usページから問い合わせ",
+     "sourceUrl": "https://treehousebonsai.com/pages/bonsai-school"
+    },
+    {
+     "title": "体験（訪問する）マンツーマンレッスン",
+     "type": "private",
+     "content": "技法や盆栽理論をマンツーマンで学ぶレッスンで、オリジナル盆栽を作る",
+     "price": null,
+     "priceMin": null,
+     "duration": "2時間",
+     "schedule": "要予約",
+     "takeHome": true,
+     "kids": null,
+     "english": null,
+     "booking": "要予約（問い合わせページ）",
+     "sourceUrl": "https://treehousebonsai.com/ja/pages/experience-bonsai-tree-house-bonsai"
+    }
+   ]
+  },
+  "154bbc1d-fb5a-4a1f-bc7a-380c379d9898": {
+   "programs": [
+    {
+     "title": "盆栽教室（盆栽の基本的な手入れ作業講習）",
+     "type": "unknown",
+     "content": "少人数制で盆栽の基礎、育て方・剪定・季節の手入れ（植え替え・整姿等）を実践的に学ぶ。素材持参可、無ければ用意",
+     "price": "1回のレッスンは3000円〜（トップページ表記：要予約講習料3000円）",
+     "priceMin": 3000,
+     "duration": null,
+     "schedule": "要予約（予約制営業、営業10:00〜16:00、月・火定休）",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "電話（027-251-5577）またはお問い合わせページから予約",
+     "sourceUrl": "https://bonsaifukujyuen.simdif.com/盆栽教室.html"
+    }
+   ]
+  },
+  "e695fdf3-4e1c-4b6b-b20b-59e17cba279a": {
+   "programs": [
+    {
+     "title": "彩花盆栽教室 体験講座（1日体験）",
+     "type": "oneday",
+     "content": "盆栽の歴史・基礎知識を学び、講師指導で一鉢仕立て、管理方法も学ぶ（2026年10・11月はピラカンサ）",
+     "price": "7,700円(税込)（苗・鉢・土など盆栽づくりの費用すべて含む、現金払いのみ）",
+     "priceMin": 7700,
+     "duration": null,
+     "schedule": "日程は要問い合わせ（8校舎：盆栽町本校・大宮そごう・横浜そごう・表参道・池袋東武・千葉そごう・東京大丸・日本橋三越）",
+     "takeHome": true,
+     "kids": null,
+     "english": null,
+     "booking": "お問い合わせフォームまたは電話（0120-464-870）。希望日が3日以内なら電話で",
+     "sourceUrl": "https://saikabonsai-class.com/class-trial"
+    },
+    {
+     "title": "彩花盆栽教室 教室講座（ワンダーランドコース（初心者向け））",
+     "type": "course",
+     "content": "月1回の通学講座。剪定・針金成形・植替えなどを段階的に学ぶ。木と草花の寄せ植えスタイル。振替受講可",
+     "price": null,
+     "priceMin": null,
+     "duration": null,
+     "schedule": "月1回（8校舎、校舎・時間帯を選択）",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "お問い合わせフォームまたは電話（0120-464-870）",
+     "sourceUrl": "https://saikabonsai-class.com/class-inperson"
+    },
+    {
+     "title": "初めての盆栽　ご自宅講座（オンライン講座）",
+     "type": "course",
+     "content": "教材キット（年7鉢分）を自宅に配送し、講座動画視聴＋ZOOM個別相談・質問メールで学ぶ通信講座",
+     "price": null,
+     "priceMin": null,
+     "duration": "月1回・年間10回（入会時ZOOM相談会40〜60分程度）",
+     "schedule": "月1回・年間10回",
+     "takeHome": true,
+     "kids": null,
+     "english": null,
+     "booking": "お問い合わせフォーム／メール（saikamail@seikouen.cc）",
+     "sourceUrl": "https://saikabonsai-class.com/class-online"
+    }
+   ]
+  },
+  "9224395b-af6b-45e2-9d4d-f5400100a330": {
+   "programs": [
+    {
+     "title": "盆栽実技",
+     "type": "course",
+     "content": "職人による盆栽の作業の実演と解説を見学する（参加者は作業しない）",
+     "price": "参加費無料",
+     "priceMin": null,
+     "duration": "13時30分～14時30分",
+     "schedule": "令和8年4月～令和9年3月、毎月第4土曜日 13時30分～14時30分（13時15分開場）",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "予約不要・当日先着順（約30席、整理券なし）",
+     "sourceUrl": "https://www.city.saitama.lg.jp/004/005/004/006/003/p134722.html"
+    },
+    {
+     "title": "子ども向けワークショップ―はじめての盆栽づくり",
+     "type": "oneday",
+     "content": "真柏を使って小さな盆栽を作り、水やりなどの手入れ方法も学ぶ",
+     "price": "3,000円（材料費込み）",
+     "priceMin": 3000,
+     "duration": "10時00分～11時30分",
+     "schedule": "毎月第3日曜（年6回）：令和8年4/19・5/17・10/18・11/15、令和9年2/21・3/21 10時～",
+     "takeHome": null,
+     "kids": "小中学生とその保護者（子ども1名＋保護者1名で1組、定員10組）",
+     "english": null,
+     "booking": "さいたま市生涯学習情報システムで事前申込・先着順（各回、前月5日正午から当日8時30分まで）",
+     "sourceUrl": "https://www.city.saitama.lg.jp/004/005/004/006/003/p134724.html"
+    }
+   ]
+  },
+  "f4f3b251-fabb-42cd-b77f-5c45c75a6fd3": {
+   "programs": [
+    {
+     "title": "雨竹亭盆栽教室",
+     "type": "course",
+     "content": "プロスタッフが盆栽の技術・センス・精神を指導。初心者から手持ち盆栽の手入れ、飾り方・水石まで",
+     "price": "月謝: 5,000円（ニ回分）※出席が一回の場合は3,000円",
+     "priceMin": 3000,
+     "duration": null,
+     "schedule": "毎月第2・第4日曜日",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": null,
+     "sourceUrl": "https://www.bonsai-uchikutei.com/school.html"
+    }
+   ]
+  },
+  "20702388-f8b8-408e-8d6e-dd158031b048": {
+   "programs": [
+    {
+     "title": "盆栽体験",
+     "type": "oneday",
+     "content": "美術館で約1時間の盆栽体験（入館料込み）",
+     "price": "12,000円/1名（税別）（お支払いは現金にて。入館料込み）",
+     "priceMin": 12000,
+     "duration": "約1時間",
+     "schedule": "火曜日、木曜日、土曜日。10時～、14時～（事前予約必要・4日前）",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "事前予約（4日前）：電話・サイトの問い合わせ・メール（info@shunkaen-bonsai.com）",
+     "sourceUrl": "https://kunio-kobayashi.com/school.html"
+    },
+    {
+     "title": "盆栽教室",
+     "type": "course",
+     "content": "小林國雄先生による個別指導。自分の盆栽を持参（道具・用土・針金は用意あり）。初心者可",
+     "price": "初年度入会金 1万円(税込)（初年度のみ）、年会費 2万円(税込)",
+     "priceMin": null,
+     "duration": null,
+     "schedule": "毎週日曜日 10時～17時の好きな時間帯",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "美術館にて受付（事前に03-3670-8622へ電話で確認）",
+     "sourceUrl": "https://kunio-kobayashi.com/school.html"
+    }
+   ]
+  },
+  "1da87f61-d5cc-456c-827b-8a2ef675b68a": {
+   "programs": [
+    {
+     "title": "盆栽教室（初心者コース）",
+     "type": "course",
+     "content": "季節の樹木と向き合いながら盆栽の基本を学ぶ初心者コース（春：桜・モミジ類・花もの／秋：実もの・梅・松）",
+     "price": "材料費・23,100円（3回分・事前入金）＋講習料・3,300円（毎月の教室当日）",
+     "priceMin": null,
+     "duration": "教室時間90分前後",
+     "schedule": "春コース2・3・4月／秋コース10・11・12月（全3回）。毎月 第2火曜日・第2土曜日・第3土曜日 11:00",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": null,
+     "sourceUrl": "https://greenscape.co.jp/bonsai-class"
+    },
+    {
+     "title": "苔玉教室",
+     "type": "oneday",
+     "content": "季節の植物に触れながら苔玉づくりを楽しむ教室（苔玉2個作成）",
+     "price": "6,000円（材料費、苔玉2個作成、その他備品を含みます）",
+     "priceMin": 6000,
+     "duration": "教室時間90分前後",
+     "schedule": "年3回（5月・8月・12月）11:00〜。次回は2027年5月の開催予定",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "各開催月の1か月前から募集。申込金3,000円の入金確認後に予約完了（残り3,000円は当日）",
+     "sourceUrl": "https://greenscape.co.jp/kokedama-class"
+    }
+   ]
+  },
+  "297b50a9-9daf-4a80-a179-de7d9b863a9a": {
+   "programs": [
+    {
+     "title": "初心者向け「盆栽体験教室」",
+     "type": "oneday",
+     "content": "会員以外の初心者向け小品盆栽（20cm程度まで）教室。季節の手入れ・植え替え・針金掛け等",
+     "price": "毎月の教室講習費は3,000円。教材提供の場合は4,000円〜（教材提供内容により金額は変わります）",
+     "priceMin": 3000,
+     "duration": "2時間前後",
+     "schedule": "毎月1回土曜日 午後1時から（2026年は12月12日予定。11月14日は中止）",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "電話（0463-53-1801）・メール（info@bonsai-shofuen.com）で問い合わせ。新規参加は必ず連絡",
+     "sourceUrl": "http://www.bonsai-shofuen.com/kyoushitsu.html"
+    },
+    {
+     "title": "湘風小品盆栽会（会員向け盆栽教室）",
+     "type": "course",
+     "content": "会員向けに毎月1回盆栽教室を開催する小品盆栽の会。会員募集中・初心者も多い",
+     "price": null,
+     "priceMin": null,
+     "duration": null,
+     "schedule": "毎月1回",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "電話（0463-53-1801）・メール（info@bonsai-shofuen.com）で問い合わせ",
+     "sourceUrl": "http://www.bonsai-shofuen.com/kyoushitsu.html"
+    }
+   ]
+  },
+  "ea91013f-f98f-41d4-9b6b-d7a2815d0145": {
+   "programs": [
+    {
+     "title": "個人・グループレッスン（さつき盆栽・山野草の寄せ植えなど）",
+     "type": "private",
+     "content": "希望に合わせた内容で指導。木と道具は持参か、購入・貸出も可",
+     "price": "1時間2,000円",
+     "priceMin": 2000,
+     "duration": "1時間単位",
+     "schedule": "要予約",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "要予約（電話 0774-22-4463 / 090-9624-6221）",
+     "sourceUrl": "https://www.umeharaeikoen.com/classroom/index.html"
+    },
+    {
+     "title": "苔玉・苔盆栽ワークショップ",
+     "type": "oneday",
+     "content": "苔玉2個（土・ケト土込み、植物は別）と、10号程度の鉢で苔盆栽1鉢（苔・土・化粧砂込み）を作る",
+     "price": "2,000円",
+     "priceMin": 2000,
+     "duration": null,
+     "schedule": "要予約",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "要予約（電話 0774-22-4463 / 090-9624-6221）",
+     "sourceUrl": "https://www.umeharaeikoen.com/classroom/index.html"
+    }
+   ]
+  },
+  "c461d493-c16b-4b45-9a26-e3e15624e3c4": {
+   "programs": [
+    {
+     "title": "盆栽教室（広樹会）",
+     "type": "course",
+     "content": "小品盆栽の愛好会（全日本小品盆栽協会の公認会）。持ち込んだ木で毎月剪定・手入れの実習、ほかに鉢作り・研修旅行・展示会",
+     "price": "月額6,000円（入会金無料）",
+     "priceMin": 6000,
+     "duration": null,
+     "schedule": "月1回・原則第4日曜（令和8年度の日程表あり）",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "まず園に来園し、入会申込書（氏名・住所・電話）と会費を提出。広樹会事務局 075-691-5296",
+     "sourceUrl": "https://kojuen.webu.jp/class.html"
+    }
+   ]
+  },
+  "77a2d6e0-8b2a-455e-af37-7d4cd89257c7": {
+   "programs": [
+    {
+     "title": "Introductory Bonsai Lesson",
+     "type": "oneday",
+     "content": "盆栽と園の歴史・文化・基本の手入れを学ぶ約30分のレッスン。質疑応答の後、園内を自由に見学",
+     "price": "¥5,000 per attendee",
+     "priceMin": 5000,
+     "duration": "約30分",
+     "schedule": null,
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "メール（koukaenbonsai@gmail.com）",
+     "sourceUrl": "https://fujikawakoukaen.com/"
+    },
+    {
+     "title": "2 Hour Beginner Course",
+     "type": "oneday",
+     "content": "盆栽を1本選び、指導を受けながら樹形づくりと針金かけを行う入門コース",
+     "price": "¥25,000",
+     "priceMin": 25000,
+     "duration": "2時間",
+     "schedule": "1日2回 9:30〜11:30 / 13:30〜15:30（定員2名、それ以上は相談）",
+     "takeHome": null,
+     "kids": null,
+     "english": true,
+     "booking": "メール（koukaenbonsai@gmail.com）またはInstagram。2日前までの予約を推奨",
+     "sourceUrl": "https://fujikawakoukaen.com/bonsai-experience/"
+    },
+    {
+     "title": "Full Day Immersion Course",
+     "type": "oneday",
+     "content": "工房で弟子たちの日常作業に加わり、針金かけ・樹形づくりを実習する。昼食付き",
+     "price": "¥50,000",
+     "priceMin": 50000,
+     "duration": "9:00〜16:00",
+     "schedule": "随時 9:00〜16:00（定員2名）",
+     "takeHome": null,
+     "kids": null,
+     "english": true,
+     "booking": "メール（koukaenbonsai@gmail.com）またはInstagram。2日前までの予約を推奨",
+     "sourceUrl": "https://fujikawakoukaen.com/bonsai-experience/"
+    },
+    {
+     "title": "Extended training",
+     "type": "course",
+     "content": "3日間または1週間の集中研修（それ以上の期間は問い合わせ）",
+     "price": "3日間 ¥120,000 / 1週間 ¥200,000",
+     "priceMin": 120000,
+     "duration": "3日間 / 1週間",
+     "schedule": null,
+     "takeHome": null,
+     "kids": null,
+     "english": true,
+     "booking": "メール（koukaenbonsai@gmail.com）またはInstagram",
+     "sourceUrl": "https://fujikawakoukaen.com/bonsai-experience/"
+    }
+   ]
+  },
+  "d59a502e-61cb-427e-ac93-bb4da4dfc5f6": {
+   "programs": [
+    {
+     "title": "盆栽教室（初級コース・一般コース）",
+     "type": "course",
+     "content": "盆栽樹種全般の手入れ・管理の基礎を学ぶ。教材の盆栽は当園で選んで購入",
+     "price": "1回 2,000円・3,000円（コースにより異なる。教材の盆栽は実費）",
+     "priceMin": 2000,
+     "duration": "AM10時〜12時",
+     "schedule": "毎月第3土曜日 AM10時〜12時",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "電話（0727-51-3813）またはメール（tatsuo@yoshoen.com）",
+     "sourceUrl": "http://www.yoshoen.com/class.html"
+    },
+    {
+     "title": "個人指導クラス",
+     "type": "private",
+     "content": "受講者の希望に沿った内容で、習得したい樹種等を深く学ぶ。盆栽は持参または貸出",
+     "price": "１時間 3.000円",
+     "priceMin": 3000,
+     "duration": "1時間単位",
+     "schedule": "随時（要予約）",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "電話（0727-51-3813）またはメール（tatsuo@yoshoen.com）",
+     "sourceUrl": "http://www.yoshoen.com/class.html"
+    }
+   ]
+  },
+  "c0d05f51-6d9e-4cab-87e9-14f85f31f501": {
+   "programs": [
+    {
+     "title": "初心者講習",
+     "type": "course",
+     "content": "水やり・置き場所・道具の使い方を学びながら1本を仕立てる。少人数制、道具は用意あり",
+     "price": "要問い合わせ",
+     "priceMin": null,
+     "duration": "約3時間",
+     "schedule": "月1回・第1日曜日",
+     "takeHome": true,
+     "kids": null,
+     "english": null,
+     "booking": "お問い合わせフォームまたは電話（072-734-1831、9:00〜17:00）",
+     "sourceUrl": "https://baijuen.com/pages/services"
+    },
+    {
+     "title": "中級〜上級者講習",
+     "type": "course",
+     "content": "自分の木と道具を持参し、針金整姿・改作・席飾りまで長期的な樹作りを学ぶ",
+     "price": "要問い合わせ",
+     "priceMin": null,
+     "duration": "約3時間",
+     "schedule": "月1回・第4日曜日",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "お問い合わせフォームまたは電話（072-734-1831、9:00〜17:00）",
+     "sourceUrl": "https://baijuen.com/pages/services"
+    },
+    {
+     "title": "NHK文化センター「ミニ盆栽の楽しみ」",
+     "type": "course",
+     "content": "園主が講師。植え替え・剪定・管理の基本と飾る・育てる楽しみを学ぶ（NHK文化センターで開講）",
+     "price": null,
+     "priceMin": null,
+     "duration": null,
+     "schedule": "梅田教室 第2土曜 10:00〜12:00（神戸は講座一覧参照）",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "各NHK文化センターへ直接申込",
+     "sourceUrl": "https://baijuen.com/pages/services"
+    },
+    {
+     "title": "プライベートレッスン",
+     "type": "private",
+     "content": "自分の木を使いマンツーマンで指導。園内または出張（別途出張費）",
+     "price": "要問い合わせ",
+     "priceMin": null,
+     "duration": null,
+     "schedule": "相談のうえ日程調整",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "お問い合わせフォームまたは電話",
+     "sourceUrl": "https://baijuen.com/pages/services"
+    }
+   ]
+  },
+  "e1176b62-de5f-45d9-a48d-b2f6427dfb85": {
+   "programs": [
+    {
+     "title": "リザーブサービス",
+     "type": "private",
+     "content": "園主松末がマンツーマンで日常管理方法や整形を指導・相談。店内貸切またはZoom/Skypeでリモート",
+     "price": "60分5,500円(税込)（時間延長は別途追加費用）",
+     "priceMin": 5500,
+     "duration": "60分",
+     "schedule": "事前予約制",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "予約フォーム（申込後3営業日以内にヒアリングシート送付）",
+     "sourceUrl": "https://reserve.bonsai-suishoen.jp/"
+    }
+   ]
+  },
+  "5d5760c9-f3f0-4f79-9014-caaad6bfe55d": {
+   "programs": [
+    {
+     "title": "盆栽体験",
+     "type": "oneday",
+     "content": "季節に合わせ当店が用意した盆栽の植替え・剪定・針金整枝を体験。手ぶら参加可、道具無料貸出",
+     "price": "￥3,500（材料費込み）",
+     "priceMin": 3500,
+     "duration": "90分",
+     "schedule": "希望に応じて日程調整（要予約）",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "メール（bonsai.labo.rin@gmail.com、件名等に「WORKSHOP」と記載）",
+     "sourceUrl": "https://bonsai-labo-rin.com/workshops/"
+    },
+    {
+     "title": "盆栽指南",
+     "type": "oneday",
+     "content": "木と鉢（各1,000円〜）を選ぶか持ち込みで、植替え・剪定・針金整枝を指導",
+     "price": "￥5,500（材料費別、持ち込み可）",
+     "priceMin": 5500,
+     "duration": "約1時間",
+     "schedule": "希望に応じて日程調整（要予約）",
+     "takeHome": null,
+     "kids": null,
+     "english": null,
+     "booking": "メール（bonsai.labo.rin@gmail.com、件名等に「WORKSHOP」と記載）",
+     "sourceUrl": "https://bonsai-labo-rin.com/workshops/"
+    }
+   ]
+  }
+ }
+}
