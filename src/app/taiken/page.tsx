@@ -6,7 +6,7 @@ import { getGardenList } from '@/lib/gardens-list'
 import { supabaseServer } from '@/lib/supabase-server'
 import { eventHref } from '@/lib/event-url'
 import { eventDateText } from '@/lib/event-display'
-import { TAIKEN_KINDS, TAIKEN_REGIONS, buildTaikenPlaces } from '@/lib/taiken'
+import { PROGRAM_TYPE_LABEL, TAIKEN_CHECKED_AT, TAIKEN_KINDS, TAIKEN_REGIONS, buildTaikenPlaces, formatCheckedAt, priceRows } from '@/lib/taiken'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { RelatedTools } from '@/components/layout/RelatedTools'
 import { CONTAINER, PageHeading, SectionTitle } from '@/components/ui/design'
@@ -48,6 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function TaikenPage() {
   const [gardens, workshops] = await Promise.all([getGardenList(), upcomingWorkshops()])
   const places = buildTaikenPlaces(gardens)
+  const rows = priceRows(places)
   const count = (key: string) => places.filter(p => p.kinds.includes(key as never)).length
   const regionCounts = TAIKEN_REGIONS.map(r => ({ ...r, count: places.filter(p => r.prefectures.includes(p.prefecture)).length })).filter(r => r.count > 0)
 
@@ -126,8 +127,41 @@ export default async function TaikenPage() {
       </Link>
 
       <div className="mt-6 lg:mt-8">
-        <TaikenList places={places} />
+        <TaikenList places={places} checkedAt={TAIKEN_CHECKED_AT} />
       </div>
+
+      {/* 料金で比べる（公式サイトで確認できた、1回で参加できる体験・個人講習） */}
+      {rows.length > 0 && (
+        <section aria-labelledby="price-table" className="mt-14 lg:mt-20">
+          <SectionTitle><span id="price-table">料金で比べる：1回で参加できる盆栽体験</span></SectionTitle>
+          <p className="mt-3 max-w-[760px] text-[14px] leading-[1.85] text-ink-soft">各園の公式サイトに書かれている料金を、1人あたりの安い順に並べました（{formatCheckedAt(TAIKEN_CHECKED_AT)}確認）。材料費・税の扱いは園ごとに違うため、料金の書き方は公式サイトのままにしています。</p>
+          <div className="-mx-4 mt-4 overflow-x-auto px-4 lg:mx-0 lg:px-0">
+            <table className="w-full min-w-[640px] border-collapse text-left text-[13.5px]">
+              <thead>
+                <tr className="border-b border-ink text-[12px] text-ink-muted">
+                  <th scope="col" className="py-2 pr-3 font-normal">体験</th>
+                  <th scope="col" className="py-2 pr-3 font-normal">園・地域</th>
+                  <th scope="col" className="py-2 pr-3 font-normal">料金</th>
+                  <th scope="col" className="py-2 pr-3 font-normal">時間</th>
+                  <th scope="col" className="py-2 font-normal">持ち帰り</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map(({ place, program }) => (
+                  <tr key={`${place.id}-${program.title}`} className="border-b border-line align-top">
+                    <td className="py-2.5 pr-3"><a href={program.sourceUrl} target="_blank" rel="noopener noreferrer" className="font-bold text-ink hover:text-gold-dark">{program.title}</a><span className="ml-1.5 text-[11px] text-ink-muted">{PROGRAM_TYPE_LABEL[program.type]}</span></td>
+                    <td className="py-2.5 pr-3"><Link href={`/gardens/${place.id}`} className="text-ink underline decoration-line underline-offset-4 hover:text-gold-dark">{place.name}</Link><span className="block text-[12px] text-ink-muted">{place.prefecture}{place.city}</span></td>
+                    <td className="py-2.5 pr-3 text-ink">{program.price}</td>
+                    <td className="py-2.5 pr-3 text-ink-soft">{program.duration ?? '—'}</td>
+                    <td className="py-2.5 text-ink-soft">{program.takeHome === true ? 'できる' : program.takeHome === false ? 'できない' : '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-2 text-[12px] text-ink-muted">「—」は公式サイトに書かれていない項目です。</p>
+        </section>
+      )}
 
       {/* 日にちの決まった体験・講座 */}
       {workshops.length > 0 && (
@@ -188,7 +222,7 @@ export default async function TaikenPage() {
           ))}
         </dl>
         <p className="mt-5 text-[12px] leading-[1.8] text-ink-muted">
-          「{TAIKEN_KINDS.map(k => k.short).join('・')}」は、各園の公式サイトなどで確かめた紹介文の表記をもとに分けています。日程・料金・定員は変わることがあるため、申し込む前に各園の公式サイトで最新の情報を確かめてください。
+          「{TAIKEN_KINDS.map(k => k.short).join('・')}」は、各園の公式サイトなどで確かめた紹介文と、公式サイトの体験・教室の案内（{formatCheckedAt(TAIKEN_CHECKED_AT)}確認）をもとに分けています。料金・時間は公式サイトに書かれているものだけを載せています。日程・料金・定員は変わることがあるため、申し込む前に各園の公式サイトで最新の情報を確かめてください。
           掲載している盆栽園の方へ：<Link href="/gardens/owners" className="border-b border-line text-ink">掲載情報の追加・修正（無料）</Link>
         </p>
       </section>

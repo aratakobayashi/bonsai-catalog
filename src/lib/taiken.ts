@@ -1,6 +1,35 @@
 // 「盆栽体験・盆栽教室を探す」（/taiken）。体験・教室のある盆栽園（gardens.experience_programs）を地域と内容で探す
-// 内容の分類は、園の紹介文（公式サイトなどで確認した内容をまとめたもの）の言葉にもとづく。料金・日程は園ごとに違うため載せない
+// 内容の分類は、園の紹介文（公式サイトなどで確認した内容をまとめたもの）の言葉にもとづく。
+// 料金・所要時間などは、各園の公式サイトに書かれていることだけを src/data/taiken-details.json に確認日と出典つきで持つ（確認できた園だけ）
 import type { GardenListItem } from '@/app/gardens/GardensPageClient'
+import details from '@/data/taiken-details.json'
+
+export type ProgramType = 'oneday' | 'course' | 'private' | 'unknown'
+
+// 公式サイトで確認した体験・教室の1つ（書かれていない項目は null）
+export interface TaikenProgram {
+  title: string
+  type: ProgramType
+  content: string | null
+  price: string | null
+  priceMin: number | null
+  duration: string | null
+  schedule: string | null
+  takeHome: boolean | null
+  kids: string | null
+  english: boolean | null
+  booking: string | null
+  sourceUrl: string
+}
+
+interface DetailsFile {
+  checkedAt: string
+  places: Record<string, { programs: TaikenProgram[]; note?: string }>
+}
+const DETAILS = details as DetailsFile
+export const TAIKEN_CHECKED_AT = DETAILS.checkedAt
+
+export const PROGRAM_TYPE_LABEL: Record<ProgramType, string> = { oneday: '1回の体験', course: '教室', private: '個人講習', unknown: '体験・教室' }
 
 export interface TaikenRegion {
   key: string
@@ -19,7 +48,7 @@ export const TAIKEN_REGIONS: TaikenRegion[] = [
   { key: 'tohoku', label: '北海道・東北', hint: '札幌・山形・福島', prefectures: ['北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県'] },
 ]
 
-export type TaikenKind = 'oneday' | 'class' | 'kokedama' | 'reserve' | 'english'
+export type TaikenKind = 'oneday' | 'class' | 'kokedama' | 'reserve' | 'english' | 'takehome' | 'kids'
 
 export const TAIKEN_KINDS: { key: TaikenKind; label: string; short: string; note: string; test: RegExp }[] = [
   { key: 'oneday', label: '1回で参加できる体験', short: '1回の体験', note: 'ミニ盆栽づくり・ワークショップ・個人講習など', test: /体験|ワークショップ|(?:盆栽|苔玉)(?:づくり|作り)|レッスン|個人講習|マンツーマン/ },
@@ -27,6 +56,9 @@ export const TAIKEN_KINDS: { key: TaikenKind; label: string; short: string; note
   { key: 'kokedama', label: '苔玉づくり', short: '苔玉', note: '親子でも参加しやすい', test: /苔玉/ },
   { key: 'reserve', label: '予約制', short: '予約制', note: '日時を相談して申し込む', test: /予約/ },
   { key: 'english', label: '英語で受けられる', short: '英語OK', note: '海外からの来客と一緒に', test: /英語/ },
+  // 次の2つは公式サイトで確認できた園だけ（紹介文からは判定しない）
+  { key: 'takehome', label: '作品を持ち帰れる', short: '持ち帰りOK', note: '作った一鉢を持ち帰れると公式サイトに書かれている体験', test: /(?!)/ },
+  { key: 'kids', label: '子どもも参加できる', short: '子どもOK', note: '子どもの参加について公式サイトに書かれている体験', test: /(?!)/ },
 ]
 
 export interface TaikenPlace {
@@ -39,25 +71,61 @@ export interface TaikenPlace {
   kinds: TaikenKind[]
   // 大宮盆栽村の園（大宮盆栽村のガイドへの案内を出す）
   omiya: boolean
+  // 公式サイトで確認した体験・教室（確認できていない園は空）
+  programs: TaikenProgram[]
+  // 確認した体験のうち、いちばん安い1人あたりの料金（円）
+  priceMin: number | null
 }
 
 export function taikenKinds(text: string): TaikenKind[] {
   return TAIKEN_KINDS.filter(k => k.test.test(text)).map(k => k.key)
 }
 
+// 確認した体験・教室から分かる内容（紹介文からの分類に足す）
+function programKinds(programs: TaikenProgram[]): TaikenKind[] {
+  const kinds: TaikenKind[] = []
+  if (programs.some(p => p.type === 'oneday' || p.type === 'private')) kinds.push('oneday')
+  if (programs.some(p => p.type === 'course')) kinds.push('class')
+  if (programs.some(p => /苔玉/.test(`${p.title}${p.content ?? ''}`))) kinds.push('kokedama')
+  if (programs.some(p => p.type === 'private' || /予約/.test(`${p.booking ?? ''}${p.schedule ?? ''}`))) kinds.push('reserve')
+  if (programs.some(p => p.english === true)) kinds.push('english')
+  if (programs.some(p => p.takeHome === true)) kinds.push('takehome')
+  if (programs.some(p => Boolean(p.kids))) kinds.push('kids')
+  return kinds
+}
+
 export function buildTaikenPlaces(gardens: GardenListItem[]): TaikenPlace[] {
   return gardens
     .filter(g => g.experience_programs)
-    .map(g => ({
-      id: g.id,
-      name: g.name,
-      prefecture: g.prefecture ?? '',
-      city: g.city ?? '',
-      summary: g.summary ?? '',
-      website: g.website_url || undefined,
-      kinds: taikenKinds(`${g.name} ${g.summary ?? ''}`),
-      omiya: (g.city ?? '').includes('さいたま市') && /盆栽村|盆栽美術館|清香園|藤樹園|松雪園|九霞園|芙蓉園|蔓青園/.test(`${g.name}${g.summary ?? ''}`),
-    }))
+    .map(g => {
+      const programs = DETAILS.places[g.id]?.programs ?? []
+      const prices = programs.map(p => p.priceMin).filter((n): n is number => typeof n === 'number' && n > 0)
+      const kinds = new Set([...taikenKinds(`${g.name} ${g.summary ?? ''}`), ...programKinds(programs)])
+      return {
+        id: g.id,
+        name: g.name,
+        prefecture: g.prefecture ?? '',
+        city: g.city ?? '',
+        summary: g.summary ?? '',
+        website: g.website_url || undefined,
+        kinds: TAIKEN_KINDS.map(k => k.key).filter(k => kinds.has(k)),
+        omiya: (g.city ?? '').includes('さいたま市') && /盆栽村|盆栽美術館|清香園|藤樹園|松雪園|九霞園|芙蓉園|蔓青園/.test(`${g.name}${g.summary ?? ''}`),
+        programs,
+        priceMin: prices.length ? Math.min(...prices) : null,
+      }
+    })
+}
+
+// 料金で比べる表の行（1回で参加できる体験・個人講習で、料金が分かるもの）
+export function priceRows(places: TaikenPlace[]) {
+  return places
+    .flatMap(place => place.programs.filter(p => (p.type === 'oneday' || p.type === 'private') && typeof p.priceMin === 'number' && p.priceMin > 0).map(program => ({ place, program })))
+    .sort((a, b) => (a.program.priceMin as number) - (b.program.priceMin as number))
+}
+
+export const formatCheckedAt = (date: string) => {
+  const [y, m, d] = date.split('-').map(Number)
+  return `${y}年${m}月${d}日`
 }
 
 export const regionOf = (prefecture: string) => TAIKEN_REGIONS.find(r => r.prefectures.includes(prefecture))
