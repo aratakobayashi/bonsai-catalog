@@ -70,7 +70,7 @@ export function TaikenList({ places, checkedAt, photos }: { places: TaikenPlace[
             <div className="relative flex min-h-[120px] flex-col justify-end px-4 py-4 text-white lg:min-h-[150px] lg:px-7 lg:py-5">
               <h2 id={`region-${region.key}`} className="font-mincho text-[22px] font-bold tracking-[0.04em] lg:text-[28px]">{region.label}の盆栽体験・教室</h2>
               <p className="mt-1 text-[12.5px] text-white/80">{region.total}か所・{region.hint}</p>
-              {photos[region.key]?.credit && <p className="absolute bottom-1.5 right-3 text-[10px] text-white/45">写真：{photos[region.key].credit}</p>}
+              {photos[region.key]?.credit && <p className="absolute right-3 top-1.5 text-[10px] text-white/50 lg:bottom-1.5 lg:top-auto">写真：{photos[region.key].credit}</p>}
             </div>
           </div>
           {region.detailed.length > 0 && <p className="mt-3 text-[12px] text-ink-muted">料金・時間は{formatCheckedAt(checkedAt)}に各園の公式サイトで確認したものです。変わることがあるので、申し込む前に確かめてください。</p>}
