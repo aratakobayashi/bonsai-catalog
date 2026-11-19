@@ -40,7 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const places = buildTaikenPlaces(await getGardenList())
   return {
     title: `盆栽体験・盆栽教室を探す｜東京・京都・大阪など全国${places.length}か所の盆栽園 - 盆栽コレクション`,
-    description: `ミニ盆栽づくりや苔玉、続けて通う盆栽教室を開いている盆栽園を、東京・関東、京都・大阪・関西など地域ごとに全国${places.length}か所まとめました。東京・関西の体験は料金・所要時間・持ち帰りの可否を公式サイトで確かめて比べられ、1回で参加できる体験・予約制・英語対応などでも絞り込めます。`,
+    description: `ミニ盆栽づくりや苔玉、続けて通う盆栽教室を開いている盆栽園を、東京・関東、京都・大阪・関西など地域ごとに全国${places.length}か所まとめました。料金・所要時間・持ち帰りの可否を各園の公式サイトで確かめて比べられ、1回で参加できる体験・予約制・英語対応などでも絞り込めます。`,
     alternates: { canonical: PATH },
   }
 }
