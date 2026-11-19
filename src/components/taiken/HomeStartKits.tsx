@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { byCuratedThenReviews, hasTextImage } from '@/components/home/curated'
 import type { CatalogProduct } from '@/lib/catalog-model'
+import { AmazonSearchLink } from '@/components/catalog/AmazonSearchLink'
+import { TAIKEN_KIT_AMAZON } from '@/lib/amazon-picks'
 
 // 体験・教室のページ（/taiken）の「家で始める」：近くに教室がない人・まず家で試したい人に、
 // 楽天市場の苔玉キット・盆栽の栽培キット・道具付きのミニ盆栽セットを見せる（商品名の表記で分ける）
@@ -60,9 +62,12 @@ export function HomeStartKits({ groups }: { groups: ReturnType<typeof pickKits> 
               </li>
             ))}
           </ul>
+          {TAIKEN_KIT_AMAZON[g.key] && (
+            <AmazonSearchLink keyword={TAIKEN_KIT_AMAZON[g.key].keyword} label={`Amazonでも「${TAIKEN_KIT_AMAZON[g.key].label}」を探す`} place={`taiken_kit_amazon_${g.key}`} className="mt-5" />
+          )}
         </div>
       ))}
-      <p className="mt-6 text-[12px] text-ink-muted">PR：楽天市場の商品へのリンクを含みます。価格は取得時点のものです。</p>
+      <p className="mt-6 text-[12px] text-ink-muted">PR：楽天市場・Amazonへのリンクを含みます。価格は取得時点のものです。</p>
     </section>
   )
 }

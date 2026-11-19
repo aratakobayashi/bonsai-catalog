@@ -102,6 +102,14 @@ const ARTICLE_PICKS: Record<string, AmazonPick[]> = {
   'bonsai-display-guide': [P.stand],
   'senior-friendly-bonsai-guide': [P.scissors, P.joro],
   'children-bonsai-education-brain-development': [P.bonsaiKit, P.kokedamaKit],
+  // 始める・買う・体験する記事：キットと最初の道具
+  'bonsai-kit-guide': [P.bonsaiKit, P.kokedamaKit, P.toolSet, P.soil],
+  'bonsai-experience-programs-complete-guide': [P.kokedamaKit, P.bonsaiKit, P.toolSet],
+  'bonsai-pot-guide': [P.pot, P.net, P.soil, P.tsuchiire],
+  'article-5': [P.scissors, P.tweezers, P.joro, P.toolSet],
+  'beginner-tree-species-guide': [P.toolSet, P.scissors, P.joro],
+  'beginner-bonsai-buying-guide-online-vs-store': [P.toolSet, P.scissors, P.joro, P.okigoe],
+  'bonsai-online-sales-complete-guide': [P.joro, P.scissors, P.soil, P.okigoe],
 }
 
 // 贈り物の記事：盆栽そのものは楽天の特集で選び、Amazon は急ぎのときの道具・キットに
@@ -175,4 +183,25 @@ export function amazonPicksForSelection(slug: string): AmazonPickSet | null {
   if (GIFT_SELECTION_SLUGS.has(slug)) return GIFT_AMAZON_PICKS
   const picks = SELECTION_PICKS[slug]
   return picks ? { heading: 'あわせて使う道具・用品（Amazon）', note: DELIVERY_NOTE, picks } : null
+}
+
+// はじめての1か月（/hajimete）：届いた日からの世話に使うもの
+export const HAJIMETE_AMAZON_PICKS: AmazonPickSet = {
+  heading: '届いた盆栽の世話に使うもの（Amazon）',
+  note: DELIVERY_NOTE,
+  picks: [P.joro, P.scissors, P.okigoe, P.soil, P.net, P.toolSet],
+}
+
+// 室内で育てられる？（/shitsunai）：室内に置くときに使うもの
+export const SHITSUNAI_AMAZON_PICKS: AmazonPickSet = {
+  heading: '室内に置くときに使うもの（Amazon）',
+  note: DELIVERY_NOTE,
+  picks: [P.light, P.mist, P.joro, P.stand],
+}
+
+// 体験・教室（/taiken）の「家で始める」：キットごとの Amazon の検索語
+export const TAIKEN_KIT_AMAZON: Record<string, AmazonPick> = {
+  kokedama: P.kokedamaKit,
+  grow: P.bonsaiKit,
+  set: P.toolSet,
 }

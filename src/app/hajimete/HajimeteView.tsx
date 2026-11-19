@@ -7,6 +7,8 @@ import { jstMonth } from '@/lib/seasons'
 import { SITE_URL } from '@/lib/site'
 import { ALL_CHECK_IDS, KINDS, STAGES, parseKind, seasonNote } from '@/lib/hajimete'
 import { RelatedTools } from '@/components/layout/RelatedTools'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { HAJIMETE_AMAZON_PICKS } from '@/lib/amazon-picks'
 import { heroPhoto } from '@/lib/hero-photo'
 
 // 記事のタイトルとサムネイル（ページ側で src/content/articles から読んで渡す）
@@ -155,6 +157,7 @@ export function HajimeteView({ params, articleMeta }: { params: Record<string, s
             </div>
           </section>
         )}
+        <AmazonPicks set={HAJIMETE_AMAZON_PICKS} place="hajimete_amazon" className="mt-12 lg:mt-16" />
         <RelatedTools hrefs={['/note', '/teire', '/shojo']} />
       </div>
     </>

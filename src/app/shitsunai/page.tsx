@@ -6,6 +6,8 @@ import { heroPhoto } from '@/lib/hero-photo'
 import { CareIcon } from '@/components/catalog/CareIcon'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 import { RelatedTools } from '@/components/layout/RelatedTools'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { SHITSUNAI_AMAZON_PICKS } from '@/lib/amazon-picks'
 import { CONTAINER, PageHeading, SectionTitle } from '@/components/ui/design'
 
 // 「室内で育てられる？」樹種ごとの早見表（/shitsunai）。「盆栽 室内」で探す人に、樹種ごとの答えを一覧で返す
@@ -192,6 +194,7 @@ export default function ShitsunaiPage() {
         </ul>
       </section>
 
+      <AmazonPicks set={SHITSUNAI_AMAZON_PICKS} place="shitsunai_amazon" className="mt-12 lg:mt-16" />
       <RelatedTools hrefs={['/osusume', '/teire', '/shojo']} />
     </div>
   )
