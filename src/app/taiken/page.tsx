@@ -143,7 +143,7 @@ export default async function TaikenPage() {
                   <th scope="col" className="py-2 pr-3 font-normal">園・地域</th>
                   <th scope="col" className="py-2 pr-3 font-normal">料金</th>
                   <th scope="col" className="py-2 pr-3 font-normal">時間</th>
-                  <th scope="col" className="py-2 font-normal">持ち帰り</th>
+                  <th scope="col" className="whitespace-nowrap py-2 font-normal">持ち帰り</th>
                 </tr>
               </thead>
               <tbody>
@@ -153,7 +153,7 @@ export default async function TaikenPage() {
                     <td className="py-2.5 pr-3"><Link href={`/gardens/${place.id}`} className="text-ink underline decoration-line underline-offset-4 hover:text-gold-dark">{place.name}</Link><span className="block text-[12px] text-ink-muted">{place.prefecture}{place.city}</span></td>
                     <td className="py-2.5 pr-3 text-ink">{program.price}</td>
                     <td className="py-2.5 pr-3 text-ink-soft">{program.duration ?? '—'}</td>
-                    <td className="py-2.5 text-ink-soft">{program.takeHome === true ? 'できる' : program.takeHome === false ? 'できない' : '—'}</td>
+                    <td className="whitespace-nowrap py-2.5 text-ink-soft">{program.takeHome === true ? 'できる' : program.takeHome === false ? 'できない' : '—'}</td>
                   </tr>
                 ))}
               </tbody>

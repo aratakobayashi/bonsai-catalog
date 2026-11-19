@@ -22,7 +22,7 @@ export function TaikenList({ places, checkedAt }: { places: TaikenPlace[]; check
   return (
     <div>
       {/* 内容で絞り込む */}
-      <div className="sticky top-14 z-20 -mx-4 border-b border-line bg-paper/95 px-4 py-3 backdrop-blur lg:mx-0 lg:px-0">
+      <div className="sticky top-14 z-20 -mx-4 border-b border-line bg-paper px-4 py-3 lg:mx-0 lg:px-0">
         <p className="text-[12px] text-ink-muted" id="taiken-kind-label">内容で絞り込む</p>
         <div role="group" aria-labelledby="taiken-kind-label" className="mt-1.5 flex gap-2 overflow-x-auto pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap">
           <button type="button" onClick={() => setKind(null)} aria-pressed={kind === null} className={chip(kind === null)}>すべて（{places.length}）</button>
@@ -46,7 +46,7 @@ export function TaikenList({ places, checkedAt }: { places: TaikenPlace[]; check
       {kind && <p className="mt-3 text-[12.5px] text-ink-muted">{TAIKEN_KINDS.find(k => k.key === kind)?.note}。各園の紹介文と公式サイトの記載をもとに分けています。</p>}
 
       {regions.map(region => (
-        <section key={region.key} id={region.key} aria-labelledby={`region-${region.key}`} className="scroll-mt-32 pt-10 lg:scroll-mt-36 lg:pt-14">
+        <section key={region.key} id={region.key} aria-labelledby={`region-${region.key}`} className="scroll-mt-[260px] pt-10 lg:scroll-mt-[230px] lg:pt-14">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 border-b border-ink pb-2">
             <h2 id={`region-${region.key}`} className="font-mincho text-[21px] font-bold tracking-[0.04em] text-ink lg:text-[25px]">{region.label}の盆栽体験・教室</h2>
             <span className="text-[12.5px] text-ink-muted">{region.places.length}か所・{region.hint}</span>
