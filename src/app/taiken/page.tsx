@@ -12,6 +12,9 @@ import { RelatedTools } from '@/components/layout/RelatedTools'
 import { CONTAINER, PageHeading, SectionTitle } from '@/components/ui/design'
 import type { Event } from '@/types'
 import { TaikenList } from './TaikenList'
+import { HomeStartKits, pickKits } from '@/components/taiken/HomeStartKits'
+import { getCatalogProducts } from '@/lib/catalog-data'
+import type { CatalogProduct } from '@/lib/catalog-model'
 
 // 盆栽体験・盆栽教室を探す（/taiken）。「盆栽 体験 東京」「盆栽教室 京都」などで探す人に、全国の体験・教室のある盆栽園を地域と内容でまとめて返す
 const PATH = '/taiken'
@@ -58,7 +61,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function TaikenPage() {
-  const [gardens, workshops] = await Promise.all([getGardenList(), upcomingWorkshops()])
+  const [gardens, workshops, products] = await Promise.all([getGardenList(), upcomingWorkshops(), getCatalogProducts().catch(() => [] as CatalogProduct[])])
+  const kits = pickKits(products)
   const places = buildTaikenPlaces(gardens)
   const rows = priceRows(places)
   const count = (key: string) => places.filter(p => p.kinds.includes(key as never)).length
@@ -128,19 +132,34 @@ export default async function TaikenPage() {
         </ul>
       </nav>
 
-      {/* 東京から行きやすい：大宮盆栽村 */}
-      <Link href="/gardens/omiya-bonsai-village" className="mt-6 flex min-h-[64px] items-center gap-3 border border-ink bg-white px-4 py-3 text-ink hover:border-gold-dark hover:text-gold-dark">
-        <span className="min-w-0 flex-1">
-          <span className="block text-[11.5px] text-gold-dark">東京駅から約35分</span>
-          <span className="block font-mincho text-[16px] font-bold">大宮盆栽村で、見学と教室をあわせて楽しむ</span>
-          <span className="block text-[12.5px] text-ink-muted">盆栽美術館の講座と、教室を開く盆栽園の歩き方</span>
-        </span>
-        <span aria-hidden="true">›</span>
-      </Link>
+      {/* 入口：東京から行きやすい大宮盆栽村／近くに教室がないときのキット */}
+      <div className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-3 sm:grid-cols-2">
+        <Link href="/gardens/omiya-bonsai-village" className="flex min-h-[64px] items-center gap-3 border border-ink bg-white px-4 py-3 text-ink hover:border-gold-dark hover:text-gold-dark">
+          <span className="min-w-0 flex-1">
+            <span className="block text-[11.5px] text-gold-dark">東京駅から約35分</span>
+            <span className="block font-mincho text-[16px] font-bold">大宮盆栽村で、見学と教室をあわせて楽しむ</span>
+            <span className="block text-[12.5px] text-ink-muted">盆栽美術館の講座と、教室を開く盆栽園の歩き方</span>
+          </span>
+          <span aria-hidden="true">›</span>
+        </Link>
+        {kits.length > 0 && (
+          <a href="#ie-de" className="flex min-h-[64px] items-center gap-3 border border-line bg-paper-deep px-4 py-3 text-ink hover:border-ink">
+            <span className="min-w-0 flex-1">
+              <span className="block text-[11.5px] text-gold-dark">近くに教室がないときは</span>
+              <span className="block font-mincho text-[16px] font-bold">家で始める盆栽キット</span>
+              <span className="block text-[12.5px] text-ink-muted">苔玉キット・栽培キット・道具付きのセット</span>
+            </span>
+            <span aria-hidden="true">↓</span>
+          </a>
+        )}
+      </div>
 
       <div className="mt-6 lg:mt-8">
         <TaikenList places={places} checkedAt={TAIKEN_CHECKED_AT} photos={REGION_PHOTOS} />
       </div>
+
+      {/* 家で始める（楽天市場のキット） */}
+      <HomeStartKits groups={kits} />
 
       {/* 料金で比べる（公式サイトで確認できた、1回で参加できる体験・個人講習） */}
       {rows.length > 0 && (
