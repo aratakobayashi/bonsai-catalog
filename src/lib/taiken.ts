@@ -24,7 +24,8 @@ export interface TaikenProgram {
 
 interface DetailsFile {
   checkedAt: string
-  places: Record<string, { programs: TaikenProgram[]; note?: string }>
+  // note：カードに添える注意（公式サイトの更新が古いなど）。stale：情報が古い可能性があるため、料金の比較と並べ替えに使わない
+  places: Record<string, { programs: TaikenProgram[]; note?: string; stale?: boolean }>
 }
 const DETAILS = details as DetailsFile
 export const TAIKEN_CHECKED_AT = DETAILS.checkedAt
@@ -73,8 +74,11 @@ export interface TaikenPlace {
   omiya: boolean
   // 公式サイトで確認した体験・教室（確認できていない園は空）
   programs: TaikenProgram[]
-  // 確認した体験のうち、いちばん安い1人あたりの料金（円）
+  // 確認した体験のうち、いちばん安い1人あたりの料金（円）。情報が古い園は null
   priceMin: number | null
+  // カードに添える注意
+  note: string | null
+  stale: boolean
 }
 
 export function taikenKinds(text: string): TaikenKind[] {
@@ -98,8 +102,10 @@ export function buildTaikenPlaces(gardens: GardenListItem[]): TaikenPlace[] {
   return gardens
     .filter(g => g.experience_programs)
     .map(g => {
-      const programs = DETAILS.places[g.id]?.programs ?? []
-      const prices = programs.map(p => p.priceMin).filter((n): n is number => typeof n === 'number' && n > 0)
+      const detail = DETAILS.places[g.id]
+      const programs = detail?.programs ?? []
+      const stale = detail?.stale === true
+      const prices = stale ? [] : programs.map(p => p.priceMin).filter((n): n is number => typeof n === 'number' && n > 0)
       const kinds = new Set([...taikenKinds(`${g.name} ${g.summary ?? ''}`), ...programKinds(programs)])
       return {
         id: g.id,
@@ -112,6 +118,8 @@ export function buildTaikenPlaces(gardens: GardenListItem[]): TaikenPlace[] {
         omiya: (g.city ?? '').includes('さいたま市') && /盆栽村|盆栽美術館|清香園|藤樹園|松雪園|九霞園|芙蓉園|蔓青園/.test(`${g.name}${g.summary ?? ''}`),
         programs,
         priceMin: prices.length ? Math.min(...prices) : null,
+        note: detail?.note ?? null,
+        stale,
       }
     })
 }
@@ -119,6 +127,7 @@ export function buildTaikenPlaces(gardens: GardenListItem[]): TaikenPlace[] {
 // 料金で比べる表の行（1回で参加できる体験・個人講習で、料金が分かるもの）
 export function priceRows(places: TaikenPlace[]) {
   return places
+    .filter(place => !place.stale)
     .flatMap(place => place.programs.filter(p => (p.type === 'oneday' || p.type === 'private') && typeof p.priceMin === 'number' && p.priceMin > 0).map(program => ({ place, program })))
     .sort((a, b) => (a.program.priceMin as number) - (b.program.priceMin as number))
 }

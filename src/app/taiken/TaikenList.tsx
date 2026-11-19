@@ -88,6 +88,7 @@ function PlaceCard({ place, checkedAt }: { place: TaikenPlace; checkedAt: string
             {programs.map(p => <ProgramRow key={`${p.title}-${p.sourceUrl}`} program={p} />)}
           </ul>
           {place.programs.length > programs.length && <p className="mt-1.5 text-[12px] text-ink-muted">ほかに{place.programs.length - programs.length}つの体験・教室があります</p>}
+          {place.note && <p className="mt-2 border-l-2 border-gold bg-gold-light px-2.5 py-1.5 text-[12px] leading-[1.6] text-ink">{place.note}</p>}
           <p className="mt-2 text-[11.5px] leading-[1.6] text-ink-muted">{formatCheckedAt(checkedAt)}に公式サイトで確認。変わることがあるので、申し込む前に確かめてください。</p>
         </>
       ) : (
