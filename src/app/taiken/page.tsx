@@ -16,6 +16,18 @@ import { TaikenList } from './TaikenList'
 // 盆栽体験・盆栽教室を探す（/taiken）。「盆栽 体験 東京」「盆栽教室 京都」などで探す人に、全国の体験・教室のある盆栽園を地域と内容でまとめて返す
 const PATH = '/taiken'
 
+// 地域の見出しの写真（無料で使える実物の盆栽写真。出典は photo-credits.json）
+const REGION_PHOTOS = Object.fromEntries(
+  ([
+    ['kanto', '/images/articles/photos/bonsai-exhibition-viewing-guide-1.jpg'],
+    ['kinki', '/images/articles/photos/article-1-1.jpg'],
+    ['chubu', '/images/articles/photos/article-7-2.jpg'],
+    ['chugoku-shikoku', '/images/selections/photos/evergreen-bonsai.jpg'],
+    ['kyushu', '/images/selections/photos/flowering-bonsai.jpg'],
+    ['tohoku', '/images/articles/photos/bonsai-diplomacy-gift-etiquette-2.jpg'],
+  ] as const).map(([key, src]) => [key, { src, credit: heroPhoto(src).credit }]),
+)
+
 const FAQ = [
   { q: '盆栽体験はどのくらいの時間がかかりますか？', a: 'ミニ盆栽の植え付けや苔玉づくりは、1〜2時間ほどで終わるものが多く、観光の合間にも参加しやすい内容です。手入れを教わる体験や続けて通う教室は、樹の状態を見ながら進めるため、少人数のことがよくあります。' },
   { q: '初めてでも参加できますか？', a: '初心者向けの体験や教室を開いている園が多くあります。初めてなら、植えた一鉢を持ち帰れて、道具と材料が料金に含まれている体験を選ぶと、そのまま家で育て始められます。' },
@@ -127,7 +139,7 @@ export default async function TaikenPage() {
       </Link>
 
       <div className="mt-6 lg:mt-8">
-        <TaikenList places={places} checkedAt={TAIKEN_CHECKED_AT} />
+        <TaikenList places={places} checkedAt={TAIKEN_CHECKED_AT} photos={REGION_PHOTOS} />
       </div>
 
       {/* 料金で比べる（公式サイトで確認できた、1回で参加できる体験・個人講習） */}
