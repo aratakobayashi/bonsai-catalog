@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>苔玉の作り方の流れ</title>
+  <rect width="800" height="560" fill="#faf7f0"/>
+  <text x="24" y="48" font-size="30" font-weight="700" fill="#2c2a26">苔玉の作り方：7つの手順</text>
+  <g font-size="21">
+    <!-- row 1 -->
+    <rect x="22" y="76" width="178" height="170" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <circle cx="56" cy="110" r="20" fill="#5b7f4a"/><text x="56" y="118" text-anchor="middle" font-weight="700" fill="#fff">1</text>
+    <path d="M70 160 h82 l-8 52 h-66 z" fill="#d9e6ef"/><path d="M78 172 q12 -10 24 0 q12 -10 24 0" fill="none" stroke="#6f9558" stroke-width="6" stroke-linecap="round"/>
+    <text x="111" y="236" text-anchor="middle" font-weight="700" fill="#2c2a26">苔を水に浸す</text>
+    <rect x="214" y="76" width="178" height="170" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <circle cx="248" cy="110" r="20" fill="#5b7f4a"/><text x="248" y="118" text-anchor="middle" font-weight="700" fill="#fff">2</text>
+    <ellipse cx="303" cy="186" rx="46" ry="26" fill="#4a3a2c"/><circle cx="290" cy="180" r="3" fill="#b9774a"/><circle cx="314" cy="190" r="3" fill="#b9774a"/><circle cx="320" cy="176" r="3" fill="#b9774a"/>
+    <text x="303" y="236" text-anchor="middle" font-weight="700" fill="#2c2a26">土を練る</text>
+    <rect x="406" y="76" width="178" height="170" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <circle cx="440" cy="110" r="20" fill="#5b7f4a"/><text x="440" y="118" text-anchor="middle" font-weight="700" fill="#fff">3</text>
+    <path d="M495 150 v30" stroke="#5b7f4a" stroke-width="5"/><ellipse cx="483" cy="146" rx="15" ry="8" fill="#5b7f4a" transform="rotate(-25 483 146)"/><ellipse cx="507" cy="140" rx="15" ry="8" fill="#6f9558" transform="rotate(20 507 140)"/>
+    <path d="M495 180 q-18 20 -26 34 M495 180 q2 22 0 36 M495 180 q16 18 24 34" fill="none" stroke="#8a6a4a" stroke-width="3"/>
+    <text x="495" y="236" text-anchor="middle" font-weight="700" fill="#2c2a26">苗の土を落とす</text>
+    <rect x="598" y="76" width="180" height="170" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <circle cx="632" cy="110" r="20" fill="#5b7f4a"/><text x="632" y="118" text-anchor="middle" font-weight="700" fill="#fff">4</text>
+    <circle cx="688" cy="184" r="32" fill="#4a3a2c"/><path d="M688 152 v-20" stroke="#5b7f4a" stroke-width="5"/><ellipse cx="678" cy="128" rx="13" ry="7" fill="#5b7f4a" transform="rotate(-25 678 128)"/><ellipse cx="698" cy="124" rx="13" ry="7" fill="#6f9558" transform="rotate(20 698 124)"/>
+    <text x="688" y="236" text-anchor="middle" font-weight="700" fill="#2c2a26">包んで丸める</text>
+    <!-- row 2 -->
+    <rect x="22" y="262" width="236" height="170" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <circle cx="56" cy="296" r="20" fill="#5b7f4a"/><text x="56" y="304" text-anchor="middle" font-weight="700" fill="#fff">5</text>
+    <circle cx="140" cy="366" r="34" fill="#6f9558"/><path d="M140 332 v-20" stroke="#5b7f4a" stroke-width="5"/><ellipse cx="130" cy="308" rx="13" ry="7" fill="#5b7f4a" transform="rotate(-25 130 308)"/><ellipse cx="150" cy="304" rx="13" ry="7" fill="#6f9558" transform="rotate(20 150 304)"/>
+    <text x="140" y="422" text-anchor="middle" font-weight="700" fill="#2c2a26">苔を貼る（緑を外に）</text>
+    <rect x="272" y="262" width="236" height="170" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <circle cx="306" cy="296" r="20" fill="#5b7f4a"/><text x="306" y="304" text-anchor="middle" font-weight="700" fill="#fff">6</text>
+    <circle cx="390" cy="366" r="34" fill="#6f9558"/><path d="M358 352 q32 18 64 0 M358 376 q32 -18 64 0 M372 338 q18 28 18 62 M408 338 q-18 28 -18 62" fill="none" stroke="#f3ebdd" stroke-width="2.5"/><path d="M390 332 v-20" stroke="#5b7f4a" stroke-width="5"/><ellipse cx="380" cy="308" rx="13" ry="7" fill="#5b7f4a" transform="rotate(-25 380 308)"/><ellipse cx="400" cy="304" rx="13" ry="7" fill="#6f9558" transform="rotate(20 400 304)"/>
+    <text x="390" y="422" text-anchor="middle" font-weight="700" fill="#2c2a26">糸を何周も巻く</text>
+    <rect x="522" y="262" width="256" height="170" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <circle cx="556" cy="296" r="20" fill="#5b7f4a"/><text x="556" y="304" text-anchor="middle" font-weight="700" fill="#fff">7</text>
+    <path d="M600 330 h100 l-10 72 h-80 z" fill="#d9e6ef"/><circle cx="650" cy="370" r="24" fill="#6f9558"/><circle cx="676" cy="342" r="4" fill="#9fc3dc"/><circle cx="684" cy="330" r="3" fill="#9fc3dc"/>
+    <text x="650" y="422" text-anchor="middle" font-weight="700" fill="#2c2a26">水に沈めて仕上げ</text>
+  </g>
+  <rect x="22" y="452" width="756" height="78" rx="14" fill="#f3ebdd"/>
+  <text x="40" y="484" font-size="20" font-weight="700" fill="#2c2a26">土は耳たぶくらいの固さに。</text>
+  <text x="40" y="514" font-size="19" fill="#2c2a26">作ったあと2週間は明るい日陰で休ませ、肥料は与えません</text>
+  <text x="776" y="550" text-anchor="end" font-size="15" fill="#b8935a" letter-spacing="2">盆栽コレクション</text>
+</svg>

@@ -17,21 +17,21 @@ export const KIT_GROUPS = [
     title: '苔玉キット',
     note: '土を丸めて苔を巻くだけ。いちばん手軽で、親子でも作れます',
     test: (p: CatalogProduct) => p.productType === 'kit' && /苔玉/.test(p.originalName),
-    more: { href: '/products?type=kokedama', label: '苔玉・キットをすべて見る' },
+    more: { href: '/guides/kokedama-making', label: '苔玉の作り方' },
   },
   {
     key: 'grow',
     title: '盆栽の栽培キット',
     note: '種や小さな苗から育てる。芽が出て樹になるまでを楽しめます',
     test: (p: CatalogProduct) => p.productType === 'kit' && !/苔玉/.test(p.originalName),
-    more: { href: '/guides/bonsai-kit-guide', label: '栽培キットの選び方' },
+    more: { href: '/guides/bonsai-cuttings', label: '挿し木で増やす方法' },
   },
   {
     key: 'set',
     title: '道具付きのミニ盆栽セット',
     note: '仕立てた樹と、はさみなどの道具が一緒に届く。届いた日から手入れを始められます',
     test: (p: CatalogProduct) => p.productType === 'tree' && /道具/.test(p.originalName) && /セット/.test(p.originalName),
-    more: { href: '/soroeru', label: '鉢・土・道具をそろえる' },
+    more: { href: '/guides/bonsai-from-nursery-stock', label: '苗木から盆栽を作る' },
   },
 ] as const
 

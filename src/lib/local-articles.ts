@@ -30,6 +30,9 @@ export const LOCAL_ARTICLES: Record<string, LocalArticleMeta> = {
   'bonsai-wire-guide': { category: 'shopping', publishedAt: '2026-10-20T12:00:00+09:00' },
   'indoor-bonsai-winter-care': { category: 'basic-care', publishedAt: '2026-11-05T12:00:00+09:00' },
   'indoor-bonsai-watering': { category: 'basic-care', publishedAt: '2026-11-05T12:00:00+09:00' },
+  'kokedama-making': { category: 'basic-care', publishedAt: '2026-11-19T12:00:00+09:00' },
+  'bonsai-from-nursery-stock': { category: 'beginner', publishedAt: '2026-11-19T12:00:00+09:00' },
+  'bonsai-cuttings': { category: 'basic-care', publishedAt: '2026-11-19T12:00:00+09:00' },
 }
 
 export const isLocalArticle = (slug: string) => Object.prototype.hasOwnProperty.call(LOCAL_ARTICLES, slug)

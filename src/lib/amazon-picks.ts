@@ -102,6 +102,10 @@ const ARTICLE_PICKS: Record<string, AmazonPick[]> = {
   'bonsai-display-guide': [P.stand],
   'senior-friendly-bonsai-guide': [P.scissors, P.joro],
   'children-bonsai-education-brain-development': [P.bonsaiKit, P.kokedamaKit],
+  // 作る記事：材料と道具
+  'kokedama-making': [P.kokedamaKit, { label: 'ケト土', keyword: 'ケト土' }, P.moss, P.akadama],
+  'bonsai-from-nursery-stock': [P.pot, P.soil, P.net, P.scissors, P.wire],
+  'bonsai-cuttings': [{ label: '挿し木用の土', keyword: '挿し木 用土' }, { label: '鹿沼土（小粒）', keyword: '鹿沼土 小粒' }, { label: '育苗ポット・トレー', keyword: '育苗トレー ポット' }, { label: '発根促進剤', keyword: '発根促進剤 園芸', note: '使い方はラベルの表示どおりに' }],
   // 始める・買う・体験する記事：キットと最初の道具
   'bonsai-kit-guide': [P.bonsaiKit, P.kokedamaKit, P.toolSet, P.soil],
   'bonsai-experience-programs-complete-guide': [P.kokedamaKit, P.bonsaiKit, P.toolSet],
