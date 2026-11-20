@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>発芽してからの流れ</title>
+  <rect width="800" height="300" fill="#faf7f0"/>
+  <text x="24" y="48" font-size="30" font-weight="700" fill="#2c2a26">発芽してからの育て方</text>
+  <g>
+    <rect x="22" y="72" width="178" height="150" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <circle cx="56" cy="104" r="18" fill="#5b7f4a"/><text x="56" y="111" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">1</text>
+    <text x="84" y="111" font-size="19" font-weight="700" fill="#2c2a26">日に慣らす</text>
+    <text x="40" y="150" font-size="16" fill="#6b655b">日陰から少しずつ</text><text x="40" y="174" font-size="16" fill="#6b655b">日の当たる場所へ</text>
+    <rect x="214" y="72" width="178" height="150" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <circle cx="248" cy="104" r="18" fill="#5b7f4a"/><text x="248" y="111" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">2</text>
+    <text x="276" y="111" font-size="19" font-weight="700" fill="#2c2a26">間引く</text>
+    <text x="232" y="150" font-size="16" fill="#6b655b">混み合ったら、太く</text><text x="232" y="174" font-size="16" fill="#6b655b">元気な苗を残す</text>
+    <rect x="406" y="72" width="178" height="150" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <circle cx="440" cy="104" r="18" fill="#5b7f4a"/><text x="440" y="111" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">3</text>
+    <text x="468" y="111" font-size="19" font-weight="700" fill="#2c2a26">薄い肥料</text>
+    <text x="424" y="150" font-size="16" fill="#6b655b">本葉がしっかりして</text><text x="424" y="174" font-size="16" fill="#6b655b">から少しずつ</text>
+    <rect x="598" y="72" width="180" height="150" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <circle cx="632" cy="104" r="18" fill="#5b7f4a"/><text x="632" y="111" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">4</text>
+    <text x="660" y="111" font-size="19" font-weight="700" fill="#2c2a26">冬越し</text>
+    <text x="616" y="150" font-size="16" fill="#6b655b">霜・凍結を避けた</text><text x="616" y="174" font-size="16" fill="#6b655b">屋外の軒下で</text>
+  </g>
+  <rect x="22" y="238" width="756" height="40" rx="12" fill="#f3ebdd"/>
+  <text x="40" y="265" font-size="18" fill="#2c2a26">1本ずつの鉢上げは次の春。盆栽らしくなるまでは数年かけて育てます</text>
+  <text x="776" y="294" text-anchor="end" font-size="14" fill="#b8935a" letter-spacing="2">盆栽コレクション</text>
+</svg>

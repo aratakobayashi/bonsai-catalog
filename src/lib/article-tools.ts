@@ -65,7 +65,7 @@ export function articleToolLinks({ slug, title, speciesSlug, month }: { slug: st
   }
 
   // 作る・増やす：体験教室とキット
-  if (has(/作り方|挿し木|増やし方|苗木から|実生/, title)) {
+  if (has(/作り方|挿し木|増やし方|苗木から|実生|種から|寄せ植え|テラリウム/, title)) {
     push({ href: '/taiken#ie-de', label: '家で始める盆栽キット', title: '苔玉キット・栽培キット・道具付きのセットを比べる', note: '近くに教室がないときは、キットで家で作れます', strong: true })
   }
 

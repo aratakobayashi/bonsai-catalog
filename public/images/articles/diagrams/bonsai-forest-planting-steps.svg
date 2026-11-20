@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 330" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>寄せ植えの作り方の流れ</title>
+  <rect width="800" height="330" fill="#faf7f0"/>
+  <text x="24" y="48" font-size="30" font-weight="700" fill="#2c2a26">寄せ植えの作り方：5つの手順</text>
+  <g>
+    <rect x="22" y="76" width="140" height="196" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <circle cx="92" cy="112" r="20" fill="#5b7f4a"/><text x="92" y="120" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">1</text>
+    <path d="M92 196 v-46" stroke="#7a5236" stroke-width="5"/><path d="M92 196 q-24 4 -36 10 M92 196 q24 4 36 10 M92 196 q-10 8 -16 14 M92 196 q10 8 16 14" stroke="#8a6a4a" stroke-width="3" fill="none"/>
+    <text x="92" y="244" text-anchor="middle" font-size="18" font-weight="700" fill="#2c2a26">根を平たく</text><text x="92" y="266" text-anchor="middle" font-size="18" font-weight="700" fill="#2c2a26">整える</text>
+    <path d="M164 174 h10" stroke="#b8935a" stroke-width="5" stroke-linecap="round"/><path d="M168 166 l8 8 l-8 8" fill="none" stroke="#b8935a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="178" y="76" width="140" height="196" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <circle cx="248" cy="112" r="20" fill="#5b7f4a"/><text x="248" y="120" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">2</text>
+    <path d="M196 196 h104 l-8 20 h-88 z" fill="#3a3731"/><path d="M220 196 q4 -16 8 0 M260 196 q4 -16 8 0" stroke="#b8935a" stroke-width="2" fill="none"/>
+    <text x="248" y="244" text-anchor="middle" font-size="18" font-weight="700" fill="#2c2a26">針金を通し</text><text x="248" y="266" text-anchor="middle" font-size="18" font-weight="700" fill="#2c2a26">土を薄く敷く</text>
+    <path d="M320 174 h10" stroke="#b8935a" stroke-width="5" stroke-linecap="round"/><path d="M324 168 l8 8 l-8 8" fill="none" stroke="#b8935a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="334" y="76" width="140" height="196" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <circle cx="404" cy="112" r="20" fill="#5b7f4a"/><text x="404" y="120" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">3</text>
+    <path d="M352 200 h104 l-8 18 h-88 z" fill="#3a3731"/><path d="M394 200 v-58" stroke="#7a5236" stroke-width="6"/><path d="M410 200 v-42" stroke="#7a5236" stroke-width="4"/><path d="M376 200 v-34" stroke="#7a5236" stroke-width="3"/><path d="M432 200 v-28" stroke="#7a5236" stroke-width="3"/>
+    <text x="404" y="244" text-anchor="middle" font-size="18" font-weight="700" fill="#2c2a26">主木から</text><text x="404" y="266" text-anchor="middle" font-size="18" font-weight="700" fill="#2c2a26">並べる</text>
+    <path d="M476 174 h10" stroke="#b8935a" stroke-width="5" stroke-linecap="round"/><path d="M480 166 l8 8 l-8 8" fill="none" stroke="#b8935a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="490" y="76" width="140" height="196" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <circle cx="560" cy="112" r="20" fill="#5b7f4a"/><text x="560" y="120" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">4</text>
+    <path d="M508 196 h104 l-8 22 h-88 z" fill="#3a3731"/><rect x="508" y="190" width="104" height="10" fill="#b9774a"/><path d="M550 190 v-50" stroke="#7a5236" stroke-width="6"/><path d="M566 190 v-36" stroke="#7a5236" stroke-width="4"/><path d="M532 190 v-28" stroke="#7a5236" stroke-width="3"/>
+    <text x="560" y="244" text-anchor="middle" font-size="18" font-weight="700" fill="#2c2a26">固定して</text><text x="560" y="266" text-anchor="middle" font-size="18" font-weight="700" fill="#2c2a26">土を入れる</text>
+    <path d="M632 174 h10" stroke="#b8935a" stroke-width="5" stroke-linecap="round"/><path d="M636 166 l8 8 l-8 8" fill="none" stroke="#b8935a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="646" y="76" width="132" height="196" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+    <circle cx="712" cy="112" r="20" fill="#5b7f4a"/><text x="712" y="120" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">5</text>
+    <path d="M662 196 h100 l-8 22 h-84 z" fill="#3a3731"/><rect x="662" y="188" width="100" height="10" rx="4" fill="#6f9558"/><path d="M704 188 v-40" stroke="#7a5236" stroke-width="5"/><path d="M720 188 v-28" stroke="#7a5236" stroke-width="3"/><ellipse cx="704" cy="146" rx="18" ry="10" fill="#6f9558"/>
+    <text x="712" y="244" text-anchor="middle" font-size="18" font-weight="700" fill="#2c2a26">苔を貼り</text><text x="712" y="266" text-anchor="middle" font-size="18" font-weight="700" fill="#2c2a26">水をやる</text>
+  </g>
+  <text x="776" y="316" text-anchor="end" font-size="15" fill="#b8935a" letter-spacing="2">盆栽コレクション</text>
+</svg>

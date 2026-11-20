@@ -106,6 +106,9 @@ const ARTICLE_PICKS: Record<string, AmazonPick[]> = {
   'kokedama-making': [P.kokedamaKit, { label: 'ケト土', keyword: 'ケト土' }, P.moss, P.akadama],
   'bonsai-from-nursery-stock': [P.pot, P.soil, P.net, P.scissors, P.wire],
   'bonsai-cuttings': [{ label: '挿し木用の土', keyword: '挿し木 用土' }, { label: '鹿沼土（小粒）', keyword: '鹿沼土 小粒' }, { label: '育苗ポット・トレー', keyword: '育苗トレー ポット' }, { label: '発根促進剤', keyword: '発根促進剤 園芸', note: '使い方はラベルの表示どおりに' }],
+  'bonsai-from-seed': [P.bonsaiKit, { label: '種まき用の土', keyword: '種まき用土' }, { label: '育苗ポット・トレー', keyword: '育苗トレー ポット' }, P.mist],
+  'bonsai-forest-planting': [{ label: '盆栽の浅鉢（楕円・長方）', keyword: '盆栽鉢 楕円 浅鉢' }, P.soil, P.net, P.moss, P.wire],
+  'moss-terrarium': [{ label: '苔テラリウムのキット', keyword: '苔テラリウム キット' }, { label: 'テラリウム用のガラス容器', keyword: 'テラリウム ガラス容器 蓋付き' }, { label: 'テラリウム用の土', keyword: 'テラリウム ソイル 苔' }, { label: 'ピンセット（ロング）', keyword: 'テラリウム ピンセット' }, P.mist],
   // 始める・買う・体験する記事：キットと最初の道具
   'bonsai-kit-guide': [P.bonsaiKit, P.kokedamaKit, P.toolSet, P.soil],
   'bonsai-experience-programs-complete-guide': [P.kokedamaKit, P.bonsaiKit, P.toolSet],

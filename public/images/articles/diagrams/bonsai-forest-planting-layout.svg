@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>寄せ植えの並べ方の考え方</title>
+  <rect width="800" height="480" fill="#faf7f0"/>
+  <text x="24" y="48" font-size="30" font-weight="700" fill="#2c2a26">寄せ植えの並べ方（5本の例）</text>
+  <!-- side view -->
+  <rect x="22" y="72" width="380" height="350" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+  <text x="40" y="104" font-size="19" font-weight="700" fill="#2c2a26">横から見る</text>
+  <path d="M52 362 h320 l-12 24 h-296 z" fill="#3a3731"/>
+  <g stroke="#7a5236" stroke-linecap="round">
+    <path d="M168 360 v-200" stroke-width="13"/>
+    <path d="M196 360 v-160" stroke-width="9"/>
+    <path d="M130 360 v-130" stroke-width="7"/>
+    <path d="M262 360 v-112" stroke-width="6"/>
+    <path d="M306 360 v-88" stroke-width="5"/>
+  </g>
+  <ellipse cx="168" cy="160" rx="34" ry="22" fill="#5b7f4a"/>
+  <ellipse cx="196" cy="200" rx="28" ry="18" fill="#6f9558"/>
+  <ellipse cx="130" cy="230" rx="24" ry="16" fill="#6f9558"/>
+  <ellipse cx="262" cy="248" rx="22" ry="14" fill="#5b7f4a"/>
+  <ellipse cx="306" cy="272" rx="18" ry="12" fill="#6f9558"/>
+  <path d="M110 150 L330 270" stroke="#b8935a" stroke-width="2" stroke-dasharray="6 6" fill="none"/>
+  <text x="168" y="134" text-anchor="middle" font-size="16" font-weight="700" fill="#86683a">主木</text>
+  <text x="212" y="408" text-anchor="middle" font-size="16" fill="#6b655b">主木から離れるほど低く・細く</text>
+  <!-- top view -->
+  <rect x="418" y="72" width="360" height="350" rx="14" fill="#fff" stroke="#d9d1c3" stroke-width="2"/>
+  <text x="436" y="104" font-size="19" font-weight="700" fill="#2c2a26">上から見る</text>
+  <ellipse cx="598" cy="262" rx="150" ry="100" fill="#efe4d6" stroke="#c9b9a2" stroke-width="2"/>
+  <path d="M552 238 L606 300 L690 226 Z" fill="none" stroke="#b8935a" stroke-width="2" stroke-dasharray="6 6"/>
+  <g>
+    <circle cx="552" cy="238" r="16" fill="#7a5236"/><text x="552" y="244" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">主</text>
+    <circle cx="582" cy="226" r="11" fill="#7a5236"/>
+    <circle cx="510" cy="282" r="9" fill="#7a5236"/>
+    <circle cx="606" cy="300" r="8" fill="#7a5236"/>
+    <circle cx="690" cy="226" r="7" fill="#7a5236"/>
+  </g>
+  <text x="598" y="398" text-anchor="middle" font-size="16" fill="#6b655b">一直線に並べず、間隔を変える</text>
+  <rect x="22" y="434" width="756" height="36" rx="10" fill="#f3ebdd"/>
+  <text x="40" y="458" font-size="17" fill="#2c2a26">本数は3・5・7本など奇数に。主木は鉢のまん中から少しずらす</text>
+</svg>

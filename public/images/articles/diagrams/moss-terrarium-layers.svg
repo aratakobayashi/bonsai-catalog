@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+  <title>苔テラリウムの土の重ね方</title>
+  <rect width="800" height="460" fill="#faf7f0"/>
+  <text x="24" y="48" font-size="30" font-weight="700" fill="#2c2a26">苔テラリウムの断面</text>
+  <!-- jar -->
+  <path d="M110 120 h260 v260 q0 30 -30 30 h-200 q-30 0 -30 -30 z" fill="#eef4f6" stroke="#9fb7c2" stroke-width="4"/>
+  <rect x="100" y="96" width="280" height="26" rx="8" fill="#c9d6dc" stroke="#9fb7c2" stroke-width="3"/>
+  <!-- stones layer -->
+  <path d="M114 370 h252 v10 q0 26 -26 26 h-200 q-26 0 -26 -26 z" fill="#d8d2c6"/>
+  <g fill="#bfb6a6"><circle cx="140" cy="388" r="7"/><circle cx="170" cy="392" r="6"/><circle cx="205" cy="386" r="7"/><circle cx="240" cy="392" r="6"/><circle cx="275" cy="387" r="7"/><circle cx="310" cy="391" r="6"/><circle cx="340" cy="386" r="6"/></g>
+  <!-- soil sloped -->
+  <path d="M114 370 v-80 q120 -10 252 30 v50 z" fill="#6b4f37"/>
+  <!-- rock -->
+  <path d="M250 300 q20 -40 56 -30 q20 10 18 40 z" fill="#8f8a80"/>
+  <!-- mosses -->
+  <g fill="#6f9558"><ellipse cx="160" cy="288" rx="40" ry="20"/><ellipse cx="214" cy="292" rx="28" ry="15"/><ellipse cx="340" cy="316" rx="22" ry="12"/></g>
+  <g stroke="#5b7f4a" stroke-width="3" stroke-linecap="round"><path d="M226 286 v-26 M232 286 v-34 M238 286 v-24"/></g>
+  <g fill="#86ad6c"><circle cx="226" cy="258" r="5"/><circle cx="232" cy="250" r="5"/><circle cx="238" cy="260" r="5"/></g>
+  <!-- labels -->
+  <g font-size="19">
+    <path d="M380 108 h40" stroke="#b8935a" stroke-width="2"/><text x="428" y="114" font-weight="700" fill="#2c2a26">蓋（ときどき開けて換気）</text>
+    <path d="M300 280 h120" stroke="#b8935a" stroke-width="2"/><text x="428" y="276" font-weight="700" fill="#2c2a26">苔・石</text><text x="428" y="302" font-size="16" fill="#6b655b">湿気を好む苔を、ピンセットで植える</text>
+    <path d="M366 340 h54" stroke="#b8935a" stroke-width="2"/><text x="428" y="336" font-weight="700" fill="#2c2a26">土</text><text x="428" y="362" font-size="16" fill="#6b655b">奥を高く、手前を低く</text>
+    <path d="M366 392 h54" stroke="#b8935a" stroke-width="2"/><text x="428" y="398" font-weight="700" fill="#2c2a26">軽石など（1〜2cm）</text><text x="428" y="424" font-size="16" fill="#6b655b">余分な水がたまる場所</text>
+  </g>
+  <g font-size="19"><circle cx="440" cy="190" r="12" fill="#ecc650"/><text x="462" y="197" font-weight="700" fill="#2c2a26">置き場所は明るい日陰</text><text x="428" y="226" font-size="16" fill="#6b655b">直射日光は容器の中が熱くなるので避ける</text></g>
+  <text x="776" y="450" text-anchor="end" font-size="15" fill="#b8935a" letter-spacing="2">盆栽コレクション</text>
+</svg>
