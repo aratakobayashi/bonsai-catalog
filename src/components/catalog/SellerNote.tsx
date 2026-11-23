@@ -12,7 +12,7 @@ export function SellerNote({ product, className = '' }: { product: CatalogProduc
       <p className="mt-1 text-[13.5px] leading-[1.7] text-ink">
         {shop.kind === 'garden' ? (
           <>
-            この商品は、{shop.area}の盆栽園「{shop.gardenName}」が楽天市場で営む店（{shop.name}）が販売しています。
+            この商品は、{shop.area}の盆栽園「{shop.gardenName}」が楽天市場{shop.name === shop.gardenName ? '' : `の店（${shop.name}）`}で販売しています。
             {shop.gardenId && <Link href={`/gardens/${shop.gardenId}`} className="ml-1 border-b border-ink text-ink hover:text-gold-dark">{shop.gardenName}の紹介を見る</Link>}
           </>
         ) : (
