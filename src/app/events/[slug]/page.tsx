@@ -1,4 +1,7 @@
 import { Metadata } from 'next'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { EVENT_AMAZON_PICKS } from '@/lib/amazon-picks'
+import { CONTAINER } from '@/components/ui/design'
 import { notFound } from 'next/navigation'
 import { supabaseServer } from '@/lib/supabase-server'
 import { AMAZON_ENABLED } from '@/lib/affiliate'
@@ -187,6 +190,9 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
         popularProducts={popularProducts}
         recommendedArticles={recommendedArticles}
       />
+      <div className={`${CONTAINER} pb-14 lg:pb-20`}>
+        <AmazonPicks set={EVENT_AMAZON_PICKS} place="event_amazon" />
+      </div>
     </>
   )
 }

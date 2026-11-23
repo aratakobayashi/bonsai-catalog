@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { ZUKAN_AMAZON_PICKS } from '@/lib/amazon-picks'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
@@ -101,6 +103,7 @@ export default function ZukanIndexPage() {
             </Link>
           </div>
         </section>
+        <AmazonPicks set={ZUKAN_AMAZON_PICKS} place="zukan_index_amazon" className="mt-12 lg:mt-16" />
         <RelatedTools hrefs={['/kumiawase', '/osusume', '/teire']} />
       </div>
     </>

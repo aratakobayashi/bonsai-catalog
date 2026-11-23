@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { KUMIAWASE_AMAZON_PICKS } from '@/lib/amazon-picks'
 import type { ReactNode } from 'react'
 import type { CatalogProduct } from '@/lib/catalog-model'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
@@ -382,6 +384,7 @@ export function KumiawaseView({ params, products }: { params: Record<string, str
             )}
           </div>
         </div>
+        <AmazonPicks set={KUMIAWASE_AMAZON_PICKS} place="kumiawase_amazon" className="mt-12 lg:mt-16" />
         <RelatedTools hrefs={['/soroeru', '/nedan', '/okurimono']} />
       </div>
     </>

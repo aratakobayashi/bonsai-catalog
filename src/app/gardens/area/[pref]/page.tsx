@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { GARDEN_AMAZON_PICKS } from '@/lib/amazon-picks'
 import Link from 'next/link'
 import { regionOf } from '@/lib/taiken'
 import { notFound } from 'next/navigation'
@@ -214,6 +216,7 @@ export default async function GardenAreaPage({ params }: PageProps) {
           </ul>
         </section>
 
+        <AmazonPicks set={GARDEN_AMAZON_PICKS} place="garden_area_amazon" className="mt-14 lg:mt-20" />
         <GardenAreaLinks gardens={all} current={prefecture} title="ほかの都道府県の盆栽園" className="mt-14 lg:mt-20" />
       </div>
     </>

@@ -159,12 +159,32 @@ export const GIFT_AMAZON_PICKS: AmazonPickSet = {
   picks: [P.toolSet, P.kokedamaKit, P.bonsaiKit, P.stand],
 }
 
-export function amazonPicksForArticle(slug: string, isGift: boolean): AmazonPickSet | null {
+// 個別の指定がない記事：樹種の記事はその樹種の盆栽と手入れの道具、それ以外は記事のカテゴリに合う道具
+const CATEGORY_PICKS: Record<string, AmazonPick[]> = {
+  'basic-care': [P.joro, P.scissors, P.okigoe, P.soil],
+  beginner: [P.toolSet, P.scissors, P.joro, P.okigoe],
+  troubleshooting: [P.insecticide, P.fungicide, P.scissors, P.soil],
+  scientific: [P.soil, P.okigoe, P.joro],
+  shopping: [P.toolSet, P.pot, P.soil, P.stand],
+  enjoyment: [P.stand, P.toolSet, P.kokedamaKit],
+  experience: [P.kokedamaKit, P.bonsaiKit, P.toolSet],
+  events: [P.stand, P.joro, P.scissors],
+  international: [P.toolSet, P.scissors, P.joro],
+  species: [P.scissors, P.okigoe, P.joro, P.soil],
+}
+
+export function amazonPicksForArticle(slug: string, isGift: boolean, context: { category?: string; speciesLabel?: string | null; isSupply?: boolean } = {}): AmazonPickSet | null {
   const season = seasonGiftPicks(slug)
   if (season) return season
   const picks = ARTICLE_PICKS[slug]
   if (picks) return { heading: 'この記事に出てくる道具・用品（Amazon）', note: DELIVERY_NOTE, picks }
-  return isGift ? GIFT_AMAZON_PICKS : null
+  if (isGift) return GIFT_AMAZON_PICKS
+  if (context.speciesLabel && !context.isSupply) {
+    const name = context.speciesLabel.split('・')[0]
+    return { heading: `${name}の盆栽と手入れの道具（Amazon）`, note: DELIVERY_NOTE, picks: [{ label: `${name}の盆栽`, keyword: `${name} 盆栽` }, P.scissors, P.okigoe, P.joro] }
+  }
+  const byCategory = context.category ? CATEGORY_PICKS[context.category] : undefined
+  return byCategory ? { heading: 'あわせて使う道具・用品（Amazon）', note: DELIVERY_NOTE, picks: byCategory } : null
 }
 
 // 盆栽園のページ：園で選んだ樹を持ち帰ったあとの手入れに
@@ -249,3 +269,16 @@ export const TAIKEN_KIT_AMAZON: Record<string, AmazonPick> = {
   grow: P.bonsaiKit,
   set: P.toolSet,
 }
+
+// 盆栽展（/events）：即売で選んだ樹の、持ち帰ったあとの手入れに
+export const EVENT_AMAZON_PICKS: AmazonPickSet = {
+  heading: '盆栽展で樹を選んだら（Amazon）',
+  note: '即売などで買った樹の、持ち帰ったあとの水やり・植え替えに使うものです。会場の商品ではありません。',
+  picks: [P.joro, P.scissors, P.soil, P.net, P.stand],
+}
+
+// 一覧系のページ
+export const SHOJO_INDEX_AMAZON_PICKS: AmazonPickSet = { heading: 'よく使う手当ての用品（Amazon）', note: DELIVERY_NOTE, picks: [P.insecticide, P.fungicide, P.soil, P.joro] }
+export const ZUKAN_AMAZON_PICKS: AmazonPickSet = { heading: '樹形づくりに使う道具（Amazon）', note: DELIVERY_NOTE, picks: [P.wire, P.wireCutter, P.scissors, P.toolSet] }
+export const KUMIAWASE_AMAZON_PICKS: AmazonPickSet = { heading: '自分で植え替えるときに（Amazon）', note: DELIVERY_NOTE, picks: [P.pot, P.soil, P.net, P.moss] }
+export const NOTE_AMAZON_PICKS: AmazonPickSet = { heading: '毎日の手入れに使うもの（Amazon）', note: DELIVERY_NOTE, picks: [P.joro, P.scissors, P.okigoe, P.tweezers] }

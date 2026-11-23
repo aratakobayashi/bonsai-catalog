@@ -418,7 +418,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               </Link>
             )}
 
-            <AmazonPicks set={amazonPicksForArticle(article.slug, Boolean(giftSelection))} place="article_amazon" className="mt-12 lg:mt-16" />
+            <AmazonPicks set={amazonPicksForArticle(article.slug, Boolean(giftSelection), { category: article.category.slug, speciesLabel, isSupply })} place="article_amazon" className="mt-12 lg:mt-16" />
 
             {/* 次にやること（商品・同じ樹種の記事・特集・診断） */}
             <ArticleNextSteps

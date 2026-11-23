@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { amazonPicksForMonth } from '@/lib/amazon-picks'
 import Link from 'next/link'
 import { CARE_GROUPS, CARE_CALENDAR, getMonthCare, speciesInGroup, speciesLabel } from '@/lib/care-calendar'
 import { jstMonth } from '@/lib/seasons'
@@ -131,6 +133,7 @@ export default function TeireIndexPage() {
       />
       <CareCalendarSubscribe className="mt-12 lg:mt-16" />
 
+      <AmazonPicks set={amazonPicksForMonth(jstMonth())} place="teire_index_amazon" className="mt-12 lg:mt-16" />
       <RelatedTools hrefs={['/shojo', '/shitsunai', '/hajimete']} />
     </div>
   )

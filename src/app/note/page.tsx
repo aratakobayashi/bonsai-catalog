@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { NOTE_AMAZON_PICKS } from '@/lib/amazon-picks'
 import { CARE_GROUPS, speciesInGroup, speciesLabel } from '@/lib/care-calendar'
 import { SITE_URL } from '@/lib/site'
 import { speciesGuideMap } from '@/lib/teire-server'
@@ -38,6 +40,7 @@ export default function NotePage() {
         crumbs={[{ label: 'ホーム', href: '/' }, { label: 'わたしの盆栽ノート' }]}
       />
       <NoteApp speciesGroups={speciesGroups} guides={guides} />
+      <AmazonPicks set={NOTE_AMAZON_PICKS} place="note_amazon" className="mt-12 lg:mt-16" />
       <RelatedTools hrefs={['/teire', '/shojo', '/hajimete']} />
     </div>
   )

@@ -1,4 +1,6 @@
 import { Metadata } from 'next'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { EVENT_AMAZON_PICKS } from '@/lib/amazon-picks'
 import { Suspense } from 'react'
 import Link from 'next/link'
 import EventsPageClient from './EventsPageClient'
@@ -110,6 +112,8 @@ export default async function EventsPage() {
         }>
           <EventsPageClient initialEvents={initial?.events} />
         </Suspense>
+
+        <AmazonPicks set={EVENT_AMAZON_PICKS} place="events_index_amazon" className="mt-12 lg:mt-16" />
 
         <p className="mt-12 text-xs leading-relaxed text-ink-muted">
           盆栽イベントの掲載をご希望の主催者の方は、<Link href="/contact" className="border-b border-ink-muted hover:text-gold-dark">お問い合わせ</Link>からご連絡ください。

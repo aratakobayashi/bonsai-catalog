@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { AmazonPicks } from '@/components/catalog/AmazonPicks'
+import { SHOJO_INDEX_AMAZON_PICKS } from '@/lib/amazon-picks'
 import Link from 'next/link'
 import { CONTAINER, PageHeading, SectionTitle } from '@/components/ui/design'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
@@ -72,6 +74,7 @@ export default function ShojoIndexPage() {
             ))}
           </ul>
         </section>
+        <AmazonPicks set={SHOJO_INDEX_AMAZON_PICKS} place="shojo_index_amazon" className="mt-12 lg:mt-16" />
         <RelatedTools hrefs={['/teire', '/shitsunai', '/soroeru']} />
       </div>
     </>
