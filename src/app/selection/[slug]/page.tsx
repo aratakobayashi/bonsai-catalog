@@ -297,7 +297,7 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
             {SEASON_RUSH_KEYWORD[selection.slug] && (
               <AmazonSearchLink
                 keyword={SEASON_RUSH_KEYWORD[selection.slug].keyword}
-                label={`急ぐならAmazonでも「${SEASON_RUSH_KEYWORD[selection.slug].label}」を探す（届く日を確認できます）`}
+                label={`急ぐならAmazonでも「${SEASON_RUSH_KEYWORD[selection.slug].label}」`}
                 place="selection_rush_amazon"
                 className="mt-5"
                 block
