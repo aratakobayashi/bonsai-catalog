@@ -7,8 +7,11 @@ const MAX_ROUNDS = 6
 async function main() {
   let upserted = 0
   let failedRounds = 0
+  // この実行で同期したカテゴリ（同じカテゴリを何度も回らず、全カテゴリを1度ずつ同期する）
+  const done = new Set<string>()
   for (let round = 1; round <= MAX_ROUNDS; round++) {
-    const summary = await syncRakutenProducts()
+    const summary = await syncRakutenProducts({ skip: done })
+    summary.processedCategories.forEach(slug => done.add(slug))
     upserted += summary.upserted
     console.log(`round ${round}: processed=${summary.processedCategories.join(',')} fetched=${summary.fetched} upserted=${summary.upserted} deactivated=${summary.deactivated} remaining=${summary.remainingCategories}`)
     if (summary.errors.length) console.log(`  errors: ${summary.errors.slice(0, 5).join(' / ')}`)

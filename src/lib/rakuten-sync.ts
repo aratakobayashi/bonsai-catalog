@@ -85,23 +85,29 @@ function toRow(item: RakutenItem, category: ShopCategory, now: string) {
   }
 }
 
-// 前回の同期が古いカテゴリから順に処理する
+// 前回の同期が古いカテゴリから順に処理する。
+// カテゴリごとに最新の同期時刻を1件ずつ読む（全商品をまとめて読むと、Supabase の1回の読み取り上限（1,000件）で
+// 古いカテゴリが見えなくなり、同じカテゴリばかり同期されて、ほかのカテゴリが非表示になってしまうため）
 async function categoriesByStaleness(supabase: NonNullable<ReturnType<typeof getSupabaseAdmin>>): Promise<ShopCategory[]> {
-  const { data } = await supabase
-    .from('products')
-    .select('sync_category, last_synced_at')
-    .eq('source', 'rakuten')
-    .not('sync_category', 'is', null)
-    .order('last_synced_at', { ascending: false })
-    .limit(5000)
   const latest = new Map<string, string>()
-  ;(data || []).forEach((row: { sync_category: string; last_synced_at: string }) => {
-    if (!latest.has(row.sync_category)) latest.set(row.sync_category, row.last_synced_at)
-  })
+  await Promise.all(
+    SHOP_CATEGORIES.map(async category => {
+      const { data } = await supabase
+        .from('products')
+        .select('last_synced_at')
+        .eq('source', 'rakuten')
+        .eq('sync_category', category.slug)
+        .order('last_synced_at', { ascending: false })
+        .limit(1)
+      const row = (data || [])[0] as { last_synced_at: string } | undefined
+      if (row?.last_synced_at) latest.set(category.slug, row.last_synced_at)
+    }),
+  )
   return [...SHOP_CATEGORIES].sort((a, b) => (latest.get(a.slug) || '').localeCompare(latest.get(b.slug) || ''))
 }
 
-export async function syncRakutenProducts(): Promise<SyncSummary> {
+// skip：この実行ですでに同期したカテゴリ（scripts/daily/sync-rakuten.ts が回ごとに渡す。1回の実行で全カテゴリを1度ずつ回るため）
+export async function syncRakutenProducts(options: { skip?: Set<string> } = {}): Promise<SyncSummary> {
   const started = Date.now()
   const startedAt = new Date(started).toISOString()
   const errors: string[] = []
@@ -111,7 +117,7 @@ export async function syncRakutenProducts(): Promise<SyncSummary> {
     return { ok: false, ...empty, errors: ['SUPABASE_SERVICE_ROLE_KEY が設定されていません'], startedAt, finishedAt: startedAt }
   }
 
-  const categories = await categoriesByStaleness(supabase)
+  const categories = (await categoriesByStaleness(supabase)).filter(c => !options.skip?.has(c.slug))
   const processed: string[] = []
   const seen = new Set<string>()
   let fetched = 0
