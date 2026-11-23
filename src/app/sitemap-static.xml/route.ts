@@ -75,7 +75,7 @@ export async function GET() {
         priority: 0.6
       })),
       // 選ぶ・育てる道具
-      ...['/okurimono', '/kumiawase', '/nedan', '/shitsunai', '/gardens/omiya-bonsai-village', '/taiken', '/en', '/en/omiya-bonsai-village', '/en/exhibitions', '/osusume', ...OSUSUME_THEMES.map(t => `/osusume/${t.slug}`), '/soroeru', '/teire', '/shojo', '/hajimete', '/zukan', '/note'].map(path => ({
+      ...['/okurimono', '/kumiawase', '/nedan', '/shitsunai', '/gardens/omiya-bonsai-village', '/gardens/shops', '/taiken', '/en', '/en/omiya-bonsai-village', '/en/exhibitions', '/osusume', ...OSUSUME_THEMES.map(t => `/osusume/${t.slug}`), '/soroeru', '/teire', '/shojo', '/hajimete', '/zukan', '/note'].map(path => ({
         url: `${baseUrl}${path}`,
         lastMod: new Date().toISOString().split('T')[0],
         changeFreq: 'weekly',

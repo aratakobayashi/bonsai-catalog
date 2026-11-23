@@ -16,6 +16,8 @@ import { PrDisclosure } from '@/components/ui/PrDisclosure'
 import { GardenShopBridge, pickBridgeProducts } from '@/components/gardens/GardenShopBridge'
 import { getCatalogProducts } from '@/lib/catalog-data'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
+import { bonsaiShopOfGarden, rakutenShopCode } from '@/lib/bonsai-shops'
+import { byCuratedThenReviews } from '@/components/home/curated'
 import { GardenMap } from '@/components/gardens/GardenMap'
 import {
   FactChips,
@@ -267,6 +269,9 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
   const prefectureListHref = prefectureAreaHref(garden.prefecture)
   const facts = gardenFacts(garden)
   const shop = gardenShop(garden.id)
+  // 楽天市場に店を出している園：その店の商品（レビューの多い順）
+  const rakutenShop = bonsaiShopOfGarden(garden.id)
+  const shopProducts = rakutenShop ? allProducts.filter(p => rakutenShopCode(p) === rakutenShop.code).sort(byCuratedThenReviews).slice(0, 8) : []
 
   const socials = [
     garden.social_instagram && { label: 'Instagram', href: garden.social_instagram },
@@ -439,6 +444,20 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
           {/* 写真がある園は地図をここに */}
           {photo && coords && <div className="mt-5">{mapBox('h-[240px]')}</div>}
         </Section>
+
+        {/* この園が楽天市場で販売している商品（広告を含む） */}
+        {rakutenShop && shopProducts.length > 0 && (
+          <Section
+            title={`${garden.name}の通販の商品`}
+            note={<>楽天市場の「{rakutenShop.name}」で、この園が販売している商品です。在庫と価格は販売ページで確かめてください。<Link href="/gardens/shops" className="mt-1 block border-b border-ink-muted hover:text-gold-dark">盆栽園から直接買える店の一覧</Link></>}
+          >
+            <div className="grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-4" data-list="garden_shop">
+              {shopProducts.map(product => (
+                <CatalogProductCard key={product.id} product={product} buyPlace="garden_shop" />
+              ))}
+            </div>
+          </Section>
+        )}
 
         {/* この園が扱う樹種の通販（樹種が一致するときだけ。広告を含む） */}
         {shopCategories.length > 0 && (

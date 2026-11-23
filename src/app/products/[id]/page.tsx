@@ -18,6 +18,7 @@ import { getCareGuide, getPurchaseChecklist } from '@/lib/care-guides'
 import { BreadcrumbStructuredData, ProductStructuredData } from '@/components/seo/StructuredData'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { ProductBuyBar, ProductImage, ProductInfo, SeasonBar } from '@/components/catalog/ProductDetailPanel'
+import { SellerNote } from '@/components/catalog/SellerNote'
 import { CareIcon, iconFor } from '@/components/catalog/CareIcon'
 import { Breadcrumbs, CONTAINER, SectionTitle } from '@/components/ui/design'
 import { SelectionCard } from '@/components/selection/SelectionCard'
@@ -190,6 +191,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           <ProductImage product={product} sizes="(max-width: 1024px) 100vw, 60vw" size={800} className="-mx-4 aspect-[4/3] lg:mx-0 lg:aspect-square" />
           <div className="mt-3 lg:sticky lg:top-6 lg:mt-0 lg:self-start" data-place="product_page">
             <ProductInfo product={product} headingLevel="h1" showDescription pageMode />
+            <SellerNote product={product} className="mt-5" />
           </div>
         </div>
 

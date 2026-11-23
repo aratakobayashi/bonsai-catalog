@@ -7,6 +7,7 @@ import type { Season } from '@/lib/species-traits'
 import { currentSeasonJst, isInSeasonNow } from '@/lib/seasons'
 import { shippingLabel } from '@/lib/shipping'
 import { FavoriteButton } from './FavoriteButton'
+import { bonsaiShopOf, shopBadgeLabel } from '@/lib/bonsai-shops'
 import { ProductThumb } from './ProductThumb'
 
 export const SOURCE_LABELS = { amazon: 'Amazon', rakuten: '楽天市場' } as const
@@ -69,6 +70,8 @@ export function CatalogProductCard({ product, priority = false, selected = false
   const inSeason = isInSeasonNow(product)
   const title = product.displayName || product.name
   const tags = cardTags(product)
+  // 盆栽園・盆栽専門店の商品（楽天の店舗で見分ける）
+  const specialist = bonsaiShopOf(product)
   return (
     <div className={`group relative flex flex-col gap-2.5 lg:gap-3 ${buyPlace ? 'h-full' : ''}`} data-card={product.id}>
       <Link
@@ -102,6 +105,12 @@ export function CatalogProductCard({ product, priority = false, selected = false
                 </span>
               )}
               {product.heightCm ? <span>約{product.heightCm}cm</span> : null}
+            </div>
+          )}
+          {specialist && (
+            <div className="flex items-center gap-1 text-xs text-[#3f5a2c]" title={`${specialist.name}（${specialist.area}）`}>
+              <svg viewBox="0 0 12 12" className="h-3 w-3 flex-none" aria-hidden="true"><path d="M6 1.5 7.4 4.3l3.1.4-2.2 2.2.5 3.1L6 8.6 3.2 10l.5-3.1L1.5 4.7l3.1-.4Z" fill="currentColor" /></svg>
+              {shopBadgeLabel(specialist)}
             </div>
           )}
           {inSeason && (

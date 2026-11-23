@@ -26,10 +26,11 @@ export default async function GardensPage() {
     <>
       <GardensPageClient gardens={gardens} shopBridge={bridge} />
       {/* 体験・教室と、大宮盆栽村のガイドへ */}
-      <div className="mx-auto grid max-w-[1280px] grid-cols-[minmax(0,1fr)] gap-3 px-4 pb-8 sm:grid-cols-2 lg:px-12">
+      <div className="mx-auto grid max-w-[1280px] grid-cols-[minmax(0,1fr)] gap-3 px-4 pb-8 sm:grid-cols-2 lg:grid-cols-3 lg:px-12">
         {[
           { href: '/taiken', title: '盆栽体験・盆栽教室を探す', note: 'ミニ盆栽づくり・苔玉・続けて通う教室を地域から' },
           { href: '/gardens/omiya-bonsai-village', title: '大宮盆栽村の楽しみ方', note: '行き方・盆栽美術館・6つの盆栽園と大盆栽まつり' },
+          { href: '/gardens/shops', title: '盆栽園・専門店から直接買う', note: '楽天市場の盆栽園・専門店と、自社通販のある園' },
         ].map(l => (
           <Link key={l.href} href={l.href} className="flex min-h-[64px] items-center gap-3 border border-ink bg-white px-4 py-3 text-ink hover:border-gold-dark hover:text-gold-dark">
             <span className="min-w-0 flex-1">
