@@ -1,6 +1,7 @@
 import { getArticleOverride } from '@/lib/article-overrides'
 import { AmazonPicks } from '@/components/catalog/AmazonPicks'
-import { amazonPicksForSelection } from '@/lib/amazon-picks'
+import { AmazonSearchLink } from '@/components/catalog/AmazonSearchLink'
+import { SEASON_RUSH_KEYWORD, amazonPicksForSelection } from '@/lib/amazon-picks'
 import Image from 'next/image'
 import { byCuratedImage } from '@/components/home/curated'
 import photoCredits from '@/data/photo-credits.json'
@@ -292,6 +293,16 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
               <p className="mt-4 border-y border-line py-8 text-center text-sm text-ink-muted">掲載できる商品を準備中です。</p>
             )}
             <p className="mt-4 text-xs leading-relaxed text-ink-muted">価格は取得時点の情報です。最新の価格・在庫・発送時期はリンク先でご確認ください。</p>
+            {/* 年末の特集：急いで届けたい人に Amazon の検索結果も */}
+            {SEASON_RUSH_KEYWORD[selection.slug] && (
+              <AmazonSearchLink
+                keyword={SEASON_RUSH_KEYWORD[selection.slug].keyword}
+                label={`急ぐならAmazonでも「${SEASON_RUSH_KEYWORD[selection.slug].label}」を探す（届く日を確認できます）`}
+                place="selection_rush_amazon"
+                className="mt-5"
+                block
+              />
+            )}
           </section>
 
           {/* 1つ目の節：樹種・選び方の要点（PC は写真つきの3列、SP は線で区切った行） */}

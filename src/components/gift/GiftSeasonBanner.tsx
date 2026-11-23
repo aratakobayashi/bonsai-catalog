@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { activeGiftSeasons } from '@/lib/gift-seasons'
+import { AFFILIATE_LINK_REL, AMAZON_LINKS_ENABLED, amazonSearchUrl } from '@/lib/affiliate'
 
 // いまの時期の贈り物（お歳暮・クリスマス・母の日など）。時期でないときは何も出さない
 // placement：トップ（home）か贈り物ナビ（okurimono）か。贈り物ナビでは、ナビへのリンクを「この場面で選ぶ」に変える
@@ -35,6 +36,14 @@ export default function GiftSeasonBanner({ placement, className = '' }: { placem
                   >
                     {placement === 'okurimono' ? 'この場面で選ぶ' : '贈り物ナビで選ぶ'}
                   </Link>
+                )}
+                {/* 急いで届けたいとき：Amazon の検索結果（届く日は商品ページで確かめられる） */}
+                {AMAZON_LINKS_ENABLED && s.amazon && (
+                  <span data-place={`gift_season_amazon_${placement}`}>
+                    <a href={amazonSearchUrl(s.amazon)} target="_blank" rel={AFFILIATE_LINK_REL} className="inline-flex min-h-[36px] items-center text-ink underline decoration-line underline-offset-4 hover:text-gold-dark">
+                      急ぐならAmazonでも探す<span aria-hidden="true">&nbsp;↗</span>
+                    </a>
+                  </span>
                 )}
               </div>
             </div>

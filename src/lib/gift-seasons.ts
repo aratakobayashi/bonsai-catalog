@@ -17,6 +17,8 @@ export interface GiftSeason {
   // 贈り物ナビの場面（okurimono.ts の SCENE_OPTIONS の value）
   scene?: string
   photo: string
+  // Amazon の検索語（急いで届けたい人向けに、案内の帯から Amazon の検索結果へ）
+  amazon?: string
 }
 
 export const GIFT_SEASONS: GiftSeason[] = [
@@ -25,24 +27,28 @@ export const GIFT_SEASONS: GiftSeason[] = [
     show: [2, 15], end: [3, 31], guide: 'retirement-gift-bonsai', guideLabel: '退職祝いの選び方',
     selection: 'celebration-bonsai', selectionLabel: 'お祝いに贈る盆栽', scene: 'retire',
     photo: '/images/articles/photos/retirement-gift-bonsai-1.jpg',
+    amazon: '退職祝い 盆栽',
   },
   {
     key: 'mother', label: '母の日', deadline: '5月の第2日曜。花ものは5月に咲く樹を',
     show: [4, 1], end: [5, 14], guide: 'article-26', guideLabel: '母の日の選び方',
     selection: 'flowering-bonsai', selectionLabel: '花を楽しむ盆栽', scene: 'mother',
     photo: '/images/articles/photos/article-26-1.jpg',
+    amazon: '母の日 盆栽 ギフト',
   },
   {
     key: 'father', label: '父の日', deadline: '6月の第3日曜。松柏類や始めやすいセットを',
     show: [5, 15], end: [6, 21], guide: 'article-27', guideLabel: '父の日の選び方',
     selection: 'evergreen-bonsai', selectionLabel: '一年中緑の盆栽', scene: 'father',
     photo: '/images/articles/photos/article-27-1.jpg',
+    amazon: '父の日 盆栽 ギフト',
   },
   {
     key: 'keiro', label: '敬老の日', deadline: '9月の第3月曜。2〜3週間前までに注文',
     show: [8, 15], end: [9, 23], guide: 'article-32', guideLabel: '敬老の日の選び方',
     selection: 'celebration-bonsai', selectionLabel: 'お祝いに贈る盆栽', scene: 'keiro',
     photo: '/images/articles/photos/article-32-1.jpg',
+    amazon: '敬老の日 盆栽 ギフト',
   },
   {
     key: 'oseibo', label: 'お歳暮', deadline: '12月上旬に注文し、20日ごろまでに届ける',
@@ -50,6 +56,7 @@ export const GIFT_SEASONS: GiftSeason[] = [
     show: [10, 15], end: [12, 20], guide: 'oseibo-bonsai-gift', guideLabel: 'お歳暮の選び方',
     selection: 'oseibo-bonsai', selectionLabel: 'お歳暮に贈る盆栽', scene: 'oseibo',
     photo: '/images/selections/photos/oseibo-bonsai.jpg',
+    amazon: '盆栽 お歳暮 ギフト',
   },
   {
     key: 'christmas', label: 'クリスマス', deadline: '配送が混む12月は、上旬までに注文',
@@ -57,6 +64,7 @@ export const GIFT_SEASONS: GiftSeason[] = [
     show: [11, 10], end: [12, 24], guide: 'christmas-bonsai-guide', guideLabel: 'クリスマスの贈り方・飾り方',
     selection: 'christmas-bonsai', selectionLabel: 'クリスマスに飾る盆栽',
     photo: '/images/selections/photos/christmas-bonsai.jpg',
+    amazon: 'ミニ盆栽 クリスマス プレゼント',
   },
   {
     key: 'newyear', label: '正月飾り', deadline: '28日ごろまでに飾りはじめ、松の内まで',
@@ -64,6 +72,7 @@ export const GIFT_SEASONS: GiftSeason[] = [
     show: [12, 1], end: [1, 7], guide: 'new-year-bonsai-display', guideLabel: '正月の飾り方',
     selection: 'new-year-bonsai', selectionLabel: '正月に飾る盆栽',
     photo: '/images/selections/photos/new-year-bonsai.jpg',
+    amazon: '正月 盆栽 寄せ植え',
   },
 ]
 

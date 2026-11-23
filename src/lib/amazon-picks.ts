@@ -119,6 +119,39 @@ const ARTICLE_PICKS: Record<string, AmazonPick[]> = {
   'bonsai-online-sales-complete-guide': [P.joro, P.scissors, P.soil, P.okigoe],
 }
 
+// 年末の贈り物（お歳暮・クリスマス・正月）：急いで届けたいときの Amazon。届く日は Amazon の商品ページで確かめられる
+const GIFT_RUSH_NOTE = 'Amazon の商品ページで、お届け先に届く日を確かめてから注文できます。盆栽そのものを比べたいときは、上の一覧や特集から。'
+const kokedamaGift = { label: '苔玉のギフト', keyword: '苔玉 ギフト' }
+const SEASON_GIFT_PICKS: Record<string, AmazonPickSet> = {
+  oseibo: {
+    heading: 'お歳暮を急いで届けたいとき（Amazon）',
+    note: GIFT_RUSH_NOTE,
+    picks: [{ label: 'お歳暮向けの盆栽ギフト', keyword: '盆栽 お歳暮 ギフト' }, kokedamaGift, { label: '盆栽の道具セット（贈り物に）', keyword: '盆栽 道具セット' }, P.stand],
+  },
+  christmas: {
+    heading: 'クリスマスに間に合わせたいとき（Amazon）',
+    note: GIFT_RUSH_NOTE,
+    picks: [{ label: 'クリスマス向けのミニ盆栽', keyword: 'ミニ盆栽 クリスマス プレゼント' }, kokedamaGift, P.kokedamaKit, P.bonsaiKit],
+  },
+  newyear: {
+    heading: '正月飾りを急いで用意したいとき（Amazon）',
+    note: GIFT_RUSH_NOTE,
+    picks: [{ label: '正月飾りの盆栽・寄せ植え', keyword: '正月 盆栽 寄せ植え' }, { label: '松竹梅の盆栽', keyword: '松竹梅 盆栽' }, P.stand, { label: '盆栽の敷板・花台', keyword: '盆栽 敷板' }],
+  },
+}
+const SEASON_BY_SLUG: Record<string, string> = {
+  'oseibo-bonsai': 'oseibo', 'oseibo-bonsai-gift': 'oseibo',
+  'christmas-bonsai': 'christmas', 'christmas-bonsai-guide': 'christmas',
+  'new-year-bonsai': 'newyear', 'new-year-bonsai-display': 'newyear',
+}
+export const seasonGiftPicks = (slug: string): AmazonPickSet | null => SEASON_GIFT_PICKS[SEASON_BY_SLUG[slug]] ?? null
+// 年末の特集で、商品一覧のすぐ下に出す Amazon の検索語
+export const SEASON_RUSH_KEYWORD: Record<string, { keyword: string; label: string }> = {
+  'oseibo-bonsai': { keyword: '盆栽 お歳暮 ギフト', label: 'お歳暮の盆栽ギフト' },
+  'christmas-bonsai': { keyword: 'ミニ盆栽 クリスマス プレゼント', label: 'クリスマスのミニ盆栽' },
+  'new-year-bonsai': { keyword: '正月 盆栽 寄せ植え', label: '正月飾りの盆栽' },
+}
+
 // 贈り物の記事：盆栽そのものは楽天の特集で選び、Amazon は急ぎのときの道具・キットに
 export const GIFT_AMAZON_PICKS: AmazonPickSet = {
   heading: '急いで届けたいとき（Amazon）',
@@ -127,6 +160,8 @@ export const GIFT_AMAZON_PICKS: AmazonPickSet = {
 }
 
 export function amazonPicksForArticle(slug: string, isGift: boolean): AmazonPickSet | null {
+  const season = seasonGiftPicks(slug)
+  if (season) return season
   const picks = ARTICLE_PICKS[slug]
   if (picks) return { heading: 'この記事に出てくる道具・用品（Amazon）', note: DELIVERY_NOTE, picks }
   return isGift ? GIFT_AMAZON_PICKS : null
@@ -157,8 +192,8 @@ const MONTH_PICKS: Record<number, AmazonPick[]> = {
 
 // トップに出す月の案内。11〜12月は、手入れの用品に加えて贈り物（道具セット・キット）を前に出す（年末の買い物の時期のため）
 const HOME_MONTH_PICKS: Record<number, AmazonPick[]> = {
-  11: [P.frost, P.toolSet, P.kokedamaKit, P.wire],
-  12: [P.toolSet, P.kokedamaKit, P.stand, P.frost],
+  11: [{ label: 'お歳暮向けの盆栽ギフト', keyword: '盆栽 お歳暮 ギフト' }, P.toolSet, P.kokedamaKit, P.frost],
+  12: [{ label: 'クリスマス向けのミニ盆栽', keyword: 'ミニ盆栽 クリスマス プレゼント' }, { label: '正月飾りの盆栽・寄せ植え', keyword: '正月 盆栽 寄せ植え' }, P.toolSet, P.stand],
 }
 
 export function amazonPicksForHome(month: number): AmazonPickSet | null {
@@ -187,6 +222,8 @@ const SELECTION_PICKS: Record<string, AmazonPick[]> = {
 const GIFT_SELECTION_SLUGS = new Set(['bonsai-gift', 'celebration-bonsai', 'oseibo-bonsai', 'christmas-bonsai', 'new-year-bonsai', 'premium-bonsai'])
 
 export function amazonPicksForSelection(slug: string): AmazonPickSet | null {
+  const season = seasonGiftPicks(slug)
+  if (season) return season
   if (GIFT_SELECTION_SLUGS.has(slug)) return GIFT_AMAZON_PICKS
   const picks = SELECTION_PICKS[slug]
   return picks ? { heading: 'あわせて使う道具・用品（Amazon）', note: DELIVERY_NOTE, picks } : null
