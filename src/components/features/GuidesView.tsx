@@ -7,6 +7,7 @@ import { ArticleList, guidesHref } from '@/components/features/ArticleList'
 import { ArticleSearchBox, ArticleSortSelect } from '@/components/features/ArticleFilters'
 import { CONTAINER, PageHeading } from '@/components/ui/design'
 import { heroPhoto } from '@/lib/hero-photo'
+import { MakeArticles } from '@/components/article/MakeArticles'
 
 // 記事一覧に使うデータ（本文は除く）。ビルド時に作り、条件付きのURLではブラウザで /data/articles.json から読む
 export interface GuidesData {
@@ -124,6 +125,9 @@ export function GuidesView({ data, params }: { data: GuidesData; params: Record<
           </ol>
         </section>
       )}
+
+      {/* 作ってみる（苔玉・寄せ植え・挿し木などの作り方の記事） */}
+      {showBeginnerSteps && <MakeArticles className="mt-10 lg:mt-16" />}
 
       {/* 育てる道具（今月の手入れ・症状・1か月・図鑑・ノート） */}
       {showBeginnerSteps && (

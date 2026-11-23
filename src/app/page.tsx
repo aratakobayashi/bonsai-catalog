@@ -32,6 +32,7 @@ import { getHomeSpecies } from '@/components/home/species'
 import { HERO_PHOTOS, HERO_SCENES } from '@/components/home/hero-photos'
 import photoCredits from '@/data/photo-credits.json'
 import { byCuratedThenReviews, byReviews, hasCuratedImage } from '@/components/home/curated'
+import { MakeArticles } from '@/components/article/MakeArticles'
 
 // 1時間ごとに再生成（ISR）。ページを開いた直後のHTMLに商品・記事が入る
 export const revalidate = 3600
@@ -441,6 +442,9 @@ export default async function HomePage() {
 
         {/* 出かける（近く開かれる盆栽展と、地域から探す盆栽園。商品の欄のあと） */}
         <HomeOutings events={homeEvents} gardens={gardens} eventCount={eventCount} />
+
+        {/* 作ってみる（苔玉・寄せ植え・挿し木などの作り方の記事） */}
+        <MakeArticles className="pt-12 lg:pt-24" />
 
         {/* 育て方を読む（PC は3列、SP は左に小さな画像の行。/guides の一覧と同じ見せ方） */}
         <section className="pt-12 lg:pt-24">
