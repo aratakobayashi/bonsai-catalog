@@ -118,6 +118,14 @@ export default async function GardenOwnersPage() {
               <p className="mt-2 text-[13.5px] leading-[1.85] text-ink-soft">{b.body}</p>
             </li>
           ))}
+          <li className="flex flex-col justify-between bg-sumi p-5 text-white">
+            <div>
+              <p className="font-mincho text-[13px] tracking-[0.15em] text-gold">費用</p>
+              <p className="mt-1 font-mincho text-[17px] font-bold">すべて無料です</p>
+              <p className="mt-2 text-[13.5px] leading-[1.85] text-white/75">掲載料・登録料・手数料はかかりません。園の名前を送っていただくだけで始められます。</p>
+            </div>
+            <Link href="/contact?type=garden" className="mt-4 inline-flex min-h-11 items-center self-start border border-white px-4 text-[13.5px] font-bold text-white hover:bg-white hover:text-ink">申し込む ›</Link>
+          </li>
         </ol>
       </section>
 
