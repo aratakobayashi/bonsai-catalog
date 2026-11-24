@@ -156,8 +156,8 @@ export default async function GardenShopsPage() {
 
       <section aria-labelledby="owners" className="mt-14 border border-line bg-paper-deep px-5 py-6 lg:mt-20 lg:px-8">
         <h2 id="owners" className="font-mincho text-[18px] font-bold text-ink">盆栽園・盆栽店の方へ</h2>
-        <p className="mt-2 max-w-[760px] text-[14px] leading-[1.85] text-ink-soft">通販サイトをお持ちの園・店は、このページへの掲載を受け付けています（無料）。掲載内容の追加・修正もご連絡ください。</p>
-        <Link href="/gardens/owners" className="mt-3 inline-flex min-h-11 items-center border border-ink bg-white px-4 text-[13.5px] font-bold text-ink hover:bg-ink hover:text-white">掲載・修正のお申し込み ›</Link>
+        <p className="mt-2 max-w-[760px] text-[14px] leading-[1.85] text-ink-soft">通販サイトをお持ちの園・店は、このページへの掲載を受け付けています。掲載内容を園の方に確かめていただく「掲載パートナー」も募集しています（どちらも無料）。</p>
+        <Link href="/gardens/owners" className="mt-3 inline-flex min-h-11 items-center border border-ink bg-white px-4 text-[13.5px] font-bold text-ink hover:bg-ink hover:text-white">掲載パートナーについて ›</Link>
       </section>
 
       <p className="mt-8 text-[12px] leading-[1.8] text-ink-muted">楽天市場の店は、楽天のショップ情報（会社名・所在地）で確かめた店を載せています（{formatDate(BONSAI_SHOPS_CHECKED_AT)}確認）。価格・在庫は取得時点のもので、最新の情報は各販売ページで確かめてください。</p>

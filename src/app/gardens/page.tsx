@@ -46,7 +46,7 @@ export default async function GardensPage() {
       {/* 盆栽園の方への案内（掲載情報の追加・修正） */}
       <p className="mx-auto max-w-[1280px] px-4 pb-16 text-[13px] text-ink-muted lg:px-12">
         盆栽園・盆栽店の方へ：
-        <Link href="/gardens/owners" className="border-b border-ink-muted text-ink hover:text-gold-dark">掲載情報の追加・修正（無料）</Link>
+        <Link href="/gardens/owners" className="border-b border-ink-muted text-ink hover:text-gold-dark">無料の掲載パートナー・情報の追加と修正</Link>
       </p>
     </>
   )

@@ -161,7 +161,7 @@ function PlaceCard({ place }: { place: TaikenPlace }) {
       {/* 体験・教室 */}
       <div className="px-4 pb-1 lg:px-5 lg:py-2">
         <ul className="divide-y divide-line">
-          {programs.map(p => <ProgramRow key={`${p.title}-${p.sourceUrl}`} program={p} />)}
+          {programs.map(p => <ProgramRow key={`${p.title}-${p.sourceUrl}`} program={p} gardenId={place.id} />)}
         </ul>
         {place.programs.length > programs.length && <p className="pb-2 text-[12px] text-ink-muted">ほかに{place.programs.length - programs.length}つの体験・教室があります（公式サイト）</p>}
         {place.note && <p className="mb-3 border-l-2 border-gold bg-gold-light px-2.5 py-1.5 text-[12px] leading-[1.6] text-ink">{place.note}</p>}
@@ -172,7 +172,7 @@ function PlaceCard({ place }: { place: TaikenPlace }) {
         <div className="hidden lg:block"><PriceBlock place={place} /></div>
         <div className="flex flex-wrap gap-x-4 text-[13px] lg:mt-4 lg:flex-col lg:gap-1.5">
           {place.website && (
-            <a href={place.website} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-ink underline decoration-line underline-offset-4 hover:text-gold-dark lg:min-h-10 lg:justify-center lg:border lg:border-ink lg:no-underline lg:hover:bg-ink lg:hover:text-white">
+            <a href={place.website} target="_blank" rel="noopener noreferrer" data-garden-out={place.id} className="inline-flex min-h-11 items-center text-ink underline decoration-line underline-offset-4 hover:text-gold-dark lg:min-h-10 lg:justify-center lg:border lg:border-ink lg:no-underline lg:hover:bg-ink lg:hover:text-white">
               公式サイト<span aria-hidden="true">&nbsp;↗</span>
             </a>
           )}
@@ -185,7 +185,7 @@ function PlaceCard({ place }: { place: TaikenPlace }) {
 }
 
 // 確認した体験・教室の1行：種類と名前、内容、料金・時間・日程（見出し付きで並べる）
-function ProgramRow({ program: p }: { program: TaikenProgram }) {
+function ProgramRow({ program: p, gardenId }: { program: TaikenProgram; gardenId: string }) {
   const rows = [
     ['料金', p.price],
     ['時間', p.duration],
@@ -195,7 +195,7 @@ function ProgramRow({ program: p }: { program: TaikenProgram }) {
     <li className="py-3">
       <p className="flex items-baseline gap-2">
         <span className="flex-none bg-sumi px-1.5 text-[10.5px] leading-[1.7] text-white">{PROGRAM_TYPE_LABEL[p.type]}</span>
-        <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer" className="min-w-0 text-[14.5px] font-bold leading-snug text-ink hover:text-gold-dark">{p.title}</a>
+        <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer" data-garden-out={gardenId} data-garden-out-type="taiken" className="min-w-0 text-[14.5px] font-bold leading-snug text-ink hover:text-gold-dark">{p.title}</a>
       </p>
       {p.content && <p className="mt-1 text-[12.5px] leading-[1.7] text-ink-soft">{p.content}</p>}
       {rows.length > 0 && (

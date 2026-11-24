@@ -90,9 +90,16 @@ function PageViewTracker() {
         gtag('event', 'calendar_subscribe', { target: calendar, content_group: pageTypeOf(window.location.pathname) })
         return
       }
-      const gardenMatch = window.location.pathname.match(/^\/gardens\/([0-9a-f-]{36})\/?$/)
       const anchor = (event.target as HTMLElement | null)?.closest('a')
-      if (!gardenMatch || !anchor || /\bsponsored\b/.test(anchor.rel)) return
+      if (!anchor || /\bsponsored\b/.test(anchor.rel)) return
+      // 園のページ以外（体験・教室、直接買うのページ）から園のサイトへ進んだときは、リンクに付けた園のIDで数える
+      const outId = anchor.dataset.gardenOut ?? anchor.dataset.gardenShop
+      if (outId && !/^\/gardens\/[0-9a-f-]{36}\/?$/.test(window.location.pathname)) {
+        gtag('event', 'garden_click', { link_type: anchor.dataset.gardenShop ? 'shop' : (anchor.dataset.gardenOutType ?? 'website'), garden_id: outId, link_url: (anchor.getAttribute('href') ?? '').slice(0, 200), content_group: pageTypeOf(window.location.pathname) })
+        return
+      }
+      const gardenMatch = window.location.pathname.match(/^\/gardens\/([0-9a-f-]{36})\/?$/)
+      if (!gardenMatch) return
       const href = anchor.getAttribute('href') ?? ''
       let linkType: string | null = null
       if (href.startsWith('tel:')) linkType = 'phone'
@@ -103,7 +110,7 @@ function PageViewTracker() {
         linkType = /(^|\.)(google\.[a-z.]+|apple\.com)$/.test(host) && /map/i.test(href) ? 'map' : 'website'
       }
       if (!linkType) return
-      gtag('event', 'garden_click', { link_type: linkType, garden_id: gardenMatch[1], link_url: href.slice(0, 200) })
+      gtag('event', 'garden_click', { link_type: linkType, garden_id: gardenMatch[1], link_url: href.slice(0, 200), content_group: 'garden' })
     }
     document.addEventListener('click', onClick, { capture: true })
     document.addEventListener('click', onCardClick, { capture: true })

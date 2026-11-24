@@ -254,7 +254,7 @@ export default async function TaikenPage() {
         </dl>
         <p className="mt-5 text-[12px] leading-[1.8] text-ink-muted">
           「{TAIKEN_KINDS.map(k => k.short).join('・')}」は、各園の公式サイトなどで確かめた紹介文と、公式サイトの体験・教室の案内（{formatCheckedAt(TAIKEN_CHECKED_AT)}確認）をもとに分けています。料金・時間は公式サイトに書かれているものだけを載せています。日程・料金・定員は変わることがあるため、申し込む前に各園の公式サイトで最新の情報を確かめてください。
-          掲載している盆栽園の方へ：<Link href="/gardens/owners" className="border-b border-line text-ink">掲載情報の追加・修正（無料）</Link>
+          掲載している盆栽園の方へ：<Link href="/gardens/owners" className="border-b border-line text-ink">体験・教室の料金や日程を詳しく載せる（無料の掲載パートナー）</Link>
         </p>
       </section>
 

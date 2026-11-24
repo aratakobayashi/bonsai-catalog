@@ -1,3 +1,4 @@
+import { gardenPartner, formatConfirmedAt } from '@/lib/garden-partners'
 import { prefectureAreaHref, prefectureSlug } from '@/lib/prefectures'
 import { AmazonPicks } from '@/components/catalog/AmazonPicks'
 import { GARDEN_AMAZON_PICKS } from '@/lib/amazon-picks'
@@ -269,6 +270,7 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
   const prefectureListHref = prefectureAreaHref(garden.prefecture)
   const facts = gardenFacts(garden)
   const shop = gardenShop(garden.id)
+  const partner = gardenPartner(garden.id)
   // 楽天市場に店を出している園：その店の商品（レビューの多い順）
   const rakutenShop = bonsaiShopOfGarden(garden.id)
   const shopProducts = rakutenShop ? allProducts.filter(p => rakutenShopCode(p) === rakutenShop.code).sort(byCuratedThenReviews).slice(0, 8) : []
@@ -390,11 +392,12 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
           title="基本情報"
           note={
             <>
+              {partner && <><span className="text-ink">この園の掲載内容は、{formatConfirmedAt(partner.confirmedAt)}に園の方に確かめていただきました。</span><br /></>}
               訪問前に{garden.website_url ? '公式サイトで' : ''}最新情報をご確認ください。
               <br />
               <Link href={`/contact?type=correction&page=${encodeURIComponent(`/gardens/${garden.id}`)}`} className="border-b border-ink-muted hover:text-gold-dark">情報の修正を依頼する</Link>
               <span className="mx-2 text-ink-muted/60">／</span>
-              <Link href="/gardens/owners" className="border-b border-ink-muted hover:text-gold-dark">この園の方へ</Link>
+              <Link href="/gardens/owners" className="border-b border-ink-muted hover:text-gold-dark">{partner ? 'この園の方へ' : 'この園の方へ（無料の掲載パートナー）'}</Link>
             </>
           }
         >
