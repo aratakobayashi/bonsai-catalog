@@ -82,7 +82,7 @@ function GardenPageSample() {
         </div>
       </div>
       <div className="space-y-3 p-4 text-[12px]">
-        <p className="inline-flex items-center gap-1.5 border border-gold-dark/40 bg-gold/10 px-2 py-0.5 text-[11px] text-gold-dark">✓ 2026年12月に園の方に確認済み</p>
+        <p className="inline-flex items-center gap-1.5 border border-gold-dark/40 bg-gold/10 px-2 py-0.5 text-[11px] text-gold-dark">✓ 2026年11月に園の方に確認済み</p>
         <dl className="divide-y divide-line border-y border-line">
           {[['営業時間', '9:00〜17:00（木曜定休）'], ['見学', '自由（無料）'], ['体験', '1回の体験 4,400円・約90分・持ち帰りあり'], ['通販', '自社の通販サイト']].map(([k, v]) => (
             <div key={k} className="grid grid-cols-[64px_1fr] gap-2 py-2"><dt className="text-ink-muted">{k}</dt><dd className="text-ink">{v}</dd></div>
@@ -128,7 +128,7 @@ function ReportSample() {
   return (
     <Frame path=" ご報告（見本）" className="w-full">
       <div className="p-4 lg:p-6">
-        <p className="text-[11px] text-ink-muted">見本盆栽園さま　2026年10月〜12月のご報告</p>
+        <p className="text-[11px] text-ink-muted">見本盆栽園さま　2026年8月〜10月のご報告</p>
         <div className="mt-3 grid grid-cols-3 gap-2">
           {[['園のページの表示', '1,284', '+18%'], ['公式サイト・通販へ', '146', '+24%'], ['電話・地図', '39', '+9%']].map(([k, v, d]) => (
             <div key={k} className="border border-line px-3 py-2.5">
