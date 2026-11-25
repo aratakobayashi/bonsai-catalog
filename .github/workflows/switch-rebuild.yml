@@ -1,6 +1,7 @@
 # 日付で切り替わる表示（今月が見頃・いまの時期の贈り物など）が、その日のうちに変わるようにサイトを作り直す
 # 楽天の同期（daily-sync.yml、5日に1回）は行わず、Cloudflare Pages のデプロイフックを呼ぶだけ
 # 切り替わる日（日本時間）：毎月1日と、src/lib/gift-seasons.ts の show・end の翌日・late.from の日
+# あわせて、盆栽園の方が管理画面（/owner）で園の情報や商品を変えた日も作り直す（翌朝までに反映）
 name: switch-rebuild
 
 on:
@@ -27,9 +28,23 @@ jobs:
           else
             echo "$today：切り替わる日ではありません"
           fi
+      - name: 盆栽園の方の変更が、いまのサイトのあとにあったかを確かめる
+        id: owner
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$KEY" ]; then echo "Supabase の設定がないため確かめません"; exit 0; fi
+          changed=$(curl -fsS "$SUPABASE_URL/rest/v1/owner_content_version?select=updated_at&id=eq.1" -H "apikey: $KEY" -H "Authorization: Bearer $KEY" | jq -r '.[0].updated_at // empty' 2>/dev/null || true)
+          built=$(curl -fsS "$SITE/build-info.json?t=$(date +%s)" | jq -r .builtAt 2>/dev/null || true)
+          echo "園の方の最後の変更：${changed:-なし}／いまのサイト：${built:-不明}"
+          if [ -n "$changed" ] && [ -n "$built" ] && [ "$(date -d "$changed" +%s)" -gt "$(date -d "$built" +%s)" ]; then
+            echo "run=yes" >> "$GITHUB_OUTPUT"; echo "変更があるので作り直します"
+          fi
+        env:
+          SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SITE: https://www.bonsai-collection.com
       - name: サイトを作り直す（Cloudflare Pages のデプロイフック）
         id: hook
-        if: ${{ steps.day.outputs.run == 'yes' }}
+        if: ${{ steps.day.outputs.run == 'yes' || steps.owner.outputs.run == 'yes' }}
         run: |
           if [ -z "$HOOK" ]; then echo "CF_PAGES_DEPLOY_HOOK が未登録のため、作り直しを省きます"; exit 0; fi
           before=$(curl -fsS "$SITE/build-info.json?t=$(date +%s)" | jq -r .builtAt 2>/dev/null || echo none)

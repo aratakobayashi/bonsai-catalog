@@ -1,4 +1,5 @@
 import { gardenPartner, formatConfirmedAt } from '@/lib/garden-partners'
+import { applyOwnerInfo, formatYen, getOwnerInfoMap, getOwnerProductMap, ownerShop } from '@/lib/garden-owner-content'
 import { prefectureAreaHref, prefectureSlug } from '@/lib/prefectures'
 import { AmazonPicks } from '@/components/catalog/AmazonPicks'
 import { GARDEN_AMAZON_PICKS } from '@/lib/amazon-picks'
@@ -63,7 +64,9 @@ async function getGarden(id: string): Promise<Garden | null> {
   }
 
   const garden = data as unknown as Garden
-  return { ...garden, website_url: liveWebsite(garden.id, garden.website_url), online_sales: verifiedOnlineSales(garden.id, garden.online_sales) }
+  const base = { ...garden, website_url: liveWebsite(garden.id, garden.website_url), online_sales: verifiedOnlineSales(garden.id, garden.online_sales) }
+  // 園の方が管理画面で書き換えた項目を優先する
+  return applyOwnerInfo(base, (await getOwnerInfoMap()).get(garden.id))
 }
 
 // 園の取り扱い（specialties）のうち、通販のカテゴリ（/products/category/[slug]）と名前が一致するもの
@@ -269,8 +272,12 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
   // 都道府県のまとめページ（/gardens/area/〇〇）
   const prefectureListHref = prefectureAreaHref(garden.prefecture)
   const facts = gardenFacts(garden)
-  const shop = gardenShop(garden.id)
-  const partner = gardenPartner(garden.id)
+  const ownerInfo = (await getOwnerInfoMap()).get(garden.id)
+  const ownerProducts = (await getOwnerProductMap()).get(garden.id) ?? []
+  const shop = ownerShop(ownerInfo) ?? gardenShop(garden.id)
+  // 園の方が管理画面で更新した園は、その日付で「園の方が更新」と出す
+  const partner = gardenPartner(garden.id) ?? (ownerInfo ? { id: garden.id, confirmedAt: ownerInfo.updated_at.slice(0, 10) } : null)
+  const extraPhotos = ownerInfo?.photos.slice(1) ?? []
   // 楽天市場に店を出している園：その店の商品（レビューの多い順）
   const rakutenShop = bonsaiShopOfGarden(garden.id)
   const shopProducts = rakutenShop ? allProducts.filter(p => rakutenShopCode(p) === rakutenShop.code).sort(byCuratedThenReviews).slice(0, 8) : []
@@ -392,7 +399,7 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
           title="基本情報"
           note={
             <>
-              {partner && <><span className="text-ink">この園の掲載内容は、{formatConfirmedAt(partner.confirmedAt)}に園の方に確かめていただきました。</span><br /></>}
+              {partner && <><span className="text-ink">この園の掲載内容は、{formatConfirmedAt(partner.confirmedAt)}に{ownerInfo ? '園の方が更新しました' : '園の方に確かめていただきました'}。</span><br /></>}
               訪問前に{garden.website_url ? '公式サイトで' : ''}最新情報をご確認ください。
               <br />
               <Link href={`/contact?type=correction&page=${encodeURIComponent(`/gardens/${garden.id}`)}`} className="border-b border-ink-muted hover:text-gold-dark">情報の修正を依頼する</Link>
@@ -416,7 +423,12 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
             </InfoRow>
             <InfoRow label="定休日">{garden.closed_days && garden.closed_days.length > 0 ? garden.closed_days.join('、') : confirmText}</InfoRow>
             {specialties.length > 0 && <InfoRow label="取り扱い">{specialties.join('、')}</InfoRow>}
-            {garden.experience_programs && <InfoRow label="体験・教室">あり</InfoRow>}
+            {ownerInfo?.visit_info?.trim() && <InfoRow label="見学"><span className="whitespace-pre-wrap">{ownerInfo.visit_info}</span></InfoRow>}
+            {ownerInfo?.taiken_info?.trim() ? (
+              <InfoRow label="体験・教室"><span className="whitespace-pre-wrap">{ownerInfo.taiken_info}</span></InfoRow>
+            ) : (
+              garden.experience_programs && <InfoRow label="体験・教室">あり</InfoRow>
+            )}
             {shop ? (
               <InfoRow label="通販">
                 <a href={shop.url} target="_blank" rel="noopener noreferrer" data-garden-shop={garden.id} className={linkClass}>{shopLabel(shop)} ↗</a>
@@ -447,6 +459,54 @@ export default async function GardenDetailPage({ params }: GardenPageProps) {
           {/* 写真がある園は地図をここに */}
           {photo && coords && <div className="mt-5">{mapBox('h-[240px]')}</div>}
         </Section>
+
+        {/* 園の方が載せた写真（2枚目以降） */}
+        {extraPhotos.length > 0 && (
+          <Section title="園の写真">
+            <ul className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:gap-3">
+              {extraPhotos.map((src, i) => (
+                <li key={src} className="aspect-[4/3] overflow-hidden bg-paper-deep">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={src} alt={`${garden.name}の写真${i + 2}`} loading="lazy" className="h-full w-full object-cover" />
+                </li>
+              ))}
+            </ul>
+          </Section>
+        )}
+
+        {/* 園の方が管理画面で載せた商品（購入は園の通販サイト・電話・店頭） */}
+        {ownerProducts.length > 0 && (
+          <Section title={`${garden.name}の商品`} note="園の方が載せている商品です。購入・在庫の確認は、園の通販サイトや電話で行います。">
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-7 md:grid-cols-4">
+              {ownerProducts.map(p => {
+                const buy =
+                  p.buy_method === 'url' && p.buy_url
+                    ? <a href={p.buy_url} target="_blank" rel="noopener noreferrer" data-garden-out={garden.id} data-garden-out-type="product" data-garden-product={p.id} className="mt-2 inline-flex min-h-10 w-full items-center justify-center bg-sumi px-3 text-[12.5px] font-bold text-white hover:bg-sumi-light hover:text-white">購入ページへ ↗</a>
+                    : p.buy_method === 'phone' && garden.phone
+                      ? <a href={telHref(garden.phone)} data-garden-out={garden.id} data-garden-out-type="product" data-garden-product={p.id} className="mt-2 inline-flex min-h-10 w-full items-center justify-center border border-ink px-3 text-[12.5px] font-bold text-ink hover:bg-paper-deep">電話で注文・問い合わせ</a>
+                      : <p className="mt-2 text-[12px] text-ink-muted">園の店頭で販売</p>
+                return (
+                  <li key={p.id} className="min-w-0">
+                    <div className="aspect-square overflow-hidden bg-paper-deep">
+                      {p.image_url && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={p.image_url} alt={p.name} loading="lazy" className="h-full w-full object-cover" />
+                      )}
+                    </div>
+                    <p className="mt-2 line-clamp-2 text-[13.5px] font-bold leading-snug text-ink">{p.name}</p>
+                    <p className="mt-1 text-[13px] text-ink">
+                      {p.price != null && <span className="font-bold">{formatYen(p.price)}</span>}
+                      {p.price_note && <span className="ml-1 text-[11.5px] text-ink-muted">{p.price_note}</span>}
+                      {!p.in_stock && <span className="ml-1.5 text-[11.5px] text-[#a3412c]">売り切れ</span>}
+                    </p>
+                    {p.description && <p className="mt-1 line-clamp-3 text-[12px] leading-[1.7] text-ink-soft">{p.description}</p>}
+                    {buy}
+                  </li>
+                )
+              })}
+            </ul>
+          </Section>
+        )}
 
         {/* この園が楽天市場で販売している商品（広告を含む） */}
         {rakutenShop && shopProducts.length > 0 && (

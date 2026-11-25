@@ -29,7 +29,7 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: '/',
         // /_next/ は描画に必要な JS・CSS を含むためブロックしない
-        disallow: ['/api/', '/admin/', ...QUERY_PATHS],
+        disallow: ['/api/', '/admin/', '/owner', ...QUERY_PATHS],
       },
       { userAgent: AI_CRAWLERS, disallow: '/' },
     ],

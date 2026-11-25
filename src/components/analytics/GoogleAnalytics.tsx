@@ -3,6 +3,7 @@
 import Script from 'next/script'
 import { usePathname } from 'next/navigation'
 import { Suspense, useEffect } from 'react'
+import { sourceOfPath, sourceOfReferrer, trackGarden } from '@/lib/garden-track'
 
 // 測定IDはページに埋め込まれる公開情報。環境変数があればそちらを優先する
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-J9QM571RMN'
@@ -49,6 +50,11 @@ function PageViewTracker() {
       page_title: document.title,
       content_group: pageTypeOf(pathname),
     })
+    // 盆栽園のページの表示を、園ごとの数字に足す（どこから来たかも）。サイトの中の移動は前のページで判断する
+    const w = window as unknown as { __bcPrevPath?: string }
+    const garden = pathname.match(/^\/gardens\/([0-9a-f-]{36})\/?$/)
+    if (garden) trackGarden(garden[1], 'view', w.__bcPrevPath ? sourceOfPath(w.__bcPrevPath) : sourceOfReferrer(document.referrer))
+    w.__bcPrevPath = pathname
   }, [pathname])
 
   // 広告リンク（rel="sponsored"）のクリックをまとめて記録する
@@ -95,7 +101,9 @@ function PageViewTracker() {
       // 園のページ以外（体験・教室、直接買うのページ）から園のサイトへ進んだときは、リンクに付けた園のIDで数える
       const outId = anchor.dataset.gardenOut ?? anchor.dataset.gardenShop
       if (outId && !/^\/gardens\/[0-9a-f-]{36}\/?$/.test(window.location.pathname)) {
-        gtag('event', 'garden_click', { link_type: anchor.dataset.gardenShop ? 'shop' : (anchor.dataset.gardenOutType ?? 'website'), garden_id: outId, link_url: (anchor.getAttribute('href') ?? '').slice(0, 200), content_group: pageTypeOf(window.location.pathname) })
+        const outType = anchor.dataset.gardenShop ? 'shop' : (anchor.dataset.gardenOutType ?? 'website')
+        gtag('event', 'garden_click', { link_type: outType, garden_id: outId, link_url: (anchor.getAttribute('href') ?? '').slice(0, 200), content_group: pageTypeOf(window.location.pathname) })
+        trackGarden(outId, outType, sourceOfPath(window.location.pathname))
         return
       }
       const gardenMatch = window.location.pathname.match(/^\/gardens\/([0-9a-f-]{36})\/?$/)
@@ -109,8 +117,18 @@ function PageViewTracker() {
         if (host === window.location.hostname) return
         linkType = /(^|\.)(google\.[a-z.]+|apple\.com)$/.test(host) && /map/i.test(href) ? 'map' : 'website'
       }
+      // 園の方が載せた商品の購入ボタン（購入ページ・電話）
+      const productId = anchor.dataset.gardenProduct
+      if (productId) {
+        gtag('event', 'garden_click', { link_type: 'product', garden_id: gardenMatch[1], link_url: href.slice(0, 200), content_group: 'garden' })
+        trackGarden(gardenMatch[1], 'product', 'garden')
+        trackGarden(gardenMatch[1], `product:${productId}`, 'garden')
+        return
+      }
+      if (linkType === 'website' && /instagram\.com/.test(href)) linkType = 'instagram'
       if (!linkType) return
       gtag('event', 'garden_click', { link_type: linkType, garden_id: gardenMatch[1], link_url: href.slice(0, 200), content_group: 'garden' })
+      trackGarden(gardenMatch[1], linkType, 'garden')
     }
     document.addEventListener('click', onClick, { capture: true })
     document.addEventListener('click', onCardClick, { capture: true })

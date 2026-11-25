@@ -19,15 +19,17 @@ const WRAP = 'mx-auto w-full max-w-[1184px] px-4 lg:px-12'
 export const metadata: Metadata = {
   alternates: { canonical: PATH },
   title: '盆栽園・盆栽店さま向け 掲載のご案内（掲載無料） - 盆栽コレクション',
-  description: '盆栽コレクションは、全国の盆栽園を地域・体験教室・通販から探せるサイトです。盆栽園・盆栽店さまの掲載は無料です。体験・教室の料金や日程、通販サイト、写真と紹介文を掲載でき、園のページの表示回数や公式サイトへの送客数をご報告します。',
+  description: '盆栽コレクションは、全国の盆栽園を地域・体験教室・通販から探せるサイトです。盆栽園・盆栽店さまの掲載は無料です。管理画面から園の情報・写真・商品を載せられ、園のページの表示回数や公式サイト・購入先への送客数をいつでも確かめられます。',
 }
 
 const FAQ = [
   { q: '本当に無料ですか？', a: '無料です。掲載料・登録料・送客の手数料はいただきません。当サイトは商品リンクの広告収入で運営しています。' },
   { q: 'なぜ無料なのですか？', a: '始めたばかりで、送客の実績をまだお見せできないためです。実績が出てから、改めてご相談します。そのときお断りいただいても、無料の掲載はそのまま続けます。' },
-  { q: 'お客様は、どれくらい来ますか？', a: 'いまはお約束できません。そのぶん無料でお願いしています。貴園のページの表示回数と、公式サイト・通販・電話・地図へ進んだ回数は、ご希望に応じてご報告します。' },
-  { q: '当サイトが、予約や販売の間に入りますか？', a: '入りません。体験の予約・通販のご注文・お問い合わせは、貴園の公式サイトや電話にそのまま移ります。' },
-  { q: 'ホームページや通販サイトがなくても掲載できますか？', a: 'できます。営業時間・見学の可否・体験の内容などをメールでお知らせいただければ、当方でページにまとめます。' },
+  { q: 'お客様は、どれくらい来ますか？', a: 'いまはお約束できません。そのぶん無料でお願いしています。貴園のページの表示回数と、公式サイト・通販・商品の購入先・電話・地図へ進んだ回数は、管理画面でいつでもご覧いただけます。' },
+  { q: '商品を販売できますか？', a: 'できます。管理画面から、盆栽・鉢・道具などの商品を写真・価格つきで載せられます。購入は、貴園の通販サイト・電話・店頭へご案内します。' },
+  { q: '当サイトが、予約や販売の間に入りますか？', a: '入りません。体験の予約・商品のご注文・お問い合わせは、貴園の通販サイトや電話にそのまま移ります。当サイトは代金を預からず、販売の手数料もいただきません。' },
+  { q: '管理画面のログインは、どうなりますか？', a: '掲載が決まったら、ご担当者のメールアドレスでアカウントをお作りし、ログインの方法をお送りします。管理できるのは、貴園の情報と商品だけです。' },
+  { q: 'ホームページや通販サイトがなくても掲載できますか？', a: 'できます。営業時間・見学の可否・体験の内容は管理画面から入れられます。商品は「電話で注文」「店頭で販売」として載せられます。パソコンが苦手な場合は、メールでお知らせいただければ当方で入れます。' },
   { q: 'まだ掲載されていない園でも申し込めますか？', a: '申し込めます。実在と所在地を確かめたうえで掲載します。' },
   { q: '掲載の順番は、どう決まりますか？', a: '地域（北から南）と園名の順です。掲載順・おすすめ・評価を、お金で変える枠は作っていません。将来、有料の掲載を始める場合も「PR」と明記し、無料の掲載内容は減らしません。' },
   { q: '写真は、どのように載りますか？', a: '写真をご提供いただいた場合は、その写真に差し替えて載せます。クレジットの表記や使ってよい範囲は、ご希望に合わせます。いま載っている写真の取り下げも承ります。' },
@@ -126,15 +128,15 @@ function TaikenSample() {
 function ReportSample() {
   const bars = [38, 44, 41, 52, 60, 57, 66, 71, 64, 78, 83, 90]
   return (
-    <Frame path=" ご報告（見本）" className="w-full">
+    <Frame path="/owner" className="w-full">
       <div className="p-4 lg:p-6">
-        <p className="text-[11px] text-ink-muted">見本盆栽園さま　2026年8月〜10月のご報告</p>
+        <p className="text-[11px] text-ink-muted">見本盆栽園　直近30日の効果</p>
         <div className="mt-3 grid grid-cols-3 gap-2">
           {[['園のページの表示', '1,284', '+18%'], ['公式サイト・通販へ', '146', '+24%'], ['電話・地図', '39', '+9%']].map(([k, v, d]) => (
             <div key={k} className="border border-line px-3 py-2.5">
               <p className="text-[10.5px] leading-tight text-ink-muted">{k}</p>
               <p className="mt-1 font-mincho text-[20px] font-bold text-ink lg:text-[24px]">{v}</p>
-              <p className="text-[10.5px] text-[#2f7d4f]">前の3か月より {d}</p>
+              <p className="text-[10.5px] text-[#2f7d4f]">前の期間より {d}</p>
             </div>
           ))}
         </div>
@@ -156,13 +158,58 @@ function ReportSample() {
   )
 }
 
+// 見本：園のページの商品
+function ProductsSample() {
+  const items = [['五葉松 小品盆栽', '12,000円', 'bg-[#4f6b4a]'], ['真柏 ミニ盆栽', '6,600円', 'bg-[#6b7d55]'], ['常滑焼 盆栽鉢', '3,300円', 'bg-[#8a6a4f]']]
+  return (
+    <Frame path="/gardens/…" className="w-full">
+      <div className="p-4 lg:p-5">
+        <p className="font-mincho text-[15px] font-bold">見本盆栽園の商品</p>
+        <ul className="mt-3 grid grid-cols-3 gap-3">
+          {items.map(([n, p, c]) => (
+            <li key={n} className="min-w-0">
+              <div className={`aspect-square ${c} opacity-80`} />
+              <p className="mt-1.5 truncate text-[11.5px] font-bold">{n}</p>
+              <p className="text-[11.5px]">{p}</p>
+              <span className="mt-1.5 flex h-7 items-center justify-center bg-ink text-[10.5px] font-bold text-white">購入ページへ ↗</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Frame>
+  )
+}
+
+// 見本：管理画面
+function AdminSample() {
+  return (
+    <Frame path="/owner/products" className="w-full">
+      <div className="flex border-b border-line text-[11.5px]">
+        {['効果', '園の情報', '商品', 'アカウント'].map((t, i) => <span key={t} className={`px-3 py-2.5 ${i === 2 ? 'border-b-2 border-ink font-bold' : 'text-ink-muted'}`}>{t}</span>)}
+      </div>
+      <div className="p-4 lg:p-5">
+        <div className="flex items-center justify-between"><p className="font-mincho text-[16px] font-bold">商品</p><span className="bg-ink px-2.5 py-1 text-[11px] font-bold text-white">＋ 商品を追加</span></div>
+        <ul className="mt-3 divide-y divide-line border-y border-line">
+          {[['五葉松 小品盆栽', '12,000円・購入ページのURLへ', '公開', 'bg-[#4f6b4a]'], ['真柏 ミニ盆栽', '6,600円・電話で注文', '公開', 'bg-[#6b7d55]'], ['常滑焼 盆栽鉢', '3,300円・園の店頭で販売', '非公開', 'bg-[#8a6a4f]']].map(([n, d, st, c]) => (
+            <li key={n} className="flex items-center gap-3 py-2.5">
+              <span className={`h-10 w-10 flex-none ${c} opacity-80`} />
+              <span className="min-w-0 flex-1"><span className="block truncate text-[12px] font-bold">{n}</span><span className="block truncate text-[10.5px] text-ink-muted">{d}</span></span>
+              <span className={`px-1.5 text-[10px] ${st === '公開' ? 'bg-[#2f7d4f]/10 text-[#2f7d4f]' : 'bg-paper-deep text-ink-muted'}`}>{st}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Frame>
+  )
+}
+
 export default async function GardenOwnersPage() {
   const gardens = await getGardenList()
   const prefectures = new Set(gardens.map(g => g.prefecture).filter(Boolean)).size
   const taikenCount = buildTaikenPlaces(gardens).length
   const shopCount = gardens.filter(g => gardenShop(g.id)).length + BONSAI_SHOPS.filter(s => s.kind === 'garden').length
 
-  const nav = [['#contents', '掲載内容'], ['#input', '情報の入れ方'], ['#report', '効果'], ['#price', '料金'], ['#faq', 'よくある質問']]
+  const nav = [['#contents', '掲載内容'], ['#input', '管理画面'], ['#report', '効果'], ['#price', '料金'], ['#faq', 'よくある質問']]
 
   return (
     <div className="bg-paper text-ink">
@@ -189,6 +236,7 @@ export default async function GardenOwnersPage() {
           <nav className="ml-auto hidden items-center gap-7 text-[13px] tracking-[0.08em] text-ink-soft lg:flex" aria-label="ページ内の案内">
             {nav.map(([href, label]) => <a key={href} href={href} className="hover:text-ink">{label}</a>)}
           </nav>
+          <Link href="/owner/login" className="ml-auto hidden text-[13px] text-ink-soft hover:text-ink sm:inline lg:ml-0">ログイン</Link>
           <Link href={APPLY} className="ml-auto inline-flex h-10 items-center rounded-full bg-ink px-4 text-[12.5px] font-bold text-white hover:bg-ink/85 lg:ml-0 lg:h-11 lg:px-6 lg:text-[13.5px]">まずは相談する</Link>
         </div>
       </header>
@@ -200,7 +248,7 @@ export default async function GardenOwnersPage() {
             <span className="h-px w-10 bg-ink" aria-hidden="true" />盆栽園・盆栽店さま向け　掲載のご案内
           </p>
           <h1 className="mt-6 font-mincho text-[38px] font-bold leading-[1.45] tracking-[0.1em] lg:text-[60px]">盆栽を<br />探す人に、<br />貴園の魅力を。</h1>
-          <p className="mt-6 max-w-[520px] text-[15px] leading-[2] text-ink-soft lg:text-[16px]">盆栽コレクションは、全国の盆栽園を、地域・体験教室・通販から探せるサイトです。<strong className="text-ink">掲載は無料です。</strong></p>
+          <p className="mt-6 max-w-[520px] text-[15px] leading-[2] text-ink-soft lg:text-[16px]">盆栽コレクションは、全国の盆栽園を、地域・体験教室・通販から探せるサイトです。園の情報も商品も、管理画面から載せられます。<strong className="text-ink">掲載は無料です。</strong></p>
           <p className="mt-5 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[14px] text-ink-soft">
             <span>全国で<strong className="mx-1 font-mincho text-[26px] text-ink">{gardens.length.toLocaleString()}園</strong>を掲載中</span>
             <Link href="/gardens" className="text-ink underline decoration-ink/40 underline-offset-4 hover:text-gold-dark">実際のサイトを見る ↗</Link>
@@ -235,11 +283,19 @@ export default async function GardenOwnersPage() {
           </div>
           <TaikenSample />
         </div>
+        <div className="mt-16 grid items-center gap-8 lg:mt-24 lg:grid-cols-2 lg:gap-16">
+          <div className="lg:order-2">
+            <p className="text-[12px] tracking-[0.15em] text-gold-dark">商品</p>
+            <h3 className="mt-2 font-mincho text-[22px] font-bold leading-[1.6] lg:text-[28px]">盆栽も道具も、<br />写真と価格で並べられる。</h3>
+            <p className="mt-4 text-[14.5px] leading-[1.95] text-ink-soft">盆栽・鉢・道具など、貴園で販売している商品を、管理画面から写真・価格つきで載せられます。購入は、貴園の通販サイト・電話・店頭へご案内します。当サイトは代金を預からず、手数料もいただきません。</p>
+          </div>
+          <ProductsSample />
+        </div>
         <ul className="mt-14 grid gap-px border border-line bg-line sm:grid-cols-3 lg:mt-20">
           {[
             ['基本情報', '営業時間・定休日・見学の可否・駐車場・アクセス。地図と電話のボタンも付きます。'],
             ['通販', '自社の通販サイト・BASE・楽天市場などの店を、園のページと「盆栽園・専門店から直接買う」のページで案内します。'],
-            ['写真と紹介文', 'ご提供の写真と、貴園の言葉による紹介文を載せられます。「園の方に確認済み」の表示も付きます。'],
+            ['写真と紹介文', '園の写真を6枚まで、貴園の言葉による紹介文とあわせて載せられます。「園の方が更新」の表示も付きます。'],
           ].map(([t, d]) => (
             <li key={t} className="bg-white p-6">
               <p className="font-mincho text-[18px] font-bold">{t}</p>
@@ -249,41 +305,43 @@ export default async function GardenOwnersPage() {
         </ul>
       </section>
 
-      {/* 02 情報の入れ方 */}
+      {/* 02 管理画面 */}
       <section id="input" className="scroll-mt-20 bg-paper-deep py-16 lg:py-28">
         <div className={WRAP}>
-          <SectionHead no="02" label="情報の入れ方" title={<>情報は、<br className="lg:hidden" />貴園のやりやすい方法で。</>} />
-          <div className="mt-10 border-l-4 border-gold-dark bg-white p-6 lg:mt-14 lg:p-8">
-            <p className="text-[12px] tracking-[0.15em] text-gold-dark">はじめての掲載</p>
-            <p className="mt-2 font-mincho text-[19px] font-bold lg:text-[22px]">最初の掲載は、こちらで作ります。</p>
-            <p className="mt-3 max-w-[820px] text-[14.5px] leading-[1.95] text-ink-soft">公式サイトのURLや、お手元の案内（パンフレット・チラシ・料金表など）をお送りください。当方でページを作り、公開の前に貴園に確かめていただきます。</p>
+          <SectionHead no="02" label="管理画面" title={<>掲載のことは、<br className="lg:hidden" />ひとつの画面で。</>} lead="園の情報・写真・商品は、貴園の管理画面からいつでも直せます。スマートフォンからも使えます。変えた内容は、翌朝までにサイトに反映されます。" />
+          <div className="mt-10 grid items-center gap-8 lg:mt-14 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-14">
+            <AdminSample />
+            <ul className="space-y-3">
+              {[
+                ['園の情報', '紹介文・営業時間・定休日・見学・体験・アクセス・駐車場・公式サイト・通販サイト'],
+                ['写真', '6枚まで。並べ替えも画面から'],
+                ['商品', '写真・価格・説明・購入の方法（通販のURL・電話・店頭）・在庫・公開／非公開'],
+                ['効果', '表示回数・送客の数を日ごとに。CSV・印刷にも'],
+              ].map(([t, d]) => (
+                <li key={t} className="bg-white p-5">
+                  <p className="font-mincho text-[17px] font-bold">{t}</p>
+                  <p className="mt-1 text-[13.5px] leading-[1.8] text-ink-soft">{d}</p>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="mt-4 grid gap-4 md:grid-cols-3">
-            {[
-              ['A', '公式サイトから', 'ご許可をいただいて、公式サイトの情報から当方がまとめます。', '貴園の作業なし'],
-              ['B', 'メールで', '料金や日程が変わったら、メールで新しい内容をお知らせください。', '数日で反映'],
-              ['C', '写真を送る', '園や盆栽の写真をメールでお送りください。使ってよい範囲を伺います。', 'クレジット表記も可'],
-            ].map(([k, t, d, tag]) => (
-              <li key={k} className="flex flex-col bg-white p-6">
-                <p className="font-mincho text-[28px] font-bold text-gold-dark">{k}</p>
-                <p className="mt-1 font-mincho text-[18px] font-bold">{t}</p>
-                <p className="mt-2 flex-1 text-[13.5px] leading-[1.9] text-ink-soft">{d}</p>
-                <p className="mt-4 self-start border border-line px-2.5 py-1 text-[11.5px] text-ink-soft">{tag}</p>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-6 border-l-4 border-gold-dark bg-white p-6 lg:p-8">
+            <p className="text-[12px] tracking-[0.15em] text-gold-dark">はじめての掲載</p>
+            <p className="mt-2 font-mincho text-[19px] font-bold lg:text-[22px]">最初の登録は、こちらでお手伝いします。</p>
+            <p className="mt-3 max-w-[820px] text-[14.5px] leading-[1.95] text-ink-soft">公式サイトのURLや、お手元の案内（パンフレット・料金表など）をお送りください。当方でひととおり入れてから、管理画面をお渡しします。パソコンが苦手な場合は、その後もメールで承ります。</p>
+          </div>
         </div>
       </section>
 
       {/* 03 効果 */}
       <section id="report" className={`${WRAP} scroll-mt-20 py-16 lg:py-28`}>
-        <SectionHead no="03" label="掲載の効果" title="掲載の効果が、数字でわかる。" lead="ご希望の園には、3か月ごとにメールでご報告します。社内や家族へのご説明にも、そのまま使えます。" />
+        <SectionHead no="03" label="掲載の効果" title="掲載の効果が、いつでもわかる。" lead="貴園のページが見られた回数と、そこから貴園へつながった回数を、管理画面でいつでも確かめられます。CSVや印刷で、ご報告にもそのまま使えます。" />
         <div className="mt-12 grid items-center gap-10 lg:mt-16 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-16">
           <ReportSample />
           <dl className="border-t border-line">
             {[
               ['園のページの表示', 'お客様が貴園のページを見た回数'],
-              ['公式サイト・通販へ', '貴園の公式サイト・予約ページ・通販サイトへ移った回数'],
+              ['公式サイト・通販・商品へ', '貴園の公式サイト・予約ページ・通販サイト・商品の購入先へ移った回数'],
               ['電話・地図', '電話をかける・地図を開くボタンが押された回数'],
               ['入口ごと', '体験・教室のページ、地域の一覧、検索など、どこから見られたか'],
             ].map(([t, d]) => (
@@ -308,7 +366,7 @@ export default async function GardenOwnersPage() {
               <CtaButton className="mt-7 self-start">まずは相談する</CtaButton>
             </div>
             <dl className="divide-y divide-line">
-              {[['掲載料・登録料', '0円'], ['送客・予約・販売の手数料', '0円'], ['掲載できる情報', '基本情報・体験・通販・写真・紹介文'], ['確認済みの表示・効果のご報告', 'すべて含む']].map(([k, v]) => (
+              {[['掲載料・登録料', '0円'], ['送客・予約・販売の手数料', '0円'], ['載せられる商品', '100件まで'], ['管理画面・効果の数字・写真6枚', 'すべて含む']].map(([k, v]) => (
                 <div key={k} className="flex items-center justify-between gap-4 px-6 py-5 lg:px-10">
                   <dt className="text-[14px] text-ink-soft">{k}</dt>
                   <dd className="text-right font-mincho text-[16px] font-bold lg:text-[18px]">{v}</dd>
@@ -326,9 +384,9 @@ export default async function GardenOwnersPage() {
         <ol className="mt-10 grid gap-4 md:grid-cols-4 lg:mt-14">
           {[
             ['ご相談・お申し込み', 'フォームから、園の名前・ご担当者・連絡先をお送りください。'],
-            ['担当からご連絡', 'メールで、掲載の進め方をご相談します。'],
-            ['掲載内容の確認', '当方が作った掲載内容を、公開の前に確かめていただきます。'],
-            ['公開', '数日〜1週間ほどで公開し、「園の方に確認済み」を表示します。'],
+            ['担当からご連絡', 'メールで、掲載の進め方をご相談します。最初の登録は当方がお手伝いします。'],
+            ['管理画面へ', 'ログインの方法をお送りします。内容を確かめ、写真や商品を足してください。'],
+            ['公開', '保存した内容は翌朝までに公開されます。効果の数字は、その日から数えます。'],
           ].map(([t, d], i) => (
             <li key={t} className="relative border-t-2 border-ink pt-5">
               <p className="flex h-9 w-9 items-center justify-center rounded-full border border-ink font-mincho text-[15px] font-bold">{i + 1}</p>
@@ -372,6 +430,7 @@ export default async function GardenOwnersPage() {
             <Link href="/terms" className="hover:text-white">利用規約</Link>
             <Link href="/privacy" className="hover:text-white">プライバシーポリシー</Link>
             <Link href={APPLY} className="hover:text-white">お問い合わせ・掲載停止のご依頼</Link>
+            <Link href="/owner/login" className="hover:text-white">掲載園の管理画面</Link>
             <Link href="/" className="hover:text-white">一般向けのサイトへ</Link>
           </nav>
           <p>© 盆栽コレクション</p>
