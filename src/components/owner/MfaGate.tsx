@@ -8,6 +8,15 @@ import { friendlyError, ownerSupabase } from '@/lib/owner-supabase'
 // データベースの側でも、コードで確かめたログイン（aal2）でなければ園のデータを読めない・書けない
 type Step = { kind: 'loading' } | { kind: 'enroll'; factorId: string; qr: string; secret: string } | { kind: 'challenge'; factorId: string } | { kind: 'error'; message: string }
 
+// Supabase の QR コードは「data:image/svg+xml;utf-8,<svg…>」の形で、そのままでは表示できないブラウザがあるため、作り直す
+function qrSrc(raw: string): string {
+  const i = raw.indexOf(',')
+  if (!raw.startsWith('data:image/svg+xml') || i < 0) return raw
+  let svg = raw.slice(i + 1)
+  if (!svg.trimStart().startsWith('<')) { try { svg = decodeURIComponent(svg) } catch { return raw } }
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`
+}
+
 const codeInput = 'w-full border border-line bg-white px-3 py-3 text-center font-mono text-[24px] tracking-[0.4em] text-ink outline-none focus:border-ink'
 const button = 'inline-flex min-h-12 w-full items-center justify-center bg-ink px-5 text-[15px] font-bold text-white hover:bg-ink/85 disabled:opacity-50'
 
@@ -75,7 +84,7 @@ export function MfaGate({ onDone }: { onDone: () => void }) {
               <b>2.</b> アプリで「QRコードをスキャン」を選び、下のQRコードを読み取ります。
               <div className="mt-3 flex justify-center border border-line bg-white p-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={step.qr} alt="認証アプリに登録するQRコード" width={200} height={200} className="h-[200px] w-[200px]" />
+                <img src={qrSrc(step.qr)} alt="認証アプリに登録するQRコード" width={200} height={200} className="h-[200px] w-[200px]" />
               </div>
               <button type="button" onClick={() => setShowSecret(v => !v)} className="mt-2 text-[12.5px] text-ink-soft underline underline-offset-4">QRコードを読み取れないとき</button>
               {showSecret && <p className="mt-1.5 break-all border border-line bg-paper-deep p-3 font-mono text-[13px]">アプリで「セットアップキーを入力」を選び、次の文字を入れてください：<br />{step.secret}</p>}
