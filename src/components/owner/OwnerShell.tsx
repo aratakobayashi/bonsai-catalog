@@ -81,7 +81,7 @@ export function OwnerShell({ children }: { children: ReactNode }) {
   // 2段階認証の状態を確かめる
   useEffect(() => {
     if (!session) { setMfaOk(null); return }
-    ownerSupabase().auth.mfa.getAuthenticatorAssuranceLevel().then(({ data }) => setMfaOk(data?.currentLevel === 'aal2'))
+    ownerSupabase().auth.mfa.getAuthenticatorAssuranceLevel().then(({ data }) => setMfaOk(data?.currentLevel === 'aal2')).catch(() => setMfaOk(false))
   }, [session])
 
   // 管理できる園
