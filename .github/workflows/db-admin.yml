@@ -1,0 +1,72 @@
+# データベースの作業を GitHub Actions から行う（Supabase の SQL Editor を開かずにすむように）
+# 接続先は GitHub の Secrets「SUPABASE_DB_URL」（Supabase の「Connect」→「Session pooler」の接続文字列。パスワード入り）
+# 作業の種類
+#   migrate        supabase/migrations/ の SQL ファイルを1つ実行する
+#   add-member     園の方のアカウント（メールアドレス）を園と結びつける
+#   remove-member  結びつきを外す
+#   reset-mfa      2段階認証の登録を外す（認証アプリが使えなくなった園の方。次のログインで登録し直す）
+name: db-admin
+
+on:
+  workflow_dispatch:
+    inputs:
+      task:
+        description: '作業の種類'
+        required: true
+        type: choice
+        options: [migrate, add-member, remove-member, reset-mfa]
+      migration:
+        description: 'migrate：実行する SQL ファイル'
+        required: false
+        default: 'supabase/migrations/20261125000000_owner_portal.sql'
+      email:
+        description: 'add-member・remove-member・reset-mfa：園の方のメールアドレス'
+        required: false
+      garden_id:
+        description: 'add-member・remove-member：園のID（園のページのURLの /gardens/ のあと）'
+        required: false
+
+concurrency:
+  group: db-admin
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      TASK: ${{ inputs.task }}
+      MIGRATION: ${{ inputs.migration }}
+      EMAIL: ${{ inputs.email }}
+      GARDEN_ID: ${{ inputs.garden_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: 入力を確かめる
+        run: |
+          if [ -z "$DB_URL" ]; then echo "::error::Secrets に SUPABASE_DB_URL が登録されていません"; exit 1; fi
+          case "$TASK" in
+            migrate)
+              echo "$MIGRATION" | grep -Eq '^supabase/migrations/[A-Za-z0-9_.-]+\.sql$' || { echo "::error::SQL ファイルの指定が正しくありません"; exit 1; }
+              [ -f "$MIGRATION" ] || { echo "::error::$MIGRATION がありません"; exit 1; } ;;
+            add-member|remove-member)
+              echo "$EMAIL" | grep -Eq '^[^@[:space:]]+@[^@[:space:]]+\.[^@[:space:]]+$' || { echo "::error::メールアドレスが正しくありません"; exit 1; }
+              echo "$GARDEN_ID" | grep -Eq '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$' || { echo "::error::園のIDが正しくありません"; exit 1; } ;;
+            reset-mfa)
+              echo "$EMAIL" | grep -Eq '^[^@[:space:]]+@[^@[:space:]]+\.[^@[:space:]]+$' || { echo "::error::メールアドレスが正しくありません"; exit 1; } ;;
+          esac
+          psql --version
+      - name: 実行する
+        run: |
+          case "$TASK" in
+            migrate)
+              psql "$DB_URL" -v ON_ERROR_STOP=1 -q -f "$MIGRATION" && echo "実行しました：$MIGRATION"
+              psql "$DB_URL" -v ON_ERROR_STOP=1 -At -c "select 'tables: ' || string_agg(table_name, ', ' order by table_name) from information_schema.tables where table_schema = 'public' and table_name in ('garden_members','garden_owner_info','garden_products','garden_stats_daily','owner_content_version')" ;;
+            add-member)
+              printf "%s\n" "select public.add_garden_member(:'email', :'garden'::uuid);" | psql "$DB_URL" -v ON_ERROR_STOP=1 -At -v email="$EMAIL" -v garden="$GARDEN_ID"
+              printf "%s\n" "select '園：' || name from public.gardens where id = :'garden'::uuid;" | psql "$DB_URL" -v ON_ERROR_STOP=1 -At -v garden="$GARDEN_ID" ;;
+            remove-member)
+              printf "%s\n" "delete from public.garden_members where garden_id = :'garden'::uuid and user_id = (select id from auth.users where lower(email) = lower(:'email')) returning 'OK：結びつきを外しました';" | psql "$DB_URL" -v ON_ERROR_STOP=1 -At -v email="$EMAIL" -v garden="$GARDEN_ID" ;;
+            reset-mfa)
+              printf "%s\n" "with d as (delete from auth.mfa_factors where user_id = (select id from auth.users where lower(email) = lower(:'email')) returning 1) select 'OK：2段階認証の登録を ' || count(*) || ' 件外しました' from d;" | psql "$DB_URL" -v ON_ERROR_STOP=1 -At -v email="$EMAIL" ;;
+          esac

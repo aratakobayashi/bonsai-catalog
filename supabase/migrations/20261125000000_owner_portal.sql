@@ -1,4 +1,6 @@
 -- 盆栽園向けの管理画面（/owner）
+-- 2段階認証：園のデータを読む・書くには、パスワードに加えて認証アプリのコードで確かめたログイン（aal2）が要る。
+-- 画面の側だけでなく、データベースの側（is_garden_member と garden_members の読み取り）でも確かめる
 -- Supabase の「SQL Editor」に全文を貼り付けて、1回だけ実行する。何度実行しても壊れないように書いてある。
 --
 -- 作るもの
@@ -18,11 +20,12 @@ create table if not exists public.garden_members (
 );
 alter table public.garden_members enable row level security;
 drop policy if exists "members read own" on public.garden_members;
-create policy "members read own" on public.garden_members for select to authenticated using (user_id = auth.uid());
+create policy "members read own" on public.garden_members for select to authenticated using (user_id = auth.uid() and (auth.jwt() ->> 'aal') = 'aal2');
 
 create or replace function public.is_garden_member(gid uuid)
 returns boolean language sql stable security definer set search_path = public as $$
-  select exists (select 1 from public.garden_members where user_id = auth.uid() and garden_id = gid)
+  select (auth.jwt() ->> 'aal') = 'aal2'
+     and exists (select 1 from public.garden_members where user_id = auth.uid() and garden_id = gid)
 $$;
 revoke all on function public.is_garden_member(uuid) from public;
 grant execute on function public.is_garden_member(uuid) to authenticated;

@@ -35,6 +35,7 @@ export default function OwnerAccountPage() {
       <dl className="mt-6 border-t border-line text-[14px]">
         <div className="grid grid-cols-[120px_1fr] border-b border-line py-3"><dt className="text-ink-muted">メールアドレス</dt><dd>{session.user.email}</dd></div>
         <div className="grid grid-cols-[120px_1fr] border-b border-line py-3"><dt className="text-ink-muted">管理できる園</dt><dd>{gardens.map(g => g.name).join('、')}</dd></div>
+        <div className="grid grid-cols-[120px_1fr] border-b border-line py-3"><dt className="text-ink-muted">2段階認証</dt><dd>有効（認証アプリ）<span className="block text-[12px] text-ink-muted">機種変更などで認証アプリが使えなくなるときは、運営者にご連絡ください。</span></dd></div>
       </dl>
 
       <h2 className="mt-10 font-mincho text-[19px] font-bold">パスワードの変更</h2>

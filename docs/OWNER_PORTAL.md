@@ -8,13 +8,18 @@
 
 ## 最初に1回だけ行うこと（運営者）
 
-### 1. データベースの表を作る
+### 1. データベースに接続する情報を GitHub に登録する（運営者・1回だけ）
 
-1. Supabase のダッシュボードで、このサイトのプロジェクトを開く
-2. 左のメニューの「SQL Editor」を開き、「New query」を押す
-3. `supabase/migrations/20261125000000_owner_portal.sql` の中身をすべて貼り付けて「Run」を押す
-4. 「Success. No rows returned」と出れば完了（何度実行しても壊れない）
+1. Supabase のダッシュボードでこのサイトのプロジェクトを開き、上の「Connect」を押す
+2. 「Session pooler」の接続文字列（`postgresql://postgres.xxxx:[YOUR-PASSWORD]@aws-0-ap-northeast-1.pooler.supabase.com:5432/postgres`）をコピーし、`[YOUR-PASSWORD]` をデータベースのパスワードに置き換える
+   - パスワードが分からないときは「Project Settings」→「Database」→「Reset database password」で作り直せます（このサイトの表示には影響しません）
+3. GitHub のリポジトリの「Settings」→「Secrets and variables」→「Actions」→「New repository secret」
+   - Name：`SUPABASE_DB_URL`
+   - Secret：2 の接続文字列
 
+### 1-2. 表を作る（Claude が実行）
+
+GitHub の Actions の「db-admin」を、作業の種類「migrate」で実行します。何度実行しても壊れません。
 これで、サイトでの数字の記録（園のページの表示・公式サイトへの移動など）が始まります。
 
 ### 2. だれでも登録できる状態を止める
@@ -23,6 +28,7 @@
 
 - 「Authentication」→「Sign In / Providers」（または「Settings」）→「Allow new users to sign up」をオフ
 - 「Email」のログインはオンのまま
+- 「Authentication」→「Multi-Factor」（または「MFA」）で「TOTP（認証アプリ）」が有効になっていることを確かめる（標準で有効。無料）
 
 ## 園の方を管理画面に招待する
 
@@ -30,24 +36,21 @@
    - メールアドレス：園のご担当者のもの
    - パスワード：仮のパスワード（8文字以上）
    - 「Auto Confirm User」にチェックを入れる
-2. **園と結びつける**：「SQL Editor」で次を実行する（園のIDは、その園のページのURLの `/gardens/` のあとの文字列）
-
-   ```sql
-   select public.add_garden_member('ご担当者のメールアドレス', '園のID');
-   ```
-
-   「OK：…」と出れば完了です。1人で複数の園を管理する場合は、園ごとに実行します。
+2. **園と結びつける**：GitHub の Actions の「db-admin」を、作業の種類「add-member」で、メールアドレスと園のID（その園のページのURLの `/gardens/` のあとの文字列）を入れて実行します（Claude に頼んでも構いません）。1人で複数の園を管理する場合は、園ごとに実行します。
 
 3. **園の方に伝える**（メールなどで）
    - ログインのページ：https://www.bonsai-collection.com/owner/login
    - メールアドレスと仮のパスワード
+   - 最初のログインで、スマートフォンの認証アプリ（Google Authenticator など）の登録を求められること
    - 最初のログインのあと、「アカウント」でパスワードを変えてもらう
 
-> 最初は、あなた自身のメールアドレスでアカウントを作り、どこかの園と結びつけて、画面を一通り試すのがおすすめです。試したあとは、次で結びつきを外せます。
->
-> ```sql
-> delete from public.garden_members where garden_id = '園のID' and user_id = (select id from auth.users where email = 'あなたのメールアドレス');
-> ```
+> 最初は、あなた自身のメールアドレスでアカウントを作り、どこかの園と結びつけて、画面を一通り試すのがおすすめです。試したあとは「db-admin」の「remove-member」で結びつきを外せます。
+
+## 2段階認証
+
+- ログインには、パスワードに加えて、認証アプリの6桁のコードが要ります。最初のログインで認証アプリを登録し、2回目からはログインのたびにコードを入れます。
+- 画面だけでなく、データベースの側でも「コードで確かめたログイン」でなければ園のデータを読めない・書けないようにしています（パスワードが漏れても、コードがなければ何もできません）。
+- 機種変更などで認証アプリが使えなくなった園の方がいたら、「db-admin」の「reset-mfa」でメールアドレスを入れて実行します。次のログインで登録し直してもらいます。
 
 ## パスワードを忘れた園の方がいたとき
 

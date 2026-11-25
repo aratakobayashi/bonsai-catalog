@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
 import type { Session } from '@supabase/supabase-js'
 import { friendlyError, ownerSupabase } from '@/lib/owner-supabase'
+import { MfaGate } from './MfaGate'
 
 // 管理画面の共通部分：ログインの確認、管理できる園の読み込み、園の切り替え、ヘッダー
 export interface OwnerGarden { id: string; name: string; area: string }
@@ -41,6 +42,8 @@ export function OwnerShell({ children }: { children: ReactNode }) {
   const [gardens, setGardens] = useState<OwnerGarden[] | null>(null)
   const [gardenId, setGardenId] = useState<string | null>(null)
   const [error, setError] = useState('')
+  // 2段階認証が済んでいるか（aal2）。済むまで園のデータは読まない
+  const [mfaOk, setMfaOk] = useState<boolean | null>(null)
 
   useEffect(() => {
     const sb = ownerSupabase()
@@ -54,9 +57,15 @@ export function OwnerShell({ children }: { children: ReactNode }) {
     if (session === null && !isLogin) router.replace('/owner/login')
   }, [session, isLogin, router])
 
+  // 2段階認証の状態を確かめる
+  useEffect(() => {
+    if (!session) { setMfaOk(null); return }
+    ownerSupabase().auth.mfa.getAuthenticatorAssuranceLevel().then(({ data }) => setMfaOk(data?.currentLevel === 'aal2'))
+  }, [session])
+
   // 管理できる園
   useEffect(() => {
-    if (!session) return
+    if (!session || !mfaOk) return
     ownerSupabase()
       .from('garden_members')
       .select('garden_id, gardens(id, name, prefecture, city)')
@@ -70,7 +79,7 @@ export function OwnerShell({ children }: { children: ReactNode }) {
         try { saved = localStorage.getItem(GARDEN_KEY) } catch {}
         setGardenId(list.find(g => g.id === saved)?.id ?? list[0]?.id ?? null)
       })
-  }, [session])
+  }, [session, mfaOk])
 
   const selectGarden = useCallback((id: string) => {
     setGardenId(id)
@@ -83,15 +92,17 @@ export function OwnerShell({ children }: { children: ReactNode }) {
   if (isLogin) return <OwnerFrame>{children}</OwnerFrame>
 
   let body: ReactNode
-  if (session === undefined || (session && gardens === null)) body = <p className="py-24 text-center text-[14px] text-ink-muted">読み込んでいます…</p>
+  if (session === undefined || (session && mfaOk === null)) body = <p className="py-24 text-center text-[14px] text-ink-muted">読み込んでいます…</p>
   else if (!session) body = null
+  else if (!mfaOk) body = <MfaGate onDone={() => ownerSupabase().auth.getSession().then(({ data }) => { setSession(data.session); setMfaOk(true) })} />
+  else if (gardens === null) body = <p className="py-24 text-center text-[14px] text-ink-muted">読み込んでいます…</p>
   else if (error) body = <Notice title="読み込めませんでした">{error}</Notice>
   else if (!gardens?.length) body = <Notice title="管理できる園がまだありません">このアカウントは、まだ園と結びついていません。運営者にご連絡ください。<br /><Link href="/contact?type=garden" className="mt-3 inline-block border-b border-ink">お問い合わせ</Link></Notice>
   else body = <OwnerContext.Provider value={value}>{children}</OwnerContext.Provider>
 
   return (
     <OwnerFrame
-      header={session && gardens && gardens.length > 0 && garden ? (
+      header={session && mfaOk && gardens && gardens.length > 0 && garden ? (
         <>
           {gardens.length > 1 ? (
             <label className="flex min-w-0 items-center gap-2 text-[13px]">
@@ -105,7 +116,7 @@ export function OwnerShell({ children }: { children: ReactNode }) {
           )}
         </>
       ) : null}
-      nav={session && gardens?.length ? (
+      nav={session && mfaOk && gardens?.length ? (
         <nav className="border-b border-line bg-white" aria-label="管理画面のメニュー">
           <ul className="mx-auto flex max-w-[1184px] overflow-x-auto px-2 lg:px-10">
             {NAV.map(n => {
