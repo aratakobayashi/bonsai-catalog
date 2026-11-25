@@ -1,3 +1,4 @@
+import { jsonLd } from '@/lib/json-ld'
 import { getArticleOverride } from '@/lib/article-overrides'
 import { AmazonPicks } from '@/components/catalog/AmazonPicks'
 import { AmazonSearchLink } from '@/components/catalog/AmazonSearchLink'
@@ -192,7 +193,7 @@ export default async function SelectionPage({ params }: SelectionPageProps) {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(itemListJsonLd) }}
       />
 
       <article className="pb-12 lg:pb-20">

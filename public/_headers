@@ -1,0 +1,16 @@
+# Cloudflare Pages の応答ヘッダー（セキュリティ）
+/*
+  X-Frame-Options: SAMEORIGIN
+  Strict-Transport-Security: max-age=31536000
+  Permissions-Policy: camera=(), microphone=(), payment=(), usb=(), geolocation=(self)
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# 掲載園の管理画面：ほかのサイトへの埋め込みを禁止し（frame-ancestors 'none'。X-Frame-Options は全体の設定と重なるため付けない）、読み込める先をこのサイトと Supabase・フォントだけにする
+/owner
+  Cache-Control: no-store
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://ptbowbqrykqwxuzivbdv.supabase.co; connect-src 'self' https://ptbowbqrykqwxuzivbdv.supabase.co wss://ptbowbqrykqwxuzivbdv.supabase.co; frame-ancestors 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'
+
+/owner/*
+  Cache-Control: no-store
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://ptbowbqrykqwxuzivbdv.supabase.co; connect-src 'self' https://ptbowbqrykqwxuzivbdv.supabase.co wss://ptbowbqrykqwxuzivbdv.supabase.co; frame-ancestors 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'

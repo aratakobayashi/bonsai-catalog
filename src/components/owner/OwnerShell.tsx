@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
 import type { Session } from '@supabase/supabase-js'
-import { friendlyError, ownerSupabase } from '@/lib/owner-supabase'
+import { OWNER_AUTH_KEY, OWNER_IDLE_MS, friendlyError, ownerSupabase } from '@/lib/owner-supabase'
 import { MfaGate } from './MfaGate'
 
 // 管理画面の共通部分：ログインの確認、管理できる園の読み込み、園の切り替え、ヘッダー
@@ -51,6 +51,27 @@ export function OwnerShell({ children }: { children: ReactNode }) {
     const { data: sub } = sb.auth.onAuthStateChange((_e, s) => setSession(s))
     return () => sub.subscription.unsubscribe()
   }, [])
+
+  // 管理画面の外へ移ったら、ログインの情報を消す（外のページでは広告などのスクリプトが動くため）
+  useEffect(() => () => {
+    try { sessionStorage.removeItem(OWNER_AUTH_KEY); localStorage.removeItem(OWNER_AUTH_KEY) } catch {}
+  }, [])
+
+  // 操作がないまま30分たったら、自動でログアウトする
+  useEffect(() => {
+    if (!session) return
+    let last = Date.now()
+    const touch = () => { last = Date.now() }
+    const events = ['pointerdown', 'keydown', 'scroll', 'touchstart'] as const
+    events.forEach(e => window.addEventListener(e, touch, { passive: true }))
+    const timer = window.setInterval(async () => {
+      if (Date.now() - last < OWNER_IDLE_MS) return
+      window.clearInterval(timer)
+      await ownerSupabase().auth.signOut({ scope: 'local' })
+      router.replace('/owner/login?reason=idle')
+    }, 30 * 1000)
+    return () => { window.clearInterval(timer); events.forEach(e => window.removeEventListener(e, touch)) }
+  }, [session, router])
 
   // ログインしていなければログインの画面へ
   useEffect(() => {

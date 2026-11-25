@@ -35,16 +35,19 @@ export interface GardenOwnerProduct {
   sort: number
 }
 
+// 公開してよい列だけ（最後に更新した人のIDは読まない）
+export const OWNER_INFO_COLUMNS = 'garden_id, description, business_hours, closed_days, visit_info, access_info, parking_info, phone, website_url, shop_url, instagram_url, taiken_info, photos, updated_at'
+
 let infoMemo: Promise<Map<string, GardenOwnerInfo>> | null = null
 let productMemo: Promise<Map<string, GardenOwnerProduct[]>> | null = null
 
 export function getOwnerInfoMap(): Promise<Map<string, GardenOwnerInfo>> {
   if (!infoMemo) {
     infoMemo = (async () => {
-      const { data, error } = await supabaseServer.from('garden_owner_info' as never).select('*').limit(1000)
+      const { data, error } = await supabaseServer.from('garden_owner_info' as never).select(OWNER_INFO_COLUMNS).limit(1000)
       const map = new Map<string, GardenOwnerInfo>()
       if (error || !data) return map
-      for (const row of data as unknown as GardenOwnerInfo[]) map.set(row.garden_id, { ...row, photos: Array.isArray(row.photos) ? row.photos.filter(p => typeof p === 'string') : [] })
+      for (const row of data as unknown as GardenOwnerInfo[]) map.set(row.garden_id, { ...row, photos: Array.isArray(row.photos) ? row.photos.filter(p => isGardenMediaUrl(row.garden_id, p)) : [] })
       return map
     })().catch(() => new Map())
   }
@@ -65,12 +68,17 @@ export function getOwnerProductMap(): Promise<Map<string, GardenOwnerProduct[]>>
       if (error || !data) return map
       for (const row of data as unknown as GardenOwnerProduct[]) {
         if (!map.has(row.garden_id)) map.set(row.garden_id, [])
-        map.get(row.garden_id)!.push(row)
+        map.get(row.garden_id)!.push({ ...row, image_url: isGardenMediaUrl(row.garden_id, row.image_url) ? row.image_url : null, buy_url: row.buy_url && /^https?:\/\//.test(row.buy_url) ? row.buy_url : null })
       }
       return map
     })().catch(() => new Map())
   }
   return productMemo
+}
+
+// 写真は、このサイトの写真置き場（その園のフォルダ）のものだけを使う（データベースの側でも同じ制限をかけている）
+export function isGardenMediaUrl(gardenId: string, url: unknown): url is string {
+  return typeof url === 'string' && new RegExp(`^https://[a-z0-9]+\\.supabase\\.co/storage/v1/object/public/garden-media/${gardenId}/[A-Za-z0-9._-]+$`).test(url)
 }
 
 const filled = (v: string | null | undefined) => (v && v.trim() ? v.trim() : undefined)

@@ -3,7 +3,7 @@ import './globals.css'
 import '@/styles/editor.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { ForLocale, HtmlLang, SiteChrome } from '@/components/layout/ForLocale'
+import { ForLocale, HtmlLang, NoThirdPartyOnOwner, SiteChrome } from '@/components/layout/ForLocale'
 import { EnglishFooter, EnglishHeader } from '@/components/layout/EnglishChrome'
 import { BottomNavigation } from '@/components/layout/BottomNavigation'
 import { FavoritesDock } from '@/components/catalog/CompareBar'
@@ -14,6 +14,7 @@ import { AdSenseLoader } from '@/components/analytics/AdSenseLoader'
 
 // 本文は端末の標準の日本語フォント。見出しのしっぽり明朝（太字）は、表示を止めないよう描画のあとで読み込む
 // （読み込むまでは端末の明朝体で表示）。next/font だと 95KB の @font-face の CSS が描画を止めるため使わない
+const CLEAR_OWNER_SESSION = "try{if(!/^\\/owner(\\/|$)/.test(location.pathname)){sessionStorage.removeItem('bc-owner-auth');localStorage.removeItem('bc-owner-auth')}}catch(e){}"
 const MINCHO_CSS = 'https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700&display=swap'
 const loadMincho = `(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='${MINCHO_CSS}';l.media='print';l.onload=function(){l.media='all'};document.head.appendChild(l)})()`
 
@@ -72,14 +73,19 @@ export default function RootLayout({
         <link rel="preconnect" href="https://thumbnail.image.rakuten.co.jp" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        {/* 管理画面のログインの情報は、管理画面の中でだけ持つ。ほかのページを開いたら、外部のスクリプトより先に消す */}
+        <script dangerouslySetInnerHTML={{ __html: CLEAR_OWNER_SESSION }} />
         <script dangerouslySetInnerHTML={{ __html: loadMincho }} />
         <noscript>
           <link rel="stylesheet" href={MINCHO_CSS} />
         </noscript>
       </head>
       <body>
-        <GoogleAnalytics />
-        <AdSenseLoader />
+        {/* 管理画面（/owner）では、広告・アクセス解析のスクリプトを読み込まない */}
+        <NoThirdPartyOnOwner>
+          <GoogleAnalytics />
+          <AdSenseLoader />
+        </NoThirdPartyOnOwner>
         <WebSiteStructuredData baseUrl="https://www.bonsai-collection.com" />
         <OrganizationStructuredData baseUrl="https://www.bonsai-collection.com" />
         <div className="min-h-screen flex flex-col">

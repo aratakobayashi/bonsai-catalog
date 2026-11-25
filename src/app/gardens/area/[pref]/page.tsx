@@ -1,3 +1,4 @@
+import { jsonLd } from '@/lib/json-ld'
 import type { Metadata } from 'next'
 import { AmazonPicks } from '@/components/catalog/AmazonPicks'
 import { GARDEN_AMAZON_PICKS } from '@/lib/amazon-picks'
@@ -103,7 +104,7 @@ export default async function GardenAreaPage({ params }: PageProps) {
           { name: `${prefecture}の盆栽園`, url: pageUrl, position: 3 },
         ]}
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemList) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemList) }} />
       <div className={`${CONTAINER} pb-16`}>
         <PageHeading
           eyebrow="出かける"

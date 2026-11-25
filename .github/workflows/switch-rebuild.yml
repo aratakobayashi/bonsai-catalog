@@ -9,6 +9,10 @@ on:
     # 毎日 UTC 15:05＝日本時間 0:05。切り替わる日でなければ何もしない
     - cron: '5 15 * * *'
 
+permissions:
+  contents: read
+  issues: write
+
 concurrency:
   group: daily-sync
   cancel-in-progress: false
@@ -66,3 +70,30 @@ jobs:
         env:
           SITE: https://www.bonsai-collection.com
           BEFORE: ${{ steps.hook.outputs.before }}
+      - name: 盆栽園の方の変更を運営に知らせる（直近24時間。GitHub の Issue を作る）
+        if: ${{ always() }}
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$KEY" ]; then exit 0; fi
+          since=$(date -u -d '24 hours ago' +%Y-%m-%dT%H:%M:%SZ)
+          rows=$(curl -fsS "$SUPABASE_URL/rest/v1/garden_change_log?select=garden_id,table_name,action,item,changed_fields,created_at&created_at=gte.$since&order=created_at" -H "apikey: $KEY" -H "Authorization: Bearer $KEY" 2>/dev/null || echo '[]')
+          count=$(echo "$rows" | jq 'length' 2>/dev/null || echo 0)
+          echo "変更：${count}件"
+          if [ "$count" = "0" ]; then exit 0; fi
+          ids=$(echo "$rows" | jq -r '[.[].garden_id] | unique | join(",")')
+          names=$(curl -fsS "$SUPABASE_URL/rest/v1/gardens?select=id,name&id=in.($ids)" -H "apikey: $KEY" -H "Authorization: Bearer $KEY" 2>/dev/null || echo '[]')
+          body=$(jq -rn --argjson rows "$rows" --argjson names "$names" '
+            ($names | map({(.id): .name}) | add // {}) as $n |
+            "盆栽園の方が管理画面で変更した内容です（直近24時間）。おかしな変更がないか確かめてください。\n\n" +
+            ($rows | map("- \(.created_at[0:16] | sub("T"; " "))（UTC） \($n[.garden_id] // .garden_id)：" +
+              (if .table_name == "garden_products" then "商品「\(.item // "")」を" else "園の情報を" end) +
+              ({"insert": "追加", "update": "変更", "delete": "削除"}[.action] // .action) +
+              (if .changed_fields then "（\(.changed_fields | join("、"))）" else "" end) +
+              "　https://www.bonsai-collection.com/gardens/\(.garden_id)") | join("\n"))')
+          jq -n --arg title "盆栽園の方の変更 $(TZ=Asia/Tokyo date +%Y-%m-%d)（${count}件）" --arg body "$body" '{title: $title, body: $body}' \
+            | curl -fsS -X POST "https://api.github.com/repos/$REPO/issues" -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" -d @- > /dev/null \
+            && echo "Issue を作りました"
+        env:
+          SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}

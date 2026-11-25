@@ -40,7 +40,7 @@ export default function OwnerGardenPage() {
     const sb = ownerSupabase()
     setLoaded(false)
     Promise.all([
-      sb.from('garden_owner_info').select('*').eq('garden_id', garden.id).maybeSingle(),
+      sb.from('garden_owner_info').select('garden_id, description, business_hours, closed_days, visit_info, access_info, parking_info, phone, website_url, shop_url, instagram_url, taiken_info, photos, updated_at').eq('garden_id', garden.id).maybeSingle(),
       sb.from('gardens').select(PUBLIC_COLUMNS).eq('id', garden.id).maybeSingle(),
     ]).then(([own, pub]) => {
       if (own.error) setMessage({ ok: false, text: friendlyError(own.error.message) })

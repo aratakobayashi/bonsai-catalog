@@ -1,3 +1,4 @@
+import { jsonLd } from '@/lib/json-ld'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import type { Event } from '@/types'
@@ -83,7 +84,7 @@ export default async function AutumnWinterEventsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: jsonLd({
             '@context': 'https://schema.org',
             '@type': 'ItemList',
             name: '2026年 秋冬の盆栽展',
@@ -96,7 +97,7 @@ export default async function AutumnWinterEventsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: jsonLd({
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
             mainEntity: FAQ.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),

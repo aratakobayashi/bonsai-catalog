@@ -1,3 +1,4 @@
+import { jsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import { AmazonSearchLink } from '@/components/catalog/AmazonSearchLink'
 import { CategoryPriceGuide } from '@/components/catalog/CategoryPriceGuide'
@@ -169,7 +170,7 @@ export function CategoryView({ all, category, params }: { all: CatalogProduct[];
           { name: category.name, url: pageUrl, position: 3 },
         ]}
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(itemListJsonLd) }} />
       <CatalogBrowser
         filters={filters}
         items={items}

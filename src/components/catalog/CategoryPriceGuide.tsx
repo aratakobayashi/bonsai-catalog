@@ -1,3 +1,4 @@
+import { jsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import type { CatalogProduct } from '@/lib/catalog-model'
 import { SIZE_OPTIONS } from '@/lib/catalog'
@@ -101,7 +102,7 @@ export function CategoryPriceGuide({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: jsonLd({
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
             mainEntity: faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),

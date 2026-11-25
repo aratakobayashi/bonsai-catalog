@@ -3,12 +3,17 @@
 // 一般のページからは import しない（読み込む JS を増やさないため）
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
+export const OWNER_AUTH_KEY = 'bc-owner-auth'
+// 操作がないまま、この時間がたったら自動でログアウトする
+export const OWNER_IDLE_MS = 30 * 60 * 1000
+
 let client: SupabaseClient | null = null
 
 export function ownerSupabase(): SupabaseClient {
   if (!client) {
     client = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL || '', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '', {
-      auth: { persistSession: true, autoRefreshToken: true, storageKey: 'bc-owner-auth', detectSessionInUrl: true },
+      // ログインの情報はタブの中だけ（sessionStorage）に持つ。タブを閉じる・管理画面の外へ出るとログアウトになる
+      auth: { persistSession: true, autoRefreshToken: true, storageKey: OWNER_AUTH_KEY, storage: window.sessionStorage, detectSessionInUrl: false },
     })
   }
   return client
@@ -42,6 +47,6 @@ export function friendlyError(message: string): string {
   if (/Invalid login credentials/i.test(message)) return 'メールアドレスかパスワードが違います'
   if (/relation .* does not exist|schema cache|Could not find the table/i.test(message)) return '管理画面の準備がまだ終わっていません。運営者にご連絡ください'
   if (/row-level security|permission denied/i.test(message)) return 'この操作をする権限がありません。運営者にご連絡ください'
-  if (/Password should be/i.test(message)) return 'パスワードは8文字以上にしてください'
+  if (/Password should be|weak.?password/i.test(message)) return 'パスワードは12文字以上で、英字と数字を両方使ってください'
   return message
 }

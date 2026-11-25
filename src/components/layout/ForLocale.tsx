@@ -28,3 +28,11 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const path = usePathname()
   return <>{isBizPath(path) ? null : children}</>
 }
+
+// 掲載園の管理画面（/owner）。ログインの情報を扱うため、広告・アクセス解析などの外部のスクリプトを読み込まない
+export const isOwnerPath = (path: string | null) => path === '/owner' || Boolean(path?.startsWith('/owner/'))
+
+export function NoThirdPartyOnOwner({ children }: { children: ReactNode }) {
+  const path = usePathname()
+  return <>{isOwnerPath(path) ? null : children}</>
+}

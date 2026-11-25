@@ -1,3 +1,4 @@
+import { jsonLd } from '@/lib/json-ld'
 import { Article } from '@/types'
 import type { FAQItem } from '@/lib/faq-data'
 
@@ -49,7 +50,7 @@ export function ArticleStructuredData({ article, baseUrl }: ArticleStructuredDat
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(structuredData, null, 2)
+        __html: jsonLd(structuredData, null, 2)
       }}
     />
   )
@@ -85,7 +86,7 @@ export function ProductStructuredData({
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(structuredData, null, 2)
+        __html: jsonLd(structuredData, null, 2)
       }}
     />
   )
@@ -121,7 +122,7 @@ export function WebSiteStructuredData({ baseUrl }: WebSiteStructuredDataProps) {
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(structuredData, null, 2)
+        __html: jsonLd(structuredData, null, 2)
       }}
     />
   )
@@ -207,7 +208,7 @@ export function HowToStructuredData({
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(structuredData, null, 2)
+        __html: jsonLd(structuredData, null, 2)
       }}
     />
   )
@@ -237,7 +238,7 @@ export function BreadcrumbStructuredData({ breadcrumbs }: BreadcrumbStructuredDa
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(structuredData, null, 2)
+        __html: jsonLd(structuredData, null, 2)
       }}
     />
   )
@@ -268,7 +269,7 @@ export function FAQStructuredData({ faqs, baseUrl = 'https://www.bonsai-collecti
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(structuredData, null, 2)
+        __html: jsonLd(structuredData, null, 2)
       }}
     />
   )
@@ -356,7 +357,7 @@ export function LocalBusinessStructuredData({
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(structuredData, null, 2)
+        __html: jsonLd(structuredData, null, 2)
       }}
     />
   )
@@ -396,7 +397,7 @@ export function OrganizationStructuredData({ baseUrl }: OrganizationStructuredDa
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(structuredData, null, 2)
+        __html: jsonLd(structuredData, null, 2)
       }}
     />
   )

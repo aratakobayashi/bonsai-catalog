@@ -5,6 +5,7 @@
 #   add-member     園の方のアカウント（メールアドレス）を園と結びつける
 #   remove-member  結びつきを外す
 #   reset-mfa      2段階認証の登録を外す（認証アプリが使えなくなった園の方。次のログインで登録し直す）
+#   audit          権限の設定を読み取って表示する（何も変えない）：RLS が無効な表、各表の権限設定、誰でも呼べる関数
 name: db-admin
 
 on:
@@ -14,7 +15,7 @@ on:
         description: '作業の種類'
         required: true
         type: choice
-        options: [migrate, add-member, remove-member, reset-mfa]
+        options: [audit, migrate, add-member, remove-member, reset-mfa]
       migration:
         description: 'migrate：実行する SQL ファイル'
         required: false
@@ -30,6 +31,9 @@ concurrency:
   group: db-admin
   cancel-in-progress: false
 
+permissions:
+  contents: read
+
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -41,7 +45,7 @@ jobs:
       EMAIL: ${{ inputs.email }}
       GARDEN_ID: ${{ inputs.garden_id }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: 入力を確かめる
         run: |
           if [ -z "$DB_URL" ]; then echo "::error::Secrets に SUPABASE_DB_URL が登録されていません"; exit 1; fi
@@ -59,6 +63,17 @@ jobs:
       - name: 実行する
         run: |
           case "$TASK" in
+            audit)
+              echo "== RLS が無効な public の表（空なら問題なし）"
+              psql "$DB_URL" -v ON_ERROR_STOP=1 -At -c "select relname from pg_class c join pg_namespace n on n.oid = c.relnamespace where n.nspname = 'public' and c.relkind = 'r' and not c.relrowsecurity order by 1"
+              echo "== 権限設定（表・名前・操作・対象・条件）"
+              psql "$DB_URL" -v ON_ERROR_STOP=1 -At -F ' | ' -c "select tablename, policyname, cmd, array_to_string(roles, ','), coalesce(qual, '') || coalesce(' / check: ' || with_check, '') from pg_policies where schemaname in ('public', 'storage') order by 1, 2"
+              echo "== ログインなし（anon）でも書き込める設定（空なら問題なし）"
+              psql "$DB_URL" -v ON_ERROR_STOP=1 -At -F ' | ' -c "select tablename, policyname, cmd from pg_policies where schemaname = 'public' and cmd in ('INSERT', 'UPDATE', 'DELETE', 'ALL') and ('public' = any(roles) or 'anon' = any(roles)) order by 1"
+              echo "== ログインなし（anon）で呼べる security definer の関数"
+              psql "$DB_URL" -v ON_ERROR_STOP=1 -At -c "select p.proname from pg_proc p join pg_namespace n on n.oid = p.pronamespace where n.nspname = 'public' and p.prosecdef and has_function_privilege('anon', p.oid, 'execute') order by 1"
+              echo "== 認証の設定に関わるユーザー数"
+              psql "$DB_URL" -v ON_ERROR_STOP=1 -At -c "select 'users: ' || count(*) || ' / mfa factors: ' || (select count(*) from auth.mfa_factors) from auth.users" ;;
             migrate)
               psql "$DB_URL" -v ON_ERROR_STOP=1 -q -f "$MIGRATION" && echo "実行しました：$MIGRATION"
               psql "$DB_URL" -v ON_ERROR_STOP=1 -At -c "select 'tables: ' || string_agg(table_name, ', ' order by table_name) from information_schema.tables where table_schema = 'public' and table_name in ('garden_members','garden_owner_info','garden_products','garden_stats_daily','owner_content_version')" ;;

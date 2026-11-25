@@ -1,3 +1,4 @@
+import { jsonLd } from '@/lib/json-ld'
 import { Metadata } from 'next'
 import { AmazonPicks } from '@/components/catalog/AmazonPicks'
 import { EVENT_AMAZON_PICKS } from '@/lib/amazon-picks'
@@ -59,7 +60,7 @@ export default async function EventsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: jsonLd({
             "@context": "https://schema.org",
             "@type": "WebPage",
             "name": "盆栽イベント情報",
