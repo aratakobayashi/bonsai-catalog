@@ -3,7 +3,7 @@ import './globals.css'
 import '@/styles/editor.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { ForLocale, HtmlLang } from '@/components/layout/ForLocale'
+import { ForLocale, HtmlLang, SiteChrome } from '@/components/layout/ForLocale'
 import { EnglishFooter, EnglishHeader } from '@/components/layout/EnglishChrome'
 import { BottomNavigation } from '@/components/layout/BottomNavigation'
 import { FavoritesDock } from '@/components/catalog/CompareBar'
@@ -88,14 +88,14 @@ export default function RootLayout({
           </a>
           <HtmlLang />
           {/* 英語のページ（/en）では、英語のヘッダー・フッターに切り替える */}
-          <ForLocale ja={<Header />} en={<EnglishHeader />} />
+          <ForLocale ja={<SiteChrome><Header /></SiteChrome>} en={<EnglishHeader />} />
           {/* 下部タブは画面に固定して表示する。読み込みの途中で表示がずれないよう、本文より先に置く */}
-          <ForLocale ja={<BottomNavigation />} />
+          <ForLocale ja={<SiteChrome><BottomNavigation /></SiteChrome>} />
           <main id="main" className="flex-1 overflow-x-clip pb-16 lg:pb-0">
             {children}
           </main>
-          <ForLocale ja={<Footer />} en={<EnglishFooter />} />
-          <ForLocale ja={<FavoritesDock />} />
+          <ForLocale ja={<SiteChrome><Footer /></SiteChrome>} en={<EnglishFooter />} />
+          <ForLocale ja={<SiteChrome><FavoritesDock /></SiteChrome>} />
           <Toaster 
             position="bottom-right"
             toastOptions={{

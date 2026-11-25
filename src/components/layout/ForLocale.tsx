@@ -20,3 +20,11 @@ export function HtmlLang() {
   }, [path])
   return null
 }
+
+// 掲載者（盆栽園・盆栽店）向けのページでは、一般向けのヘッダー・下部タブ・フッターを出さない（ページ側に専用のものを置く）
+export const isBizPath = (path: string | null) => path === '/gardens/owners' || path === '/gardens/owners/'
+
+export function SiteChrome({ children }: { children: ReactNode }) {
+  const path = usePathname()
+  return <>{isBizPath(path) ? null : children}</>
+}

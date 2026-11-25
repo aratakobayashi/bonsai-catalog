@@ -1,186 +1,382 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
+import type { ReactNode } from 'react'
 import { SITE_URL } from '@/lib/site'
-import { heroPhoto } from '@/lib/hero-photo'
 import { getGardenList } from '@/lib/gardens-list'
 import { buildTaikenPlaces } from '@/lib/taiken'
 import { gardenShop } from '@/lib/garden-shops'
 import { BONSAI_SHOPS } from '@/lib/bonsai-shops'
 import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
-import { CONTAINER, PageHeading, SectionTitle } from '@/components/ui/design'
 
-// 盆栽園・盆栽店の方へ（掲載パートナーの募集。無料）
-// 第1段階：無料で掲載内容を充実させてもらい、園ごとの送客の数（園のページの閲覧・公式サイトや通販への移動）をためる
+// 盆栽園・盆栽店さま向け 掲載のご案内（/gardens/owners）
+// 一般向けのヘッダー・フッターは出さず（ForLocale.tsx の isBizPath）、このページ専用のものを置く。
+// 第1段階：掲載は無料。園ごとの送客の数（園のページの表示・公式サイトや通販への移動）をためてから、料金の相談をする
 const PATH = '/gardens/owners'
+const APPLY = '/contact?type=garden'
+const WRAP = 'mx-auto w-full max-w-[1184px] px-4 lg:px-12'
 
 export const metadata: Metadata = {
   alternates: { canonical: PATH },
-  title: '盆栽園・盆栽店の方へ｜無料の掲載パートナー募集・掲載情報の追加と修正 - 盆栽コレクション',
-  description: '盆栽コレクションは、全国の盆栽園・盆栽店を無料で紹介しています。体験・教室の料金や日程、通販サイト、写真などを園の方に確かめていただく「掲載パートナー」を募集しています。掲載料・手数料はかかりません。',
+  title: '盆栽園・盆栽店さま向け 掲載のご案内（掲載無料） - 盆栽コレクション',
+  description: '盆栽コレクションは、全国の盆栽園を地域・体験教室・通販から探せるサイトです。盆栽園・盆栽店さまの掲載は無料です。体験・教室の料金や日程、通販サイト、写真と紹介文を掲載でき、園のページの表示回数や公式サイトへの送客数をご報告します。',
 }
 
-const BENEFITS = [
-  { no: '01', title: '「園の方に確認済み」の表示', body: '園のページに、掲載内容を園の方に確かめていただいた年月を表示します。公開情報だけでまとめた園よりも、見る人が安心して訪ねられます。' },
-  { no: '02', title: '体験・教室を詳しく紹介', body: '料金・所要時間・日程・持ち帰りの有無・予約の方法を、「盆栽体験・盆栽教室を探す」のページと園のページに載せます。地域や内容（1回の体験・苔玉づくりなど）から探す人に届きます。' },
-  { no: '03', title: '通販の案内', body: '自社の通販サイトやBASE・楽天市場などの店を、園のページと「盆栽園・専門店から直接買う」のページでご案内します。' },
-  { no: '04', title: '写真と紹介文', body: 'ご提供いただいた園や盆栽の写真、園の方の言葉による紹介文を載せられます。写真のクレジットや使ってよい範囲は、ご希望に合わせます。' },
-  { no: '05', title: '見られた回数のお知らせ', body: 'ご希望の園には、園のページが見られた回数と、そこから公式サイト・通販サイト・電話・地図へ進んだ回数を、3か月ごとにメールでお知らせします。' },
-]
-
-const STEPS = [
-  { title: 'お申し込み', body: '下のボタンからお問い合わせのページを開き、園の名前と、確かめたい・追加したい内容を書いて送ってください。分かる項目だけで構いません。' },
-  { title: '掲載内容の確認', body: 'いまの掲載内容をメールでお送りします。違うところ、足したいところをお返事ください。' },
-  { title: '反映', body: '数日から1週間ほどでページに反映し、「園の方に確認済み」の表示を付けます。内容が変わったときは、いつでもご連絡ください。' },
-]
-
-const RULES = [
-  '掲載料・手数料はいただきません。掲載パートナーになっても、ならなくても、費用はかかりません。',
-  '一覧の並び順や表示の大きさは、掲載パートナーかどうかで変えません。料金・営業時間などの情報の正確さを、すべての園で同じように保ちます。',
-  '紹介文や評価を、お金と引き換えに書き換えることはしません。',
-  '当サイトは、楽天市場・Amazonなどの商品リンクの広告収入で運営しています。商品リンクには広告が含まれます。',
-  '将来、有料の掲載を始める場合は、広告であることを「PR」と明記し、無料の掲載内容は減らしません。始める前に、掲載パートナーの園にお知らせします。',
-]
-
 const FAQ = [
-  { q: '本当に無料ですか？', a: '無料です。掲載料・登録料・手数料はかかりません。当サイトは商品リンクの広告収入で運営しています。' },
-  { q: 'まだ掲載されていない園でも申し込めますか？', a: '申し込めます。園の名前・所在地・営業時間などをお送りください。実在と所在地を確かめたうえで掲載します。' },
-  { q: 'ホームページや通販サイトがなくても大丈夫ですか？', a: '大丈夫です。営業時間・見学の可否・体験の内容などをメールでお知らせいただければ、園のページにまとめます。' },
-  { q: 'どのくらいの手間がかかりますか？', a: '最初に掲載内容を確かめていただく1回のやりとりが中心です。その後は、料金や日程が変わったときにご連絡いただくだけです。' },
-  { q: '掲載をやめたいときは？', a: 'ご連絡いただければ、掲載パートナーの表示や、園のページそのものを取り下げます。' },
+  { q: '本当に無料ですか？', a: '無料です。掲載料・登録料・送客の手数料はいただきません。当サイトは商品リンクの広告収入で運営しています。' },
+  { q: 'なぜ無料なのですか？', a: '始めたばかりで、送客の実績をまだお見せできないためです。実績が出てから、改めてご相談します。そのときお断りいただいても、無料の掲載はそのまま続けます。' },
+  { q: 'お客様は、どれくらい来ますか？', a: 'いまはお約束できません。そのぶん無料でお願いしています。貴園のページの表示回数と、公式サイト・通販・電話・地図へ進んだ回数は、ご希望に応じてご報告します。' },
+  { q: '当サイトが、予約や販売の間に入りますか？', a: '入りません。体験の予約・通販のご注文・お問い合わせは、貴園の公式サイトや電話にそのまま移ります。' },
+  { q: 'ホームページや通販サイトがなくても掲載できますか？', a: 'できます。営業時間・見学の可否・体験の内容などをメールでお知らせいただければ、当方でページにまとめます。' },
+  { q: 'まだ掲載されていない園でも申し込めますか？', a: '申し込めます。実在と所在地を確かめたうえで掲載します。' },
+  { q: '掲載の順番は、どう決まりますか？', a: '地域（北から南）と園名の順です。掲載順・おすすめ・評価を、お金で変える枠は作っていません。将来、有料の掲載を始める場合も「PR」と明記し、無料の掲載内容は減らしません。' },
+  { q: '写真は、どのように載りますか？', a: '写真をご提供いただいた場合は、その写真に差し替えて載せます。クレジットの表記や使ってよい範囲は、ご希望に合わせます。いま載っている写真の取り下げも承ります。' },
+  { q: '掲載をやめたいときは？', a: 'お問い合わせからご連絡ください。確認でき次第、ページを下げます。' },
 ]
+
+function SectionHead({ no, label, title, lead }: { no: string; label: string; title: ReactNode; lead?: ReactNode }) {
+  return (
+    <div className="max-w-[760px]">
+      <p className="flex items-center gap-3 text-[12px] tracking-[0.2em] text-gold-dark">
+        <span className="h-px w-10 bg-gold-dark" aria-hidden="true" />
+        <span className="font-mincho">{no}</span>
+        <span>{label}</span>
+      </p>
+      <h2 className="mt-4 font-mincho text-[26px] font-bold leading-[1.5] tracking-[0.06em] text-ink lg:text-[36px]">{title}</h2>
+      {lead && <p className="mt-4 text-[14.5px] leading-[1.95] text-ink-soft lg:text-[15.5px]">{lead}</p>}
+    </div>
+  )
+}
+
+// 画面の見本を入れる枠（ブラウザ風）
+function Frame({ path, children, className = '' }: { path: string; children: ReactNode; className?: string }) {
+  return (
+    <div className={`overflow-hidden rounded-[10px] border border-line bg-white shadow-[0_24px_60px_-28px_rgba(34,32,28,.45)] ${className}`}>
+      <div className="flex items-center gap-2 border-b border-line bg-paper-deep px-3 py-2">
+        <span className="flex gap-1" aria-hidden="true">{[0, 1, 2].map(i => <span key={i} className="h-2 w-2 rounded-full bg-ink-muted/30" />)}</span>
+        <span className="truncate rounded bg-white px-2.5 py-0.5 text-[10.5px] text-ink-muted">bonsai-collection.com{path}</span>
+      </div>
+      {children}
+    </div>
+  )
+}
+
+function CtaButton({ children = 'まずは相談する（無料）', className = '', dark = true }: { children?: ReactNode; className?: string; dark?: boolean }) {
+  return (
+    <Link href={APPLY} className={`inline-flex min-h-[56px] items-center gap-3 rounded-full px-8 text-[15px] font-bold tracking-[0.05em] ${dark ? 'bg-ink text-white hover:bg-ink/85' : 'bg-white text-ink hover:bg-white/85'} ${className}`}>
+      {children}<span aria-hidden="true">→</span>
+    </Link>
+  )
+}
+
+// 見本：盆栽園のページ
+function GardenPageSample() {
+  return (
+    <Frame path="/gardens/…" className="w-full">
+      <div className="relative h-[140px] lg:h-[170px]">
+        <Image src="/images/articles/photos/article-12-1.jpg" alt="" fill sizes="(max-width: 1023px) 92vw, 560px" className="object-cover" />
+        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(34,32,28,.85),rgba(34,32,28,.1))]" />
+        <div className="absolute bottom-3 left-4 text-white">
+          <p className="text-[10.5px] text-white/75">埼玉県さいたま市</p>
+          <p className="font-mincho text-[19px] font-bold">見本盆栽園</p>
+        </div>
+      </div>
+      <div className="space-y-3 p-4 text-[12px]">
+        <p className="inline-flex items-center gap-1.5 border border-gold-dark/40 bg-gold/10 px-2 py-0.5 text-[11px] text-gold-dark">✓ 2026年12月に園の方に確認済み</p>
+        <dl className="divide-y divide-line border-y border-line">
+          {[['営業時間', '9:00〜17:00（木曜定休）'], ['見学', '自由（無料）'], ['体験', '1回の体験 4,400円・約90分・持ち帰りあり'], ['通販', '自社の通販サイト']].map(([k, v]) => (
+            <div key={k} className="grid grid-cols-[64px_1fr] gap-2 py-2"><dt className="text-ink-muted">{k}</dt><dd className="text-ink">{v}</dd></div>
+          ))}
+        </dl>
+        <div className="grid grid-cols-2 gap-2">
+          <span className="flex h-9 items-center justify-center bg-ink text-[11.5px] font-bold text-white">公式サイト ↗</span>
+          <span className="flex h-9 items-center justify-center border border-ink text-[11.5px] font-bold text-ink">通販サイト ↗</span>
+        </div>
+      </div>
+    </Frame>
+  )
+}
+
+// 見本：体験・教室のページ
+function TaikenSample() {
+  return (
+    <Frame path="/taiken" className="w-full">
+      <div className="p-4 lg:p-5">
+        <div className="flex flex-wrap gap-1.5 text-[11px]">
+          {['関東', '1回の体験', '苔玉づくり', '持ち帰り'].map((t, i) => <span key={t} className={`px-2 py-0.5 ${i < 2 ? 'bg-ink text-white' : 'border border-line text-ink-soft'}`}>{t}</span>)}
+        </div>
+        <div className="mt-4 border border-line">
+          <div className="flex items-baseline justify-between gap-3 border-b border-line px-4 py-3">
+            <p className="font-mincho text-[16px] font-bold text-ink">見本盆栽園</p>
+            <p className="text-[11px] text-ink-muted">埼玉県さいたま市</p>
+          </div>
+          <dl className="space-y-1 px-4 py-3 text-[12px]">
+            <div className="flex gap-3"><dt className="w-10 text-ink-muted">料金</dt><dd className="font-bold text-ink">4,400円（税込・鉢と材料込み）</dd></div>
+            <div className="flex gap-3"><dt className="w-10 text-ink-muted">時間</dt><dd className="text-ink">約90分</dd></div>
+            <div className="flex gap-3"><dt className="w-10 text-ink-muted">日程</dt><dd className="text-ink">毎週土・日 10:00 / 14:00</dd></div>
+          </dl>
+          <div className="flex gap-4 border-t border-line px-4 py-2.5 text-[12px] text-ink underline decoration-line underline-offset-4"><span>予約ページ ↗</span><span>所在地・地図</span></div>
+        </div>
+      </div>
+    </Frame>
+  )
+}
+
+// 見本：ご報告
+function ReportSample() {
+  const bars = [38, 44, 41, 52, 60, 57, 66, 71, 64, 78, 83, 90]
+  return (
+    <Frame path=" ご報告（見本）" className="w-full">
+      <div className="p-4 lg:p-6">
+        <p className="text-[11px] text-ink-muted">見本盆栽園さま　2026年10月〜12月のご報告</p>
+        <div className="mt-3 grid grid-cols-3 gap-2">
+          {[['園のページの表示', '1,284', '+18%'], ['公式サイト・通販へ', '146', '+24%'], ['電話・地図', '39', '+9%']].map(([k, v, d]) => (
+            <div key={k} className="border border-line px-3 py-2.5">
+              <p className="text-[10.5px] leading-tight text-ink-muted">{k}</p>
+              <p className="mt-1 font-mincho text-[20px] font-bold text-ink lg:text-[24px]">{v}</p>
+              <p className="text-[10.5px] text-[#2f7d4f]">前の3か月より {d}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-4 flex h-[90px] items-end gap-1.5 border-b border-line" aria-hidden="true">
+          {bars.map((h, i) => <span key={i} className="flex-1 bg-gold/70" style={{ height: `${h}%` }} />)}
+        </div>
+        <p className="mt-2 text-[10.5px] text-ink-muted">週ごとの、園のページの表示回数</p>
+        <div className="mt-4 text-[11.5px]">
+          <p className="text-ink-muted">どこから見られたか</p>
+          {[['盆栽体験・盆栽教室を探す', 41], ['盆栽園の一覧（地域から）', 33], ['検索', 26]].map(([k, v]) => (
+            <div key={k as string} className="mt-1.5 grid grid-cols-[1fr_120px] items-center gap-2">
+              <span className="truncate text-ink">{k}</span>
+              <span className="flex items-center gap-1.5"><span className="h-1.5 bg-ink" style={{ width: `${v}%` }} /><span className="text-ink-muted">{v}%</span></span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Frame>
+  )
+}
 
 export default async function GardenOwnersPage() {
   const gardens = await getGardenList()
   const prefectures = new Set(gardens.map(g => g.prefecture).filter(Boolean)).size
   const taikenCount = buildTaikenPlaces(gardens).length
   const shopCount = gardens.filter(g => gardenShop(g.id)).length + BONSAI_SHOPS.filter(s => s.kind === 'garden').length
-  const stats = [
-    { value: gardens.length.toLocaleString(), unit: '園', label: '掲載している盆栽園' },
-    { value: String(prefectures), unit: '都道府県', label: '掲載している地域' },
-    { value: String(taikenCount), unit: '園', label: '体験・教室を紹介' },
-    { value: String(shopCount), unit: '園', label: '通販を紹介' },
-  ]
+
+  const nav = [['#contents', '掲載内容'], ['#input', '情報の入れ方'], ['#report', '効果'], ['#price', '料金'], ['#faq', 'よくある質問']]
 
   return (
-    <div className={`${CONTAINER} pb-16 lg:pb-24`}>
+    <div className="bg-paper text-ink">
       <BreadcrumbStructuredData
         breadcrumbs={[
           { name: 'ホーム', url: SITE_URL, position: 1 },
           { name: '盆栽園', url: `${SITE_URL}/gardens`, position: 2 },
-          { name: '盆栽園・盆栽店の方へ', url: `${SITE_URL}${PATH}`, position: 3 },
+          { name: '盆栽園・盆栽店さま向け 掲載のご案内', url: `${SITE_URL}${PATH}`, position: 3 },
         ]}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: FAQ.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
-          }),
-        }}
-      />
-      <PageHeading
-        eyebrow="盆栽園・盆栽店の方へ"
-        photo={heroPhoto('/images/articles/photos/article-12-1.jpg', '盆栽園の棚に並ぶ盆栽')}
-        title="園の魅力を、盆栽を探す人に届けませんか"
-        lead="盆栽コレクションは、全国の盆栽園を無料で紹介しています。掲載内容を園の方に確かめていただく「掲載パートナー」を募集しています。掲載料・手数料はかかりません。"
-        crumbs={[{ label: 'ホーム', href: '/' }, { label: '盆栽園', href: '/gardens' }, { label: '盆栽園・盆栽店の方へ' }]}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: FAQ.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }) }}
       />
 
-      {/* いまの掲載の規模 */}
-      <section aria-labelledby="scale" className="mt-8 lg:mt-10">
-        <h2 id="scale" className="sr-only">いまの掲載の規模</h2>
-        <ul className="grid grid-cols-2 border-l border-t border-line bg-white lg:grid-cols-4">
-          {stats.map(s => (
-            <li key={s.label} className="border-b border-r border-line px-4 py-4 lg:px-6 lg:py-5">
-              <p className="font-mincho text-ink"><span className="text-[28px] font-bold lg:text-[34px]">{s.value}</span><span className="ml-1 text-[13px]">{s.unit}</span></p>
-              <p className="mt-0.5 text-[12.5px] text-ink-muted">{s.label}</p>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-[13px]">
-          <Link href="/gardens" className="inline-flex min-h-11 items-center text-ink underline decoration-line underline-offset-4 hover:text-gold-dark">盆栽園の一覧 ›</Link>
-          <Link href="/taiken" className="inline-flex min-h-11 items-center text-ink underline decoration-line underline-offset-4 hover:text-gold-dark">盆栽体験・盆栽教室を探す ›</Link>
-          <Link href="/gardens/shops" className="inline-flex min-h-11 items-center text-ink underline decoration-line underline-offset-4 hover:text-gold-dark">盆栽園・専門店から直接買う ›</Link>
+      {/* 掲載者向けのヘッダー */}
+      <header className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
+        <div className={`${WRAP} flex h-[60px] items-center gap-4 lg:h-[72px]`}>
+          <Link href="/" className="flex items-center gap-2.5">
+            <span className="flex h-8 w-8 items-center justify-center bg-sumi font-mincho text-[15px] font-bold text-gold">盆</span>
+            <span className="font-mincho text-[15px] font-bold tracking-[0.1em] lg:text-[17px]">盆栽コレクション</span>
+          </Link>
+          <span className="hidden border-l border-line pl-4 text-[12px] tracking-[0.12em] text-ink-soft sm:inline">盆栽園・盆栽店さま向け</span>
+          <nav className="ml-auto hidden items-center gap-7 text-[13px] tracking-[0.08em] text-ink-soft lg:flex" aria-label="ページ内の案内">
+            {nav.map(([href, label]) => <a key={href} href={href} className="hover:text-ink">{label}</a>)}
+          </nav>
+          <Link href={APPLY} className="ml-auto inline-flex h-10 items-center rounded-full bg-ink px-4 text-[12.5px] font-bold text-white hover:bg-ink/85 lg:ml-0 lg:h-11 lg:px-6 lg:text-[13.5px]">まずは相談する</Link>
         </div>
-      </section>
+      </header>
 
-      {/* 掲載パートナーでできること */}
-      <section aria-labelledby="benefits" className="mt-14 lg:mt-20">
-        <SectionTitle><span id="benefits">掲載パートナーになると</span></SectionTitle>
-        <p className="mt-3 max-w-[760px] text-[14px] leading-[1.85] text-ink-soft">いまの掲載は、公式サイトなどの公開情報をもとにまとめています。園の方に確かめていただくと、次のことができるようになります。すべて無料です。</p>
-        <ol className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {BENEFITS.map(b => (
-            <li key={b.no} className="border border-line bg-white p-5">
-              <p className="font-mincho text-[13px] tracking-[0.15em] text-gold-dark">{b.no}</p>
-              <p className="mt-1 font-mincho text-[17px] font-bold text-ink">{b.title}</p>
-              <p className="mt-2 text-[13.5px] leading-[1.85] text-ink-soft">{b.body}</p>
-            </li>
-          ))}
-          <li className="flex flex-col justify-between bg-sumi p-5 text-white">
-            <div>
-              <p className="font-mincho text-[13px] tracking-[0.15em] text-gold">費用</p>
-              <p className="mt-1 font-mincho text-[17px] font-bold">すべて無料です</p>
-              <p className="mt-2 text-[13.5px] leading-[1.85] text-white/75">掲載料・登録料・手数料はかかりません。園の名前を送っていただくだけで始められます。</p>
-            </div>
-            <Link href="/contact?type=garden" className="mt-4 inline-flex min-h-11 items-center self-start border border-white px-4 text-[13.5px] font-bold text-white hover:bg-white hover:text-ink">申し込む ›</Link>
-          </li>
-        </ol>
-      </section>
-
-      {/* 申し込みの流れ */}
-      <section aria-labelledby="steps" className="mt-14 lg:mt-20">
-        <SectionTitle><span id="steps">申し込みの流れ</span></SectionTitle>
-        <ol className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-3 md:grid-cols-3">
-          {STEPS.map((s, i) => (
-            <li key={s.title} className="border-t-2 border-ink bg-paper-deep px-5 py-5">
-              <p className="text-[12px] tracking-[0.15em] text-ink-muted">STEP {i + 1}</p>
-              <p className="mt-1 font-mincho text-[17px] font-bold text-ink">{s.title}</p>
-              <p className="mt-2 text-[13.5px] leading-[1.85] text-ink-soft">{s.body}</p>
-            </li>
-          ))}
-        </ol>
-        <div className="mt-7 flex flex-col items-start gap-2">
-          <Link href="/contact?type=garden" className="inline-flex min-h-[52px] items-center bg-ink px-6 text-[15px] font-bold text-white hover:bg-ink/85">掲載パートナーに申し込む（無料） ›</Link>
-          <p className="text-[12.5px] text-ink-muted">情報の追加・修正だけのご連絡や、掲載の取りやめも、同じページから受け付けています。</p>
+      {/* ファーストビュー */}
+      <section className={`${WRAP} grid items-center gap-10 py-12 lg:grid-cols-[1fr_minmax(0,500px)] lg:gap-14 lg:py-24`}>
+        <div>
+          <p className="flex items-center gap-3 text-[12px] tracking-[0.2em] text-ink-soft lg:text-[13px]">
+            <span className="h-px w-10 bg-ink" aria-hidden="true" />盆栽園・盆栽店さま向け　掲載のご案内
+          </p>
+          <h1 className="mt-6 font-mincho text-[38px] font-bold leading-[1.45] tracking-[0.1em] lg:text-[60px]">盆栽を<br />探す人に、<br />貴園の魅力を。</h1>
+          <p className="mt-6 max-w-[520px] text-[15px] leading-[2] text-ink-soft lg:text-[16px]">盆栽コレクションは、全国の盆栽園を、地域・体験教室・通販から探せるサイトです。<strong className="text-ink">掲載は無料です。</strong></p>
+          <p className="mt-5 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[14px] text-ink-soft">
+            <span>全国で<strong className="mx-1 font-mincho text-[26px] text-ink">{gardens.length.toLocaleString()}園</strong>を掲載中</span>
+            <Link href="/gardens" className="text-ink underline decoration-ink/40 underline-offset-4 hover:text-gold-dark">実際のサイトを見る ↗</Link>
+          </p>
+          <div className="mt-8"><CtaButton /></div>
+          <p className="mt-3 text-[12.5px] leading-[1.8] text-ink-muted">話を聞くだけでも構いません。掲載のお申し込み・掲載内容の修正も、同じフォームから承ります。</p>
         </div>
+        <GardenPageSample />
       </section>
 
-      {/* 掲載の決まり */}
-      <section aria-labelledby="rules" className="mt-14 lg:mt-20">
-        <SectionTitle><span id="rules">掲載の決まり</span></SectionTitle>
-        <p className="mt-3 max-w-[760px] text-[14px] leading-[1.85] text-ink-soft">盆栽を探す人に信頼される場所であるために、次のことを守ります。</p>
-        <ul className="mt-4 max-w-[860px] border-t border-line">
-          {RULES.map(r => (
-            <li key={r} className="flex gap-3 border-b border-line py-3.5 text-[14px] leading-[1.85] text-ink-soft">
-              <span aria-hidden="true" className="mt-[0.7em] h-1.5 w-1.5 shrink-0 bg-gold-dark" />
-              <span>{r}</span>
+      {/* 数字 */}
+      <section aria-label="掲載の規模" className="bg-sumi text-white">
+        <ul className={`${WRAP} grid grid-cols-2 gap-y-6 py-9 lg:grid-cols-4 lg:py-12`}>
+          {[[gardens.length.toLocaleString(), '園', '掲載している盆栽園'], [String(prefectures), '都道府県', '掲載している地域'], [String(taikenCount), '園', '体験・教室を紹介'], [String(shopCount), '園', '通販を紹介']].map(([v, u, l]) => (
+            <li key={l} className="border-l border-white/20 pl-4 lg:pl-6">
+              <p className="font-mincho"><span className="text-[32px] font-bold lg:text-[42px]">{v}</span><span className="ml-1 text-[13px] text-white/70">{u}</span></p>
+              <p className="mt-1 text-[12.5px] text-white/60">{l}</p>
             </li>
           ))}
         </ul>
       </section>
 
-      <section aria-labelledby="faq" className="mt-14 lg:mt-20">
-        <SectionTitle><span id="faq">よくある質問</span></SectionTitle>
-        <dl className="mt-4 max-w-[860px] border-t border-line">
-          {FAQ.map(f => (
-            <div key={f.q} className="border-b border-line py-4">
-              <dt className="font-mincho text-[16px] font-bold text-ink">{f.q}</dt>
-              <dd className="mt-1.5 text-[14.5px] leading-[1.9] text-ink-soft">{f.a}</dd>
-            </div>
+      {/* 01 掲載内容 */}
+      <section id="contents" className={`${WRAP} scroll-mt-20 py-16 lg:py-28`}>
+        <SectionHead no="01" label="掲載内容" title={<>貴園のことを、<br className="lg:hidden" />探す人に合わせて。</>} lead="盆栽を探す人は、地域から、体験・教室から、通販から、それぞれの入口で探しています。貴園の情報を、その入口ごとに載せます。" />
+        <div className="mt-12 grid items-center gap-8 lg:mt-16 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <p className="text-[12px] tracking-[0.15em] text-gold-dark">体験・教室</p>
+            <h3 className="mt-2 font-mincho text-[22px] font-bold leading-[1.6] lg:text-[28px]">料金・時間・日程まで、<br />比べて選べる形で。</h3>
+            <p className="mt-4 text-[14.5px] leading-[1.95] text-ink-soft">「盆栽体験・盆栽教室を探す」のページで、地域や内容（1回の体験・苔玉づくり・持ち帰りなど）から探す人に、貴園の体験を紹介します。予約は貴園の予約ページや電話へそのまま移ります。</p>
+            <Link href="/taiken" className="mt-4 inline-flex min-h-11 items-center text-[13.5px] text-ink underline decoration-ink/40 underline-offset-4 hover:text-gold-dark">実際のページを見る ↗</Link>
+          </div>
+          <TaikenSample />
+        </div>
+        <ul className="mt-14 grid gap-px border border-line bg-line sm:grid-cols-3 lg:mt-20">
+          {[
+            ['基本情報', '営業時間・定休日・見学の可否・駐車場・アクセス。地図と電話のボタンも付きます。'],
+            ['通販', '自社の通販サイト・BASE・楽天市場などの店を、園のページと「盆栽園・専門店から直接買う」のページで案内します。'],
+            ['写真と紹介文', 'ご提供の写真と、貴園の言葉による紹介文を載せられます。「園の方に確認済み」の表示も付きます。'],
+          ].map(([t, d]) => (
+            <li key={t} className="bg-white p-6">
+              <p className="font-mincho text-[18px] font-bold">{t}</p>
+              <p className="mt-2 text-[13.5px] leading-[1.9] text-ink-soft">{d}</p>
+            </li>
           ))}
-        </dl>
+        </ul>
       </section>
 
-      <section aria-labelledby="apply" className="mt-14 border border-line bg-paper-deep px-5 py-7 lg:mt-20 lg:px-10 lg:py-9">
-        <h2 id="apply" className="font-mincho text-[20px] font-bold text-ink lg:text-[23px]">まずは、いまの掲載内容を確かめてみませんか</h2>
-        <p className="mt-2 max-w-[760px] text-[14px] leading-[1.85] text-ink-soft">園の名前を書いて送っていただくだけで始められます。返信まで数日いただく場合があります。</p>
-        <Link href="/contact?type=garden" className="mt-4 inline-flex min-h-[52px] items-center bg-ink px-6 text-[15px] font-bold text-white hover:bg-ink/85">掲載パートナーに申し込む（無料） ›</Link>
-        <p className="mt-4 text-[12.5px] leading-[1.8] text-ink-muted">
-          運営者については<Link href="/about" className="border-b border-ink-muted text-ink hover:text-gold-dark">盆栽コレクションについて</Link>をご覧ください。
-        </p>
+      {/* 02 情報の入れ方 */}
+      <section id="input" className="scroll-mt-20 bg-paper-deep py-16 lg:py-28">
+        <div className={WRAP}>
+          <SectionHead no="02" label="情報の入れ方" title={<>情報は、<br className="lg:hidden" />貴園のやりやすい方法で。</>} />
+          <div className="mt-10 border-l-4 border-gold-dark bg-white p-6 lg:mt-14 lg:p-8">
+            <p className="text-[12px] tracking-[0.15em] text-gold-dark">はじめての掲載</p>
+            <p className="mt-2 font-mincho text-[19px] font-bold lg:text-[22px]">最初の掲載は、こちらで作ります。</p>
+            <p className="mt-3 max-w-[820px] text-[14.5px] leading-[1.95] text-ink-soft">公式サイトのURLや、お手元の案内（パンフレット・チラシ・料金表など）をお送りください。当方でページを作り、公開の前に貴園に確かめていただきます。</p>
+          </div>
+          <ul className="mt-4 grid gap-4 md:grid-cols-3">
+            {[
+              ['A', '公式サイトから', 'ご許可をいただいて、公式サイトの情報から当方がまとめます。', '貴園の作業なし'],
+              ['B', 'メールで', '料金や日程が変わったら、メールで新しい内容をお知らせください。', '数日で反映'],
+              ['C', '写真を送る', '園や盆栽の写真をメールでお送りください。使ってよい範囲を伺います。', 'クレジット表記も可'],
+            ].map(([k, t, d, tag]) => (
+              <li key={k} className="flex flex-col bg-white p-6">
+                <p className="font-mincho text-[28px] font-bold text-gold-dark">{k}</p>
+                <p className="mt-1 font-mincho text-[18px] font-bold">{t}</p>
+                <p className="mt-2 flex-1 text-[13.5px] leading-[1.9] text-ink-soft">{d}</p>
+                <p className="mt-4 self-start border border-line px-2.5 py-1 text-[11.5px] text-ink-soft">{tag}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
+
+      {/* 03 効果 */}
+      <section id="report" className={`${WRAP} scroll-mt-20 py-16 lg:py-28`}>
+        <SectionHead no="03" label="掲載の効果" title="掲載の効果が、数字でわかる。" lead="ご希望の園には、3か月ごとにメールでご報告します。社内や家族へのご説明にも、そのまま使えます。" />
+        <div className="mt-12 grid items-center gap-10 lg:mt-16 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-16">
+          <ReportSample />
+          <dl className="border-t border-line">
+            {[
+              ['園のページの表示', 'お客様が貴園のページを見た回数'],
+              ['公式サイト・通販へ', '貴園の公式サイト・予約ページ・通販サイトへ移った回数'],
+              ['電話・地図', '電話をかける・地図を開くボタンが押された回数'],
+              ['入口ごと', '体験・教室のページ、地域の一覧、検索など、どこから見られたか'],
+            ].map(([t, d]) => (
+              <div key={t} className="border-b border-line py-5">
+                <dt className="font-mincho text-[17px] font-bold">{t}</dt>
+                <dd className="mt-1 text-[13.5px] leading-[1.8] text-ink-soft">{d}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <p className="mt-6 text-[11.5px] text-ink-muted">画面は見本です（実在の盆栽園・数字ではありません）。写真はイメージです。</p>
+      </section>
+
+      {/* 04 料金 */}
+      <section id="price" className="scroll-mt-20 bg-paper-deep py-16 lg:py-28">
+        <div className={WRAP}>
+          <SectionHead no="04" label="料金" title="掲載は、無料です。" />
+          <div className="mt-10 grid overflow-hidden border border-line bg-white lg:mt-14 lg:grid-cols-[360px_1fr]">
+            <div className="flex flex-col justify-center border-b border-line p-8 lg:border-b-0 lg:border-r lg:p-10">
+              <p className="text-[13px] text-ink-soft">掲載の料金</p>
+              <p className="mt-2 font-mincho leading-none"><span className="text-[28px]">¥</span><span className="text-[72px] font-bold">0</span></p>
+              <CtaButton className="mt-7 self-start">まずは相談する</CtaButton>
+            </div>
+            <dl className="divide-y divide-line">
+              {[['掲載料・登録料', '0円'], ['送客・予約・販売の手数料', '0円'], ['掲載できる情報', '基本情報・体験・通販・写真・紹介文'], ['確認済みの表示・効果のご報告', 'すべて含む']].map(([k, v]) => (
+                <div key={k} className="flex items-center justify-between gap-4 px-6 py-5 lg:px-10">
+                  <dt className="text-[14px] text-ink-soft">{k}</dt>
+                  <dd className="text-right font-mincho text-[16px] font-bold lg:text-[18px]">{v}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+          <p className="mt-5 max-w-[860px] text-[13px] leading-[1.9] text-ink-soft">将来、有料の掲載をご相談することになった場合は、事前にお知らせします。そのときお断りいただいても、無料の掲載はそのまま続けます。有料の掲載には「PR」と明記し、掲載順や情報の正確さをお金で変えることはしません。</p>
+        </div>
+      </section>
+
+      {/* ご利用の流れ */}
+      <section id="flow" className={`${WRAP} scroll-mt-20 py-16 lg:py-28`}>
+        <SectionHead no="05" label="ご利用の流れ" title="ご相談から、掲載まで。" />
+        <ol className="mt-10 grid gap-4 md:grid-cols-4 lg:mt-14">
+          {[
+            ['ご相談・お申し込み', 'フォームから、園の名前・ご担当者・連絡先をお送りください。'],
+            ['担当からご連絡', 'メールで、掲載の進め方をご相談します。'],
+            ['掲載内容の確認', '当方が作った掲載内容を、公開の前に確かめていただきます。'],
+            ['公開', '数日〜1週間ほどで公開し、「園の方に確認済み」を表示します。'],
+          ].map(([t, d], i) => (
+            <li key={t} className="relative border-t-2 border-ink pt-5">
+              <p className="flex h-9 w-9 items-center justify-center rounded-full border border-ink font-mincho text-[15px] font-bold">{i + 1}</p>
+              <p className="mt-3 font-mincho text-[17px] font-bold">{t}</p>
+              <p className="mt-2 text-[13.5px] leading-[1.85] text-ink-soft">{d}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* よくある質問 */}
+      <section id="faq" className="scroll-mt-20 bg-paper-deep py-16 lg:py-28">
+        <div className={`${WRAP} grid gap-10 lg:grid-cols-[300px_1fr] lg:gap-16`}>
+          <SectionHead no="06" label="よくある質問" title="よくある質問" />
+          <dl className="border-t border-line">
+            {FAQ.map(f => (
+              <div key={f.q} className="grid gap-2 border-b border-line py-5 lg:grid-cols-[280px_1fr] lg:gap-8">
+                <dt className="font-mincho text-[16px] font-bold leading-[1.7]">{f.q}</dt>
+                <dd className="text-[14px] leading-[1.9] text-ink-soft">{f.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* 最後のご案内 */}
+      <section className="bg-sumi py-16 text-center text-white lg:py-28">
+        <div className={WRAP}>
+          <p className="text-[12px] tracking-[0.2em] text-gold">掲載のご相談</p>
+          <h2 className="mt-4 font-mincho text-[30px] font-bold leading-[1.5] tracking-[0.08em] lg:text-[44px]">まずは、お気軽に<br />ご相談ください。</h2>
+          <p className="mt-4 text-[14px] text-white/70">話を聞くだけでも構いません。</p>
+          <CtaButton dark={false} className="mt-8" />
+        </div>
+      </section>
+
+      {/* 掲載者向けのフッター（スマホの下部タブ分の余白を打ち消す） */}
+      <footer className="-mb-16 border-t border-white/10 bg-sumi pb-16 text-white/60 lg:mb-0 lg:pb-0">
+        <div className={`${WRAP} flex flex-col gap-4 py-8 text-[12.5px] lg:flex-row lg:items-center lg:justify-between`}>
+          <nav className="flex flex-wrap gap-x-6 gap-y-2" aria-label="フッター">
+            <Link href="/about" className="hover:text-white">運営者情報</Link>
+            <Link href="/terms" className="hover:text-white">利用規約</Link>
+            <Link href="/privacy" className="hover:text-white">プライバシーポリシー</Link>
+            <Link href={APPLY} className="hover:text-white">お問い合わせ・掲載停止のご依頼</Link>
+            <Link href="/" className="hover:text-white">一般向けのサイトへ</Link>
+          </nav>
+          <p>© 盆栽コレクション</p>
+        </div>
+      </footer>
     </div>
   )
 }
