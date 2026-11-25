@@ -13,6 +13,8 @@ function qrSrc(raw: string): string {
   const i = raw.indexOf(',')
   if (!raw.startsWith('data:image/svg+xml') || i < 0) return raw
   let svg = raw.slice(i + 1)
+  // 頭に data: がもう一度付いているときは外す
+  while (svg.startsWith('data:image/svg+xml') && svg.includes(',')) svg = svg.slice(svg.indexOf(',') + 1)
   if (!svg.trimStart().startsWith('<')) { try { svg = decodeURIComponent(svg) } catch { return raw } }
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`
 }
